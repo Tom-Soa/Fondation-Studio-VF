@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Fondation Studio — Qui sommes-nous ? Deux entrepreneurs obsédés par la conversion, qui créent des sites pensés pour générer des clients, pas juste pour être beaux." />
+<title>Qui sommes-nous — Fondation Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --alabaster: #F9F9F7;
+    --midnight: #0F172A;
+    --terra: #C2410C;
+    --terra-hover: #9A3412;
+    --steel: #64748B;
+    --grid: #E5E5E1;
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--alabaster); color: var(--midnight); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  img { max-width: 100%; display: block; }
+  a { text-decoration: none; color: inherit; }
+  button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+  .mono { font-family: 'DM Mono', monospace; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--steel); }
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+
+  /* ── Buttons ── */
+  .cta-btn, .btn-ghost {
+    position: relative; isolation: isolate; overflow: hidden;
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1rem;
+    padding: 0.9rem 2rem; border-radius: 100px;
+    cursor: pointer; border: none;
+    transition: transform 0.16s var(--ease-out), background 0.15s;
+  }
+  .cta-btn { background: var(--terra); color: #fff; }
+  .cta-btn::before {
+    content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 1;
+    box-shadow: inset 0 0 0 1px rgba(255,160,100,0.25), inset 0 0 18px 0 rgba(255,140,60,0.12),
+      inset 0 -3px 12px 0 rgba(255,120,40,0.18), 0 1px 3px 0 rgba(0,0,0,0.45), 0 6px 20px 0 rgba(194,65,12,0.35);
+  }
+  .cta-btn:active { transform: scale(0.97); }
+  @media (hover: hover) and (pointer: fine) { .cta-btn:hover { background: var(--terra-hover); } }
+  .btn-ghost { background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+  .btn-ghost:active { transform: scale(0.97); }
+  @media (hover: hover) and (pointer: fine) { .btn-ghost:hover { background: rgba(255,255,255,0.2); } }
+  .cta-btn .hbr, .btn-ghost .hbr {
+    position: absolute; width: 14px; height: 14px; border-radius: 50%;
+    filter: blur(10px); pointer-events: none; z-index: -1;
+    transform: translate(-50%, -50%); opacity: 0; transition: opacity 0.3s;
+  }
+  .cta-btn .hbr.in, .btn-ghost .hbr.in { opacity: 0.75; }
+  .cta-btn .hbr.out, .btn-ghost .hbr.out { opacity: 0; transition: opacity 1.2s; }
+
+  /* ── Reveal ── */
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.07s; }
+  .reveal-delay-2 { transition-delay: 0.14s; }
+  .reveal-delay-3 { transition-delay: 0.21s; }
+  .reveal-delay-4 { transition-delay: 0.28s; }
+
+  /* ── Pill Nav ── */
+  .pill-brand { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 0.95rem; color: #fff; text-decoration: none; padding: 0.4rem 0.9rem 0.4rem 0.6rem; letter-spacing: -0.02em; white-space: nowrap; position: relative; z-index: 1; display: flex; align-items: center; }
+  .pill-brand span { color: var(--terra); }
+  .pill-sep { width: 1px; height: 20px; background: rgba(255,255,255,0.12); flex-shrink: 0; margin: 0 0.1rem; position: relative; z-index: 1; }
+  @media (max-width: 639px) { .pill-brand, .pill-sep { display: none; } }
+  #pill-nav { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%); z-index: 100; }
+  @media (min-width: 640px) { #pill-nav { bottom: auto; top: 0.85rem; } }
+  .pill-inner { position: relative; display: flex; align-items: center; background: rgba(15,23,42,0.68); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 0.28rem; border-radius: 100px; box-shadow: 0 4px 40px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.06); gap: 0.05rem; }
+  #pill-lamp { position: absolute; top: 0.28rem; bottom: 0.28rem; left: 0.28rem; width: 60px; background: rgba(194,65,12,0.18); border-radius: 100px; z-index: 0; transition: left 0.38s var(--ease-spring), width 0.38s var(--ease-spring); pointer-events: none; }
+  #pill-lamp::before { content: ''; position: absolute; top: -3px; left: 50%; transform: translateX(-50%); width: 2rem; height: 3px; background: var(--terra); border-radius: 0 0 6px 6px; box-shadow: 0 0 24px 8px rgba(194,65,12,0.5), 0 0 10px 3px rgba(194,65,12,0.3); }
+  .pill-item { position: relative; z-index: 1; display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.55rem 1.1rem; border-radius: 100px; font-family: 'DM Mono', monospace; font-size: 0.62rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; white-space: nowrap; cursor: pointer; border: none; background: none; }
+  @media (hover: hover) and (pointer: fine) { .pill-item:hover { color: rgba(255,255,255,0.9); } }
+  .pill-item.active { color: #fff; }
+  .pill-item svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .pill-label { display: inline; }
+  .pill-cta { background: var(--terra); color: #fff !important; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.72rem; padding: 0.55rem 1.3rem; z-index: 1; position: relative; transition: background 0.15s, transform 0.16s var(--ease-out); }
+  @media (hover: hover) and (pointer: fine) { .pill-cta:hover { background: var(--terra-hover) !important; transform: scale(1.03); } }
+  .pill-cta:active { transform: scale(0.97) !important; }
+  @media (max-width: 639px) { .pill-label { display: none; } .pill-item { padding: 0.65rem 0.85rem; } .pill-cta { padding: 0.65rem 1rem; font-size: 0; gap: 0; } }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100dvh; background: var(--midnight); position: relative; overflow: hidden;
+    display: flex; align-items: center;
+    background-image: url('https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg?auto=compress&cs=tinysrgb&w=1920');
+    background-size: cover; background-position: center 55%;
+  }
+  .hero::before { content: ''; position: absolute; inset: 0; z-index: 0; background: linear-gradient(135deg, rgba(15,23,42,0.93) 0%, rgba(15,23,42,0.78) 50%, rgba(30,10,5,0.88) 100%); }
+  .hero-vlines { position: absolute; inset: 0; display: flex; justify-content: space-between; padding: 0 2rem; pointer-events: none; z-index: 1; }
+  .hero-vlines .vl { width: 1px; height: 100%; background: rgba(255,255,255,0.05); }
+  .hero-inner { position: relative; z-index: 2; max-width: 820px; padding: 8rem 0 6rem; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(194,65,12,0.08); border: 1px solid rgba(194,65,12,0.25); border-radius: 5px; padding: 0.32rem 1rem; margin-bottom: 2rem; }
+  .hero-badge span { font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--terra); }
+  .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--terra); animation: pulse-dot 2s infinite; }
+  @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.5)} }
+  .hero h1 { font-weight: 800; font-size: clamp(2.4rem, 5.5vw, 4.8rem); line-height: 1.05; letter-spacing: -0.025em; color: #fff; margin-bottom: 1.8rem; }
+  .hero h1 em { font-style: normal; color: var(--terra); }
+  .hero-sub { font-size: 1.1rem; color: rgba(255,255,255,0.65); line-height: 1.75; max-width: 600px; margin-bottom: 2.8rem; }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .hero-scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+  .hero-scroll-label { font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.25); }
+  .hero-scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent); animation: scrollline 1.8s var(--ease-in-out) infinite; }
+  @keyframes scrollline { 0%{transform:scaleY(0);transform-origin:top} 50%{transform:scaleY(1);transform-origin:top} 51%{transform:scaleY(1);transform-origin:bottom} 100%{transform:scaleY(0);transform-origin:bottom} }
+  @media (max-width: 768px) { .hero-inner { padding: 7rem 0 5rem; } .hero h1 { font-size: clamp(2rem, 8vw, 2.8rem); } .hero-sub { font-size: 0.95rem; } }
+
+  /* ── VISION ── */
+  .vision { background: var(--alabaster); padding: 8rem 0; overflow: hidden; }
+  .vision-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+  @media (max-width: 900px) { .vision-inner { grid-template-columns: 1fr; gap: 3rem; } }
+  .vision-text .label { font-family: 'DM Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--terra); margin-bottom: 1.5rem; }
+  .vision-text h2 { font-weight: 800; font-size: clamp(2rem, 3.5vw, 3rem); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 2rem; }
+  .vision-text h2 em { font-style: normal; color: var(--terra); }
+  .vision-quote {
+    border-left: 3px solid var(--terra); padding: 1.5rem 2rem;
+    background: white; border-radius: 0 12px 12px 0;
+    margin-bottom: 2rem; box-shadow: 0 4px 20px rgba(15,23,42,0.06);
+  }
+  .vision-quote p { font-size: 1.2rem; font-weight: 700; line-height: 1.5; letter-spacing: -0.01em; color: var(--midnight); }
+  .vision-quote p em { font-style: normal; color: var(--terra); }
+  .vision-body p { color: var(--steel); font-size: 0.95rem; line-height: 1.8; margin-bottom: 1rem; }
+  .vision-body p:last-child { margin-bottom: 0; }
+  .vision-body strong { color: var(--midnight); font-weight: 600; }
+  .vision-visual { position: relative; }
+  .vision-img-main { border-radius: 20px; overflow: hidden; aspect-ratio: 3/4; background: var(--grid); }
+  .vision-img-main img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .vision-stat-card {
+    position: absolute; bottom: -2rem; left: -2rem;
+    background: white; border-radius: 16px; padding: 1.5rem 2rem;
+    box-shadow: 0 16px 48px rgba(15,23,42,0.14);
+    display: flex; flex-direction: column; gap: 0.3rem;
+    min-width: 180px;
+  }
+  @media (max-width: 900px) { .vision-stat-card { position: static; margin-top: 1rem; display: inline-flex; } }
+  .vision-stat-card .stat-val { font-weight: 800; font-size: 2.2rem; color: var(--terra); line-height: 1; letter-spacing: -0.02em; }
+  .vision-stat-card .stat-lbl { font-family: 'DM Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--steel); }
+
+  /* ── FONDATEURS ── */
+  .founders { background: var(--midnight); padding: 8rem 0; position: relative; overflow: hidden; }
+  .founders-vlines { position: absolute; inset: 0; pointer-events: none; display: flex; justify-content: space-between; padding: 0 2rem; }
+  .founders-vlines .vl { width: 1px; height: 100%; background: rgba(255,255,255,0.04); }
+  .founders-head { margin-bottom: 5rem; }
+  .founders-head .label { font-family: 'DM Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.35); margin-bottom: 1rem; }
+  .founders-head h2 { font-weight: 800; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; letter-spacing: -0.02em; color: white; }
+
+  /* Founder — alternating layout */
+  .founder-block { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-bottom: 6rem; }
+  .founder-block:last-child { margin-bottom: 0; }
+  .founder-block.reverse { direction: rtl; }
+  .founder-block.reverse > * { direction: ltr; }
+  @media (max-width: 860px) { .founder-block, .founder-block.reverse { grid-template-columns: 1fr; gap: 2.5rem; direction: ltr; } }
+
+  .founder-visual { position: relative; }
+  .founder-img {
+    border-radius: 20px; overflow: hidden; aspect-ratio: 3/4; background: rgba(255,255,255,0.05);
+    position: relative;
+  }
+  .founder-img img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(20%); }
+  .founder-img::after {
+    content: ''; position: absolute; inset: 0; border-radius: inherit;
+    background: linear-gradient(to top, rgba(15,23,42,0.5) 0%, transparent 50%);
+  }
+  .founder-number {
+    position: absolute; top: -1.5rem; right: -1.5rem;
+    width: 64px; height: 64px; background: var(--terra); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 1.4rem; color: white; letter-spacing: -0.03em;
+    box-shadow: 0 8px 24px rgba(194,65,12,0.45);
+  }
+  @media (max-width: 860px) { .founder-number { top: -1rem; right: -1rem; width: 48px; height: 48px; font-size: 1.1rem; } }
+  .founder-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1.5rem; }
+  .founder-tag { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; padding: 0.28rem 0.7rem; font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.5); }
+  .founder-tag.highlight { background: rgba(194,65,12,0.15); border-color: rgba(194,65,12,0.35); color: var(--terra); }
+
+  .founder-content {}
+  .founder-role { font-family: 'DM Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--terra); margin-bottom: 0.8rem; }
+  .founder-name { font-weight: 800; font-size: clamp(2rem, 3vw, 2.8rem); line-height: 1.1; letter-spacing: -0.025em; color: white; margin-bottom: 0.5rem; }
+  .founder-tagline { font-size: 1.05rem; color: rgba(255,255,255,0.5); margin-bottom: 2rem; line-height: 1.5; font-style: italic; }
+  .founder-divider { width: 48px; height: 3px; background: var(--terra); border-radius: 2px; margin-bottom: 2rem; }
+  .founder-bio p { font-size: 0.95rem; color: rgba(255,255,255,0.55); line-height: 1.8; margin-bottom: 1rem; }
+  .founder-bio p:last-child { margin-bottom: 0; }
+  .founder-bio strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+  .founder-highlight {
+    margin-top: 2rem; padding: 1.25rem 1.5rem;
+    background: rgba(194,65,12,0.1); border: 1px solid rgba(194,65,12,0.25); border-radius: 12px;
+    font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.6;
+  }
+  .founder-highlight strong { color: var(--terra); }
+
+  /* ── APPROCHE ── */
+  .approche { background: var(--alabaster); padding: 8rem 0; }
+  .approche-inner { display: grid; grid-template-columns: 5fr 7fr; gap: 6rem; align-items: start; }
+  @media (max-width: 900px) { .approche-inner { grid-template-columns: 1fr; gap: 3rem; } }
+  .approche-left h2 { font-weight: 800; font-size: clamp(1.8rem, 3vw, 2.6rem); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 1.25rem; }
+  .approche-left h2 em { font-style: normal; color: var(--terra); }
+  .approche-left p { color: var(--steel); font-size: 0.95rem; line-height: 1.8; margin-bottom: 1rem; }
+  .approche-left .conclusion { font-weight: 700; font-size: 1rem; color: var(--midnight); margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--grid); }
+  .approche-items { display: flex; flex-direction: column; gap: 0; }
+  .approche-item {
+    display: flex; gap: 1.5rem; align-items: flex-start;
+    padding: 1.75rem 0; border-bottom: 1px solid var(--grid);
+    transition: transform 0.25s var(--ease-out);
+  }
+  .approche-item:first-child { padding-top: 0; }
+  .approche-item:last-child { border-bottom: none; }
+  @media (hover: hover) and (pointer: fine) { .approche-item:hover { transform: translateX(6px); } }
+  .approche-num { font-family: 'DM Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--terra); min-width: 32px; padding-top: 0.2rem; }
+  .approche-icon { width: 44px; height: 44px; border-radius: 12px; background: white; border: 1px solid var(--grid); display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 2px 8px rgba(15,23,42,0.06); transition: border-color 0.2s, background 0.2s; }
+  @media (hover: hover) and (pointer: fine) { .approche-item:hover .approche-icon { background: rgba(194,65,12,0.08); border-color: rgba(194,65,12,0.25); } }
+  .approche-body h4 { font-weight: 700; font-size: 1rem; margin-bottom: 0.35rem; }
+  .approche-body p { color: var(--steel); font-size: 0.88rem; line-height: 1.65; }
+
+  /* ── POURQUOI NOUS ── */
+  .pourquoi {
+    background: var(--midnight); padding: 8rem 0; position: relative; overflow: hidden;
+    background-image: url('https://images.pexels.com/photos/1559486/pexels-photo-1559486.jpeg?auto=compress&cs=tinysrgb&w=1920');
+    background-size: cover; background-position: center 60%;
+    background-attachment: fixed;
+  }
+  .pourquoi::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(15,23,42,0.92) 0%, rgba(15,23,42,0.80) 60%, rgba(30,10,5,0.90) 100%); z-index: 0; }
+  .pourquoi .container { position: relative; z-index: 1; }
+  .pourquoi-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+  @media (max-width: 900px) { .pourquoi-inner { grid-template-columns: 1fr; gap: 3rem; } }
+  .pourquoi-left {}
+  .pourquoi-left .label { font-family: 'DM Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.35); margin-bottom: 1.25rem; }
+  .pourquoi-left h2 { font-weight: 800; font-size: clamp(2rem, 3.5vw, 3rem); line-height: 1.1; letter-spacing: -0.02em; color: white; margin-bottom: 1.5rem; }
+  .pourquoi-left h2 em { font-style: normal; color: var(--terra); }
+  .pourquoi-left > p { color: rgba(255,255,255,0.5); font-size: 1rem; line-height: 1.75; margin-bottom: 2.5rem; }
+  .pourquoi-pillars { display: flex; flex-direction: column; gap: 1px; border-radius: 16px; overflow: hidden; }
+  .pourquoi-pillar {
+    display: flex; align-items: center; gap: 1.5rem;
+    padding: 1.5rem 2rem;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
+    border-radius: 0; position: relative; overflow: hidden;
+  }
+  .pourquoi-pillars .pourquoi-pillar:first-child { border-radius: 16px 16px 0 0; }
+  .pourquoi-pillars .pourquoi-pillar:last-child { border-radius: 0 0 16px 16px; }
+  @media (hover: hover) and (pointer: fine) {
+    .pourquoi-pillar:hover { background: rgba(194,65,12,0.1); border-color: rgba(194,65,12,0.25); }
+  }
+  .pourquoi-pillar-icon { width: 46px; height: 46px; border-radius: 12px; background: rgba(194,65,12,0.15); border: 1px solid rgba(194,65,12,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .pourquoi-pillar h4 { font-weight: 700; font-size: 1rem; color: white; margin-bottom: 0.2rem; }
+  .pourquoi-pillar p { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.55; }
+
+  .pourquoi-cta-block { display: flex; flex-direction: column; gap: 2.5rem; }
+  .pourquoi-quote {
+    padding: 2.5rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px; position: relative;
+  }
+  .pourquoi-quote::before { content: '"'; position: absolute; top: 1rem; left: 2rem; font-size: 5rem; font-weight: 800; color: var(--terra); opacity: 0.4; line-height: 1; }
+  .pourquoi-quote p { font-size: 1.2rem; font-weight: 600; line-height: 1.55; color: white; letter-spacing: -0.01em; padding-top: 2rem; }
+  .pourquoi-numbers { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; border-radius: 16px; overflow: hidden; }
+  .pourquoi-num-item { padding: 2rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); text-align: center; }
+  .pourquoi-num-item .val { font-weight: 800; font-size: 2.2rem; color: white; line-height: 1; letter-spacing: -0.02em; }
+  .pourquoi-num-item .val em { font-style: normal; color: var(--terra); }
+  .pourquoi-num-item .lbl { font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); margin-top: 0.4rem; }
+  .pourquoi-final-cta { text-align: center; }
+  .pourquoi-final-cta p { color: rgba(255,255,255,0.4); font-size: 0.82rem; margin-top: 0.8rem; font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* ── Footer ── */
+  footer { background: var(--midnight); color: white; }
+  .footer-bar { border-top: 1px solid rgba(255,255,255,0.06); padding: 2.5rem 0; }
+  .footer-bar-inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+  .flogo { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 1.1rem; }
+  .flogo span { color: var(--terra); }
+  .fcopy { font-family: 'DM Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.2); }
+  .flinks { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .flinks a { font-family: 'DM Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.25); transition: color 0.2s; }
+  @media (hover: hover) and (pointer: fine) { .flinks a:hover { color: rgba(255,255,255,0.5); } }
+  @media (max-width: 600px) { .footer-bar-inner { flex-direction: column; text-align: center; } }
+
+  /* ── Toast ── */
+  .toast { position: fixed; bottom: 2rem; right: 2rem; z-index: 300; background: white; border-radius: 12px; padding: 1rem 1.4rem; box-shadow: 0 8px 32px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 0.7rem; font-family: 'Inter', sans-serif; font-weight: 600; color: var(--midnight); transform: translateY(100px); opacity: 0; transition: transform 0.4s var(--ease-spring), opacity 0.4s; pointer-events: none; font-size: 0.9rem; }
+  .toast.show { transform: translateY(0); opacity: 1; }
+  .toast-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; flex-shrink: 0; }
+
+  .freelance-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 5rem; align-items: start; max-width: 1000px; }
+  @media (max-width: 860px) { .freelance-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { transition: opacity 0.2s; transform: none; }
+    .reveal.visible { transform: none; }
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    .hero-badge .dot { animation: none; }
+  }
+
+  /* ── Mobile hamburger menu ── */
+  .mob-menu-btn {
+    display: none;
+    position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 200;
+    width: 52px; height: 52px; border-radius: 50%;
+    background: rgba(15,23,42,0.92); border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    align-items: center; justify-content: center; cursor: pointer;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+    transition: transform 0.2s cubic-bezier(0.23,1,0.32,1), background 0.2s;
+  }
+  .mob-menu-btn:active { transform: scale(0.93); }
+  .mob-menu-btn svg { transition: opacity 0.2s, transform 0.25s cubic-bezier(0.23,1,0.32,1); }
+  .mob-menu-btn .icon-burger { opacity: 1; transform: rotate(0deg); position: absolute; }
+  .mob-menu-btn .icon-close  { opacity: 0; transform: rotate(-45deg); position: absolute; }
+  .mob-menu-btn.open .icon-burger { opacity: 0; transform: rotate(45deg); }
+  .mob-menu-btn.open .icon-close  { opacity: 1; transform: rotate(0deg); }
+
+  .mob-menu-overlay {
+    display: none; position: fixed; inset: 0; z-index: 150;
+    background: rgba(0,0,0,0.5);
+    opacity: 0; transition: opacity 0.25s cubic-bezier(0.23,1,0.32,1);
+  }
+  .mob-menu-overlay.open { opacity: 1; }
+
+  .mob-menu-panel {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 160;
+    background: rgba(15,23,42,0.97); border-top: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px 24px 0 0;
+    padding: 1rem 1.5rem 2.5rem;
+    backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+    transform: translateY(100%);
+    transition: transform 0.35s cubic-bezier(0.32,0.72,0,1);
+    display: none;
+  }
+  .mob-menu-panel.open { transform: translateY(0); }
+
+  .mob-menu-handle {
+    width: 36px; height: 4px; background: rgba(255,255,255,0.2);
+    border-radius: 2px; margin: 0 auto 1.5rem;
+  }
+  .mob-menu-brand {
+    font-family: 'Inter', sans-serif; font-weight: 800; font-size: 1rem;
+    color: #fff; margin-bottom: 1.5rem; padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .mob-menu-brand span { color: #C2410C; }
+
+  .mob-menu-links { display: flex; flex-direction: column; gap: 0.25rem; }
+  .mob-menu-link {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 0.85rem 1rem; border-radius: 12px; color: rgba(255,255,255,0.6);
+    font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.95rem;
+    text-decoration: none; transition: background 0.15s, color 0.15s;
+  }
+  .mob-menu-link:hover { background: rgba(255,255,255,0.06); color: white; }
+  .mob-menu-link.active { background: rgba(194,65,12,0.15); color: white; }
+  .mob-menu-link svg { width: 18px; height: 18px; flex-shrink: 0; opacity: 0.7; }
+  .mob-menu-link.active svg { opacity: 1; color: #C2410C; }
+  .mob-menu-cta {
+    display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+    margin-top: 1rem; padding: 1rem; border-radius: 14px;
+    background: #C2410C; color: #fff;
+    font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.95rem;
+    text-decoration: none; transition: background 0.15s, transform 0.16s cubic-bezier(0.23,1,0.32,1);
+  }
+  .mob-menu-cta:active { transform: scale(0.97); background: #9A3412; }
+
+  @media (max-width: 639px) {
+    .mob-menu-btn { display: flex; }
+    #pill-nav { display: none !important; }
+    .mob-menu-overlay, .mob-menu-panel { display: block; }
+  }
+
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"><div class="toast-dot"></div><span id="toast-msg">Message envoyé !</span></div>
+
+<!-- PILL NAV -->
+<nav id="pill-nav" aria-label="Navigation principale">
+  <div class="pill-inner">
+    <a href="index.html" class="pill-brand">Fondation <span>Studio</span></a>
+    <div class="pill-sep"></div>
+    <div id="pill-lamp"></div>
+    <a href="index.html" class="pill-item">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span class="pill-label">Accueil</span>
+    </a>
+    <a href="qui-sommes-nous.html" class="pill-item active">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <span class="pill-label">L'équipe</span>
+    </a>
+    <a href="realisations.html" class="pill-item">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      <span class="pill-label">Réalisations</span>
+    </a>
+    <a href="processus.html" class="pill-item">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M19.07 19.07l-1.41-1.41M4.93 19.07l1.41-1.41M4.93 4.93l1.41 1.41M12 2v2m0 16v2M2 12h2m16 0h2"/></svg>
+      <span class="pill-label">Processus</span>
+    </a>
+    <a href="performances.html" class="pill-item">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      <span class="pill-label">Performances</span>
+    </a>
+    <a href="tarifs.html" class="pill-item">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
+      <span class="pill-label">Tarifs</span>
+    </a>
+    <a href="contact.html" class="pill-item pill-cta">
+      <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <span class="pill-label">Contact</span>
+    </a>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<button class="mob-menu-btn" id="mob-btn" aria-label="Menu">
+  <svg class="icon-burger" width="20" height="20" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  <svg class="icon-close" width="20" height="20" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+</button>
+<div class="mob-menu-overlay" id="mob-overlay"></div>
+<div class="mob-menu-panel" id="mob-panel">
+  <div class="mob-menu-handle"></div>
+  <div class="mob-menu-brand">Fondation <span>Studio</span></div>
+  <nav class="mob-menu-links">
+    <a href="index.html" class="mob-menu-link ">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Accueil
+    </a>
+    <a href="qui-sommes-nous.html" class="mob-menu-link active">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      L'équipe
+    </a>
+    <a href="realisations.html" class="mob-menu-link ">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      Réalisations
+    </a>
+    <a href="processus.html" class="mob-menu-link ">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M19.07 19.07l-1.41-1.41M4.93 19.07l1.41-1.41M4.93 4.93l1.41 1.41M12 2v2m0 16v2M2 12h2m16 0h2"/></svg>
+      Processus
+    </a>
+    <a href="performances.html" class="mob-menu-link ">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      Performances
+    </a>
+    <a href="tarifs.html" class="mob-menu-link ">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
+      Tarifs
+    </a>
+    <a href="contact.html" class="mob-menu-cta">
+      Démarrer mon projet
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </nav>
+</div>
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-vlines"><div class="vl"></div><div class="vl"></div><div class="vl"></div><div class="vl"></div></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-badge reveal">
+        <div class="dot"></div>
+        <span>Fondation Studio — Qui sommes-nous</span>
+      </div>
+      <h1 class="reveal">On ne crée pas des sites.<br>On crée des outils pour <em>générer des clients.</em></h1>
+      <p class="hero-sub reveal">Fondation Studio accompagne les PME dans la création de sites internet modernes, rapides et surtout pensés pour convertir. Chaque site est conçu pour transformer vos visiteurs en clients, avec une approche basée sur la performance et la rentabilité.</p>
+      <div class="hero-btns reveal">
+        <a href="contact.html" class="cta-btn" style="font-size:1.05rem;padding:1rem 2.2rem">
+          Obtenir un aperçu de mon futur site
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="realisations.html" class="btn-ghost" style="font-size:1.05rem;padding:1rem 2.2rem">
+          Voir nos réalisations
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <div class="hero-scroll-line"></div>
+    <div class="hero-scroll-label">Défiler</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     NOTRE VISION
+══════════════════════════════════════ -->
+<section class="vision">
+  <div class="container">
+    <div class="vision-inner">
+      <div class="vision-text">
+        <div class="label reveal">Notre vision</div>
+        <h2 class="reveal">Un site, c'est un <em>levier de croissance.</em> Pas une dépense.</h2>
+        <div class="vision-quote reveal">
+          <p>Aujourd'hui, trop d'entreprises paient des sites à prix élevé pour un résultat <em>décevant.</em></p>
+        </div>
+        <div class="vision-body reveal">
+          <p>Design moyen, aucune stratégie, <strong>aucun impact réel sur le chiffre d'affaires.</strong> Le site est en ligne, mais il n'apporte rien.</p>
+          <p>Notre conviction est simple : un site ne devrait pas être une case à cocher. C'est l'outil le plus puissant de votre acquisition client — à condition qu'il soit construit pour ça.</p>
+          <p class="conclusion">Notre objectif : des sites qui attirent, rassurent et <strong>convertissent.</strong> Pas juste des sites "beaux".</p>
+        </div>
+      </div>
+      <div class="vision-visual reveal">
+        <div class="vision-img-main">
+          <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Fondation Studio — vision" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     LES FONDATEURS
+══════════════════════════════════════ -->
+<section class="founders" id="fondateurs">
+  <div class="founders-vlines"><div class="vl"></div><div class="vl"></div><div class="vl"></div><div class="vl"></div></div>
+  <div class="container" style="position:relative;z-index:1">
+    <div class="founders-head">
+      <div class="label reveal">Les fondateurs</div>
+      <h2 class="reveal">Deux entrepreneurs.<br>Une obsession commune.</h2>
+    </div>
+
+    <!-- TOM-SOA -->
+    <div class="founder-block">
+      <div class="founder-visual reveal">
+        <div class="founder-img">
+          <img src="tom-soa.jpg" alt="Tom-Soa — Co-fondateur Fondation Studio" loading="lazy" />
+        </div>
+        <div class="founder-number">01</div>
+        <div class="founder-tags">
+          <span class="founder-tag highlight">Meta Ads</span>
+          <span class="founder-tag highlight">Google Ads</span>
+          <span class="founder-tag">Acquisition</span>
+          <span class="founder-tag">CRO</span>
+          <span class="founder-tag">Marketing digital</span>
+        </div>
+      </div>
+      <div class="founder-content reveal reveal-delay-1">
+        <div class="founder-role">Co-fondateur · Acquisition & Stratégie</div>
+        <h3 class="founder-name">Tom-Soa</h3>
+        <p class="founder-tagline">"Un site sans stratégie d'acquisition, c'est une vitrine sans passants."</p>
+        <div class="founder-divider"></div>
+        <div class="founder-bio">
+          <p>Tom-Soa entreprend depuis ses <strong>15 ans.</strong> Ce que d'autres apprennent en école de commerce, il l'a appris sur le terrain — en testant, en échouant, en recommençant. Résultat : une compréhension profonde et concrète de ce qui génère des clients.</p>
+          <p>Il s'est spécialisé dans l'<strong>acquisition client et le marketing digital</strong>, et a accompagné plus de <strong>30 entreprises</strong> à générer du chiffre d'affaires grâce à la publicité en ligne (Meta Ads, Google Ads).</p>
+          <p>Son expertise repose sur un constat simple : <strong>attirer du trafic qualifié ne suffit pas — il faut le convertir.</strong> C'est exactement ce que fait chaque site qu'il conçoit.</p>
+        </div>
+        <div class="founder-highlight">
+          Avec Fondation Studio, il conçoit des sites pensés pour <strong>générer des demandes et du chiffre d'affaires</strong> — pas simplement pour être esthétiques.
+        </div>
+        <a href="https://www.linkedin.com/in/tom-soa-cyprien-934798333/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.5rem;font-family:'DM Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--steel);text-decoration:none;transition:color 0.2s;">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn — Tom-Soa
+        </a>
+      </div>
+    </div>
+
+    <!-- ANDYLANE -->
+    <div class="founder-block reverse">
+      <div class="founder-visual reveal">
+        <div class="founder-img">
+          <img src="https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Andylane — Co-fondateur Fondation Studio" loading="lazy" />
+        </div>
+        <div class="founder-number">02</div>
+        <div class="founder-tags">
+          <span class="founder-tag highlight">Entrepreneuriat</span>
+          <span class="founder-tag highlight">Mayotte</span>
+          <span class="founder-tag">Création d'entreprise</span>
+          <span class="founder-tag">Terrain</span>
+          <span class="founder-tag">Développement</span>
+        </div>
+      </div>
+      <div class="founder-content reveal reveal-delay-1">
+        <div class="founder-role">Co-fondateur · Business & Développement</div>
+        <h3 class="founder-name">Andylane</h3>
+        <p class="founder-tagline">"Ce que veulent vraiment les entreprises, c'est des résultats. Pas un beau PDF."</p>
+        <div class="founder-divider"></div>
+        <div class="founder-bio">
+          <p>Andylane est entrepreneur et grossiste <strong>basé à Mayotte.</strong> Loin des buzzwords des startups parisiennes, il a construit son expérience là où ça compte vraiment : sur le terrain, avec de vraies contraintes et de vrais enjeux.</p>
+          <p>Il a <strong>accompagné une vingtaine d'entreprises</strong> dans leur lancement et leur développement, et a réalisé plusieurs projets de création de sites internet. Ce parcours lui a appris une chose que les agences classiques ignorent souvent : <strong>les PME n'ont pas besoin d'un site "impressionnant" — elles ont besoin d'un site qui leur apporte des clients.</strong></p>
+          <p>Sa vision : la <strong>rentabilité avant l'esthétique.</strong> L'efficacité avant la complexité.</p>
+        </div>
+        <div class="founder-highlight">
+          Aujourd'hui, il co-fonde Fondation Studio avec l'ambition de proposer des sites <strong>performants, utiles et honnêtes</strong> — conçus pour que chaque euro investi en rapporte dix.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     ÉQUIPE FREELANCES
+══════════════════════════════════════ -->
+<section style="padding: 5rem 0; border-top: 1px solid var(--grid);">
+  <div class="container">
+    <div class="freelance-grid">
+
+      <div class="reveal">
+        <span class="mono" style="display:block; margin-bottom: 1.2rem;">Comment on travaille</span>
+        <h2 style="font-weight: 800; font-size: clamp(1.6rem, 3vw, 2.2rem); line-height: 1.1; letter-spacing: -0.02em; color: var(--midnight);">Une équipe d'experts dédiée à chaque projet.</h2>
+      </div>
+
+      <div class="reveal">
+        <p style="font-size: 1rem; line-height: 1.75; color: var(--midnight); margin-bottom: 1.5rem;">Chez Fondation Studio, nous collaborons avec une équipe de freelances spécialisés pour concevoir chaque site. Cela nous permet de réunir les bonnes compétences selon votre projet — et de garantir un résultat adapté à vos besoins, sans compromis.</p>
+
+        <div style="display: flex; flex-direction: column; border-top: 1px solid var(--grid);">
+          <div style="display: flex; align-items: center; gap: 1.2rem; padding: 1rem 0; border-bottom: 1px solid var(--grid);">
+            <div style="width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--grid); background: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <svg width="15" height="15" fill="none" stroke="var(--steel)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            </div>
+            <div>
+              <div style="font-weight: 600; font-size: 0.9rem; color: var(--midnight);">Design & identité visuelle</div>
+              <div style="font-size: 0.82rem; color: var(--steel); margin-top: 0.15rem;">Mise en page, typographie, cohérence de la marque</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 1.2rem; padding: 1rem 0; border-bottom: 1px solid var(--grid);">
+            <div style="width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--grid); background: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <svg width="15" height="15" fill="none" stroke="var(--steel)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <div>
+              <div style="font-weight: 600; font-size: 0.9rem; color: var(--midnight);">Développement front-end</div>
+              <div style="font-size: 0.82rem; color: var(--steel); margin-top: 0.15rem;">Code pur, Next.js, performance et accessibilité</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 1.2rem; padding: 1rem 0;">
+            <div style="width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--grid); background: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <svg width="15" height="15" fill="none" stroke="var(--steel)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <div>
+              <div style="font-weight: 600; font-size: 0.9rem; color: var(--midnight);">Copywriting & stratégie</div>
+              <div style="font-size: 0.82rem; color: var(--steel); margin-top: 0.15rem;">Textes orientés conversion, ton adapté à votre secteur</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     NOTRE APPROCHE
+══════════════════════════════════════ -->
+<section class="approche">
+  <div class="container">
+    <div class="approche-inner">
+      <div class="approche-left">
+        <div class="reveal" style="margin-bottom:1rem"><span class="mono">Notre approche</span></div>
+        <h2 class="reveal">Contrairement aux agences classiques, on ne fait pas <em>que du design.</em></h2>
+        <p class="reveal">Chaque site est pensé comme un outil d'acquisition. Chaque section a un rôle précis dans le parcours du visiteur jusqu'à la prise de contact.</p>
+        <p class="reveal" style="color:var(--steel);font-size:0.95rem;line-height:1.8">Nous travaillons autant le message que la technique. Le fond autant que la forme. Parce que les deux sont indissociables pour convertir.</p>
+        <p class="approche-left conclusion reveal">Notre objectif est simple : faire en sorte que votre site vous apporte des clients — pas des compliments.</p>
+      </div>
+      <div class="approche-items">
+        <div class="approche-item reveal">
+          <div class="approche-num">01</div>
+          <div class="approche-icon">
+            <svg width="20" height="20" fill="none" stroke="var(--terra)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+          </div>
+          <div class="approche-body">
+            <h4>Structure optimisée pour la conversion</h4>
+            <p>Hiérarchie visuelle, placement des CTA, enchaînement des sections. Chaque élément guide le visiteur naturellement vers l'action que vous souhaitez.</p>
+          </div>
+        </div>
+        <div class="approche-item reveal reveal-delay-1">
+          <div class="approche-num">02</div>
+          <div class="approche-icon">
+            <svg width="20" height="20" fill="none" stroke="var(--terra)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="approche-body">
+            <h4>Message clair et orienté client</h4>
+            <p>On ne parle pas de vous — on parle à vos clients. Ce qu'ils gagnent, les problèmes qu'on résout pour eux, pourquoi vous et pas un autre.</p>
+          </div>
+        </div>
+        <div class="approche-item reveal reveal-delay-2">
+          <div class="approche-num">03</div>
+          <div class="approche-icon">
+            <svg width="20" height="20" fill="none" stroke="var(--terra)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div class="approche-body">
+            <h4>Expérience utilisateur fluide</h4>
+            <p>Navigation intuitive, temps de chargement nul, design responsive. Un visiteur qui bute ne convertit pas.</p>
+          </div>
+        </div>
+        <div class="approche-item reveal reveal-delay-3">
+          <div class="approche-num">04</div>
+          <div class="approche-icon">
+            <svg width="20" height="20" fill="none" stroke="var(--terra)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <div class="approche-body">
+            <h4>SEO optimisé dès la création</h4>
+            <p>Structure sémantique, performances Core Web Vitals, balisage technique. Votre site est visible par Google dès le premier jour.</p>
+          </div>
+        </div>
+        <div class="approche-item reveal reveal-delay-4">
+          <div class="approche-num">05</div>
+          <div class="approche-icon">
+            <svg width="20" height="20" fill="none" stroke="var(--terra)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div class="approche-body">
+            <h4>Code pur — zéro template</h4>
+            <p>Pas de WordPress, pas de page builder. Chaque ligne est écrite à la main en Next.js pour une performance maximale : des scores PageSpeed élevés.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     POURQUOI NOUS CHOISIR
+══════════════════════════════════════ -->
+<section class="pourquoi">
+  <div class="container">
+    <div class="pourquoi-inner">
+      <div class="pourquoi-left">
+        <div class="label reveal">Pourquoi nous choisir</div>
+        <h2 class="reveal">Un bon site doit créer un <em>vrai écart</em> avec la concurrence.</h2>
+        <p class="reveal">C'est exactement ce que nous construisons. Quand vous travaillez avec nous, votre site ne ressemble pas aux autres — parce qu'il n'est pas construit comme les autres.</p>
+        <div class="pourquoi-pillars reveal">
+          <div class="pourquoi-pillar">
+            <div class="pourquoi-pillar-icon">
+              <svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <div>
+              <h4>Votre site attire l'attention</h4>
+              <p>Design premium qui se distingue, même dans les secteurs les plus concurrentiels.</p>
+            </div>
+          </div>
+          <div class="pourquoi-pillar">
+            <div class="pourquoi-pillar-icon">
+              <svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <h4>Il inspire confiance</h4>
+              <p>Crédibilité immédiate, preuves sociales bien placées, message rassurant. Le visiteur se sent au bon endroit.</p>
+            </div>
+          </div>
+          <div class="pourquoi-pillar">
+            <div class="pourquoi-pillar-icon">
+              <svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+            </div>
+            <div>
+              <h4>Il convertit</h4>
+              <p>Structure CRO, CTA stratégiques, parcours optimisé. La différence se voit dans vos demandes entrantes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pourquoi-cta-block">
+        <div class="pourquoi-quote reveal">
+          <p>La différence entre un site banal et un site Fondation Studio est visible immédiatement — par vous, et surtout par vos clients.</p>
+        </div>
+        <div class="pourquoi-numbers reveal">
+          <div class="pourquoi-num-item">
+            <div class="val">42<em>+</em></div>
+            <div class="lbl">Projets livrés</div>
+          </div>
+          <div class="pourquoi-num-item">
+            <div class="val">100<em>/100</em></div>
+            <div class="lbl">PageSpeed élevé</div>
+          </div>
+          <div class="pourquoi-num-item">
+            <div class="val">14–21<em>j</em></div>
+            <div class="lbl">Délai de livraison</div>
+          </div>
+          <div class="pourquoi-num-item">
+            <div class="val">4.9<em>/5</em></div>
+            <div class="lbl">Satisfaction client</div>
+          </div>
+        </div>
+        <div class="pourquoi-final-cta reveal">
+          <a href="contact.html" class="cta-btn" style="width:100%;justify-content:center;font-size:1.05rem;padding:1rem 2rem">
+            Démarrer mon projet
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <p>Sans engagement · Réponse sous 24h</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-bar">
+    <div class="container">
+      <div class="footer-bar-inner">
+        <div class="flogo">Fondation <span>Studio</span></div>
+        <div class="fcopy">© 2025 · Sites Orientés Conversion · Code pur · Livraison 14–21 jours</div>
+        <a href="diaporama.html" target="_blank" style="font-family:'DM Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.2);text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.5)'" onmouseout="this.style.color='rgba(255,255,255,0.2)'">
+          <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          Diaporama
+        </a>
+        <div class="flinks">
+          <a href="index.html">Accueil</a>
+          <a href="qui-sommes-nous.html">L'équipe</a>
+          <a href="realisations.html">Réalisations</a>
+          <a href="processus.html">Processus</a>
+          <a href="performances.html">Performances</a>
+          <a href="tarifs.html">Tarifs</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Pill Nav lamp ──
+  (function() {
+    const lamp  = document.getElementById('pill-lamp');
+    function moveLamp(el) {
+      if (!lamp || !el) return;
+      const inner = document.querySelector('.pill-inner');
+      if (!inner) return;
+      const iR = inner.getBoundingClientRect();
+      const eR = el.getBoundingClientRect();
+      lamp.style.left  = (eR.left - iR.left) + 'px';
+      lamp.style.width = eR.width + 'px';
+    }
+    requestAnimationFrame(() => {
+      const active = document.querySelector('.pill-item.active');
+      if (active) moveLamp(active);
+    });
+  })();
+
+  // ── Reveal on scroll ──
+  (function() {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  })();
+
+  // ── Hover button particles ──
+  (function() {
+    document.querySelectorAll('.cta-btn, .btn-ghost').forEach(btn => {
+      let active = false, last = 0;
+      const isPrimary = btn.classList.contains('cta-btn');
+      btn.addEventListener('pointerenter', () => { active = true; });
+      btn.addEventListener('pointerleave', () => { active = false; });
+      btn.addEventListener('pointermove', e => {
+        if (!active) return;
+        const now = Date.now(); if (now - last < 100) return; last = now;
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left, y = e.clientY - rect.top, xRatio = x / btn.offsetWidth;
+        const c = document.createElement('div'); c.className = 'hbr';
+        c.style.left = x + 'px'; c.style.top = y + 'px';
+        c.style.background = isPrimary
+          ? `linear-gradient(to right, rgba(255,180,100,0.9) ${xRatio*100}%, rgba(194,65,12,0.6) ${xRatio*100}%)`
+          : `rgba(255,255,255,0.5)`;
+        btn.appendChild(c);
+        requestAnimationFrame(() => c.classList.add('in'));
+        setTimeout(() => { c.classList.remove('in'); c.classList.add('out'); }, 1000);
+        setTimeout(() => c.remove(), 2200);
+      });
+    });
+  })();
+
+  // ── Mobile menu ──
+  (function() {
+    const btn = document.getElementById('mob-btn');
+    const overlay = document.getElementById('mob-overlay');
+    const panel = document.getElementById('mob-panel');
+    if (!btn) return;
+    function open() { btn.classList.add('open'); overlay.classList.add('open'); panel.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function close() { btn.classList.remove('open'); overlay.classList.remove('open'); panel.classList.remove('open'); document.body.style.overflow = ''; }
+    btn.addEventListener('click', () => btn.classList.contains('open') ? close() : open());
+    overlay.addEventListener('click', close);
+    // close on link click
+    panel.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  })();
+
+</script>
+</body>
+</html>

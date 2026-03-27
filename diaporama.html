@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fondation Studio — Présentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet" />
+<style>
+/* ══════════════════════════════════
+   TOKENS — même variables que le site
+══════════════════════════════════ */
+:root {
+  --midnight: #0F172A;
+  --terra: #C2410C;
+  --terra-hover: #9A3412;
+  --terra-dim: rgba(194,65,12,0.12);
+  --terra-border: rgba(194,65,12,0.3);
+  --alabaster: #F9F9F7;
+  --steel: #64748B;
+  --grid: #E5E5E1;
+  --w10: rgba(255,255,255,0.10);
+  --w20: rgba(255,255,255,0.20);
+  --w40: rgba(255,255,255,0.40);
+  --w60: rgba(255,255,255,0.60);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #fff; }
+body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+em { font-style: normal; color: var(--terra); }
+strong { font-weight: 700; color: var(--midnight); }
+a { text-decoration: none; color: inherit; }
+
+/* ══ DECK ══ */
+.deck { width: 100vw; height: 100vh; position: relative; }
+
+.slide {
+  position: absolute; inset: 0;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.45s cubic-bezier(0.4,0,0.2,1), transform 0.45s cubic-bezier(0.4,0,0.2,1);
+  transform: translateX(32px);
+  overflow: hidden;
+  background: #fff;
+}
+.slide.active  { opacity: 1; pointer-events: all; transform: translateX(0); }
+.slide.exit    { opacity: 0; transform: translateX(-32px); transition-duration: 0.3s; }
+
+/* ══ ANIMATED BACKGROUNDS ══ */
+
+/* Orbes animées — présent sur tous les slides dark */
+.orb-bg {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+}
+.orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(80px); opacity: 0;
+  animation: orb-float 12s ease-in-out infinite;
+}
+.orb-1 {
+  width: 45vw; height: 45vw;
+  background: radial-gradient(circle, rgba(194,65,12,0.13) 0%, transparent 70%);
+  top: -15%; right: -10%;
+  animation-delay: 0s; opacity: 0.8;
+}
+.orb-2 {
+  width: 35vw; height: 35vw;
+  background: radial-gradient(circle, rgba(100,116,139,0.11) 0%, transparent 70%);
+  bottom: -20%; left: -5%;
+  animation-delay: -4s; opacity: 0.7;
+}
+.orb-3 {
+  width: 25vw; height: 25vw;
+  background: radial-gradient(circle, rgba(194,65,12,0.08) 0%, transparent 70%);
+  top: 40%; left: 30%;
+  animation-delay: -8s; opacity: 0.5;
+}
+@keyframes orb-float {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  33%       { transform: translate(3%, 4%) scale(1.05); }
+  66%       { transform: translate(-3%, -3%) scale(0.97); }
+}
+
+/* Grille de lignes — light */
+.grid-overlay {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.045) 1px, transparent 1px);
+  background-size: 68px 68px;
+}
+
+/* Vlines verticales — comme le site */
+.vlines {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  display: flex; justify-content: space-between;
+}
+.vl { width: 1px; height: 100%; background: rgba(0,0,0,0.055); }
+
+/* Slide light (alabaster) */
+.slide-light { background: var(--alabaster); }
+.slide-light .grid-overlay {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+}
+.slide-light .vl { background: rgba(0,0,0,0.04); }
+
+/* ══ LOGO ══ */
+.logo {
+  font-family: 'Inter', sans-serif; font-weight: 800;
+  font-size: clamp(0.85rem, 1.2vw, 1.1rem);
+  color: var(--midnight); letter-spacing: -0.02em;
+  position: absolute; top: 2rem; left: 3vw; z-index: 20;
+}
+.logo span { color: var(--terra); }
+.slide-light .logo { color: var(--midnight); }
+
+/* ══ LABEL MONO ══ */
+.label {
+  font-family: 'DM Mono', monospace;
+  font-size: clamp(0.55rem, 0.8vw, 0.68rem);
+  text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--terra); margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 0.6rem;
+  position: relative; z-index: 2;
+}
+.label::before {
+  content: ''; display: block;
+  width: 20px; height: 2px; background: var(--terra);
+  border-radius: 2px; flex-shrink: 0;
+}
+.label-dim { color: var(--steel); }
+.label-dim::before { background: var(--steel); }
+.label-dark { color: var(--steel); }
+.label-dark::before { background: var(--steel); }
+
+/* ══ TYPOGRAPHY ══ */
+.slide h1 {
+  font-size: clamp(3rem, 7vw, 7.5rem);
+  font-weight: 800; line-height: 0.96;
+  letter-spacing: -0.04em; color: var(--midnight);
+  margin-bottom: 1.4rem; position: relative; z-index: 2;
+}
+.slide h2 {
+  font-size: clamp(2.2rem, 5vw, 5rem);
+  font-weight: 800; line-height: 1.0;
+  letter-spacing: -0.035em; color: var(--midnight);
+  margin-bottom: 1.1rem; position: relative; z-index: 2;
+}
+.slide h3 {
+  font-size: clamp(1.4rem, 2.5vw, 2.4rem);
+  font-weight: 700; line-height: 1.1;
+  letter-spacing: -0.025em; color: var(--midnight);
+  margin-bottom: 0.7rem; position: relative; z-index: 2;
+}
+.slide p.lead {
+  font-size: clamp(1rem, 1.6vw, 1.3rem);
+  line-height: 1.65; color: rgba(15,23,42,0.55);
+  position: relative; z-index: 2;
+}
+.slide-light h2, .slide-light h3 { color: var(--midnight); }
+.slide-light p.lead { color: var(--steel); }
+
+/* ══ LAYOUTS ══ */
+.l-full {
+  position: relative; z-index: 2;
+  padding: 5.5rem 6vw 3.5rem;
+  height: 100%; display: flex; flex-direction: column; justify-content: center;
+}
+.l-center {
+  position: relative; z-index: 2;
+  padding: 5.5rem 8vw 3.5rem;
+  height: 100%; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; text-align: center;
+}
+.l-split {
+  position: relative; z-index: 2;
+  height: 100%; display: grid; grid-template-columns: 1fr 1fr;
+}
+.l-split-33 {
+  position: relative; z-index: 2;
+  height: 100%; display: grid; grid-template-columns: 1.1fr 0.9fr;
+}
+.split-pad {
+  padding: 5.5rem 4vw 3.5rem 6vw;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.split-pad-r {
+  padding: 5.5rem 6vw 3.5rem 4vw;
+  display: flex; flex-direction: column; justify-content: center;
+}
+
+/* Photo panel */
+.photo-panel { position: relative; overflow: hidden; }
+.photo-panel img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: grayscale(15%);
+}
+.photo-panel::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to right, #fff 0%, transparent 45%);
+}
+.photo-panel.grad-left::after {
+  background: linear-gradient(to left, #fff 0%, transparent 45%);
+}
+
+/* ══ CARDS ══ */
+.cards { display: grid; gap: 1.25rem; margin-top: 2rem; position: relative; z-index: 2; width: 100%; }
+.cards-2 { grid-template-columns: 1fr 1fr; }
+.cards-3 { grid-template-columns: 1fr 1fr 1fr; }
+.cards-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+.cards .card { min-height: clamp(200px, 28vh, 320px); display: flex; flex-direction: column; justify-content: flex-start; }
+
+.card {
+  background: #fff;
+  border: 1px solid rgba(15,23,42,0.08);
+  border-radius: 20px; padding: 2rem 1.8rem;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.2s;
+  position: relative; overflow: hidden;
+  box-shadow: 0 2px 12px rgba(15,23,42,0.05);
+}
+.card::before {
+  content: ''; position: absolute; inset: 0; border-radius: inherit;
+  background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(194,65,12,0.09) 0%, transparent 55%);
+  opacity: 0; transition: opacity 0.3s; pointer-events: none;
+}
+.card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 3px; border-radius: 0 0 20px 20px;
+  background: linear-gradient(to right, var(--terra), rgba(194,65,12,0.3));
+  opacity: 0; transition: opacity 0.25s;
+}
+.card:hover {
+  border-color: rgba(194,65,12,0.2);
+  box-shadow: 0 8px 32px rgba(194,65,12,0.1);
+  transform: translateY(-3px);
+}
+.card:hover::before { opacity: 1; }
+.card:hover::after  { opacity: 1; }
+.card.featured {
+  background: rgba(194,65,12,0.05);
+  border-color: rgba(194,65,12,0.25);
+  box-shadow: 0 4px 24px rgba(194,65,12,0.12);
+}
+.card.featured::after { opacity: 1; }
+
+.card-num {
+  font-family: 'DM Mono', monospace;
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  font-weight: 500; color: rgba(194,65,12,0.2);
+  line-height: 1; margin-bottom: 0.75rem;
+}
+.card-icon {
+  width: 48px; height: 48px; border-radius: 14px;
+  background: rgba(194,65,12,0.08); border: 1px solid rgba(194,65,12,0.18);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.2rem;
+}
+.card-icon svg { stroke: var(--terra); }
+.card h4 {
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  font-weight: 700; color: var(--midnight);
+  margin-bottom: 0.5rem; line-height: 1.25;
+}
+.card p {
+  font-size: clamp(0.8rem, 1vw, 0.9rem);
+  color: rgba(15,23,42,0.5); line-height: 1.6;
+}
+
+/* ══ STEP LIST (processus) ══ */
+.steps { display: flex; flex-direction: column; gap: 0; position: relative; z-index: 2; margin-top: 1.5rem; }
+.step {
+  display: grid; grid-template-columns: 3.5rem 1fr;
+  gap: 1.25rem; padding: 1rem 0;
+  border-bottom: 1px solid rgba(15,23,42,0.07);
+}
+.step:last-child { border-bottom: none; }
+.step-num {
+  font-family: 'DM Mono', monospace;
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  font-weight: 500; line-height: 1.4;
+  color: rgba(15,23,42,0.18);
+  position: relative;
+}
+.step-num::after {
+  content: '';
+  position: absolute; left: -4px; top: 50%; transform: translateY(-50%);
+  width: 2px; height: 70%; border-radius: 2px;
+  background: linear-gradient(to bottom, var(--terra) 0%, transparent 100%);
+}
+.step-body h4 {
+  font-size: clamp(0.88rem, 1.2vw, 1rem);
+  font-weight: 700; color: var(--midnight); margin-bottom: 0.2rem; line-height: 1.3;
+}
+.step-body p {
+  font-size: clamp(0.72rem, 0.95vw, 0.83rem);
+  color: rgba(15,23,42,0.42); line-height: 1.55;
+}
+
+/* ══ PRICING ══ */
+.pricing { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-top: 1.8rem; position: relative; z-index: 2; width: 100%; }
+.price-card {
+  background: rgba(15,23,42,0.025); border: 1px solid rgba(15,23,42,0.1);
+  border-radius: 18px; padding: 1.6rem 1.5rem;
+  display: flex; flex-direction: column;
+}
+.price-card.featured {
+  background: rgba(194,65,12,0.08); border-color: rgba(194,65,12,0.4);
+}
+.price-badge {
+  font-family: 'DM Mono', monospace; font-size: 0.52rem;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  background: var(--terra); color: #fff;
+  padding: 0.2rem 0.65rem; border-radius: 100px;
+  display: inline-block; margin-bottom: 0.7rem; width: fit-content;
+}
+.price-tier {
+  font-family: 'DM Mono', monospace; font-size: 0.6rem;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: rgba(15,23,42,0.35); margin-bottom: 0.5rem;
+}
+.price-card.featured .price-tier { color: var(--terra); }
+.price-amount {
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+  font-weight: 800; letter-spacing: -0.04em; color: var(--midnight);
+  margin-bottom: 0.2rem; line-height: 1;
+}
+.price-for {
+  font-size: 0.72rem; color: rgba(15,23,42,0.35);
+  margin-bottom: 1.1rem; line-height: 1.4;
+}
+.price-items { display: flex; flex-direction: column; gap: 0.38rem; flex: 1; margin-bottom: 1.1rem; }
+.price-item {
+  font-size: 0.74rem; color: rgba(15,23,42,0.58);
+  display: flex; align-items: flex-start; gap: 0.5rem; line-height: 1.4;
+}
+.price-item::before {
+  content: ''; width: 5px; height: 5px; border-radius: 50%;
+  background: var(--terra); flex-shrink: 0; margin-top: 0.38rem;
+}
+.price-cta {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 0.5rem; padding: 0.8rem 1.4rem; border-radius: 100px;
+  background: var(--terra); color: #fff;
+  font-family: 'Inter', sans-serif; font-weight: 700;
+  font-size: clamp(0.75rem, 1vw, 0.88rem);
+  border: none; cursor: pointer; width: 100%;
+  transition: background 0.2s, transform 0.15s;
+  text-decoration: none;
+}
+.price-cta:hover { background: var(--terra-hover); }
+.price-cta.ghost {
+  background: transparent; border: 1px solid rgba(15,23,42,0.2); color: rgba(15,23,42,0.65);
+}
+.price-cta.ghost:hover { border-color: rgba(15,23,42,0.4); color: var(--midnight); background: rgba(15,23,42,0.04); }
+
+/* ══ COMPARISON TABLE (Eux vs Nous) ══ */
+.vs-table { width: 100%; border-collapse: collapse; margin-top: 1.8rem; position: relative; z-index: 2; }
+.vs-table thead tr { border-bottom: 2px solid rgba(15,23,42,0.08); }
+.vs-table th {
+  padding: 0.75rem 1.2rem; font-family: 'DM Mono', monospace;
+  font-size: clamp(0.55rem, 0.8vw, 0.68rem);
+  text-transform: uppercase; letter-spacing: 0.12em;
+  text-align: left; color: rgba(15,23,42,0.35);
+}
+.vs-table th.col-us {
+  color: var(--terra);
+  background: rgba(194,65,12,0.06);
+  border-radius: 8px 8px 0 0;
+}
+.vs-table tbody tr {
+  border-bottom: 1px solid rgba(15,23,42,0.06);
+}
+.vs-table tbody tr:last-child { border-bottom: none; }
+.vs-table td {
+  padding: 0.8rem 1.2rem;
+  font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+  vertical-align: middle;
+}
+.vs-table td.col-criteria {
+  font-weight: 600; color: rgba(15,23,42,0.72);
+}
+.vs-table td.col-them {
+  color: rgba(180,30,30,0.75); font-size: clamp(0.75rem, 1vw, 0.88rem);
+}
+.vs-table td.col-us {
+  color: rgba(22,130,60,0.9); font-weight: 600;
+  background: rgba(194,65,12,0.03);
+  font-size: clamp(0.75rem, 1vw, 0.88rem);
+}
+.vs-ico { font-size: 0.85rem; margin-right: 0.35rem; }
+
+/* ══ PROBLEM LIST ══ */
+.problem-list { display: flex; flex-direction: column; gap: 0.9rem; margin-top: 1.8rem; position: relative; z-index: 2; }
+.problem-item {
+  display: flex; gap: 1.2rem; align-items: flex-start;
+  padding: 1rem 1.3rem;
+  background: rgba(15,23,42,0.025);
+  border: 1px solid rgba(15,23,42,0.07);
+  border-radius: 14px;
+}
+.problem-x { font-size: 0.85rem; color: rgba(200,40,40,0.6); flex-shrink: 0; padding-top: 0.15rem; }
+.problem-text {
+  font-size: clamp(0.88rem, 1.3vw, 1.05rem);
+  font-weight: 500; color: rgba(15,23,42,0.68); line-height: 1.45;
+}
+.problem-text strong { color: var(--midnight); }
+
+/* ══ QUOTE ══ */
+.big-quote {
+  font-size: clamp(1.6rem, 3.2vw, 3.2rem);
+  font-weight: 700; line-height: 1.15;
+  letter-spacing: -0.025em; color: rgba(15,23,42,0.88);
+  border-left: 4px solid var(--terra); padding-left: 2rem;
+  margin-bottom: 2rem; position: relative; z-index: 2;
+}
+
+/* ══ STATS ══ */
+.stats-row { display: flex; gap: clamp(2.5rem, 5vw, 6rem); margin-top: 2.5rem; flex-wrap: wrap; position: relative; z-index: 2; }
+.stat-val {
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-weight: 800; letter-spacing: -0.04em; color: var(--midnight);
+  margin-bottom: 0.25rem; line-height: 1;
+}
+.stat-lbl {
+  font-family: 'DM Mono', monospace; font-size: 0.6rem;
+  text-transform: uppercase; letter-spacing: 0.1em; color: rgba(15,23,42,0.28);
+}
+
+/* ══ FOUNDER ══ */
+.founder-tag {
+  font-family: 'DM Mono', monospace; font-size: clamp(0.55rem, 0.75vw, 0.65rem);
+  text-transform: uppercase; letter-spacing: 0.15em; color: var(--terra);
+  margin-bottom: 0.5rem; position: relative; z-index: 2;
+}
+.founder-name {
+  font-size: clamp(2.5rem, 5vw, 5.5rem);
+  font-weight: 800; letter-spacing: -0.04em; color: var(--midnight);
+  line-height: 0.95; margin-bottom: 0.5rem; position: relative; z-index: 2;
+}
+.founder-role {
+  font-size: clamp(0.82rem, 1.2vw, 1.05rem);
+  color: rgba(15,23,42,0.4); font-weight: 500;
+  margin-bottom: 1.8rem; line-height: 1.4; position: relative; z-index: 2;
+}
+.bullets { display: flex; flex-direction: column; gap: 0.7rem; position: relative; z-index: 2; }
+.bullet { display: flex; gap: 0.8rem; align-items: flex-start; }
+.bullet::before {
+  content: ''; width: 5px; height: 5px; border-radius: 50%;
+  background: var(--terra); flex-shrink: 0; margin-top: 0.48rem;
+}
+.bullet span {
+  font-size: clamp(0.82rem, 1.2vw, 0.96rem);
+  color: rgba(15,23,42,0.58); line-height: 1.55;
+}
+
+/* ══ BEFORE / AFTER ══ */
+.ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 1.8rem; position: relative; z-index: 2; }
+.ba-card { border-radius: 16px; overflow: hidden; position: relative; height: clamp(160px, 23vh, 280px); }
+.ba-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ba-tag {
+  position: absolute; top: 1rem; left: 1rem;
+  font-family: 'DM Mono', monospace; font-size: 0.58rem;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  padding: 0.25rem 0.65rem; border-radius: 100px;
+}
+.ba-before { background: rgba(15,23,42,0.55); border: 1px solid rgba(15,23,42,0.2); color: rgba(255,255,255,0.9); }
+.ba-after  { background: var(--terra); color: #fff; }
+.ba-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(15,23,42,0.92) 0%, transparent 55%);
+  padding: 1.25rem; display: flex; flex-direction: column; justify-content: flex-end;
+}
+.ba-title { font-size: clamp(0.85rem, 1.1vw, 0.98rem); font-weight: 700; color: #fff; margin-bottom: 0.25rem; }
+.ba-desc  { font-size: 0.72rem; color: rgba(255,255,255,0.42); line-height: 1.45; }
+
+/* ══ CTA BUTTON ══ */
+.btn-terra {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 1rem 2.2rem; border-radius: 100px;
+  background: var(--terra); color: #fff;
+  font-family: 'Inter', sans-serif; font-weight: 700;
+  font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+  text-decoration: none; border: none; cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  position: relative; z-index: 2;
+}
+.btn-terra:hover { background: var(--terra-hover); }
+.btn-terra:active { transform: scale(0.97); }
+
+/* ══ PROGRESS BAR ══ */
+#progress {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: var(--terra); transition: width 0.4s ease; z-index: 300;
+  box-shadow: 0 0 12px rgba(194,65,12,0.6);
+}
+
+/* ══ BACK BTN ══ */
+#back-btn {
+  position: fixed; top: 1.8rem; right: 2.5rem;
+  font-family: 'DM Mono', monospace; font-size: 0.58rem;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: rgba(15,23,42,0.22); text-decoration: none;
+  display: flex; align-items: center; gap: 0.5rem;
+  transition: color 0.2s; z-index: 300;
+}
+#back-btn:hover { color: rgba(15,23,42,0.65); }
+
+/* ══ NAV ══ */
+#nav {
+  position: fixed; bottom: 1.8rem; right: 2.5rem;
+  display: flex; align-items: center; gap: 0.7rem; z-index: 300;
+}
+.nav-btn {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: rgba(15,23,42,0.05);
+  border: 1px solid rgba(15,23,42,0.12);
+  color: rgba(15,23,42,0.45);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background 0.2s, color 0.2s;
+  backdrop-filter: blur(16px);
+}
+.nav-btn:hover { background: rgba(15,23,42,0.1); color: var(--midnight); }
+.nav-btn:disabled { opacity: 0.2; cursor: not-allowed; }
+.nav-counter {
+  font-family: 'DM Mono', monospace; font-size: 0.6rem;
+  color: rgba(15,23,42,0.28); letter-spacing: 0.08em;
+  min-width: 3rem; text-align: center;
+}
+
+/* ══ DOTS ══ */
+#dots {
+  position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 5px; z-index: 300;
+}
+.dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: rgba(15,23,42,0.14); cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+.dot.active { background: var(--terra); transform: scale(1.5); }
+
+@media (max-width: 900px) {
+  .l-split, .l-split-33 { grid-template-columns: 1fr; }
+  .photo-panel { display: none; }
+  .cards-3, .cards-4 { grid-template-columns: 1fr 1fr; }
+  .pricing { grid-template-columns: 1fr; }
+  .ba-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+<a href="index.html" id="back-btn">
+  <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Retour au site
+</a>
+
+<div class="deck" id="deck">
+
+<!-- ════════════════════════════════
+     01 — TITRE
+════════════════════════════════ -->
+<div class="slide active">
+  <div class="orb-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+  <div class="vlines"><div class="vl"></div><div class="vl"></div><div class="vl"></div><div class="vl"></div><div class="vl"></div></div>
+  <div class="grid-overlay"></div>
+  <div class="logo">Fondation <span>Studio</span></div>
+  <div class="l-center">
+    <div class="label label-dim" style="justify-content:center;margin-bottom:1.8rem">Présentation · 2025</div>
+    <h1>Des sites qui<br><em>travaillent pour vous.</em></h1>
+    <p class="lead" style="max-width:560px;color:rgba(15,23,42,0.5);font-size:clamp(1.05rem,1.8vw,1.35rem)">Sites sur-mesure, orientés conversion.<br>Livrés en 1 à 3 mois. Sans WordPress. Sans engagement initial.</p>
+    <div class="stats-row" style="justify-content:center;margin-top:3rem">
+      <div>
+        <div class="stat-val"><em>30<span style="font-size:0.5em;vertical-align:super">+</span></em></div>
+        <div class="stat-lbl">Entreprises accompagnées</div>
+      </div>
+      <div style="width:1px;background:rgba(15,23,42,0.1);align-self:stretch"></div>
+      <div>
+        <div class="stat-val">La<br><em style="font-size:0.65em">Réunion</em></div>
+        <div class="stat-lbl">Notre terrain de jeu</div>
+      </div>
+      <div style="width:1px;background:rgba(15,23,42,0.1);align-self:stretch"></div>
+      <div>
+        <div class="stat-val">3</div>
+        <div class="stat-lbl">Mois max de livraison</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     02 — LE PROBLÈME
+════════════════════════════════ -->
+<div class="slide">
+  <div class="orb-bg"><div class="orb orb-1" style="opacity:0.6"></div><div class="orb orb-2"></div></div>
+  <div class="grid-overlay"></div>
+  <div class="vlines"><div class="vl"></div><div class="vl"></div><div class="vl"></div><div class="vl"></div></div>
+  <div class="logo">Fondation <span>Studio</span></div>
+  <div class="l-split">
+    <div class="split-pad">
+      <div class="label">Le problème</div>
+      <h2>Trop de PME paient cher<br>pour des sites qui<br><em>ne convertissent pas.</em></h2>
+      <div class="problem-list">
+        <div class="problem-item">
+          <div class="problem-x">✗</div>
+          <div class="problem-text"><strong>Des sites moches et hors de prix</strong> — des templates WordPress facturés comme du sur-mesure</div>
+        </div>
+        <div class="problem-item">
+          <div class="problem-x">✗</div>
+          <div class="problem-text"><strong>Responsive inexistant</strong> — parfait sur ordinateur, catastrophique sur mobile</div>
+        </div>
+        <div class="problem-item">
+          <div class="problem-x">✗</div>
+          <div class="problem-text"><strong>Livré en 1 à 3 mois minimum</strong> — pendant ce temps, vos concurrents avancent</div>
+        </div>
+        <div class="problem-item">
+          <div class="problem-x">✗</div>
+          <div class="problem-text"><strong>Paiement étalé sur 2 ans</strong> — 100–200€/mois qui finissent par coûter une fortune</div>
+        </div>
+      </div>
+    </div>
+    <div class="photo-panel">
+      <img src="https://images.pexels.com/photos/3760778/pexels-photo-3760778.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="" />
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     03 — NOTRE CONSTAT
+════════════════════════════════ -->
+<div class="slide">
+  <div class="orb-bg"><div class="orb orb-1"></div><div class="orb orb-3" style="opacity:0.8"></div></div>
+  <div class="grid-overlay"></div>
+  <div class="vlines"><div class="vl"></div><div class="vl"></div><div class="vl"></div><div class="vl"></div></div>
+  <div class="logo">Fondation <span>Studio</span></div>
+  <div class="l-full">
+    <div class="label">Notre constat</div>
+    <div class="big-quote">La majorité des PME ont un site qu'elles ont payé cher — qui est moche, qui ne convertit pas, et qu'elles ne savent pas comment améliorer.</div>
+    <p class="lead" style="max-width:680px">On a décidé de changer ça. Pas des vitrines qui font joli. Des outils qui <strong>transforment les visiteurs en clients</strong> — avec un design qui crée un vrai écart avec la concurrence.</p>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     04 — QUI SOMMES-NOUS (intro)
+════════════════════════════════ -->
+<div class="slide">
+  <div class="orb-bg"><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+  <div class="grid-overlay"></div>
+  <div class="vlines"><div class="vl"></div><div class="vl"></div><div class="vl"></div><div class="vl"></div></div>
+  <div class="logo">Fondation <span>Studio</span></div>
+  <div class="l-split">
+    <div class="split-pad">
+      <div class="label">Qui sommes-nous</div>
+      <h2>Deux fondateurs.<br>Une équipe.<br><em>Une obsession.</em></h2>
+      <p class="lead" style="max-width:480px;margin-top:0.5rem">Tom-Soa et Andylane — deux entrepreneurs terrain. Appuyés par une équipe de freelances sélectionnés pour livrer de la qualité, même sur plusieurs projets simultanés.</p>
+      <div class="stats-row">
+        <div>
+          <div class="stat-val"><em>30<sup style="font-size:0.45em">+</sup></em></div>
+          <div class="stat-lbl">Entreprises accompagnées</div>
+        </div>
+        <div>
+          <div class="stat-val">2</div>
+          <div class="stat-lbl">Fondateurs</div>
+        </div>
+      </div>
+    </div>
+    <div class="photo-panel">
+      <img src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="" />
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     05 — TOM-SOA
+════════════════════════════════ -->
+<div class="slide">
+  <div class="orb-bg"><div class="orb orb-1" style="opacity:0.5"></div></div>
+  <div class="grid-overlay"></div>
+  <div class="logo">Fondation <span>Studio</span></div>
+  <div class="l-split-33" style="direction:rtl">
+    <div class="split-pad" style="direction:ltr">
+      <div class="founder-tag">Co-fondateur</div>
+      <div class="founder-name">Tom-Soa</div>
+      <div class="founder-role">Acquisition &amp; Stratégie · CRO · La Réunion</div>
+      <div class="bullets">
+        <div class="bullet"><span>Expert Meta Ads &amp; Google Ads — <strong>30+ entreprises</strong> accompagnées vers la croissance</span></div>
+        <div class="bullet"><span>Spécialiste CRO (Conversion Rate Optimization) — chaque élément de page est pensé pour convertir</span></div>
+        <div class="bullet"><span>Entrepreneur depuis ses 15 ans — terrain avant tout, résultats avant l'esthétique</span></div>
+        <div class="bullet"><span>Son obsession : <em>attirer le bon trafic et le transformer en clients</em></span></div>
+      </div>
+    </div>
+    <div class="photo-panel grad-left" style="direction:ltr">
+      <img src="tom-soa.jpg" alt="Tom-Soa — Co-fondateur Fondation Studio" />
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     06 — ANDYLANE
+════════════════════════════════ -->
+<div class="slide">
+  <div class="orb-bg"><div class="orb orb-2" style="opacity:0.6"></div></div>
+  <div class="grid-overlay"></div>
+  <div class="logo">Fondation <span>Studio</span></div>
+  <div class="l-split">
+    <div class="split-pad">
+      <div class="founder-tag">Co-fondateur</div>
+      <div class="founder-name">Andylane</div>
+      <div class="founder-role">Business &amp; Développement · Mayotte</div>
+      <div class="bullets">
+        <div class="bullet"><span>Entrepreneur basé à Mayotte — terrain, rentabilité, impact concret</span></div>
+        <div class="bullet"><span><strong>Une vingtaine d'entreprises</strong> accompagnées dans leur lancement et structuration</span></div>
+        <div class="bullet"><span>Expert en développement business et structuration commerciale</span></div>
+        <div class="bullet"><span>Son mantra : <em>un site qui ne rapporte pas vous coûte de l'argent</em></span></div>
+      </div>
+    </div>
+    <div class="photo-panel">
+      <img src="https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Andylane — Co-fondateur Fondation Studio" />
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     07 — NOTRE SOLUTION
+════════════════════════════════ -->
+<div class="slide">
+  <div class="orb-bg"><div class="orb orb-1"></div><div class="orb orb-3"></div></div>
+  <div class="grid-overlay"></div>
+  <div class="vlines"><div class="vl"></div><div class="vl"></div><div class="vl"></div><div class="vl"></div></div>
+  <div class="logo">Fondation <span>Studio</span></div>
+  <div class="l-full">
+    <div class="label">Notre solution</div>
+    <h2>Des sites <em>esthétiques</em>, rapides,<br>qui convertissent <em>mieux que la moyenne.</em></h2>
+    <div class="cards cards-4">
+      <div class="card">
+        <div class="card-icon"><svg width="18" height="18" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <h4>Rapide &amp; fluide</h4>
+        <p>Pages qui s'affichent en moins d'une seconde. Zéro lourdeur, zéro plugin inutile.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><svg width="18" height="18" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+        <h4>100% à vous</h4>
+        <p>Le code vous appartient intégralement. Pas d'abonnement, pas de plateforme tierce.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><svg width="18" height="18" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <h4>Orienté conversion</h4>
+        <p>Hiérarchie visuelle, copywriting, CTAs — chaque élément guide vers l'action.</p>
+      </div>
+      <div class="card featured">
+        <div class="card-icon" style="background:rgba(194,65,12,0.18)"><svg width="18" height="18" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+        <h4>IA &amp; outils intégrés</h4>
+        <p>Chatbots, automatisations, outils sur-mesure — on intègre la tech vraiment utile à votre activité.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     08 — PROCESSUS
+════════════════════════════════ -->
+<div class="slide">
+  <div class="orb-bg"><div class="orb orb-1" style="opacity:0.55"></div><div class="orb orb-3"></div></div>
+  <div class="grid-overlay"></div>
+  <div class="vlines"><div class="vl"></div><div class="vl"></div><div class="vl"></div><div class="vl"></div></div>
+  <div class="logo">Fondation <span>Studio</span></div>
+  <div class="l-split">
+    <div class="split-pad">
+      <div class="label">Notre processus</div>
+      <h2>5 étapes.<br><em>Zéro surprise.</em></h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-body">
+            <h4>Appel découverte</h4>
+            <p>On comprend votre activité, vos objectifs, votre cible. On vérifie qu'on est le bon fit.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-body">
+            <h4>Maquette page d'accueil — <em>offerte</em></h4>
+            <p>On vous montre la qualité avant que vous signiez quoi que ce soit. Sans engagement.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-body">
+            <h4>Contrat &amp; virement</h4>
+            <p>Tout est cadré par écrit. Brief détaillé rempli — on démarre officiellement.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-body">
+            <h4>Développement &amp; mise en ligne</h4>
+            <p>Livraison en 1 à 3 mois. Pré-version, vos retours, ajustements, puis mise en ligne. Le site vous appartient à 100%.</p>
+          </div>
+        </div>
+        <div class="step" style="border-bottom:none">
+          <div class="step-num">05</div>
+          <div class="step-body">
+            <h4>Maintenance offerte → <em>100€/mois</em></h4>
+            <p>1 à 6 mois de maintenance gratuite selon la formule. Ensuite 100€/mois si vous souhaitez des modifications.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="photo-panel">
+      <img src="https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="" />
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     10 — NOS OFFRES
+════════════════════════════════ -->
+<div class="slide">
+  <div class="orb-bg"><div class="orb orb-1"></div><div class="orb orb-2" style="opacity:0.6"></div></div>
+  <div class="grid-overlay"></div>
+  <div class="vlines"><div class="vl"></div><div class="vl"></div><div class="vl"></div><div class="vl"></div></div>
+  <div class="logo">Fondation <span>Studio</span></div>
+  <div class="l-full">
+    <div class="label">Nos offres</div>
+    <h2>Simple,<br><em>transparent.</em></h2>
+    <div class="pricing">
+      <div class="price-card">
+        <div class="price-tier">Standard</div>
+        <div class="price-amount">1 400€</div>
+        <div class="price-for">Site vitrine jusqu'à 5 pages</div>
+        <div class="price-items">
+          <div class="price-item">Design sur-mesure</div>
+          <div class="price-item">Responsive mobile</div>
+          <div class="price-item">Formulaire de contact</div>
+          <div class="price-item">SEO technique de base</div>
+          <div class="price-item">1 mois de maintenance offert</div>
+        </div>
+        <a href="contact.html" class="price-cta ghost">Choisir Standard</a>
+      </div>
+      <div class="price-card featured">
+        <div class="price-badge">Recommandé</div>
+        <div class="price-tier">Conversion</div>
+        <div class="price-amount">1 900€</div>
+        <div class="price-for">Site jusqu'à 8 pages</div>
+        <div class="price-items">
+          <div class="price-item">Tout le Standard</div>
+          <div class="price-item">Copywriting stratégique inclus</div>
+          <div class="price-item">Animations &amp; interactions</div>
+          <div class="price-item">SEO technique avancé</div>
+          <div class="price-item">3 mois de maintenance offerts</div>
+        </div>
+        <a href="contact.html" class="price-cta">Choisir Conversion</a>
+      </div>
+      <div class="price-card">
+        <div class="price-tier">Prestige</div>
+        <div class="price-amount" style="font-size:clamp(1.4rem,2.4vw,2.2rem);line-height:1.1">À partir de<br>2 400€</div>
+        <div class="price-for">Image ultra premium · Sur devis</div>
+        <div class="price-items">
+          <div class="price-item">Tout le Conversion</div>
+          <div class="price-item">Effets &amp; micro-animations premium</div>
+          <div class="price-item">Intégration IA &amp; outils avancés</div>
+          <div class="price-item">6 mois de maintenance offerts</div>
+          <div class="price-item">Support prioritaire</div>
+        </div>
+        <a href="contact.html" class="price-cta ghost">Demander un devis</a>
+      </div>
+    </div>
+    <p style="margin-top:1rem;font-family:'DM Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:0.1em;color:rgba(15,23,42,0.28);position:relative;z-index:2">Maintenance après période offerte : 100€/mois · Hébergement non inclus</p>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     11 — EUX VS NOUS
+════════════════════════════════ -->
+<div class="slide">
+  <div class="orb-bg"><div class="orb orb-3" style="opacity:0.7"></div><div class="orb orb-1" style="opacity:0.4"></div></div>
+  <div class="grid-overlay"></div>
+  <div class="vlines"><div class="vl"></div><div class="vl"></div><div class="vl"></div><div class="vl"></div></div>
+  <div class="logo">Fondation <span>Studio</span></div>
+  <div class="l-full">
+    <div class="label">Eux vs Nous</div>
+    <h2>Ce qu'on fait que<br>les autres <em>ne font pas.</em></h2>
+    <table class="vs-table">
+      <thead>
+        <tr>
+          <th style="width:30%">Critère</th>
+          <th style="width:35%">Les agences classiques</th>
+          <th class="col-us" style="width:35%">Fondation Studio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-criteria">Maquette avant engagement</td>
+          <td class="col-them"><span class="vs-ico">✗</span>Jamais</td>
+          <td class="col-us"><span class="vs-ico">✓</span>Toujours — gratuite</td>
+        </tr>
+        <tr>
+          <td class="col-criteria">WordPress / page builder</td>
+          <td class="col-them"><span class="vs-ico">✗</span>Très souvent</td>
+          <td class="col-us"><span class="vs-ico">✓</span>Jamais — code sur-mesure</td>
+        </tr>
+        <tr>
+          <td class="col-criteria">Délai de livraison</td>
+          <td class="col-them"><span class="vs-ico">✗</span>3 à 6 mois</td>
+          <td class="col-us"><span class="vs-ico">✓</span>1 à 3 mois</td>
+        </tr>
+        <tr>
+          <td class="col-criteria">Modèle de paiement</td>
+          <td class="col-them"><span class="vs-ico">✗</span>100–200€/mois sur 2 ans</td>
+          <td class="col-us"><span class="vs-ico">✓</span>Prix fixe, une seule fois</td>
+        </tr>
+        <tr>
+          <td class="col-criteria">Propriété du site</td>
+          <td class="col-them"><span class="vs-ico">✗</span>Dépendance à l'agence</td>
+          <td class="col-us"><span class="vs-ico">✓</span>100% à vous, code livré</td>
+        </tr>
+        <tr>
+          <td class="col-criteria">Responsive mobile</td>
+          <td class="col-them"><span class="vs-ico">✗</span>Souvent bâclé</td>
+          <td class="col-us"><span class="vs-ico">✓</span>Mobile-first, toujours</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     12 — L'OFFRE SANS RISQUE
+════════════════════════════════ -->
+<div class="slide">
+  <div class="orb-bg">
+    <div class="orb orb-1" style="width:60vw;height:60vw;opacity:0.7"></div>
+    <div class="orb orb-2"></div>
+  </div>
+  <div class="grid-overlay"></div>
+  <div class="vlines"><div class="vl"></div><div class="vl"></div><div class="vl"></div><div class="vl"></div></div>
+  <div class="logo">Fondation <span>Studio</span></div>
+  <div class="l-center">
+    <div class="label label-dim" style="justify-content:center">L'offre sans risque</div>
+    <h1 style="max-width:880px">On vous montre ce qu'on vaut<br><em>avant que vous payiez.</em></h1>
+    <p class="lead" style="margin-top:1.2rem;max-width:560px;color:rgba(15,23,42,0.5)">Maquette complète de votre page d'accueil, conçue pour vous, gratuitement. Aucun engagement. Aucune carte bleue.</p>
+    <div class="stats-row" style="justify-content:center;margin-top:2.5rem">
+      <div style="text-align:center">
+        <div class="stat-val">Gratuit</div>
+        <div class="stat-lbl">Maquette page d'accueil</div>
+      </div>
+      <div style="width:1px;background:rgba(15,23,42,0.1);align-self:stretch"></div>
+      <div style="text-align:center">
+        <div class="stat-val">0</div>
+        <div class="stat-lbl">Engagement</div>
+      </div>
+      <div style="width:1px;background:rgba(15,23,42,0.1);align-self:stretch"></div>
+      <div style="text-align:center">
+        <div class="stat-val"><em>24h</em></div>
+        <div class="stat-lbl">Délai de réponse</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     13 — CTA FINAL
+════════════════════════════════ -->
+<div class="slide">
+  <div class="orb-bg">
+    <div class="orb orb-1" style="width:70vw;height:70vw;opacity:0.8;top:-30%;right:-20%"></div>
+    <div class="orb orb-2" style="opacity:0.6"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  <div class="grid-overlay"></div>
+  <div class="vlines"><div class="vl"></div><div class="vl"></div><div class="vl"></div><div class="vl"></div></div>
+  <div class="logo">Fondation <span>Studio</span></div>
+  <div class="l-center">
+    <div class="label label-dim" style="justify-content:center">Prochaine étape</div>
+    <h1 style="max-width:760px">On démarre<br><em>quand vous voulez.</em></h1>
+    <p class="lead" style="margin-top:1.2rem;color:rgba(15,23,42,0.5)">Un appel. Une maquette gratuite.<br>Et si ça vous convient — on signe.</p>
+    <div style="margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;position:relative;z-index:2">
+      <a href="contact.html" class="btn-terra">
+        Demander ma maquette gratuite
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div style="margin-top:3.5rem;font-family:'DM Mono',monospace;font-size:0.56rem;text-transform:uppercase;letter-spacing:0.16em;color:rgba(15,23,42,0.18);position:relative;z-index:2">fondationstudio.fr · La Réunion · Mayotte</div>
+  </div>
+</div>
+
+</div><!-- /deck -->
+
+<!-- Navigation -->
+<nav id="nav">
+  <button class="nav-btn" id="btn-prev" onclick="go(-1)" disabled aria-label="Précédent">
+    <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  </button>
+  <span class="nav-counter" id="counter">1 / 13</span>
+  <button class="nav-btn" id="btn-next" onclick="go(1)" aria-label="Suivant">
+    <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </button>
+</nav>
+<div id="dots"></div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const total = slides.length;
+let current = 0;
+
+// Dots
+const dotsEl = document.getElementById('dots');
+slides.forEach((_, i) => {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i === 0 ? ' active' : '');
+  d.onclick = () => goTo(i);
+  dotsEl.appendChild(d);
+});
+
+// SpotlightCard on cards
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+    card.style.setProperty('--my', `${e.clientY - r.top}px`);
+  });
+});
+
+function goTo(n) {
+  if (n < 0 || n >= total) return;
+  slides[current].classList.remove('active');
+  slides[current].classList.add('exit');
+  setTimeout(() => slides[current].classList.remove('exit'), 350);
+  current = n;
+  slides[current].classList.add('active');
+  update();
+}
+function go(dir) { goTo(current + dir); }
+
+function update() {
+  document.getElementById('counter').textContent = (current + 1) + ' / ' + total;
+  document.getElementById('btn-prev').disabled = current === 0;
+  document.getElementById('btn-next').disabled = current === total - 1;
+  document.getElementById('progress').style.width = ((current + 1) / total * 100) + '%';
+  document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+}
+
+// Keyboard
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); go(1); }
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); go(-1); }
+  if (e.key === 'f' || e.key === 'F') document.documentElement.requestFullscreen?.();
+  if (e.key === 'Escape' && document.fullscreenElement) document.exitFullscreen?.();
+});
+
+// Click to advance
+document.getElementById('deck').addEventListener('click', e => {
+  if (e.target.closest('#nav') || e.target.closest('#dots') || e.target.closest('a') || e.target.closest('button')) return;
+  go(1);
+});
+
+update();
+</script>
+</body>
+</html>
