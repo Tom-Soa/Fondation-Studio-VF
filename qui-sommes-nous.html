@@ -77,7 +77,7 @@
   .pill-inner { position: relative; display: flex; align-items: center; background: rgba(15,23,42,0.68); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 0.28rem; border-radius: 100px; box-shadow: 0 4px 40px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.06); gap: 0.05rem; }
   #pill-lamp { position: absolute; top: 0.28rem; bottom: 0.28rem; left: 0.28rem; width: 60px; background: rgba(194,65,12,0.18); border-radius: 100px; z-index: 0; transition: left 0.38s var(--ease-spring), width 0.38s var(--ease-spring); pointer-events: none; }
   #pill-lamp::before { content: ''; position: absolute; top: -3px; left: 50%; transform: translateX(-50%); width: 2rem; height: 3px; background: var(--terra); border-radius: 0 0 6px 6px; box-shadow: 0 0 24px 8px rgba(194,65,12,0.5), 0 0 10px 3px rgba(194,65,12,0.3); }
-  .pill-item { position: relative; z-index: 1; display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.55rem 1.1rem; border-radius: 100px; font-family: 'DM Mono', monospace; font-size: 0.62rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; white-space: nowrap; cursor: pointer; border: none; background: none; }
+  .pill-item { position: relative; z-index: 1; display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.55rem 1.1rem; border-radius: 100px; font-family: 'Inter', sans-serif; font-size: 0.62rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; white-space: nowrap; cursor: pointer; border: none; background: none; }
   @media (hover: hover) and (pointer: fine) { .pill-item:hover { color: rgba(255,255,255,0.9); } }
   .pill-item.active { color: #fff; }
   .pill-item svg { width: 16px; height: 16px; flex-shrink: 0; }
@@ -113,7 +113,9 @@
   @media (max-width: 768px) { .hero-inner { padding: 7rem 0 5rem; } .hero h1 { font-size: clamp(2rem, 8vw, 2.8rem); } .hero-sub { font-size: 0.95rem; } }
 
   /* ── VISION ── */
-  .vision { background: var(--alabaster); padding: 8rem 0; overflow: hidden; }
+  .vision { background: var(--alabaster); padding: 10rem 0 8rem; overflow: hidden; position: relative; }
+  .vision::before { content: ''; position: absolute; inset: 0; background-image: url('https://images.pexels.com/photos/2166559/pexels-photo-2166559.jpeg?auto=compress&cs=tinysrgb&w=1920'); background-size: cover; background-position: center 60%; background-attachment: fixed; opacity: 0.06; }
+  .vision .container { position: relative; z-index: 1; }
   .vision-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
   @media (max-width: 900px) { .vision-inner { grid-template-columns: 1fr; gap: 3rem; } }
   .vision-text .label { font-family: 'DM Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--terra); margin-bottom: 1.5rem; }
@@ -176,9 +178,11 @@
     box-shadow: 0 8px 24px rgba(194,65,12,0.45);
   }
   @media (max-width: 860px) { .founder-number { top: -1rem; right: -1rem; width: 48px; height: 48px; font-size: 1.1rem; } }
-  .founder-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1.5rem; }
-  .founder-tag { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; padding: 0.28rem 0.7rem; font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.5); }
-  .founder-tag.highlight { background: rgba(194,65,12,0.15); border-color: rgba(194,65,12,0.35); color: var(--terra); }
+  .founder-tags { display: flex; gap: 0; flex-wrap: wrap; margin-top: 1.5rem; align-items: center; }
+  .founder-tag { font-family: 'DM Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.3); padding: 0; background: none; border: none; }
+  .founder-tag::after { content: ' ·'; margin: 0 0.5rem; color: rgba(255,255,255,0.15); }
+  .founder-tag:last-child::after { display: none; }
+  .founder-tag.highlight { color: var(--terra); }
 
   .founder-content {}
   .founder-role { font-family: 'DM Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--terra); margin-bottom: 0.8rem; }
@@ -221,8 +225,8 @@
   /* ── POURQUOI NOUS ── */
   .pourquoi {
     background: var(--midnight); padding: 8rem 0; position: relative; overflow: hidden;
-    background-image: url('https://images.pexels.com/photos/1559486/pexels-photo-1559486.jpeg?auto=compress&cs=tinysrgb&w=1920');
-    background-size: cover; background-position: center 60%;
+    background-image: url('https://images.pexels.com/photos/1482193/pexels-photo-1482193.jpeg?auto=compress&cs=tinysrgb&w=1920');
+    background-size: cover; background-position: center 50%;
     background-attachment: fixed;
   }
   .pourquoi::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(15,23,42,0.92) 0%, rgba(15,23,42,0.80) 60%, rgba(30,10,5,0.90) 100%); z-index: 0; }
@@ -234,20 +238,19 @@
   .pourquoi-left h2 { font-weight: 800; font-size: clamp(2rem, 3.5vw, 3rem); line-height: 1.1; letter-spacing: -0.02em; color: white; margin-bottom: 1.5rem; }
   .pourquoi-left h2 em { font-style: normal; color: var(--terra); }
   .pourquoi-left > p { color: rgba(255,255,255,0.5); font-size: 1rem; line-height: 1.75; margin-bottom: 2.5rem; }
-  .pourquoi-pillars { display: flex; flex-direction: column; gap: 1px; border-radius: 16px; overflow: hidden; }
+  .pourquoi-pillars { display: flex; flex-direction: column; gap: 0; border-left: 2px solid rgba(194,65,12,0.3); }
   .pourquoi-pillar {
     display: flex; align-items: center; gap: 1.5rem;
-    padding: 1.5rem 2rem;
-    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
-    transition: background 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
-    border-radius: 0; position: relative; overflow: hidden;
+    padding: 1.25rem 1.5rem;
+    background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.25s var(--ease-out), padding-left 0.25s var(--ease-out);
+    position: relative;
   }
-  .pourquoi-pillars .pourquoi-pillar:first-child { border-radius: 16px 16px 0 0; }
-  .pourquoi-pillars .pourquoi-pillar:last-child { border-radius: 0 0 16px 16px; }
+  .pourquoi-pillar:last-child { border-bottom: none; }
   @media (hover: hover) and (pointer: fine) {
     .pourquoi-pillar:hover { background: rgba(194,65,12,0.1); border-color: rgba(194,65,12,0.25); }
   }
-  .pourquoi-pillar-icon { width: 46px; height: 46px; border-radius: 12px; background: rgba(194,65,12,0.15); border: 1px solid rgba(194,65,12,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .pourquoi-pillar-icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; opacity: 0.7; }
   .pourquoi-pillar h4 { font-weight: 700; font-size: 1rem; color: white; margin-bottom: 0.2rem; }
   .pourquoi-pillar p { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.55; }
 
@@ -268,23 +271,51 @@
 
   /* ── Footer ── */
   footer { background: var(--midnight); color: white; }
-  .footer-bar { border-top: 1px solid rgba(255,255,255,0.06); padding: 2.5rem 0; }
-  .footer-bar-inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
-  .flogo { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 1.1rem; }
-  .flogo span { color: var(--terra); }
+  .footer-main { padding: 4rem 0; border-top: 1px solid rgba(255,255,255,0.06); }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; align-items: start; }
+  .footer-brand .flogo { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 1.2rem; margin-bottom: 1rem; }
+  .footer-brand .flogo span { color: var(--terra); }
+  .footer-tagline { color: rgba(255,255,255,0.4); font-size: 0.9rem; line-height: 1.65; margin-bottom: 0.75rem; max-width: 280px; }
+  .footer-origin { font-family: 'DM Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.2); }
+  .footer-nav-col { display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-nav-title { font-family: 'DM Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.25); margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .footer-nav-col a { font-size: 0.88rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+  .footer-nav-col a:hover { color: white; }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding: 1.5rem 0; }
+  .footer-bottom-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
   .fcopy { font-family: 'DM Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.2); }
-  .flinks { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-  .flinks a { font-family: 'DM Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.25); transition: color 0.2s; }
-  @media (hover: hover) and (pointer: fine) { .flinks a:hover { color: rgba(255,255,255,0.5); } }
-  @media (max-width: 600px) { .footer-bar-inner { flex-direction: column; text-align: center; } }
+  .footer-legal-links { display: flex; gap: 1.5rem; }
+  .footer-legal-links a { font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.2s; }
+  .footer-legal-links a:hover { color: rgba(255,255,255,0.5); }
+  @media (max-width: 700px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; } .footer-brand { grid-column: 1 / -1; } .footer-bottom-inner { flex-direction: column; text-align: center; } .footer-legal-links { justify-content: center; } }
+  @media (max-width: 400px) { .footer-grid { grid-template-columns: 1fr; } }
+  .cookie-banner { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(120px); z-index: 500; background: rgba(15,23,42,0.97); border: 1px solid rgba(255,255,255,0.1); border-radius: 2px; padding: 1.25rem 1.75rem; display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; max-width: 700px; width: calc(100% - 3rem); backdrop-filter: blur(20px); box-shadow: 0 8px 40px rgba(0,0,0,0.4); opacity: 0; transition: transform 0.4s cubic-bezier(0.32,0.72,0,1), opacity 0.4s; pointer-events: none; }
+  .cookie-banner.visible { transform: translateX(-50%) translateY(0); opacity: 1; pointer-events: auto; }
+  .cookie-text { flex: 1; min-width: 200px; font-size: 0.82rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
+  .cookie-text a { color: rgba(255,255,255,0.7); text-decoration: underline; text-underline-offset: 2px; }
+  .cookie-actions { display: flex; gap: 0.75rem; flex-shrink: 0; }
+  .cookie-btn-refuse { font-family: 'Inter', sans-serif; font-size: 0.82rem; font-weight: 500; color: rgba(255,255,255,0.4); background: transparent; border: 1px solid rgba(255,255,255,0.15); border-radius: 2px; padding: 0.5rem 1rem; cursor: pointer; }
+  .cookie-btn-accept { font-family: 'Inter', sans-serif; font-size: 0.82rem; font-weight: 600; color: white; background: var(--terra); border: none; border-radius: 2px; padding: 0.5rem 1.25rem; cursor: pointer; }
 
   /* ── Toast ── */
   .toast { position: fixed; bottom: 2rem; right: 2rem; z-index: 300; background: white; border-radius: 12px; padding: 1rem 1.4rem; box-shadow: 0 8px 32px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 0.7rem; font-family: 'Inter', sans-serif; font-weight: 600; color: var(--midnight); transform: translateY(100px); opacity: 0; transition: transform 0.4s var(--ease-spring), opacity 0.4s; pointer-events: none; font-size: 0.9rem; }
   .toast.show { transform: translateY(0); opacity: 1; }
   .toast-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; flex-shrink: 0; }
 
-  .freelance-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 5rem; align-items: start; max-width: 1000px; }
-  @media (max-width: 860px) { .freelance-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+  .freelance-grid { display: none; }
+  .freelance-section { padding: 5rem 0; border-top: 1px solid var(--grid); background: var(--alabaster); }
+  .freelance-header { margin-bottom: 3.5rem; }
+  .freelance-header .mono { display: block; margin-bottom: 1rem; }
+  .freelance-header h2 { font-weight: 800; font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.1; letter-spacing: -0.02em; color: var(--midnight); }
+  .freelance-header h2 em { font-style: normal; color: var(--terra); }
+  .freelance-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 2px solid var(--midnight); }
+  .freelance-col { padding: 2.5rem 2.5rem 2.5rem 0; border-right: 1px solid var(--grid); }
+  .freelance-col:last-child { border-right: none; padding-right: 0; }
+  .freelance-col:not(:first-child) { padding-left: 2.5rem; }
+  .freelance-col-num { font-family: 'DM Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--terra); margin-bottom: 1.5rem; }
+  .freelance-col h3 { font-weight: 700; font-size: 1.05rem; color: var(--midnight); margin-bottom: 0.6rem; }
+  .freelance-col p { color: var(--steel); font-size: 0.88rem; line-height: 1.65; }
+  @media (max-width: 700px) { .freelance-cols { grid-template-columns: 1fr; border-top: 2px solid var(--midnight); } .freelance-col { padding: 1.75rem 0; border-right: none; border-bottom: 1px solid var(--grid); } .freelance-col:last-child { border-bottom: none; } .freelance-col:not(:first-child) { padding-left: 0; } }
 
   @media (prefers-reduced-motion: reduce) {
     .reveal { transition: opacity 0.2s; transform: none; }
@@ -452,36 +483,6 @@
 </div>
 
 <!-- ══════════════════════════════════════
-     HERO
-══════════════════════════════════════ -->
-<section class="hero">
-  <div class="hero-vlines"><div class="vl"></div><div class="vl"></div><div class="vl"></div><div class="vl"></div></div>
-  <div class="container">
-    <div class="hero-inner">
-      <div class="hero-badge reveal">
-        <div class="dot"></div>
-        <span>Fondation Studio — Qui sommes-nous</span>
-      </div>
-      <h1 class="reveal">On ne crée pas des sites.<br>On crée des outils pour <em>générer des clients.</em></h1>
-      <p class="hero-sub reveal">Fondation Studio accompagne les PME dans la création de sites internet modernes, rapides et surtout pensés pour convertir. Chaque site est conçu pour transformer vos visiteurs en clients, avec une approche basée sur la performance et la rentabilité.</p>
-      <div class="hero-btns reveal">
-        <a href="contact.html" class="cta-btn" style="font-size:1.05rem;padding:1rem 2.2rem">
-          Obtenir un aperçu de mon futur site
-          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-        <a href="realisations.html" class="btn-ghost" style="font-size:1.05rem;padding:1rem 2.2rem">
-          Voir nos réalisations
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="hero-scroll" aria-hidden="true">
-    <div class="hero-scroll-line"></div>
-    <div class="hero-scroll-label">Défiler</div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
      NOTRE VISION
 ══════════════════════════════════════ -->
 <section class="vision">
@@ -491,7 +492,7 @@
         <div class="label reveal">Notre vision</div>
         <h2 class="reveal">Un site, c'est un <em>levier de croissance.</em> Pas une dépense.</h2>
         <div class="vision-quote reveal">
-          <p>Aujourd'hui, trop d'entreprises paient des sites à prix élevé pour un résultat <em>décevant.</em></p>
+          <p>Aujourd'hui trop de sites sont moches et vendus cher, ou alors beaux mais qui <em>ne convertissent pas du tout.</em></p>
         </div>
         <div class="vision-body reveal">
           <p>Design moyen, aucune stratégie, <strong>aucun impact réel sur le chiffre d'affaires.</strong> Le site est en ligne, mais il n'apporte rien.</p>
@@ -544,9 +545,6 @@
           <p>Il s'est spécialisé dans l'<strong>acquisition client et le marketing digital</strong>, et a accompagné plus de <strong>30 entreprises</strong> à générer du chiffre d'affaires grâce à la publicité en ligne (Meta Ads, Google Ads).</p>
           <p>Son expertise repose sur un constat simple : <strong>attirer du trafic qualifié ne suffit pas — il faut le convertir.</strong> C'est exactement ce que fait chaque site qu'il conçoit.</p>
         </div>
-        <div class="founder-highlight">
-          Avec Fondation Studio, il conçoit des sites pensés pour <strong>générer des demandes et du chiffre d'affaires</strong> — pas simplement pour être esthétiques.
-        </div>
         <a href="https://www.linkedin.com/in/tom-soa-cyprien-934798333/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.5rem;font-family:'DM Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--steel);text-decoration:none;transition:color 0.2s;">
           <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           LinkedIn — Tom-Soa
@@ -579,9 +577,6 @@
           <p>Il a <strong>accompagné une vingtaine d'entreprises</strong> dans leur lancement et leur développement, et a réalisé plusieurs projets de création de sites internet. Ce parcours lui a appris une chose que les agences classiques ignorent souvent : <strong>les PME n'ont pas besoin d'un site "impressionnant" — elles ont besoin d'un site qui leur apporte des clients.</strong></p>
           <p>Sa vision : la <strong>rentabilité avant l'esthétique.</strong> L'efficacité avant la complexité.</p>
         </div>
-        <div class="founder-highlight">
-          Aujourd'hui, il co-fonde Fondation Studio avec l'ambition de proposer des sites <strong>performants, utiles et honnêtes</strong> — conçus pour que chaque euro investi en rapporte dix.
-        </div>
       </div>
     </div>
 
@@ -591,49 +586,34 @@
 <!-- ══════════════════════════════════════
      ÉQUIPE FREELANCES
 ══════════════════════════════════════ -->
-<section style="padding: 5rem 0; border-top: 1px solid var(--grid);">
+<section class="freelance-section">
   <div class="container">
-    <div class="freelance-grid">
-
-      <div class="reveal">
-        <span class="mono" style="display:block; margin-bottom: 1.2rem;">Comment on travaille</span>
-        <h2 style="font-weight: 800; font-size: clamp(1.6rem, 3vw, 2.2rem); line-height: 1.1; letter-spacing: -0.02em; color: var(--midnight);">Une équipe d'experts dédiée à chaque projet.</h2>
-      </div>
-
-      <div class="reveal">
-        <p style="font-size: 1rem; line-height: 1.75; color: var(--midnight); margin-bottom: 1.5rem;">Chez Fondation Studio, nous collaborons avec une équipe de freelances spécialisés pour concevoir chaque site. Cela nous permet de réunir les bonnes compétences selon votre projet — et de garantir un résultat adapté à vos besoins, sans compromis.</p>
-
-        <div style="display: flex; flex-direction: column; border-top: 1px solid var(--grid);">
-          <div style="display: flex; align-items: center; gap: 1.2rem; padding: 1rem 0; border-bottom: 1px solid var(--grid);">
-            <div style="width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--grid); background: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-              <svg width="15" height="15" fill="none" stroke="var(--steel)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-            </div>
-            <div>
-              <div style="font-weight: 600; font-size: 0.9rem; color: var(--midnight);">Design & identité visuelle</div>
-              <div style="font-size: 0.82rem; color: var(--steel); margin-top: 0.15rem;">Mise en page, typographie, cohérence de la marque</div>
-            </div>
-          </div>
-          <div style="display: flex; align-items: center; gap: 1.2rem; padding: 1rem 0; border-bottom: 1px solid var(--grid);">
-            <div style="width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--grid); background: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-              <svg width="15" height="15" fill="none" stroke="var(--steel)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-            </div>
-            <div>
-              <div style="font-weight: 600; font-size: 0.9rem; color: var(--midnight);">Développement front-end</div>
-              <div style="font-size: 0.82rem; color: var(--steel); margin-top: 0.15rem;">Code pur, Next.js, performance et accessibilité</div>
-            </div>
-          </div>
-          <div style="display: flex; align-items: center; gap: 1.2rem; padding: 1rem 0;">
-            <div style="width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--grid); background: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-              <svg width="15" height="15" fill="none" stroke="var(--steel)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            </div>
-            <div>
-              <div style="font-weight: 600; font-size: 0.9rem; color: var(--midnight);">Copywriting & stratégie</div>
-              <div style="font-size: 0.82rem; color: var(--steel); margin-top: 0.15rem;">Textes orientés conversion, ton adapté à votre secteur</div>
-            </div>
-          </div>
+    <div class="freelance-header reveal">
+      <span class="mono">Comment on travaille</span>
+      <h2>Pas une agence. Pas des freelances seuls.<br><em>Le meilleur des deux.</em></h2>
+    </div>
+    <div class="freelance-cols">
+      <div class="freelance-col reveal">
+        <div class="freelance-col-num">01</div>
+        <div class="freelance-col-body">
+          <h3>Design &amp; identité visuelle</h3>
+          <p>Chaque site est conçu sur mesure — typographie, couleurs, mise en page. Pas de template, aucun copier-coller.</p>
         </div>
       </div>
-
+      <div class="freelance-col reveal reveal-delay-1">
+        <div class="freelance-col-num">02</div>
+        <div class="freelance-col-body">
+          <h3>Développement front-end</h3>
+          <p>Code pur, performances optimisées, zéro WordPress. Chaque ligne est écrite pour votre projet spécifique.</p>
+        </div>
+      </div>
+      <div class="freelance-col reveal reveal-delay-2">
+        <div class="freelance-col-num">03</div>
+        <div class="freelance-col-body">
+          <h3>Copywriting &amp; stratégie</h3>
+          <p>Les mots qui convertissent. On écrit pour votre client cible, pas pour vous faire plaisir.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -658,8 +638,8 @@
             <svg width="20" height="20" fill="none" stroke="var(--terra)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
           </div>
           <div class="approche-body">
-            <h4>Structure optimisée pour la conversion</h4>
-            <p>Hiérarchie visuelle, placement des CTA, enchaînement des sections. Chaque élément guide le visiteur naturellement vers l'action que vous souhaitez.</p>
+            <h4>Structure pensée pour convertir</h4>
+            <p>Hiérarchie visuelle, CTA bien placés, parcours fluide. Chaque section a un rôle précis.</p>
           </div>
         </div>
         <div class="approche-item reveal reveal-delay-1">
@@ -668,38 +648,18 @@
             <svg width="20" height="20" fill="none" stroke="var(--terra)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           </div>
           <div class="approche-body">
-            <h4>Message clair et orienté client</h4>
-            <p>On ne parle pas de vous — on parle à vos clients. Ce qu'ils gagnent, les problèmes qu'on résout pour eux, pourquoi vous et pas un autre.</p>
+            <h4>Message orienté client, pas ego</h4>
+            <p>On écrit pour convaincre vos visiteurs — pas pour vous faire plaisir. Ce qu'ils gagnent, pourquoi vous.</p>
           </div>
         </div>
         <div class="approche-item reveal reveal-delay-2">
           <div class="approche-num">03</div>
           <div class="approche-icon">
-            <svg width="20" height="20" fill="none" stroke="var(--terra)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          </div>
-          <div class="approche-body">
-            <h4>Expérience utilisateur fluide</h4>
-            <p>Navigation intuitive, temps de chargement nul, design responsive. Un visiteur qui bute ne convertit pas.</p>
-          </div>
-        </div>
-        <div class="approche-item reveal reveal-delay-3">
-          <div class="approche-num">04</div>
-          <div class="approche-icon">
             <svg width="20" height="20" fill="none" stroke="var(--terra)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
           </div>
           <div class="approche-body">
-            <h4>SEO optimisé dès la création</h4>
-            <p>Structure sémantique, performances Core Web Vitals, balisage technique. Votre site est visible par Google dès le premier jour.</p>
-          </div>
-        </div>
-        <div class="approche-item reveal reveal-delay-4">
-          <div class="approche-num">05</div>
-          <div class="approche-icon">
-            <svg width="20" height="20" fill="none" stroke="var(--terra)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-          </div>
-          <div class="approche-body">
-            <h4>Code pur — zéro template</h4>
-            <p>Pas de WordPress, pas de page builder. Chaque ligne est écrite à la main en Next.js pour une performance maximale : des scores PageSpeed élevés.</p>
+            <h4>Code pur, performance maximale</h4>
+            <p>Zéro template, zéro WordPress. Scores PageSpeed élevés, SEO optimisé dès le premier jour.</p>
           </div>
         </div>
       </div>
@@ -720,29 +680,29 @@
         <div class="pourquoi-pillars reveal">
           <div class="pourquoi-pillar">
             <div class="pourquoi-pillar-icon">
-              <svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              <svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
             </div>
             <div>
-              <h4>Votre site attire l'attention</h4>
-              <p>Design premium qui se distingue, même dans les secteurs les plus concurrentiels.</p>
+              <h4>Votre site se distingue</h4>
+              <p>Design premium construit de zéro, qui ne ressemble à aucun autre site de votre secteur.</p>
             </div>
           </div>
           <div class="pourquoi-pillar">
             <div class="pourquoi-pillar-icon">
-              <svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
             </div>
             <div>
-              <h4>Il inspire confiance</h4>
-              <p>Crédibilité immédiate, preuves sociales bien placées, message rassurant. Le visiteur se sent au bon endroit.</p>
+              <h4>Il inspire confiance immédiatement</h4>
+              <p>Crédibilité lisible en 3 secondes — le visiteur se sent au bon endroit.</p>
             </div>
           </div>
           <div class="pourquoi-pillar">
             <div class="pourquoi-pillar-icon">
-              <svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+              <svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
             </div>
             <div>
-              <h4>Il convertit</h4>
-              <p>Structure CRO, CTA stratégiques, parcours optimisé. La différence se voit dans vos demandes entrantes.</p>
+              <h4>Il génère des demandes</h4>
+              <p>Structure CRO, parcours optimisé, CTA stratégiques. La différence se mesure.</p>
             </div>
           </div>
         </div>
@@ -783,16 +743,16 @@
 </section>
 
 <footer>
-  <div class="footer-bar">
+  <div class="footer-main">
     <div class="container">
-      <div class="footer-bar-inner">
-        <div class="flogo">Fondation <span>Studio</span></div>
-        <div class="fcopy">© 2025 · Sites Orientés Conversion · Code pur · Livraison 14–21 jours</div>
-        <a href="diaporama.html" target="_blank" style="font-family:'DM Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.2);text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.5)'" onmouseout="this.style.color='rgba(255,255,255,0.2)'">
-          <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-          Diaporama
-        </a>
-        <div class="flinks">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="flogo">Fondation <span>Studio</span></div>
+          <p class="footer-tagline">Sites haute performance, pensés pour convertir. Pas des templates — du sur-mesure.</p>
+          <p class="footer-origin">Fondé à La Réunion · Livraison 14–21 jours</p>
+        </div>
+        <div class="footer-nav-col">
+          <div class="footer-nav-title">Navigation</div>
           <a href="index.html">Accueil</a>
           <a href="qui-sommes-nous.html">L'équipe</a>
           <a href="realisations.html">Réalisations</a>
@@ -800,6 +760,23 @@
           <a href="performances.html">Performances</a>
           <a href="tarifs.html">Tarifs</a>
           <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-nav-col">
+          <div class="footer-nav-title">Légal</div>
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="mentions-legales.html#politique-cookies">Politique de cookies</a>
+          <a href="mentions-legales.html#rgpd">Données personnelles</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="footer-bottom-inner">
+        <div class="fcopy">© 2026 Fondation Studio · Tous droits réservés</div>
+        <div class="footer-legal-links">
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="diaporama.html" target="_blank">Diaporama</a>
         </div>
       </div>
     </div>
@@ -872,6 +849,32 @@
     panel.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
   })();
 
+  // Cookie consent
+  (function() {
+    var banner = document.getElementById('cookie-banner');
+    if (!localStorage.getItem('fs_cookie_consent')) {
+      setTimeout(function() { banner.classList.add('visible'); }, 1200);
+    }
+    document.getElementById('cookie-accept').addEventListener('click', function() {
+      localStorage.setItem('fs_cookie_consent', 'accepted');
+      banner.classList.remove('visible');
+    });
+    document.getElementById('cookie-refuse').addEventListener('click', function() {
+      localStorage.setItem('fs_cookie_consent', 'refused');
+      banner.classList.remove('visible');
+    });
+  })();
+
 </script>
+
+<!-- COOKIE CONSENT BANNER -->
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Gestion des cookies" aria-live="polite">
+  <p class="cookie-text">Nous utilisons des cookies pour améliorer votre expérience. <a href="mentions-legales.html#politique-cookies">En savoir plus</a></p>
+  <div class="cookie-actions">
+    <button id="cookie-refuse" class="cookie-btn-refuse">Refuser</button>
+    <button id="cookie-accept" class="cookie-btn-accept">Accepter</button>
+  </div>
+</div>
+
 </body>
 </html>

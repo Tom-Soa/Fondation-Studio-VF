@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mentions légales — Fondation Studio</title>
+  <meta name="description" content="Mentions légales, politique de confidentialité et politique de cookies de Fondation Studio." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --midnight: #0F172A;
+      --terra: #C2410C;
+      --terra-hover: #a83509;
+      --alabaster: #F9F9F7;
+      --steel: #64748B;
+      --grid: rgba(15,23,42,0.08);
+      --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--alabaster); color: var(--midnight); -webkit-font-smoothing: antialiased; }
+
+    /* ── NAV ── */
+    .pill-nav { position: fixed; top: 1.25rem; left: 50%; transform: translateX(-50%); z-index: 100; }
+    .pill-wrap { background: rgba(15,23,42,0.85); border: 1px solid rgba(255,255,255,0.12); border-radius: 100px; padding: 0.4rem 0.5rem; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); display: flex; align-items: center; gap: 0.2rem; box-shadow: 0 4px 24px rgba(0,0,0,0.25); }
+    .pill-logo { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 0.88rem; color: white; padding: 0.35rem 1rem; white-space: nowrap; letter-spacing: -0.01em; }
+    .pill-logo span { color: var(--terra); }
+    .pill-div { width: 1px; height: 18px; background: rgba(255,255,255,0.12); margin: 0 0.25rem; }
+    .pill-inner { position: relative; display: flex; align-items: center; gap: 0.15rem; }
+    .pill-item { position: relative; z-index: 1; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.8rem; color: rgba(255,255,255,0.55); text-decoration: none; padding: 0.35rem 0.85rem; border-radius: 100px; transition: color 0.2s; white-space: nowrap; }
+    .pill-item:hover { color: white; }
+    .pill-item.active { color: white; }
+    .pill-cta { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.8rem; background: var(--terra); color: white; text-decoration: none; padding: 0.4rem 1rem; border-radius: 100px; transition: background 0.2s; white-space: nowrap; margin-left: 0.25rem; }
+    .pill-cta:hover { background: var(--terra-hover); }
+
+    /* ── CONTENT ── */
+    .container { max-width: 780px; margin: 0 auto; padding: 0 2rem; }
+    .legal-page { padding: 9rem 0 6rem; }
+    .legal-page h1 { font-weight: 800; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+    .legal-page .legal-updated { font-family: 'DM Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--steel); margin-bottom: 4rem; }
+    .legal-section { margin-bottom: 3rem; padding-top: 2.5rem; border-top: 1px solid var(--grid); }
+    .legal-section:first-of-type { border-top: none; padding-top: 0; }
+    .legal-section h2 { font-weight: 700; font-size: 1.15rem; margin-bottom: 1rem; color: var(--midnight); }
+    .legal-section h3 { font-weight: 600; font-size: 1rem; margin-bottom: 0.6rem; margin-top: 1.5rem; color: var(--midnight); }
+    .legal-section p { color: var(--steel); font-size: 0.9rem; line-height: 1.8; margin-bottom: 0.75rem; }
+    .legal-section p:last-child { margin-bottom: 0; }
+    .legal-section a { color: var(--terra); text-decoration: underline; text-underline-offset: 2px; }
+    .legal-section ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin: 0.75rem 0; }
+    .legal-section ul li { display: flex; gap: 0.75rem; font-size: 0.9rem; color: var(--steel); line-height: 1.65; }
+    .legal-section ul li::before { content: '—'; color: var(--terra); flex-shrink: 0; }
+    .legal-section strong { color: var(--midnight); font-weight: 600; }
+    .legal-anchor { display: block; position: relative; top: -5rem; visibility: hidden; }
+
+    /* ── Footer ── */
+    footer { background: var(--midnight); color: white; }
+    .footer-main { padding: 4rem 0; border-top: 1px solid rgba(255,255,255,0.06); }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; align-items: start; }
+    .footer-brand .flogo { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 1.2rem; margin-bottom: 1rem; }
+    .footer-brand .flogo span { color: var(--terra); }
+    .footer-tagline { color: rgba(255,255,255,0.4); font-size: 0.9rem; line-height: 1.65; margin-bottom: 0.75rem; max-width: 280px; }
+    .footer-origin { font-family: 'DM Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.2); }
+    .footer-nav-col { display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-nav-title { font-family: 'DM Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.25); margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .footer-nav-col a { font-size: 0.88rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+    .footer-nav-col a:hover { color: white; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding: 1.5rem 0; }
+    .footer-bottom-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .fcopy { font-family: 'DM Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.2); }
+    .footer-legal-links { display: flex; gap: 1.5rem; }
+    .footer-legal-links a { font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.2s; }
+    .footer-legal-links a:hover { color: rgba(255,255,255,0.5); }
+    @media (max-width: 700px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; } .footer-brand { grid-column: 1 / -1; } .footer-bottom-inner { flex-direction: column; text-align: center; } .footer-legal-links { justify-content: center; } }
+    @media (max-width: 400px) { .footer-grid { grid-template-columns: 1fr; } }
+
+    /* ── Mobile nav ── */
+    .mob-menu-btn { display: none; position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 200; width: 52px; height: 52px; border-radius: 50%; background: rgba(15,23,42,0.92); border: 1px solid rgba(255,255,255,0.15); backdrop-filter: blur(20px); align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 24px rgba(0,0,0,0.35); transition: transform 0.2s; }
+    .mob-menu-btn:active { transform: scale(0.93); }
+    .mob-menu-btn svg { transition: opacity 0.2s, transform 0.25s; }
+    .mob-menu-btn .icon-burger { opacity: 1; transform: rotate(0deg); position: absolute; }
+    .mob-menu-btn .icon-close  { opacity: 0; transform: rotate(-45deg); position: absolute; }
+    .mob-menu-btn.open .icon-burger { opacity: 0; transform: rotate(45deg); }
+    .mob-menu-btn.open .icon-close  { opacity: 1; transform: rotate(0deg); }
+    .mob-menu-overlay { display: none; position: fixed; inset: 0; z-index: 150; background: rgba(0,0,0,0.5); opacity: 0; transition: opacity 0.25s; }
+    .mob-menu-overlay.open { opacity: 1; }
+    .mob-menu-panel { position: fixed; bottom: 0; left: 0; right: 0; z-index: 160; background: rgba(15,23,42,0.97); border-top: 1px solid rgba(255,255,255,0.1); border-radius: 24px 24px 0 0; padding: 1rem 1.5rem 2.5rem; backdrop-filter: blur(30px); transform: translateY(100%); transition: transform 0.35s cubic-bezier(0.32,0.72,0,1); display: none; }
+    .mob-menu-panel.open { transform: translateY(0); }
+    .mob-menu-handle { width: 36px; height: 4px; background: rgba(255,255,255,0.2); border-radius: 2px; margin: 0 auto 1.5rem; }
+    .mob-menu-brand { font-family: 'Inter'; font-weight: 800; font-size: 1rem; color: #fff; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .mob-menu-brand span { color: #C2410C; }
+    .mob-menu-links { display: flex; flex-direction: column; gap: 0.25rem; }
+    .mob-menu-link { display: flex; align-items: center; gap: 1rem; padding: 0.85rem 1rem; border-radius: 12px; color: rgba(255,255,255,0.6); font-family: 'Inter'; font-weight: 500; font-size: 0.95rem; text-decoration: none; transition: background 0.15s, color 0.15s; }
+    .mob-menu-link:hover { background: rgba(255,255,255,0.06); color: white; }
+    .mob-menu-cta { display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.9rem 1.5rem; margin-top: 1rem; background: var(--terra); color: white; border-radius: 100px; font-family: 'Inter'; font-weight: 600; font-size: 0.95rem; text-decoration: none; }
+    @media (max-width: 900px) { .pill-nav { display: none; } .mob-menu-btn { display: flex; } .mob-menu-overlay, .mob-menu-panel { display: block; } }
+  </style>
+</head>
+<body>
+
+<!-- NAV PILL -->
+<nav class="pill-nav" aria-label="Navigation principale">
+  <div class="pill-wrap">
+    <a href="index.html" class="pill-logo">Fondation <span>Studio</span></a>
+    <div class="pill-div"></div>
+    <div class="pill-inner">
+      <a href="index.html" class="pill-item">Accueil</a>
+      <a href="qui-sommes-nous.html" class="pill-item">L'équipe</a>
+      <a href="realisations.html" class="pill-item">Réalisations</a>
+      <a href="performances.html" class="pill-item">Performances</a>
+      <a href="tarifs.html" class="pill-item">Tarifs</a>
+    </div>
+    <div class="pill-div"></div>
+    <a href="contact.html" class="pill-cta">Démarrer mon projet</a>
+  </div>
+</nav>
+
+<!-- Mobile hamburger -->
+<button class="mob-menu-btn" id="mob-btn" aria-label="Menu">
+  <svg class="icon-burger" width="20" height="20" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  <svg class="icon-close" width="20" height="20" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+</button>
+<div class="mob-menu-overlay" id="mob-overlay"></div>
+<div class="mob-menu-panel" id="mob-panel">
+  <div class="mob-menu-handle"></div>
+  <div class="mob-menu-brand">Fondation <span>Studio</span></div>
+  <div class="mob-menu-links">
+    <a href="index.html" class="mob-menu-link">Accueil</a>
+    <a href="qui-sommes-nous.html" class="mob-menu-link">L'équipe</a>
+    <a href="realisations.html" class="mob-menu-link">Réalisations</a>
+    <a href="performances.html" class="mob-menu-link">Performances</a>
+    <a href="tarifs.html" class="mob-menu-link">Tarifs</a>
+    <a href="contact.html" class="mob-menu-link">Contact</a>
+  </div>
+  <a href="contact.html" class="mob-menu-cta">Démarrer mon projet →</a>
+</div>
+
+<!-- CONTENU LÉGAL -->
+<main class="legal-page">
+  <div class="container">
+
+    <h1>Mentions légales</h1>
+    <p class="legal-updated">Dernière mise à jour : Avril 2026</p>
+
+    <div class="legal-section">
+      <h2>1. Éditeur du site</h2>
+      <p>Le site <strong>fondation-studio.com</strong> est édité par :</p>
+      <ul>
+        <li><strong>Raison sociale :</strong> Fondation Studio</li>
+        <li><strong>Forme juridique :</strong> Entreprise individuelle</li>
+        <li><strong>Siège social :</strong> La Réunion, France</li>
+        <li><strong>SIRET :</strong> [À renseigner]</li>
+        <li><strong>Contact :</strong> <a href="mailto:contact@fondation-studio.com">contact@fondation-studio.com</a></li>
+        <li><strong>Directeur de la publication :</strong> Tom-Soa Cyprien &amp; Andylane [Nom de famille]</li>
+      </ul>
+    </div>
+
+    <div class="legal-section">
+      <h2>2. Hébergement</h2>
+      <p>Ce site est hébergé par :</p>
+      <ul>
+        <li><strong>Hébergeur :</strong> [À renseigner — ex : GitHub Pages, Vercel, OVH…]</li>
+        <li><strong>Adresse :</strong> [À renseigner]</li>
+        <li><strong>Site :</strong> [À renseigner]</li>
+      </ul>
+    </div>
+
+    <div class="legal-section">
+      <h2>3. Propriété intellectuelle</h2>
+      <p>L'ensemble du contenu du site (textes, images, design, code source) est la propriété exclusive de Fondation Studio, sauf mention contraire. Toute reproduction, représentation ou diffusion, totale ou partielle, de ce contenu est interdite sans autorisation écrite préalable.</p>
+      <p>Les images issues de Pexels sont utilisées conformément à leur licence libre de droits.</p>
+    </div>
+
+    <div class="legal-section" id="rgpd">
+      <span class="legal-anchor" id="rgpd-anchor"></span>
+      <h2>4. Données personnelles (RGPD)</h2>
+      <p>Fondation Studio s'engage à protéger la vie privée de ses visiteurs conformément au Règlement Général sur la Protection des Données (RGPD — UE 2016/679).</p>
+
+      <h3>Données collectées</h3>
+      <p>Lorsque vous utilisez notre formulaire de contact, nous collectons :</p>
+      <ul>
+        <li>Votre nom et prénom</li>
+        <li>Votre adresse e-mail</li>
+        <li>Votre numéro de téléphone (facultatif)</li>
+        <li>Le contenu de votre message</li>
+      </ul>
+      <p>Ces données sont utilisées uniquement pour vous répondre et gérer notre relation commerciale. Elles ne sont jamais revendues à des tiers.</p>
+
+      <h3>Base légale du traitement</h3>
+      <p>Le traitement est fondé sur votre consentement explicite lors de l'envoi du formulaire (article 6§1a du RGPD).</p>
+
+      <h3>Durée de conservation</h3>
+      <p>Vos données sont conservées pendant la durée nécessaire au traitement de votre demande, et au maximum 3 ans après votre dernier contact avec nous.</p>
+
+      <h3>Vos droits</h3>
+      <p>Conformément au RGPD, vous disposez des droits suivants :</p>
+      <ul>
+        <li>Droit d'accès à vos données personnelles</li>
+        <li>Droit de rectification</li>
+        <li>Droit à l'effacement ("droit à l'oubli")</li>
+        <li>Droit à la limitation du traitement</li>
+        <li>Droit à la portabilité</li>
+        <li>Droit d'opposition</li>
+      </ul>
+      <p>Pour exercer ces droits, contactez-nous à : <a href="mailto:contact@fondation-studio.com">contact@fondation-studio.com</a></p>
+      <p>En cas de litige, vous pouvez déposer une plainte auprès de la <strong>CNIL</strong> : <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer">www.cnil.fr</a></p>
+    </div>
+
+    <div class="legal-section" id="politique-cookies">
+      <span class="legal-anchor" id="cookies-anchor"></span>
+      <h2>5. Politique de cookies</h2>
+      <p>Un cookie est un petit fichier texte déposé sur votre terminal lors de la visite d'un site web. Fondation Studio utilise des cookies dans un but strictement fonctionnel.</p>
+
+      <h3>Cookies utilisés</h3>
+      <ul>
+        <li><strong>fs_cookie_consent</strong> — Cookie de mémorisation de votre choix concernant les cookies. Durée : 12 mois. Aucune donnée personnelle collectée.</li>
+      </ul>
+      <p>Nous n'utilisons pas de cookies publicitaires, de suivi tiers (Google Analytics, Facebook Pixel, etc.) ni de cookies de profilage.</p>
+
+      <h3>Gestion de vos préférences</h3>
+      <p>Vous pouvez accepter ou refuser les cookies via le bandeau affiché lors de votre première visite. Vous pouvez également modifier vos préférences à tout moment en vidant le cache de votre navigateur.</p>
+      <p>Pour gérer les cookies via votre navigateur, consultez l'aide de votre navigateur (Chrome, Firefox, Safari, Edge, etc.).</p>
+
+      <h3>Cookies tiers</h3>
+      <p>Ce site utilise Google Fonts pour le chargement des polices. Google peut déposer des cookies techniques de performance. Consulter la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">politique de confidentialité de Google</a>.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>6. Liens hypertextes</h2>
+      <p>Ce site peut contenir des liens vers des sites externes. Fondation Studio ne peut être tenu responsable du contenu de ces sites tiers ni de leur politique de confidentialité.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>7. Limitation de responsabilité</h2>
+      <p>Les informations présentées sur ce site sont fournies à titre indicatif. Fondation Studio s'efforce de maintenir les informations à jour mais ne garantit pas l'exactitude ou l'exhaustivité du contenu.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>8. Droit applicable</h2>
+      <p>Le présent site et les présentes mentions légales sont soumis au droit français. En cas de litige, les tribunaux français seront seuls compétents.</p>
+    </div>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-main">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="flogo">Fondation <span>Studio</span></div>
+          <p class="footer-tagline">Sites haute performance, pensés pour convertir. Pas des templates — du sur-mesure.</p>
+          <p class="footer-origin">Fondé à La Réunion · Livraison 14–21 jours</p>
+        </div>
+        <div class="footer-nav-col">
+          <div class="footer-nav-title">Navigation</div>
+          <a href="index.html">Accueil</a>
+          <a href="qui-sommes-nous.html">L'équipe</a>
+          <a href="realisations.html">Réalisations</a>
+          <a href="processus.html">Processus</a>
+          <a href="performances.html">Performances</a>
+          <a href="tarifs.html">Tarifs</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-nav-col">
+          <div class="footer-nav-title">Légal</div>
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="mentions-legales.html#politique-cookies">Politique de cookies</a>
+          <a href="mentions-legales.html#rgpd">Données personnelles</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="footer-bottom-inner">
+        <div class="fcopy">© 2026 Fondation Studio · Tous droits réservés</div>
+        <div class="footer-legal-links">
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="diaporama.html" target="_blank">Diaporama</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    const btn = document.getElementById('mob-btn');
+    const overlay = document.getElementById('mob-overlay');
+    const panel = document.getElementById('mob-panel');
+    if (!btn) return;
+    function open() { btn.classList.add('open'); overlay.classList.add('open'); panel.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function close() { btn.classList.remove('open'); overlay.classList.remove('open'); panel.classList.remove('open'); document.body.style.overflow = ''; }
+    btn.addEventListener('click', () => btn.classList.contains('open') ? close() : open());
+    overlay.addEventListener('click', close);
+    panel.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  })();
+</script>
+
+</body>
+</html>
