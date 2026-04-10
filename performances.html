@@ -435,15 +435,23 @@
   .ben-strip-item p { color: var(--steel); font-size: 0.85rem; line-height: 1.6; }
   @media (max-width: 768px) { .ben-strip { grid-template-columns: 1fr; } .ben-strip-item { border-right: none; border-bottom: 1px solid var(--grid); } .ben-strip-item:last-child { border-bottom: none; } }
 
-  /* ── Tech bento ── */
-  .tech-bento { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.06); }
-  .tech-bento .card-canvas { border: none; background: #0f1928; }
-  .tech-bento .card-canvas.featured { grid-column: 1 / -1; background: #111827; }
-  .seo-split { display: grid; grid-template-columns: auto 1fr; gap: 2.5rem; align-items: start; }
-  .seo-score-col { min-width: 180px; }
+  /* ── Tech bento — éditorial ── */
+  .tech-bento { display: flex; flex-direction: column; }
+  .tech-row { display: grid; grid-template-columns: 5rem 1fr 1fr; gap: 0; align-items: stretch; border-bottom: 1px solid rgba(255,255,255,0.06); transition: background 0.2s; }
+  .tech-row:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
+  .tech-row:hover { background: rgba(255,255,255,0.02); }
+  .tech-row-num { display: flex; align-items: flex-start; padding: 2.25rem 1.5rem 2.25rem 0; font-family: 'DM Mono', monospace; font-size: 0.62rem; color: rgba(255,255,255,0.2); letter-spacing: 0.08em; border-right: 1px solid rgba(255,255,255,0.06); }
+  .tech-row-left { padding: 2.25rem 3rem 2.25rem 2rem; border-right: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; justify-content: center; }
+  .tech-row-right { padding: 2.25rem 2rem; display: flex; flex-direction: column; justify-content: center; }
+  .tech-row-tag { font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--terra); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.4rem; }
+  .tech-row-metric { font-weight: 800; font-size: clamp(2rem, 3.5vw, 3rem); line-height: 1; letter-spacing: -0.04em; color: var(--terra); margin-bottom: 0.3rem; }
+  .tech-row-metric em { font-style: normal; color: white; }
+  .tech-row-sublabel { font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.25); }
+  .tech-row-right h3 { font-weight: 700; font-size: 1rem; color: white; margin-bottom: 0.5rem; line-height: 1.3; }
+  .tech-row-right p { color: rgba(255,255,255,0.4); font-size: 0.85rem; line-height: 1.65; }
   .seo-pills { display: flex; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap; }
-  .seo-pill { font-family: 'DM Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 0.2rem 0.6rem; border-radius: 2px; }
-  @media (max-width: 900px) { .tech-bento { grid-template-columns: 1fr; } .tech-bento .card-canvas.featured { grid-column: 1; } .seo-split { grid-template-columns: 1fr; gap: 0; } }
+  .seo-pill { font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); padding: 0.2rem 0.55rem; }
+  @media (max-width: 700px) { .tech-row { grid-template-columns: 2.5rem 1fr; } .tech-row-left { display: none; } .tech-row-num { padding: 1.5rem 1rem 1.5rem 0; } .tech-row-right { padding: 1.5rem 1rem; grid-column: 2; } }
 
 </style>
 </head>
@@ -591,69 +599,57 @@
     </svg>
 
     <div class="tech-bento">
-      <div class="card-canvas featured reveal">
-        <div class="card-backdrop"></div>
-        <div class="glow-card">
-          <div class="border-element border-left"></div><div class="border-element border-right"></div>
-          <div class="border-element border-top"></div><div class="border-element border-bottom"></div>
-          <div class="tech-card">
-            <div class="tech-tag"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Performance</div>
-            <div class="tech-score">98</div>
-            <div class="tech-score-label">Score Google PageSpeed</div>
-            <h3>Votre site charge en moins d'une seconde.</h3>
-            <p>Développé en code pur avec rendu statique optimisé. Chaque milliseconde gagnée augmente directement votre taux de conversion.</p>
-          </div>
+      <div class="tech-row reveal">
+        <div class="tech-row-num">01</div>
+        <div class="tech-row-left">
+          <div class="tech-row-tag"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Performance</div>
+          <div class="tech-row-metric">98<em>/100</em></div>
+          <div class="tech-row-sublabel">Score Google PageSpeed</div>
+        </div>
+        <div class="tech-row-right">
+          <h3>Votre site charge en moins d'une seconde.</h3>
+          <p>Développé en code pur avec rendu statique optimisé. Chaque milliseconde gagnée augmente directement votre taux de conversion.</p>
         </div>
       </div>
-      <div class="card-canvas reveal reveal-delay-1">
-        <div class="card-backdrop"></div>
-        <div class="glow-card">
-          <div class="border-element border-left"></div><div class="border-element border-right"></div>
-          <div class="border-element border-top"></div><div class="border-element border-bottom"></div>
-          <div class="tech-card">
-            <div class="tech-tag"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Sécurité</div>
-            <div class="tech-score" style="font-size:2.4rem;margin-bottom:0.6rem">Inviolable</div>
-            <div class="tech-score-label">Architecture sans BDD vulnérable</div>
-            <h3>Impossible à pirater par les méthodes classiques.</h3>
-            <p>Pas de WordPress, pas de plugins tiers. Notre architecture statique supprime 95% des vecteurs d'attaque habituels.</p>
-          </div>
+      <div class="tech-row reveal">
+        <div class="tech-row-num">02</div>
+        <div class="tech-row-left">
+          <div class="tech-row-tag"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Sécurité</div>
+          <div class="tech-row-metric" style="font-size:clamp(1.5rem,2.5vw,2rem);color:white">Inviolable</div>
+          <div class="tech-row-sublabel">Architecture sans BDD vulnérable</div>
+        </div>
+        <div class="tech-row-right">
+          <h3>Impossible à pirater par les méthodes classiques.</h3>
+          <p>Pas de WordPress, pas de plugins tiers. Notre architecture statique supprime 95% des vecteurs d'attaque habituels.</p>
         </div>
       </div>
-      <div class="card-canvas reveal reveal-delay-2">
-        <div class="card-backdrop"></div>
-        <div class="glow-card">
-          <div class="border-element border-left"></div><div class="border-element border-right"></div>
-          <div class="border-element border-top"></div><div class="border-element border-bottom"></div>
-          <div class="tech-card">
-            <div class="tech-tag"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Sur-mesure</div>
-            <div class="tech-score" style="font-size:2.4rem;margin-bottom:0.6rem">Unique</div>
-            <div class="tech-score-label">Design & Copywriting exclusifs</div>
-            <h3>Pas de template vu partout. Jamais.</h3>
-            <p>Chaque ligne de code, chaque mot, chaque couleur est pensé pour votre secteur et votre client cible.</p>
-          </div>
+      <div class="tech-row reveal">
+        <div class="tech-row-num">03</div>
+        <div class="tech-row-left">
+          <div class="tech-row-tag"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Sur-mesure</div>
+          <div class="tech-row-metric" style="font-size:clamp(1.5rem,2.5vw,2rem);color:white">Unique</div>
+          <div class="tech-row-sublabel">Design &amp; Copywriting exclusifs</div>
+        </div>
+        <div class="tech-row-right">
+          <h3>Pas de template vu partout. Jamais.</h3>
+          <p>Chaque ligne de code, chaque mot, chaque couleur est pensé pour votre secteur et votre client cible.</p>
         </div>
       </div>
-      <div class="card-canvas featured reveal reveal-delay-3">
-        <div class="card-backdrop"></div>
-        <div class="glow-card">
-          <div class="tech-card">
-            <div class="tech-tag"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg> SEO</div>
-            <div class="seo-split">
-              <div class="seo-score-col">
-                <div class="tech-score" style="font-size:2.6rem;white-space:nowrap">Bien <em style="color:var(--terra);font-style:normal">référencé.</em></div>
-                <div class="tech-score-label">Référencement naturel</div>
-              </div>
-              <div>
-                <h3>Un code que Google comprend et apprécie.</h3>
-                <p>Structure sémantique, temps de chargement optimal, zéro plugin superflu — les fondations d'un bon référencement naturel.</p>
-                <div class="seo-pills">
-                  <span class="seo-pill">Balises sémantiques</span>
-                  <span class="seo-pill">Métadonnées optimisées</span>
-                  <span class="seo-pill">Chargement rapide</span>
-                  <span class="seo-pill">Sans code parasite</span>
-                </div>
-              </div>
-            </div>
+      <div class="tech-row reveal">
+        <div class="tech-row-num">04</div>
+        <div class="tech-row-left">
+          <div class="tech-row-tag"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg> SEO</div>
+          <div class="tech-row-metric" style="font-size:clamp(1.5rem,2.5vw,2rem)">Référencé<em style="color:white">.</em></div>
+          <div class="tech-row-sublabel">Référencement naturel</div>
+        </div>
+        <div class="tech-row-right">
+          <h3>Un code que Google comprend et apprécie.</h3>
+          <p>Structure sémantique, temps de chargement optimal, zéro plugin superflu.</p>
+          <div class="seo-pills">
+            <span class="seo-pill">Balises sémantiques</span>
+            <span class="seo-pill">Métadonnées optimisées</span>
+            <span class="seo-pill">Chargement rapide</span>
+            <span class="seo-pill">Sans code parasite</span>
           </div>
         </div>
       </div>
