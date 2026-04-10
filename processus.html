@@ -433,29 +433,51 @@
     .mob-menu-overlay, .mob-menu-panel { display: block; }
   }
 
-  /* ── Process 2×2 map ── */
-  .proc-map { position: relative; display: grid; grid-template-columns: 1fr 1fr; }
-  .proc-map-step { padding: 2.5rem 2.5rem 2.5rem 0; position: relative; z-index: 1; }
-  .proc-map-step:nth-child(1) { padding-top: 0; }
-  .proc-map-step:nth-child(2) { padding-top: 5rem; padding-left: 2.5rem; border-left: 1px solid var(--grid); }
-  .proc-map-step:nth-child(3) { border-top: 1px solid var(--grid); padding-top: 2.5rem; }
-  .proc-map-step:nth-child(4) { padding-top: 6rem; padding-left: 2.5rem; border-left: 1px solid var(--grid); border-top: 1px solid var(--grid); }
+  /* ── Process card flottante ── */
+  .proc-card-wrap {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(15,23,42,0.18), 0 4px 16px rgba(15,23,42,0.1);
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+  .proc-card-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background-image: url('https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg?auto=compress&cs=tinysrgb&w=1920');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center 40%;
+  }
+  .proc-card-bg::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(15,23,42,0.78) 0%, rgba(15,23,42,0.68) 50%, rgba(20,10,5,0.74) 100%);
+  }
+  .proc-card-grid {
+    position: relative; z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .proc-cell {
+    padding: 2.5rem 2.8rem;
+    position: relative;
+  }
+  .proc-cell:nth-child(1) { border-right: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .proc-cell:nth-child(2) { border-bottom: 1px solid rgba(255,255,255,0.08); padding-top: 3.5rem; }
+  .proc-cell:nth-child(3) { border-right: 1px solid rgba(255,255,255,0.08); }
+  .proc-cell:nth-child(4) { padding-top: 4.5rem; }
 
-  .proc-map-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--grid); border: 2px solid var(--alabaster); box-shadow: 0 0 0 3px var(--alabaster); margin-bottom: 1.5rem; }
-  .proc-map-step.proc-featured .proc-map-dot { background: var(--terra); border-color: var(--terra); box-shadow: 0 0 0 3px var(--alabaster), 0 0 10px 3px rgba(194,65,12,0.3); }
-
-  .proc-map-meta { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
-  .proc-item-tag { display: inline-block; background: rgba(194,65,12,0.08); border: 1px solid rgba(194,65,12,0.2); border-radius: 2px; padding: 0.18rem 0.55rem; font-family: 'DM Mono', monospace; font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--terra); }
-  .proc-duration { font-family: 'DM Mono', monospace; font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(15,23,42,0.35); }
-  .proc-map-step h3 { font-weight: 700; font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--midnight); letter-spacing: -0.01em; }
-  .proc-map-step p { color: var(--steel); font-size: 0.88rem; line-height: 1.65; }
-  .proc-featured { background: rgba(194,65,12,0.02); }
-  .proc-step-note { margin-top: 0.85rem; padding: 0.55rem 0.8rem; background: rgba(194,65,12,0.06); border-left: 2px solid rgba(194,65,12,0.35); font-size: 0.78rem; color: var(--steel); font-style: italic; line-height: 1.55; }
-
-  /* SVG animated connector */
-  .proc-map-svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: visible; }
-  .proc-path-bg { fill: none; stroke: var(--grid); stroke-width: 1; }
-  .proc-path-fill { fill: none; stroke: var(--terra); stroke-width: 1.5; stroke-linecap: round; opacity: 0.75; }
+  .proc-cell-num {
+    font-family: 'DM Mono', monospace; font-size: 0.58rem;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.2); margin-bottom: 1.5rem;
+  }
+  .proc-item-tag { display: inline-block; background: rgba(194,65,12,0.15); border: 1px solid rgba(194,65,12,0.3); border-radius: 2px; padding: 0.18rem 0.55rem; font-family: 'DM Mono', monospace; font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--terra); }
+  .proc-duration { font-family: 'DM Mono', monospace; font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); }
+  .proc-cell-meta { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.9rem; flex-wrap: wrap; }
+  .proc-cell h3 { font-weight: 700; font-size: 1.05rem; margin-bottom: 0.5rem; color: white; letter-spacing: -0.01em; line-height: 1.3; }
+  .proc-cell p { color: rgba(255,255,255,0.5); font-size: 0.85rem; line-height: 1.65; }
+  .proc-cell.proc-featured { background: rgba(194,65,12,0.06); }
+  .proc-step-note { margin-top: 0.85rem; padding: 0.55rem 0.8rem; background: rgba(194,65,12,0.08); border-left: 2px solid rgba(194,65,12,0.4); font-size: 0.78rem; color: rgba(255,255,255,0.5); font-style: italic; line-height: 1.55; }
 
   /* ── Guarantees — editorial list ── */
   .guar-list { display: flex; flex-direction: column; max-width: 680px; }
@@ -465,12 +487,11 @@
   .guar-item h3 { font-weight: 700; font-size: 1.1rem; color: white; margin-bottom: 0.5rem; }
   .guar-item p { color: rgba(255,255,255,0.55); font-size: 0.88rem; line-height: 1.65; }
 
-  @media (max-width: 600px) {
-    .proc-map { grid-template-columns: 1fr; }
-    .proc-map-step:nth-child(2), .proc-map-step:nth-child(4) { border-left: none; padding-left: 0; padding-top: 0; }
-    .proc-map-step:nth-child(n) { border-top: 1px solid var(--grid); padding-right: 0; }
-    .proc-map-step:nth-child(1) { border-top: none; }
-    .proc-map-svg { display: none; }
+  @media (max-width: 640px) {
+    .proc-card-grid { grid-template-columns: 1fr; }
+    .proc-cell { border-right: none !important; padding: 2rem 1.75rem; }
+    .proc-cell:nth-child(n) { border-bottom: 1px solid rgba(255,255,255,0.08); padding-top: 2rem; }
+    .proc-cell:nth-child(4) { border-bottom: none; }
     .guar-item { grid-template-columns: 3rem 1fr; gap: 1.25rem; }
   }
 
@@ -583,41 +604,40 @@
       <h2 class="section-h2 reveal">4 étapes, zéro surprise.</h2>
       <p class="section-lead reveal">De la première discussion à la mise en ligne, voici exactement comment on travaille.</p>
     </div>
-    <div class="proc-map" id="proc-map">
-      <svg class="proc-map-svg" id="proc-svg" aria-hidden="true">
-        <path id="proc-path-bg" class="proc-path-bg" />
-        <path id="proc-path-fill" class="proc-path-fill" />
-      </svg>
+    <div class="proc-card-wrap reveal">
+      <div class="proc-card-bg"></div>
+      <div class="proc-card-grid">
 
-      <div class="proc-map-step reveal">
-        <div class="proc-map-dot"></div>
-        <div class="proc-map-meta"><span class="proc-item-tag">Appel découverte</span><span class="proc-duration">~30 min</span></div>
-        <h3>On apprend à se connaître</h3>
-        <p>20–30 minutes pour comprendre votre activité. Pas de pression, pas de jargon.</p>
+        <div class="proc-cell">
+          <div class="proc-cell-num">01</div>
+          <div class="proc-cell-meta"><span class="proc-item-tag">Appel découverte</span><span class="proc-duration">~30 min</span></div>
+          <h3>On apprend à se connaître</h3>
+          <p>20–30 minutes pour comprendre votre activité. Pas de pression, pas de jargon.</p>
+        </div>
+
+        <div class="proc-cell proc-featured">
+          <div class="proc-cell-num">02</div>
+          <div class="proc-cell-meta"><span class="proc-item-tag">Maquette offerte</span><span class="proc-duration">~48h · 0€</span></div>
+          <h3>On vous montre le résultat — gratuitement</h3>
+          <p>On conçoit la page d'accueil sans engagement. Vous voyez avant de décider.</p>
+          <div class="proc-step-note">Aucune obligation si le rendu ne vous convient pas.</div>
+        </div>
+
+        <div class="proc-cell">
+          <div class="proc-cell-num">03</div>
+          <div class="proc-cell-meta"><span class="proc-item-tag">Contrat &amp; brief</span><span class="proc-duration">J+1</span></div>
+          <h3>Tout est cadré avant de commencer</h3>
+          <p>Contrat signé, brief complet — textes, photos, objectifs. On démarre sur des bases solides.</p>
+        </div>
+
+        <div class="proc-cell">
+          <div class="proc-cell-num">04</div>
+          <div class="proc-cell-meta"><span class="proc-item-tag">Développement &amp; mise en ligne</span><span class="proc-duration">14–21 jours</span></div>
+          <h3>14 à 21 jours, et c'est à vous</h3>
+          <p>On développe, on ajuste sur vos retours, puis on met en ligne. Le site vous appartient à 100%.</p>
+        </div>
+
       </div>
-
-      <div class="proc-map-step proc-featured reveal">
-        <div class="proc-map-dot"></div>
-        <div class="proc-map-meta"><span class="proc-item-tag">Maquette offerte</span><span class="proc-duration">~48h · 0€</span></div>
-        <h3>On vous montre le résultat — gratuitement</h3>
-        <p>On conçoit la page d'accueil sans engagement. Vous voyez avant de décider.</p>
-        <div class="proc-step-note">Aucune obligation si le rendu ne vous convient pas.</div>
-      </div>
-
-      <div class="proc-map-step reveal">
-        <div class="proc-map-dot"></div>
-        <div class="proc-map-meta"><span class="proc-item-tag">Contrat &amp; brief</span><span class="proc-duration">J+1</span></div>
-        <h3>Tout est cadré avant de commencer</h3>
-        <p>Contrat signé, brief complet — textes, photos, objectifs. On démarre sur des bases solides.</p>
-      </div>
-
-      <div class="proc-map-step reveal">
-        <div class="proc-map-dot"></div>
-        <div class="proc-map-meta"><span class="proc-item-tag">Développement &amp; mise en ligne</span><span class="proc-duration">14–21 jours</span></div>
-        <h3>14 à 21 jours, et c'est à vous</h3>
-        <p>On développe, on ajuste sur vos retours, puis on met en ligne. Le site vous appartient à 100%.</p>
-      </div>
-
     </div>
   </div>
 </section>
@@ -777,44 +797,6 @@
     });
   })();
 
-  // ── Proc map SVG animated connector ──
-  (function initProcMap() {
-    var map = document.getElementById('proc-map');
-    var svg = document.getElementById('proc-svg');
-    var bgPath = document.getElementById('proc-path-bg');
-    var fillPath = document.getElementById('proc-path-fill');
-    if (!map || !svg || !bgPath || !fillPath) return;
-    var pathLen = 1000;
-    function getCenter(el) {
-      var mr = map.getBoundingClientRect();
-      var er = el.getBoundingClientRect();
-      return { x: (er.left + er.width/2) - mr.left, y: (er.top + er.height/2) - mr.top };
-    }
-    function buildPath() {
-      var steps = map.querySelectorAll('.proc-map-step');
-      if (steps.length < 4) return;
-      var dots = Array.from(steps).map(function(s) { return getCenter(s.querySelector('.proc-map-dot')); });
-      svg.setAttribute('viewBox', '0 0 ' + map.offsetWidth + ' ' + map.offsetHeight);
-      var d = 'M'+dots[0].x+' '+dots[0].y+' L'+dots[1].x+' '+dots[1].y+' L'+dots[2].x+' '+dots[2].y+' L'+dots[3].x+' '+dots[3].y;
-      bgPath.setAttribute('d', d);
-      fillPath.setAttribute('d', d);
-      var len = fillPath.getTotalLength() || 1000;
-      pathLen = len;
-      fillPath.style.strokeDasharray = len;
-      fillPath.style.strokeDashoffset = len;
-      bgPath.style.strokeDasharray = '4 6';
-    }
-    function updateFill() {
-      var rect = map.getBoundingClientRect();
-      var vh = window.innerHeight;
-      var p = Math.min(Math.max(-(rect.top - vh*0.85) / (rect.height - vh*0.35), 0), 1);
-      fillPath.style.strokeDashoffset = pathLen * (1 - p);
-    }
-    setTimeout(buildPath, 250);
-    window.addEventListener('resize', function() { setTimeout(buildPath, 100); });
-    window.addEventListener('scroll', updateFill, { passive: true });
-    updateFill();
-  })();
 
   (function initCorners() {
     function addCorners(el, dark) {
