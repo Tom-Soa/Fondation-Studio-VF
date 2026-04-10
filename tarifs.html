@@ -301,8 +301,7 @@
   .nobrainer-cta { display: flex; flex-direction: column; align-items: flex-start; gap: 0.75rem; }
   .nobrainer-badge { display: inline-flex; align-items: stretch; margin-bottom: 1.5rem; overflow: hidden; clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px)); }
   .nobrainer-badge-tag { background: var(--terra); padding: 0.38rem 0.9rem; display: flex; align-items: center; font-family: 'Inter', sans-serif; font-weight: 800; font-size: 0.8rem; color: white; letter-spacing: -0.02em; line-height: 1; }
-  .nobrainer-badge-body { padding: 0.38rem 0.9rem 0.38rem 0.7rem; display: flex; align-items: center; gap: 0.45rem; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.14); border-left: none; font-family: 'DM Mono', monospace; font-size: 0.57rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.6); }
-  .nb-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--terra); animation: pulse-dot 2s infinite; flex-shrink: 0; }
+  .nobrainer-badge-body { padding: 0.38rem 0.9rem 0.38rem 0.8rem; display: flex; align-items: center; background: white; font-family: 'DM Mono', monospace; font-size: 0.57rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--terra); font-weight: 500; }
   .nobrainer-hint { font-family: 'DM Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); }
   @media (max-width: 800px) { .nobrainer-inner { grid-template-columns: 1fr; } .nobrainer-left { padding: 3rem 0 2rem; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); } .nobrainer-right { padding: 2rem 0 3rem; } }
 
@@ -593,28 +592,28 @@
         <p class="pricing-small">Devis personnalisé · Contrat signé avant démarrage</p>
       </div>
     </div>
-    <p style="text-align:center;margin-top:1.5rem;font-family:'DM Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.25)">Maintenance après période offerte : 100€/mois · Hébergement non inclus</p>
+    <p style="text-align:center;margin-top:1.5rem;font-family:'DM Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.55)">Maintenance après période offerte : 100€/mois · Hébergement non inclus</p>
 
     <!-- Paiement -->
     <div class="payment-info reveal" style="margin-top:3rem;max-width:760px;margin-left:auto;margin-right:auto;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:2rem 2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start">
       <div>
-        <div style="font-family:'DM Mono',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.3);margin-bottom:0.75rem">Modalités de paiement</div>
+        <div style="font-family:'DM Mono',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.65);margin-bottom:0.75rem">Modalités de paiement</div>
         <div style="display:flex;flex-direction:column;gap:0.6rem">
           <div style="display:flex;align-items:center;gap:1rem">
             <div style="font-size:1.4rem;font-weight:800;color:var(--terra);letter-spacing:-0.02em;line-height:1">40%</div>
-            <div style="font-size:0.88rem;color:rgba(255,255,255,0.6);line-height:1.4">À la signature du contrat</div>
+            <div style="font-size:0.88rem;color:rgba(255,255,255,0.8);line-height:1.4">À la signature du contrat</div>
           </div>
-          <div style="height:1px;background:rgba(255,255,255,0.06)"></div>
+          <div style="height:1px;background:rgba(255,255,255,0.08)"></div>
           <div style="display:flex;align-items:center;gap:1rem">
             <div style="font-size:1.4rem;font-weight:800;color:white;letter-spacing:-0.02em;line-height:1">60%</div>
-            <div style="font-size:0.88rem;color:rgba(255,255,255,0.6);line-height:1.4">À la remise du site terminé</div>
+            <div style="font-size:0.88rem;color:rgba(255,255,255,0.8);line-height:1.4">À la remise du site terminé</div>
           </div>
         </div>
       </div>
       <div>
-        <div style="font-family:'DM Mono',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.3);margin-bottom:0.75rem">Facilité de paiement</div>
-        <p style="font-size:0.88rem;color:rgba(255,255,255,0.55);line-height:1.65;margin-bottom:0.75rem">Les 60% restants peuvent être réglés <strong style="color:white">en 4 fois</strong>, sans frais.</p>
-        <p style="font-family:'DM Mono',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.25)">Modalité à préciser à la signature du contrat</p>
+        <div style="font-family:'DM Mono',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.65);margin-bottom:0.75rem">Facilité de paiement</div>
+        <p style="font-size:0.88rem;color:rgba(255,255,255,0.8);line-height:1.65;margin-bottom:0.75rem">Les 60% restants peuvent être réglés <strong style="color:white">en 4 fois</strong>, sans frais.</p>
+        <p style="font-family:'DM Mono',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.5)">Modalité à préciser à la signature du contrat</p>
       </div>
     </div>
     <style>@media(max-width:600px){.payment-info{grid-template-columns:1fr!important}}</style>
@@ -671,7 +670,7 @@
   <div class="container">
     <div class="nobrainer-inner">
       <div class="nobrainer-left">
-        <div class="nobrainer-badge"><div class="nobrainer-badge-tag">Gratuit</div><div class="nobrainer-badge-body"><div class="nb-dot"></div>Places limitées ce mois</div></div>
+        <div class="nobrainer-badge"><div class="nobrainer-badge-tag">Gratuit</div><div class="nobrainer-badge-body">Places limitées ce mois</div></div>
         <h2>Voyez la différence<br><em>avant d'investir.</em></h2>
         <p class="nobrainer-desc">On conçoit la maquette complète de votre future page d'accueil — gratuitement. Pas un brouillon : une vraie proposition visuelle. Si ça vous convient, on démarre. Sinon, aucune obligation.</p>
       </div>

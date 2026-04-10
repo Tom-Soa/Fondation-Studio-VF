@@ -71,6 +71,12 @@
 
   .grid-bg { position: relative; }
 
+  @keyframes orb1 { 0%,100%{transform:translate(0,0) scale(1)} 40%{transform:translate(4%,-5%) scale(1.06)} 75%{transform:translate(-3%,3%) scale(0.97)} }
+  @keyframes orb2 { 0%,100%{transform:translate(0,0) scale(1)} 35%{transform:translate(-5%,3%) scale(1.08)} 70%{transform:translate(4%,-2%) scale(0.95)} }
+  .grid-bg::before { content:''; position:absolute; inset:0; pointer-events:none; z-index:0; background: radial-gradient(ellipse 55% 45% at 18% 35%, rgba(194,65,12,0.045) 0%, transparent 68%), radial-gradient(ellipse 45% 55% at 82% 65%, rgba(15,23,42,0.03) 0%, transparent 65%); animation: orb1 20s ease-in-out infinite; }
+  .grid-bg::after { content:''; position:absolute; inset:0; pointer-events:none; z-index:0; background: radial-gradient(ellipse 65% 40% at 65% 22%, rgba(194,65,12,0.025) 0%, transparent 65%); animation: orb2 27s ease-in-out infinite; }
+  @media (prefers-reduced-motion: reduce) { .grid-bg::before, .grid-bg::after { animation: none; } }
+
   .pill-brand { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 0.95rem; color: #fff; text-decoration: none; padding: 0.4rem 0.9rem 0.4rem 0.6rem; letter-spacing: -0.02em; white-space: nowrap; position: relative; z-index: 1; display: flex; align-items: center; }
   .pill-brand span { color: var(--terra); }
   .pill-sep { width: 1px; height: 20px; background: rgba(255,255,255,0.12); flex-shrink: 0; margin: 0 0.1rem; position: relative; z-index: 1; }
@@ -309,7 +315,7 @@
   .nobrainer-center {
     position: relative; z-index: 2;
     text-align: center;
-    padding: clamp(5rem, 10vw, 8rem) 0;
+    padding: clamp(3.5rem, 7vw, 5.5rem) 0;
     max-width: 840px;
     margin: 0 auto;
   }
@@ -320,8 +326,7 @@
     clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
   }
   .nobrainer-badge-tag { background: var(--terra); padding: 0.38rem 0.9rem; display: flex; align-items: center; font-family: 'Inter', sans-serif; font-weight: 800; font-size: 0.8rem; color: white; letter-spacing: -0.02em; line-height: 1; }
-  .nobrainer-badge-body { padding: 0.38rem 0.9rem 0.38rem 0.7rem; display: flex; align-items: center; gap: 0.45rem; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.14); border-left: none; font-family: 'DM Mono', monospace; font-size: 0.57rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.6); }
-  .nb-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--terra); animation: pulse-dot 2s infinite; flex-shrink: 0; }
+  .nobrainer-badge-body { padding: 0.38rem 0.9rem 0.38rem 0.8rem; display: flex; align-items: center; background: white; font-family: 'DM Mono', monospace; font-size: 0.57rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--terra); font-weight: 500; }
   .nobrainer h2 {
     font-family: 'Inter', sans-serif; font-weight: 800;
     font-size: clamp(3rem, 6.5vw, 5.2rem);
@@ -724,7 +729,7 @@
   <div aria-hidden="true" style="line-height:0;display:block;margin-bottom:-1px"><svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:50px;transform:rotate(180deg);"><path d="M0,80 L0,50 C360,8 1080,72 1440,38 L1440,80 Z" fill="#0F172A"/></svg></div>
   <div class="container">
     <div class="nobrainer-center">
-      <div class="nobrainer-badge"><div class="nobrainer-badge-tag">Gratuit</div><div class="nobrainer-badge-body"><div class="nb-dot"></div>Places limitées ce mois</div></div>
+      <div class="nobrainer-badge"><div class="nobrainer-badge-tag">Gratuit</div><div class="nobrainer-badge-body">Places limitées ce mois</div></div>
       <h2>La maquette de votre<br>futur site. <em>Gratuite.</em></h2>
       <p class="nobrainer-desc">Une vraie proposition visuelle — pas un brouillon. Si ça vous convient, on démarre. Sinon, aucune obligation.</p>
       <div class="nobrainer-strip">
