@@ -428,16 +428,53 @@
     .mob-menu-overlay, .mob-menu-panel { display: block; }
   }
 
-  /* ── Process list ── */
-  .proc-list { display: flex; flex-direction: column; max-width: 780px; }
-  .proc-item { display: grid; grid-template-columns: 5rem 1fr; gap: 2rem; padding: 2.5rem 0; border-bottom: 1px solid var(--grid); align-items: start; }
-  .proc-item:first-child { border-top: 1px solid var(--grid); }
-  .proc-item-num { font-family: 'Inter', sans-serif; font-size: 2.5rem; font-weight: 700; color: rgba(194,65,12,0.18); line-height: 1; letter-spacing: -0.04em; }
-  .proc-item h3 { font-weight: 700; font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--midnight); }
-  .proc-item p { color: var(--steel); font-size: 0.9rem; line-height: 1.65; }
-  .proc-item-tag { display: inline-block; background: rgba(194,65,12,0.08); border: 1px solid rgba(194,65,12,0.2); border-radius: 5px; padding: 0.2rem 0.6rem; font-family: 'Inter', sans-serif; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--terra); margin-bottom: 0.7rem; }
-  .proc-step-note { margin-top: 0.8rem; padding: 0.7rem 0.9rem; background: rgba(194,65,12,0.06); border-left: 3px solid rgba(194,65,12,0.4); border-radius: 0 6px 6px 0; font-size: 0.8rem; color: var(--steel); font-style: italic; line-height: 1.55; }
-  @media (max-width: 540px) { .proc-item { grid-template-columns: 1fr; gap: 0.3rem; } .proc-item-num { font-size: 1.8rem; } }
+  /* ── Process timeline ── */
+  .proc-timeline { position: relative; max-width: 780px; }
+  .proc-timeline::before { content: ''; position: absolute; left: 4.2rem; top: 3rem; bottom: 3rem; width: 1px; background: linear-gradient(to bottom, transparent, var(--grid) 8%, var(--grid) 92%, transparent); }
+
+  .proc-tl-item { display: grid; grid-template-columns: 4.5rem 1fr; gap: 2.5rem; padding: 3rem 0; position: relative; }
+  .proc-tl-item + .proc-tl-item { border-top: 1px solid var(--grid); }
+
+  .proc-tl-num {
+    font-family: 'DM Mono', monospace; font-size: 0.58rem;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: rgba(15,23,42,0.3); text-align: right;
+    padding-top: 0.35rem; position: relative;
+  }
+  .proc-tl-num::after {
+    content: ''; position: absolute;
+    right: -2.15rem; top: 0.62rem;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--alabaster); border: 2px solid var(--grid);
+    box-shadow: 0 0 0 3px var(--alabaster);
+  }
+  .proc-tl-featured .proc-tl-num::after {
+    background: var(--terra); border-color: var(--terra);
+    box-shadow: 0 0 0 3px var(--alabaster), 0 0 12px 3px rgba(194,65,12,0.35);
+  }
+
+  .proc-item-tag { display: inline-block; background: rgba(194,65,12,0.08); border: 1px solid rgba(194,65,12,0.2); border-radius: 2px; padding: 0.2rem 0.6rem; font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--terra); }
+  .proc-tl-meta { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; }
+  .proc-tl-duration { font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(15,23,42,0.35); }
+  .proc-tl-item h3 { font-weight: 700; font-size: 1.25rem; margin-bottom: 0.55rem; color: var(--midnight); letter-spacing: -0.01em; }
+  .proc-tl-item p { color: var(--steel); font-size: 0.9rem; line-height: 1.65; max-width: 520px; }
+
+  .proc-tl-featured { background: rgba(194,65,12,0.025); border-left: 2px solid rgba(194,65,12,0.3) !important; padding-left: 1.5rem; margin-left: -1.5rem; }
+  .proc-tl-featured .proc-tl-num { color: rgba(194,65,12,0.5); }
+  .proc-step-note { margin-top: 0.9rem; padding: 0.6rem 0.85rem; background: rgba(194,65,12,0.06); border-left: 2px solid rgba(194,65,12,0.35); font-size: 0.8rem; color: var(--steel); font-style: italic; line-height: 1.55; }
+
+  /* ── Guarantees section ── */
+  .guarantees-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+  @media (max-width: 860px) { .guarantees-grid { grid-template-columns: 1fr; max-width: 440px; } }
+  .guar-num { font-family: 'DM Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.2); margin-bottom: 1.2rem; }
+
+  @media (max-width: 540px) {
+    .proc-timeline::before { left: 0; }
+    .proc-tl-item { grid-template-columns: 1fr; gap: 0.4rem; padding: 2rem 0; }
+    .proc-tl-num { text-align: left; }
+    .proc-tl-num::after { display: none; }
+    .proc-tl-featured { padding-left: 0.75rem; margin-left: 0; }
+  }
 
 </style>
 </head>
@@ -548,38 +585,87 @@
       <h2 class="section-h2 reveal">4 étapes, zéro surprise.</h2>
       <p class="section-lead reveal">De la première discussion à la mise en ligne, voici exactement comment on travaille.</p>
     </div>
-    <div class="proc-list">
-      <div class="proc-item reveal">
-        <div class="proc-item-num">01</div>
+    <div class="proc-timeline">
+
+      <div class="proc-tl-item reveal">
+        <div class="proc-tl-num">01</div>
         <div>
-          <span class="proc-item-tag">Appel découverte</span>
+          <div class="proc-tl-meta">
+            <span class="proc-item-tag">Appel découverte</span>
+            <span class="proc-tl-duration">~30 min</span>
+          </div>
           <h3>On apprend à se connaître</h3>
           <p>20–30 minutes pour comprendre votre activité et vérifier qu'on est le bon fit. Pas de pression, pas de jargon.</p>
         </div>
       </div>
-      <div class="proc-item reveal">
-        <div class="proc-item-num">02</div>
+
+      <div class="proc-tl-item proc-tl-featured reveal">
+        <div class="proc-tl-num">02</div>
         <div>
-          <span class="proc-item-tag">Maquette offerte</span>
+          <div class="proc-tl-meta">
+            <span class="proc-item-tag">Maquette offerte</span>
+            <span class="proc-tl-duration">~48h · 0€</span>
+          </div>
           <h3>On vous montre le résultat — gratuitement</h3>
           <p>On conçoit la page d'accueil de votre site sans engagement. Vous voyez le rendu avant de décider.</p>
+          <div class="proc-step-note">Inclus sans condition. Si le rendu ne vous convient pas, aucune obligation.</div>
         </div>
       </div>
-      <div class="proc-item reveal">
-        <div class="proc-item-num">03</div>
+
+      <div class="proc-tl-item reveal">
+        <div class="proc-tl-num">03</div>
         <div>
-          <span class="proc-item-tag">Contrat &amp; brief</span>
+          <div class="proc-tl-meta">
+            <span class="proc-item-tag">Contrat &amp; brief</span>
+            <span class="proc-tl-duration">J+1</span>
+          </div>
           <h3>Tout est cadré avant de commencer</h3>
           <p>Contrat signé, brief complet rempli de votre côté — textes, photos, objectifs. On démarre sur des bases solides.</p>
         </div>
       </div>
-      <div class="proc-item reveal">
-        <div class="proc-item-num">04</div>
+
+      <div class="proc-tl-item reveal">
+        <div class="proc-tl-num">04</div>
         <div>
-          <span class="proc-item-tag">Développement &amp; mise en ligne</span>
+          <div class="proc-tl-meta">
+            <span class="proc-item-tag">Développement &amp; mise en ligne</span>
+            <span class="proc-tl-duration">14–21 jours</span>
+          </div>
           <h3>14 à 21 jours, et c'est à vous</h3>
           <p>On développe, on ajuste sur vos retours, puis on met en ligne. Le site vous appartient à 100%.</p>
         </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GARANTIES -->
+<section class="section section-dark">
+  <div class="dark-vlines" aria-hidden="true"><div class="vl"></div><div class="vl"></div><div class="vl"></div><div class="vl"></div></div>
+  <div class="container" style="position:relative;z-index:1">
+    <div class="section-head reveal">
+      <span class="mono" style="color:rgba(255,255,255,0.35)">02 / Ce que vous obtenez</span>
+      <h2 class="section-h2" style="color:white;margin-top:0.75rem;font-size:clamp(1.8rem,3.5vw,2.8rem)">Des garanties concrètes,<br>pas des promesses.</h2>
+    </div>
+    <div class="guarantees-grid">
+      <div class="corners-card dark reveal">
+        <div class="c-tl"></div><div class="c-tr"></div><div class="c-bl"></div><div class="c-br"></div>
+        <div class="guar-num">01</div>
+        <h3 style="color:white;font-weight:700;font-size:1.1rem;margin-bottom:0.5rem">Vous voyez avant de payer</h3>
+        <p style="color:rgba(255,255,255,0.45);font-size:0.88rem;line-height:1.65">La maquette est livrée gratuitement avant tout engagement. Si le rendu ne vous convient pas, zéro obligation.</p>
+      </div>
+      <div class="corners-card dark reveal reveal-delay-1">
+        <div class="c-tl"></div><div class="c-tr"></div><div class="c-bl"></div><div class="c-br"></div>
+        <div class="guar-num">02</div>
+        <h3 style="color:white;font-weight:700;font-size:1.1rem;margin-bottom:0.5rem">Un interlocuteur unique</h3>
+        <p style="color:rgba(255,255,255,0.45);font-size:0.88rem;line-height:1.65">Du brief à la mise en ligne, vous avez un seul point de contact. Pas de chef de projet intermédiaire, pas de jargon.</p>
+      </div>
+      <div class="corners-card dark reveal reveal-delay-2">
+        <div class="c-tl"></div><div class="c-tr"></div><div class="c-bl"></div><div class="c-br"></div>
+        <div class="guar-num">03</div>
+        <h3 style="color:white;font-weight:700;font-size:1.1rem;margin-bottom:0.5rem">Le site vous appartient à 100%</h3>
+        <p style="color:rgba(255,255,255,0.45);font-size:0.88rem;line-height:1.65">Code source livré, domaine à votre nom, hébergement au choix. Aucune dépendance, aucun abonnement obligatoire.</p>
       </div>
     </div>
   </div>
@@ -744,23 +830,6 @@
     if (!isOpen) { item.classList.add('open'); body.style.maxHeight = body.scrollHeight + 'px'; }
   }
 
-  (function initTimeline() {
-    const section = document.getElementById('processus');
-    if (!section) return;
-    section.classList.add('timeline-section');
-    const track = document.createElement('div'); track.className = 'timeline-track';
-    const fill  = document.createElement('div'); fill.className  = 'timeline-fill';
-    track.appendChild(fill); section.appendChild(track);
-    function update() {
-      const rect = section.getBoundingClientRect();
-      const vh   = window.innerHeight;
-      const p    = Math.min(Math.max(-(rect.top - vh * 0.9) / (rect.height - vh * 0.4), 0), 1);
-      fill.style.height  = (p * 100) + '%';
-      fill.style.opacity = Math.min(p * 10, 1);
-    }
-    window.addEventListener('scroll', update, { passive: true });
-    update();
-  })();
 
 
   // ── Mobile menu ──

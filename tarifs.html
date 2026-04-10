@@ -299,10 +299,10 @@
   .nobrainer-condition { display: flex; align-items: flex-start; gap: 0.85rem; font-size: 0.88rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
   .nobrainer-condition-check { width: 18px; height: 18px; border-radius: 50%; background: rgba(194,65,12,0.2); border: 1px solid rgba(194,65,12,0.4); flex-shrink: 0; margin-top: 0.1rem; display: flex; align-items: center; justify-content: center; }
   .nobrainer-cta { display: flex; flex-direction: column; align-items: flex-start; gap: 0.75rem; }
-  .nobrainer-badge { display: inline-flex; align-items: center; gap: 0.65rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(194,65,12,0.35); border-radius: 2px; padding: 0.45rem 1.1rem 0.45rem 0.7rem; margin-bottom: 1.5rem; position: relative; overflow: hidden; }
-  .nobrainer-badge::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--terra); }
-  .nobrainer-badge span { font-family: 'DM Mono', monospace; font-size: 0.62rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.7); }
-  .nobrainer-badge .nb-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--terra); animation: pulse-dot 2s infinite; flex-shrink: 0; }
+  .nobrainer-badge { display: inline-flex; align-items: stretch; margin-bottom: 1.5rem; overflow: hidden; clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px)); }
+  .nobrainer-badge-tag { background: var(--terra); padding: 0.38rem 0.9rem; display: flex; align-items: center; font-family: 'Inter', sans-serif; font-weight: 800; font-size: 0.8rem; color: white; letter-spacing: -0.02em; line-height: 1; }
+  .nobrainer-badge-body { padding: 0.38rem 0.9rem 0.38rem 0.7rem; display: flex; align-items: center; gap: 0.45rem; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.14); border-left: none; font-family: 'DM Mono', monospace; font-size: 0.57rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.6); }
+  .nb-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--terra); animation: pulse-dot 2s infinite; flex-shrink: 0; }
   .nobrainer-hint { font-family: 'DM Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); }
   @media (max-width: 800px) { .nobrainer-inner { grid-template-columns: 1fr; } .nobrainer-left { padding: 3rem 0 2rem; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); } .nobrainer-right { padding: 2rem 0 3rem; } }
 
@@ -671,7 +671,7 @@
   <div class="container">
     <div class="nobrainer-inner">
       <div class="nobrainer-left">
-        <div class="nobrainer-badge"><div class="nb-dot"></div><span>Offre sans risque — Places limitées</span></div>
+        <div class="nobrainer-badge"><div class="nobrainer-badge-tag">Gratuit</div><div class="nobrainer-badge-body"><div class="nb-dot"></div>Places limitées ce mois</div></div>
         <h2>Voyez la différence<br><em>avant d'investir.</em></h2>
         <p class="nobrainer-desc">On conçoit la maquette complète de votre future page d'accueil — gratuitement. Pas un brouillon : une vraie proposition visuelle. Si ça vous convient, on démarre. Sinon, aucune obligation.</p>
       </div>
