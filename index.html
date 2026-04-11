@@ -315,7 +315,7 @@
   .nobrainer-center {
     position: relative; z-index: 2;
     text-align: center;
-    padding: clamp(3.5rem, 7vw, 5.5rem) 0;
+    padding: clamp(2rem, 4.5vw, 3.5rem) 0;
     max-width: 840px;
     margin: 0 auto;
   }
@@ -329,33 +329,25 @@
   .nobrainer-badge-body { padding: 0.38rem 0.9rem 0.38rem 0.8rem; display: flex; align-items: center; background: white; font-family: 'DM Mono', monospace; font-size: 0.57rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--terra); font-weight: 500; }
   .nobrainer h2 {
     font-family: 'Inter', sans-serif; font-weight: 800;
-    font-size: clamp(3rem, 6.5vw, 5.2rem);
+    font-size: clamp(1.95rem, 6.5vw, 5.2rem);
     line-height: 1.0; letter-spacing: -0.035em;
-    color: white; margin-bottom: 1.5rem;
+    color: white; margin-bottom: 1.25rem;
   }
   .nobrainer h2 em { font-style: normal; color: var(--terra); }
   .nobrainer-desc {
     color: rgba(255,255,255,0.78); font-size: 1rem; line-height: 1.7;
-    max-width: 520px; margin: 0 auto 3rem;
+    max-width: 520px; margin: 0 auto 1.75rem;
   }
-  .nobrainer-strip {
-    display: flex; align-items: stretch; justify-content: center;
-    border-top: 1px solid rgba(255,255,255,0.07);
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-    margin-bottom: 3rem;
-  }
-  .nobrainer-strip-item {
-    flex: 1; text-align: center; padding: 1.1rem 1.5rem;
-    border-right: 1px solid rgba(255,255,255,0.07);
-    font-family: 'DM Mono', monospace; font-size: 0.58rem;
+  .nobrainer-trust {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    font-family: 'DM Mono', monospace; font-size: 0.6rem;
     text-transform: uppercase; letter-spacing: 0.1em;
-    color: rgba(255,255,255,0.65);
+    color: rgba(255,255,255,0.82);
+    margin-bottom: 1.75rem;
   }
-  .nobrainer-strip-item:last-child { border-right: none; }
-  .nobrainer-strip-item svg { display: inline-block; vertical-align: middle; margin-right: 0.4rem; color: var(--terra); }
-  .nobrainer-cta { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
-  .nobrainer-hint { font-family: 'DM Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.25); }
-  @media (max-width: 600px) { .nobrainer-strip { flex-direction: column; } .nobrainer-strip-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); } .nobrainer-strip-item:last-child { border-bottom: none; } }
+  .nobrainer-trust svg { color: var(--terra); flex-shrink: 0; }
+  .nobrainer-cta { display: flex; flex-direction: column; align-items: center; gap: 0.85rem; }
+  .nobrainer-hint { font-family: 'DM Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.6); }
 
   .page-hero { min-height: 40vh; background: var(--midnight); display:flex; align-items:center; position:relative; overflow:hidden; padding: 8rem 0 4rem; background-image: url('https://images.pexels.com/photos/1366909/pexels-photo-1366909.jpeg?auto=compress&cs=tinysrgb&w=1920'); background-attachment: fixed; background-size: cover; background-position: center 40%; }
   .page-hero .dark-vlines{position:absolute;inset:0;pointer-events:none;display:flex;justify-content:space-between;padding:0 2rem;}
@@ -734,10 +726,9 @@
       <div class="nobrainer-badge"><div class="nobrainer-badge-tag">Gratuit</div><div class="nobrainer-badge-body">Places limitées ce mois</div></div>
       <h2>La maquette de votre<br>futur site. <em>Gratuite.</em></h2>
       <p class="nobrainer-desc">Une vraie proposition visuelle — pas un brouillon. Si ça vous convient, on démarre. Sinon, aucune obligation.</p>
-      <div class="nobrainer-strip">
-        <div class="nobrainer-strip-item"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Livraison sous 14 jours</div>
-        <div class="nobrainer-strip-item"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>0€ — sans engagement</div>
-        <div class="nobrainer-strip-item"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Vous décidez après</div>
+      <div class="nobrainer-trust">
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        0€ — sans engagement
       </div>
       <div class="nobrainer-cta">
         <button class="btn-nobrainer" onclick="window.location='contact.html#offre-gratuite'">
@@ -754,8 +745,9 @@
 <!-- TÉMOIGNAGES -->
 <section class="section" style="padding-bottom:clamp(3rem,6vw,5rem)">
   <div class="container">
-    <div class="section-head reveal" style="margin-bottom:2rem">
-      <span class="mono">Ce que disent nos clients</span>
+    <div class="reveal" style="text-align:center; margin-bottom:clamp(2rem,4vw,3.5rem)">
+      <span class="mono" style="display:block; margin-bottom:0.75rem; color:var(--terra)">Témoignages</span>
+      <h2 style="font-family:'Inter',sans-serif; font-weight:800; font-size:clamp(2rem,4.5vw,3.2rem); letter-spacing:-0.025em; line-height:1.05; color:var(--midnight); margin:0">Ce que disent<br>nos clients</h2>
     </div>
   </div>
   <div class="testi-cols-wrap">
