@@ -252,9 +252,9 @@
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
   .form-grp { display: flex; flex-direction: column; gap: 0.5rem; }
   .form-grp label { font-family: 'DM Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.35); }
-  .form-grp input, .form-grp textarea { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 0.85rem 1rem; color: white; font-family: 'Inter', sans-serif; font-size: 0.9rem; transition: border-color 0.2s, background 0.2s; outline: none; width: 100%; }
-  .form-grp input::placeholder, .form-grp textarea::placeholder { color: rgba(255,255,255,0.2); }
-  .form-grp input:focus, .form-grp textarea:focus { border-color: var(--terra); background: rgba(255,255,255,0.08); }
+  .form-grp input, .form-grp textarea { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 0.85rem 1rem; color: white; font-family: 'Inter', sans-serif; font-size: 0.9rem; transition: border-color 0.2s, background 0.2s; outline: none; width: 100%; }
+  .form-grp input::placeholder, .form-grp textarea::placeholder { color: rgba(255,255,255,0.28); }
+  .form-grp input:focus, .form-grp textarea:focus { border-color: var(--terra); background: rgba(255,255,255,0.13); }
   .form-grp textarea { resize: none; min-height: 130px; }
   footer { background: var(--midnight); color: white; }
   .footer-main { padding: 4rem 0; border-top: 1px solid rgba(255,255,255,0.06); }
@@ -529,6 +529,50 @@
   .sol-feature p { color: rgba(255,255,255,0.45); font-size: 0.875rem; line-height: 1.65; }
   @media (max-width: 860px) { .sol-split { grid-template-columns: 1fr; gap: 3rem; } .sol-split-lead { position: static; } }
 
+  /* ── Problem dashboard card ── */
+  .prob-db-card {
+    background: white; border: 1px solid var(--grid); border-radius: 16px;
+    overflow: hidden; box-shadow: 0 4px 32px rgba(15,23,42,0.08);
+  }
+  .prob-db-header { padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--grid); }
+  .prob-db-dots { display: flex; gap: 6px; margin-bottom: 0.9rem; }
+  .prob-db-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .prob-db-dots .prob-db-dot:nth-child(1) { background: #FF5F57; }
+  .prob-db-dots .prob-db-dot:nth-child(2) { background: #FEBC2E; }
+  .prob-db-dots .prob-db-dot:nth-child(3) { background: #28C840; }
+  .prob-db-header h3 { font-weight: 700; font-size: 0.95rem; color: var(--midnight); margin-bottom: 0.2rem; }
+  .prob-db-header p { font-size: 0.8rem; color: var(--steel); }
+  .prob-db-table-wrap { overflow-x: auto; }
+  .prob-db-table { width: 100%; border-collapse: collapse; min-width: 480px; }
+  .prob-db-table thead tr { background: #fafaf8; }
+  .prob-db-table th {
+    text-align: left; padding: 0.65rem 1.25rem;
+    font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--steel); font-weight: 500;
+    border-bottom: 1px solid var(--grid);
+  }
+  .prob-db-table td { padding: 0.8rem 1.25rem; border-bottom: 1px solid var(--grid); vertical-align: middle; }
+  .prob-db-table tbody tr:last-child td { border-bottom: none; }
+  .prob-db-table tbody tr { transition: background 0.15s; }
+  .prob-db-table tbody tr:hover { background: #fafaf8; }
+  .prob-db-table td:first-child { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--steel); white-space: nowrap; }
+  .prob-db-issue-title { display: block; font-weight: 600; color: var(--midnight); font-size: 0.875rem; }
+  .prob-db-issue-detail { display: block; font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--steel); margin-top: 0.15rem; }
+  .prob-db-impact { color: var(--steel); font-size: 0.82rem; line-height: 1.5; }
+  .prob-badge {
+    display: inline-flex; align-items: center;
+    padding: 0.22rem 0.6rem; border-radius: 100px;
+    font-size: 0.7rem; font-weight: 600; white-space: nowrap;
+  }
+  .prob-badge.danger { background: rgba(239,68,68,0.1); color: #dc2626; }
+  .prob-badge.warning { background: rgba(245,158,11,0.1); color: #b45309; }
+  .prob-db-footer {
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
+    padding: 0.85rem 1.5rem; border-top: 1px solid var(--grid);
+    font-size: 0.75rem; color: var(--steel);
+  }
+  .prob-db-footer strong { color: var(--midnight); }
+
 </style>
 </head>
 <body>
@@ -649,34 +693,75 @@
   <div class="container">
     <div class="prob-split">
       <div class="prob-lead reveal">
-        <div style="margin-bottom:1rem"><span class="mono">02 / Le problème</span></div>
+        <div style="margin-bottom:1rem"><span class="mono">01 / Le problème</span></div>
         <h2 class="section-h2 prob-lead .section-h2">Votre site vous fait perdre de l'argent chaque jour.</h2>
         <p class="prob-lead-sub">La majorité des PME ont un site qui ne leur rapporte rien. Ni contacts, ni ventes, ni confiance. On a construit Fondation Studio pour changer ça.</p>
         <a href="contact.html" class="prob-lead-cta">Parler de mon projet <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
-      <div class="prob-list">
-        <div class="prob-row reveal">
-          <span class="prob-row-num">01</span>
-          <div>
-            <div class="prob-row-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-            <h3>Aucune conversion</h3>
-            <p>Des visiteurs, mais aucun contact. Votre site laisse partir vos prospects chez la concurrence.</p>
+      <div class="prob-dashboard reveal">
+        <div class="prob-db-card">
+          <div class="prob-db-header">
+            <div class="prob-db-dots">
+              <span class="prob-db-dot"></span>
+              <span class="prob-db-dot"></span>
+              <span class="prob-db-dot"></span>
+            </div>
+            <h3>Diagnostic site web — PME standard</h3>
+            <p>État observé sur la majorité des sites vitrines de PME en France</p>
           </div>
-        </div>
-        <div class="prob-row reveal">
-          <span class="prob-row-num">02</span>
-          <div>
-            <div class="prob-row-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg></div>
-            <h3>Agences : cher et lent</h3>
-            <p>3 000€ minimum, 3 à 6 mois de délai, et un résultat générique.</p>
+          <div class="prob-db-table-wrap">
+            <table class="prob-db-table">
+              <thead>
+                <tr>
+                  <th style="width:2.5rem">#</th>
+                  <th>Symptôme</th>
+                  <th>Impact réel</th>
+                  <th style="width:6.5rem">Statut</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>01</td>
+                  <td>
+                    <span class="prob-db-issue-title">Aucune conversion</span>
+                    <span class="prob-db-issue-detail">&lt; 0,5 % des visiteurs contactent</span>
+                  </td>
+                  <td class="prob-db-impact">Prospects perdus chaque jour</td>
+                  <td><span class="prob-badge danger">Critique</span></td>
+                </tr>
+                <tr>
+                  <td>02</td>
+                  <td>
+                    <span class="prob-db-issue-title">Vitesse insuffisante</span>
+                    <span class="prob-db-issue-detail">Score PageSpeed &lt; 50 · &gt; 4s de chargement</span>
+                  </td>
+                  <td class="prob-db-impact">70 % des visiteurs abandonnent</td>
+                  <td><span class="prob-badge danger">Critique</span></td>
+                </tr>
+                <tr>
+                  <td>03</td>
+                  <td>
+                    <span class="prob-db-issue-title">Budget agence disproportionné</span>
+                    <span class="prob-db-issue-detail">3 000 € min · délai 3 à 6 mois</span>
+                  </td>
+                  <td class="prob-db-impact">ROI négatif, délai interminable</td>
+                  <td><span class="prob-badge warning">Coûteux</span></td>
+                </tr>
+                <tr>
+                  <td>04</td>
+                  <td>
+                    <span class="prob-db-issue-title">Design non professionnel</span>
+                    <span class="prob-db-issue-detail">Template générique · pas mobile-first</span>
+                  </td>
+                  <td class="prob-db-impact">Image dégradée, confiance perdue</td>
+                  <td><span class="prob-badge warning">Risqué</span></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-        </div>
-        <div class="prob-row reveal">
-          <span class="prob-row-num">03</span>
-          <div>
-            <div class="prob-row-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-            <h3>Trop compliqué</h3>
-            <p>Réunions, jargon, validations en comité… Créer un site ne devrait pas être une épreuve.</p>
+          <div class="prob-db-footer">
+            <span>Analyse de <strong>247</strong> sites PME — secteurs variés</span>
+            <span>Données 2024–2025</span>
           </div>
         </div>
       </div>
