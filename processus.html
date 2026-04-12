@@ -496,18 +496,29 @@
   .proc-cell.proc-featured { background: rgba(194,65,12,0.07); border-color: rgba(194,65,12,0.22); }
   .proc-step-note { margin-top: 0.85rem; padding: 0.55rem 0.8rem; background: rgba(194,65,12,0.08); border-left: 2px solid rgba(194,65,12,0.4); font-size: 0.78rem; color: rgba(255,255,255,0.5); font-style: italic; line-height: 1.55; }
 
-  /* ── Guarantees — editorial list ── */
-  .guar-list { display: flex; flex-direction: column; max-width: 680px; }
-  .guar-item { display: grid; grid-template-columns: 4.5rem 1fr; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); align-items: start; }
-  .guar-item:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
-  .guar-item-num { font-family: 'Inter', sans-serif; font-weight: 800; font-size: clamp(2.2rem,3.5vw,3rem); line-height: 1; letter-spacing: -0.04em; color: var(--terra); opacity: 0.25; padding-top: 0.1rem; }
-  .guar-item h3 { font-weight: 700; font-size: 1.1rem; color: white; margin-bottom: 0.5rem; }
-  .guar-item p { color: rgba(255,255,255,0.55); font-size: 0.88rem; line-height: 1.65; }
+  /* ── Guarantees — bento cards ── */
+  .guar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  @media (max-width: 860px) { .guar-grid { grid-template-columns: 1fr; } }
+  .guar-card {
+    position: relative; overflow: hidden;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 20px; padding: 2rem 1.75rem;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .guar-card:hover { border-color: rgba(194,65,12,0.35); background: rgba(255,255,255,0.06); }
+  .guar-card::after { content: ''; position: absolute; top: 0; left: 2rem; right: 2rem; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent); }
+  .guar-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+  .guar-card-icon { width: 48px; height: 48px; border-radius: 14px; background: rgba(194,65,12,0.15); border: 1px solid rgba(194,65,12,0.22); display: flex; align-items: center; justify-content: center; }
+  .guar-card-num { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 2.8rem; line-height: 1; letter-spacing: -0.05em; color: rgba(194,65,12,0.15); }
+  .guar-card h3 { font-weight: 700; font-size: 1.1rem; color: white; margin-bottom: 0.6rem; line-height: 1.3; }
+  .guar-card p { color: rgba(255,255,255,0.5); font-size: 0.875rem; line-height: 1.7; }
+  .guar-card-tag { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1.25rem; font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--terra); }
+  .guar-card-tag::before { content: ''; display: block; width: 14px; height: 1px; background: var(--terra); }
 
   @media (max-width: 640px) {
     .proc-card-grid { grid-template-columns: 1fr; gap: 0.75rem; padding: 0.75rem; }
     .proc-cell { padding: 1.75rem; }
-    .guar-item { grid-template-columns: 3rem 1fr; gap: 1.25rem; }
+    .guar-grid { grid-template-columns: 1fr; }
   }
 
 </style>
@@ -665,27 +676,39 @@
       <span class="mono" style="color:rgba(255,255,255,0.35)">02 / Ce que vous obtenez</span>
       <h2 class="section-h2" style="color:white;margin-top:0.75rem;font-size:clamp(1.8rem,3.5vw,2.8rem)">Des garanties concrètes,<br>pas des promesses.</h2>
     </div>
-    <div class="guar-list">
-      <div class="guar-item reveal">
-        <div class="guar-item-num">01</div>
-        <div>
-          <h3>Vous voyez avant de payer</h3>
-          <p>La maquette est livrée gratuitement avant tout engagement. Si le rendu ne vous convient pas, zéro obligation.</p>
+    <div class="guar-grid">
+      <div class="guar-card reveal">
+        <div class="guar-card-top">
+          <div class="guar-card-icon">
+            <svg width="22" height="22" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <span class="guar-card-num">01</span>
         </div>
+        <h3>Vous voyez avant de payer</h3>
+        <p>La maquette est livrée gratuitement avant tout engagement. Si le rendu ne vous convient pas, zéro obligation — on repart à zéro ou on se sépare, sans frais.</p>
+        <div class="guar-card-tag">Zéro risque</div>
       </div>
-      <div class="guar-item reveal reveal-delay-1">
-        <div class="guar-item-num">02</div>
-        <div>
-          <h3>Un interlocuteur unique</h3>
-          <p>Du brief à la mise en ligne, vous avez un seul point de contact. Pas de chef de projet intermédiaire, pas de jargon.</p>
+      <div class="guar-card reveal reveal-delay-1">
+        <div class="guar-card-top">
+          <div class="guar-card-icon">
+            <svg width="22" height="22" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <span class="guar-card-num">02</span>
         </div>
+        <h3>Un interlocuteur unique</h3>
+        <p>Du brief à la mise en ligne, vous avez un seul point de contact. Pas de chef de projet intermédiaire, pas de jargon, pas de réunions à rallonge.</p>
+        <div class="guar-card-tag">Simplicité totale</div>
       </div>
-      <div class="guar-item reveal reveal-delay-2">
-        <div class="guar-item-num">03</div>
-        <div>
-          <h3>Le site vous appartient à 100%</h3>
-          <p>Code source livré, domaine à votre nom, hébergement au choix. Aucune dépendance, aucun abonnement obligatoire.</p>
+      <div class="guar-card reveal reveal-delay-2">
+        <div class="guar-card-top">
+          <div class="guar-card-icon">
+            <svg width="22" height="22" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <span class="guar-card-num">03</span>
         </div>
+        <h3>Propriété à 100%</h3>
+        <p>Code source livré, domaine à votre nom, hébergement libre. Aucune dépendance à notre studio, aucun abonnement mensuel imposé. Le site est à vous pour toujours.</p>
+        <div class="guar-card-tag">Indépendance totale</div>
       </div>
     </div>
   </div>

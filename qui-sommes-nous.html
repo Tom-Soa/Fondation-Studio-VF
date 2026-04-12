@@ -200,27 +200,26 @@
   .founder-highlight strong { color: var(--terra); }
 
   /* ── APPROCHE ── */
-  .approche { background: var(--alabaster); padding: 8rem 0; }
-  .approche-inner { display: grid; grid-template-columns: 5fr 7fr; gap: 6rem; align-items: start; }
-  @media (max-width: 900px) { .approche-inner { grid-template-columns: 1fr; gap: 3rem; } }
-  .approche-left h2 { font-weight: 800; font-size: clamp(1.8rem, 3vw, 2.6rem); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 1.25rem; }
-  .approche-left h2 em { font-style: normal; color: var(--terra); }
-  .approche-left p { color: var(--steel); font-size: 0.95rem; line-height: 1.8; margin-bottom: 1rem; }
-  .approche-left .conclusion { font-weight: 700; font-size: 1rem; color: var(--midnight); margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--grid); }
-  .approche-items { display: flex; flex-direction: column; gap: 0; }
-  .approche-item {
-    display: flex; gap: 1.5rem; align-items: flex-start;
-    padding: 1.75rem 0; border-bottom: 1px solid var(--grid);
-    transition: transform 0.25s var(--ease-out);
+  .approche { background: var(--midnight); padding: 8rem 0; position: relative; overflow: hidden; }
+  .approche::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 80% 20%, rgba(194,65,12,0.08) 0%, transparent 65%); pointer-events: none; }
+  .approche-head { max-width: 640px; margin-bottom: 4rem; }
+  .approche-head .mono { color: rgba(255,255,255,0.35); display: block; margin-bottom: 1rem; }
+  .approche-head h2 { font-weight: 800; font-size: clamp(1.8rem, 3.2vw, 2.8rem); line-height: 1.12; letter-spacing: -0.02em; color: white; margin-bottom: 1rem; }
+  .approche-head h2 em { font-style: normal; color: var(--terra); }
+  .approche-head p { color: rgba(255,255,255,0.5); font-size: 0.95rem; line-height: 1.75; }
+  .approche-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+  @media (max-width: 720px) { .approche-cards { grid-template-columns: 1fr; } }
+  .approche-card {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 20px; padding: 2rem 1.75rem;
+    transition: border-color 0.3s, background 0.3s;
   }
-  .approche-item:first-child { padding-top: 0; }
-  .approche-item:last-child { border-bottom: none; }
-  @media (hover: hover) and (pointer: fine) { .approche-item:hover { transform: translateX(6px); } }
-  .approche-num { font-family: 'DM Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--terra); min-width: 32px; padding-top: 0.2rem; }
-  .approche-icon { width: 44px; height: 44px; border-radius: 12px; background: white; border: 1px solid var(--grid); display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 2px 8px rgba(15,23,42,0.06); transition: border-color 0.2s, background 0.2s; }
-  @media (hover: hover) and (pointer: fine) { .approche-item:hover .approche-icon { background: rgba(194,65,12,0.08); border-color: rgba(194,65,12,0.25); } }
-  .approche-body h4 { font-weight: 700; font-size: 1rem; margin-bottom: 0.35rem; }
-  .approche-body p { color: var(--steel); font-size: 0.88rem; line-height: 1.65; }
+  .approche-card:hover { border-color: rgba(194,65,12,0.3); background: rgba(255,255,255,0.06); }
+  .approche-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.25rem; }
+  .approche-card-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(194,65,12,0.15); border: 1px solid rgba(194,65,12,0.2); display: flex; align-items: center; justify-content: center; }
+  .approche-card-num { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 2.5rem; line-height: 1; letter-spacing: -0.04em; color: rgba(255,255,255,0.06); }
+  .approche-card h4 { font-weight: 700; font-size: 1.05rem; color: white; margin-bottom: 0.6rem; }
+  .approche-card p { color: rgba(255,255,255,0.45); font-size: 0.875rem; line-height: 1.7; }
 
   /* ── POURQUOI NOUS ── */
   .pourquoi {
@@ -308,14 +307,14 @@
   .freelance-header .mono { display: block; margin-bottom: 1rem; }
   .freelance-header h2 { font-weight: 800; font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.1; letter-spacing: -0.02em; color: var(--midnight); }
   .freelance-header h2 em { font-style: normal; color: var(--terra); }
-  .freelance-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 2px solid var(--midnight); }
-  .freelance-col { padding: 2.5rem 2.5rem 2.5rem 0; border-right: 1px solid var(--grid); }
-  .freelance-col:last-child { border-right: none; padding-right: 0; }
-  .freelance-col:not(:first-child) { padding-left: 2.5rem; }
-  .freelance-col-num { font-family: 'DM Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--terra); margin-bottom: 1.5rem; }
-  .freelance-col h3 { font-weight: 700; font-size: 1.05rem; color: var(--midnight); margin-bottom: 0.6rem; }
-  .freelance-col p { color: var(--steel); font-size: 0.88rem; line-height: 1.65; }
-  @media (max-width: 700px) { .freelance-cols { grid-template-columns: 1fr; border-top: 2px solid var(--midnight); } .freelance-col { padding: 1.75rem 0; border-right: none; border-bottom: 1px solid var(--grid); } .freelance-col:last-child { border-bottom: none; } .freelance-col:not(:first-child) { padding-left: 0; } }
+  .freelance-body { max-width: 760px; border-top: 2px solid var(--midnight); padding-top: 2.5rem; margin-bottom: 2.5rem; }
+  .freelance-intro { color: var(--steel); font-size: 1rem; line-height: 1.8; margin-bottom: 1.25rem; }
+  .freelance-intro:last-child { margin-bottom: 0; }
+  .freelance-intro strong { color: var(--midnight); font-weight: 600; }
+  .freelance-intro em { font-style: normal; color: var(--terra); font-weight: 600; }
+  .freelance-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .f-pill { display: inline-flex; align-items: center; padding: 0.45rem 1rem; border-radius: 100px; font-family: 'DM Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--steel); border: 1px solid var(--grid); background: white; }
+  .f-pill.highlight { color: var(--terra); border-color: rgba(194,65,12,0.25); background: rgba(194,65,12,0.04); }
 
   @media (prefers-reduced-motion: reduce) {
     .reveal { transition: opacity 0.2s; transform: none; }
@@ -483,33 +482,6 @@
 </div>
 
 <!-- ══════════════════════════════════════
-     NOTRE VISION
-══════════════════════════════════════ -->
-<section class="vision">
-  <div class="container">
-    <div class="vision-inner">
-      <div class="vision-text">
-        <div class="label reveal">Notre vision</div>
-        <h2 class="reveal">Un site, c'est un <em>levier de croissance.</em> Pas une dépense.</h2>
-        <div class="vision-quote reveal">
-          <p>Aujourd'hui trop de sites sont moches et vendus cher, ou alors beaux mais qui <em>ne convertissent pas du tout.</em></p>
-        </div>
-        <div class="vision-body reveal">
-          <p>Design moyen, aucune stratégie, <strong>aucun impact réel sur le chiffre d'affaires.</strong> Le site est en ligne, mais il n'apporte rien.</p>
-          <p>Notre conviction est simple : un site ne devrait pas être une case à cocher. C'est l'outil le plus puissant de votre acquisition client — à condition qu'il soit construit pour ça.</p>
-          <p class="conclusion">Notre objectif : des sites qui attirent, rassurent et <strong>convertissent.</strong> Pas juste des sites "beaux".</p>
-        </div>
-      </div>
-      <div class="vision-visual reveal">
-        <div class="vision-img-main">
-          <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Fondation Studio — vision" loading="lazy" />
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
      LES FONDATEURS
 ══════════════════════════════════════ -->
 <section class="founders" id="fondateurs">
@@ -584,7 +556,34 @@
 </section>
 
 <!-- ══════════════════════════════════════
-     ÉQUIPE FREELANCES
+     NOTRE VISION
+══════════════════════════════════════ -->
+<section class="vision">
+  <div class="container">
+    <div class="vision-inner">
+      <div class="vision-text">
+        <div class="label reveal">Notre vision</div>
+        <h2 class="reveal">Un site, c'est un <em>levier de croissance.</em> Pas une dépense.</h2>
+        <div class="vision-quote reveal">
+          <p>Aujourd'hui trop de sites sont moches et vendus cher, ou alors beaux mais qui <em>ne convertissent pas du tout.</em></p>
+        </div>
+        <div class="vision-body reveal">
+          <p>Design moyen, aucune stratégie, <strong>aucun impact réel sur le chiffre d'affaires.</strong> Le site est en ligne, mais il n'apporte rien.</p>
+          <p>Notre conviction est simple : un site ne devrait pas être une case à cocher. C'est l'outil le plus puissant de votre acquisition client — à condition qu'il soit construit pour ça.</p>
+          <p class="conclusion">Notre objectif : des sites qui attirent, rassurent et <strong>convertissent.</strong> Pas juste des sites "beaux".</p>
+        </div>
+      </div>
+      <div class="vision-visual reveal">
+        <div class="vision-img-main">
+          <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Fondation Studio — vision" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     COMMENT ON TRAVAILLE
 ══════════════════════════════════════ -->
 <section class="freelance-section">
   <div class="container">
@@ -592,28 +591,17 @@
       <span class="mono">Comment on travaille</span>
       <h2>Pas une agence. Pas des freelances seuls.<br><em>Le meilleur des deux.</em></h2>
     </div>
-    <div class="freelance-cols">
-      <div class="freelance-col reveal">
-        <div class="freelance-col-num">01</div>
-        <div class="freelance-col-body">
-          <h3>Design &amp; identité visuelle</h3>
-          <p>Chaque site est conçu sur mesure — typographie, couleurs, mise en page. Pas de template, aucun copier-coller.</p>
-        </div>
-      </div>
-      <div class="freelance-col reveal reveal-delay-1">
-        <div class="freelance-col-num">02</div>
-        <div class="freelance-col-body">
-          <h3>Développement front-end</h3>
-          <p>Code pur, performances optimisées, zéro WordPress. Chaque ligne est écrite pour votre projet spécifique.</p>
-        </div>
-      </div>
-      <div class="freelance-col reveal reveal-delay-2">
-        <div class="freelance-col-num">03</div>
-        <div class="freelance-col-body">
-          <h3>Copywriting &amp; stratégie</h3>
-          <p>Les mots qui convertissent. On écrit pour votre client cible, pas pour vous faire plaisir.</p>
-        </div>
-      </div>
+    <div class="freelance-body reveal">
+      <p class="freelance-intro">On s'appuie sur un réseau de <strong>freelances spécialisés</strong> — designers, développeurs, copywriters — sélectionnés pour leur niveau d'exigence. Chaque projet mobilise les bonnes compétences, sans couche inutile entre vous et le résultat.</p>
+      <p class="freelance-intro">On travaille avec des <strong>outils professionnels de pointe</strong> et, là où ça fait sens, on intègre intelligemment <strong>l'IA</strong> dans notre process — pas pour remplacer l'expertise humaine, mais pour aller plus vite sans jamais sacrifier la qualité. C'est ce qui nous permet de livrer des sites d'exception <em>en 14 à 21 jours.</em></p>
+    </div>
+    <div class="freelance-pills reveal reveal-delay-1">
+      <span class="f-pill">Freelances experts</span>
+      <span class="f-pill">Outils pro</span>
+      <span class="f-pill highlight">IA intégrée</span>
+      <span class="f-pill">Zéro intermédiaire</span>
+      <span class="f-pill">Qualité agence</span>
+      <span class="f-pill">Délai maîtrisé</span>
     </div>
   </div>
 </section>
@@ -623,45 +611,51 @@
 ══════════════════════════════════════ -->
 <section class="approche">
   <div class="container">
-    <div class="approche-inner">
-      <div class="approche-left">
-        <div class="reveal" style="margin-bottom:1rem"><span class="mono">Notre approche</span></div>
-        <h2 class="reveal">Contrairement aux agences classiques, on ne fait pas <em>que du design.</em></h2>
-        <p class="reveal">Chaque site est pensé comme un outil d'acquisition. Chaque section a un rôle précis dans le parcours du visiteur jusqu'à la prise de contact.</p>
-        <p class="reveal" style="color:var(--steel);font-size:0.95rem;line-height:1.8">Nous travaillons autant le message que la technique. Le fond autant que la forme. Parce que les deux sont indissociables pour convertir.</p>
-        <p class="approche-left conclusion reveal">Notre objectif est simple : faire en sorte que votre site vous apporte des clients — pas des compliments.</p>
+    <div class="approche-head reveal">
+      <span class="mono">Notre approche</span>
+      <h2>On ne livre pas <em>juste un site.</em><br>On livre un outil qui travaille pour vous.</h2>
+      <p>Chaque site est pensé de A à Z — design, contenu, technique. Pas de template. Pas d'abonnement. Pas de dépendance. Juste un actif qui vous appartient et génère des demandes.</p>
+    </div>
+    <div class="approche-cards">
+      <div class="approche-card reveal">
+        <div class="approche-card-top">
+          <div class="approche-card-icon">
+            <svg width="20" height="20" fill="none" stroke="var(--terra)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <span class="approche-card-num">01</span>
+        </div>
+        <h4>100% sur-mesure, zéro template</h4>
+        <p>Chaque site est construit depuis zéro, pour vous uniquement. Typographie, couleurs, structure, contenu — tout est créé pour votre projet. Impossible d'en trouver un autre identique.</p>
       </div>
-      <div class="approche-items">
-        <div class="approche-item reveal">
-          <div class="approche-num">01</div>
-          <div class="approche-icon">
-            <svg width="20" height="20" fill="none" stroke="var(--terra)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+      <div class="approche-card reveal reveal-delay-1">
+        <div class="approche-card-top">
+          <div class="approche-card-icon">
+            <svg width="20" height="20" fill="none" stroke="var(--terra)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
-          <div class="approche-body">
-            <h4>Structure pensée pour convertir</h4>
-            <p>Hiérarchie visuelle, CTA bien placés, parcours fluide. Chaque section a un rôle précis.</p>
-          </div>
+          <span class="approche-card-num">02</span>
         </div>
-        <div class="approche-item reveal reveal-delay-1">
-          <div class="approche-num">02</div>
-          <div class="approche-icon">
-            <svg width="20" height="20" fill="none" stroke="var(--terra)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <h4>Vous êtes propriétaire à 100%</h4>
+        <p>Code source livré, domaine à votre nom, hébergement entièrement libre. Pas de location, pas d'abonnement mensuel obligatoire. Le site vous appartient dès le premier jour.</p>
+      </div>
+      <div class="approche-card reveal reveal-delay-1">
+        <div class="approche-card-top">
+          <div class="approche-card-icon">
+            <svg width="20" height="20" fill="none" stroke="var(--terra)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg>
           </div>
-          <div class="approche-body">
-            <h4>Message orienté client, pas ego</h4>
-            <p>On écrit pour convaincre vos visiteurs — pas pour vous faire plaisir. Ce qu'ils gagnent, pourquoi vous.</p>
-          </div>
+          <span class="approche-card-num">03</span>
         </div>
-        <div class="approche-item reveal reveal-delay-2">
-          <div class="approche-num">03</div>
-          <div class="approche-icon">
-            <svg width="20" height="20" fill="none" stroke="var(--terra)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        <h4>SEO &amp; textes qui convertissent</h4>
+        <p>Structure technique SEO intégrée dès le départ. Chaque mot du site est écrit pour convaincre vos visiteurs — pas pour vous faire plaisir. Le fond et la forme travaillent ensemble.</p>
+      </div>
+      <div class="approche-card reveal reveal-delay-2">
+        <div class="approche-card-top">
+          <div class="approche-card-icon">
+            <svg width="20" height="20" fill="none" stroke="var(--terra)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
           </div>
-          <div class="approche-body">
-            <h4>Code pur, performance maximale</h4>
-            <p>Zéro template, zéro WordPress. Scores PageSpeed élevés, SEO optimisé dès le premier jour.</p>
-          </div>
+          <span class="approche-card-num">04</span>
         </div>
+        <h4>Autonomie totale après livraison</h4>
+        <p>On intègre des outils de gestion directement dans votre site. Vous modifiez vos textes, images, offres — sans passer par nous, sans payer tous les mois pour une simple mise à jour.</p>
       </div>
     </div>
   </div>
@@ -675,16 +669,16 @@
     <div class="pourquoi-inner">
       <div class="pourquoi-left">
         <div class="label reveal">Pourquoi nous choisir</div>
-        <h2 class="reveal">Un bon site doit créer un <em>vrai écart</em> avec la concurrence.</h2>
-        <p class="reveal">C'est exactement ce que nous construisons. Quand vous travaillez avec nous, votre site ne ressemble pas aux autres — parce qu'il n'est pas construit comme les autres.</p>
+        <h2 class="reveal">Un site qui rend <em>vos concurrents jaloux.</em></h2>
+        <p class="reveal">On fait partie du 1% des studios capables de livrer un site qui n'a rien à envier aux plus grandes marques. Pas un template amélioré. Pas "un beau site". Un actif stratégique qui creuse un écart visible avec vos concurrents — dès le premier regard.</p>
         <div class="pourquoi-pillars reveal">
           <div class="pourquoi-pillar">
             <div class="pourquoi-pillar-icon">
               <svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
             </div>
             <div>
-              <h4>Votre site se distingue</h4>
-              <p>Design premium construit de zéro, qui ne ressemble à aucun autre site de votre secteur.</p>
+              <h4>Le meilleur de votre secteur</h4>
+              <p>Vos concurrents ont des sites moyens ou pas de site du tout. Le vôtre sera dans une autre catégorie.</p>
             </div>
           </div>
           <div class="pourquoi-pillar">
@@ -692,8 +686,8 @@
               <svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
             </div>
             <div>
-              <h4>Il inspire confiance immédiatement</h4>
-              <p>Crédibilité lisible en 3 secondes — le visiteur se sent au bon endroit.</p>
+              <h4>Confiance immédiate</h4>
+              <p>En 3 secondes, votre visiteur comprend qu'il est au bon endroit. La crédibilité se voit, elle ne se lit pas.</p>
             </div>
           </div>
           <div class="pourquoi-pillar">
@@ -701,8 +695,8 @@
               <svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
             </div>
             <div>
-              <h4>Il génère des demandes</h4>
-              <p>Structure CRO, parcours optimisé, CTA stratégiques. La différence se mesure.</p>
+              <h4>Un résultat qui se mesure</h4>
+              <p>Plus de demandes, plus de contacts, plus de ventes. La différence avec votre ancien site est quantifiable.</p>
             </div>
           </div>
         </div>
@@ -710,7 +704,7 @@
 
       <div class="pourquoi-cta-block">
         <div class="pourquoi-quote reveal">
-          <p>La différence entre un site banal et un site Fondation Studio est visible immédiatement — par vous, et surtout par vos clients.</p>
+          <p>Des studios comme Fondation Studio, c'est 1% du marché. Ce n'est pas un hasard — c'est un niveau d'exigence que peu sont prêts à tenir. Vous méritez le top.</p>
         </div>
         <div class="pourquoi-numbers reveal">
           <div class="pourquoi-num-item">
