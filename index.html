@@ -520,41 +520,65 @@
   @media (max-width: 860px) { .prob-split { grid-template-columns: 1fr; gap: 3rem; } .prob-lead { position: static; } }
   @media (max-width: 540px) { .prob-row { grid-template-columns: 1fr; gap: 0.4rem; } }
 
-  /* ── Solution bento ── */
+  /* ── Solution rows (éditorial) ── */
   .sol-head { text-align: center; max-width: 600px; margin: 0 auto 4rem; }
   .sol-head .section-h2 { color: white; font-size: clamp(2rem, 3.5vw, 3rem); margin: 0.75rem 0 1rem; }
   .sol-head p { color: rgba(255,255,255,0.5); font-size: 0.95rem; line-height: 1.7; margin-bottom: 2rem; }
-  .sol-bento { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.25rem; }
-  .sol-card {
-    position: relative; overflow: hidden; border-radius: 20px;
-    background: rgba(255,255,255,0.035); border: 1px solid rgba(255,255,255,0.07);
-    padding: 2.25rem 2rem;
-    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+
+  .sol-rows { display: flex; flex-direction: column; border-top: 1px solid rgba(255,255,255,0.07); }
+  .sol-row {
+    display: grid;
+    grid-template-columns: 5rem 1px 1fr 52px;
+    gap: 0 2.5rem;
+    align-items: center;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    position: relative;
+    transition: background 0.3s;
+  }
+  .sol-row::before {
+    content: ''; position: absolute; left: -1px; top: 0; bottom: 0; width: 2px;
+    background: var(--terra); opacity: 0; transition: opacity 0.3s;
+  }
+  .sol-row:hover::before { opacity: 1; }
+  .sol-row:hover { background: rgba(255,255,255,0.018); }
+
+  .sol-row-num {
+    font-family: 'DM Mono', monospace; font-size: 2.25rem; font-weight: 700;
+    color: rgba(194,65,12,0.18); line-height: 1; letter-spacing: -0.02em;
+    text-align: right; transition: color 0.3s; user-select: none;
+  }
+  .sol-row:hover .sol-row-num { color: rgba(194,65,12,0.55); }
+
+  .sol-row-vline { background: rgba(255,255,255,0.08); align-self: stretch; min-height: 56px; width: 1px; }
+
+  .sol-row-body { padding: 0; }
+  .sol-row-meta { display: flex; align-items: baseline; gap: 1.25rem; margin-bottom: 0.55rem; flex-wrap: wrap; }
+  .sol-row h3 { font-weight: 700; font-size: 1.15rem; color: white; margin: 0; letter-spacing: -0.01em; }
+  .sol-row-tag {
+    font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--terra); white-space: nowrap;
+  }
+  .sol-row p { color: rgba(255,255,255,0.42); font-size: 0.875rem; line-height: 1.65; margin: 0; max-width: 540px; }
+
+  .sol-row-ico {
+    width: 48px; height: 48px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(255,255,255,0.06);
     transition: border-color 0.3s, background 0.3s;
   }
-  .sol-card:hover { border-color: rgba(194,65,12,0.3); background: rgba(255,255,255,0.05); }
-  .sol-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(194,65,12,0.4), transparent);
-    opacity: 0; transition: opacity 0.3s;
+  .sol-row:hover .sol-row-ico { border-color: rgba(194,65,12,0.3); background: rgba(194,65,12,0.07); }
+
+  @media (max-width: 860px) {
+    .sol-head { text-align: left; }
+    .sol-row { grid-template-columns: 3.5rem 1px 1fr; }
+    .sol-row-ico { display: none; }
+    .sol-row-num { font-size: 1.75rem; }
+    .sol-row { gap: 0 1.75rem; }
   }
-  .sol-card:hover::before { opacity: 1; }
-  .sol-card-a { grid-column: span 7; }
-  .sol-card-b { grid-column: span 5; }
-  .sol-card-c { grid-column: span 5; }
-  .sol-card-d { grid-column: span 7; }
-  .sol-card-num {
-    font-family: 'Inter', sans-serif; font-weight: 800; font-size: 4.5rem;
-    line-height: 1; letter-spacing: -0.04em; color: rgba(194,65,12,0.12);
-    position: absolute; top: 1rem; right: 1.5rem; pointer-events: none; user-select: none;
+  @media (max-width: 480px) {
+    .sol-row { grid-template-columns: 2.75rem 1px 1fr; gap: 0 1.25rem; padding: 2rem 0 2rem 1rem; }
+    .sol-row::before { left: 0; }
   }
-  .sol-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(194,65,12,0.15); border: 1px solid rgba(194,65,12,0.2); display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; }
-  .sol-card h3 { font-weight: 700; font-size: 1.15rem; margin-bottom: 0.5rem; color: white; }
-  .sol-card p { color: rgba(255,255,255,0.45); font-size: 0.875rem; line-height: 1.65; max-width: 320px; }
-  .sol-card-tag { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1.25rem; font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--terra); }
-  .sol-card-tag::before { content: ''; display: block; width: 18px; height: 1px; background: var(--terra); }
-  @media (max-width: 900px) { .sol-card-a, .sol-card-b, .sol-card-c, .sol-card-d { grid-column: span 12; } }
-  @media (max-width: 860px) { .sol-head { text-align: left; } }
 
   /* ── Problem dashboard card ── */
   .prob-db-card {
@@ -793,8 +817,8 @@
             </table>
           </div>
           <div class="prob-db-footer">
-            <span>Analyse de <strong>247</strong> sites PME — secteurs variés</span>
-            <span>Données 2024–2025</span>
+            <span>Analyse de <strong>247</strong> sites PME, secteurs variés</span>
+            <span>Données 2024-2025</span>
           </div>
         </div>
       </div>
@@ -812,34 +836,54 @@
       <p>Design pensé CRO, structure persuasive, performance technique maximale. Chaque élément est optimisé pour générer des demandes entrantes.</p>
       <button class="cta-btn" onclick="window.location='contact.html'">Démarrer mon projet <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
     </div>
-    <div class="sol-bento">
-      <div class="sol-card sol-card-a reveal">
-        <div class="sol-card-num">01</div>
-        <div class="sol-icon"><svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-        <h3>Design orienté conversion</h3>
-        <p>Structure persuasive, hiérarchie visuelle, CTA bien placés. Chaque élément guide le visiteur vers l'action — pas vers la sortie.</p>
-        <div class="sol-card-tag">CRO · UX · Persuasion</div>
+    <div class="sol-rows">
+      <div class="sol-row reveal">
+        <div class="sol-row-num">01</div>
+        <div class="sol-row-vline"></div>
+        <div class="sol-row-body">
+          <div class="sol-row-meta">
+            <h3>Design orienté conversion</h3>
+            <span class="sol-row-tag">CRO · UX · Persuasion</span>
+          </div>
+          <p>Structure persuasive, hiérarchie visuelle, CTA bien placés. Chaque élément guide le visiteur vers l'action.</p>
+        </div>
+        <div class="sol-row-ico"><svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
       </div>
-      <div class="sol-card sol-card-b reveal reveal-delay-1">
-        <div class="sol-card-num">02</div>
-        <div class="sol-icon"><svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
-        <h3>En ligne en 14–21 jours</h3>
-        <p>Pas de mois d'attente. Votre machine à convertir est opérationnelle. Chaque jour perdu est un client perdu.</p>
-        <div class="sol-card-tag">Livraison rapide</div>
+      <div class="sol-row reveal reveal-delay-1">
+        <div class="sol-row-num">02</div>
+        <div class="sol-row-vline"></div>
+        <div class="sol-row-body">
+          <div class="sol-row-meta">
+            <h3>En ligne en 14 à 21 jours</h3>
+            <span class="sol-row-tag">Livraison rapide</span>
+          </div>
+          <p>Pas de mois d'attente. Votre site est opérationnel. Chaque jour sans site, c'est un client perdu.</p>
+        </div>
+        <div class="sol-row-ico"><svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
       </div>
-      <div class="sol-card sol-card-c reveal reveal-delay-1">
-        <div class="sol-card-num">03</div>
-        <div class="sol-icon"><svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-        <h3>Votre actif à 100%</h3>
-        <p>Code source livré, domaine à votre nom, hébergement libre. Aucune dépendance, aucune location mensuelle.</p>
-        <div class="sol-card-tag">Propriété totale</div>
+      <div class="sol-row reveal reveal-delay-1">
+        <div class="sol-row-num">03</div>
+        <div class="sol-row-vline"></div>
+        <div class="sol-row-body">
+          <div class="sol-row-meta">
+            <h3>Votre actif à 100%</h3>
+            <span class="sol-row-tag">Propriété totale</span>
+          </div>
+          <p>Code source livré, domaine à votre nom, hébergement libre. Aucune dépendance, aucune location mensuelle.</p>
+        </div>
+        <div class="sol-row-ico"><svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
       </div>
-      <div class="sol-card sol-card-d reveal reveal-delay-2">
-        <div class="sol-card-num">04</div>
-        <div class="sol-icon"><svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg></div>
-        <h3>SEO & performance max</h3>
-        <p>Scores PageSpeed proches de 100, structure SEO technique intégrée dès le premier jour. Visible sur Google dès le lancement.</p>
-        <div class="sol-card-tag">PageSpeed · SEO · Vitesse</div>
+      <div class="sol-row reveal reveal-delay-2">
+        <div class="sol-row-num">04</div>
+        <div class="sol-row-vline"></div>
+        <div class="sol-row-body">
+          <div class="sol-row-meta">
+            <h3>SEO et performance maximale</h3>
+            <span class="sol-row-tag">PageSpeed · SEO · Vitesse</span>
+          </div>
+          <p>Scores PageSpeed proches de 100, structure SEO intégrée dès le premier jour. Visible sur Google dès le lancement.</p>
+        </div>
+        <div class="sol-row-ico"><svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg></div>
       </div>
     </div>
   </div>
