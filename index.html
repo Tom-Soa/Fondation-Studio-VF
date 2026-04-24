@@ -520,65 +520,57 @@
   @media (max-width: 860px) { .prob-split { grid-template-columns: 1fr; gap: 3rem; } .prob-lead { position: static; } }
   @media (max-width: 540px) { .prob-row { grid-template-columns: 1fr; gap: 0.4rem; } }
 
-  /* ── Solution rows (éditorial) ── */
-  .sol-head { text-align: center; max-width: 600px; margin: 0 auto 4rem; }
+  /* ── Solution cards ── */
+  .sol-head { text-align: center; max-width: 640px; margin: 0 auto 3rem; }
   .sol-head .section-h2 { color: white; font-size: clamp(2rem, 3.5vw, 3rem); margin: 0.75rem 0 1rem; }
   .sol-head p { color: rgba(255,255,255,0.5); font-size: 0.95rem; line-height: 1.7; margin-bottom: 2rem; }
 
-  .sol-rows { display: flex; flex-direction: column; border-top: 1px solid rgba(255,255,255,0.07); }
-  .sol-row {
-    display: grid;
-    grid-template-columns: 5rem 1px 1fr 52px;
-    gap: 0 2.5rem;
-    align-items: center;
-    padding: 2.5rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-    position: relative;
-    transition: background 0.3s;
+  .sol-method {
+    display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
+    gap: 0; margin-bottom: 3rem;
   }
-  .sol-row::before {
-    content: ''; position: absolute; left: -1px; top: 0; bottom: 0; width: 2px;
-    background: var(--terra); opacity: 0; transition: opacity 0.3s;
+  .sol-step {
+    padding: 0.5rem 1rem; border: 1px solid rgba(255,255,255,0.07);
+    font-family: 'DM Mono', monospace; font-size: 0.6rem; text-transform: uppercase;
+    letter-spacing: 0.08em; color: rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.02); white-space: nowrap;
+    transition: color 0.2s, border-color 0.2s;
   }
-  .sol-row:hover::before { opacity: 1; }
-  .sol-row:hover { background: rgba(255,255,255,0.018); }
+  .sol-step.highlight { border-color: rgba(194,65,12,0.4); color: var(--terra); background: rgba(194,65,12,0.06); }
+  .sol-arrow { color: rgba(255,255,255,0.2); font-size: 0.65rem; padding: 0 0.15rem; flex-shrink: 0; line-height: 1; display: flex; align-items: center; }
 
-  .sol-row-num {
-    font-family: 'DM Mono', monospace; font-size: 2.25rem; font-weight: 700;
-    color: rgba(194,65,12,0.18); line-height: 1; letter-spacing: -0.02em;
-    text-align: right; transition: color 0.3s; user-select: none;
-  }
-  .sol-row:hover .sol-row-num { color: rgba(194,65,12,0.55); }
-
-  .sol-row-vline { background: rgba(255,255,255,0.08); align-self: stretch; min-height: 56px; width: 1px; }
-
-  .sol-row-body { padding: 0; }
-  .sol-row-meta { display: flex; align-items: baseline; gap: 1.25rem; margin-bottom: 0.55rem; flex-wrap: wrap; }
-  .sol-row h3 { font-weight: 700; font-size: 1.15rem; color: white; margin: 0; letter-spacing: -0.01em; }
-  .sol-row-tag {
-    font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase;
-    letter-spacing: 0.1em; color: var(--terra); white-space: nowrap;
-  }
-  .sol-row p { color: rgba(255,255,255,0.42); font-size: 0.875rem; line-height: 1.65; margin: 0; max-width: 540px; }
-
-  .sol-row-ico {
-    width: 48px; height: 48px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
-    border: 1px solid rgba(255,255,255,0.06);
+  .sol-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .sol-card {
+    position: relative; padding: 2rem 2rem 1.75rem; overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
     transition: border-color 0.3s, background 0.3s;
   }
-  .sol-row:hover .sol-row-ico { border-color: rgba(194,65,12,0.3); background: rgba(194,65,12,0.07); }
+  .sol-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--terra), rgba(194,65,12,0.15));
+    opacity: 0.45; transition: opacity 0.3s;
+  }
+  .sol-card:hover { border-color: rgba(194,65,12,0.3); background: rgba(255,255,255,0.02); }
+  .sol-card:hover::before { opacity: 1; }
+  .sol-card-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1.25rem; }
+  .sol-card-num { font-family: 'DM Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--terra); opacity: 0.65; }
+  .sol-card-ico {
+    width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(255,255,255,0.08); flex-shrink: 0;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .sol-card:hover .sol-card-ico { border-color: rgba(194,65,12,0.3); background: rgba(194,65,12,0.08); }
+  .sol-card h3 { font-weight: 700; font-size: 1.1rem; color: white; margin-bottom: 0.55rem; letter-spacing: -0.015em; }
+  .sol-card p { color: rgba(255,255,255,0.45); font-size: 0.875rem; line-height: 1.65; margin: 0; }
+  .sol-card-tag {
+    display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1.25rem;
+    font-family: 'DM Mono', monospace; font-size: 0.57rem; text-transform: uppercase;
+    letter-spacing: 0.1em; color: rgba(194,65,12,0.7);
+  }
+  .sol-card-tag::before { content: ''; display: block; width: 14px; height: 1px; background: var(--terra); opacity: 0.6; }
 
-  @media (max-width: 860px) {
-    .sol-head { text-align: left; }
-    .sol-row { grid-template-columns: 3.5rem 1px 1fr; }
-    .sol-row-ico { display: none; }
-    .sol-row-num { font-size: 1.75rem; }
-    .sol-row { gap: 0 1.75rem; }
-  }
-  @media (max-width: 480px) {
-    .sol-row { grid-template-columns: 2.75rem 1px 1fr; gap: 0 1.25rem; padding: 2rem 0 2rem 1rem; }
-    .sol-row::before { left: 0; }
-  }
+  @media (max-width: 860px) { .sol-head { text-align: left; } .sol-method { justify-content: flex-start; } }
+  @media (max-width: 640px) { .sol-cards { grid-template-columns: 1fr; } .sol-method { display: none; } }
 
   /* ── Problem dashboard card ── */
   .prob-db-card {
@@ -715,16 +707,16 @@
 <!-- HERO -->
 <section id="hero">
   <div id="hero-bg-image">
-    <img src="https://images.pexels.com/photos/7506018/pexels-photo-7506018.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="" aria-hidden="true" />
+    <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=1920&q=80&fit=crop" alt="" aria-hidden="true" />
     <div id="hero-bg-dim"></div>
   </div>
   <div class="vlines" aria-hidden="true"><div class="vl"></div><div class="vl"></div><div class="vl"></div><div class="vl"></div></div>
   <div class="hero-center">
-    <h1 class="hero-title">Un site qui <em>convertit,</em><br>livré en 14–21 jours.</h1>
-    <p class="hero-sub">Conçu pour transformer vos visiteurs en clients. Code pur, sur-mesure, optimisé conversion. À partir de 1 400€, contrat signé avant démarrage.</p>
+    <h1 class="hero-title">Un site qui <em>attire et convertit,</em><br>livré en 14 à 21 jours.</h1>
+    <p class="hero-sub">Transformez vos visiteurs en clients. Code pur, sur-mesure, optimisé conversion. À partir de 1 400€, contrat signé avant démarrage.</p>
     <div class="hero-btns">
       <button class="cta-btn lg" onclick="window.location='contact.html'">Démarrer mon projet <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
-      <button class="btn-ghost" onclick="window.location='contact.html#offre-gratuite'">Tester gratuitement</button>
+      <button class="btn-ghost" onclick="window.location='contact.html#offre-gratuite'">Demander ma maquette gratuite</button>
     </div>
     <div class="hero-stats">
       <div class="stat-item"><div class="value">14–21j</div><div class="label">délai de livraison</div></div>
@@ -746,12 +738,12 @@
       <div class="prob-lead reveal">
         <div style="margin-bottom:1.5rem"><span class="mono">01 / Le problème</span></div>
         <div class="prob-headline">
-          <span class="prob-hl-top">Votre site vous fait</span>
-          <strong class="prob-hl-accent">perdre de l'argent</strong>
-          <span class="prob-hl-bot">chaque jour.</span>
+          <span class="prob-hl-top">Votre site pourrait</span>
+          <strong class="prob-hl-accent">générer bien plus</strong>
+          <span class="prob-hl-bot">de clients.</span>
         </div>
         <div class="prob-lead-desc">
-          <p>La majorité des PME ont un site qui ne leur rapporte rien. Ni contacts, ni ventes, ni confiance. On a construit Fondation Studio pour changer ça.</p>
+          <p>La majorité des PME n'ont pas de stratégie de conversion claire. Résultat : des visiteurs qui repartent sans agir. Une structure orientée conversion change tout. On a construit Fondation Studio pour ça.</p>
         </div>
         <a href="contact.html" class="prob-lead-cta">Parler de mon projet <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
@@ -833,57 +825,56 @@
     <div class="sol-head reveal">
       <span class="mono" style="color:rgba(255,255,255,0.35)">03 / La solution</span>
       <h2 class="section-h2">Construit pour convertir,<br>de A à Z.</h2>
-      <p>Design pensé CRO, structure persuasive, performance technique maximale. Chaque élément est optimisé pour générer des demandes entrantes.</p>
+      <p>Design pensé CRO, structure persuasive, performance technique maximale. De la maquette gratuite à la livraison, chaque étape est optimisée pour générer des demandes entrantes.</p>
       <button class="cta-btn" onclick="window.location='contact.html'">Démarrer mon projet <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
     </div>
-    <div class="sol-rows">
-      <div class="sol-row reveal">
-        <div class="sol-row-num">01</div>
-        <div class="sol-row-vline"></div>
-        <div class="sol-row-body">
-          <div class="sol-row-meta">
-            <h3>Design orienté conversion</h3>
-            <span class="sol-row-tag">CRO · UX · Persuasion</span>
-          </div>
-          <p>Structure persuasive, hiérarchie visuelle, CTA bien placés. Chaque élément guide le visiteur vers l'action.</p>
+    <div class="sol-method reveal">
+      <span class="sol-step">Découverte</span>
+      <span class="sol-arrow"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      <span class="sol-step highlight">Maquette gratuite</span>
+      <span class="sol-arrow"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      <span class="sol-step">Construction sur-mesure</span>
+      <span class="sol-arrow"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      <span class="sol-step">SEO et performance</span>
+      <span class="sol-arrow"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      <span class="sol-step">Livraison et propriété</span>
+    </div>
+    <div class="sol-cards">
+      <div class="sol-card reveal">
+        <div class="sol-card-top">
+          <span class="sol-card-num">01</span>
+          <div class="sol-card-ico"><svg width="18" height="18" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
         </div>
-        <div class="sol-row-ico"><svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <h3>Design orienté conversion</h3>
+        <p>Structure persuasive, hiérarchie visuelle, CTA bien placés. Chaque élément guide le visiteur vers l'action.</p>
+        <div class="sol-card-tag">CRO · UX · Persuasion</div>
       </div>
-      <div class="sol-row reveal reveal-delay-1">
-        <div class="sol-row-num">02</div>
-        <div class="sol-row-vline"></div>
-        <div class="sol-row-body">
-          <div class="sol-row-meta">
-            <h3>En ligne en 14 à 21 jours</h3>
-            <span class="sol-row-tag">Livraison rapide</span>
-          </div>
-          <p>Pas de mois d'attente. Votre site est opérationnel. Chaque jour sans site, c'est un client perdu.</p>
+      <div class="sol-card reveal reveal-delay-1">
+        <div class="sol-card-top">
+          <span class="sol-card-num">02</span>
+          <div class="sol-card-ico"><svg width="18" height="18" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
         </div>
-        <div class="sol-row-ico"><svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+        <h3>En ligne en 14 à 21 jours</h3>
+        <p>Pas de mois d'attente. Votre site est opérationnel. Chaque jour sans site, c'est une opportunité perdue.</p>
+        <div class="sol-card-tag">Livraison rapide</div>
       </div>
-      <div class="sol-row reveal reveal-delay-1">
-        <div class="sol-row-num">03</div>
-        <div class="sol-row-vline"></div>
-        <div class="sol-row-body">
-          <div class="sol-row-meta">
-            <h3>Votre actif à 100%</h3>
-            <span class="sol-row-tag">Propriété totale</span>
-          </div>
-          <p>Code source livré, domaine à votre nom, hébergement libre. Aucune dépendance, aucune location mensuelle.</p>
+      <div class="sol-card reveal reveal-delay-1">
+        <div class="sol-card-top">
+          <span class="sol-card-num">03</span>
+          <div class="sol-card-ico"><svg width="18" height="18" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
         </div>
-        <div class="sol-row-ico"><svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>Propriété totale</h3>
+        <p>Code source livré, domaine à votre nom, hébergement libre. Aucune dépendance, aucune location mensuelle.</p>
+        <div class="sol-card-tag">Votre actif à 100%</div>
       </div>
-      <div class="sol-row reveal reveal-delay-2">
-        <div class="sol-row-num">04</div>
-        <div class="sol-row-vline"></div>
-        <div class="sol-row-body">
-          <div class="sol-row-meta">
-            <h3>SEO et performance maximale</h3>
-            <span class="sol-row-tag">PageSpeed · SEO · Vitesse</span>
-          </div>
-          <p>Scores PageSpeed proches de 100, structure SEO intégrée dès le premier jour. Visible sur Google dès le lancement.</p>
+      <div class="sol-card reveal reveal-delay-2">
+        <div class="sol-card-top">
+          <span class="sol-card-num">04</span>
+          <div class="sol-card-ico"><svg width="18" height="18" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg></div>
         </div>
-        <div class="sol-row-ico"><svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg></div>
+        <h3>SEO et performance maximale</h3>
+        <p>Scores PageSpeed proches de 100, structure SEO intégrée dès le premier jour. Visible sur Google dès le lancement.</p>
+        <div class="sol-card-tag">PageSpeed · SEO · Vitesse</div>
       </div>
     </div>
   </div>
@@ -896,10 +887,10 @@
     <div class="nobrainer-center">
       <div class="nobrainer-badge"><div class="nobrainer-badge-tag">Gratuit</div><div class="nobrainer-badge-body">Places limitées ce mois</div></div>
       <h2>La maquette de votre<br>futur site. <em>Gratuite.</em></h2>
-      <p class="nobrainer-desc">Une vraie proposition visuelle — pas un brouillon. Si ça vous convient, on démarre. Sinon, aucune obligation.</p>
+      <p class="nobrainer-desc">Une vraie proposition visuelle, pas un brouillon. Votre page d'accueil conçue sur-mesure, présentée en appel vidéo. Si ça vous convient, on démarre. Sinon, aucune obligation.</p>
       <div class="nobrainer-trust">
         <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-        0€ — sans engagement
+        0€, sans engagement
       </div>
       <div class="nobrainer-cta">
         <button class="btn-nobrainer" onclick="window.location='contact.html#offre-gratuite'">
@@ -918,7 +909,8 @@
   <div class="container">
     <div class="reveal" style="text-align:center; margin-bottom:clamp(2rem,4vw,3.5rem)">
       <span class="mono" style="display:block; margin-bottom:0.75rem; color:var(--terra)">Témoignages</span>
-      <h2 style="font-family:'Inter',sans-serif; font-weight:800; font-size:clamp(2rem,4.5vw,3.2rem); letter-spacing:-0.025em; line-height:1.05; color:var(--midnight); margin:0">Ce que disent<br>nos clients</h2>
+      <h2 style="font-family:'Inter',sans-serif; font-weight:800; font-size:clamp(2rem,4.5vw,3.2rem); letter-spacing:-0.025em; line-height:1.05; color:var(--midnight); margin:0 0 0.75rem">Ils nous font confiance.</h2>
+      <p style="font-size:1rem;color:var(--steel);line-height:1.6;margin:0">Ce que disent nos clients après livraison.</p>
     </div>
   </div>
   <div class="testi-cols-wrap">
@@ -969,8 +961,13 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="flogo">Fondation <span>Studio</span></div>
-          <p class="footer-tagline">Sites haute performance, pensés pour convertir. Pas des templates — du sur-mesure.</p>
-          <p class="footer-origin">Fondé à La Réunion · Livraison 14–21 jours</p>
+          <p class="footer-tagline">Sites haute performance, pensés pour convertir. Pas des templates, du sur-mesure.</p>
+          <p class="footer-origin">Fondé à La Réunion · Livraison 14-21 jours</p>
+          <div class="footer-contact" style="margin-top:1rem;display:flex;flex-direction:column;gap:0.45rem">
+            <a href="tel:+262692000000" style="font-size:0.82rem;color:rgba(255,255,255,0.5);display:flex;align-items:center;gap:0.5rem;transition:color 0.2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 14a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 3.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.91a16 16 0 0 0 6 6l.91-1.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17z"/></svg>+262 6 92 00 00 00</a>
+            <a href="mailto:contact@fondationstudio.fr" style="font-size:0.82rem;color:rgba(255,255,255,0.5);display:flex;align-items:center;gap:0.5rem;transition:color 0.2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>contact@fondationstudio.fr</a>
+            <span style="font-size:0.78rem;color:rgba(255,255,255,0.3);display:flex;align-items:center;gap:0.5rem"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>La Réunion, France</span>
+          </div>
         </div>
         <div class="footer-nav-col">
           <div class="footer-nav-title">Navigation</div>
