@@ -100,8 +100,8 @@
   .pill-cta:hover { background: var(--terra-hover) !important; transform: scale(1.02); }
   @media (max-width: 639px) { .pill-label { display: none; } .pill-item { padding: 0.65rem 0.85rem; } .pill-cta { padding: 0.65rem 1rem; font-size: 0; gap: 0; } }
 
-  #hero { min-height: 100dvh; position: relative; overflow: hidden; background-image: url('images/hero-index.jpg'); background-attachment: fixed; background-size: cover; background-position: center; display: flex; flex-direction: column; }
-  .vlines { position: absolute; inset: 0; display: flex; justify-content: space-between; pointer-events: none; z-index: 3; }
+  #hero { min-height: 100dvh; position: relative; overflow: hidden; background-image: url('images/hero-index.jpg'); background-attachment: scroll; background-size: cover; background-position: center; display: flex; flex-direction: column; }
+  .vlines { position: absolute; inset: 0; display: flex; justify-content: space-between; pointer-events: none; z-index: 1; }
   .vlines .vl { width: 1px; height: 100%; background: rgba(255,255,255,0.07); }
   #hero-bg-image { position: absolute; inset: 0; z-index: 0; }
   #hero-bg-image img { display: none; }
@@ -304,8 +304,8 @@
     content: ''; position: absolute; inset: 0; z-index: 0;
     background-image: url('images/bg-cta.jpg');
     background-size: cover; background-position: center 40%;
-    background-attachment: fixed;
-    opacity: 0.18;
+    background-attachment: scroll;
+    opacity: 0.55;
   }
   .nobrainer::after {
     content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 1;
@@ -390,6 +390,37 @@
   .check-bad { color: #f87171; font-size: 1.1rem; }
   @media (max-width: 900px) { .tech-grid { grid-template-columns: 1fr; } }
   @media (max-width: 600px) { .compare-table { font-size: 0.82rem; } .compare-table td, .compare-table th { padding: 0.6rem 0.6rem; } }
+
+  /* ── Hero logo bubble (mobile only) ── */
+  .hero-logo-mob {
+    display: none;
+    position: absolute; top: 1.25rem; left: 50%; transform: translateX(-50%);
+    z-index: 10;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 100px;
+    padding: 0.5rem 1.25rem 0.5rem 0.85rem;
+    align-items: center; gap: 0.45rem;
+    font-family: 'Inter', sans-serif; font-weight: 800; font-size: 0.88rem;
+    color: #fff; white-space: nowrap; letter-spacing: -0.02em;
+  }
+  .hero-logo-mob span { color: var(--terra); }
+  @media (max-width: 639px) { .hero-logo-mob { display: flex; } }
+
+  /* ── Mobile home button ── */
+  .mob-home-btn {
+    display: none;
+    position: fixed; bottom: 5.5rem; right: 1.5rem; z-index: 200;
+    width: 52px; height: 52px; border-radius: 50%;
+    background: var(--terra);
+    align-items: center; justify-content: center; cursor: pointer;
+    box-shadow: 0 4px 20px rgba(194,65,12,0.55), 0 1px 4px rgba(0,0,0,0.2);
+    text-decoration: none;
+    transition: transform 0.2s cubic-bezier(0.23,1,0.32,1), background 0.2s;
+  }
+  .mob-home-btn:active { transform: scale(0.93); background: var(--terra-hover); }
+  @media (max-width: 639px) { .mob-home-btn { display: flex; } }
 
   /* ── Mobile hamburger menu ── */
   .mob-menu-btn {
@@ -613,6 +644,23 @@
   .sol-link:hover { text-decoration: underline; }
   @media (max-width: 640px) { .sol-list { grid-template-columns: 1fr; } .sol-item:nth-child(odd) { padding-right: 0; border-right: none; } .sol-item:nth-child(even) { padding-left: 0; } }
 
+  /* Elevated sol cards */
+  .sol-item.elevated {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 16px 56px rgba(0,0,0,0.55), 0 4px 16px rgba(0,0,0,0.25);
+    position: relative; z-index: 2;
+    padding: 2rem 2rem !important;
+    border: none !important;
+    margin: 1rem 0;
+  }
+  .sol-item.elevated:nth-child(odd) { border-right: none !important; }
+  .sol-item.elevated .sol-item-num { color: var(--terra); }
+  .sol-item.elevated h3 { color: var(--midnight); }
+  .sol-item.elevated p { color: var(--steel); }
+  .sol-item.elevated .sol-link { color: var(--terra); }
+  @media (max-width: 640px) { .sol-item.elevated { margin: 0.5rem 0; } }
+
   /* ── Problem dashboard card ── */
   .prob-db-card {
     background: white; border: 1px solid var(--grid); border-radius: 16px;
@@ -711,6 +759,10 @@
 </nav>
 
 <!-- Mobile menu -->
+<!-- Home btn hidden on index.html since we're already on the home page -->
+<a href="index.html" class="mob-home-btn" aria-label="Accueil" style="display:none!important">
+  <svg width="20" height="20" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+</a>
 <button class="mob-menu-btn" id="mob-btn" aria-label="Menu">
   <svg class="icon-burger" width="20" height="20" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
   <svg class="icon-close" width="20" height="20" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -760,6 +812,10 @@
   <div id="hero-bg-image">
     <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=1920&q=80&fit=crop" alt="" aria-hidden="true" />
     <div id="hero-bg-dim"></div>
+  </div>
+  <div class="hero-logo-mob" aria-hidden="true">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+    Fondation&nbsp;<span>Studio</span>
   </div>
   <div class="vlines" aria-hidden="true"><div class="vl"></div><div class="vl"></div><div class="vl"></div><div class="vl"></div></div>
   <div class="hero-center">
@@ -866,7 +922,7 @@
       <a href="contact.html" class="cta-btn">Démarrer mon projet <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
     <div class="sol-list">
-      <div class="sol-item reveal">
+      <div class="sol-item elevated reveal">
         <div class="sol-item-num">01</div>
         <h3>Design orienté conversion</h3>
         <p>Grâce à l'expertise de Tom-Soa en analyse et optimisation de sites, chaque élément est conçu pour transformer un visiteur en client.</p>
@@ -877,7 +933,7 @@
         <h3>Livré en 14 à 21 jours</h3>
         <p>À partir de la réception du paiement, si le client est réactif. Pas de délais flous, pas de mauvaises surprises.</p>
       </div>
-      <div class="sol-item reveal">
+      <div class="sol-item elevated reveal">
         <div class="sol-item-num">03</div>
         <h3>Propriété totale, hébergement gratuit</h3>
         <p>Nous livrons du code HTML pur. L'hébergement est naturellement gratuit grâce à cette méthode : aucun abonnement, aucune dépendance.</p>
@@ -900,10 +956,6 @@
       <div class="nobrainer-badge"><div class="nobrainer-badge-tag">Gratuit</div><div class="nobrainer-badge-body">Places limitées ce mois</div></div>
       <h2>La maquette de votre<br>futur site. <em>Gratuite.</em></h2>
       <p class="nobrainer-desc">Une vraie proposition visuelle, sur-mesure. Présentée en appel vidéo. Si ça vous convient, on démarre.</p>
-      <div class="nobrainer-trust">
-        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-        0€, sans engagement
-      </div>
       <div class="nobrainer-cta">
         <a href="contact.html#offre-gratuite" class="btn-nobrainer">
           Demander ma maquette gratuite
@@ -913,7 +965,7 @@
       </div>
     </div>
   </div>
-  <div aria-hidden="true" style="line-height:0;display:block;margin-top:-1px"><svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:50px;"><path d="M0,80 L0,42 C480,82 960,8 1440,48 L1440,80 Z" fill="#F9F9F7"/></svg></div>
+  <div aria-hidden="true" style="line-height:0;display:block;margin-top:-1px"><svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:50px;"><path d="M0,80 L0,42 C480,82 960,8 1440,48 L1440,80 Z" fill="#ffffff"/></svg></div>
 </section>
 
 <!-- TÉMOIGNAGES -->

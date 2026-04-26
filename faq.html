@@ -18,7 +18,7 @@
     --grid: #E5E5E1;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
   body { font-family: 'Inter', sans-serif; background: var(--alabaster); color: var(--midnight); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
   h1,h2,h3,h4 { font-family: 'Inter', sans-serif; }
   img { max-width: 100%; display: block; }
@@ -71,6 +71,20 @@
   .pill-cta { background: var(--terra); color: #fff !important; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.72rem; padding: 0.55rem 1.3rem; z-index: 1; position: relative; transition: background 0.2s, transform 0.15s; }
   .pill-cta:hover { background: var(--terra-hover) !important; transform: scale(1.02); }
   @media (max-width: 639px) { .pill-label { display: none; } .pill-item { padding: 0.65rem 0.85rem; } .pill-cta { padding: 0.65rem 1rem; font-size: 0; gap: 0; } }
+
+  /* ── Mobile home button ── */
+  .mob-home-btn {
+    display: none;
+    position: fixed; bottom: 5.5rem; right: 1.5rem; z-index: 200;
+    width: 52px; height: 52px; border-radius: 50%;
+    background: var(--terra);
+    align-items: center; justify-content: center; cursor: pointer;
+    box-shadow: 0 4px 20px rgba(194,65,12,0.55), 0 1px 4px rgba(0,0,0,0.2);
+    text-decoration: none;
+    transition: transform 0.2s cubic-bezier(0.23,1,0.32,1), background 0.2s;
+  }
+  .mob-home-btn:active { transform: scale(0.93); background: var(--terra-hover); }
+  @media (max-width: 639px) { .mob-home-btn { display: flex; } }
 
   /* ── Mobile menu ── */
   .mob-menu-btn {
@@ -173,6 +187,7 @@
   /* ── Toast ── */
   .toast { position: fixed; bottom: 2rem; right: 2rem; z-index: 300; background: white; border-radius: 12px; padding: 1rem 1.4rem; box-shadow: 0 8px 32px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 0.7rem; font-family: 'Inter', sans-serif; font-weight: 600; color: var(--midnight); transform: translateY(100px); opacity: 0; transition: transform 0.4s, opacity 0.4s; pointer-events: none; font-size: 0.9rem; }
   .toast-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; flex-shrink: 0; }
+@media (hover: none) and (pointer: coarse) { * { background-attachment: scroll !important; } }
 </style>
 </head>
 <body>
@@ -217,6 +232,9 @@
 </nav>
 
 <!-- Mobile menu -->
+<a href="index.html" class="mob-home-btn" aria-label="Accueil">
+  <svg width="20" height="20" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+</a>
 <button class="mob-menu-btn" id="mob-btn" aria-label="Menu">
   <svg class="icon-burger" width="20" height="20" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
   <svg class="icon-close" width="20" height="20" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -299,31 +317,31 @@
 
             <div class="faq-item">
               <button class="faq-question" aria-expanded="false">
-                Quelle est la différence entre Fondation Studio et une agence classique ?
+                En moyenne, combien coûte un site internet ?
                 <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
               </button>
               <div class="faq-answer"><div class="faq-answer-inner">
-                <p>Une agence classique prend 2 à 6 mois, facture 5 000 à 30 000€, et livre souvent un site template peu différenciant. Nous livrons un site <strong>100% sur-mesure en 14 à 21 jours</strong>, à partir de 1 400€. Pas de template, pas d'intermédiaire, directement conçu pour convertir vos visiteurs en clients.</p>
+                <p>Le prix d'un site internet varie énormément selon la solution choisie. Un site en constructeur (Wix, Squarespace) coûte entre 0 et 50€/mois, mais vous restez dépendant de la plateforme et le résultat est générique. Une agence web classique facture entre 5 000 et 30 000€ pour des délais de 2 à 6 mois. Chez <strong>Fondation Studio</strong>, nos sites sur-mesure démarrent à <strong>1 400€</strong> avec une livraison en 14 à 21 jours — sans template, sans compromis.</p>
               </div></div>
             </div>
 
             <div class="faq-item">
               <button class="faq-question" aria-expanded="false">
-                Est-ce que vous utilisez WordPress ou un CMS ?
+                À quoi ça sert d'avoir un site internet en 2025 ?
                 <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
               </button>
               <div class="faq-answer"><div class="faq-answer-inner">
-                <p>Non. Nous développons en <strong>code pur HTML/CSS/JS</strong>. Résultat : un site plus rapide, plus sécurisé, sans plugins à mettre à jour, sans vulnérabilités connues. Aucune dépendance à WordPress, Wix ou Squarespace.</p>
+                <p>Un site internet est votre <strong>commercial disponible 24h/24</strong>, sans pause ni congé. Il vous donne de la crédibilité immédiate face à vos concurrents, vous rend visible sur Google, ChatGPT et les autres moteurs de recherche, et vous permet de recevoir des demandes de clients pendant que vous dormez. En 2025, ne pas avoir de site professionnel, c'est laisser des clients à vos concurrents qui en ont un.</p>
               </div></div>
             </div>
 
             <div class="faq-item">
               <button class="faq-question" aria-expanded="false">
-                Je serai propriétaire du code source ?
+                Pourquoi est-il important d'avoir un beau site internet ?
                 <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
               </button>
               <div class="faq-answer"><div class="faq-answer-inner">
-                <p>Oui, à 100%. À la livraison, nous vous transférons <strong>l'intégralité du code source</strong>, le domaine est à votre nom, et vous choisissez librement votre hébergeur. Aucune location, aucun abonnement imposé, aucune dépendance.</p>
+                <p>Un visiteur se forge une opinion en <strong>moins de 3 secondes</strong> : si votre site est mal construit, lent ou peu professionnel, il part. Un site bien conçu inspire confiance, donne envie de prendre contact et transforme un visiteur curieux en client potentiel. Le design n'est pas qu'esthétique : c'est de la conversion. C'est pour ça que nous refusons les templates et créons chaque site de zéro.</p>
               </div></div>
             </div>
 
@@ -333,7 +351,7 @@
                 <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
               </button>
               <div class="faq-answer"><div class="faq-answer-inner">
-                <p>Principalement des <strong>PME, TPE, artisans, professions libérales et entrepreneurs</strong> qui ont besoin d'un site vitrine professionnel orienté conversion. Pas de e-commerce complexe. Nous nous concentrons sur ce que nous faisons mieux que tout le monde : des sites qui génèrent des demandes entrantes.</p>
+                <p>Principalement des <strong>PME, TPE, artisans, professions libérales et entrepreneurs</strong> qui veulent un site vitrine professionnel orienté résultats. Restaurants, avocats, médecins, artisans, startups, commerçants : si vous avez une activité et des clients à convaincre, on est faits pour travailler ensemble.</p>
               </div></div>
             </div>
 
@@ -343,7 +361,7 @@
                 <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
               </button>
               <div class="faq-answer"><div class="faq-answer-inner">
-                <p>Oui, totalement. Nous concevons la page d'accueil de votre futur site et vous la présentons en appel vidéo. <strong>Si le rendu ne vous convient pas, vous ne payez rien.</strong> Aucune obligation, aucune facture cachée. C'est notre façon de vous montrer notre niveau avant que vous décidiez.</p>
+                <p>Oui, totalement. Nous concevons la page d'accueil de votre futur site et vous la présentons en appel vidéo avant que vous décidiez quoi que ce soit. <strong>Si le rendu ne vous convient pas, vous ne payez rien.</strong> C'est notre façon de vous montrer notre niveau avant tout engagement.</p>
               </div></div>
             </div>
 
@@ -357,21 +375,11 @@
 
             <div class="faq-item">
               <button class="faq-question" aria-expanded="false">
-                Quels sont vos tarifs ?
+                Quels sont vos tarifs de création de site ?
                 <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
               </button>
               <div class="faq-answer"><div class="faq-answer-inner">
-                <p>Nos offres démarrent à <strong>1 400€</strong> pour un site vitrine essentiel. L'offre complète (jusqu'à 8 pages, SEO avancé, copywriting) est à 2 200€. La maintenance optionnelle est à 150€/mois. Consultez la <a href="tarifs.html">page Tarifs</a> pour le détail complet.</p>
-              </div></div>
-            </div>
-
-            <div class="faq-item">
-              <button class="faq-question" aria-expanded="false">
-                Comment se passe le paiement ?
-                <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-              </button>
-              <div class="faq-answer"><div class="faq-answer-inner">
-                <p>Nous appliquons un paiement en <strong>deux fois</strong> : 50% à la signature du contrat pour démarrer le projet, 50% à la livraison du site. Pas de surprise en cours de route : tout est cadré dans le contrat signé avant le démarrage.</p>
+                <p>Nos offres démarrent à <strong>1 400€</strong> pour un site vitrine essentiel. Notre offre la plus complète démarre à <strong>2 400€</strong> et est établie sur devis selon votre projet : volume de pages, fonctionnalités spécifiques, option autonomie... La maintenance est optionnelle à 150€/mois. Consultez la <a href="tarifs.html">page Tarifs</a> pour le détail complet.</p>
               </div></div>
             </div>
 
@@ -381,17 +389,27 @@
                 <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
               </button>
               <div class="faq-answer"><div class="faq-answer-inner">
-                <p>Non. Le prix affiché est le prix final. L'hébergement (environ 5 à 15€/mois selon votre choix) et le nom de domaine (environ 10 à 15€/an) sont à votre charge, mais vous les gérez totalement librement. La maintenance à 150€/mois est optionnelle.</p>
+                <p>Non. Le prix convenu est le prix final. Notre méthode de développement en code statique permet un <strong>hébergement naturellement gratuit</strong> — il n'y a pas de serveur à louer ni de base de données à maintenir. Vous gardez uniquement votre nom de domaine (environ 10 à 15€/an), que vous gérez librement. Aucun abonnement imposé, aucune surprise.</p>
               </div></div>
             </div>
 
             <div class="faq-item">
               <button class="faq-question" aria-expanded="false">
-                Proposez-vous un paiement en plusieurs fois ?
+                Comment se passe le paiement ?
                 <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
               </button>
               <div class="faq-answer"><div class="faq-answer-inner">
-                <p>Le paiement se fait en deux fois (50% / 50%). Si vous avez des contraintes particulières, <a href="contact.html">contactez-nous</a> : nous cherchons toujours une solution adaptée à votre situation.</p>
+                <p>Les modalités de paiement sont définies ensemble avant le démarrage du projet et formalisées dans le contrat. Tout est transparent, discuté en amont, sans surprise. Si vous avez des contraintes particulières, <a href="contact.html">parlez-nous-en</a> lors de l'appel découverte.</p>
+              </div></div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                Puis-je gérer mon site moi-même après la livraison ?
+                <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+              </button>
+              <div class="faq-answer"><div class="faq-answer-inner">
+                <p>Oui, et c'est même une option que nous proposons. L'<strong>option autonomie</strong> vous permet de gérer votre site sans faire appel à nous : mettre à jour vos prix, ajouter de nouveaux services, publier des articles de blog, gérer vos réalisations via un panneau d'administration dédié. Vous gagnez en indépendance totale tout en conservant un site professionnel. Renseignez-vous lors de l'appel découverte.</p>
               </div></div>
             </div>
 
@@ -405,11 +423,11 @@
 
             <div class="faq-item">
               <button class="faq-question" aria-expanded="false">
-                Combien de temps pour avoir mon site en ligne ?
+                Combien de temps faut-il pour créer un site internet ?
                 <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
               </button>
               <div class="faq-answer"><div class="faq-answer-inner">
-                <p><strong>14 à 21 jours</strong> après la signature du contrat et la réception de vos contenus (textes, photos). Ce délai comprend la conception, le développement, les allers-retours de validation et la mise en ligne. C'est 3 à 10 fois plus rapide qu'une agence traditionnelle.</p>
+                <p>Ça dépend de la solution. Un constructeur (Wix, Squarespace) peut être prêt en quelques heures, mais le résultat est générique. Une agence classique prend 2 à 6 mois. Chez Fondation Studio, nous livrons un site <strong>100% sur-mesure en 14 à 21 jours</strong> à partir de la signature du contrat — à condition que vous soyez réactif sur les échanges et validations.</p>
               </div></div>
             </div>
 
@@ -419,17 +437,7 @@
                 <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
               </button>
               <div class="faq-answer"><div class="faq-answer-inner">
-                <p>1. <strong>Appel découverte</strong> (30 min) : on comprend votre activité. 2. <strong>Maquette gratuite</strong> : on conçoit votre page d'accueil et vous la présentons. 3. <strong>Contrat &amp; brief</strong> : tout est cadré avant de commencer. 4. <strong>Développement</strong> (14–21 jours) : on construit, vous validez, on met en ligne.</p>
-              </div></div>
-            </div>
-
-            <div class="faq-item">
-              <button class="faq-question" aria-expanded="false">
-                Est-ce que je peux demander des modifications après la livraison ?
-                <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-              </button>
-              <div class="faq-answer"><div class="faq-answer-inner">
-                <p>Oui. Une période de retouches est incluse dans toutes nos offres. Après cela, les modifications ponctuelles peuvent être prises en charge dans le cadre de la maintenance mensuelle (150€/mois) ou facturées à l'heure selon la nature de la demande.</p>
+                <p><strong>1. Appel découverte</strong> (30 min) : on comprend votre activité, vos clients, vos objectifs. <strong>2. Maquette gratuite</strong> : on conçoit votre page d'accueil et vous la présentons en vidéo. <strong>3. Brief &amp; démarrage</strong> : tout est cadré avant de commencer. <strong>4. Développement</strong> (14–21 jours) : on construit, vous validez à chaque étape, on met en ligne.</p>
               </div></div>
             </div>
 
@@ -439,7 +447,17 @@
                 <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
               </button>
               <div class="faq-answer"><div class="faq-answer-inner">
-                <p>Dans l'idéal, oui : photos de qualité, textes de présentation. Mais si vous n'avez rien, pas de problème : <strong>la rédaction du contenu est incluse dans nos offres</strong>. Nous rédigeons les textes de votre site en nous basant sur le brief que vous nous fournissez lors de l'appel découverte.</p>
+                <p>Dans l'idéal, oui : quelques photos de qualité et une présentation de votre activité. Si vous n'avez rien, pas de problème : <strong>la rédaction du contenu est incluse</strong> dans nos offres. Nous rédigeons les textes de votre site à partir du brief que vous nous donnez lors de l'appel découverte.</p>
+              </div></div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                Est-ce que je peux demander des modifications après la livraison ?
+                <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+              </button>
+              <div class="faq-answer"><div class="faq-answer-inner">
+                <p>Oui. Une période de retouches est incluse après la livraison. Ensuite, deux options : soit vous souscrivez à la <strong>maintenance mensuelle</strong> (150€/mois) qui inclut les mises à jour régulières, soit chaque modification ponctuelle est facturée <strong>sur devis</strong> selon la nature de la demande. Vous choisissez ce qui vous convient.</p>
               </div></div>
             </div>
 
@@ -453,41 +471,41 @@
 
             <div class="faq-item">
               <button class="faq-question" aria-expanded="false">
-                Le SEO est-il inclus dans toutes vos offres ?
+                Pourquoi est-il important d'avoir un site internet bien référencé sur Google ?
                 <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
               </button>
               <div class="faq-answer"><div class="faq-answer-inner">
-                <p>Oui. <strong>Le SEO technique est intégré dès le départ</strong> : balises sémantiques, métadonnées, vitesse de chargement, schema.org, sitemap. Cela couvre le référencement Google. Le SEO éditorial avancé (stratégie de mots-clés, rédaction longue) est disponible dans nos offres supérieures.</p>
+                <p>Être bien référencé sur Google, c'est être visible au moment précis où votre futur client cherche ce que vous proposez. <strong>90% des internautes ne vont pas au-delà de la première page</strong> des résultats. Si vous n'y êtes pas, vous n'existez pas pour eux. Un bon référencement, c'est du trafic gratuit et continu, sans dépendre uniquement de la publicité payante.</p>
               </div></div>
             </div>
 
             <div class="faq-item">
               <button class="faq-question" aria-expanded="false">
-                C'est quoi l'AEO et le GEO ? Pourquoi c'est important ?
+                C'est quoi l'AEO et le GEO ? Pourquoi c'est important en 2025 ?
                 <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
               </button>
               <div class="faq-answer"><div class="faq-answer-inner">
-                <p><strong>AEO (Answer Engine Optimization)</strong> : optimiser votre site pour apparaître dans les réponses de ChatGPT, Perplexity, Bing AI et autres moteurs de réponse, qui représentent une part croissante des recherches. <strong>GEO (Generative Engine Optimization &amp; Géolocalisation)</strong> : être référencé dans les résultats vocaux, géolocalisés et les assistants IA. Ces deux dimensions complètent le SEO Google classique pour une visibilité complète en 2025.</p>
+                <p><strong>AEO (Answer Engine Optimization)</strong> : optimiser votre site pour apparaître dans les réponses de ChatGPT, Perplexity, Google AI Overviews et autres moteurs de réponse. <strong>GEO (Generative Engine Optimization)</strong> : être cité et recommandé par les intelligences artificielles génératives quand quelqu'un pose une question sur votre secteur. Ces deux dimensions s'ajoutent au SEO Google classique pour une visibilité totale là où vos clients cherchent en 2025.</p>
               </div></div>
             </div>
 
             <div class="faq-item">
               <button class="faq-question" aria-expanded="false">
-                Mon site sera-t-il visible sur ChatGPT ou Perplexity ?
+                Comment savoir si mon site internet est bien référencé ?
                 <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
               </button>
               <div class="faq-answer"><div class="faq-answer-inner">
-                <p>C'est notre objectif. Nous intégrons les balisages schema.org adaptés, nous structurons le contenu de façon à répondre aux questions que posent les utilisateurs aux IA, et nous optimisons la présence géolocalisée. <strong>Le résultat : votre site a toutes les chances d'être cité par ces moteurs</strong> quand quelqu'un cherche votre type de service.</p>
+                <p>Plusieurs signaux : votre site apparaît quand vous tapez votre nom ou votre activité sur Google, votre <strong>score PageSpeed est supérieur à 90/100</strong>, vos pages se chargent en moins de 2 secondes, et vous recevez des demandes entrantes sans payer de publicité. Vous pouvez aussi utiliser Google Search Console (gratuit) pour voir vos positions réelles. Nos sites sont construits pour cocher toutes ces cases dès le lancement.</p>
               </div></div>
             </div>
 
             <div class="faq-item">
               <button class="faq-question" aria-expanded="false">
-                Combien de temps avant d'apparaître sur Google ?
+                Combien de temps avant d'apparaître en première page de Google ?
                 <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
               </button>
               <div class="faq-answer"><div class="faq-answer-inner">
-                <p>Google indexe généralement un nouveau site en <strong>quelques jours à quelques semaines</strong>. Pour les positions significatives sur des mots-clés concurrentiels, comptez 3 à 6 mois : c'est la réalité du SEO organique, quelle que soit l'agence. Nos sites sont techniquement optimaux dès le lancement pour accélérer ce processus.</p>
+                <p>Google indexe généralement un nouveau site en <strong>quelques jours à quelques semaines</strong>. Pour des positions significatives sur des mots-clés concurrentiels, comptez 3 à 6 mois de SEO régulier. C'est la réalité du référencement naturel, quelle que soit l'agence. Nos sites sont techniquement optimaux dès le premier jour pour accélérer ce processus au maximum.</p>
               </div></div>
             </div>
 
@@ -505,7 +523,7 @@
                 <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
               </button>
               <div class="faq-answer"><div class="faq-answer-inner">
-                <p>Non. La maintenance à <strong>150€/mois</strong> est entièrement optionnelle. Elle inclut les mises à jour de contenu, la surveillance des performances, les sauvegardes régulières et le support prioritaire. Si vous préférez tout gérer vous-même, c'est tout à fait possible. Le site vous appartient.</p>
+                <p>Non, la maintenance est entièrement optionnelle. Elle est à <strong>150€/mois</strong> et inclut les mises à jour de contenu, la surveillance des performances et le support prioritaire. Si vous n'avez pas la maintenance et qu'une modification est nécessaire, nous intervenons <strong>sur devis</strong>. Votre site vous appartient, et vous en faites ce que vous voulez.</p>
               </div></div>
             </div>
 
@@ -515,27 +533,27 @@
                 <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
               </button>
               <div class="faq-answer"><div class="faq-answer-inner">
-                <p>Les sites en code statique n'ont quasiment pas de pannes : il n'y a pas de base de données, pas de plugins, pas de CMS à mettre à jour. Si un problème survient (hébergeur, DNS), nos clients en maintenance ont un <strong>support prioritaire sous 24h ouvrées</strong>. Les autres peuvent nous contacter pour une intervention ponctuelle.</p>
+                <p>Nos sites en code statique n'ont quasiment aucune panne : pas de base de données, pas de plugins, pas de CMS. Si un problème survient côté hébergeur ou DNS, les clients avec maintenance bénéficient d'un <strong>support prioritaire sous 24h ouvrées</strong>. Les autres peuvent nous contacter pour une intervention ponctuelle facturée sur devis.</p>
               </div></div>
             </div>
 
             <div class="faq-item">
               <button class="faq-question" aria-expanded="false">
-                Puis-je modifier mon site moi-même après la livraison ?
+                Proposez-vous une option pour gérer son site en autonomie ?
                 <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
               </button>
               <div class="faq-answer"><div class="faq-answer-inner">
-                <p>Oui. Nous livrons le code source commenté et documenté. Si vous avez des notions de HTML/CSS, vous pouvez modifier les textes et images vous-même. Nous pouvons aussi intégrer un panneau d'administration simple selon vos besoins.</p>
+                <p>Oui. Nous proposons une <strong>option autonomie</strong> qui vous permet de gérer votre site sans faire appel à nous : mettre à jour vos prix, ajouter de nouveaux services, publier des articles, gérer votre blog, modifier vos réalisations via un panneau d'administration intégré. Idéal si vous évoluez souvent et voulez rester indépendant au quotidien.</p>
               </div></div>
             </div>
 
             <div class="faq-item">
               <button class="faq-question" aria-expanded="false">
-                Avez-vous une garantie sur le résultat ?
+                Mon site sera-t-il visible sur ChatGPT ou Perplexity ?
                 <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
               </button>
               <div class="faq-answer"><div class="faq-answer-inner">
-                <p>Nous garantissons un <strong>score PageSpeed supérieur à 90/100</strong>, un site livré dans les délais contractuels, et la conformité au brief validé. Pour la maquette gratuite : si le rendu ne vous convient pas, vous ne payez rien. Nous n'offrons pas de garantie sur le nombre de clients générés : cela dépend de votre marché, votre offre et votre trafic.</p>
+                <p>C'est notre objectif. Nous structurons le contenu pour répondre exactement aux questions que les utilisateurs posent aux IA, intégrons les balisages schema.org adaptés, et optimisons la présence locale. <strong>Résultat : votre site a toutes les chances d'être cité</strong> quand quelqu'un demande à ChatGPT ou Perplexity où trouver votre type de service dans votre ville.</p>
               </div></div>
             </div>
 
@@ -596,6 +614,7 @@
         <div class="fcopy">© 2026 Fondation Studio · Tous droits réservés</div>
         <div class="footer-legal-links">
           <a href="mentions-legales.html">Mentions légales</a>
+          <a href="admin.html">Admin</a>
         </div>
       </div>
     </div>
