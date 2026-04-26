@@ -42,7 +42,10 @@
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
       "Bash(grep -c \"onclick=\\\\\"window.location\" index.html tarifs.html processus.html qui-sommes-nous.html realisations.html)",
-      "Bash(grep -c \" — \" index.html tarifs.html qui-sommes-nous.html realisations.html faq.html)"
+      "Bash(grep -c \" — \" index.html tarifs.html qui-sommes-nous.html realisations.html faq.html)",
+      "Bash(sed -n '856,885p' index.html)",
+      "Bash(sed -n '556,575p' processus.html)",
+      "Bash(perl -i -pe 's/hébergement offert la première année/hébergement naturellement gratuit grâce à notre méthode/g; s/Hébergement offert \\\\\\(1 an\\\\\\)/Hébergement gratuit \\\\\\(illimité\\\\\\)/g; s/Hébergement offert\\\\. /Hébergement gratuit par notre méthode. /g; s/Hébergement offert 1 an/Hébergement gratuit illimité/g' processus.html tarifs.html)"
     ]
   }
 }
