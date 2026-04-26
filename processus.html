@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Fondation Studio — Sites haute performance en code pur (HTML, CSS, JS). Le prestige d'une agence, la réactivité d'un studio. Livraison en 14 à 21 jours." />
-<title>Processus — Fondation Studio</title>
+<meta name="description" content="Fondation Studio — Notre processus en 4 étapes et nos performances techniques : code pur, score 98/100 PageSpeed, SEO·AEO·GEO intégrés, livraison en 14–21 jours." />
+<title>Processus & Performances — Fondation Studio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet" />
@@ -521,6 +521,37 @@
     .guar-grid { grid-template-columns: 1fr; }
   }
 
+  /* ── Tech bento — éditorial ── */
+  .tech-bento { display: flex; flex-direction: column; }
+  .tech-row { display: grid; grid-template-columns: 5rem 1fr 1fr; gap: 0; align-items: stretch; border-bottom: 1px solid var(--grid); transition: background 0.2s; }
+  .tech-row:first-child { border-top: 1px solid var(--grid); }
+  .tech-row:hover { background: rgba(15,23,42,0.02); }
+  .tech-row-num { display: flex; align-items: flex-start; padding: 2.25rem 1.5rem 2.25rem 0; font-family: 'DM Mono', monospace; font-size: 0.62rem; color: rgba(15,23,42,0.45); letter-spacing: 0.08em; border-right: 1px solid var(--grid); }
+  .tech-row-left { padding: 2.25rem 3rem 2.25rem 2rem; border-right: 1px solid var(--grid); display: flex; flex-direction: column; justify-content: center; }
+  .tech-row-right { padding: 2.25rem 2rem; display: flex; flex-direction: column; justify-content: center; }
+  .tech-row-tag { font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--terra); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.4rem; }
+  .tech-row-metric { font-weight: 800; font-size: clamp(2rem, 3.5vw, 3rem); line-height: 1; letter-spacing: -0.04em; color: var(--terra); margin-bottom: 0.3rem; }
+  .tech-row-metric em { font-style: normal; color: var(--midnight); }
+  .tech-row-sublabel { font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--steel); }
+  .tech-row-right h3 { font-weight: 700; font-size: 1rem; color: var(--midnight); margin-bottom: 0.5rem; line-height: 1.3; }
+  .tech-row-right p { color: var(--steel); font-size: 0.85rem; line-height: 1.65; }
+  .seo-pills { display: flex; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap; }
+  .seo-pill { font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--steel); background: rgba(15,23,42,0.04); border: 1px solid var(--grid); padding: 0.2rem 0.55rem; }
+  @media (max-width: 700px) { .tech-row { grid-template-columns: 2.5rem 1fr; } .tech-row-left { display: none; } .tech-row-num { padding: 1.5rem 1rem 1.5rem 0; } .tech-row-right { padding: 1.5rem 1rem; grid-column: 2; } }
+
+  .vs-divider { display: flex; align-items: center; gap: 1.5rem; margin: 3rem 0; }
+  .vs-divider::before, .vs-divider::after { content: ''; flex: 1; height: 1px; background: var(--grid); }
+  .vs-label { font-family: 'DM Mono', monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--steel); white-space: nowrap; }
+  .compare-table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
+  .compare-table th { font-family: 'DM Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--steel); text-align: left; padding: 0.75rem 1rem; border-bottom: 2px solid var(--grid); }
+  .compare-table td { padding: 0.85rem 1rem; font-size: 0.9rem; border-bottom: 1px solid var(--grid); vertical-align: middle; }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table .col-us { font-weight: 600; color: var(--midnight); }
+  .compare-table .col-wp { color: #94a3b8; }
+  .check-good { color: #22c55e; font-size: 1.1rem; }
+  .check-bad { color: #f87171; font-size: 1.1rem; }
+  @media (max-width: 600px) { .compare-table { font-size: 0.82rem; } .compare-table td, .compare-table th { padding: 0.6rem 0.6rem; } }
+
 </style>
 </head>
 
@@ -549,13 +580,13 @@
       <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M19.07 19.07l-1.41-1.41M4.93 19.07l1.41-1.41M4.93 4.93l1.41 1.41M12 2v2m0 16v2M2 12h2m16 0h2"/></svg>
       <span class="pill-label">Processus</span>
     </a>
-    <a href="performances.html" class="pill-item " data-page="performances">
-      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-      <span class="pill-label">Performances</span>
-    </a>
     <a href="tarifs.html" class="pill-item " data-page="tarifs">
       <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
       <span class="pill-label">Tarifs</span>
+    </a>
+    <a href="faq.html" class="pill-item" data-page="faq">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <span class="pill-label">FAQ</span>
     </a>
     <a href="contact.html" class="pill-item pill-cta">
       <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -590,13 +621,13 @@
       <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M19.07 19.07l-1.41-1.41M4.93 19.07l1.41-1.41M4.93 4.93l1.41 1.41M12 2v2m0 16v2M2 12h2m16 0h2"/></svg>
       Processus
     </a>
-    <a href="performances.html" class="mob-menu-link ">
-      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-      Performances
-    </a>
     <a href="tarifs.html" class="mob-menu-link ">
       <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
       Tarifs
+    </a>
+    <a href="faq.html" class="mob-menu-link ">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      FAQ
     </a>
     <a href="contact.html" class="mob-menu-cta">
       Démarrer mon projet
@@ -604,23 +635,6 @@
     </a>
   </nav>
 </div>
-
-<!-- PAGE HERO -->
-<section class="page-hero">
-  <div class="page-hero-bg">
-    <img src="https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="" aria-hidden="true" />
-    <div class="page-hero-bg-dim"></div>
-  </div>
-  <div class="dark-vlines"><div class="vl"></div><div class="vl"></div><div class="vl"></div><div class="vl"></div></div>
-  <div class="container">
-    <div class="page-hero-inner">
-      <div class="page-hero-breadcrumb reveal">Notre méthode</div>
-      <h1 class="reveal">Comment on travaille,<br><em>concrètement.</em></h1>
-      <p class="page-hero-sub reveal">Un process clair en 4 étapes, de la première discussion à la mise en ligne.</p>
-    </div>
-  </div>
-  <div class="mountain-divider" aria-hidden="true"><svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:50px;"><path d="M0,80 L0,50 C360,8 1080,72 1440,38 L1440,80 Z" fill="#F9F9F7"/></svg></div>
-</section>
 
 <!-- PROCESSUS -->
 <section class="section grid-bg" id="processus">
@@ -668,12 +682,94 @@
   </div>
 </section>
 
+<!-- PERFORMANCES -->
+<section class="section grid-bg" id="performances">
+  <div class="container">
+    <div class="section-head">
+      <div class="reveal" style="margin-bottom:1rem"><span class="mono">02 / La technologie qui fait la différence</span></div>
+      <h2 class="section-h2 reveal">Pendant que vos concurrents peinent sur WordPress,<br>vos clients vous trouvent instantanément.</h2>
+    </div>
+
+    <div class="tech-bento">
+      <div class="tech-row reveal">
+        <div class="tech-row-num">01</div>
+        <div class="tech-row-left">
+          <div class="tech-row-tag"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Performance</div>
+          <div class="tech-row-metric">98<em>/100</em></div>
+          <div class="tech-row-sublabel">Score Google PageSpeed</div>
+        </div>
+        <div class="tech-row-right">
+          <h3>Votre site charge en moins d'une seconde.</h3>
+          <p>Développé en code pur avec rendu statique optimisé. Chaque milliseconde gagnée augmente directement votre taux de conversion.</p>
+        </div>
+      </div>
+      <div class="tech-row reveal">
+        <div class="tech-row-num">02</div>
+        <div class="tech-row-left">
+          <div class="tech-row-tag"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Sécurité</div>
+          <div class="tech-row-metric" style="font-size:clamp(1.5rem,2.5vw,2rem);color:var(--midnight)">Inviolable</div>
+          <div class="tech-row-sublabel">Architecture sans BDD vulnérable</div>
+        </div>
+        <div class="tech-row-right">
+          <h3>Impossible à pirater par les méthodes classiques.</h3>
+          <p>Pas de WordPress, pas de plugins tiers. Notre architecture statique supprime 95% des vecteurs d'attaque habituels.</p>
+        </div>
+      </div>
+      <div class="tech-row reveal">
+        <div class="tech-row-num">03</div>
+        <div class="tech-row-left">
+          <div class="tech-row-tag"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Sur-mesure</div>
+          <div class="tech-row-metric" style="font-size:clamp(1.5rem,2.5vw,2rem);color:var(--midnight)">Unique</div>
+          <div class="tech-row-sublabel">Design &amp; Copywriting exclusifs</div>
+        </div>
+        <div class="tech-row-right">
+          <h3>Pas de template vu partout. Jamais.</h3>
+          <p>Chaque ligne de code, chaque mot, chaque couleur est pensé pour votre secteur et votre client cible.</p>
+        </div>
+      </div>
+      <div class="tech-row reveal">
+        <div class="tech-row-num">04</div>
+        <div class="tech-row-left">
+          <div class="tech-row-tag"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg> SEO · AEO · GEO</div>
+          <div class="tech-row-metric" style="font-size:clamp(1.5rem,2.5vw,2rem)">Référencé<em style="color:var(--midnight)">.</em></div>
+          <div class="tech-row-sublabel">Google · IA · Vocal</div>
+        </div>
+        <div class="tech-row-right">
+          <h3>Visible sur Google, sur ChatGPT et les assistants vocaux.</h3>
+          <p>SEO technique, balisage schema.org, optimisation AEO pour Perplexity et ChatGPT, GEO pour les recherches géolocalisées.</p>
+          <div class="seo-pills">
+            <span class="seo-pill">SEO Google</span>
+            <span class="seo-pill">AEO (IA)</span>
+            <span class="seo-pill">GEO vocal</span>
+            <span class="seo-pill">Schema.org</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vs-divider reveal"><span class="vs-label">Fondation Studio vs WordPress standard</span></div>
+    <div class="reveal" style="overflow-x:auto">
+      <table class="compare-table">
+        <thead><tr><th style="width:40%">Critère</th><th class="col-us">Fondation Studio</th><th class="col-wp">WordPress / Agence classique</th></tr></thead>
+        <tbody>
+          <tr><td>Vitesse de chargement</td><td class="col-us"><span class="check-good">✓</span> &lt; 1 seconde</td><td class="col-wp"><span class="check-bad">✗</span> 3–8 secondes</td></tr>
+          <tr><td>Score PageSpeed</td><td class="col-us"><span class="check-good">✓</span> 95–100 / 100</td><td class="col-wp"><span class="check-bad">✗</span> 30–60 / 100</td></tr>
+          <tr><td>Sécurité</td><td class="col-us"><span class="check-good">✓</span> Architecture statique — sans faille</td><td class="col-wp"><span class="check-bad">✗</span> 90 000+ vulnérabilités connues</td></tr>
+          <tr><td>Délai de livraison</td><td class="col-us"><span class="check-good">✓</span> 14 à 21 jours</td><td class="col-wp"><span class="check-bad">✗</span> 6 semaines à 6 mois</td></tr>
+          <tr><td>Copywriting stratégique</td><td class="col-us"><span class="check-good">✓</span> Inclus — orienté conversion</td><td class="col-wp"><span class="check-bad">✗</span> En supplément ou absent</td></tr>
+          <tr><td>Propriété du code</td><td class="col-us"><span class="check-good">✓</span> 100% à vous</td><td class="col-wp"><span class="check-bad">✗</span> Dépendance plateforme / agence</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
 <!-- GARANTIES -->
 <section class="section section-dark">
   <div class="dark-vlines" aria-hidden="true"><div class="vl"></div><div class="vl"></div><div class="vl"></div><div class="vl"></div></div>
   <div class="container" style="position:relative;z-index:1">
     <div class="section-head reveal">
-      <span class="mono" style="color:rgba(255,255,255,0.35)">02 / Ce que vous obtenez</span>
+      <span class="mono" style="color:rgba(255,255,255,0.35)">03 / Ce que vous obtenez</span>
       <h2 class="section-h2" style="color:white;margin-top:0.75rem;font-size:clamp(1.8rem,3.5vw,2.8rem)">Des garanties concrètes,<br>pas des promesses.</h2>
     </div>
     <div class="guar-grid">
@@ -744,6 +840,7 @@
           <a href="processus.html">Processus</a>
           <a href="performances.html">Performances</a>
           <a href="tarifs.html">Tarifs</a>
+          <a href="faq.html">FAQ</a>
           <a href="contact.html">Contact</a>
         </div>
         <div class="footer-nav-col">

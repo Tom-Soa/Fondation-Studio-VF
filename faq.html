@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Questions fréquentes — Fondation Studio. Délais, tarifs, processus, SEO/AEO/GEO, maintenance : toutes les réponses sur la création de votre site web sur-mesure." />
+<title>FAQ — Fondation Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --alabaster: #F9F9F7;
+    --midnight: #0F172A;
+    --terra: #C2410C;
+    --terra-hover: #9A3412;
+    --steel: #64748B;
+    --grid: #E5E5E1;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--alabaster); color: var(--midnight); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  h1,h2,h3,h4 { font-family: 'Inter', sans-serif; }
+  img { max-width: 100%; display: block; }
+  a { text-decoration: none; color: inherit; }
+  button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+  .mono { font-family: 'DM Mono', monospace; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--steel); }
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+
+  .cta-btn, .btn-ghost {
+    position: relative; isolation: isolate; overflow: hidden;
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1rem;
+    padding: 0.9rem 2rem; border-radius: 100px;
+    cursor: pointer; border: none;
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    transition: transform 0.15s, background 0.2s;
+  }
+  .cta-btn { background: var(--terra); color: #fff; }
+  .cta-btn::before {
+    content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 1;
+    box-shadow: inset 0 0 0 1px rgba(255,160,100,0.25), inset 0 0 18px 0 rgba(255,140,60,0.12), inset 0 -3px 12px 0 rgba(255,120,40,0.18), 0 1px 3px 0 rgba(0,0,0,0.45), 0 6px 20px 0 rgba(194,65,12,0.35);
+  }
+  .cta-btn:hover { background: var(--terra-hover); }
+  .cta-btn:active { transform: scale(0.975); }
+
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+
+  /* ── Pill nav ── */
+  .pill-brand { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 0.95rem; color: #fff; text-decoration: none; padding: 0.4rem 0.9rem 0.4rem 0.6rem; letter-spacing: -0.02em; white-space: nowrap; position: relative; z-index: 1; display: flex; align-items: center; }
+  .pill-brand span { color: var(--terra); }
+  .pill-sep { width: 1px; height: 20px; background: rgba(255,255,255,0.12); flex-shrink: 0; margin: 0 0.1rem; position: relative; z-index: 1; }
+  @media (max-width: 639px) { .pill-brand, .pill-sep { display: none; } }
+
+  #pill-nav { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%); z-index: 100; }
+  @media (min-width: 640px) { #pill-nav { bottom: auto; top: 0.85rem; } }
+
+  .pill-inner { position: relative; display: flex; align-items: center; background: rgba(15,23,42,0.68); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 0.28rem; border-radius: 100px; box-shadow: 0 4px 40px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.06); gap: 0.05rem; }
+
+  #pill-lamp { position: absolute; top: 0.28rem; bottom: 0.28rem; left: 0.28rem; width: 60px; background: rgba(194,65,12,0.18); border-radius: 100px; z-index: 0; transition: left 0.38s cubic-bezier(0.34,1.56,0.64,1), width 0.38s cubic-bezier(0.34,1.56,0.64,1); pointer-events: none; }
+  #pill-lamp::before { content: ''; position: absolute; top: -3px; left: 50%; transform: translateX(-50%); width: 2rem; height: 3px; background: var(--terra); border-radius: 0 0 6px 6px; box-shadow: 0 0 24px 8px rgba(194,65,12,0.5), 0 0 10px 3px rgba(194,65,12,0.3); }
+
+  .pill-item { position: relative; z-index: 1; display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.55rem 1.1rem; border-radius: 100px; font-family: 'Inter', sans-serif; font-size: 0.62rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; white-space: nowrap; cursor: pointer; border: none; background: none; }
+  .pill-item:hover { color: rgba(255,255,255,0.9); }
+  .pill-item.active { color: #fff; }
+  .pill-item svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .pill-label { display: inline; }
+  .pill-cta { background: var(--terra); color: #fff !important; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.72rem; padding: 0.55rem 1.3rem; z-index: 1; position: relative; transition: background 0.2s, transform 0.15s; }
+  .pill-cta:hover { background: var(--terra-hover) !important; transform: scale(1.02); }
+  @media (max-width: 639px) { .pill-label { display: none; } .pill-item { padding: 0.65rem 0.85rem; } .pill-cta { padding: 0.65rem 1rem; font-size: 0; gap: 0; } }
+
+  /* ── Mobile menu ── */
+  .mob-menu-btn {
+    display: none; position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 200;
+    width: 52px; height: 52px; border-radius: 50%;
+    background: rgba(15,23,42,0.92); border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    align-items: center; justify-content: center; cursor: pointer;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.35); transition: transform 0.2s;
+  }
+  .mob-menu-btn:active { transform: scale(0.93); }
+  .mob-menu-btn svg { transition: opacity 0.2s, transform 0.25s; }
+  .mob-menu-btn .icon-burger { opacity: 1; transform: rotate(0deg); position: absolute; }
+  .mob-menu-btn .icon-close  { opacity: 0; transform: rotate(-45deg); position: absolute; }
+  .mob-menu-btn.open .icon-burger { opacity: 0; transform: rotate(45deg); }
+  .mob-menu-btn.open .icon-close  { opacity: 1; transform: rotate(0deg); }
+  .mob-menu-overlay { display: none; position: fixed; inset: 0; z-index: 150; background: rgba(0,0,0,0.5); opacity: 0; transition: opacity 0.25s; }
+  .mob-menu-overlay.open { opacity: 1; }
+  .mob-menu-panel { position: fixed; bottom: 0; left: 0; right: 0; z-index: 160; background: rgba(15,23,42,0.97); border-top: 1px solid rgba(255,255,255,0.1); border-radius: 24px 24px 0 0; padding: 1rem 1.5rem 2.5rem; backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); transform: translateY(100%); transition: transform 0.35s cubic-bezier(0.32,0.72,0,1); display: none; }
+  .mob-menu-panel.open { transform: translateY(0); }
+  .mob-menu-handle { width: 36px; height: 4px; background: rgba(255,255,255,0.2); border-radius: 2px; margin: 0 auto 1.5rem; }
+  .mob-menu-brand { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 1rem; color: #fff; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .mob-menu-brand span { color: #C2410C; }
+  .mob-menu-links { display: flex; flex-direction: column; gap: 0.25rem; }
+  .mob-menu-link { display: flex; align-items: center; gap: 1rem; padding: 0.85rem 1rem; border-radius: 12px; color: rgba(255,255,255,0.6); font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.95rem; text-decoration: none; transition: background 0.15s, color 0.15s; }
+  .mob-menu-link:hover { background: rgba(255,255,255,0.06); color: white; }
+  .mob-menu-link.active { background: rgba(194,65,12,0.15); color: white; }
+  .mob-menu-link svg { width: 18px; height: 18px; flex-shrink: 0; opacity: 0.7; }
+  .mob-menu-cta { display: flex; align-items: center; justify-content: center; gap: 0.75rem; margin-top: 1rem; padding: 1rem; border-radius: 14px; background: #C2410C; color: #fff; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.95rem; text-decoration: none; transition: background 0.15s, transform 0.16s; }
+  .mob-menu-cta:active { transform: scale(0.97); background: #9A3412; }
+  @media (max-width: 639px) { .mob-menu-btn { display: flex; } #pill-nav { display: none !important; } .mob-menu-overlay, .mob-menu-panel { display: block; } }
+
+  /* ── FAQ Page ── */
+  .faq-hero { padding: 9rem 0 4rem; background: var(--midnight); position: relative; }
+  .faq-hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: rgba(255,255,255,0.06); }
+  .faq-hero-inner { max-width: 680px; }
+  .faq-hero-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.35); margin-bottom: 1.5rem; }
+  .faq-hero h1 { font-weight: 800; font-size: clamp(2.2rem, 5vw, 3.8rem); line-height: 1.05; letter-spacing: -0.025em; color: #fff; margin-bottom: 1.2rem; }
+  .faq-hero h1 em { font-style: normal; color: var(--terra); }
+  .faq-hero-sub { font-size: 1rem; color: rgba(255,255,255,0.5); line-height: 1.65; }
+
+  .faq-main { padding: 5rem 0 6rem; }
+  .faq-layout { display: grid; grid-template-columns: 220px 1fr; gap: 5rem; align-items: start; }
+  @media (max-width: 860px) { .faq-layout { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+  .faq-sidebar { position: sticky; top: 5rem; }
+  .faq-sidebar-title { font-family: 'DM Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--steel); margin-bottom: 1rem; }
+  .faq-sidebar-links { display: flex; flex-direction: column; gap: 0.15rem; }
+  .faq-sidebar-link { font-size: 0.85rem; color: var(--steel); padding: 0.4rem 0.6rem; border-radius: 6px; transition: background 0.15s, color 0.15s; }
+  .faq-sidebar-link:hover { background: rgba(15,23,42,0.06); color: var(--midnight); }
+  @media (max-width: 860px) { .faq-sidebar { position: static; display: none; } }
+
+  .faq-content { display: flex; flex-direction: column; gap: 4rem; }
+
+  .faq-category { }
+  .faq-category-title { font-family: 'DM Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--terra); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.6rem; }
+  .faq-category-title::after { content: ''; flex: 1; height: 1px; background: var(--grid); }
+
+  .faq-list { display: flex; flex-direction: column; border-top: 1px solid var(--grid); }
+
+  .faq-item { border-bottom: 1px solid var(--grid); }
+  .faq-question { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.4rem 0; background: none; border: none; cursor: pointer; text-align: left; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.97rem; color: var(--midnight); transition: color 0.2s; }
+  .faq-question:hover { color: var(--terra); }
+  .faq-question.open { color: var(--terra); }
+  .faq-icon { width: 22px; height: 22px; border: 1px solid var(--grid); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: background 0.2s, border-color 0.2s; }
+  .faq-question.open .faq-icon { background: var(--terra); border-color: var(--terra); }
+  .faq-icon svg { transition: transform 0.25s; }
+  .faq-question.open .faq-icon svg { transform: rotate(45deg); }
+  .faq-answer { overflow: hidden; max-height: 0; transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1); }
+  .faq-answer-inner { padding: 0 0 1.5rem; font-size: 0.9rem; color: var(--steel); line-height: 1.75; max-width: 640px; }
+  .faq-answer-inner a { color: var(--terra); text-decoration: underline; }
+  .faq-answer-inner strong { color: var(--midnight); font-weight: 600; }
+
+  /* ── CTA ── */
+  .faq-cta { background: var(--midnight); padding: 5rem 0; text-align: center; }
+  .faq-cta h2 { font-weight: 800; font-size: clamp(1.8rem, 3.5vw, 2.8rem); color: #fff; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+  .faq-cta h2 em { font-style: normal; color: var(--terra); }
+  .faq-cta p { color: rgba(255,255,255,0.5); font-size: 1rem; margin-bottom: 2rem; }
+
+  /* ── Footer ── */
+  footer { background: var(--midnight); color: white; }
+  .footer-main { padding: 4rem 0 3rem; border-top: 1px solid rgba(255,255,255,0.07); }
+  .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem; }
+  @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; gap: 2rem; } }
+  .flogo { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+  .flogo span { color: var(--terra); }
+  .footer-tagline { font-size: 0.85rem; color: rgba(255,255,255,0.4); line-height: 1.6; margin-bottom: 0.4rem; }
+  .footer-origin { font-family: 'DM Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.25); }
+  .footer-nav-col { display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-nav-title { font-family: 'DM Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.25); margin-bottom: 0.4rem; }
+  .footer-nav-col a { font-size: 0.88rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+  .footer-nav-col a:hover { color: white; }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding: 1.5rem 0; }
+  .footer-bottom-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  .fcopy { font-family: 'DM Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.2); }
+  .footer-legal-links { display: flex; gap: 1.5rem; }
+  .footer-legal-links a { font-size: 0.78rem; color: rgba(255,255,255,0.25); text-decoration: none; transition: color 0.2s; }
+  .footer-legal-links a:hover { color: rgba(255,255,255,0.5); }
+
+  /* ── Toast ── */
+  .toast { position: fixed; bottom: 2rem; right: 2rem; z-index: 300; background: white; border-radius: 12px; padding: 1rem 1.4rem; box-shadow: 0 8px 32px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 0.7rem; font-family: 'Inter', sans-serif; font-weight: 600; color: var(--midnight); transform: translateY(100px); opacity: 0; transition: transform 0.4s, opacity 0.4s; pointer-events: none; font-size: 0.9rem; }
+  .toast-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; flex-shrink: 0; }
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"><div class="toast-dot"></div><span id="toast-msg">Message envoyé !</span></div>
+
+<!-- PILL NAV -->
+<nav id="pill-nav" aria-label="Navigation principale">
+  <div class="pill-inner">
+    <a href="index.html" class="pill-brand">Fondation <span>Studio</span></a>
+    <div class="pill-sep"></div>
+    <div id="pill-lamp"></div>
+    <a href="index.html" class="pill-item">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span class="pill-label">Accueil</span>
+    </a>
+    <a href="qui-sommes-nous.html" class="pill-item">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <span class="pill-label">L'équipe</span>
+    </a>
+    <a href="realisations.html" class="pill-item">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      <span class="pill-label">Réalisations</span>
+    </a>
+    <a href="processus.html" class="pill-item">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M19.07 19.07l-1.41-1.41M4.93 19.07l1.41-1.41M4.93 4.93l1.41 1.41M12 2v2m0 16v2M2 12h2m16 0h2"/></svg>
+      <span class="pill-label">Processus</span>
+    </a>
+    <a href="tarifs.html" class="pill-item">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
+      <span class="pill-label">Tarifs</span>
+    </a>
+    <a href="faq.html" class="pill-item active">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <span class="pill-label">FAQ</span>
+    </a>
+    <a href="contact.html" class="pill-item pill-cta">
+      <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <span class="pill-label">Contact</span>
+    </a>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<button class="mob-menu-btn" id="mob-btn" aria-label="Menu">
+  <svg class="icon-burger" width="20" height="20" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  <svg class="icon-close" width="20" height="20" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+</button>
+<div class="mob-menu-overlay" id="mob-overlay"></div>
+<div class="mob-menu-panel" id="mob-panel">
+  <div class="mob-menu-handle"></div>
+  <div class="mob-menu-brand">Fondation <span>Studio</span></div>
+  <nav class="mob-menu-links">
+    <a href="index.html" class="mob-menu-link">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Accueil
+    </a>
+    <a href="qui-sommes-nous.html" class="mob-menu-link">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      L'équipe
+    </a>
+    <a href="realisations.html" class="mob-menu-link">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      Réalisations
+    </a>
+    <a href="processus.html" class="mob-menu-link">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M19.07 19.07l-1.41-1.41M4.93 19.07l1.41-1.41M4.93 4.93l1.41 1.41M12 2v2m0 16v2M2 12h2m16 0h2"/></svg>
+      Processus
+    </a>
+    <a href="tarifs.html" class="mob-menu-link">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
+      Tarifs
+    </a>
+    <a href="faq.html" class="mob-menu-link active">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      FAQ
+    </a>
+    <a href="contact.html" class="mob-menu-cta">
+      Démarrer mon projet
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </nav>
+</div>
+
+<!-- FAQ HERO -->
+<section class="faq-hero">
+  <div class="container">
+    <div class="faq-hero-inner">
+      <div class="faq-hero-label reveal">Questions fréquentes</div>
+      <h1 class="reveal">Tout ce que vous voulez <em>savoir.</em></h1>
+      <p class="faq-hero-sub reveal">Délais, tarifs, propriété, SEO — les réponses claires à vos vraies questions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ CONTENT -->
+<section class="faq-main">
+  <div class="container">
+    <div class="faq-layout">
+
+      <!-- Sidebar -->
+      <aside class="faq-sidebar">
+        <div class="faq-sidebar-title">Catégories</div>
+        <nav class="faq-sidebar-links">
+          <a href="#creation" class="faq-sidebar-link">Création de site</a>
+          <a href="#tarifs" class="faq-sidebar-link">Tarifs &amp; paiement</a>
+          <a href="#process" class="faq-sidebar-link">Process &amp; délais</a>
+          <a href="#seo" class="faq-sidebar-link">SEO, AEO &amp; GEO</a>
+          <a href="#maintenance" class="faq-sidebar-link">Maintenance &amp; support</a>
+        </nav>
+      </aside>
+
+      <!-- Questions -->
+      <div class="faq-content">
+
+        <!-- Création de site -->
+        <div class="faq-category reveal" id="creation">
+          <div class="faq-category-title">Création de site</div>
+          <div class="faq-list">
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                Quelle est la différence entre Fondation Studio et une agence classique ?
+                <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+              </button>
+              <div class="faq-answer"><div class="faq-answer-inner">
+                <p>Une agence classique prend 2 à 6 mois, facture 5 000 à 30 000€, et livre souvent un site template peu différenciant. Nous livrons un site <strong>100% sur-mesure en 14 à 21 jours</strong>, à partir de 1 400€. Pas de template, pas d'intermédiaire — directement conçu pour convertir vos visiteurs en clients.</p>
+              </div></div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                Est-ce que vous utilisez WordPress ou un CMS ?
+                <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+              </button>
+              <div class="faq-answer"><div class="faq-answer-inner">
+                <p>Non. Nous développons en <strong>code pur HTML/CSS/JS</strong>. Résultat : un site plus rapide, plus sécurisé, sans plugins à mettre à jour, sans vulnérabilités connues. Aucune dépendance à WordPress, Wix ou Squarespace.</p>
+              </div></div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                Je serai propriétaire du code source ?
+                <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+              </button>
+              <div class="faq-answer"><div class="faq-answer-inner">
+                <p>Oui, à 100%. À la livraison, nous vous transférons <strong>l'intégralité du code source</strong>, le domaine est à votre nom, et vous choisissez librement votre hébergeur. Aucune location, aucun abonnement imposé, aucune dépendance.</p>
+              </div></div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                Vous faites des sites pour quels types d'entreprises ?
+                <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+              </button>
+              <div class="faq-answer"><div class="faq-answer-inner">
+                <p>Principalement des <strong>PME, TPE, artisans, professions libérales et entrepreneurs</strong> qui ont besoin d'un site vitrine professionnel orienté conversion. Pas de e-commerce complexe — nous nous concentrons sur ce que nous faisons mieux que tout le monde : des sites qui génèrent des demandes entrantes.</p>
+              </div></div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                La maquette gratuite, c'est vraiment sans engagement ?
+                <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+              </button>
+              <div class="faq-answer"><div class="faq-answer-inner">
+                <p>Oui, totalement. Nous concevons la page d'accueil de votre futur site et vous la présentons en appel vidéo. <strong>Si le rendu ne vous convient pas, vous ne payez rien.</strong> Aucune obligation, aucune facture cachée. C'est notre façon de vous montrer notre niveau avant que vous décidiez.</p>
+              </div></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Tarifs & paiement -->
+        <div class="faq-category reveal" id="tarifs">
+          <div class="faq-category-title">Tarifs &amp; paiement</div>
+          <div class="faq-list">
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                Quels sont vos tarifs ?
+                <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+              </button>
+              <div class="faq-answer"><div class="faq-answer-inner">
+                <p>Nos offres démarrent à <strong>1 400€</strong> pour un site vitrine essentiel. L'offre complète (jusqu'à 8 pages, SEO avancé, copywriting) est à 2 200€. La maintenance optionnelle est à 150€/mois. Consultez la <a href="tarifs.html">page Tarifs</a> pour le détail complet.</p>
+              </div></div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                Comment se passe le paiement ?
+                <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+              </button>
+              <div class="faq-answer"><div class="faq-answer-inner">
+                <p>Nous appliquons un paiement en <strong>deux fois</strong> : 50% à la signature du contrat pour démarrer le projet, 50% à la livraison du site. Pas de surprise en cours de route — tout est cadré dans le contrat signé avant le démarrage.</p>
+              </div></div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                Y a-t-il des frais cachés ou des abonnements obligatoires ?
+                <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+              </button>
+              <div class="faq-answer"><div class="faq-answer-inner">
+                <p>Non. Le prix affiché est le prix final. L'hébergement (environ 5 à 15€/mois selon votre choix) et le nom de domaine (environ 10 à 15€/an) sont à votre charge, mais vous les gérez totalement librement. La maintenance à 150€/mois est optionnelle.</p>
+              </div></div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                Proposez-vous un paiement en plusieurs fois ?
+                <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+              </button>
+              <div class="faq-answer"><div class="faq-answer-inner">
+                <p>Le paiement se fait en deux fois (50% / 50%). Si vous avez des contraintes particulières, <a href="contact.html">contactez-nous</a> — nous cherchons toujours une solution adaptée à votre situation.</p>
+              </div></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Process & délais -->
+        <div class="faq-category reveal" id="process">
+          <div class="faq-category-title">Process &amp; délais</div>
+          <div class="faq-list">
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                Combien de temps pour avoir mon site en ligne ?
+                <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+              </button>
+              <div class="faq-answer"><div class="faq-answer-inner">
+                <p><strong>14 à 21 jours</strong> après la signature du contrat et la réception de vos contenus (textes, photos). Ce délai comprend la conception, le développement, les allers-retours de validation et la mise en ligne. C'est 3 à 10 fois plus rapide qu'une agence traditionnelle.</p>
+              </div></div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                Comment se déroule le projet étape par étape ?
+                <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+              </button>
+              <div class="faq-answer"><div class="faq-answer-inner">
+                <p>1. <strong>Appel découverte</strong> (30 min) — on comprend votre activité. 2. <strong>Maquette gratuite</strong> — on conçoit votre page d'accueil et vous la présentons. 3. <strong>Contrat &amp; brief</strong> — tout est cadré avant de commencer. 4. <strong>Développement</strong> (14–21 jours) — on construit, vous validez, on met en ligne.</p>
+              </div></div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                Est-ce que je peux demander des modifications après la livraison ?
+                <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+              </button>
+              <div class="faq-answer"><div class="faq-answer-inner">
+                <p>Oui. Une période de retouches est incluse dans toutes nos offres. Après cela, les modifications ponctuelles peuvent être prises en charge dans le cadre de la maintenance mensuelle (150€/mois) ou facturées à l'heure selon la nature de la demande.</p>
+              </div></div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                Ai-je besoin de préparer des contenus avant de démarrer ?
+                <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+              </button>
+              <div class="faq-answer"><div class="faq-answer-inner">
+                <p>Dans l'idéal, oui — photos de qualité, textes de présentation. Mais si vous n'avez rien, pas de problème : <strong>la rédaction du contenu est incluse dans nos offres</strong>. Nous rédigeons les textes de votre site en nous basant sur le brief que vous nous fournissez lors de l'appel découverte.</p>
+              </div></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SEO & référencement -->
+        <div class="faq-category reveal" id="seo">
+          <div class="faq-category-title">SEO, AEO &amp; GEO</div>
+          <div class="faq-list">
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                Le SEO est-il inclus dans toutes vos offres ?
+                <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+              </button>
+              <div class="faq-answer"><div class="faq-answer-inner">
+                <p>Oui. <strong>Le SEO technique est intégré dès le départ</strong> : balises sémantiques, métadonnées, vitesse de chargement, schema.org, sitemap. Cela couvre le référencement Google. Le SEO éditorial avancé (stratégie de mots-clés, rédaction longue) est disponible dans nos offres supérieures.</p>
+              </div></div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                C'est quoi l'AEO et le GEO ? Pourquoi c'est important ?
+                <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+              </button>
+              <div class="faq-answer"><div class="faq-answer-inner">
+                <p><strong>AEO (Answer Engine Optimization)</strong> : optimiser votre site pour apparaître dans les réponses de ChatGPT, Perplexity, Bing AI et autres moteurs de réponse — qui représentent une part croissante des recherches. <strong>GEO (Generative Engine Optimization &amp; Géolocalisation)</strong> : être référencé dans les résultats vocaux, géolocalisés et les assistants IA. Ces deux dimensions complètent le SEO Google classique pour une visibilité complète en 2025.</p>
+              </div></div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                Mon site sera-t-il visible sur ChatGPT ou Perplexity ?
+                <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+              </button>
+              <div class="faq-answer"><div class="faq-answer-inner">
+                <p>C'est notre objectif. Nous intégrons les balisages schema.org adaptés, nous structurons le contenu de façon à répondre aux questions que posent les utilisateurs aux IA, et nous optimisons la présence géolocalisée. <strong>Le résultat : votre site a toutes les chances d'être cité par ces moteurs</strong> quand quelqu'un cherche votre type de service.</p>
+              </div></div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                Combien de temps avant d'apparaître sur Google ?
+                <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+              </button>
+              <div class="faq-answer"><div class="faq-answer-inner">
+                <p>Google indexe généralement un nouveau site en <strong>quelques jours à quelques semaines</strong>. Pour les positions significatives sur des mots-clés concurrentiels, comptez 3 à 6 mois — c'est la réalité du SEO organique, quelle que soit l'agence. Nos sites sont techniquement optimaux dès le lancement pour accélérer ce processus.</p>
+              </div></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Maintenance & support -->
+        <div class="faq-category reveal" id="maintenance">
+          <div class="faq-category-title">Maintenance &amp; support</div>
+          <div class="faq-list">
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                La maintenance est-elle obligatoire ?
+                <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+              </button>
+              <div class="faq-answer"><div class="faq-answer-inner">
+                <p>Non. La maintenance à <strong>150€/mois</strong> est entièrement optionnelle. Elle inclut les mises à jour de contenu, la surveillance des performances, les sauvegardes régulières et le support prioritaire. Si vous préférez tout gérer vous-même, c'est tout à fait possible — le site vous appartient.</p>
+              </div></div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                Que se passe-t-il si mon site tombe en panne ?
+                <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+              </button>
+              <div class="faq-answer"><div class="faq-answer-inner">
+                <p>Les sites en code statique n'ont quasiment pas de pannes — il n'y a pas de base de données, pas de plugins, pas de CMS à mettre à jour. Si un problème survient (hébergeur, DNS), nos clients en maintenance ont un <strong>support prioritaire sous 24h ouvrées</strong>. Les autres peuvent nous contacter pour une intervention ponctuelle.</p>
+              </div></div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                Puis-je modifier mon site moi-même après la livraison ?
+                <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+              </button>
+              <div class="faq-answer"><div class="faq-answer-inner">
+                <p>Oui. Nous livrons le code source commenté et documenté. Si vous avez des notions de HTML/CSS, vous pouvez modifier les textes et images vous-même. Nous pouvons aussi intégrer un panneau d'administration simple selon vos besoins.</p>
+              </div></div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                Avez-vous une garantie sur le résultat ?
+                <span class="faq-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+              </button>
+              <div class="faq-answer"><div class="faq-answer-inner">
+                <p>Nous garantissons un <strong>score PageSpeed supérieur à 90/100</strong>, un site livré dans les délais contractuels, et la conformité au brief validé. Pour la maquette gratuite : si le rendu ne vous convient pas, vous ne payez rien. Nous n'offrons pas de garantie sur le nombre de clients générés — cela dépend de votre marché, votre offre et votre trafic.</p>
+              </div></div>
+            </div>
+
+          </div>
+        </div>
+
+      </div><!-- /.faq-content -->
+    </div><!-- /.faq-layout -->
+  </div><!-- /.container -->
+</section>
+
+<!-- CTA -->
+<section class="faq-cta">
+  <div class="container">
+    <h2 class="reveal">Vous n'avez pas trouvé votre réponse ?<br><em>Parlons-en.</em></h2>
+    <p class="reveal">On répond à toutes vos questions en moins de 24h.</p>
+    <div class="reveal">
+      <a href="contact.html" class="cta-btn" style="font-size:1.05rem;padding:1rem 2.4rem">
+        Nous contacter
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-main">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="flogo">Fondation <span>Studio</span></div>
+          <p class="footer-tagline">Sites haute performance, pensés pour convertir. Pas des templates, du sur-mesure.</p>
+          <p class="footer-origin">Fondé à La Réunion · Livraison 14-21 jours</p>
+        </div>
+        <div class="footer-nav-col">
+          <div class="footer-nav-title">Navigation</div>
+          <a href="index.html">Accueil</a>
+          <a href="qui-sommes-nous.html">L'équipe</a>
+          <a href="realisations.html">Réalisations</a>
+          <a href="processus.html">Processus</a>
+          <a href="tarifs.html">Tarifs</a>
+          <a href="faq.html">FAQ</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-nav-col">
+          <div class="footer-nav-title">Légal</div>
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="mentions-legales.html#politique-cookies">Politique de cookies</a>
+          <a href="mentions-legales.html#rgpd">Données personnelles</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="footer-bottom-inner">
+        <div class="fcopy">© 2026 Fondation Studio · Tous droits réservés</div>
+        <div class="footer-legal-links">
+          <a href="mentions-legales.html">Mentions légales</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Pill Nav lamp ──
+  (function() {
+    const lamp = document.getElementById('pill-lamp');
+    function moveLamp(el) {
+      if (!lamp || !el) return;
+      const inner = document.querySelector('.pill-inner');
+      if (!inner) return;
+      const iR = inner.getBoundingClientRect();
+      const eR = el.getBoundingClientRect();
+      lamp.style.left  = (eR.left - iR.left) + 'px';
+      lamp.style.width = eR.width + 'px';
+    }
+    requestAnimationFrame(() => {
+      const active = document.querySelector('.pill-item.active');
+      if (active) moveLamp(active);
+    });
+  })();
+
+  // ── Reveal on scroll ──
+  const revEls = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+  revEls.forEach(el => obs.observe(el));
+
+  // ── FAQ accordion ──
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const answer = item.querySelector('.faq-answer');
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+      // Close all
+      document.querySelectorAll('.faq-question').forEach(b => {
+        b.setAttribute('aria-expanded', 'false');
+        b.classList.remove('open');
+        b.closest('.faq-item').querySelector('.faq-answer').style.maxHeight = '0';
+      });
+
+      // Open current if it was closed
+      if (!isOpen) {
+        btn.setAttribute('aria-expanded', 'true');
+        btn.classList.add('open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // ── Mobile menu ──
+  (function() {
+    const btn = document.getElementById('mob-btn');
+    const overlay = document.getElementById('mob-overlay');
+    const panel = document.getElementById('mob-panel');
+    if (!btn) return;
+    function open() { btn.classList.add('open'); overlay.classList.add('open'); panel.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function close() { btn.classList.remove('open'); overlay.classList.remove('open'); panel.classList.remove('open'); document.body.style.overflow = ''; }
+    btn.addEventListener('click', () => btn.classList.contains('open') ? close() : open());
+    overlay.addEventListener('click', close);
+    panel.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  })();
+</script>
+
+</body>
+</html>

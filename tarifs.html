@@ -216,7 +216,7 @@
   .cta-center { text-align: center; }
   .cta-center .section-h2 { max-width: 640px; margin: 0 auto 1rem; }
   .cta-center .section-lead { margin: 0 auto; }
-  .cta-dark { background-image: url('https://images.pexels.com/photos/7506018/pexels-photo-7506018.jpeg?auto=compress&cs=tinysrgb&w=1920'); background-attachment: fixed; background-size: cover; background-position: center; position: relative; }
+  .cta-dark { background-image: url('images/bg-cta.jpg'); background-attachment: fixed; background-size: cover; background-position: center 40%; position: relative; }
   .cta-dark::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(15,23,42,0.88) 0%, rgba(30,15,8,0.82) 100%); z-index: 0; }
   .cta-dark .container { position: relative; z-index: 1; }
   .cta-dark .mono { color: rgba(255,255,255,0.4) !important; }
@@ -282,7 +282,7 @@
   .proc-connector { display: none; }
 
   .nobrainer { position: relative; overflow: hidden; background: var(--midnight); border-top: 1px solid rgba(194,65,12,0.2); border-bottom: 1px solid rgba(194,65,12,0.2); }
-  .nobrainer::before { content: ''; position: absolute; inset: 0; z-index: 0; background-image: url('https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg?auto=compress&cs=tinysrgb&w=1920'); background-size: cover; background-position: center 30%; background-attachment: fixed; opacity: 0.15; }
+  .nobrainer::before { content: ''; position: absolute; inset: 0; z-index: 0; background-image: url('images/hero-tarifs.jpg'); background-size: cover; background-position: center 30%; background-attachment: fixed; opacity: 0.15; }
   .nb-bg { display: none; } .nb-bg img { display: none; } .nb-bg-dim { display: none; }
   .nobrainer::after { content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 1; background: radial-gradient(ellipse 60% 80% at 75% 50%, rgba(194,65,12,0.08) 0%, transparent 70%); }
   .nobrainer-inner { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 0; align-items: stretch; }
@@ -311,7 +311,7 @@
   .page-hero-bg-dim { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(15,23,42,0.72) 0%, rgba(15,23,42,0.55) 50%, rgba(20,10,5,0.65) 100%); }
   .page-hero .dark-vlines { z-index: 1; }
   .page-hero-inner { z-index: 2; }
-  .page-hero { min-height: 40vh; background: var(--midnight); display:flex; align-items:center; position:relative; overflow:hidden; padding: 8rem 0 4rem; background-image: url('https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg?auto=compress&cs=tinysrgb&w=1920'); background-attachment: fixed; background-size: cover; background-position: center 40%; }
+  .page-hero { min-height: 40vh; background: var(--midnight); display:flex; align-items:center; position:relative; overflow:hidden; padding: 8rem 0 4rem; background-image: url('images/hero-tarifs.jpg'); background-attachment: fixed; background-size: cover; background-position: center 40%; }
   .page-hero .dark-vlines{position:absolute;inset:0;pointer-events:none;display:flex;justify-content:space-between;padding:0 2rem;}
   .page-hero .dark-vlines .vl{width:1px;height:100%;background:rgba(255,255,255,0.04);}
   .page-hero-inner{position:relative;z-index:1;}
@@ -358,7 +358,7 @@
   .page-hero-bg-dim { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(15,23,42,0.72) 0%, rgba(15,23,42,0.55) 50%, rgba(20,10,5,0.65) 100%); }
   .page-hero .dark-vlines { z-index: 1; }
   .page-hero-inner { z-index: 2; }
-  .page-hero { min-height: 42vh; background: var(--midnight); display: flex; align-items: center; position: relative; overflow: hidden; padding: 8rem 0 4rem; background-image: url('https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg?auto=compress&cs=tinysrgb&w=1920'); background-attachment: fixed; background-size: cover; background-position: center 40%; }
+  .page-hero { min-height: 42vh; background: var(--midnight); display: flex; align-items: center; position: relative; overflow: hidden; padding: 8rem 0 4rem; background-image: url('images/hero-tarifs.jpg'); background-attachment: fixed; background-size: cover; background-position: center 40%; }
   .page-hero .dark-vlines { position: absolute; inset: 0; pointer-events: none; display: flex; justify-content: space-between; padding: 0 2rem; }
   .page-hero .dark-vlines .vl { width: 1px; height: 100%; background: rgba(255,255,255,0.04); }
   .page-hero-inner { position: relative; z-index: 1; }
@@ -469,13 +469,13 @@
       <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M19.07 19.07l-1.41-1.41M4.93 19.07l1.41-1.41M4.93 4.93l1.41 1.41M12 2v2m0 16v2M2 12h2m16 0h2"/></svg>
       <span class="pill-label">Processus</span>
     </a>
-    <a href="performances.html" class="pill-item" data-page="performances">
-      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-      <span class="pill-label">Performances</span>
-    </a>
     <a href="tarifs.html" class="pill-item active" data-page="tarifs">
       <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
       <span class="pill-label">Tarifs</span>
+    </a>
+    <a href="faq.html" class="pill-item" data-page="faq">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <span class="pill-label">FAQ</span>
     </a>
     <a href="contact.html" class="pill-item pill-cta">
       <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -510,13 +510,13 @@
       <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M19.07 19.07l-1.41-1.41M4.93 19.07l1.41-1.41M4.93 4.93l1.41 1.41M12 2v2m0 16v2M2 12h2m16 0h2"/></svg>
       Processus
     </a>
-    <a href="performances.html" class="mob-menu-link ">
-      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-      Performances
-    </a>
     <a href="tarifs.html" class="mob-menu-link active">
       <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
       Tarifs
+    </a>
+    <a href="faq.html" class="mob-menu-link ">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      FAQ
     </a>
     <a href="contact.html" class="mob-menu-cta">
       Démarrer mon projet
@@ -533,7 +533,7 @@
     <div class="section-head" style="text-align:center">
       <div class="reveal" style="margin-bottom:1rem"><span class="mono">01 / Investissement</span></div>
       <h2 class="section-h2 reveal" style="max-width:640px;margin:0 auto 1rem">Un investissement transparent, un retour mesurable.</h2>
-      <p class="section-lead reveal" style="margin:0 auto">Choisissez la formule adaptée à votre projet. Tout est inclus — design, développement, SEO. Maintenance offerte selon la formule, puis 150€/mois si besoin.</p>
+      <p class="section-lead reveal" style="margin:0 auto">Choisissez la formule adaptée à votre projet. Tout est inclus — design, développement, SEO. Paiement en 2 ou 4 fois disponible. Maintenance en option à 150€/mois après livraison.</p>
     </div>
     <div class="pricing-grid">
       <div class="pricing-card">
@@ -569,7 +569,7 @@
           <li><span class="pb-icon yes"><svg width="10" height="10" fill="none" stroke="#fff" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>SEO technique avancé</li>
           <li><span class="pb-icon yes"><svg width="10" height="10" fill="none" stroke="#fff" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Intégration d'outils &amp; formulaires avancés</li>
           <li><span class="pb-icon yes"><svg width="10" height="10" fill="none" stroke="#fff" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Google My Business (création/optim.)</li>
-          <li><span class="pb-icon yes"><svg width="10" height="10" fill="none" stroke="#fff" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>3 mois de maintenance offerts</li>
+          <li><span class="pb-icon no"><svg width="10" height="10" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>Maintenance : 150€/mois (en option)</li>
         </ul>
         <button class="cta-btn full" onclick="window.location='contact.html'">Choisir Conversion</button>
         <p class="pricing-small">Livraison en 14 à 21 jours · Contrat signé avant démarrage</p>
@@ -595,7 +595,7 @@
         <p class="pricing-small">Devis personnalisé · Contrat signé avant démarrage</p>
       </div>
     </div>
-    <p style="text-align:center;margin-top:1.5rem;font-family:'DM Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.55)">Maintenance après période offerte : 150€/mois · Hébergement non inclus</p>
+    <p style="text-align:center;margin-top:1.5rem;font-family:'DM Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.55)">Maintenance optionnelle : 150€/mois · Hébergement non inclus</p>
 
     <!-- Paiement -->
     <div class="payment-info reveal" style="margin-top:3rem;max-width:760px;margin-left:auto;margin-right:auto;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:2rem 2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start">
@@ -615,7 +615,7 @@
       </div>
       <div>
         <div style="font-family:'DM Mono',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.65);margin-bottom:0.75rem">Facilité de paiement</div>
-        <p style="font-size:0.88rem;color:rgba(255,255,255,0.8);line-height:1.65;margin-bottom:0.75rem">Les 60% restants peuvent être réglés <strong style="color:white">en 4 fois</strong>, sans frais.</p>
+        <p style="font-size:0.88rem;color:rgba(255,255,255,0.8);line-height:1.65;margin-bottom:0.75rem">Possibilité de régler le montant total <strong style="color:white">en 4 fois</strong>, sans frais — soit <strong style="color:white">4 × 25%</strong> répartis sur la durée du projet.</p>
         <p style="font-family:'DM Mono',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.5)">Modalité à préciser à la signature du contrat</p>
       </div>
     </div>
@@ -662,7 +662,7 @@
       <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Est-ce que le site m'appartient vraiment ?<span class="faq-icon"></span></button><div class="faq-body"><p>Oui, à 100 %. Vous recevez le code source complet à la livraison. Pas de dépendance à une plateforme, pas de frais récurrents cachés. Vous pouvez l'héberger où vous voulez et le faire évoluer librement, avec nous ou avec quelqu'un d'autre.</p></div></div>
       <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Que comprend le copywriting stratégique ?<span class="faq-icon"></span></button><div class="faq-body"><p>On rédige l'intégralité des textes de votre site : accroche, argumentaire, descriptions, appels à l'action. Le tout adapté à votre secteur et à votre client cible. Pas de texte générique : chaque mot est réfléchi.</p></div></div>
       <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Comment fonctionne la maquette gratuite ?<span class="faq-icon"></span></button><div class="faq-body"><p>Vous nous contactez et décrivez votre activité. Si votre projet est éligible, on conçoit la maquette de votre page d'accueil sans frais. C'est une vraie proposition visuelle, pas un brouillon. Vous la découvrez lors d'un second appel en partage d'écran. Si elle vous convient, on signe. Sinon, aucune obligation.</p></div></div>
-      <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Que se passe-t-il après la mise en ligne ?<span class="faq-icon"></span></button><div class="faq-body"><p>Chaque formule inclut une période de maintenance offerte : 1 mois pour le Standard, 3 mois pour le Conversion, 6 mois pour le Prestige. Pendant cette période, on s'occupe des corrections et petites modifications sans frais. Ensuite, si vous souhaitez qu'on continue à gérer les évolutions de votre site, c'est 150€/mois.</p></div></div>
+      <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Que se passe-t-il après la mise en ligne ?<span class="faq-icon"></span></button><div class="faq-body"><p>Les offres Standard (1 mois) et Prestige (6 mois) incluent une maintenance offerte. L'offre Conversion n'inclut pas de maintenance : elle est en option à 150€/mois, à préciser dans le contrat. Dans tous les cas, on reste disponibles pour les évolutions de votre site après livraison.</p></div></div>
     </div>
   </div>
 </section>
@@ -719,8 +719,8 @@
           <a href="qui-sommes-nous.html">L'équipe</a>
           <a href="realisations.html">Réalisations</a>
           <a href="processus.html">Processus</a>
-          <a href="performances.html">Performances</a>
           <a href="tarifs.html">Tarifs</a>
+          <a href="faq.html">FAQ</a>
           <a href="contact.html">Contact</a>
         </div>
         <div class="footer-nav-col">

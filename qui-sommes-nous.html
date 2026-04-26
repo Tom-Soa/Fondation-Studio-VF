@@ -91,7 +91,7 @@
   .hero {
     min-height: 100dvh; background: var(--midnight); position: relative; overflow: hidden;
     display: flex; align-items: center;
-    background-image: url('https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg?auto=compress&cs=tinysrgb&w=1920');
+    background-image: url('images/hero-equipe.png');
     background-size: cover; background-position: center 55%;
   }
   .hero::before { content: ''; position: absolute; inset: 0; z-index: 0; background: linear-gradient(135deg, rgba(15,23,42,0.93) 0%, rgba(15,23,42,0.78) 50%, rgba(30,10,5,0.88) 100%); }
@@ -302,7 +302,15 @@
   .toast-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; flex-shrink: 0; }
 
   .freelance-grid { display: none; }
-  .freelance-section { padding: 5rem 0; border-top: 1px solid var(--grid); background: var(--alabaster); }
+  .freelance-section { padding: 5rem 0; border-top: 1px solid var(--grid); position: relative; background-image: url('images/tom-coworking.jpg'); background-attachment: fixed; background-size: cover; background-position: center; }
+  .freelance-section::before { content: ''; position: absolute; inset: 0; background: rgba(15,23,42,0.75); z-index: 0; }
+  .freelance-section .container { position: relative; z-index: 1; }
+  .freelance-header h2, .freelance-header .mono { color: #fff; }
+  .freelance-header h2 em { color: var(--terra); font-style: normal; }
+  .freelance-body { border-top-color: rgba(255,255,255,0.2); }
+  .freelance-intro { color: rgba(255,255,255,0.7); }
+  .freelance-intro strong { color: #fff; }
+  .freelance-intro em { color: var(--terra); }
   .freelance-header { margin-bottom: 3.5rem; }
   .freelance-header .mono { display: block; margin-bottom: 1rem; }
   .freelance-header h2 { font-weight: 800; font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.1; letter-spacing: -0.02em; color: var(--midnight); }
@@ -315,6 +323,22 @@
   .freelance-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
   .f-pill { display: inline-flex; align-items: center; padding: 0.45rem 1rem; border-radius: 100px; font-family: 'DM Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--steel); border: 1px solid var(--grid); background: white; }
   .f-pill.highlight { color: var(--terra); border-color: rgba(194,65,12,0.25); background: rgba(194,65,12,0.04); }
+
+  .founder-grid { display: grid; grid-template-columns: 2fr 3fr; gap: 3rem; align-items: start; margin-bottom: 4rem; }
+  .founder-photo { border-radius: 12px; overflow: hidden; max-height: 420px; }
+  .founder-photo img { width: 100%; height: 420px; object-fit: cover; object-position: center top; }
+  .founder-info { padding-top: 1rem; }
+  .founder-info-name { font-weight: 800; font-size: 2rem; letter-spacing: -0.02em; margin-bottom: 0.25rem; color: var(--midnight); }
+  .founder-info-role { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--terra); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+  .founder-info-quote { font-size: 1rem; font-style: italic; color: rgba(15,23,42,0.55); margin-bottom: 1.25rem; line-height: 1.5; }
+  .founder-info-summary { font-size: 0.9rem; color: rgba(15,23,42,0.55); line-height: 1.7; margin-bottom: 1.5rem; }
+  .bio-expand { margin-top: 1rem; font-size: 0.9rem; color: rgba(15,23,42,0.55); line-height: 1.7; }
+  .bio-expand p { margin-bottom: 0.85rem; }
+  .bio-expand p:last-child { margin-bottom: 0; }
+  .btn-expand { font-family: 'DM Mono', monospace; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--terra); background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 0.4rem; padding: 0; }
+  .btn-expand::after { content: '↓'; transition: transform 0.2s; }
+  .btn-expand.open::after { transform: rotate(180deg); }
+  @media (max-width: 768px) { .founder-grid { grid-template-columns: 1fr; } }
 
   @media (prefers-reduced-motion: reduce) {
     .reveal { transition: opacity 0.2s; transform: none; }
@@ -425,13 +449,13 @@
       <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M19.07 19.07l-1.41-1.41M4.93 19.07l1.41-1.41M4.93 4.93l1.41 1.41M12 2v2m0 16v2M2 12h2m16 0h2"/></svg>
       <span class="pill-label">Processus</span>
     </a>
-    <a href="performances.html" class="pill-item">
-      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-      <span class="pill-label">Performances</span>
-    </a>
     <a href="tarifs.html" class="pill-item">
       <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
       <span class="pill-label">Tarifs</span>
+    </a>
+    <a href="faq.html" class="pill-item">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <span class="pill-label">FAQ</span>
     </a>
     <a href="contact.html" class="pill-item pill-cta">
       <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -466,13 +490,13 @@
       <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M19.07 19.07l-1.41-1.41M4.93 19.07l1.41-1.41M4.93 4.93l1.41 1.41M12 2v2m0 16v2M2 12h2m16 0h2"/></svg>
       Processus
     </a>
-    <a href="performances.html" class="mob-menu-link ">
-      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-      Performances
-    </a>
     <a href="tarifs.html" class="mob-menu-link ">
       <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
       Tarifs
+    </a>
+    <a href="faq.html" class="mob-menu-link ">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      FAQ
     </a>
     <a href="contact.html" class="mob-menu-cta">
       Démarrer mon projet
@@ -493,29 +517,18 @@
     </div>
 
     <!-- TOM-SOA -->
-    <div class="founder-block">
-      <div class="founder-visual reveal">
-        <div class="founder-img">
-          <img src="tom-soa.jpg" alt="Tom-Soa — Co-fondateur Fondation Studio" loading="lazy" />
-        </div>
-        <div class="founder-number">01</div>
-        <div class="founder-tags">
-          <span class="founder-tag highlight">Meta Ads</span>
-          <span class="founder-tag highlight">Google Ads</span>
-          <span class="founder-tag">Acquisition</span>
-          <span class="founder-tag">CRO</span>
-          <span class="founder-tag">Marketing digital</span>
-        </div>
+    <div class="founder-grid reveal">
+      <div class="founder-photo">
+        <img src="tom-soa.jpg" alt="Tom-Soa — Co-fondateur Fondation Studio" loading="lazy" />
       </div>
-      <div class="founder-content reveal reveal-delay-1">
-        <div class="founder-role">Co-fondateur · Acquisition & Stratégie</div>
-        <h3 class="founder-name">Tom-Soa</h3>
-        <p class="founder-tagline">"Un site sans stratégie d'acquisition, c'est une vitrine sans passants."</p>
-        <div class="founder-divider"></div>
-        <div class="founder-bio">
-          <p>Tom-Soa entreprend depuis ses <strong>15 ans.</strong> Ce que d'autres apprennent en école de commerce, il l'a appris sur le terrain — en testant, en échouant, en recommençant. Résultat : une compréhension profonde et concrète de ce qui génère des clients.</p>
-          <p>Il s'est spécialisé dans l'<strong>acquisition client et le marketing digital</strong>, et a accompagné plus de <strong>30 entreprises</strong> à générer du chiffre d'affaires grâce à la publicité en ligne (Meta Ads, Google Ads).</p>
-          <p>Son expertise repose sur un constat simple : <strong>attirer du trafic qualifié ne suffit pas — il faut le convertir.</strong> C'est exactement ce que fait chaque site qu'il conçoit.</p>
+      <div class="founder-info">
+        <div class="founder-info-role">Co-fondateur · Acquisition &amp; Stratégie</div>
+        <h3 class="founder-info-name">Tom-Soa</h3>
+        <p class="founder-info-quote">"Un site sans stratégie d'acquisition, c'est une vitrine sans passants."</p>
+        <p class="founder-info-summary">Tom-Soa entreprend depuis ses 15 ans. Spécialisé en acquisition client et marketing digital, il a accompagné plus de 30 entreprises à générer du chiffre d'affaires grâce à Meta Ads et Google Ads.</p>
+        <button class="btn-expand" data-target="bio-tom">En savoir plus </button>
+        <div class="bio-expand" id="bio-tom" style="display:none">
+          <p>Son expertise repose sur un constat simple : attirer du trafic qualifié ne suffit pas — il faut le convertir. C'est exactement ce que fait chaque site qu'il conçoit.</p>
         </div>
         <a href="https://www.linkedin.com/in/tom-soa-cyprien-934798333/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.5rem;font-family:'DM Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--steel);text-decoration:none;transition:color 0.2s;">
           <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
@@ -525,29 +538,18 @@
     </div>
 
     <!-- ANDYLANE -->
-    <div class="founder-block reverse">
-      <div class="founder-visual reveal">
-        <div class="founder-img">
-          <img src="https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Andylane — Co-fondateur Fondation Studio" loading="lazy" />
-        </div>
-        <div class="founder-number">02</div>
-        <div class="founder-tags">
-          <span class="founder-tag highlight">Entrepreneuriat</span>
-          <span class="founder-tag highlight">Mayotte</span>
-          <span class="founder-tag">Création d'entreprise</span>
-          <span class="founder-tag">Terrain</span>
-          <span class="founder-tag">Développement</span>
-        </div>
+    <div class="founder-grid reveal">
+      <div class="founder-photo">
+        <img src="https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Andylane — Co-fondateur Fondation Studio" loading="lazy" />
       </div>
-      <div class="founder-content reveal reveal-delay-1">
-        <div class="founder-role">Co-fondateur · Business & Développement</div>
-        <h3 class="founder-name">Andylane</h3>
-        <p class="founder-tagline">"Ce que veulent vraiment les entreprises, c'est des résultats. Pas un beau PDF."</p>
-        <div class="founder-divider"></div>
-        <div class="founder-bio">
-          <p>Andylane est entrepreneur et grossiste <strong>basé à Mayotte.</strong> Loin des buzzwords des startups parisiennes, il a construit son expérience là où ça compte vraiment : sur le terrain, avec de vraies contraintes et de vrais enjeux.</p>
-          <p>Il a <strong>accompagné une vingtaine d'entreprises</strong> dans leur lancement et leur développement, et a réalisé plusieurs projets de création de sites internet. Ce parcours lui a appris une chose que les agences classiques ignorent souvent : <strong>les PME n'ont pas besoin d'un site "impressionnant" — elles ont besoin d'un site qui leur apporte des clients.</strong></p>
-          <p>Sa vision : la <strong>rentabilité avant l'esthétique.</strong> L'efficacité avant la complexité.</p>
+      <div class="founder-info">
+        <div class="founder-info-role">Co-fondateur · Business &amp; Développement</div>
+        <h3 class="founder-info-name">Andylane</h3>
+        <p class="founder-info-quote">"Ce que veulent vraiment les entreprises, c'est des résultats. Pas un beau PDF."</p>
+        <p class="founder-info-summary">Entrepreneur et grossiste basé à Mayotte. Il a accompagné une vingtaine d'entreprises dans leur lancement et développement, et réalisé plusieurs projets de création de sites internet.</p>
+        <button class="btn-expand" data-target="bio-andy">En savoir plus </button>
+        <div class="bio-expand" id="bio-andy" style="display:none">
+          <p>Sa vision : la rentabilité avant l'esthétique. Les PME n'ont pas besoin d'un site "impressionnant" — elles ont besoin d'un site qui leur apporte des clients. L'efficacité avant la complexité.</p>
         </div>
       </div>
     </div>
@@ -592,8 +594,7 @@
       <h2>Pas une agence. Pas des freelances seuls.<br><em>Le meilleur des deux.</em></h2>
     </div>
     <div class="freelance-body reveal">
-      <p class="freelance-intro">On s'appuie sur un réseau de <strong>freelances spécialisés</strong> — designers, développeurs, copywriters — sélectionnés pour leur niveau d'exigence. Chaque projet mobilise les bonnes compétences, sans couche inutile entre vous et le résultat.</p>
-      <p class="freelance-intro">On travaille avec des <strong>outils professionnels de pointe</strong> et, là où ça fait sens, on intègre intelligemment <strong>l'IA</strong> dans notre process — pas pour remplacer l'expertise humaine, mais pour aller plus vite sans jamais sacrifier la qualité. C'est ce qui nous permet de livrer des sites d'exception <em>en 14 à 21 jours.</em></p>
+      <p class="freelance-intro">On s'appuie sur un réseau de <strong>freelances spécialisés</strong> — designers, développeurs, copywriters — sélectionnés sur leur niveau d'exigence. Chaque projet mobilise les bonnes compétences, sans intermédiaire inutile.</p>
     </div>
     <div class="freelance-pills reveal reveal-delay-1">
       <span class="f-pill">Freelances experts</span>
@@ -625,7 +626,7 @@
           <span class="approche-card-num">01</span>
         </div>
         <h4>100% sur-mesure, zéro template</h4>
-        <p>Chaque site est construit depuis zéro, pour vous uniquement. Typographie, couleurs, structure, contenu — tout est créé pour votre projet. Impossible d'en trouver un autre identique.</p>
+        <p>Construit depuis zéro, pour vous uniquement. Impossible d'en trouver un autre identique.</p>
       </div>
       <div class="approche-card reveal reveal-delay-1">
         <div class="approche-card-top">
@@ -635,7 +636,7 @@
           <span class="approche-card-num">02</span>
         </div>
         <h4>Vous êtes propriétaire à 100%</h4>
-        <p>Code source livré, domaine à votre nom, hébergement entièrement libre. Pas de location, pas d'abonnement mensuel obligatoire. Le site vous appartient dès le premier jour.</p>
+        <p>Code source livré, domaine à votre nom, hébergement libre. Pas d'abonnement mensuel, pas de dépendance.</p>
       </div>
       <div class="approche-card reveal reveal-delay-1">
         <div class="approche-card-top">
@@ -644,8 +645,8 @@
           </div>
           <span class="approche-card-num">03</span>
         </div>
-        <h4>SEO &amp; textes qui convertissent</h4>
-        <p>Structure technique SEO intégrée dès le départ. Chaque mot du site est écrit pour convaincre vos visiteurs — pas pour vous faire plaisir. Le fond et la forme travaillent ensemble.</p>
+        <h4>SEO, AEO &amp; GEO intégrés</h4>
+        <p>Référencement Google, IA (ChatGPT, Perplexity) et vocal inclus dès le départ. Chaque mot est écrit pour convaincre vos visiteurs.</p>
       </div>
       <div class="approche-card reveal reveal-delay-2">
         <div class="approche-card-top">
@@ -655,7 +656,7 @@
           <span class="approche-card-num">04</span>
         </div>
         <h4>Autonomie totale après livraison</h4>
-        <p>On intègre des outils de gestion directement dans votre site. Vous modifiez vos textes, images, offres — sans passer par nous, sans payer tous les mois pour une simple mise à jour.</p>
+        <p>Vous modifiez vos textes et images sans passer par nous, sans payer pour une simple mise à jour.</p>
       </div>
     </div>
   </div>
@@ -669,8 +670,8 @@
     <div class="pourquoi-inner">
       <div class="pourquoi-left">
         <div class="label reveal">Pourquoi nous choisir</div>
-        <h2 class="reveal">Un site qui rend <em>vos concurrents jaloux.</em></h2>
-        <p class="reveal">On fait partie du 1% des studios capables de livrer un site qui n'a rien à envier aux plus grandes marques. Pas un template amélioré. Pas "un beau site". Un actif stratégique qui creuse un écart visible avec vos concurrents — dès le premier regard.</p>
+        <h2 class="reveal">Un site qui <em>vous distingue.</em></h2>
+        <p class="reveal">On livre des sites qui rivalisent avec les plus grandes marques. Pas un template. Pas juste un beau site. Un site qui convertit — et qui vous différencie dès la première visite.</p>
         <div class="pourquoi-pillars reveal">
           <div class="pourquoi-pillar">
             <div class="pourquoi-pillar-icon">
@@ -751,8 +752,8 @@
           <a href="qui-sommes-nous.html">L'équipe</a>
           <a href="realisations.html">Réalisations</a>
           <a href="processus.html">Processus</a>
-          <a href="performances.html">Performances</a>
           <a href="tarifs.html">Tarifs</a>
+          <a href="faq.html">FAQ</a>
           <a href="contact.html">Contact</a>
         </div>
         <div class="footer-nav-col">
@@ -869,6 +870,19 @@
     <button id="cookie-accept" class="cookie-btn-accept">Accepter</button>
   </div>
 </div>
+
+<script>
+  document.querySelectorAll('.btn-expand').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = document.getElementById(btn.dataset.target);
+      if (!target) return;
+      const isOpen = target.style.display !== 'none';
+      target.style.display = isOpen ? 'none' : 'block';
+      btn.classList.toggle('open', !isOpen);
+      btn.textContent = (isOpen ? 'En savoir plus' : 'Réduire') + ' ';
+    });
+  });
+</script>
 
 </body>
 </html>
