@@ -377,9 +377,9 @@
   .mob-menu-overlay {
     display: none; position: fixed; inset: 0; z-index: 150;
     background: rgba(0,0,0,0.5);
-    opacity: 0; transition: opacity 0.25s cubic-bezier(0.23,1,0.32,1);
+    opacity: 0; pointer-events: none; transition: opacity 0.25s cubic-bezier(0.23,1,0.32,1);
   }
-  .mob-menu-overlay.open { opacity: 1; }
+  .mob-menu-overlay.open { opacity: 1; pointer-events: auto; }
 
   .mob-menu-panel {
     position: fixed; bottom: 0; left: 0; right: 0; z-index: 160;

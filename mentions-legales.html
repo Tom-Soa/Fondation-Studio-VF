@@ -83,8 +83,8 @@
     .mob-menu-btn .icon-close  { opacity: 0; transform: rotate(-45deg); position: absolute; }
     .mob-menu-btn.open .icon-burger { opacity: 0; transform: rotate(45deg); }
     .mob-menu-btn.open .icon-close  { opacity: 1; transform: rotate(0deg); }
-    .mob-menu-overlay { display: none; position: fixed; inset: 0; z-index: 150; background: rgba(0,0,0,0.5); opacity: 0; transition: opacity 0.25s; }
-    .mob-menu-overlay.open { opacity: 1; }
+    .mob-menu-overlay { display: none; position: fixed; inset: 0; z-index: 150; background: rgba(0,0,0,0.5); opacity: 0; pointer-events: none; pointer-events: none; transition: opacity 0.25s; }
+    .mob-menu-overlay.open { opacity: 1; pointer-events: auto; }
     .mob-menu-panel { position: fixed; bottom: 0; left: 0; right: 0; z-index: 160; background: rgba(15,23,42,0.97); border-top: 1px solid rgba(255,255,255,0.1); border-radius: 24px 24px 0 0; padding: 1rem 1.5rem 2.5rem; backdrop-filter: blur(30px); transform: translateY(100%); transition: transform 0.35s cubic-bezier(0.32,0.72,0,1); display: none; }
     .mob-menu-panel.open { transform: translateY(0); }
     .mob-menu-handle { width: 36px; height: 4px; background: rgba(255,255,255,0.2); border-radius: 2px; margin: 0 auto 1.5rem; }
