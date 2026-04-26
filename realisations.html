@@ -216,6 +216,9 @@
   .real-meta-item svg { width: 11px; height: 11px; }
   .real-meta-item.highlight { color: var(--terra); }
 
+  .real-voir-site { display:inline-flex; align-items:center; gap:0.5rem; margin-top:0.75rem; font-size:0.8rem; font-weight:600; color:var(--terra); text-decoration:none; font-family:'Inter',sans-serif; }
+  .real-voir-site:hover { text-decoration:underline; }
+
   /* ── Featured case ── */
   .featured-case {
     display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center;
@@ -476,6 +479,10 @@
       <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
       FAQ
     </a>
+    <a href="contact.html" class="mob-menu-link ">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Contact
+    </a>
     <a href="contact.html" class="mob-menu-cta">
       Démarrer mon projet
       <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -483,40 +490,12 @@
   </nav>
 </div>
 
-<section style="padding: 7rem 0 3rem" class="grid-bg">
-  <div class="container">
-    <div style="max-width:680px">
-      <div style="margin-bottom:1.5rem"><span class="mono">Réalisations</span></div>
-      <h1 style="font-weight:800;font-size:clamp(2.2rem,5vw,4rem);line-height:1.05;letter-spacing:-0.02em;color:var(--midnight);margin-bottom:1.2rem">Des sites qui <em style="font-style:normal;color:var(--terra)">convertissent</em><br>vraiment.</h1>
-      <p style="font-size:1.05rem;color:var(--steel);line-height:1.65;max-width:480px">Chaque projet, une stratégie différente. Un seul objectif : générer des clients.</p>
-    </div>
-  </div>
-</section>
 
-<!-- FEATURED CASE -->
+<!-- RÉALISATIONS -->
 <section class="section">
   <div class="container">
-    <div class="reveal" style="margin-bottom:1rem"><span class="mono">Cas client</span></div>
-    <h2 class="section-h2 reveal" style="margin-bottom:3rem">Le projet phare.</h2>
-
-    <div class="featured-case reveal" id="featured-spotlight">
-      <div class="featured-case-content">
-        <div class="featured-case-badge">
-          <span>⭐ Projet vedette</span>
-        </div>
-        <h3>Maison Leconte — Restaurant gastronomique</h3>
-        <p>Un restaurant gastronomique avec un site à la hauteur de l'expérience qu'il offre. Design épuré, chargement optimisé, réservation en ligne fluide.</p>
-        <div style="margin-top:1.75rem">
-          <a href="contact.html" class="cta-btn" style="font-size:0.9rem;padding:0.75rem 1.6rem">
-            Démarrer un projet similaire
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </div>
-      <div class="featured-case-img">
-        <img src="https://images.pexels.com/photos/3184183/pexels-photo-3184183.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Maison Leconte — site restaurant gastronomique" loading="lazy" />
-      </div>
-    </div>
+    <div class="reveal" style="margin-bottom:1rem"><span class="mono">Nos réalisations</span></div>
+    <h2 class="section-h2 reveal" style="margin-bottom:3rem">Des sites qui convertissent.</h2>
 
     <!-- FILTER TABS -->
     <div class="filter-row reveal" id="filter-row">
@@ -554,6 +533,10 @@
               14–21 jours
             </span>
           </div>
+          <a href="#" class="real-voir-site" target="_blank" rel="noopener">
+            Voir le site
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
         </a>
       </div>
 
@@ -581,6 +564,10 @@
               12 jours
             </span>
           </div>
+          <a href="#" class="real-voir-site" target="_blank" rel="noopener">
+            Voir le site
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
         </a>
       </div>
 
@@ -608,6 +595,10 @@
               10 jours
             </span>
           </div>
+          <a href="#" class="real-voir-site" target="_blank" rel="noopener">
+            Voir le site
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
         </a>
       </div>
 
@@ -635,6 +626,10 @@
               14–21 jours
             </span>
           </div>
+          <a href="#" class="real-voir-site" target="_blank" rel="noopener">
+            Voir le site
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
         </a>
       </div>
 
@@ -662,6 +657,10 @@
               14–21 jours
             </span>
           </div>
+          <a href="#" class="real-voir-site" target="_blank" rel="noopener">
+            Voir le site
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
         </a>
       </div>
 
@@ -689,6 +688,10 @@
               9 jours
             </span>
           </div>
+          <a href="#" class="real-voir-site" target="_blank" rel="noopener">
+            Voir le site
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
         </a>
       </div>
 
@@ -716,6 +719,10 @@
               14–21 jours
             </span>
           </div>
+          <a href="#" class="real-voir-site" target="_blank" rel="noopener">
+            Voir le site
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
         </a>
       </div>
 
@@ -743,6 +750,10 @@
               14–21 jours
             </span>
           </div>
+          <a href="#" class="real-voir-site" target="_blank" rel="noopener">
+            Voir le site
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
         </a>
       </div>
 
@@ -770,6 +781,10 @@
               11 jours
             </span>
           </div>
+          <a href="#" class="real-voir-site" target="_blank" rel="noopener">
+            Voir le site
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
         </a>
       </div>
 

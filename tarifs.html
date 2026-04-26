@@ -530,6 +530,10 @@
       <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
       FAQ
     </a>
+    <a href="contact.html" class="mob-menu-link ">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Contact
+    </a>
     <a href="contact.html" class="mob-menu-cta">
       Démarrer mon projet
       <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -637,27 +641,44 @@
   </div>
 </section>
 
-<!-- PORTFOLIO -->
-<section class="section grid-bg" id="portfolio">
+<!-- COMPARAISON CONCURRENCE -->
+<style>@media (max-width: 640px) { .concurrence-grid { grid-template-columns: 1fr !important; } }</style>
+<section class="section" style="background:var(--alabaster)">
   <div class="container">
     <div class="section-head">
-      <div class="reveal" style="margin-bottom:1rem"><span class="mono">02 / Portfolio</span></div>
-      <h2 class="section-h2 reveal">Des projets qui parlent d'eux-mêmes.</h2>
-      <p class="section-lead reveal">Chaque site est pensé pour le secteur et la clientèle de son propriétaire.</p>
+      <div class="reveal" style="margin-bottom:1rem"><span class="mono">02 / Pourquoi Fondation Studio</span></div>
+      <h2 class="section-h2 reveal">Pour le même prix,<br>la concurrence livre <em>des sites moyens.</em></h2>
+      <p class="section-lead reveal" style="max-width:600px">Trouver un site de ce niveau, même en cherchant bien, c'est rare. Trouver le même niveau au même prix, c'est pratiquement impossible.</p>
     </div>
-    <div class="portfolio-grid">
-      <div class="port-item reveal">
-        <div class="port-img"><img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69affc38021e7b844e061d97/76cd27f1f_generated_ef6fcb1b.png" alt="Restaurant Le Comptoir" loading="lazy" /><div class="port-overlay"><div class="port-arrow"><svg width="14" height="14" fill="none" stroke="#0F172A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></div>
-        <div class="port-cat">Restauration</div><h3>Restaurant Le Comptoir</h3><p>Site vitrine avec menu et réservation en ligne pour un restaurant gastronomique.</p>
+
+    <div class="concurrence-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem">
+      <div style="padding:2.5rem;background:white;border-radius:16px;border:1px solid var(--grid)">
+        <div style="font-family:'DM Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--steel);margin-bottom:1.5rem">Agence classique</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:1rem">
+          <li style="display:flex;gap:0.75rem;align-items:start;font-size:0.9rem;color:var(--steel)"><span style="color:#ef4444;font-size:1rem;flex-shrink:0">&#x2717;</span>Template générique, design identique à des milliers d'autres</li>
+          <li style="display:flex;gap:0.75rem;align-items:start;font-size:0.9rem;color:var(--steel)"><span style="color:#ef4444;font-size:1rem;flex-shrink:0">&#x2717;</span>WordPress lent, vulnérable, avec mises à jour qui cassent</li>
+          <li style="display:flex;gap:0.75rem;align-items:start;font-size:0.9rem;color:var(--steel)"><span style="color:#ef4444;font-size:1rem;flex-shrink:0">&#x2717;</span>3 à 6 mois de délai, pour un résultat souvent décevant</li>
+          <li style="display:flex;gap:0.75rem;align-items:start;font-size:0.9rem;color:var(--steel)"><span style="color:#ef4444;font-size:1rem;flex-shrink:0">&#x2717;</span>Aucune stratégie d'acquisition intégrée</li>
+          <li style="display:flex;gap:0.75rem;align-items:start;font-size:0.9rem;color:var(--steel)"><span style="color:#ef4444;font-size:1rem;flex-shrink:0">&#x2717;</span>Frais d'hébergement récurrents en plus</li>
+          <li style="display:flex;gap:0.75rem;align-items:start;font-size:0.9rem;color:var(--steel)"><span style="color:#ef4444;font-size:1rem;flex-shrink:0">&#x2717;</span>Prix similaire, voire plus élevé</li>
+        </ul>
       </div>
-      <div class="port-item reveal reveal-delay-1">
-        <div class="port-img"><img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69affc38021e7b844e061d97/1ca6a8f80_generated_9ff62e6a.png" alt="Boulangerie Maison Dorée" loading="lazy" /><div class="port-overlay"><div class="port-arrow"><svg width="14" height="14" fill="none" stroke="#0F172A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></div>
-        <div class="port-cat">Commerce local</div><h3>Boulangerie Maison Dorée</h3><p>Présentation des produits artisanaux et commande en ligne pour une boulangerie-pâtisserie.</p>
+      <div style="padding:2.5rem;background:var(--midnight);border-radius:16px;border:1px solid rgba(194,65,12,0.3)">
+        <div style="font-family:'DM Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--terra);margin-bottom:1.5rem">Fondation Studio</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:1rem">
+          <li style="display:flex;gap:0.75rem;align-items:start;font-size:0.9rem;color:rgba(255,255,255,0.8)"><span style="color:#22c55e;font-size:1rem;flex-shrink:0">&#x2713;</span>Design sur-mesure, code HTML pur, unique par définition</li>
+          <li style="display:flex;gap:0.75rem;align-items:start;font-size:0.9rem;color:rgba(255,255,255,0.8)"><span style="color:#22c55e;font-size:1rem;flex-shrink:0">&#x2713;</span>Site ultra-rapide, score PageSpeed proche de 100/100</li>
+          <li style="display:flex;gap:0.75rem;align-items:start;font-size:0.9rem;color:rgba(255,255,255,0.8)"><span style="color:#22c55e;font-size:1rem;flex-shrink:0">&#x2713;</span>Livraison en 14 à 21 jours, délai tenu</li>
+          <li style="display:flex;gap:0.75rem;align-items:start;font-size:0.9rem;color:rgba(255,255,255,0.8)"><span style="color:#22c55e;font-size:1rem;flex-shrink:0">&#x2713;</span>SEO intégré + possibilité Google Ads et Meta Ads</li>
+          <li style="display:flex;gap:0.75rem;align-items:start;font-size:0.9rem;color:rgba(255,255,255,0.8)"><span style="color:#22c55e;font-size:1rem;flex-shrink:0">&#x2713;</span>Hébergement gratuit illimité par notre méthode</li>
+          <li style="display:flex;gap:0.75rem;align-items:start;font-size:0.9rem;color:rgba(255,255,255,0.8)"><span style="color:#22c55e;font-size:1rem;flex-shrink:0">&#x2713;</span>Même budget, résultat dans une autre catégorie</li>
+        </ul>
       </div>
-      <div class="port-item reveal reveal-delay-2">
-        <div class="port-img"><img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69affc38021e7b844e061d97/faf4b0ddd_generated_dd2dbb34.png" alt="Cabinet Dupont" loading="lazy" /><div class="port-overlay"><div class="port-arrow"><svg width="14" height="14" fill="none" stroke="#0F172A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></div>
-        <div class="port-cat">Services professionnels</div><h3>Cabinet Dupont & Associés</h3><p>Site institutionnel avec prise de rendez-vous pour un cabinet d'avocats.</p>
-      </div>
+    </div>
+
+    <div style="margin-top:3rem;padding:2rem 2.5rem;background:rgba(194,65,12,0.06);border-radius:16px;border-left:3px solid var(--terra)">
+      <p style="font-size:1rem;font-weight:600;color:var(--midnight);margin-bottom:0.5rem">Plus qu'un site : une machine à générer des clients.</p>
+      <p style="font-size:0.9rem;color:var(--steel);line-height:1.7">Notre offre ne se limite pas à la création. Elle inclut un référencement naturel optimisé dès le lancement, et si vous souhaitez aller plus loin, nous pouvons déployer des campagnes Google Ads et Meta Ads (Instagram + Facebook) pour transformer votre site en source de revenus automatique.</p>
     </div>
   </div>
 </section>
