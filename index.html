@@ -655,6 +655,11 @@
     font-size: 0.75rem; color: var(--steel);
   }
   .prob-db-footer strong { color: var(--midnight); }
+  /* Fix iOS background-attachment:fixed */
+   (hover: none) and (pointer: coarse) {
+    * { background-attachment: scroll !important; }
+  }
+
 
 </style>
 </head>

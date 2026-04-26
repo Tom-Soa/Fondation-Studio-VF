@@ -171,10 +171,9 @@
   .real-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
   @media (max-width: 920px) { .real-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 580px) { .real-grid { grid-template-columns: 1fr; } }
-  @media (max-width: 580px) { .real-item a { padding: 0; } .real-item h3 { font-size: 1rem; } }
+  @media (max-width: 580px) { .real-item h3 { font-size: 1rem; } }
 
-  .real-item { cursor: default; }
-  .real-item a { display: block; color: inherit; text-decoration: none; }
+  .real-item { cursor: pointer; }
 
   .real-img-wrap {
     position: relative; border-radius: 16px; overflow: hidden;
@@ -185,39 +184,74 @@
     transition: transform 0.4s var(--ease-out);
     display: block;
   }
-  .real-img-overlay {
-    position: absolute; inset: 0;
-    background: rgba(15,23,42,0);
-    transition: background 0.25s var(--ease-out);
-    display: flex; align-items: flex-end; padding: 1.1rem;
-  }
-  .real-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; opacity: 0; transform: translateY(8px); transition: opacity 0.2s var(--ease-out), transform 0.2s var(--ease-out); }
-  .real-tag { background: white; border-radius: 4px; padding: 0.22rem 0.65rem; font-family: 'Inter', sans-serif; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--midnight); font-weight: 600; }
-  .real-link-icon {
-    position: absolute; top: 1rem; right: 1rem;
-    width: 34px; height: 34px; background: white; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; transform: scale(0.85);
-    transition: opacity 0.2s var(--ease-out), transform 0.2s var(--ease-out);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.18);
-  }
-  .real-link-icon svg { width: 14px; height: 14px; color: var(--midnight); }
   @media (hover: hover) and (pointer: fine) {
-    .real-item a:hover .real-img-wrap img { transform: scale(1.04); }
-    .real-item a:hover .real-img-overlay { background: rgba(15,23,42,0.3); }
-    .real-item a:hover .real-tags { opacity: 1; transform: translateY(0); }
-    .real-item a:hover .real-link-icon { opacity: 1; transform: scale(1); }
+    .real-item:hover .real-img-wrap img { transform: scale(1.04); }
   }
+
+  .real-voir-site-overlay {
+    position: absolute; bottom: 0.9rem; right: 0.9rem; z-index: 2;
+    background: white; color: var(--midnight);
+    border-radius: 100px; padding: 0.45rem 1rem;
+    font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 700;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    transition: transform 0.2s var(--ease-spring), box-shadow 0.2s;
+  }
+  .real-voir-site-overlay:hover {
+    transform: scale(1.07);
+    box-shadow: 0 4px 22px rgba(0,0,0,0.28);
+  }
+  .real-voir-site-soon {
+    background: rgba(255,255,255,0.7); color: var(--steel);
+    font-style: italic; cursor: default;
+  }
+  .real-voir-site-soon:hover { transform: none; box-shadow: 0 2px 12px rgba(0,0,0,0.18); }
+
   .real-cat { font-family: 'DM Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--terra); margin-bottom: 0.35rem; }
   .real-item h3 { font-weight: 700; font-size: 1.05rem; margin-bottom: 0.35rem; line-height: 1.3; }
   .real-item p { color: var(--steel); font-size: 0.85rem; line-height: 1.6; }
-  .real-meta { display: flex; gap: 1.25rem; margin-top: 0.6rem; flex-wrap: wrap; }
-  .real-meta-item { font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.07em; color: rgba(15,23,42,0.3); display: flex; align-items: center; gap: 0.3rem; }
-  .real-meta-item svg { width: 11px; height: 11px; }
-  .real-meta-item.highlight { color: var(--terra); }
 
-  .real-voir-site { display:inline-flex; align-items:center; gap:0.5rem; margin-top:0.75rem; font-size:0.8rem; font-weight:600; color:var(--terra); text-decoration:none; font-family:'Inter',sans-serif; }
-  .real-voir-site:hover { text-decoration:underline; }
+  /* ── Modal réalisation ── */
+  .real-modal-overlay {
+    position: fixed; inset: 0; z-index: 400;
+    background: rgba(0,0,0,0.6); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    display: flex; align-items: center; justify-content: center; padding: 1.5rem;
+    opacity: 0; pointer-events: none; transition: opacity 0.25s;
+  }
+  .real-modal-overlay.open { opacity: 1; pointer-events: auto; }
+  .real-modal {
+    background: white; border-radius: 20px; max-width: 640px; width: 100%;
+    max-height: 90vh; overflow-y: auto; position: relative;
+    transform: scale(0.94) translateY(24px);
+    transition: transform 0.35s var(--ease-spring);
+  }
+  .real-modal-overlay.open .real-modal { transform: scale(1) translateY(0); }
+  .real-modal-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 20px 20px 0 0; display: block; }
+  .real-modal-body { padding: 1.75rem 2rem 2rem; }
+  .real-modal-cat { font-family: 'DM Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--terra); margin-bottom: 0.5rem; }
+  .real-modal-title { font-weight: 800; font-size: 1.5rem; letter-spacing: -0.015em; margin-bottom: 0.9rem; }
+  .real-modal-desc { color: var(--steel); line-height: 1.75; font-size: 0.95rem; margin-bottom: 1.5rem; }
+  .real-modal-cta {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--terra); color: white; border-radius: 100px;
+    padding: 0.75rem 1.75rem; font-weight: 700; font-size: 0.9rem;
+    text-decoration: none; transition: background 0.15s, transform 0.15s;
+  }
+  .real-modal-cta:hover { background: var(--terra-hover); }
+  .real-modal-cta:active { transform: scale(0.97); }
+  .real-modal-close {
+    position: absolute; top: 0.9rem; right: 0.9rem; z-index: 10;
+    width: 36px; height: 36px; background: rgba(0,0,0,0.45);
+    border: none; border-radius: 50%; color: white;
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+    backdrop-filter: blur(4px); transition: background 0.15s;
+  }
+  .real-modal-close:hover { background: rgba(0,0,0,0.65); }
+
+  /* ── Fix iOS background-attachment:fixed ── */
+  @media (hover: none) and (pointer: coarse) {
+    * { background-attachment: scroll !important; }
+  }
 
   /* ── Featured case ── */
   .featured-case {
@@ -506,289 +540,8 @@
       <button class="filter-btn" data-filter="startup">Startup & Saas</button>
     </div>
 
-    <!-- RÉALISATIONS GRID -->
-    <div class="real-grid" id="real-grid">
-
-      <!-- 1 -->
-      <div class="real-item reveal" data-cat="restaurant">
-        <a href="contact.html">
-          <div class="real-img-wrap">
-            <img src="https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Bistrot du Marché" loading="lazy" />
-            <div class="real-img-overlay">
-              <div class="real-tags">
-                <span class="real-tag">Next.js</span>
-                <span class="real-tag">Réservation</span>
-              </div>
-            </div>
-            <div class="real-link-icon">
-              <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </div>
-          </div>
-          <div class="real-cat">Restaurant</div>
-          <h3>Bistrot du Marché</h3>
-          <p>Site vitrine + carte digitale + réservation en ligne pour un bistrot parisien.</p>
-          <div class="real-meta">
-            <span class="real-meta-item">
-              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              14–21 jours
-            </span>
-          </div>
-          <a href="#" class="real-voir-site" target="_blank" rel="noopener">
-            Voir le site
-            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          </a>
-        </a>
-      </div>
-
-      <!-- 2 -->
-      <div class="real-item reveal reveal-delay-1" data-cat="artisan">
-        <a href="contact.html">
-          <div class="real-img-wrap">
-            <img src="https://images.pexels.com/photos/1109543/pexels-photo-1109543.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Menuiserie Vallet" loading="lazy" />
-            <div class="real-img-overlay">
-              <div class="real-tags">
-                <span class="real-tag">Vitrine</span>
-                <span class="real-tag">Galerie</span>
-              </div>
-            </div>
-            <div class="real-link-icon">
-              <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </div>
-          </div>
-          <div class="real-cat">Artisan</div>
-          <h3>Menuiserie Vallet</h3>
-          <p>Portfolio haute qualité pour un menuisier ébéniste qui voulait attirer une clientèle haut de gamme.</p>
-          <div class="real-meta">
-            <span class="real-meta-item">
-              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              12 jours
-            </span>
-          </div>
-          <a href="#" class="real-voir-site" target="_blank" rel="noopener">
-            Voir le site
-            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          </a>
-        </a>
-      </div>
-
-      <!-- 3 -->
-      <div class="real-item reveal reveal-delay-2" data-cat="pro">
-        <a href="contact.html">
-          <div class="real-img-wrap">
-            <img src="https://images.pexels.com/photos/1170979/pexels-photo-1170979.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Cabinet Moreau Droit" loading="lazy" />
-            <div class="real-img-overlay">
-              <div class="real-tags">
-                <span class="real-tag">Avocat</span>
-                <span class="real-tag">SEO</span>
-              </div>
-            </div>
-            <div class="real-link-icon">
-              <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </div>
-          </div>
-          <div class="real-cat">Professionnel libéral</div>
-          <h3>Cabinet Moreau Droit</h3>
-          <p>Site institutionnel pour un cabinet d'avocats : crédibilité, prise de contact, SEO local.</p>
-          <div class="real-meta">
-            <span class="real-meta-item">
-              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              10 jours
-            </span>
-          </div>
-          <a href="#" class="real-voir-site" target="_blank" rel="noopener">
-            Voir le site
-            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          </a>
-        </a>
-      </div>
-
-      <!-- 4 -->
-      <div class="real-item reveal" data-cat="startup">
-        <a href="contact.html">
-          <div class="real-img-wrap">
-            <img src="https://images.pexels.com/photos/3184298/pexels-photo-3184298.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Helio SaaS" loading="lazy" />
-            <div class="real-img-overlay">
-              <div class="real-tags">
-                <span class="real-tag">SaaS</span>
-                <span class="real-tag">Landing</span>
-              </div>
-            </div>
-            <div class="real-link-icon">
-              <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </div>
-          </div>
-          <div class="real-cat">Startup</div>
-          <h3>Helio  :  SaaS RH</h3>
-          <p>Landing page haute conversion pour une startup RH en phase d'acquisition. Animation, preuve sociale, onboarding.</p>
-          <div class="real-meta">
-            <span class="real-meta-item">
-              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              14–21 jours
-            </span>
-          </div>
-          <a href="#" class="real-voir-site" target="_blank" rel="noopener">
-            Voir le site
-            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          </a>
-        </a>
-      </div>
-
-      <!-- 5 -->
-      <div class="real-item reveal reveal-delay-1" data-cat="artisan">
-        <a href="contact.html">
-          <div class="real-img-wrap">
-            <img src="https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Fleurs & Sens" loading="lazy" />
-            <div class="real-img-overlay">
-              <div class="real-tags">
-                <span class="real-tag">E-commerce</span>
-                <span class="real-tag">Next.js</span>
-              </div>
-            </div>
-            <div class="real-link-icon">
-              <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </div>
-          </div>
-          <div class="real-cat">Commerce</div>
-          <h3>Fleurs & Sens</h3>
-          <p>Boutique en ligne pour une fleuriste artisanale : catalogue produits, commande en ligne, livraison locale.</p>
-          <div class="real-meta">
-            <span class="real-meta-item">
-              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              14–21 jours
-            </span>
-          </div>
-          <a href="#" class="real-voir-site" target="_blank" rel="noopener">
-            Voir le site
-            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          </a>
-        </a>
-      </div>
-
-      <!-- 6 -->
-      <div class="real-item reveal reveal-delay-2" data-cat="pro">
-        <a href="contact.html">
-          <div class="real-img-wrap">
-            <img src="https://images.pexels.com/photos/3779409/pexels-photo-3779409.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Dr. Aurélie Blanc" loading="lazy" />
-            <div class="real-img-overlay">
-              <div class="real-tags">
-                <span class="real-tag">Santé</span>
-                <span class="real-tag">Agenda</span>
-              </div>
-            </div>
-            <div class="real-link-icon">
-              <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </div>
-          </div>
-          <div class="real-cat">Santé</div>
-          <h3>Dr. Aurélie Blanc  :  Ostéopathie</h3>
-          <p>Site de présentation + prise de rendez-vous en ligne pour une ostéopathe libérale. Simple, rassurante, accessible.</p>
-          <div class="real-meta">
-            <span class="real-meta-item">
-              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              9 jours
-            </span>
-          </div>
-          <a href="#" class="real-voir-site" target="_blank" rel="noopener">
-            Voir le site
-            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          </a>
-        </a>
-      </div>
-
-      <!-- 7 -->
-      <div class="real-item reveal" data-cat="restaurant">
-        <a href="contact.html">
-          <div class="real-img-wrap">
-            <img src="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=700" alt="L'Atelier Fumé" loading="lazy" />
-            <div class="real-img-overlay">
-              <div class="real-tags">
-                <span class="real-tag">Brasserie</span>
-                <span class="real-tag">Menu digital</span>
-              </div>
-            </div>
-            <div class="real-link-icon">
-              <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </div>
-          </div>
-          <div class="real-cat">Restaurant</div>
-          <h3>L'Atelier Fumé</h3>
-          <p>BBQ moderne avec menu digital QR code, galerie photos, commande click & collect.</p>
-          <div class="real-meta">
-            <span class="real-meta-item">
-              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              14–21 jours
-            </span>
-          </div>
-          <a href="#" class="real-voir-site" target="_blank" rel="noopener">
-            Voir le site
-            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          </a>
-        </a>
-      </div>
-
-      <!-- 8 -->
-      <div class="real-item reveal reveal-delay-1" data-cat="startup">
-        <a href="contact.html">
-          <div class="real-img-wrap">
-            <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Planify" loading="lazy" />
-            <div class="real-img-overlay">
-              <div class="real-tags">
-                <span class="real-tag">App</span>
-                <span class="real-tag">Animations</span>
-              </div>
-            </div>
-            <div class="real-link-icon">
-              <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </div>
-          </div>
-          <div class="real-cat">Startup</div>
-          <h3>Planify  :  Gestion de planning</h3>
-          <p>Site marketing animé pour une app de gestion d'équipes. Scroll storytelling, démo interactive.</p>
-          <div class="real-meta">
-            <span class="real-meta-item">
-              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              14–21 jours
-            </span>
-          </div>
-          <a href="#" class="real-voir-site" target="_blank" rel="noopener">
-            Voir le site
-            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          </a>
-        </a>
-      </div>
-
-      <!-- 9 -->
-      <div class="real-item reveal reveal-delay-2" data-cat="artisan">
-        <a href="contact.html">
-          <div class="real-img-wrap">
-            <img src="https://images.pexels.com/photos/1416736/pexels-photo-1416736.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Ébénisterie Durand" loading="lazy" />
-            <div class="real-img-overlay">
-              <div class="real-tags">
-                <span class="real-tag">Portfolio</span>
-                <span class="real-tag">Galerie</span>
-              </div>
-            </div>
-            <div class="real-link-icon">
-              <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </div>
-          </div>
-          <div class="real-cat">Artisan</div>
-          <h3>Ébénisterie Durand</h3>
-          <p>Portfolio visuel pour un ébéniste passionné : galerie immersive, devis en ligne, témoignages clients.</p>
-          <div class="real-meta">
-            <span class="real-meta-item">
-              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              11 jours
-            </span>
-          </div>
-          <a href="#" class="real-voir-site" target="_blank" rel="noopener">
-            Voir le site
-            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          </a>
-        </a>
-      </div>
-
-    </div><!-- /real-grid -->
+    <!-- RÉALISATIONS GRID (rendu dynamique par JS) -->
+    <div class="real-grid" id="real-grid"></div><!-- /real-grid -->
   </div>
 </section>
 
@@ -851,156 +604,225 @@
 </footer>
 
 <script>
-  // ── Pill Nav lamp ──
-  (function() {
-    const lamp  = document.getElementById('pill-lamp');
-    const items = document.querySelectorAll('.pill-item');
-    function moveLamp(el) {
-      if (!lamp || !el) return;
-      const inner = document.querySelector('.pill-inner');
-      if (!inner) return;
-      const iR = inner.getBoundingClientRect();
-      const eR = el.getBoundingClientRect();
-      lamp.style.left  = (eR.left - iR.left) + 'px';
-      lamp.style.width = eR.width + 'px';
-    }
-    requestAnimationFrame(() => {
-      const active = document.querySelector('.pill-item.active');
-      if (active) moveLamp(active);
+  // ── Données projets (modifiables via admin.html) ──
+  var LS = {
+    get: function(k, d) { try { var v = localStorage.getItem('fs_admin_' + k); return v ? JSON.parse(v) : d; } catch(e) { return d; } }
+  };
+
+  var defaultProjects = [
+    { name: 'Bistrot du Marché', sector: 'Restaurant', category: 'restaurant',
+      desc: 'Site vitrine + carte digitale + réservation en ligne pour un bistrot parisien.',
+      detailDesc: 'Conception complète du site vitrine avec un système de réservation en ligne fluide. Design élégant et appétissant, optimisé pour transformer les visiteurs en réservations. SEO local intégré dès le lancement.',
+      imageUrl: 'https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#' },
+    { name: 'Menuiserie Vallet', sector: 'Artisan', category: 'artisan',
+      desc: 'Portfolio haute qualité pour un menuisier ébéniste qui voulait attirer une clientèle haut de gamme.',
+      detailDesc: 'Site vitrine premium avec galerie de réalisations immersive. Formulaire de devis personnalisé, photos professionnelles intégrées. Résultat : +60% de demandes qualifiées dès le premier mois.',
+      imageUrl: 'https://images.pexels.com/photos/1109543/pexels-photo-1109543.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#' },
+    { name: 'Cabinet Moreau Droit', sector: 'Professionnel libéral', category: 'pro',
+      desc: 'Site institutionnel pour un cabinet d\'avocats : crédibilité, prise de contact, SEO local.',
+      detailDesc: 'Site sobre et professionnel pour un cabinet d\'avocats parisien. Architecture pensée pour établir la confiance et faciliter la prise de contact. SEO local optimisé pour les recherches "avocat [ville]".',
+      imageUrl: 'https://images.pexels.com/photos/1170979/pexels-photo-1170979.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#' },
+    { name: 'Helio SaaS RH', sector: 'Startup', category: 'startup',
+      desc: 'Landing page haute conversion pour une startup RH en phase d\'acquisition.',
+      detailDesc: 'Landing page animée pour une startup RH : storytelling scroll, preuve sociale, onboarding guidé. Taux de conversion optimisé par des tests A/B sur les CTA et la hiérarchie visuelle.',
+      imageUrl: 'https://images.pexels.com/photos/3184298/pexels-photo-3184298.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#' },
+    { name: 'Fleurs & Sens', sector: 'Commerce', category: 'artisan',
+      desc: 'Boutique en ligne pour une fleuriste artisanale : catalogue produits, commande en ligne, livraison locale.',
+      detailDesc: 'E-commerce minimaliste et élégant pour une fleuriste artisanale. Catalogue produits avec filtres par occasion, système de commande simplifié, gestion des créneaux de livraison locale.',
+      imageUrl: 'https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#' },
+    { name: 'Dr. Aurélie Blanc Ostéopathie', sector: 'Santé', category: 'pro',
+      desc: 'Site de présentation + prise de rendez-vous en ligne pour une ostéopathe libérale.',
+      detailDesc: 'Site rassurant et accessible pour une ostéopathe libérale. Présentation claire des techniques, prise de rendez-vous en ligne intégrée, section FAQ pour rassurer les nouveaux patients.',
+      imageUrl: 'https://images.pexels.com/photos/3779409/pexels-photo-3779409.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#' },
+    { name: 'L\'Atelier Fumé', sector: 'Restaurant', category: 'restaurant',
+      desc: 'BBQ moderne avec menu digital QR code, galerie photos, commande click & collect.',
+      detailDesc: 'Identité digitale forte pour un restaurant BBQ : menu QR code dynamique, galerie appétissante, commande click & collect intégrée. Fort impact sur les réservations du week-end.',
+      imageUrl: 'https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#' },
+    { name: 'Planify Gestion de planning', sector: 'Startup', category: 'startup',
+      desc: 'Site marketing animé pour une app de gestion d\'équipes. Scroll storytelling, démo interactive.',
+      detailDesc: 'Site marketing haute performance pour une app B2B de gestion d\'équipes. Scroll storytelling, animations au défilement, démo interactive intégrée. Optimisé pour les campagnes Google Ads.',
+      imageUrl: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#' },
+    { name: 'Ébénisterie Durand', sector: 'Artisan', category: 'artisan',
+      desc: 'Portfolio visuel pour un ébéniste passionné : galerie immersive, devis en ligne, témoignages clients.',
+      detailDesc: 'Portfolio immersif en plein écran pour un ébéniste d\'exception. Galerie plein format, formulaire de devis sur-mesure, témoignages clients certifiés. Référencement optimisé pour les recherches "ébéniste artisan".',
+      imageUrl: 'https://images.pexels.com/photos/1416736/pexels-photo-1416736.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#' }
+  ];
+
+  // ── Reveal observer ──
+  var revealObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+  }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+
+  function observeReveal() {
+    document.querySelectorAll('.reveal:not(.visible)').forEach(function(el) { revealObs.observe(el); });
+  }
+
+  function escHtml(str) {
+    return String(str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // ── Rendu des cartes ──
+  function renderProjects(projects) {
+    var grid = document.getElementById('real-grid');
+    grid.innerHTML = '';
+    var delays = ['', ' reveal-delay-1', ' reveal-delay-2'];
+    projects.forEach(function(proj, i) {
+      var item = document.createElement('div');
+      item.className = 'real-item reveal' + delays[i % 3];
+      item.dataset.cat = proj.category || 'all';
+
+      var hasSite = proj.siteUrl && proj.siteUrl !== '#' && proj.siteUrl !== '';
+      var siteBtn = hasSite
+        ? '<a href="' + escHtml(proj.siteUrl) + '" class="real-voir-site-overlay" target="_blank" rel="noopener" onclick="event.stopPropagation()">Voir le site <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>'
+        : '<span class="real-voir-site-overlay real-voir-site-soon">Bientôt en ligne</span>';
+
+      item.innerHTML = '<div class="real-img-wrap"><img src="' + escHtml(proj.imageUrl) + '" alt="' + escHtml(proj.name) + '" loading="lazy" />' + siteBtn + '</div><div class="real-cat">' + escHtml(proj.sector) + '</div><h3>' + escHtml(proj.name) + '</h3><p>' + escHtml(proj.desc) + '</p>';
+
+      item.addEventListener('click', function(e) {
+        if (!e.target.closest('.real-voir-site-overlay')) openModal(proj);
+      });
+      grid.appendChild(item);
     });
-  })();
+    observeReveal();
+  }
 
-  // ── Reveal on scroll ──
-  (function() {
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-    }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
-    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-  })();
+  // ── Modal ──
+  function openModal(proj) {
+    var overlay = document.getElementById('real-modal');
+    var hasSite = proj.siteUrl && proj.siteUrl !== '#' && proj.siteUrl !== '';
+    overlay.querySelector('.real-modal-img').src = proj.imageUrl || '';
+    overlay.querySelector('.real-modal-img').alt = proj.name || '';
+    overlay.querySelector('.real-modal-cat').textContent = proj.sector || '';
+    overlay.querySelector('.real-modal-title').textContent = proj.name || '';
+    overlay.querySelector('.real-modal-desc').textContent = proj.detailDesc || proj.desc || '';
+    var cta = overlay.querySelector('.real-modal-cta');
+    if (hasSite) {
+      cta.href = proj.siteUrl;
+      cta.style.display = '';
+    } else {
+      cta.style.display = 'none';
+    }
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('real-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
 
-  // ── Hover button particles ──
+  // ── Init ──
   (function() {
-    document.querySelectorAll('.cta-btn, .btn-ghost').forEach(btn => {
-      let active = false, last = 0;
-      const isPrimary = btn.classList.contains('cta-btn');
-      btn.addEventListener('pointerenter', () => { active = true; });
-      btn.addEventListener('pointerleave', () => { active = false; });
-      btn.addEventListener('pointermove', e => {
+    // Pill Nav lamp
+    var lamp = document.getElementById('pill-lamp');
+    requestAnimationFrame(function() {
+      var active = document.querySelector('.pill-item.active');
+      if (active && lamp) {
+        var inner = document.querySelector('.pill-inner');
+        var iR = inner.getBoundingClientRect(), eR = active.getBoundingClientRect();
+        lamp.style.left = (eR.left - iR.left) + 'px';
+        lamp.style.width = eR.width + 'px';
+      }
+    });
+
+    // Charger projets (admin localStorage ou defaults)
+    var saved = LS.get('realisations', null);
+    var projects = (saved && saved.projects && saved.projects.length) ? saved.projects : defaultProjects;
+    renderProjects(projects);
+
+    // Reveal pour éléments non-dynamiques
+    observeReveal();
+
+    // Hover button particles
+    document.querySelectorAll('.cta-btn, .btn-ghost').forEach(function(btn) {
+      var active = false, last = 0;
+      var isPrimary = btn.classList.contains('cta-btn');
+      btn.addEventListener('pointerenter', function() { active = true; });
+      btn.addEventListener('pointerleave', function() { active = false; });
+      btn.addEventListener('pointermove', function(e) {
         if (!active) return;
-        const now = Date.now(); if (now - last < 100) return; last = now;
-        const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left, y = e.clientY - rect.top, xRatio = x / btn.offsetWidth;
-        const c = document.createElement('div'); c.className = 'hbr';
+        var now = Date.now(); if (now - last < 100) return; last = now;
+        var rect = btn.getBoundingClientRect();
+        var x = e.clientX - rect.left, y = e.clientY - rect.top, xRatio = x / btn.offsetWidth;
+        var c = document.createElement('div'); c.className = 'hbr';
         c.style.left = x + 'px'; c.style.top = y + 'px';
         c.style.background = isPrimary
-          ? `linear-gradient(to right, rgba(255,180,100,0.9) ${xRatio*100}%, rgba(194,65,12,0.6) ${xRatio*100}%)`
-          : `linear-gradient(to right, #ccc ${xRatio*100}%, #888 ${xRatio*100}%)`;
+          ? 'linear-gradient(to right, rgba(255,180,100,0.9) ' + (xRatio*100) + '%, rgba(194,65,12,0.6) ' + (xRatio*100) + '%)'
+          : 'linear-gradient(to right, #ccc ' + (xRatio*100) + '%, #888 ' + (xRatio*100) + '%)';
         btn.appendChild(c);
-        requestAnimationFrame(() => c.classList.add('in'));
-        setTimeout(() => { c.classList.remove('in'); c.classList.add('out'); }, 1000);
-        setTimeout(() => c.remove(), 2200);
+        requestAnimationFrame(function() { c.classList.add('in'); });
+        setTimeout(function() { c.classList.remove('in'); c.classList.add('out'); }, 1000);
+        setTimeout(function() { c.remove(); }, 2200);
       });
     });
-  })();
 
-  // ── Corner cards ──
-  (function() {
-    document.querySelectorAll('.corners-card').forEach(card => {
-      ['c-tl','c-tr','c-bl','c-br'].forEach(cn => {
-        if (!card.querySelector('.' + cn)) {
-          const d = document.createElement('div'); d.className = cn; card.appendChild(d);
-        }
-      });
-      card.addEventListener('mousemove', e => {
-        const r = card.getBoundingClientRect();
-        card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-        card.style.setProperty('--my', (e.clientY - r.top) + 'px');
-        card.style.setProperty('--glow', '1');
-      });
-      card.addEventListener('mouseleave', () => card.style.setProperty('--glow', '0'));
-    });
-  })();
-
-  // ── Featured case spotlight ──
-  (function() {
-    const card = document.getElementById('featured-spotlight');
-    if (!card) return;
-    card.addEventListener('mousemove', e => {
-      const r = card.getBoundingClientRect();
-      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
-      card.style.setProperty('--glow', '1');
-    });
-    card.addEventListener('mouseleave', () => card.style.setProperty('--glow', '0'));
-  })();
-
-  // ── Filter tabs ──
-  (function() {
-    const btns = document.querySelectorAll('.filter-btn');
-    const items = document.querySelectorAll('.real-item');
-
-    btns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        btns.forEach(b => b.classList.remove('active'));
+    // Filter tabs
+    var filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        filterBtns.forEach(function(b) { b.classList.remove('active'); });
         btn.classList.add('active');
-
-        const filter = btn.dataset.filter;
-        items.forEach((item, i) => {
-          const match = filter === 'all' || item.dataset.cat === filter;
+        var filter = btn.dataset.filter;
+        document.querySelectorAll('.real-item').forEach(function(item, i) {
+          var match = filter === 'all' || item.dataset.cat === filter;
+          item.style.display = match ? '' : 'none';
           if (match) {
-            item.style.display = '';
-            // Re-trigger stagger on filtered items
             item.classList.remove('visible');
-            const delay = (i % 3) * 60;
-            setTimeout(() => item.classList.add('visible'), delay + 40);
-          } else {
-            item.style.display = 'none';
+            setTimeout(function() { item.classList.add('visible'); }, (i % 3) * 60 + 40);
           }
         });
       });
     });
-  })();
 
-  // ── Toast ──
-  function showToast(msg, ok = true) {
-    const t = document.getElementById('toast');
-    document.getElementById('toast-msg').textContent = msg;
-    t.querySelector('.toast-dot').style.background = ok ? '#22c55e' : '#f87171';
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 4000);
-  }
+    // Modal close
+    var modalOverlay = document.getElementById('real-modal');
+    modalOverlay.addEventListener('click', function(e) {
+      if (e.target === modalOverlay) closeModal();
+    });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 
-  // ── Mobile menu ──
-  (function() {
-    const btn = document.getElementById('mob-btn');
-    const overlay = document.getElementById('mob-overlay');
-    const panel = document.getElementById('mob-panel');
-    if (!btn) return;
-    function open() { btn.classList.add('open'); overlay.classList.add('open'); panel.classList.add('open'); document.body.style.overflow = 'hidden'; }
-    function close() { btn.classList.remove('open'); overlay.classList.remove('open'); panel.classList.remove('open'); document.body.style.overflow = ''; }
-    btn.addEventListener('click', () => btn.classList.contains('open') ? close() : open());
-    overlay.addEventListener('click', close);
-    // close on link click
-    panel.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
-  })();
+    // Mobile menu
+    var mobBtn = document.getElementById('mob-btn');
+    var mobOverlay = document.getElementById('mob-overlay');
+    var mobPanel = document.getElementById('mob-panel');
+    if (mobBtn) {
+      function mobOpen() { mobBtn.classList.add('open'); mobOverlay.classList.add('open'); mobPanel.classList.add('open'); document.body.style.overflow = 'hidden'; }
+      function mobClose() { mobBtn.classList.remove('open'); mobOverlay.classList.remove('open'); mobPanel.classList.remove('open'); document.body.style.overflow = ''; }
+      mobBtn.addEventListener('click', function() { mobBtn.classList.contains('open') ? mobClose() : mobOpen(); });
+      mobOverlay.addEventListener('click', mobClose);
+      mobPanel.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', mobClose); });
+    }
 
-  // Cookie consent
-  (function() {
+    // Cookie consent
     var banner = document.getElementById('cookie-banner');
-    if (!localStorage.getItem('fs_cookie_consent')) {
+    if (banner && !localStorage.getItem('fs_cookie_consent')) {
       setTimeout(function() { banner.classList.add('visible'); }, 1200);
     }
-    document.getElementById('cookie-accept').addEventListener('click', function() {
-      localStorage.setItem('fs_cookie_consent', 'accepted');
-      banner.classList.remove('visible');
-    });
-    document.getElementById('cookie-refuse').addEventListener('click', function() {
-      localStorage.setItem('fs_cookie_consent', 'refused');
-      banner.classList.remove('visible');
-    });
+    var btnAccept = document.getElementById('cookie-accept');
+    var btnRefuse = document.getElementById('cookie-refuse');
+    if (btnAccept) btnAccept.addEventListener('click', function() { localStorage.setItem('fs_cookie_consent', 'accepted'); banner.classList.remove('visible'); });
+    if (btnRefuse) btnRefuse.addEventListener('click', function() { localStorage.setItem('fs_cookie_consent', 'refused'); banner.classList.remove('visible'); });
   })();
 
 </script>
+
+<!-- MODAL RÉALISATION -->
+<div id="real-modal" class="real-modal-overlay" role="dialog" aria-modal="true" aria-label="Détail de la réalisation">
+  <div class="real-modal">
+    <button class="real-modal-close" onclick="closeModal()" aria-label="Fermer">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <img class="real-modal-img" src="" alt="" />
+    <div class="real-modal-body">
+      <div class="real-modal-cat"></div>
+      <h2 class="real-modal-title"></h2>
+      <p class="real-modal-desc"></p>
+      <a href="#" class="real-modal-cta" target="_blank" rel="noopener">
+        Voir le site
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
 
 <!-- COOKIE CONSENT BANNER -->
 <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Gestion des cookies" aria-live="polite">

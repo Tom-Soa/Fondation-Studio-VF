@@ -479,9 +479,14 @@
       document.querySelectorAll('.project-item').forEach(item => {
         projects.push({
           name: item.querySelector('.proj-name').value,
+          sector: item.querySelector('.proj-sector').value,
+          category: item.querySelector('.proj-category').value,
           desc: item.querySelector('.proj-desc').value,
-          url: item.querySelector('.proj-url').value,
-          sector: item.querySelector('.proj-sector').value
+          detailDesc: item.querySelector('.proj-detail-desc').value,
+          imageUrl: item.querySelector('.proj-image-url').value,
+          siteUrl: item.querySelector('.proj-url').value,
+          price: item.querySelector('.proj-price').value,
+          notified: item.querySelector('.proj-notified').checked
         });
       });
       LS.set('realisations', { projects });
@@ -538,10 +543,11 @@
   }
 
   /* ── Realisations ── */
+  const categoryLabels = { restaurant: 'Restaurant', artisan: 'Artisan & Commerce', pro: 'Professionnel liberal', startup: 'Startup & SaaS' };
   const defaultProjects = [
-    { name: 'Maison Leconte', sector: 'Restaurant gastronomique', desc: 'Design epure, chargement optimise, reservation en ligne fluide.', url: '#' },
-    { name: 'Menuiserie Vallet', sector: 'Artisan', desc: 'Portfolio haute qualite pour attirer une clientele haut de gamme.', url: '#' },
-    { name: 'Cabinet Moreau Droit', sector: 'Professionnel liberal', desc: 'Site institutionnel pour un cabinet d\'avocats : credibilite, SEO local.', url: '#' },
+    { name: 'Bistrot du Marche', sector: 'Restaurant', category: 'restaurant', desc: 'Site vitrine + carte digitale + reservation en ligne pour un bistrot parisien.', detailDesc: 'Conception complete du site vitrine avec reservation en ligne fluide. Design elegant et appetissant, optimise pour convertir les visiteurs en reservations. SEO local integre des le lancement.', imageUrl: 'https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#', price: '', notified: false },
+    { name: 'Menuiserie Vallet', sector: 'Artisan', category: 'artisan', desc: 'Portfolio haute qualite pour un menuisier ebeniste.', detailDesc: 'Site vitrine premium avec galerie de realisations immersive. Formulaire de devis personnalise, photos professionnelles integrees.', imageUrl: 'https://images.pexels.com/photos/1109543/pexels-photo-1109543.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#', price: '', notified: false },
+    { name: 'Cabinet Moreau Droit', sector: 'Professionnel liberal', category: 'pro', desc: 'Site institutionnel pour un cabinet d\'avocats.', detailDesc: 'Site sobre et professionnel : credibilite, prise de contact, SEO local.', imageUrl: 'https://images.pexels.com/photos/1170979/pexels-photo-1170979.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#', price: '', notified: false },
   ];
 
   function initRealisations() {
@@ -558,14 +564,32 @@
       div.innerHTML = `
         <div class="project-item-header">
           <span class="project-item-num">Projet ${i+1}</span>
-          <button class="admin-remove-btn" onclick="this.closest('.project-item').remove()">Supprimer</button>
+          <button class="admin-remove-btn" onclick="if(confirm('Supprimer ce projet ?')) this.closest('.project-item').remove()">Supprimer</button>
         </div>
         <div class="form-row">
           <div class="fgrp"><label>Nom / Client</label><input type="text" class="proj-name" value="${escHtml(proj.name)}" /></div>
-          <div class="fgrp"><label>Secteur</label><input type="text" class="proj-sector" value="${escHtml(proj.sector||'')}" /></div>
+          <div class="fgrp"><label>Secteur (affiché)</label><input type="text" class="proj-sector" value="${escHtml(proj.sector||'')}" placeholder="ex : Restaurant, Artisan..." /></div>
         </div>
-        <div class="fgrp"><label>Description</label><textarea class="proj-desc">${escHtml(proj.desc)}</textarea></div>
-        <div class="fgrp"><label>URL du site</label><input type="text" class="proj-url" value="${escHtml(proj.url||'')}" placeholder="https://..." /></div>
+        <div class="form-row">
+          <div class="fgrp">
+            <label>Categorie (filtre)</label>
+            <select class="proj-category" style="background:var(--alabaster);border:1px solid var(--grid);border-radius:8px;padding:0.75rem 1rem;color:var(--midnight);font-size:0.9rem;outline:none;width:100%">
+              <option value="restaurant" ${(proj.category||'restaurant')==='restaurant'?'selected':''}>Restaurant</option>
+              <option value="artisan" ${(proj.category||'')==='artisan'?'selected':''}>Artisan & Commerce</option>
+              <option value="pro" ${(proj.category||'')==='pro'?'selected':''}>Professionnel liberal</option>
+              <option value="startup" ${(proj.category||'')==='startup'?'selected':''}>Startup & SaaS</option>
+            </select>
+          </div>
+          <div class="fgrp"><label>Prix paye (prive, non affiche)</label><input type="text" class="proj-price" value="${escHtml(proj.price||'')}" placeholder="ex : 1 800 EUR" /></div>
+        </div>
+        <div class="fgrp"><label>Description courte (carte)</label><textarea class="proj-desc">${escHtml(proj.desc)}</textarea></div>
+        <div class="fgrp"><label>Description detaillee (modale - clic sur la carte)</label><textarea class="proj-detail-desc" style="min-height:110px">${escHtml(proj.detailDesc||proj.desc||'')}</textarea></div>
+        <div class="fgrp"><label>URL de l'image (Pexels, Unsplash, ou chemin relatif)</label><input type="text" class="proj-image-url" value="${escHtml(proj.imageUrl||'')}" placeholder="https://images.pexels.com/..." /></div>
+        <div class="fgrp"><label>URL du site client (laisser vide si pas encore en ligne)</label><input type="text" class="proj-url" value="${escHtml(proj.siteUrl||proj.url||'')}" placeholder="https://..." /></div>
+        <div style="display:flex;align-items:center;gap:0.6rem;margin-top:0.25rem">
+          <input type="checkbox" class="proj-notified" id="notified-${i}" ${proj.notified?'checked':''} style="width:16px;height:16px;accent-color:var(--terra)" />
+          <label for="notified-${i}" style="font-family:'DM Mono',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--steel);cursor:pointer">Client notifie de sa mise en ligne</label>
+        </div>
       `;
       container.appendChild(div);
     });
@@ -573,7 +597,7 @@
 
   function addProject() {
     const data = LS.get('realisations', { projects: defaultProjects });
-    const projects = [...(data.projects||[]), { name: '', sector: '', desc: '', url: '' }];
+    const projects = [...(data.projects||[]), { name: '', sector: '', category: 'restaurant', desc: '', detailDesc: '', imageUrl: '', siteUrl: '', price: '', notified: false }];
     renderProjects(projects);
     const items = document.querySelectorAll('.project-item');
     items[items.length-1].scrollIntoView({ behavior: 'smooth', block: 'center' });

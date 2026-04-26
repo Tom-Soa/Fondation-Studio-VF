@@ -452,6 +452,11 @@
     #pill-nav { display: none !important; }
     .mob-menu-overlay, .mob-menu-panel { display: block; }
   }
+  /* Fix iOS background-attachment:fixed */
+   (hover: none) and (pointer: coarse) {
+    * { background-attachment: scroll !important; }
+  }
+
 
 </style>
 </head>
