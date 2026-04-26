@@ -132,7 +132,7 @@
   .vision-body p:last-child { margin-bottom: 0; }
   .vision-body strong { color: var(--midnight); font-weight: 600; }
   .vision-visual { position: relative; }
-  .vision-img-main { border-radius: 20px; overflow: hidden; aspect-ratio: 3/4; background: var(--grid); }
+  .vision-img-main { border-radius: 20px; overflow: hidden; aspect-ratio: 3/4; max-height: 380px; background: var(--grid); }
   .vision-img-main img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .vision-stat-card {
     position: absolute; bottom: -2rem; left: -2rem;
@@ -325,8 +325,8 @@
   .f-pill.highlight { color: var(--terra); border-color: rgba(194,65,12,0.25); background: rgba(194,65,12,0.04); }
 
   .founder-grid { display: grid; grid-template-columns: 2fr 3fr; gap: 3rem; align-items: start; margin-bottom: 4rem; }
-  .founder-photo { border-radius: 12px; overflow: hidden; max-height: 420px; }
-  .founder-photo img { width: 100%; height: 420px; object-fit: cover; object-position: center top; }
+  .founder-photo { border-radius: 12px; overflow: hidden; max-height: 340px; }
+  .founder-photo img { width: 100%; height: 340px; object-fit: cover; object-position: center top; }
   .founder-info { padding-top: 1rem; }
   .founder-info-name { font-weight: 800; font-size: 2rem; letter-spacing: -0.02em; margin-bottom: 0.25rem; color: var(--midnight); }
   .founder-info-role { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--terra); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
@@ -505,6 +505,16 @@
   </nav>
 </div>
 
+<section class="page-intro grid-bg" style="padding: 7rem 0 3rem">
+  <div class="container">
+    <div style="max-width:680px">
+      <div style="margin-bottom:1.5rem"><span class="mono">L'équipe</span></div>
+      <h1 style="font-weight:800;font-size:clamp(2.2rem,5vw,4rem);line-height:1.05;letter-spacing:-0.02em;color:var(--midnight);margin-bottom:1.2rem">Deux fondateurs.<br><em style="font-style:normal;color:var(--terra)">Une seule obsession :</em><br>votre résultat.</h1>
+      <p style="font-size:1.05rem;color:var(--steel);line-height:1.65;max-width:520px">Pas d'account manager, pas de chef de projet intermédiaire. Tom-Soa et Ilya travaillent directement sur votre projet.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ══════════════════════════════════════
      LES FONDATEURS
 ══════════════════════════════════════ -->
@@ -528,7 +538,7 @@
         <p class="founder-info-summary">Tom-Soa entreprend depuis ses 15 ans. Spécialisé en acquisition client et marketing digital, il a accompagné plus de 30 entreprises à générer du chiffre d'affaires grâce à Meta Ads et Google Ads.</p>
         <button class="btn-expand" data-target="bio-tom">En savoir plus </button>
         <div class="bio-expand" id="bio-tom" style="display:none">
-          <p>Son expertise repose sur un constat simple : attirer du trafic qualifié ne suffit pas — il faut le convertir. C'est exactement ce que fait chaque site qu'il conçoit.</p>
+          <p>Son expertise repose sur un constat simple : attirer du trafic qualifié ne suffit pas : il faut le convertir. C'est exactement ce que fait chaque site qu'il conçoit.</p>
         </div>
         <a href="https://www.linkedin.com/in/tom-soa-cyprien-934798333/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.5rem;font-family:'DM Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--steel);text-decoration:none;transition:color 0.2s;">
           <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
@@ -549,9 +559,13 @@
         <p class="founder-info-summary">Entrepreneur et grossiste basé à Mayotte. Il a accompagné une vingtaine d'entreprises dans leur lancement et développement, et réalisé plusieurs projets de création de sites internet.</p>
         <button class="btn-expand" data-target="bio-andy">En savoir plus </button>
         <div class="bio-expand" id="bio-andy" style="display:none">
-          <p>Sa vision : la rentabilité avant l'esthétique. Les PME n'ont pas besoin d'un site "impressionnant" — elles ont besoin d'un site qui leur apporte des clients. L'efficacité avant la complexité.</p>
+          <p>Sa vision : la rentabilité avant l'esthétique. Les PME n'ont pas besoin d'un site "impressionnant" : elles ont besoin d'un site qui leur apporte des clients. L'efficacité avant la complexité.</p>
         </div>
       </div>
+    </div>
+
+    <div style="margin-top:2rem;padding:1.5rem;background:rgba(194,65,12,0.06);border-radius:12px;border-left:3px solid var(--terra)">
+      <p style="font-size:0.95rem;color:rgba(255,255,255,0.8)">Une question avant de démarrer ? <a href="contact.html" style="color:var(--terra);font-weight:600">Écrivez-nous directement.</a></p>
     </div>
 
   </div>
@@ -571,7 +585,7 @@
         </div>
         <div class="vision-body reveal">
           <p>Design moyen, aucune stratégie, <strong>aucun impact réel sur le chiffre d'affaires.</strong> Le site est en ligne, mais il n'apporte rien.</p>
-          <p>Notre conviction est simple : un site ne devrait pas être une case à cocher. C'est l'outil le plus puissant de votre acquisition client — à condition qu'il soit construit pour ça.</p>
+          <p>Notre conviction est simple : un site ne devrait pas être une case à cocher. C'est l'outil le plus puissant de votre acquisition client, à condition qu'il soit construit pour ça.</p>
           <p class="conclusion">Notre objectif : des sites qui attirent, rassurent et <strong>convertissent.</strong> Pas juste des sites "beaux".</p>
         </div>
       </div>
@@ -594,70 +608,15 @@
       <h2>Pas une agence. Pas des freelances seuls.<br><em>Le meilleur des deux.</em></h2>
     </div>
     <div class="freelance-body reveal">
-      <p class="freelance-intro">On s'appuie sur un réseau de <strong>freelances spécialisés</strong> — designers, développeurs, copywriters — sélectionnés sur leur niveau d'exigence. Chaque projet mobilise les bonnes compétences, sans intermédiaire inutile.</p>
+      <p class="freelance-intro">On s'appuie sur un réseau de <strong>freelances spécialisés</strong> (designers, développeurs, copywriters) sélectionnés sur leur niveau d'exigence. Chaque projet mobilise les bonnes compétences, sans intermédiaire inutile.</p>
     </div>
     <div class="freelance-pills reveal reveal-delay-1">
       <span class="f-pill">Freelances experts</span>
       <span class="f-pill">Outils pro</span>
-      <span class="f-pill highlight">IA intégrée</span>
+      <span class="f-pill">IA intégrée</span>
       <span class="f-pill">Zéro intermédiaire</span>
       <span class="f-pill">Qualité agence</span>
       <span class="f-pill">Délai maîtrisé</span>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     NOTRE APPROCHE
-══════════════════════════════════════ -->
-<section class="approche">
-  <div class="container">
-    <div class="approche-head reveal">
-      <span class="mono">Notre approche</span>
-      <h2>On ne livre pas <em>juste un site.</em><br>On livre un outil qui travaille pour vous.</h2>
-      <p>Chaque site est pensé de A à Z — design, contenu, technique. Pas de template. Pas d'abonnement. Pas de dépendance. Juste un actif qui vous appartient et génère des demandes.</p>
-    </div>
-    <div class="approche-cards">
-      <div class="approche-card reveal">
-        <div class="approche-card-top">
-          <div class="approche-card-icon">
-            <svg width="20" height="20" fill="none" stroke="var(--terra)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-          </div>
-          <span class="approche-card-num">01</span>
-        </div>
-        <h4>100% sur-mesure, zéro template</h4>
-        <p>Construit depuis zéro, pour vous uniquement. Impossible d'en trouver un autre identique.</p>
-      </div>
-      <div class="approche-card reveal reveal-delay-1">
-        <div class="approche-card-top">
-          <div class="approche-card-icon">
-            <svg width="20" height="20" fill="none" stroke="var(--terra)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <span class="approche-card-num">02</span>
-        </div>
-        <h4>Vous êtes propriétaire à 100%</h4>
-        <p>Code source livré, domaine à votre nom, hébergement libre. Pas d'abonnement mensuel, pas de dépendance.</p>
-      </div>
-      <div class="approche-card reveal reveal-delay-1">
-        <div class="approche-card-top">
-          <div class="approche-card-icon">
-            <svg width="20" height="20" fill="none" stroke="var(--terra)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg>
-          </div>
-          <span class="approche-card-num">03</span>
-        </div>
-        <h4>SEO, AEO &amp; GEO intégrés</h4>
-        <p>Référencement Google, IA (ChatGPT, Perplexity) et vocal inclus dès le départ. Chaque mot est écrit pour convaincre vos visiteurs.</p>
-      </div>
-      <div class="approche-card reveal reveal-delay-2">
-        <div class="approche-card-top">
-          <div class="approche-card-icon">
-            <svg width="20" height="20" fill="none" stroke="var(--terra)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-          </div>
-          <span class="approche-card-num">04</span>
-        </div>
-        <h4>Autonomie totale après livraison</h4>
-        <p>Vous modifiez vos textes et images sans passer par nous, sans payer pour une simple mise à jour.</p>
-      </div>
     </div>
   </div>
 </section>
@@ -671,7 +630,7 @@
       <div class="pourquoi-left">
         <div class="label reveal">Pourquoi nous choisir</div>
         <h2 class="reveal">Un site qui <em>vous distingue.</em></h2>
-        <p class="reveal">On livre des sites qui rivalisent avec les plus grandes marques. Pas un template. Pas juste un beau site. Un site qui convertit — et qui vous différencie dès la première visite.</p>
+        <p class="reveal">On livre des sites qui rivalisent avec les plus grandes marques. Pas un template. Pas juste un beau site. Un site qui convertit et qui vous différencie dès la première visite.</p>
         <div class="pourquoi-pillars reveal">
           <div class="pourquoi-pillar">
             <div class="pourquoi-pillar-icon">
@@ -705,7 +664,7 @@
 
       <div class="pourquoi-cta-block">
         <div class="pourquoi-quote reveal">
-          <p>Des studios comme Fondation Studio, c'est 1% du marché. Ce n'est pas un hasard — c'est un niveau d'exigence que peu sont prêts à tenir. Vous méritez le top.</p>
+          <p>Des studios comme Fondation Studio, c'est 1% du marché. Ce n'est pas un hasard : c'est un niveau d'exigence que peu sont prêts à tenir. Vous méritez le top.</p>
         </div>
         <div class="pourquoi-numbers reveal">
           <div class="pourquoi-num-item">
@@ -743,7 +702,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="flogo">Fondation <span>Studio</span></div>
-          <p class="footer-tagline">Sites haute performance, pensés pour convertir. Pas des templates — du sur-mesure.</p>
+          <p class="footer-tagline">Sites haute performance, pensés pour convertir. Pas des templates. Du sur-mesure.</p>
           <p class="footer-origin">Fondé à La Réunion · Livraison 14–21 jours</p>
         </div>
         <div class="footer-nav-col">

@@ -171,6 +171,7 @@
   .real-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
   @media (max-width: 920px) { .real-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 580px) { .real-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 580px) { .real-item a { padding: 0; } .real-item h3 { font-size: 1rem; } }
 
   .real-item { cursor: default; }
   .real-item a { display: block; color: inherit; text-decoration: none; }
@@ -482,24 +483,15 @@
   </nav>
 </div>
 
-<!-- HERO -->
-<header class="page-hero">
-  <div class="hero-noise"></div>
-  <div class="page-hero .dark-vlines">
-    <div class="vl"></div><div class="vl"></div><div class="vl"></div><div class="vl"></div>
-  </div>
+<section style="padding: 7rem 0 3rem" class="grid-bg">
   <div class="container">
-    <div class="page-hero-inner">
-      <div class="page-hero-breadcrumb reveal">
-        <a href="index.html">Fondation Studio</a>
-        <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-        Réalisations
-      </div>
-      <h1 class="reveal">Des sites qui <em>convertissent.</em></h1>
-      <p class="page-hero-sub reveal">Chaque projet livré est une preuve concrète : un site peut être beau, ultra-rapide, et rentable. Voici nos réalisations.</p>
+    <div style="max-width:680px">
+      <div style="margin-bottom:1.5rem"><span class="mono">Réalisations</span></div>
+      <h1 style="font-weight:800;font-size:clamp(2.2rem,5vw,4rem);line-height:1.05;letter-spacing:-0.02em;color:var(--midnight);margin-bottom:1.2rem">Des sites qui <em style="font-style:normal;color:var(--terra)">convertissent</em><br>vraiment.</h1>
+      <p style="font-size:1.05rem;color:var(--steel);line-height:1.65;max-width:480px">Chaque projet, une stratégie différente. Un seul objectif : générer des clients.</p>
     </div>
   </div>
-</header>
+</section>
 
 <!-- FEATURED CASE -->
 <section class="section">
@@ -561,10 +553,6 @@
               <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
               14–21 jours
             </span>
-            <span class="real-meta-item highlight">
-              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-              +45% réservations
-            </span>
           </div>
         </a>
       </div>
@@ -592,10 +580,6 @@
               <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
               12 jours
             </span>
-            <span class="real-meta-item highlight">
-              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-              3× plus de demandes
-            </span>
           </div>
         </a>
       </div>
@@ -617,15 +601,11 @@
           </div>
           <div class="real-cat">Professionnel libéral</div>
           <h3>Cabinet Moreau Droit</h3>
-          <p>Site institutionnel pour un cabinet d'avocats — crédibilité, prise de contact, SEO local.</p>
+          <p>Site institutionnel pour un cabinet d'avocats : crédibilité, prise de contact, SEO local.</p>
           <div class="real-meta">
             <span class="real-meta-item">
               <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
               10 jours
-            </span>
-            <span class="real-meta-item highlight">
-              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-              Page 1 Google local
             </span>
           </div>
         </a>
@@ -654,10 +634,6 @@
               <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
               14–21 jours
             </span>
-            <span class="real-meta-item highlight">
-              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-              8,2% taux conversion
-            </span>
           </div>
         </a>
       </div>
@@ -679,15 +655,11 @@
           </div>
           <div class="real-cat">Commerce</div>
           <h3>Fleurs & Sens</h3>
-          <p>Boutique en ligne pour une fleuriste artisanale — catalogue produits, commande en ligne, livraison locale.</p>
+          <p>Boutique en ligne pour une fleuriste artisanale : catalogue produits, commande en ligne, livraison locale.</p>
           <div class="real-meta">
             <span class="real-meta-item">
               <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
               14–21 jours
-            </span>
-            <span class="real-meta-item highlight">
-              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-              +120% commandes
             </span>
           </div>
         </a>
@@ -716,10 +688,6 @@
               <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
               9 jours
             </span>
-            <span class="real-meta-item highlight">
-              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-              Agenda plein sous 2 semaines
-            </span>
           </div>
         </a>
       </div>
@@ -746,10 +714,6 @@
             <span class="real-meta-item">
               <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
               14–21 jours
-            </span>
-            <span class="real-meta-item highlight">
-              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-              +35% commandes click&collect
             </span>
           </div>
         </a>
@@ -778,10 +742,6 @@
               <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
               14–21 jours
             </span>
-            <span class="real-meta-item highlight">
-              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-              Levée seed +1M€ post-lancement
-            </span>
           </div>
         </a>
       </div>
@@ -803,15 +763,11 @@
           </div>
           <div class="real-cat">Artisan</div>
           <h3>Ébénisterie Durand</h3>
-          <p>Portfolio visuel pour un ébéniste passionné — galerie immersive, devis en ligne, témoignages clients.</p>
+          <p>Portfolio visuel pour un ébéniste passionné : galerie immersive, devis en ligne, témoignages clients.</p>
           <div class="real-meta">
             <span class="real-meta-item">
               <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
               11 jours
-            </span>
-            <span class="real-meta-item highlight">
-              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-              Nouveau marché export
             </span>
           </div>
         </a>
@@ -828,7 +784,7 @@
       <div>
         <div class="reveal" style="margin-bottom:1rem"><span class="mono">L'équipe</span></div>
         <h2 class="section-h2 reveal">Deux obsédés<br>de la <em style="font-style:normal;color:var(--terra)">conversion.</em></h2>
-        <p class="section-lead reveal" style="margin-top:1rem">On ne fait pas des sites beaux pour faire des sites beaux. On fait des sites qui travaillent pour vous — qui capturent l'attention, instaurent la confiance, et transforment les visiteurs en clients payants.</p>
+        <p class="section-lead reveal" style="margin-top:1rem">On ne fait pas des sites beaux pour faire des sites beaux. On fait des sites qui travaillent pour vous : qui capturent l'attention, instaurent la confiance, et transforment les visiteurs en clients payants.</p>
         <p class="section-lead reveal" style="margin-top:1rem">Chaque choix de design, chaque ligne de code, chaque animation est pensée pour un seul objectif : <strong>votre chiffre d'affaires.</strong></p>
       </div>
       <div class="reveal" style="border-radius:20px;overflow:hidden;aspect-ratio:4/3;background:var(--grid)">
@@ -991,7 +947,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="flogo">Fondation <span>Studio</span></div>
-          <p class="footer-tagline">Sites haute performance, pensés pour convertir. Pas des templates — du sur-mesure.</p>
+          <p class="footer-tagline">Sites haute performance, pensés pour convertir. Pas des templates. Du sur-mesure.</p>
           <p class="footer-origin">Fondé à La Réunion · Livraison 14–21 jours</p>
         </div>
         <div class="footer-nav-col">
