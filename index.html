@@ -21,6 +21,7 @@
     --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { overflow-x: hidden; }
   html { scroll-behavior: smooth; }
   body { font-family: 'Inter', sans-serif; background: var(--alabaster); color: var(--midnight); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
   h1,h2,h3,h4 { font-family: 'Inter', sans-serif; }
@@ -656,7 +657,7 @@
   }
   .prob-db-footer strong { color: var(--midnight); }
   /* Fix iOS background-attachment:fixed */
-   (hover: none) and (pointer: coarse) {
+@media (hover: none) and (pointer: coarse) {
     * { background-attachment: scroll !important; }
   }
 
@@ -1085,6 +1086,7 @@
         <div class="footer-legal-links">
           <a href="mentions-legales.html">Mentions légales</a>
           <a href="diaporama.html" target="_blank">Diaporama</a>
+          <a href="admin.html">Admin</a>
         </div>
       </div>
     </div>
