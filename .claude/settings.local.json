@@ -25,29 +25,9 @@
       "WebFetch(domain:www.businessplanpro.fr)",
       "Bash(python3 -c \":*)",
       "Bash(curl -s http://localhost:3000/api/articles)",
-      "Bash(cp '/Users/tomchazoule/Documents/Fondation Studio/Création de site/Fondation Studio/ChatGPT Image 26 avr. 2026, 19_26_24.png' '/Users/tomchazoule/Documents/Fondation Studio/Création de site/Fondation Studio/.claude/worktrees/amazing-black-22a9b8/images/hero-index.png')",
-      "Bash(cp '/Users/tomchazoule/Documents/Fondation Studio/Création de site/Fondation Studio/ChatGPT Image 26 avr. 2026, 19_26_29.png' '/Users/tomchazoule/Documents/Fondation Studio/Création de site/Fondation Studio/.claude/worktrees/amazing-black-22a9b8/images/bg-cta.png')",
-      "Bash(cp '/Users/tomchazoule/Documents/Fondation Studio/Création de site/Fondation Studio/ChatGPT Image 26 avr. 2026, 19_26_33.png' '/Users/tomchazoule/Documents/Fondation Studio/Création de site/Fondation Studio/.claude/worktrees/amazing-black-22a9b8/images/hero-tarifs.png')",
-      "Bash(cp '/Users/tomchazoule/Documents/Fondation Studio/Création de site/Fondation Studio/ChatGPT Image 26 avr. 2026, 19_26_38.png' '/Users/tomchazoule/Documents/Fondation Studio/Création de site/Fondation Studio/.claude/worktrees/amazing-black-22a9b8/images/hero-performances.png')",
-      "Bash(cp '/Users/tomchazoule/Documents/Fondation Studio/Création de site/Fondation Studio/ChatGPT Image 26 avr. 2026, 19_26_42.png' '/Users/tomchazoule/Documents/Fondation Studio/Création de site/Fondation Studio/.claude/worktrees/amazing-black-22a9b8/images/hero-equipe.png')",
-      "Bash(sed -i '' 's|https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1920|images/hero-index.png|g' '/Users/tomchazoule/Documents/Fondation Studio/Création de site/Fondation Studio/.claude/worktrees/amazing-black-22a9b8/index.html')",
-      "Bash(sed -i '' 's|https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1920|images/bg-cta.png|g' '/Users/tomchazoule/Documents/Fondation Studio/Création de site/Fondation Studio/.claude/worktrees/amazing-black-22a9b8/index.html')",
-      "Bash(sed -i '' 's|https://images.pexels.com/photos/1366909/pexels-photo-1366909.jpeg?auto=compress&cs=tinysrgb&w=1920|images/hero-index.png|g' '/Users/tomchazoule/Documents/Fondation Studio/Création de site/Fondation Studio/.claude/worktrees/amazing-black-22a9b8/index.html')",
-      "Bash(sed -i '' 's|https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1920|images/hero-tarifs.png|g' '/Users/tomchazoule/Documents/Fondation Studio/Création de site/Fondation Studio/.claude/worktrees/amazing-black-22a9b8/tarifs.html')",
-      "Bash(sed -i '' 's|https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1920|images/bg-cta.png|g' '/Users/tomchazoule/Documents/Fondation Studio/Création de site/Fondation Studio/.claude/worktrees/amazing-black-22a9b8/tarifs.html')",
-      "Bash(cp /Users/tomchazoule/Downloads/pexels-sylvester-amponsah-774907778-28102653.jpg '/Users/tomchazoule/Documents/Fondation Studio/Création de site/Fondation Studio/.claude/worktrees/amazing-black-22a9b8/images/hero-index.jpg')",
-      "Bash(cp /Users/tomchazoule/Downloads/pexels-stephen-leonardi-587681991-28610696.jpg '/Users/tomchazoule/Documents/Fondation Studio/Création de site/Fondation Studio/.claude/worktrees/amazing-black-22a9b8/images/hero-performances.jpg')",
-      "Bash(cp /Users/tomchazoule/Downloads/pexels-marina-zasorina-7718574.jpg '/Users/tomchazoule/Documents/Fondation Studio/Création de site/Fondation Studio/.claude/worktrees/amazing-black-22a9b8/images/bg-cta.jpg')",
-      "Bash(cp /Users/tomchazoule/Downloads/pexels-marina-zasorina-7718569.jpg '/Users/tomchazoule/Documents/Fondation Studio/Création de site/Fondation Studio/.claude/worktrees/amazing-black-22a9b8/images/hero-tarifs.jpg')",
-      "Bash(git add *)",
-      "Bash(git commit -m ' *)",
-      "Bash(grep -c \"onclick=\\\\\"window.location\" index.html tarifs.html processus.html qui-sommes-nous.html realisations.html)",
-      "Bash(grep -c \" — \" index.html tarifs.html qui-sommes-nous.html realisations.html faq.html)",
-      "Bash(sed -n '856,885p' index.html)",
-      "Bash(sed -n '556,575p' processus.html)",
-      "Bash(perl -i -pe 's/hébergement offert la première année/hébergement naturellement gratuit grâce à notre méthode/g; s/Hébergement offert \\\\\\(1 an\\\\\\)/Hébergement gratuit \\\\\\(illimité\\\\\\)/g; s/Hébergement offert\\\\. /Hébergement gratuit par notre méthode. /g; s/Hébergement offert 1 an/Hébergement gratuit illimité/g' processus.html tarifs.html)",
-      "Bash(vercel --prod)",
-      "Bash(vercel --prod --name fondation-studio)"
+      "Bash(awk '{print $9, \"\\(\" $5 \"\\)\"}')",
+      "Bash(awk '{printf \"%s \\(%s\\)\\\\n\", $9, $5}')",
+      "Bash(grep -v \":0$\")"
     ]
   }
 }

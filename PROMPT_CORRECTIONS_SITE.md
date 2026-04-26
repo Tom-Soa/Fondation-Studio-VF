@@ -7,9 +7,9 @@
 **Ce qu'on ne dit pas :** On ne mentionne pas qu'on utilise l'IA pour coder (ça déprécierait la valeur perçue). On ne fait pas de promesses de classement Google ni de stats de conversion invérifiables.
 
 **Les 3 offres réelles :**
-- Standard : 1 400€ — site vitrine ~3 pages, design sur-mesure, SEO technique
-- Conversion : 2 000€ — jusqu'à 8 pages, copywriting stratégique inclus, animations
-- Prestige : 2 500€ — site ultra qualitatif, effets avancés, image haut de gamme
+- Standard : 1 400€ — site vitrine ~5 pages, design sur-mesure, SEO technique
+- Conversion : 1 900€ — jusqu'à 8 pages, copywriting stratégique inclus, animations
+- Prestige : +2 400€ — site ultra qualitatif, effets avancés, image haut de gamme
 
 **Option complémentaire (à ne pas trop mettre en avant) :**
 - Landing page seule : 1 000€
