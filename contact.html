@@ -524,9 +524,8 @@
   /* ── Contact layout ── */
   .contact-wrap {
     background: var(--midnight); color: white;
-    position: relative; overflow: hidden;
-    padding: 4rem 0 6rem;
-    border-top: 1px solid rgba(255,255,255,0.06);
+    position: relative;
+    padding: 6rem 0 6rem;
     background-image: url('images/tom-coworking.jpg');
     background-attachment: fixed; background-size: cover; background-position: center 40%;
   }
@@ -561,9 +560,9 @@
   .contact-form { display: flex; flex-direction: column; gap: 1.1rem; }
   .contact-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
   .fgrp { display: flex; flex-direction: column; gap: 0.4rem; }
-  .fgrp label { font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.3); }
+  .fgrp label { font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.12em; color: white; }
   .fgrp input, .fgrp textarea, .fgrp select {
-    background: rgba(20,80,50,0.25); border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(20,80,50,0.25); border: 1px solid rgba(255,255,255,0.6);
     backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
     padding: 0.85rem 1rem; color: white;
     font-family: 'Inter', sans-serif; font-size: 0.9rem;
@@ -571,7 +570,7 @@
     border-radius: 8px;
     -webkit-appearance: none;
   }
-  .fgrp input::placeholder, .fgrp textarea::placeholder { color: rgba(255,255,255,0.35); }
+  .fgrp input::placeholder, .fgrp textarea::placeholder { color: rgba(255,255,255,0.55); }
   .fgrp input:focus, .fgrp textarea:focus { border-color: var(--terra); background: rgba(20,80,50,0.35); }
   .fgrp textarea { resize: none; min-height: 120px; }
   .contact-submit-wrap { display: flex; flex-direction: column; gap: 0.75rem; }
