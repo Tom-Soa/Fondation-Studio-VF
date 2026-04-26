@@ -658,24 +658,24 @@
   .sol-item.elevated::before {
     content: '';
     position: absolute;
-    inset: -20px;
+    inset: -4px;
     background: url('images/bg-cta.jpg') center/cover no-repeat;
-    filter: blur(14px) brightness(0.55);
+    filter: brightness(0.72);
     z-index: 0;
   }
   .sol-item.elevated::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(255,255,255,0.78);
+    background: rgba(15,23,42,0.38);
     z-index: 1;
   }
   .sol-item.elevated > * { position: relative; z-index: 2; }
   .sol-item.elevated:nth-child(odd) { border-right: none !important; }
-  .sol-item.elevated .sol-item-num { color: var(--terra); }
-  .sol-item.elevated h3 { color: var(--midnight); }
-  .sol-item.elevated p { color: var(--steel); }
-  .sol-item.elevated .sol-link { color: var(--terra); }
+  .sol-item.elevated .sol-item-num { color: #f97316; }
+  .sol-item.elevated h3 { color: #fff; }
+  .sol-item.elevated p { color: rgba(255,255,255,0.78); }
+  .sol-item.elevated .sol-link { color: #fdba74; }
 
   /* ── Problem dashboard card ── */
   .prob-db-card {
