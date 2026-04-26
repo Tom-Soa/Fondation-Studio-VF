@@ -364,9 +364,22 @@
   }
 
   /* ── Mobile home button ── */
-  .mob-home-btn {
+  .mob-contact-btn {
     display: none;
     position: fixed; bottom: 5.5rem; right: 1.5rem; z-index: 200;
+    width: 52px; height: 52px; border-radius: 50%;
+    background: var(--terra);
+    align-items: center; justify-content: center; cursor: pointer;
+    box-shadow: 0 4px 20px rgba(194,65,12,0.55), 0 1px 4px rgba(0,0,0,0.2);
+    text-decoration: none;
+    transition: transform 0.2s cubic-bezier(0.23,1,0.32,1), background 0.2s;
+  }
+  .mob-contact-btn:active { transform: scale(0.93); background: var(--terra-hover); }
+  @media (max-width: 639px) { .mob-contact-btn { display: flex; } }
+
+  .mob-home-btn {
+    display: none;
+    position: fixed; bottom: 9.5rem; right: 1.5rem; z-index: 200;
     width: 52px; height: 52px; border-radius: 50%;
     background: var(--terra);
     align-items: center; justify-content: center; cursor: pointer;

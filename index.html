@@ -409,9 +409,22 @@
   @media (max-width: 639px) { .hero-logo-mob { display: flex; } }
 
   /* ── Mobile home button ── */
-  .mob-home-btn {
+  .mob-contact-btn {
     display: none;
     position: fixed; bottom: 5.5rem; right: 1.5rem; z-index: 200;
+    width: 52px; height: 52px; border-radius: 50%;
+    background: var(--terra);
+    align-items: center; justify-content: center; cursor: pointer;
+    box-shadow: 0 4px 20px rgba(194,65,12,0.55), 0 1px 4px rgba(0,0,0,0.2);
+    text-decoration: none;
+    transition: transform 0.2s cubic-bezier(0.23,1,0.32,1), background 0.2s;
+  }
+  .mob-contact-btn:active { transform: scale(0.93); background: var(--terra-hover); }
+  @media (max-width: 639px) { .mob-contact-btn { display: flex; } }
+
+  .mob-home-btn {
+    display: none;
+    position: fixed; bottom: 9.5rem; right: 1.5rem; z-index: 200;
     width: 52px; height: 52px; border-radius: 50%;
     background: var(--terra);
     align-items: center; justify-content: center; cursor: pointer;
@@ -658,8 +671,8 @@
   .sol-item.elevated::before {
     content: '';
     position: absolute;
-    inset: -4px;
-    background: url('images/bg-cta.jpg') center/cover no-repeat;
+    inset: 0;
+    background: url('images/bg-cta.jpg') center/cover fixed;
     filter: brightness(0.72);
     z-index: 0;
   }
@@ -775,6 +788,9 @@
 </nav>
 
 <!-- Mobile menu -->
+<a href="contact.html" class="mob-contact-btn" aria-label="Nous contacter">
+  <svg width="20" height="20" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+</a>
 <!-- Home btn hidden on index.html since we're already on the home page -->
 <a href="index.html" class="mob-home-btn" aria-label="Accueil" style="display:none!important">
   <svg width="20" height="20" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
