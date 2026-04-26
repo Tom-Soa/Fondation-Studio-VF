@@ -173,9 +173,21 @@
 
   .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 3rem; }
   @media (max-width: 900px) { .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; } }
-  .pricing-card { position: relative; border-radius: 20px; padding: 1.75rem; border: 1px solid rgba(255,255,255,0.10); background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.02) 100%); display: flex; flex-direction: column; filter: blur(2px); opacity: 0; transition: filter 0.5s ease 0.25s, opacity 0.5s ease 0.25s; }
+  .pricing-card {
+    position: relative; border-radius: 20px; padding: 1.75rem;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    display: flex; flex-direction: column;
+    filter: blur(2px); opacity: 0;
+    transition: filter 0.5s ease 0.25s, opacity 0.5s ease 0.25s;
+  }
   .pricing-card.blur-in { filter: blur(0); opacity: 1; }
-  .pricing-card.featured { border-color: rgba(194,65,12,0.45); background: linear-gradient(135deg, rgba(194,65,12,0.09) 0%, rgba(255,255,255,0.02) 100%); }
+  .pricing-card.featured {
+    border-color: rgba(194,65,12,0.5);
+    background: rgba(194,65,12,0.12);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  }
   .pricing-head { text-align: center; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 1.5rem; }
   .pricing-tier { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1rem; color: rgba(255,255,255,0.9); margin-bottom: 1.25rem; letter-spacing: 0.02em; }
   .pricing-amount { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 2.8rem; line-height: 1; color: #fff; margin-bottom: 0.75rem; }
@@ -532,7 +544,7 @@
   <div class="container" style="position:relative;z-index:1">
     <div class="section-head" style="text-align:center">
       <div class="reveal" style="margin-bottom:1rem"><span class="mono">Tarifs</span></div>
-      <h2 class="section-h2 reveal" style="max-width:640px;margin:0 auto 1rem">Des sites qui se <em>remboursent.</em></h2>
+      <h2 class="section-h2 reveal" style="max-width:640px;margin:0 auto 1rem;color:#fff">Des sites qui se<br><em style="color:var(--terra)">remboursent.</em></h2>
       <p class="section-lead reveal" style="margin:0 auto">Prix fixe, tout inclus. Hébergement offert. Paiement en plusieurs fois.</p>
     </div>
     <div class="pricing-grid">
