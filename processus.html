@@ -543,12 +543,39 @@
   .vs-label { font-family: 'Inter', sans-serif; font-size: clamp(1rem,2vw,1.4rem); font-weight: 700; letter-spacing: -0.02em; color: var(--midnight); text-align: center; line-height: 1.25; }
   .vs-versus { font-style: normal; color: var(--terra); font-size: 1.35em; font-weight: 900; letter-spacing: -0.03em; }
 
-  .cmp-scroll-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  @media (max-width: 639px) {
-    .cmp-scroll-wrap::-webkit-scrollbar { height: 4px; display: block; }
-    .cmp-scroll-wrap::-webkit-scrollbar-track { background: var(--grid); border-radius: 99px; }
-    .cmp-scroll-wrap::-webkit-scrollbar-thumb { background: var(--terra); border-radius: 99px; min-width: 40px; }
-    .cmp-scroll-wrap { scrollbar-width: thin; scrollbar-color: var(--terra) var(--grid); }
+  /* ── Scroll wrapper compare ── */
+  .cmp-scroll-outer { position: relative; }
+  .cmp-scroll-outer::before,
+  .cmp-scroll-outer::after {
+    content: ''; position: absolute; top: 0; bottom: calc(3px + 0.7rem);
+    width: 2px; z-index: 3; pointer-events: none;
+    opacity: 0; transition: opacity 0.35s;
+  }
+  .cmp-scroll-outer::before { left: 0; background: var(--terra); }
+  .cmp-scroll-outer::after  { right: 0; background: var(--terra); }
+  .cmp-scroll-outer.is-start::before { opacity: 1; }
+  .cmp-scroll-outer.is-end::after    { opacity: 1; }
+
+  .cmp-fade-right {
+    position: absolute; right: 0; top: 0;
+    width: 72px; pointer-events: none; z-index: 2;
+    background: linear-gradient(to left, var(--alabaster) 25%, transparent 100%);
+    opacity: 1; transition: opacity 0.35s;
+  }
+  .cmp-scroll-outer.is-end .cmp-fade-right { opacity: 0; }
+
+  .cmp-scroll-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .cmp-scroll-wrap::-webkit-scrollbar { display: none; }
+
+  .cmp-progress-bar {
+    position: relative; height: 3px;
+    background: var(--grid); border-radius: 99px;
+    margin-top: 0.7rem; overflow: hidden;
+  }
+  .cmp-progress-thumb {
+    position: absolute; top: 0; bottom: 0; left: 0;
+    background: var(--terra); border-radius: 99px;
+    transition: left 0.1s linear, width 0.1s linear;
   }
 
   .cmp-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 2px solid var(--grid); margin-top: 1.5rem; }
@@ -749,7 +776,9 @@
 
     <div class="vs-divider reveal"><span class="vs-label">Fondation Studio <em class="vs-versus">VS</em><br>Agence Classique</span></div>
 
-    <div class="reveal cmp-scroll-wrap">
+    <div class="reveal cmp-scroll-outer">
+      <div class="cmp-fade-right" aria-hidden="true"></div>
+      <div class="cmp-scroll-wrap">
       <div class="cmp-grid" style="min-width:480px">
         <div class="cmp-head">Critère</div>
         <div class="cmp-head cmp-us">Fondation Studio</div>
@@ -791,6 +820,8 @@
           <div class="cmp-cell cmp-wp"><span class="check-bad">✗</span> Dépendance agence</div>
         </div>
       </div>
+      </div>
+      <div class="cmp-progress-bar" aria-hidden="true"><div class="cmp-progress-thumb"></div></div>
     </div>
   </div>
 </section>
@@ -939,6 +970,37 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
   }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
   revEls.forEach(el => obs.observe(el));
+
+  // ── Compare table scroll indicators ──
+  (function() {
+    const outer = document.querySelector('.cmp-scroll-outer');
+    const wrap = outer && outer.querySelector('.cmp-scroll-wrap');
+    const thumb = outer && outer.querySelector('.cmp-progress-thumb');
+    const fadeRight = outer && outer.querySelector('.cmp-fade-right');
+    if (!wrap || !thumb) return;
+
+    function update() {
+      const maxScroll = wrap.scrollWidth - wrap.clientWidth;
+      if (maxScroll <= 0) return;
+
+      const pos = wrap.scrollLeft;
+      const ratio = wrap.clientWidth / wrap.scrollWidth;
+      const thumbPct = Math.max(ratio * 100, 15);
+      const trackAvailable = 100 - thumbPct;
+      const thumbLeft = (pos / maxScroll) * trackAvailable;
+      thumb.style.width = thumbPct + '%';
+      thumb.style.left = thumbLeft + '%';
+
+      if (fadeRight) fadeRight.style.height = wrap.offsetHeight + 'px';
+
+      outer.classList.toggle('is-start', pos <= 4);
+      outer.classList.toggle('is-end', pos >= maxScroll - 4);
+    }
+
+    wrap.addEventListener('scroll', update, { passive: true });
+    // Run immediately once rendered
+    requestAnimationFrame(update);
+  })();
 
   // ── Drag-scroll carousel ──
   (function() {
