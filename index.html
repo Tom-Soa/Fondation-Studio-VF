@@ -100,8 +100,8 @@
   .pill-cta:hover { background: var(--terra-hover) !important; transform: scale(1.02); }
   @media (max-width: 639px) { .pill-label { display: none; } .pill-item { padding: 0.65rem 0.85rem; } .pill-cta { padding: 0.65rem 1rem; font-size: 0; gap: 0; } }
 
-  #hero { min-height: 100dvh; position: relative; overflow: hidden; background-image: url('images/hero-index.jpg'); background-attachment: fixed; background-size: cover; background-position: center; display: flex; flex-direction: column; }
-  .vlines { position: absolute; inset: 0; display: flex; justify-content: space-between; pointer-events: none; z-index: 3; }
+  #hero { min-height: 100dvh; position: relative; overflow: hidden; background-image: url('images/hero-index.jpg'); background-attachment: scroll; background-size: cover; background-position: center; display: flex; flex-direction: column; }
+  .vlines { position: absolute; inset: 0; display: flex; justify-content: space-between; pointer-events: none; z-index: 1; }
   .vlines .vl { width: 1px; height: 100%; background: rgba(255,255,255,0.07); }
   #hero-bg-image { position: absolute; inset: 0; z-index: 0; }
   #hero-bg-image img { display: none; }
@@ -304,8 +304,8 @@
     content: ''; position: absolute; inset: 0; z-index: 0;
     background-image: url('images/bg-cta.jpg');
     background-size: cover; background-position: center 40%;
-    background-attachment: fixed;
-    opacity: 0.18;
+    background-attachment: scroll;
+    opacity: 0.55;
   }
   .nobrainer::after {
     content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 1;
@@ -390,6 +390,50 @@
   .check-bad { color: #f87171; font-size: 1.1rem; }
   @media (max-width: 900px) { .tech-grid { grid-template-columns: 1fr; } }
   @media (max-width: 600px) { .compare-table { font-size: 0.82rem; } .compare-table td, .compare-table th { padding: 0.6rem 0.6rem; } }
+
+  /* ── Hero logo bubble (mobile only) ── */
+  .hero-logo-mob {
+    display: none;
+    position: absolute; top: 1.25rem; left: 50%; transform: translateX(-50%);
+    z-index: 10;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 100px;
+    padding: 0.5rem 1.25rem 0.5rem 0.85rem;
+    align-items: center; gap: 0.45rem;
+    font-family: 'Inter', sans-serif; font-weight: 800; font-size: 0.88rem;
+    color: #fff; white-space: nowrap; letter-spacing: -0.02em;
+  }
+  .hero-logo-mob span { color: var(--terra); }
+  @media (max-width: 639px) { .hero-logo-mob { display: flex; } }
+
+  /* ── Mobile home button ── */
+  .mob-contact-btn {
+    display: none;
+    position: fixed; bottom: 5.5rem; right: 1.5rem; z-index: 200;
+    width: 52px; height: 52px; border-radius: 50%;
+    background: var(--terra);
+    align-items: center; justify-content: center; cursor: pointer;
+    box-shadow: 0 4px 20px rgba(194,65,12,0.55), 0 1px 4px rgba(0,0,0,0.2);
+    text-decoration: none;
+    transition: transform 0.2s cubic-bezier(0.23,1,0.32,1), background 0.2s;
+  }
+  .mob-contact-btn:active { transform: scale(0.93); background: var(--terra-hover); }
+  @media (max-width: 639px) { .mob-contact-btn { display: flex; } }
+
+  .mob-home-btn {
+    display: none;
+    position: fixed; bottom: 9.5rem; right: 1.5rem; z-index: 200;
+    width: 52px; height: 52px; border-radius: 50%;
+    background: var(--terra);
+    align-items: center; justify-content: center; cursor: pointer;
+    box-shadow: 0 4px 20px rgba(194,65,12,0.55), 0 1px 4px rgba(0,0,0,0.2);
+    text-decoration: none;
+    transition: transform 0.2s cubic-bezier(0.23,1,0.32,1), background 0.2s;
+  }
+  .mob-home-btn:active { transform: scale(0.93); background: var(--terra-hover); }
+  @media (max-width: 639px) { .mob-home-btn { display: flex; } }
 
   /* ── Mobile hamburger menu ── */
   .mob-menu-btn {
@@ -532,15 +576,15 @@
   .pourquoi-left h2 { font-weight: 800; font-size: clamp(2rem, 3.5vw, 3rem); line-height: 1.1; letter-spacing: -0.02em; color: white; margin-bottom: 1.5rem; }
   .pourquoi-left h2 em { font-style: normal; color: var(--terra); }
   .pourquoi-left > p { color: rgba(255,255,255,0.5); font-size: 1rem; line-height: 1.75; margin-bottom: 2.5rem; }
-  .pourquoi-pillars { display: flex; flex-direction: column; gap: 0; border-left: 2px solid rgba(194,65,12,0.3); }
-  .pourquoi-pillar { display: flex; gap: 1.25rem; padding: 1.25rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); transition: background 0.2s; }
-  .pourquoi-pillar:last-child { border-bottom: none; }
-  .pourquoi-pillar:hover { background: rgba(194,65,12,0.1); }
+  .pourquoi-pillars { display: flex; flex-direction: column; gap: 0; }
+  .pourquoi-pillar { display: flex; gap: 1.25rem; padding: 1.25rem 1.5rem; border-radius: 12px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); margin-bottom: 0.6rem; transition: background 0.2s; }
+  .pourquoi-pillar:last-child { margin-bottom: 0; }
+  .pourquoi-pillar:hover { background: rgba(255,255,255,0.13); border-color: rgba(255,255,255,0.18); }
   .pourquoi-pillar-icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; opacity: 0.7; }
   .pourquoi-pillar h4 { font-weight: 700; font-size: 1rem; color: white; margin-bottom: 0.2rem; }
   .pourquoi-pillar p { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.55; }
   .pourquoi-cta-block { display: flex; flex-direction: column; gap: 2.5rem; }
-  .pourquoi-quote { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 2.5rem 2rem 2rem; position: relative; }
+  .pourquoi-quote { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 2.5rem 2rem 2rem; position: relative; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
   .pourquoi-quote::before { content: '"'; position: absolute; top: 1rem; left: 2rem; font-size: 5rem; font-weight: 800; color: var(--terra); opacity: 0.4; line-height: 1; }
   .pourquoi-quote p { font-size: 1.2rem; font-weight: 600; line-height: 1.55; color: white; letter-spacing: -0.01em; padding-top: 2rem; }
   .pourquoi-numbers { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; border-radius: 16px; overflow: hidden; }
@@ -612,6 +656,39 @@
   .sol-link { display: inline-block; margin-top: 0.6rem; font-size: 0.82rem; font-weight: 600; color: var(--terra); text-decoration: none; }
   .sol-link:hover { text-decoration: underline; }
   @media (max-width: 640px) { .sol-list { grid-template-columns: 1fr; } .sol-item:nth-child(odd) { padding-right: 0; border-right: none; } .sol-item:nth-child(even) { padding-left: 0; } }
+
+  /* Elevated sol cards — frosted glass over bg-cta image */
+  .sol-item.elevated {
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.65), 0 4px 16px rgba(0,0,0,0.3);
+    position: relative; z-index: 2;
+    padding: 2rem 2rem !important;
+    border: none !important;
+    overflow: hidden;
+    background: transparent;
+    /* No margin — keeps text top-aligned with adjacent cards */
+  }
+  .sol-item.elevated::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('images/bg-cta.jpg') center/cover fixed;
+    filter: brightness(0.72);
+    z-index: 0;
+  }
+  .sol-item.elevated::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(15,23,42,0.38);
+    z-index: 1;
+  }
+  .sol-item.elevated > * { position: relative; z-index: 2; }
+  .sol-item.elevated:nth-child(odd) { border-right: none !important; }
+  .sol-item.elevated .sol-item-num { color: #f97316; }
+  .sol-item.elevated h3 { color: #fff; }
+  .sol-item.elevated p { color: rgba(255,255,255,0.78); }
+  .sol-item.elevated .sol-link { color: #fdba74; }
 
   /* ── Problem dashboard card ── */
   .prob-db-card {
@@ -711,6 +788,13 @@
 </nav>
 
 <!-- Mobile menu -->
+<a href="contact.html" class="mob-contact-btn" aria-label="Nous contacter">
+  <svg width="20" height="20" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+</a>
+<!-- Home btn hidden on index.html since we're already on the home page -->
+<a href="index.html" class="mob-home-btn" aria-label="Accueil" style="display:none!important">
+  <svg width="20" height="20" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+</a>
 <button class="mob-menu-btn" id="mob-btn" aria-label="Menu">
   <svg class="icon-burger" width="20" height="20" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
   <svg class="icon-close" width="20" height="20" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -761,6 +845,10 @@
     <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=1920&q=80&fit=crop" alt="" aria-hidden="true" />
     <div id="hero-bg-dim"></div>
   </div>
+  <div class="hero-logo-mob" aria-hidden="true">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+    Fondation&nbsp;<span>Studio</span>
+  </div>
   <div class="vlines" aria-hidden="true"><div class="vl"></div><div class="vl"></div><div class="vl"></div><div class="vl"></div></div>
   <div class="hero-center">
     <h1 class="hero-title">Votre site.<br><em>Conçu pour vendre.</em><br>Livré en 21 jours.</h1>
@@ -770,7 +858,7 @@
       <a href="contact.html#offre-gratuite" class="btn-ghost" style="border:1px solid rgba(255,255,255,0.3)">Tester gratuitement <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></a>
     </div>
   </div>
-  <div class="mountain-divider" aria-hidden="true"><svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:60px;"><path d="M0,80 L0,50 C360,8 1080,72 1440,38 L1440,80 Z" fill="#F9F9F7"/></svg></div>
+  <div class="mountain-divider" aria-hidden="true"><svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:60px;"><defs><linearGradient id="hero-wave-grad" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#0F172A" stop-opacity="0"/><stop offset="100%" stop-color="#F9F9F7" stop-opacity="1"/></linearGradient></defs><rect width="1440" height="80" fill="url(#hero-wave-grad)"/><path d="M0,80 L0,50 C360,8 1080,72 1440,38 L1440,80 Z" fill="#F9F9F7"/></svg></div>
 </section>
 
 <!-- PROBLÈME -->
@@ -866,7 +954,7 @@
       <a href="contact.html" class="cta-btn">Démarrer mon projet <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
     <div class="sol-list">
-      <div class="sol-item reveal">
+      <div class="sol-item elevated reveal">
         <div class="sol-item-num">01</div>
         <h3>Design orienté conversion</h3>
         <p>Grâce à l'expertise de Tom-Soa en analyse et optimisation de sites, chaque élément est conçu pour transformer un visiteur en client.</p>
@@ -877,7 +965,7 @@
         <h3>Livré en 14 à 21 jours</h3>
         <p>À partir de la réception du paiement, si le client est réactif. Pas de délais flous, pas de mauvaises surprises.</p>
       </div>
-      <div class="sol-item reveal">
+      <div class="sol-item elevated reveal">
         <div class="sol-item-num">03</div>
         <h3>Propriété totale, hébergement gratuit</h3>
         <p>Nous livrons du code HTML pur. L'hébergement est naturellement gratuit grâce à cette méthode : aucun abonnement, aucune dépendance.</p>
@@ -892,28 +980,77 @@
   </div>
 </section>
 
-<!-- NO-BRAINER BANDEAU -->
-<section class="nobrainer" id="no-brainer">
-  <div aria-hidden="true" style="line-height:0;display:block;margin-bottom:-1px"><svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:50px;transform:rotate(180deg);"><path d="M0,80 L0,50 C360,8 1080,72 1440,38 L1440,80 Z" fill="#0F172A"/></svg></div>
+<!-- POURQUOI NOUS CHOISIR -->
+<section class="pourquoi">
   <div class="container">
-    <div class="nobrainer-center">
-      <div class="nobrainer-badge"><div class="nobrainer-badge-tag">Gratuit</div><div class="nobrainer-badge-body">Places limitées ce mois</div></div>
-      <h2>La maquette de votre<br>futur site. <em>Gratuite.</em></h2>
-      <p class="nobrainer-desc">Une vraie proposition visuelle, sur-mesure. Présentée en appel vidéo. Si ça vous convient, on démarre.</p>
-      <div class="nobrainer-trust">
-        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-        0€, sans engagement
+    <div class="pourquoi-inner">
+      <div class="pourquoi-left">
+        <div class="label reveal">Pourquoi nous choisir</div>
+        <h2 class="reveal">Un site qui <em>vous distingue.</em></h2>
+        <p class="reveal">On livre des sites qui rivalisent avec les plus grandes marques. Pas un template. Pas juste un beau site. Un site qui convertit et qui vous différencie dès la première visite.</p>
+        <div class="pourquoi-pillars reveal">
+          <div class="pourquoi-pillar">
+            <div class="pourquoi-pillar-icon">
+              <svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <div>
+              <h4>Le meilleur de votre secteur</h4>
+              <p>Vos concurrents ont des sites moyens ou pas de site du tout. Le vôtre sera dans une autre catégorie.</p>
+            </div>
+          </div>
+          <div class="pourquoi-pillar">
+            <div class="pourquoi-pillar-icon">
+              <svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div>
+              <h4>Confiance immédiate</h4>
+              <p>En 3 secondes, votre visiteur comprend qu'il est au bon endroit. La crédibilité se voit, elle ne se lit pas.</p>
+            </div>
+          </div>
+          <div class="pourquoi-pillar">
+            <div class="pourquoi-pillar-icon">
+              <svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+            </div>
+            <div>
+              <h4>Un résultat qui se mesure</h4>
+              <p>Plus de demandes, plus de contacts, plus de ventes. La différence avec votre ancien site est quantifiable.</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="nobrainer-cta">
-        <a href="contact.html#offre-gratuite" class="btn-nobrainer">
-          Demander ma maquette gratuite
-          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-        <div class="nobrainer-hint">Réponse sous 24h</div>
+
+      <div class="pourquoi-cta-block">
+        <div class="pourquoi-quote reveal">
+          <p>Des agences comme Fondation Studio, c'est 1&nbsp;% du marché. Ce n'est pas un hasard, c'est un niveau d'exigence que peu sont prêts à tenir.</p>
+        </div>
+        <div class="pourquoi-numbers reveal">
+          <div class="pourquoi-num-item">
+            <div class="val">42<em>+</em></div>
+            <div class="lbl">Projets livrés</div>
+          </div>
+          <div class="pourquoi-num-item">
+            <div class="val">100<em>/100</em></div>
+            <div class="lbl">PageSpeed élevé</div>
+          </div>
+          <div class="pourquoi-num-item">
+            <div class="val">14–21<em>j</em></div>
+            <div class="lbl">Délai de livraison</div>
+          </div>
+          <div class="pourquoi-num-item">
+            <div class="val">4.9<em>/5</em></div>
+            <div class="lbl">Satisfaction client</div>
+          </div>
+        </div>
+        <div class="pourquoi-final-cta reveal">
+          <a href="contact.html" class="cta-btn" style="width:100%;justify-content:center;font-size:1.05rem;padding:1rem 2rem">
+            Démarrer mon projet
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <p>Sans engagement · Réponse sous 24h</p>
+        </div>
       </div>
     </div>
   </div>
-  <div aria-hidden="true" style="line-height:0;display:block;margin-top:-1px"><svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:50px;"><path d="M0,80 L0,42 C480,82 960,8 1440,48 L1440,80 Z" fill="#F9F9F7"/></svg></div>
 </section>
 
 <!-- TÉMOIGNAGES -->
@@ -962,86 +1099,22 @@
   </div>
 </section>
 
-<!-- POURQUOI NOUS CHOISIR -->
-<section class="pourquoi">
+<!-- NO-BRAINER BANDEAU -->
+<section class="nobrainer" id="no-brainer">
+  <div aria-hidden="true" style="line-height:0;display:block;margin-bottom:-1px"><svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:50px;transform:rotate(180deg);"><path d="M0,80 L0,50 C360,8 1080,72 1440,38 L1440,80 Z" fill="#0F172A"/></svg></div>
   <div class="container">
-    <div class="pourquoi-inner">
-      <div class="pourquoi-left">
-        <div class="label reveal">Pourquoi nous choisir</div>
-        <h2 class="reveal">Un site qui <em>vous distingue.</em></h2>
-        <p class="reveal">On livre des sites qui rivalisent avec les plus grandes marques. Pas un template. Pas juste un beau site. Un site qui convertit et qui vous différencie dès la première visite.</p>
-        <div class="pourquoi-pillars reveal">
-          <div class="pourquoi-pillar">
-            <div class="pourquoi-pillar-icon">
-              <svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-            </div>
-            <div>
-              <h4>Le meilleur de votre secteur</h4>
-              <p>Vos concurrents ont des sites moyens ou pas de site du tout. Le vôtre sera dans une autre catégorie.</p>
-            </div>
-          </div>
-          <div class="pourquoi-pillar">
-            <div class="pourquoi-pillar-icon">
-              <svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            </div>
-            <div>
-              <h4>Confiance immédiate</h4>
-              <p>En 3 secondes, votre visiteur comprend qu'il est au bon endroit. La crédibilité se voit, elle ne se lit pas.</p>
-            </div>
-          </div>
-          <div class="pourquoi-pillar">
-            <div class="pourquoi-pillar-icon">
-              <svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
-            </div>
-            <div>
-              <h4>Un résultat qui se mesure</h4>
-              <p>Plus de demandes, plus de contacts, plus de ventes. La différence avec votre ancien site est quantifiable.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="pourquoi-cta-block">
-        <div class="pourquoi-quote reveal">
-          <p>Des studios comme Fondation Studio, c'est 1% du marché. Ce n'est pas un hasard : c'est un niveau d'exigence que peu sont prêts à tenir. Vous méritez le top.</p>
-        </div>
-        <div class="pourquoi-numbers reveal">
-          <div class="pourquoi-num-item">
-            <div class="val">42<em>+</em></div>
-            <div class="lbl">Projets livrés</div>
-          </div>
-          <div class="pourquoi-num-item">
-            <div class="val">100<em>/100</em></div>
-            <div class="lbl">PageSpeed élevé</div>
-          </div>
-          <div class="pourquoi-num-item">
-            <div class="val">14–21<em>j</em></div>
-            <div class="lbl">Délai de livraison</div>
-          </div>
-          <div class="pourquoi-num-item">
-            <div class="val">4.9<em>/5</em></div>
-            <div class="lbl">Satisfaction client</div>
-          </div>
-        </div>
-        <div class="pourquoi-final-cta reveal">
-          <a href="contact.html" class="cta-btn" style="width:100%;justify-content:center;font-size:1.05rem;padding:1rem 2rem">
-            Démarrer mon projet
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <p>Sans engagement · Réponse sous 24h</p>
-        </div>
+    <div class="nobrainer-center">
+      <div class="nobrainer-badge"><div class="nobrainer-badge-tag">Gratuit</div><div class="nobrainer-badge-body">Places limitées ce mois</div></div>
+      <h2>La maquette de votre<br>futur site. <em>Gratuite.</em></h2>
+      <p class="nobrainer-desc">Une vraie proposition visuelle, sur-mesure. Présentée en appel vidéo. Si ça vous convient, on démarre.</p>
+      <div class="nobrainer-cta">
+        <a href="contact.html#offre-gratuite" class="btn-nobrainer">
+          Demander ma maquette gratuite
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <div class="nobrainer-hint">Réponse sous 24h</div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- CTA FINAL -->
-<section class="section cta-center cta-dark">
-  <div class="container">
-    <div class="reveal" style="margin-bottom:1rem"><span class="mono">03 / Votre projet</span></div>
-    <h2 class="section-h2 reveal" style="max-width:640px;margin:0 auto 1rem">Votre prochain client est sur internet. <em>Est-ce qu'il vous trouve ?</em></h2>
-    <p class="section-lead reveal" style="margin:0 auto">Dans 14 à 21 jours, votre site optimisé conversion est en ligne et commence à travailler pour vous.</p>
-    <div style="margin-top:2.5rem" class="reveal"><a href="contact.html" class="cta-btn lg">Démarrer mon projet <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
   </div>
 </section>
 
