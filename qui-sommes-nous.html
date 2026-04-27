@@ -177,6 +177,11 @@
     padding: 8rem 0; position: relative; overflow: hidden;
     background: var(--midnight) url('images/hero-index.jpg') center/cover no-repeat;
   }
+  @media (max-width: 639px) {
+    .founders { padding: 3.5rem 0 5rem; }
+    .founders-head { margin-bottom: 2rem; }
+    .founders-head h2 { font-size: clamp(1.7rem, 7vw, 2.2rem); }
+  }
   .founders::before { content: ''; position: absolute; inset: 0; background: rgba(15,23,42,0.45); z-index: 0; }
   .founders-vlines { position: absolute; inset: 0; pointer-events: none; display: flex; justify-content: space-between; padding: 0 2rem; z-index: 1; }
   .founders-vlines .vl { width: 1px; height: 100%; background: rgba(255,255,255,0.04); }
