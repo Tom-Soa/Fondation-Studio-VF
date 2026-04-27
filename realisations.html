@@ -248,10 +248,6 @@
     backdrop-filter: blur(4px); transition: background 0.15s;
   }
   .real-modal-close:hover { background: rgba(0,0,0,0.65); }
-
-  /* ── Fix iOS background-attachment:fixed ── */
-  @media (hover: none) and (pointer: coarse) {
-    * { background-attachment: scroll !important; }
   }
 
   /* ── Featured case ── */
@@ -306,7 +302,7 @@
   .cta-section {
     text-align: center; padding: 7rem 0;
     background-image: url('https://images.pexels.com/photos/7506018/pexels-photo-7506018.jpeg?auto=compress&cs=tinysrgb&w=1920');
-    background-size: cover; background-position: center; background-attachment: fixed;
+    background-size: cover; background-position: center; background-attachment: scroll;
     position: relative;
   }
   .cta-section::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(15,23,42,0.88) 0%, rgba(30,15,8,0.82) 100%); z-index: 0; }
@@ -464,7 +460,23 @@
     .mob-menu-overlay, .mob-menu-panel { display: block; }
   }
 
+
+  /* ── Performance mobile ── */
+  @media (max-width: 639px) {
+    .pill-inner, .mob-menu-btn, .mob-menu-panel, .cookie-banner,
+    .pourquoi-pillar, .pourquoi-quote, .cta-btn, .btn-ghost, .btn-nobrainer {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+    .pill-inner { background: rgba(15,23,42,0.96); }
+    .mob-menu-btn { background: rgba(15,23,42,0.96); }
+    .mob-menu-panel { background: rgba(15,23,42,0.98); }
+  }
+  .testi-col { will-change: transform; }
+  .reveal { will-change: opacity, transform; }
+
 </style>
+  <link rel="preload" as="image" href="images/hero-equipe.png" fetchpriority="high">
 </head>
 <body>
 
@@ -711,7 +723,7 @@
         ? '<a href="' + escHtml(proj.siteUrl) + '" class="real-voir-site-overlay" target="_blank" rel="noopener" onclick="event.stopPropagation()">Voir le site <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>'
         : '<span class="real-voir-site-overlay real-voir-site-soon">Bientôt en ligne</span>';
 
-      item.innerHTML = '<div class="real-img-wrap"><img src="' + escHtml(proj.imageUrl) + '" alt="' + escHtml(proj.name) + '" loading="lazy" />' + siteBtn + '</div><div class="real-cat">' + escHtml(proj.sector) + '</div><h3>' + escHtml(proj.name) + '</h3><p>' + escHtml(proj.desc) + '</p>';
+      item.innerHTML = '<div class="real-img-wrap"><img src="' + escHtml(proj.imageUrl) + '" alt="' + escHtml(proj.name) + '" loading="lazy" / decoding="async">' + siteBtn + '</div><div class="real-cat">' + escHtml(proj.sector) + '</div><h3>' + escHtml(proj.name) + '</h3><p>' + escHtml(proj.desc) + '</p>';
 
       item.addEventListener('click', function(e) {
         if (!e.target.closest('.real-voir-site-overlay')) openModal(proj);

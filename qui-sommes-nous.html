@@ -115,7 +115,7 @@
 
   /* ── VISION ── */
   .vision { background: var(--alabaster); padding: 10rem 0 8rem; overflow: hidden; position: relative; }
-  .vision::before { content: ''; position: absolute; inset: 0; background-image: url('https://images.pexels.com/photos/2166559/pexels-photo-2166559.jpeg?auto=compress&cs=tinysrgb&w=1920'); background-size: cover; background-position: center 60%; background-attachment: fixed; opacity: 0.06; }
+  .vision::before { content: ''; position: absolute; inset: 0; background-image: url('https://images.pexels.com/photos/2166559/pexels-photo-2166559.jpeg?auto=compress&cs=tinysrgb&w=1920'); background-size: cover; background-position: center 60%; background-attachment: scroll; opacity: 0.06; }
   .vision .container { position: relative; z-index: 1; }
   .vision-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
   @media (max-width: 900px) { .vision-inner { grid-template-columns: 1fr; gap: 3rem; } }
@@ -227,7 +227,7 @@
     background: var(--midnight); padding: 8rem 0; position: relative; overflow: hidden;
     background-image: url('https://images.pexels.com/photos/1482193/pexels-photo-1482193.jpeg?auto=compress&cs=tinysrgb&w=1920');
     background-size: cover; background-position: center 50%;
-    background-attachment: fixed;
+    background-attachment: scroll;
   }
   .pourquoi::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(15,23,42,0.92) 0%, rgba(15,23,42,0.80) 60%, rgba(30,10,5,0.90) 100%); z-index: 0; }
   .pourquoi .container { position: relative; z-index: 1; }
@@ -303,7 +303,7 @@
   .toast-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; flex-shrink: 0; }
 
   .freelance-grid { display: none; }
-  .freelance-section { padding: 5rem 0; border-top: 1px solid var(--grid); position: relative; background-image: url('images/tom-coworking.jpg'); background-attachment: fixed; background-size: cover; background-position: center; }
+  .freelance-section { padding: 5rem 0; border-top: 1px solid var(--grid); position: relative; background-image: url('images/tom-coworking.jpg'); background-attachment: scroll; background-size: cover; background-position: center; }
   .freelance-section::before { content: ''; position: absolute; inset: 0; background: rgba(15,23,42,0.75); z-index: 0; }
   .freelance-section .container { position: relative; z-index: 1; }
   .freelance-header h2, .freelance-header .mono { color: #fff; }
@@ -448,13 +448,26 @@
     #pill-nav { display: none !important; }
     .mob-menu-overlay, .mob-menu-panel { display: block; }
   }
-  /* Fix iOS background-attachment:fixed */
-@media (hover: none) and (pointer: coarse) {
-    * { background-attachment: scroll !important; }
   }
 
 
+
+  /* ── Performance mobile ── */
+  @media (max-width: 639px) {
+    .pill-inner, .mob-menu-btn, .mob-menu-panel, .cookie-banner,
+    .pourquoi-pillar, .pourquoi-quote, .cta-btn, .btn-ghost, .btn-nobrainer {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+    .pill-inner { background: rgba(15,23,42,0.96); }
+    .mob-menu-btn { background: rgba(15,23,42,0.96); }
+    .mob-menu-panel { background: rgba(15,23,42,0.98); }
+  }
+  .testi-col { will-change: transform; }
+  .reveal { will-change: opacity, transform; }
+
 </style>
+  <link rel="preload" as="image" href="images/hero-equipe.png" fetchpriority="high">
 </head>
 <body>
 
@@ -563,7 +576,7 @@
     <!-- TOM-SOA -->
     <div class="founder-grid reveal">
       <div class="founder-photo">
-        <img src="tom-soa.jpg" alt="Tom-Soa  :  Co-fondateur Fondation Studio" loading="lazy" />
+        <img src="tom-soa.jpg" alt="Tom-Soa  :  Co-fondateur Fondation Studio" loading="lazy" / decoding="async">
       </div>
       <div class="founder-info">
         <div class="founder-info-role">Co-fondateur · Acquisition &amp; Stratégie</div>
@@ -584,7 +597,7 @@
     <!-- ANDYLANE -->
     <div class="founder-grid reveal">
       <div class="founder-photo">
-        <img src="images/andy-lan.png" alt="Andylane  :  Co-fondateur Fondation Studio" loading="lazy" />
+        <img src="images/andy-lan.png" alt="Andylane  :  Co-fondateur Fondation Studio" loading="lazy" / decoding="async">
       </div>
       <div class="founder-info">
         <div class="founder-info-role">Co-fondateur · Business &amp; Développement</div>
@@ -625,7 +638,7 @@
       </div>
       <div class="vision-visual reveal">
         <div class="vision-img-main">
-          <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Fondation Studio  :  vision" loading="lazy" />
+          <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Fondation Studio  :  vision" loading="lazy" / decoding="async">
         </div>
       </div>
     </div>
