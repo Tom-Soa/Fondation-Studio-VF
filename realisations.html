@@ -183,11 +183,22 @@
   @media (max-width: 580px) { .real-grid { grid-template-columns: 1fr; } }
   @media (max-width: 580px) { .real-item h3 { font-size: 1rem; } }
 
-  .real-item { cursor: pointer; }
+  .real-item {
+    cursor: pointer;
+    background: white;
+    border-radius: 16px;
+    border: 1px solid var(--grid);
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(15,23,42,0.05), 0 4px 18px rgba(15,23,42,0.07);
+    transition: box-shadow 0.25s var(--ease-out), transform 0.25s var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .real-item:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(15,23,42,0.13), 0 2px 8px rgba(15,23,42,0.07); }
+  }
 
   .real-img-wrap {
-    position: relative; border-radius: 16px; overflow: hidden;
-    aspect-ratio: 4/3; margin-bottom: 1.25rem; background: var(--grid);
+    position: relative; border-radius: 0; overflow: hidden;
+    aspect-ratio: 4/3; margin-bottom: 0; background: var(--grid);
   }
   .real-img-wrap img {
     width: 100%; height: 100%; object-fit: cover;
@@ -197,6 +208,10 @@
   @media (hover: hover) and (pointer: fine) {
     .real-item:hover .real-img-wrap img { transform: scale(1.04); }
   }
+
+  .real-cat { font-family: 'DM Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--terra); margin-bottom: 0.35rem; padding: 1.1rem 1.25rem 0; }
+  .real-item h3 { font-weight: 700; font-size: 1.05rem; margin-bottom: 0.35rem; line-height: 1.3; padding: 0 1.25rem; }
+  .real-item p { color: var(--steel); font-size: 0.85rem; line-height: 1.6; padding: 0 1.25rem 1.25rem; }
 
   .real-voir-site-overlay {
     position: absolute; bottom: 0.9rem; right: 0.9rem; z-index: 2;
@@ -213,9 +228,6 @@
   }
   button.real-voir-site-overlay { border: none; cursor: pointer; font-family: inherit; }
 
-  .real-cat { font-family: 'DM Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--terra); margin-bottom: 0.35rem; }
-  .real-item h3 { font-weight: 700; font-size: 1.05rem; margin-bottom: 0.35rem; line-height: 1.3; }
-  .real-item p { color: var(--steel); font-size: 0.85rem; line-height: 1.6; }
 
   /* ── Modal réalisation ── */
   .real-modal-overlay {
@@ -577,26 +589,10 @@
 
 
 <!-- RÉALISATIONS -->
-<section class="real-header">
+<section style="background:var(--alabaster);padding:clamp(5rem,8vw,7rem) 0 3rem;border-bottom:1px solid var(--grid)">
   <div class="container">
-    <div class="reveal" style="margin-bottom:1rem"><span class="mono">Nos réalisations</span></div>
-    <h2 class="section-h2 reveal">Des sites qui convertissent.</h2>
-    <p class="real-header-lead reveal">Chaque projet est pensé pour générer des contacts, des réservations et des ventes, et pas juste pour être beau.</p>
-    <div class="real-stats reveal">
-      <div>
-        <div class="real-stat-num">+40</div>
-        <div class="real-stat-label">Sites livrés</div>
-      </div>
-      <div>
-        <div class="real-stat-num">100%</div>
-        <div class="real-stat-label">Clients satisfaits</div>
-      </div>
-      <div>
-        <div class="real-stat-num">7j</div>
-        <div class="real-stat-label">Délai moyen</div>
-      </div>
-    </div>
-    <!-- FILTER TABS -->
+    <div class="reveal" style="margin-bottom:0.75rem"><span style="font-family:'DM Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--steel)">Nos réalisations</span></div>
+    <h1 class="reveal" style="font-weight:800;font-size:clamp(2.2rem,5vw,4rem);line-height:1.05;letter-spacing:-0.025em;color:var(--midnight);margin-bottom:2.5rem">Ce qu'on a fait<br>pour nos clients.</h1>
     <div class="filter-row reveal" id="filter-row">
       <button class="filter-btn active" data-filter="all">Tous</button>
       <button class="filter-btn" data-filter="restaurant">Restaurant</button>
