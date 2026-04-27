@@ -373,6 +373,14 @@
   const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNjdGVhanBzZHNlY3JrcXZmbnlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczMTI1NjEsImV4cCI6MjA5Mjg4ODU2MX0.hOwrzZR5dVV11huCtp_xz2xKXJI25heAZrQEE76UB9w';
   let sb = null;
   try { sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY); } catch(e) { console.warn('Supabase SDK non chargé', e); }
+
+  // Migration auto: ajouter colonne statut si absente (best-effort)
+  async function ensureStatutColumn() {
+    if (!sb) return;
+    try {
+      await sb.rpc('exec_sql', { sql: "ALTER TABLE realisations ADD COLUMN IF NOT EXISTS statut TEXT DEFAULT 'visible';" });
+    } catch(e) { /* anon key ne peut pas exécuter de DDL - normal */ }
+  }
   const LS = {
     get: (k, d) => { try { const v = localStorage.getItem('fs_admin_' + k); return v ? JSON.parse(v) : d; } catch(e) { return d; } },
     set: (k, v) => { try { localStorage.setItem('fs_admin_' + k, JSON.stringify(v)); } catch(e) {} }
@@ -556,8 +564,14 @@
       div.innerHTML = `
         <div class="project-item-header">
           <span class="project-item-num">Projet ${i+1}</span>
-          <button class="admin-remove-btn" onclick="deleteProject('${proj.id||''}', this)">Supprimer</button>
+          ${proj.statut && proj.statut !== 'visible' ? `<span style="font-size:0.65rem;padding:0.2rem 0.5rem;border-radius:4px;background:${proj.statut==='masque'?'#FEF3C7':'#F1F5F9'};color:${proj.statut==='masque'?'#92400E':'#475569'}">${proj.statut==='masque'?'Masqué':'Archivé'}</span>` : ''}
+          <div style="display:flex;gap:0.5rem;align-items:center">
+            <button class="proj-toggle-btn" onclick="toggleStatut(this, '${proj.id||''}', '${proj.statut||'visible'}')" style="font-size:0.78rem;padding:0.3rem 0.7rem;border-radius:6px;border:1px solid var(--grid);background:white;color:var(--steel);cursor:pointer">${proj.statut==='masque'?'👁 Afficher':'🙈 Masquer'}</button>
+            <button onclick="toggleArchive(this, '${proj.id||''}', '${proj.statut||'visible'}')" style="font-size:0.78rem;padding:0.3rem 0.7rem;border-radius:6px;border:1px solid var(--grid);background:white;color:var(--steel);cursor:pointer">${proj.statut==='archive'?'📤 Désarchiver':'📦 Archiver'}</button>
+            <button class="admin-remove-btn" onclick="askDeleteProject('${proj.id||''}', '${escHtml(proj.name||'ce projet')}', this)">🗑 Supprimer</button>
+          </div>
         </div>
+        <input type="hidden" class="proj-statut" value="${proj.statut||'visible'}" />
         <div class="form-row">
           <div class="fgrp"><label>Nom / Client</label><input type="text" class="proj-name" value="${escHtml(proj.name||'')}" /></div>
           <div class="fgrp"><label>Secteur (affiché)</label><input type="text" class="proj-sector" value="${escHtml(proj.sector||'')}" placeholder="ex : Transport, Construction..." /></div>
@@ -566,8 +580,11 @@
           <div class="fgrp">
             <label>Categorie (filtre)</label>
             <select class="proj-category" style="background:var(--alabaster);border:1px solid var(--grid);border-radius:8px;padding:0.75rem 1rem;color:var(--midnight);font-size:0.9rem;outline:none;width:100%">
-              <option value="btp" ${(proj.category||'')==='btp'?'selected':''}>Construction / BTP</option>
-              <option value="autre" ${(proj.category||'autre')==='autre'?'selected':''}>Autre secteur</option>
+              <option value="btp" ${(proj.category||'')==='btp'?'selected':''}>BTP / Construction</option>
+              <option value="restaurant" ${(proj.category||'')==='restaurant'?'selected':''}>Restaurant</option>
+              <option value="boutique" ${(proj.category||'')==='boutique'?'selected':''}>Boutique</option>
+              <option value="bien-etre" ${(proj.category||'')==='bien-etre'?'selected':''}>Bien-être</option>
+              <option value="autre" ${(proj.category||'autre')==='autre'?'selected':''}>Autre</option>
             </select>
           </div>
           <div class="fgrp"><label>Ordre d'affichage</label><input type="number" class="proj-ordre" value="${proj.ordre||i}" style="background:var(--alabaster);border:1px solid var(--grid);border-radius:8px;padding:0.75rem 1rem;width:100%;font-size:0.9rem" /></div>
@@ -596,6 +613,69 @@
     showToast('Projet supprimé.');
   }
 
+  async function askDeleteProject(id, nom, btn) {
+    const modal = document.getElementById('delete-confirm-modal');
+    const nomSpan = document.getElementById('delete-project-name');
+    nomSpan.textContent = nom;
+    modal.dataset.projectId = id;
+    modal.dataset.btn = '';
+    window._deleteBtn = btn;
+    document.getElementById('delete-confirm-input').value = '';
+    document.getElementById('delete-confirm-error').style.display = 'none';
+    modal.style.display = 'flex';
+  }
+
+  function closeDeleteModal() {
+    document.getElementById('delete-confirm-modal').style.display = 'none';
+  }
+
+  async function confirmDelete() {
+    const modal = document.getElementById('delete-confirm-modal');
+    const input = document.getElementById('delete-confirm-input');
+    const err = document.getElementById('delete-confirm-error');
+    if (input.value.trim().toUpperCase() !== 'SUPPRIMER') {
+      err.style.display = 'block';
+      input.focus();
+      return;
+    }
+    const id = modal.dataset.projectId;
+    if (id) {
+      const { error } = await sb.from('realisations').delete().eq('id', id);
+      if (error) { showToast('Erreur suppression : ' + error.message); closeDeleteModal(); return; }
+    }
+    if (window._deleteBtn) window._deleteBtn.closest('.project-item').remove();
+    closeDeleteModal();
+    showToast('Projet supprimé définitivement.');
+  }
+
+  async function toggleStatut(btn, id, currentStatut) {
+    const item = btn.closest('.project-item');
+    const statutField = item.querySelector('.proj-statut');
+    const newStatut = currentStatut === 'masque' ? 'visible' : 'masque';
+    if (id) {
+      const { error } = await sb.from('realisations').update({ statut: newStatut }).eq('id', id);
+      if (error) { showToast('Erreur : ' + error.message); return; }
+    }
+    statutField.value = newStatut;
+    btn.textContent = newStatut === 'masque' ? '👁 Afficher' : '🙈 Masquer';
+    btn.setAttribute('onclick', `toggleStatut(this, '${id}', '${newStatut}')`);
+    showToast(newStatut === 'masque' ? 'Projet masqué sur le site public.' : 'Projet visible sur le site public.');
+  }
+
+  async function toggleArchive(btn, id, currentStatut) {
+    const item = btn.closest('.project-item');
+    const statutField = item.querySelector('.proj-statut');
+    const newStatut = currentStatut === 'archive' ? 'visible' : 'archive';
+    if (id) {
+      const { error } = await sb.from('realisations').update({ statut: newStatut }).eq('id', id);
+      if (error) { showToast('Erreur : ' + error.message); return; }
+    }
+    statutField.value = newStatut;
+    btn.textContent = newStatut === 'archive' ? '📤 Désarchiver' : '📦 Archiver';
+    btn.setAttribute('onclick', `toggleArchive(this, '${id}', '${newStatut}')`);
+    showToast(newStatut === 'archive' ? 'Projet archivé.' : 'Projet désarchivé.');
+  }
+
   async function uploadImage(input, urlField) {
     const file = input.files[0];
     if (!file) return;
@@ -618,8 +698,13 @@
     div.innerHTML = `
       <div class="project-item-header">
         <span class="project-item-num">Nouveau projet</span>
-        <button class="admin-remove-btn" onclick="this.closest('.project-item').remove()">Supprimer</button>
+        <div style="display:flex;gap:0.5rem;align-items:center">
+          <button class="proj-toggle-btn" onclick="toggleStatut(this, '', 'visible')" style="font-size:0.78rem;padding:0.3rem 0.7rem;border-radius:6px;border:1px solid var(--grid);background:white;color:var(--steel);cursor:pointer">🙈 Masquer</button>
+          <button onclick="toggleArchive(this, '', 'visible')" style="font-size:0.78rem;padding:0.3rem 0.7rem;border-radius:6px;border:1px solid var(--grid);background:white;color:var(--steel);cursor:pointer">📦 Archiver</button>
+          <button class="admin-remove-btn" onclick="this.closest('.project-item').remove()">🗑 Supprimer</button>
+        </div>
       </div>
+      <input type="hidden" class="proj-statut" value="visible" />
       <div class="form-row">
         <div class="fgrp"><label>Nom / Client</label><input type="text" class="proj-name" value="" /></div>
         <div class="fgrp"><label>Secteur (affiché)</label><input type="text" class="proj-sector" value="" placeholder="ex : Transport, Construction..." /></div>
@@ -628,8 +713,11 @@
         <div class="fgrp">
           <label>Categorie (filtre)</label>
           <select class="proj-category" style="background:var(--alabaster);border:1px solid var(--grid);border-radius:8px;padding:0.75rem 1rem;color:var(--midnight);font-size:0.9rem;outline:none;width:100%">
-            <option value="btp">Construction / BTP</option>
-            <option value="autre" selected>Autre secteur</option>
+            <option value="btp">BTP / Construction</option>
+            <option value="restaurant">Restaurant</option>
+            <option value="boutique">Boutique</option>
+            <option value="bien-etre">Bien-être</option>
+            <option value="autre" selected>Autre</option>
           </select>
         </div>
         <div class="fgrp"><label>Ordre d'affichage</label><input type="number" class="proj-ordre" value="${count}" style="background:var(--alabaster);border:1px solid var(--grid);border-radius:8px;padding:0.75rem 1rem;width:100%;font-size:0.9rem" /></div>
@@ -666,7 +754,8 @@
         detail_desc: item.querySelector('.proj-detail-desc').value,
         image_url: item.querySelector('.proj-image-url').value,
         site_url: item.querySelector('.proj-url').value,
-        ordre: parseInt(item.querySelector('.proj-ordre').value) || i
+        ordre: parseInt(item.querySelector('.proj-ordre').value) || i,
+        statut: item.querySelector('.proj-statut').value || 'visible'
       };
       if (id) row.id = id;
       items.push(row);
@@ -682,5 +771,19 @@
     return String(str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
 </script>
+<!-- Modal confirmation suppression -->
+<div id="delete-confirm-modal" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:1.5rem">
+  <div style="background:white;border-radius:16px;padding:2rem;max-width:440px;width:100%;position:relative">
+    <h3 style="font-weight:800;font-size:1.15rem;margin-bottom:0.5rem;color:#0F172A">Supprimer ce projet ?</h3>
+    <p style="font-size:0.88rem;color:#64748B;line-height:1.6;margin-bottom:1.25rem">Cette action est <strong>irréversible</strong>. Le projet <strong id="delete-project-name"></strong> sera définitivement supprimé de Supabase.</p>
+    <p style="font-size:0.82rem;color:#0F172A;margin-bottom:0.5rem;font-weight:600">Tapez <code style="background:#FEF2F2;color:#DC2626;padding:0.1rem 0.4rem;border-radius:4px;font-family:monospace">SUPPRIMER</code> pour confirmer :</p>
+    <input type="text" id="delete-confirm-input" placeholder="SUPPRIMER" style="width:100%;border:1.5px solid #E5E5E1;border-radius:8px;padding:0.75rem 1rem;font-size:0.9rem;outline:none;margin-bottom:0.5rem;font-family:inherit" oninput="this.style.borderColor=this.value.toUpperCase()==='SUPPRIMER'?'#22c55e':'#E5E5E1'" />
+    <p id="delete-confirm-error" style="display:none;color:#DC2626;font-size:0.8rem;margin-bottom:0.75rem">⚠ Tapez exactement "SUPPRIMER" en majuscules.</p>
+    <div style="display:flex;gap:0.75rem;justify-content:flex-end;margin-top:1rem">
+      <button onclick="closeDeleteModal()" style="padding:0.65rem 1.25rem;border-radius:8px;border:1px solid #E5E5E1;background:white;font-size:0.88rem;font-weight:600;cursor:pointer;color:#64748B">Annuler</button>
+      <button onclick="confirmDelete()" style="padding:0.65rem 1.4rem;border-radius:8px;background:#DC2626;color:white;border:none;font-size:0.88rem;font-weight:700;cursor:pointer">Supprimer définitivement</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>

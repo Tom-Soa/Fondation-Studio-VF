@@ -596,9 +596,12 @@
     <h1 class="reveal" style="font-weight:800;font-size:clamp(2.2rem,5vw,4rem);line-height:1.05;letter-spacing:-0.025em;color:var(--midnight);margin-bottom:0.75rem">Ce qu'on a fait<br>pour nos clients.</h1>
     <p class="reveal" style="font-size:1rem;color:var(--steel);line-height:1.65;max-width:480px;margin-bottom:2rem">Sites codés à la main, pensés pour convertir. Pas des templates, pas du WordPress.</p>
     <div class="filter-row reveal" id="filter-row">
-      <button class="filter-btn active" data-filter="all">Tous</button>
-      <button class="filter-btn" data-filter="btp">Construction</button>
-      <button class="filter-btn" data-filter="autre">Autres secteurs</button>
+      <button class="filter-btn active" data-filter="all">Tous les projets</button>
+      <button class="filter-btn" data-filter="btp">BTP</button>
+      <button class="filter-btn" data-filter="restaurant">Restaurant</button>
+      <button class="filter-btn" data-filter="boutique">Boutique</button>
+      <button class="filter-btn" data-filter="bien-etre">Bien-être</button>
+      <button class="filter-btn" data-filter="autre">Autre</button>
     </div>
   </div>
 </section>
@@ -759,7 +762,9 @@
     })
     .then(function(r) { return r.json(); })
     .then(function(data) {
-      var projects = (data && data.length) ? data.map(function(r) {
+      var projects = (data && data.length) ? data.filter(function(r) {
+        return !r.statut || r.statut === 'visible';
+      }).map(function(r) {
         return { name: r.name, sector: r.sector, category: r.category,
           desc: r.description, detailDesc: r.detail_desc,
           imageUrl: r.image_url, siteUrl: r.site_url };
