@@ -371,7 +371,8 @@
   const ADMIN_PASS = 'Fondationstudio2026fontdetrèsbonsite1231?';
   const SUPABASE_URL = 'https://ccteajpsdsecrkqvfnyl.supabase.co';
   const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNjdGVhanBzZHNlY3JrcXZmbnlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczMTI1NjEsImV4cCI6MjA5Mjg4ODU2MX0.hOwrzZR5dVV11huCtp_xz2xKXJI25heAZrQEE76UB9w';
-  const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  let sb = null;
+  try { sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY); } catch(e) { console.warn('Supabase SDK non chargé', e); }
   const LS = {
     get: (k, d) => { try { const v = localStorage.getItem('fs_admin_' + k); return v ? JSON.parse(v) : d; } catch(e) { return d; } },
     set: (k, v) => { try { localStorage.setItem('fs_admin_' + k, JSON.stringify(v)); } catch(e) {} }
@@ -536,6 +537,7 @@
   /* ── Realisations (Supabase) ── */
   async function initRealisations() {
     const container = document.getElementById('projects-list');
+    if (!sb) { container.innerHTML = '<p style="color:orange;padding:1rem">Supabase non connecté. Rechargez la page.</p>'; return; }
     container.innerHTML = '<p style="color:var(--steel);font-size:0.9rem;padding:1rem">Chargement...</p>';
     const { data, error } = await sb.from('realisations').select('*').order('ordre', { ascending: true });
     if (error) { container.innerHTML = '<p style="color:red">Erreur chargement : ' + error.message + '</p>'; return; }
