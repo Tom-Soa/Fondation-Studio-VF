@@ -466,6 +466,21 @@
   .check-bad { color: #f87171; font-size: 1.1rem; }
   @media (max-width: 900px) { .tech-grid { grid-template-columns: 1fr; } }
   @media (max-width: 600px) { .compare-table { font-size: 0.82rem; } .compare-table td, .compare-table th { padding: 0.6rem 0.6rem; } }
+
+  /* ── Performance mobile ── */
+  @media (max-width: 639px) {
+    .pill-inner, .mob-menu-btn, .mob-menu-panel, .cookie-banner,
+    .pourquoi-pillar, .pourquoi-quote, .cta-btn, .btn-ghost, .btn-nobrainer {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+    .pill-inner { background: rgba(15,23,42,0.96); }
+    .mob-menu-btn { background: rgba(15,23,42,0.96); }
+    .mob-menu-panel { background: rgba(15,23,42,0.98); }
+  }
+  .testi-col { will-change: transform; }
+  .reveal { will-change: opacity, transform; }
+
 </style>
 </head>
 <body>
@@ -724,15 +739,15 @@
     </div>
     <div class="portfolio-grid">
       <div class="port-item reveal">
-        <div class="port-img"><img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69affc38021e7b844e061d97/76cd27f1f_generated_ef6fcb1b.png" alt="Restaurant Le Comptoir" loading="lazy" /><div class="port-overlay"><div class="port-arrow"><svg width="14" height="14" fill="none" stroke="#0F172A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></div>
+        <div class="port-img"><img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69affc38021e7b844e061d97/76cd27f1f_generated_ef6fcb1b.png" alt="Restaurant Le Comptoir" loading="lazy" / decoding="async"><div class="port-overlay"><div class="port-arrow"><svg width="14" height="14" fill="none" stroke="#0F172A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></div>
         <div class="port-cat">Restauration</div><h3>Restaurant Le Comptoir</h3><p>Site vitrine avec menu et réservation en ligne pour un restaurant gastronomique.</p>
       </div>
       <div class="port-item reveal reveal-delay-1">
-        <div class="port-img"><img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69affc38021e7b844e061d97/1ca6a8f80_generated_9ff62e6a.png" alt="Boulangerie Maison Dorée" loading="lazy" /><div class="port-overlay"><div class="port-arrow"><svg width="14" height="14" fill="none" stroke="#0F172A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></div>
+        <div class="port-img"><img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69affc38021e7b844e061d97/1ca6a8f80_generated_9ff62e6a.png" alt="Boulangerie Maison Dorée" loading="lazy" / decoding="async"><div class="port-overlay"><div class="port-arrow"><svg width="14" height="14" fill="none" stroke="#0F172A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></div>
         <div class="port-cat">Commerce local</div><h3>Boulangerie Maison Dorée</h3><p>Présentation des produits artisanaux et commande en ligne pour une boulangerie-pâtisserie.</p>
       </div>
       <div class="port-item reveal reveal-delay-2">
-        <div class="port-img"><img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69affc38021e7b844e061d97/faf4b0ddd_generated_dd2dbb34.png" alt="Cabinet Dupont" loading="lazy" /><div class="port-overlay"><div class="port-arrow"><svg width="14" height="14" fill="none" stroke="#0F172A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></div>
+        <div class="port-img"><img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69affc38021e7b844e061d97/faf4b0ddd_generated_dd2dbb34.png" alt="Cabinet Dupont" loading="lazy" / decoding="async"><div class="port-overlay"><div class="port-arrow"><svg width="14" height="14" fill="none" stroke="#0F172A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></div>
         <div class="port-cat">Services professionnels</div><h3>Cabinet Dupont & Associés</h3><p>Site institutionnel avec prise de rendez-vous pour un cabinet d'avocats.</p>
       </div>
     </div>

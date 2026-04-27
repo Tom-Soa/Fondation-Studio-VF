@@ -95,7 +95,22 @@
     .mob-menu-link:hover { background: rgba(255,255,255,0.06); color: white; }
     .mob-menu-cta { display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.9rem 1.5rem; margin-top: 1rem; background: var(--terra); color: white; border-radius: 100px; font-family: 'Inter'; font-weight: 600; font-size: 0.95rem; text-decoration: none; }
     @media (max-width: 900px) { .pill-nav { display: none; } .mob-menu-btn { display: flex; } .mob-menu-overlay, .mob-menu-panel { display: block; } }
-  </style>
+  
+  /* ── Performance mobile ── */
+  @media (max-width: 639px) {
+    .pill-inner, .mob-menu-btn, .mob-menu-panel, .cookie-banner,
+    .pourquoi-pillar, .pourquoi-quote, .cta-btn, .btn-ghost, .btn-nobrainer {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+    .pill-inner { background: rgba(15,23,42,0.96); }
+    .mob-menu-btn { background: rgba(15,23,42,0.96); }
+    .mob-menu-panel { background: rgba(15,23,42,0.98); }
+  }
+  .testi-col { will-change: transform; }
+  .reveal { will-change: opacity, transform; }
+
+</style>
 </head>
 <body>
 

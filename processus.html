@@ -218,7 +218,7 @@
   .cta-center { text-align: center; }
   .cta-center .section-h2 { max-width: 640px; margin: 0 auto 1rem; }
   .cta-center .section-lead { margin: 0 auto; }
-  .cta-dark { background-image: url('https://images.pexels.com/photos/7506018/pexels-photo-7506018.jpeg?auto=compress&cs=tinysrgb&w=1920'); background-attachment: fixed; background-size: cover; background-position: center; position: relative; }
+  .cta-dark { background-image: url('https://images.pexels.com/photos/7506018/pexels-photo-7506018.jpeg?auto=compress&cs=tinysrgb&w=1920'); background-attachment: scroll; background-size: cover; background-position: center; position: relative; }
   .cta-dark::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(15,23,42,0.88) 0%, rgba(30,15,8,0.82) 100%); z-index: 0; }
   .cta-dark .container { position: relative; z-index: 1; }
   .cta-dark .mono { color: rgba(255,255,255,0.4) !important; }
@@ -302,7 +302,7 @@
   .page-hero-bg-dim { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(15,23,42,0.72) 0%, rgba(15,23,42,0.55) 50%, rgba(20,10,5,0.65) 100%); }
   .page-hero .dark-vlines { z-index: 1; }
   .page-hero-inner { z-index: 2; }
-  .page-hero { min-height: 40vh; background: var(--midnight); display:flex; align-items:center; position:relative; overflow:hidden; padding: 8rem 0 4rem; background-image: url('https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg?auto=compress&cs=tinysrgb&w=1920'); background-attachment: fixed; background-size: cover; background-position: center 40%; }
+  .page-hero { min-height: 40vh; background: var(--midnight); display:flex; align-items:center; position:relative; overflow:hidden; padding: 8rem 0 4rem; background-image: url('https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg?auto=compress&cs=tinysrgb&w=1920'); background-attachment: scroll; background-size: cover; background-position: center 40%; }
   .page-hero .dark-vlines{position:absolute;inset:0;pointer-events:none;display:flex;justify-content:space-between;padding:0 2rem;}
   .page-hero .dark-vlines .vl{width:1px;height:100%;background:rgba(255,255,255,0.04);}
   .page-hero-inner{position:relative;z-index:1;}
@@ -350,7 +350,7 @@
   .page-hero-bg-dim { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(15,23,42,0.72) 0%, rgba(15,23,42,0.55) 50%, rgba(20,10,5,0.65) 100%); }
   .page-hero .dark-vlines { z-index: 1; }
   .page-hero-inner { z-index: 2; }
-  .page-hero { min-height: 42vh; background: var(--midnight); display: flex; align-items: center; position: relative; overflow: hidden; padding: 8rem 0 4rem; background-image: url('https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg?auto=compress&cs=tinysrgb&w=1920'); background-attachment: fixed; background-size: cover; background-position: center 40%; }
+  .page-hero { min-height: 42vh; background: var(--midnight); display: flex; align-items: center; position: relative; overflow: hidden; padding: 8rem 0 4rem; background-image: url('https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg?auto=compress&cs=tinysrgb&w=1920'); background-attachment: scroll; background-size: cover; background-position: center 40%; }
   .page-hero .dark-vlines { position: absolute; inset: 0; pointer-events: none; display: flex; justify-content: space-between; padding: 0 2rem; }
   .page-hero .dark-vlines .vl { width: 1px; height: 100%; background: rgba(255,255,255,0.04); }
   .page-hero-inner { position: relative; z-index: 1; }
@@ -550,7 +550,23 @@
   .check-bad { color: #f87171; font-size: 1.1rem; }
   @media (max-width: 600px) { .compare-table { font-size: 0.82rem; } .compare-table td, .compare-table th { padding: 0.6rem 0.6rem; } }
 
+
+  /* ── Performance mobile ── */
+  @media (max-width: 639px) {
+    .pill-inner, .mob-menu-btn, .mob-menu-panel, .cookie-banner,
+    .pourquoi-pillar, .pourquoi-quote, .cta-btn, .btn-ghost, .btn-nobrainer {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+    .pill-inner { background: rgba(15,23,42,0.96); }
+    .mob-menu-btn { background: rgba(15,23,42,0.96); }
+    .mob-menu-panel { background: rgba(15,23,42,0.98); }
+  }
+  .testi-col { will-change: transform; }
+  .reveal { will-change: opacity, transform; }
+
 </style>
+  <link rel="preload" as="image" href="images/hero-equipe.png" fetchpriority="high">
 </head>
 
 <body>
@@ -645,7 +661,7 @@
 </div>
 
 <!-- PROCESSUS -->
-<section class="section grid-bg" id="processus" style="position:relative;overflow:hidden;background-image:url('images/hero-performances.jpg');background-size:cover;background-position:center;background-attachment:fixed">
+<section class="section grid-bg" id="processus" style="position:relative;overflow:hidden;background-image:url('images/hero-performances.jpg');background-size:cover;background-position:center;background-attachment: scroll">
   <div style="position:absolute;inset:0;background:rgba(15,23,42,0.72);pointer-events:none;z-index:0"></div>
   <div class="container" style="position:relative;z-index:1">
     <div class="section-head">

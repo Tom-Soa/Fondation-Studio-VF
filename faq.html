@@ -200,8 +200,23 @@
   /* ── Toast ── */
   .toast { position: fixed; bottom: 2rem; right: 2rem; z-index: 300; background: white; border-radius: 12px; padding: 1rem 1.4rem; box-shadow: 0 8px 32px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 0.7rem; font-family: 'Inter', sans-serif; font-weight: 600; color: var(--midnight); transform: translateY(100px); opacity: 0; transition: transform 0.4s, opacity 0.4s; pointer-events: none; font-size: 0.9rem; }
   .toast-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; flex-shrink: 0; }
-@media (hover: none) and (pointer: coarse) { * { background-attachment: scroll !important; } }
+
+  /* ── Performance mobile ── */
+  @media (max-width: 639px) {
+    .pill-inner, .mob-menu-btn, .mob-menu-panel, .cookie-banner,
+    .pourquoi-pillar, .pourquoi-quote, .cta-btn, .btn-ghost, .btn-nobrainer {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+    .pill-inner { background: rgba(15,23,42,0.96); }
+    .mob-menu-btn { background: rgba(15,23,42,0.96); }
+    .mob-menu-panel { background: rgba(15,23,42,0.98); }
+  }
+  .testi-col { will-change: transform; }
+  .reveal { will-change: opacity, transform; }
+
 </style>
+  <link rel="preload" as="image" href="images/hero-equipe.png" fetchpriority="high">
 </head>
 <body>
 

@@ -233,7 +233,7 @@
   .cta-center { text-align: center; }
   .cta-center .section-h2 { max-width: 640px; margin: 0 auto 1rem; }
   .cta-center .section-lead { margin: 0 auto; }
-  .cta-dark { background-image: url('images/bg-cta.jpg'); background-attachment: fixed; background-size: cover; background-position: center 40%; position: relative; }
+  .cta-dark { background-image: url('images/bg-cta.jpg'); background-attachment: scroll; background-size: cover; background-position: center 40%; position: relative; }
   .cta-dark::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(15,23,42,0.88) 0%, rgba(30,15,8,0.82) 100%); z-index: 0; }
   .cta-dark .container { position: relative; z-index: 1; }
   .cta-dark .mono { color: rgba(255,255,255,0.4) !important; }
@@ -350,7 +350,7 @@
   .nobrainer-cta { display: flex; flex-direction: column; align-items: center; gap: 0.85rem; }
   .nobrainer-hint { font-family: 'DM Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.6); }
 
-  .page-hero { min-height: 40vh; background: var(--midnight); display:flex; align-items:center; position:relative; overflow:hidden; padding: 8rem 0 4rem; background-image: url('images/hero-index.jpg'); background-attachment: fixed; background-size: cover; background-position: center 40%; }
+  .page-hero { min-height: 40vh; background: var(--midnight); display:flex; align-items:center; position:relative; overflow:hidden; padding: 8rem 0 4rem; background-image: url('images/hero-index.jpg'); background-attachment: scroll; background-size: cover; background-position: center 40%; }
   .page-hero .dark-vlines{position:absolute;inset:0;pointer-events:none;display:flex;justify-content:space-between;padding:0 2rem;}
   .page-hero .dark-vlines .vl{width:1px;height:100%;background:rgba(255,255,255,0.04);}
   .page-hero-inner{position:relative;z-index:1;}
@@ -567,7 +567,7 @@
   @media (max-width: 540px) { .prob-row { grid-template-columns: 1fr; gap: 0.4rem; } }
 
   /* ── Pourquoi nous choisir ── */
-  .pourquoi { background: var(--midnight); padding: 8rem 0; position: relative; overflow: hidden; background-image: url('https://images.pexels.com/photos/1482193/pexels-photo-1482193.jpeg?auto=compress&cs=tinysrgb&w=1920'); background-size: cover; background-position: center 50%; background-attachment: fixed; }
+  .pourquoi { background: var(--midnight); padding: 8rem 0; position: relative; overflow: hidden; background-image: url('https://images.pexels.com/photos/1482193/pexels-photo-1482193.jpeg?auto=compress&cs=tinysrgb&w=1920'); background-size: cover; background-position: center 50%; background-attachment: scroll; }
   .pourquoi::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(15,23,42,0.92) 0%, rgba(15,23,42,0.80) 60%, rgba(30,10,5,0.90) 100%); z-index: 0; }
   .pourquoi .container { position: relative; z-index: 1; }
   .pourquoi-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
@@ -672,7 +672,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: url('images/bg-cta.jpg') center/cover fixed;
+    background: url('images/bg-cta.jpg') center/cover scroll;
     filter: brightness(0.72);
     z-index: 0;
   }
@@ -733,13 +733,26 @@
     font-size: 0.75rem; color: var(--steel);
   }
   .prob-db-footer strong { color: var(--midnight); }
-  /* Fix iOS background-attachment:fixed */
-@media (hover: none) and (pointer: coarse) {
-    * { background-attachment: scroll !important; }
   }
 
 
+
+  /* ── Performance mobile ── */
+  @media (max-width: 639px) {
+    .pill-inner, .mob-menu-btn, .mob-menu-panel, .cookie-banner,
+    .pourquoi-pillar, .pourquoi-quote, .cta-btn, .btn-ghost, .btn-nobrainer {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+    .pill-inner { background: rgba(15,23,42,0.96); }
+    .mob-menu-btn { background: rgba(15,23,42,0.96); }
+    .mob-menu-panel { background: rgba(15,23,42,0.98); }
+  }
+  .testi-col { will-change: transform; }
+  .reveal { will-change: opacity, transform; }
+
 </style>
+  <link rel="preload" as="image" href="images/hero-index.jpg" fetchpriority="high">
 </head>
 <body>
 
