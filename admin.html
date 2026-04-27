@@ -368,7 +368,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script>
-  const ADMIN_PASS = 'Fondationstudio2026fontdetrèsbonsite1231?';
+  const ADMIN_PASS = 'Fondationstudio2026fontdetresbonsite1231?';
   const SUPABASE_URL = 'https://ccteajpsdsecrkqvfnyl.supabase.co';
   const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNjdGVhanBzZHNlY3JrcXZmbnlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczMTI1NjEsImV4cCI6MjA5Mjg4ODU2MX0.hOwrzZR5dVV11huCtp_xz2xKXJI25heAZrQEE76UB9w';
   let sb = null;
@@ -386,8 +386,10 @@
       document.getElementById('admin-app').style.display = 'flex';
       initApp();
     } else {
-      err.style.display = 'block';
+      err.textContent = pwd.length === 0 ? 'Entrez le mot de passe.' : 'Mot de passe incorrect.';
+      err.style.cssText = 'display:block;color:#f87171;font-size:0.85rem;margin-top:0.75rem;text-align:center';
       document.getElementById('admin-pwd').value = '';
+      document.getElementById('admin-pwd').focus();
     }
   }
   document.getElementById('admin-pwd').addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
