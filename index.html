@@ -613,28 +613,28 @@
     height: 400px;
     border-radius: 20px;
     overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid var(--grid);
     margin-top: 3rem;
   }
   .sol-slab {
     flex: 1;
     position: relative;
     cursor: pointer;
-    border-right: 1px solid rgba(255,255,255,0.06);
+    border-right: 1px solid var(--grid);
     overflow: hidden;
-    background: rgba(255,255,255,0.015);
-    transition: flex 0.65s cubic-bezier(0.23,1,0.32,1), background 0.4s;
+    background: white;
+    transition: flex 0.65s cubic-bezier(0.23,1,0.32,1), background 0.3s;
   }
   .sol-slab:last-child { border-right: none; }
-  .sol-slab.active { flex: 4; background: rgba(194,65,12,0.04); }
-  .sol-slab:not(.active):hover { background: rgba(255,255,255,0.03); }
-  .sol-slab::after {
+  .sol-slab.active { flex: 4; background: var(--midnight); }
+  .sol-slab:not(.active):hover { background: #f5f4f2; }
+  .sol-slab:not(.active)::after {
     content: '';
     position: absolute; inset: 0; z-index: 3; pointer-events: none;
-    background: radial-gradient(350px circle at var(--mx,50%) var(--my,50%), rgba(194,65,12,0.12), transparent 70%);
+    background: radial-gradient(300px circle at var(--mx,50%) var(--my,50%), rgba(194,65,12,0.06), transparent 70%);
     opacity: 0; transition: opacity 0.3s;
   }
-  .sol-slab:hover::after { opacity: 1; }
+  .sol-slab:not(.active):hover::after { opacity: 1; }
 
   .sol-tab {
     position: absolute; inset: 0;
@@ -650,10 +650,10 @@
   .sol-tab-label {
     writing-mode: vertical-lr; transform: rotate(180deg);
     font-size: 0.75rem; font-weight: 600;
-    color: rgba(255,255,255,0.28); letter-spacing: 0.04em; white-space: nowrap;
+    color: var(--steel); letter-spacing: 0.04em; white-space: nowrap;
     transition: color 0.25s;
   }
-  .sol-slab:hover .sol-tab-label { color: rgba(255,255,255,0.65); }
+  .sol-slab:hover .sol-tab-label { color: var(--midnight); }
 
   .sol-body {
     position: absolute; inset: 0;
@@ -1273,46 +1273,26 @@
     panel.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
   })();
 
-  // Solution accordion — horizontal expand + auto-cycle + spotlight
+  // Solution accordion — clic pour activer, spotlight
   (function() {
     const accord = document.getElementById('solAccord');
     if (!accord) return;
     const slabs = Array.from(accord.querySelectorAll('.sol-slab'));
-    let current = 0, paused = false, timer;
+    let current = 0;
 
     function activate(idx) {
-      slabs.forEach((s, i) => {
-        s.classList.toggle('active', i === idx);
-        const prog = s.querySelector('.sol-progress');
-        if (!prog) return;
-        prog.style.animation = 'none';
-        void prog.offsetWidth;
-        prog.style.animation = i === idx ? 'sol-prog 3.5s linear forwards' : '';
-      });
+      slabs.forEach((s, i) => s.classList.toggle('active', i === idx));
       current = idx;
     }
 
-    function startCycle() {
-      clearInterval(timer);
-      timer = setInterval(() => { if (!paused) activate((current + 1) % slabs.length); }, 3500);
-    }
-
     slabs.forEach((slab, idx) => {
-      slab.addEventListener('click', () => {
-        if (current === idx) return;
-        paused = true; clearInterval(timer);
-        activate(idx);
-        setTimeout(() => { paused = false; startCycle(); }, 7000);
-      });
+      slab.addEventListener('click', () => activate(idx));
       slab.addEventListener('mousemove', e => {
         const r = slab.getBoundingClientRect();
         slab.style.setProperty('--mx', (e.clientX - r.left) + 'px');
         slab.style.setProperty('--my', (e.clientY - r.top) + 'px');
       });
     });
-
-    activate(0);
-    startCycle();
   })();
 
   // Testimonials columns  :  duplicate cards for seamless infinite scroll
