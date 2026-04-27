@@ -592,20 +592,19 @@
   .pourquoi-pillar h4 { font-weight: 700; font-size: 1rem; color: white; margin-bottom: 0.2rem; }
   .pourquoi-pillar p { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.55; }
   .pourquoi-benefit {
-    display: flex; gap: 1.5rem; align-items: start;
-    padding: 1.5rem 0;
+    position: relative;
+    padding: 1.75rem 0 1.75rem 5.5rem;
     border-top: 1px solid rgba(255,255,255,0.08);
   }
   .pourquoi-benefit:last-child { border-bottom: 1px solid rgba(255,255,255,0.08); }
   .pourquoi-benefit-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.6rem; font-weight: 400;
-    color: var(--terra); letter-spacing: 0.1em;
-    flex-shrink: 0; padding-top: 0.2rem;
-    width: 2rem;
+    position: absolute; left: -0.75rem; top: 50%; transform: translateY(-50%);
+    font-family: 'Inter', sans-serif; font-size: clamp(5.5rem, 14vw, 8rem);
+    font-weight: 800; letter-spacing: -0.06em; color: rgba(255,255,255,0.10);
+    line-height: 1; white-space: nowrap; pointer-events: none; user-select: none; z-index: 0;
   }
-  .pourquoi-benefit h4 { font-weight: 700; font-size: 1rem; color: white; margin-bottom: 0.3rem; }
-  .pourquoi-benefit p { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+  .pourquoi-benefit h4 { position: relative; z-index: 1; font-weight: 700; font-size: 1rem; color: white; margin-bottom: 0.3rem; }
+  .pourquoi-benefit p { position: relative; z-index: 1; font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
   .pourquoi-cta-block { display: flex; flex-direction: column; gap: 2.5rem; }
   .pourquoi-quote { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 2.5rem 2rem 2rem; position: relative; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
   .pourquoi-quote::before { content: '"'; position: absolute; top: 1rem; left: 2rem; font-size: 5rem; font-weight: 800; color: var(--terra); opacity: 0.4; line-height: 1; }
@@ -1051,25 +1050,19 @@
         <p class="reveal">On livre des sites qui rivalisent avec les plus grandes marques. Pas un template. Pas juste un beau site. Un site qui convertit et qui vous différencie dès la première visite.</p>
         <div class="pourquoi-pillars reveal">
           <div class="pourquoi-benefit">
-            <span class="pourquoi-benefit-num">01</span>
-            <div>
-              <h4>Le meilleur de votre secteur</h4>
-              <p>Vos concurrents ont des sites moyens ou pas de site du tout. Le vôtre sera dans une autre catégorie.</p>
-            </div>
+            <span class="pourquoi-benefit-num">1</span>
+            <h4>Le meilleur de votre secteur</h4>
+            <p>Vos concurrents ont des sites moyens ou pas de site du tout. Le vôtre sera dans une autre catégorie.</p>
           </div>
           <div class="pourquoi-benefit">
-            <span class="pourquoi-benefit-num">02</span>
-            <div>
-              <h4>Confiance immédiate</h4>
-              <p>En 3 secondes, votre visiteur comprend qu'il est au bon endroit. La crédibilité se voit, elle ne se lit pas.</p>
-            </div>
+            <span class="pourquoi-benefit-num">2</span>
+            <h4>Confiance immédiate</h4>
+            <p>En 3 secondes, votre visiteur comprend qu'il est au bon endroit. La crédibilité se voit, elle ne se lit pas.</p>
           </div>
           <div class="pourquoi-benefit">
-            <span class="pourquoi-benefit-num">03</span>
-            <div>
-              <h4>Un résultat qui se mesure</h4>
-              <p>Plus de demandes, plus de contacts, plus de ventes. La différence avec votre ancien site est quantifiable.</p>
-            </div>
+            <span class="pourquoi-benefit-num">3</span>
+            <h4>Un résultat qui se mesure</h4>
+            <p>Plus de demandes, plus de contacts, plus de ventes. La différence avec votre ancien site est quantifiable.</p>
           </div>
         </div>
       </div>
