@@ -557,14 +557,16 @@
   .prob-lead-desc p { color: var(--steel); font-size: 0.82rem; line-height: 1.7; }
   .prob-lead-cta { display: inline-flex; align-items: center; gap: 0.6rem; font-family: 'DM Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--terra); text-decoration: none; border-bottom: 1px solid rgba(194,65,12,0.3); padding-bottom: 0.2rem; transition: border-color 0.2s; }
   .prob-lead-cta:hover { border-color: var(--terra); }
-  .prob-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(15,23,42,0.15); border-radius: 6px; overflow: hidden; }
+  .prob-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(15,23,42,0.25); border-radius: 6px; overflow: hidden; position: relative; }
+  .prob-cards-parallax { position: absolute; left: 0; right: 0; top: -50px; bottom: -50px; background-image: url('images/bg-cta.jpg'); background-size: cover; background-position: center; z-index: 0; pointer-events: none; will-change: transform; }
   .prob-card {
     padding: 1.5rem 1.35rem 1.5rem;
-    background: var(--midnight);
+    background: rgba(12,20,40,0.84);
     position: relative;
+    z-index: 1;
     transition: background 0.2s;
   }
-  .prob-card:hover { background: #1a2844; }
+  .prob-card:hover { background: rgba(22,34,64,0.88); }
   .prob-card h3 { font-weight: 700; font-size: 1rem; color: white; margin-bottom: 0.45rem; line-height: 1.2; }
   .prob-card-impact { font-size: 0.82rem; color: rgba(255,255,255,0.42); line-height: 1.55; }
   .prob-card-impact strong { color: var(--terra); font-weight: 600; }
@@ -942,6 +944,7 @@
       </div>
       <div class="prob-dashboard reveal">
         <div class="prob-cards">
+          <div class="prob-cards-parallax" aria-hidden="true"></div>
           <div class="prob-card">
             <h3>Aucune conversion</h3>
             <p class="prob-card-impact"><strong>Moins de 0,5 %</strong> des visiteurs prennent contact.</p>
@@ -1320,6 +1323,21 @@
     document.querySelectorAll('.testi-col-inner').forEach(function(el) {
       el.innerHTML += el.innerHTML;
     });
+  })();
+
+  // Parallax prob-cards
+  (function() {
+    const parallax = document.querySelector('.prob-cards-parallax');
+    if (!parallax) return;
+    const cards = parallax.closest('.prob-cards');
+    function update() {
+      const rect = cards.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const progress = (vh / 2 - rect.top - rect.height / 2) / vh;
+      parallax.style.transform = 'translateY(' + (progress * 70).toFixed(1) + 'px)';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
   })();
 
   // Cookie consent
