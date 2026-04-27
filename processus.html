@@ -531,11 +531,26 @@
   /* ── Tech carousel ── */
   .tech-carousel-outer { margin: 2.5rem -2rem 0; padding: 0 2rem; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; cursor: grab; }
   .tech-carousel-outer::-webkit-scrollbar { display: none; }
-  .tech-carousel { display: flex; gap: 1rem; width: max-content; padding-bottom: 1rem; }
-  .tech-card { flex-shrink: 0; width: 220px; padding: 2rem 1.75rem; border: 1px solid var(--grid); background: white; border-radius: 4px; }
-  .tech-card-label { font-family: 'Inter', sans-serif; font-weight: 800; font-size: clamp(1.6rem,3vw,2rem); color: var(--terra); letter-spacing: -0.03em; line-height: 1; margin-bottom: 0.75rem; }
-  .tech-card h3 { font-weight: 700; font-size: 0.95rem; color: var(--midnight); margin-bottom: 0.4rem; }
-  .tech-card p { color: var(--steel); font-size: 0.82rem; line-height: 1.6; }
+  .tech-carousel { display: flex; gap: 1rem; width: max-content; padding-bottom: 1rem; align-items: stretch; }
+  .tech-card {
+    flex-shrink: 0; width: 270px;
+    display: flex; flex-direction: column;
+    background: var(--midnight);
+    border-radius: 2px;
+    position: relative; overflow: hidden;
+  }
+  .tech-card::after {
+    content: ''; position: absolute; bottom: 0; left: 1.75rem;
+    width: 2rem; height: 2px; background: var(--terra); opacity: 0.7;
+  }
+  .tech-card-top {
+    padding: 1.75rem 1.75rem 1.25rem;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .tech-card-label { font-family: 'Inter', sans-serif; font-weight: 800; font-size: clamp(1.8rem,3vw,2.2rem); color: var(--terra); letter-spacing: -0.04em; line-height: 1; }
+  .tech-card-body { padding: 1.25rem 1.75rem 2rem; flex: 1; }
+  .tech-card h3 { font-weight: 700; font-size: 0.92rem; color: rgba(255,255,255,0.9); margin-bottom: 0.5rem; }
+  .tech-card p { color: rgba(255,255,255,0.42); font-size: 0.82rem; line-height: 1.65; }
 
   /* ── Comparaison ── */
   .vs-divider { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin: 3.5rem 0 2rem; }
@@ -752,24 +767,32 @@
     <div class="tech-carousel-outer reveal">
       <div class="tech-carousel" id="techCarousel">
         <div class="tech-card">
-          <div class="tech-card-label">Rapide</div>
-          <h3>Chargement ultra-rapide</h3>
-          <p>Votre site s'affiche en une fraction de seconde. Une expérience fluide qui retient vos visiteurs.</p>
+          <div class="tech-card-top"><div class="tech-card-label">Rapide</div></div>
+          <div class="tech-card-body">
+            <h3>Chargement ultra-rapide</h3>
+            <p>Votre site s'affiche en une fraction de seconde. Une expérience fluide qui retient vos visiteurs.</p>
+          </div>
         </div>
         <div class="tech-card">
-          <div class="tech-card-label">Sécurisé</div>
-          <h3>Sécurité renforcée</h3>
-          <p>Sans base de données ni CMS, les risques de piratage sont considérablement réduits.</p>
+          <div class="tech-card-top"><div class="tech-card-label">Sécurisé</div></div>
+          <div class="tech-card-body">
+            <h3>Sécurité renforcée</h3>
+            <p>Sans base de données ni CMS, les risques de piratage sont considérablement réduits.</p>
+          </div>
         </div>
         <div class="tech-card">
-          <div class="tech-card-label">Unique</div>
-          <h3>100 % sur-mesure</h3>
-          <p>Pas de modèle préfabriqué. Chaque page est conçue pour votre secteur et vos clients.</p>
+          <div class="tech-card-top"><div class="tech-card-label">Unique</div></div>
+          <div class="tech-card-body">
+            <h3>100 % sur-mesure</h3>
+            <p>Pas de modèle préfabriqué. Chaque page est conçue pour votre secteur et vos clients.</p>
+          </div>
         </div>
         <div class="tech-card">
-          <div class="tech-card-label">Visible</div>
-          <h3>Référencement intégré</h3>
-          <p>Google, ChatGPT, Perplexity, assistants vocaux. Votre site est trouvé partout dès le lancement.</p>
+          <div class="tech-card-top"><div class="tech-card-label">Visible</div></div>
+          <div class="tech-card-body">
+            <h3>Référencement intégré</h3>
+            <p>Google, ChatGPT, Perplexity, assistants vocaux. Votre site est trouvé partout dès le lancement.</p>
+          </div>
         </div>
       </div>
     </div>
