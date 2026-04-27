@@ -674,24 +674,10 @@
     get: function(k, d) { try { var v = localStorage.getItem('fs_admin_' + k); return v ? JSON.parse(v) : d; } catch(e) { return d; } }
   };
 
-  var defaultProjects = [
-    { name: 'AC Run Transport', sector: 'Transport', category: 'autre',
-      desc: 'Site vitrine pour un service de chauffeur privé et excursions accompagnées à La Réunion.',
-      detailDesc: 'Site premium pour deux chauffeurs réunionnais proposant des transferts privés et excursions sur toute l\'île. Design immersif avec paysages de La Réunion, système de réservation en ligne, fiches excursions détaillées.',
-      imageUrl: 'images/real-ac-run.jpg', siteUrl: '#' },
-    { name: 'SICO PREFA', sector: 'Construction', category: 'btp',
-      desc: 'Site vitrine pour un spécialiste de la construction préfabriquée dans les îles de l\'Océan Indien et des Antilles.',
-      detailDesc: 'Site institutionnel fort pour SICO PREFA, acteur de la construction préfabriquée haute qualité. Présentation des services, formulaire d\'estimation de projet, galerie de réalisations. Optimisé pour les marchés insulaires.',
-      imageUrl: 'images/real-sico-prefa.jpg', siteUrl: '#' },
-    { name: 'CIAS Sud Mayotte', sector: 'Établissement public', category: 'autre',
-      desc: 'Site institutionnel pour le Centre Intercommunal d\'Action Sociale du Sud de Mayotte.',
-      detailDesc: 'Plateforme d\'information complète pour le CIAS CCSUD Mayotte, accompagnant les habitants de Bandrélé, Chirongui, Kani-Kéli et Bouéni. Navigation claire, accès rapide aux services sociaux, actualités et contact.',
-      imageUrl: 'images/real-cias.jpg', siteUrl: '#' },
-    { name: 'Tuy Run - Dien Chan', sector: 'Bien-être', category: 'autre',
-      desc: 'Site vitrine pour une praticienne en réflexothérapie faciale Dien Chan à La Réunion.',
-      detailDesc: 'Identité digitale envoûtante pour une praticienne Dien Chan à La Réunion. Design inspiré des paysages réunionnais, présentation de la méthode, prise de rendez-vous en ligne, blog actualités bien-être.',
-      imageUrl: 'images/real-tuy-run.jpg', siteUrl: '#' }
-  ];
+  var SUPABASE_URL = 'https://ccteajpsdsecrkqvfnyl.supabase.co';
+  var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNjdGVhanBzZHNlY3JrcXZmbnlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczMTI1NjEsImV4cCI6MjA5Mjg4ODU2MX0.hOwrzZR5dVV11huCtp_xz2xKXJI25heAZrQEE76UB9w';
+
+  var defaultProjects = [];
 
   // ── Reveal observer ──
   var revealObs = new IntersectionObserver(function(entries) {
@@ -767,10 +753,20 @@
       }
     });
 
-    // Charger projets (admin localStorage ou defaults)
-    var saved = LS.get('realisations', null);
-    var projects = (saved && saved.projects && saved.projects.length) ? saved.projects : defaultProjects;
-    renderProjects(projects);
+    // Charger projets depuis Supabase
+    fetch(SUPABASE_URL + '/rest/v1/realisations?select=*&order=ordre', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      var projects = (data && data.length) ? data.map(function(r) {
+        return { name: r.name, sector: r.sector, category: r.category,
+          desc: r.description, detailDesc: r.detail_desc,
+          imageUrl: r.image_url, siteUrl: r.site_url };
+      }) : defaultProjects;
+      renderProjects(projects);
+    })
+    .catch(function() { renderProjects(defaultProjects); });
 
     // Reveal pour éléments non-dynamiques
     observeReveal();

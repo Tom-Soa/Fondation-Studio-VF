@@ -366,8 +366,12 @@
   <span id="admin-toast-msg">Modifications enregistrees.</span>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script>
   const ADMIN_PASS = 'fondation2026';
+  const SUPABASE_URL = 'https://ccteajpsdsecrkqvfnyl.supabase.co';
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNjdGVhanBzZHNlY3JrcXZmbnlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczMTI1NjEsImV4cCI6MjA5Mjg4ODU2MX0.hOwrzZR5dVV11huCtp_xz2xKXJI25heAZrQEE76UB9w';
+  const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
   const LS = {
     get: (k, d) => { try { const v = localStorage.getItem('fs_admin_' + k); return v ? JSON.parse(v) : d; } catch(e) { return d; } },
     set: (k, v) => { try { localStorage.setItem('fs_admin_' + k, JSON.stringify(v)); } catch(e) {} }
@@ -476,21 +480,7 @@
       });
       LS.set('tarifs', { offers });
     } else if (panel === 'realisations') {
-      const projects = [];
-      document.querySelectorAll('.project-item').forEach(item => {
-        projects.push({
-          name: item.querySelector('.proj-name').value,
-          sector: item.querySelector('.proj-sector').value,
-          category: item.querySelector('.proj-category').value,
-          desc: item.querySelector('.proj-desc').value,
-          detailDesc: item.querySelector('.proj-detail-desc').value,
-          imageUrl: item.querySelector('.proj-image-url').value,
-          siteUrl: item.querySelector('.proj-url').value,
-          price: item.querySelector('.proj-price').value,
-          notified: item.querySelector('.proj-notified').checked
-        });
-      });
-      LS.set('realisations', { projects });
+      await saveRealisations(); return;
     } else if (panel === 'contact-cfg') {
       LS.set('contact', {
         whatsapp: document.getElementById('c-whatsapp').value,
@@ -543,17 +533,13 @@
     list.appendChild(div);
   }
 
-  /* ── Realisations ── */
-  const categoryLabels = { restaurant: 'Restaurant', artisan: 'Artisan & Commerce', pro: 'Professionnel liberal', startup: 'Startup & SaaS' };
-  const defaultProjects = [
-    { name: 'Bistrot du Marche', sector: 'Restaurant', category: 'restaurant', desc: 'Site vitrine + carte digitale + reservation en ligne pour un bistrot parisien.', detailDesc: 'Conception complete du site vitrine avec reservation en ligne fluide. Design elegant et appetissant, optimise pour convertir les visiteurs en reservations. SEO local integre des le lancement.', imageUrl: 'https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#', price: '', notified: false },
-    { name: 'Menuiserie Vallet', sector: 'Artisan', category: 'artisan', desc: 'Portfolio haute qualite pour un menuisier ebeniste.', detailDesc: 'Site vitrine premium avec galerie de realisations immersive. Formulaire de devis personnalise, photos professionnelles integrees.', imageUrl: 'https://images.pexels.com/photos/1109543/pexels-photo-1109543.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#', price: '', notified: false },
-    { name: 'Cabinet Moreau Droit', sector: 'Professionnel liberal', category: 'pro', desc: 'Site institutionnel pour un cabinet d\'avocats.', detailDesc: 'Site sobre et professionnel : credibilite, prise de contact, SEO local.', imageUrl: 'https://images.pexels.com/photos/1170979/pexels-photo-1170979.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#', price: '', notified: false },
-  ];
-
-  function initRealisations() {
-    const data = LS.get('realisations', { projects: defaultProjects });
-    renderProjects(data.projects || defaultProjects);
+  /* ── Realisations (Supabase) ── */
+  async function initRealisations() {
+    const container = document.getElementById('projects-list');
+    container.innerHTML = '<p style="color:var(--steel);font-size:0.9rem;padding:1rem">Chargement...</p>';
+    const { data, error } = await sb.from('realisations').select('*').order('ordre', { ascending: true });
+    if (error) { container.innerHTML = '<p style="color:red">Erreur chargement : ' + error.message + '</p>'; return; }
+    renderProjects(data || []);
   }
 
   function renderProjects(projects) {
@@ -562,46 +548,99 @@
     projects.forEach((proj, i) => {
       const div = document.createElement('div');
       div.className = 'project-item';
+      div.dataset.id = proj.id || '';
       div.innerHTML = `
         <div class="project-item-header">
           <span class="project-item-num">Projet ${i+1}</span>
-          <button class="admin-remove-btn" onclick="if(confirm('Supprimer ce projet ?')) this.closest('.project-item').remove()">Supprimer</button>
+          <button class="admin-remove-btn" onclick="deleteProject('${proj.id||''}', this)">Supprimer</button>
         </div>
         <div class="form-row">
-          <div class="fgrp"><label>Nom / Client</label><input type="text" class="proj-name" value="${escHtml(proj.name)}" /></div>
-          <div class="fgrp"><label>Secteur (affiché)</label><input type="text" class="proj-sector" value="${escHtml(proj.sector||'')}" placeholder="ex : Restaurant, Artisan..." /></div>
+          <div class="fgrp"><label>Nom / Client</label><input type="text" class="proj-name" value="${escHtml(proj.name||'')}" /></div>
+          <div class="fgrp"><label>Secteur (affiché)</label><input type="text" class="proj-sector" value="${escHtml(proj.sector||'')}" placeholder="ex : Transport, Construction..." /></div>
         </div>
         <div class="form-row">
           <div class="fgrp">
             <label>Categorie (filtre)</label>
             <select class="proj-category" style="background:var(--alabaster);border:1px solid var(--grid);border-radius:8px;padding:0.75rem 1rem;color:var(--midnight);font-size:0.9rem;outline:none;width:100%">
-              <option value="restaurant" ${(proj.category||'restaurant')==='restaurant'?'selected':''}>Restaurant</option>
-              <option value="artisan" ${(proj.category||'')==='artisan'?'selected':''}>Artisan & Commerce</option>
-              <option value="pro" ${(proj.category||'')==='pro'?'selected':''}>Professionnel liberal</option>
-              <option value="startup" ${(proj.category||'')==='startup'?'selected':''}>Startup & SaaS</option>
+              <option value="btp" ${(proj.category||'')==='btp'?'selected':''}>Construction / BTP</option>
+              <option value="autre" ${(proj.category||'autre')==='autre'?'selected':''}>Autre secteur</option>
             </select>
           </div>
-          <div class="fgrp"><label>Prix paye (prive, non affiche)</label><input type="text" class="proj-price" value="${escHtml(proj.price||'')}" placeholder="ex : 1 800 EUR" /></div>
+          <div class="fgrp"><label>Ordre d'affichage</label><input type="number" class="proj-ordre" value="${proj.ordre||i}" style="background:var(--alabaster);border:1px solid var(--grid);border-radius:8px;padding:0.75rem 1rem;width:100%;font-size:0.9rem" /></div>
         </div>
-        <div class="fgrp"><label>Description courte (carte)</label><textarea class="proj-desc">${escHtml(proj.desc)}</textarea></div>
-        <div class="fgrp"><label>Description detaillee (modale - clic sur la carte)</label><textarea class="proj-detail-desc" style="min-height:110px">${escHtml(proj.detailDesc||proj.desc||'')}</textarea></div>
-        <div class="fgrp"><label>URL de l'image (Pexels, Unsplash, ou chemin relatif)</label><input type="text" class="proj-image-url" value="${escHtml(proj.imageUrl||'')}" placeholder="https://images.pexels.com/..." /></div>
-        <div class="fgrp"><label>URL du site client (laisser vide si pas encore en ligne)</label><input type="text" class="proj-url" value="${escHtml(proj.siteUrl||proj.url||'')}" placeholder="https://..." /></div>
-        <div style="display:flex;align-items:center;gap:0.6rem;margin-top:0.25rem">
-          <input type="checkbox" class="proj-notified" id="notified-${i}" ${proj.notified?'checked':''} style="width:16px;height:16px;accent-color:var(--terra)" />
-          <label for="notified-${i}" style="font-family:'DM Mono',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--steel);cursor:pointer">Client notifie de sa mise en ligne</label>
+        <div class="fgrp"><label>Description courte (carte)</label><textarea class="proj-desc">${escHtml(proj.description||'')}</textarea></div>
+        <div class="fgrp"><label>Description détaillée</label><textarea class="proj-detail-desc" style="min-height:110px">${escHtml(proj.detail_desc||'')}</textarea></div>
+        <div class="fgrp">
+          <label>Image (upload ou URL directe)</label>
+          <input type="text" class="proj-image-url" value="${escHtml(proj.image_url||'')}" placeholder="https://... ou uploader ci-dessous" style="margin-bottom:0.5rem" />
+          <input type="file" accept="image/*" onchange="uploadImage(this, this.previousElementSibling)" style="font-size:0.8rem;color:var(--steel)" />
+          ${proj.image_url ? `<img src="${escHtml(proj.image_url)}" style="margin-top:0.5rem;max-height:80px;border-radius:6px;object-fit:cover" />` : ''}
         </div>
+        <div class="fgrp"><label>URL du site client</label><input type="text" class="proj-url" value="${escHtml(proj.site_url||'')}" placeholder="https://..." /></div>
       `;
       container.appendChild(div);
     });
   }
 
+  async function deleteProject(id, btn) {
+    if (!confirm('Supprimer ce projet ?')) return;
+    if (id) {
+      const { error } = await sb.from('realisations').delete().eq('id', id);
+      if (error) { showToast('Erreur suppression : ' + error.message); return; }
+    }
+    btn.closest('.project-item').remove();
+    showToast('Projet supprimé.');
+  }
+
+  async function uploadImage(input, urlField) {
+    const file = input.files[0];
+    if (!file) return;
+    showToast('Upload en cours...');
+    const ext = file.name.split('.').pop();
+    const filename = 'proj-' + Date.now() + '.' + ext;
+    const { error } = await sb.storage.from('realisations').upload(filename, file, { upsert: true });
+    if (error) { showToast('Erreur upload : ' + error.message); return; }
+    const { data } = sb.storage.from('realisations').getPublicUrl(filename);
+    urlField.value = data.publicUrl;
+    showToast('Image uploadée.');
+  }
+
   function addProject() {
-    const data = LS.get('realisations', { projects: defaultProjects });
-    const projects = [...(data.projects||[]), { name: '', sector: '', category: 'restaurant', desc: '', detailDesc: '', imageUrl: '', siteUrl: '', price: '', notified: false }];
-    renderProjects(projects);
-    const items = document.querySelectorAll('.project-item');
-    items[items.length-1].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const container = document.getElementById('projects-list');
+    const count = container.querySelectorAll('.project-item').length;
+    const div = document.createElement('div');
+    div.className = 'project-item';
+    div.dataset.id = '';
+    div.innerHTML = `
+      <div class="project-item-header">
+        <span class="project-item-num">Nouveau projet</span>
+        <button class="admin-remove-btn" onclick="this.closest('.project-item').remove()">Supprimer</button>
+      </div>
+      <div class="form-row">
+        <div class="fgrp"><label>Nom / Client</label><input type="text" class="proj-name" value="" /></div>
+        <div class="fgrp"><label>Secteur (affiché)</label><input type="text" class="proj-sector" value="" placeholder="ex : Transport, Construction..." /></div>
+      </div>
+      <div class="form-row">
+        <div class="fgrp">
+          <label>Categorie (filtre)</label>
+          <select class="proj-category" style="background:var(--alabaster);border:1px solid var(--grid);border-radius:8px;padding:0.75rem 1rem;color:var(--midnight);font-size:0.9rem;outline:none;width:100%">
+            <option value="btp">Construction / BTP</option>
+            <option value="autre" selected>Autre secteur</option>
+          </select>
+        </div>
+        <div class="fgrp"><label>Ordre d'affichage</label><input type="number" class="proj-ordre" value="${count}" style="background:var(--alabaster);border:1px solid var(--grid);border-radius:8px;padding:0.75rem 1rem;width:100%;font-size:0.9rem" /></div>
+      </div>
+      <div class="fgrp"><label>Description courte (carte)</label><textarea class="proj-desc"></textarea></div>
+      <div class="fgrp"><label>Description détaillée</label><textarea class="proj-detail-desc" style="min-height:110px"></textarea></div>
+      <div class="fgrp">
+        <label>Image (upload ou URL directe)</label>
+        <input type="text" class="proj-image-url" value="" placeholder="https://... ou uploader ci-dessous" style="margin-bottom:0.5rem" />
+        <input type="file" accept="image/*" onchange="uploadImage(this, this.previousElementSibling)" style="font-size:0.8rem;color:var(--steel)" />
+      </div>
+      <div class="fgrp"><label>URL du site client</label><input type="text" class="proj-url" value="" placeholder="https://..." /></div>
+    `;
+    container.appendChild(div);
+    div.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
   /* ── Contact ── */
@@ -609,6 +648,29 @@
     const data = LS.get('contact', { whatsapp: '262XXXXXXXXX', email: 'fondationstudio.fr@gmail.com' });
     document.getElementById('c-whatsapp').value = data.whatsapp || '';
     document.getElementById('c-email').value = data.email || '';
+  }
+
+  async function saveRealisations() {
+    const items = [];
+    document.querySelectorAll('.project-item').forEach((item, i) => {
+      const id = item.dataset.id;
+      const row = {
+        name: item.querySelector('.proj-name').value,
+        sector: item.querySelector('.proj-sector').value,
+        category: item.querySelector('.proj-category').value,
+        description: item.querySelector('.proj-desc').value,
+        detail_desc: item.querySelector('.proj-detail-desc').value,
+        image_url: item.querySelector('.proj-image-url').value,
+        site_url: item.querySelector('.proj-url').value,
+        ordre: parseInt(item.querySelector('.proj-ordre').value) || i
+      };
+      if (id) row.id = id;
+      items.push(row);
+    });
+    const { error } = await sb.from('realisations').upsert(items, { onConflict: 'id' });
+    if (error) { showToast('Erreur : ' + error.message); return; }
+    showToast('Réalisations sauvegardées dans Supabase.');
+    await initRealisations();
   }
 
   /* ── Helpers ── */
