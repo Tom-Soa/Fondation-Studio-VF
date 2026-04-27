@@ -329,9 +329,9 @@
   .tech-card h3 { font-weight: 700; font-size: 1.15rem; margin-bottom: 0.6rem; }
   .tech-card p { color: var(--steel); font-size: 0.88rem; line-height: 1.65; }
   .tech-tag { display: inline-flex; align-items: center; gap: 0.45rem; background: rgba(194,65,12,0.07); border: 1px solid rgba(194,65,12,0.2); border-radius: 5px; padding: 0.3rem 0.75rem; font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--terra); margin-bottom: 1rem; }
-  .vs-divider { display: flex; align-items: center; gap: 1.5rem; margin: 3rem 0; }
+  .vs-divider { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin: 3.5rem 0 2rem; }
   .vs-divider::before, .vs-divider::after { content: ''; flex: 1; height: 1px; background: var(--grid); }
-  .vs-label { font-family: 'DM Mono', monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--steel); white-space: nowrap; }
+  .vs-label { font-family: 'Inter', sans-serif; font-size: clamp(1rem,2vw,1.4rem); font-weight: 700; letter-spacing: -0.02em; color: var(--midnight); text-align: center; }
   .compare-table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
   .compare-table th { font-family: 'DM Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--steel); text-align: left; padding: 0.75rem 1rem; border-bottom: 2px solid var(--grid); }
   .compare-table td { padding: 0.85rem 1rem; font-size: 0.9rem; border-bottom: 1px solid var(--grid); vertical-align: middle; }
@@ -483,10 +483,8 @@
     position: relative;
     isolation: isolate;
     border-radius: 16px;
-    background: rgba(15,23,42,0.62);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255,255,255,0.15);
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.28);
     transition: border-color 0.3s;
   }
   .proc-cell::before {
@@ -512,7 +510,7 @@
   .proc-cell-meta { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.9rem; flex-wrap: wrap; }
   .proc-cell h3 { font-weight: 700; font-size: 1.05rem; margin-bottom: 0.5rem; color: white; letter-spacing: -0.01em; line-height: 1.3; }
   .proc-cell p { color: rgba(255,255,255,0.5); font-size: 0.85rem; line-height: 1.65; }
-  .proc-cell.proc-featured { background: rgba(194,65,12,0.07); border-color: rgba(194,65,12,0.22); }
+  .proc-cell.proc-featured { background: transparent; border-color: rgba(194,65,12,0.5); }
   .proc-step-note { margin-top: 0.85rem; padding: 0.55rem 0.8rem; background: rgba(194,65,12,0.08); border-left: 2px solid rgba(194,65,12,0.4); font-size: 0.78rem; color: rgba(255,255,255,0.5); font-style: italic; line-height: 1.55; }
 
   /* ── Guarantees  :  liste éditoriale ── */
@@ -540,9 +538,9 @@
   .tech-split-item p { color: var(--steel); font-size: 0.88rem; line-height: 1.6; }
   @media (max-width: 600px) { .tech-split { grid-template-columns: 1fr; } .tech-split-item:nth-child(odd) { border-right: none; } }
 
-  .vs-divider { display: flex; align-items: center; gap: 1.5rem; margin: 3rem 0; }
+  .vs-divider { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin: 3.5rem 0 2rem; }
   .vs-divider::before, .vs-divider::after { content: ''; flex: 1; height: 1px; background: var(--grid); }
-  .vs-label { font-family: 'DM Mono', monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--steel); white-space: nowrap; }
+  .vs-label { font-family: 'Inter', sans-serif; font-size: clamp(1rem,2vw,1.4rem); font-weight: 700; letter-spacing: -0.02em; color: var(--midnight); text-align: center; }
   .compare-table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
   .compare-table th { font-family: 'DM Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--steel); text-align: left; padding: 0.75rem 1rem; border-bottom: 2px solid var(--grid); }
   .compare-table td { padding: 0.85rem 1rem; font-size: 0.9rem; border-bottom: 1px solid var(--grid); vertical-align: middle; }
@@ -719,14 +717,14 @@
 
     <div class="tech-split reveal">
   <div class="tech-split-item">
-    <div class="tech-split-num">98<span>/100</span></div>
-    <h3>Vitesse record</h3>
-    <p>Votre site charge en moins d'une seconde. Chaque seconde gagnée, c'est plus de clients.</p>
+    <div class="tech-split-num" style="font-size:clamp(1.4rem,2.5vw,2rem);letter-spacing:0">Rapide</div>
+    <h3>Chargement ultra-rapide</h3>
+    <p>Votre site s'affiche en une fraction de seconde. Une expérience fluide qui retient vos visiteurs.</p>
   </div>
   <div class="tech-split-item">
-    <div class="tech-split-num" style="font-size:clamp(1.4rem,2.5vw,2rem);letter-spacing:0">Inviolable</div>
-    <h3>Sécurité maximale</h3>
-    <p>Pas de base de données, pas de failles. Notre architecture supprime 95 % des risques habituels.</p>
+    <div class="tech-split-num" style="font-size:clamp(1.4rem,2.5vw,2rem);letter-spacing:0">Sécurisé</div>
+    <h3>Sécurité renforcée</h3>
+    <p>Sans base de données ni CMS, notre architecture réduit considérablement les risques de piratage — un problème fréquent sur WordPress.</p>
   </div>
   <div class="tech-split-item">
     <div class="tech-split-num" style="font-size:clamp(1.4rem,2.5vw,2rem);letter-spacing:0">Unique</div>
@@ -741,71 +739,82 @@
 </div>
 
     <div class="vs-divider reveal"><span class="vs-label">Fondation Studio vs Agence classique</span></div>
-    <div class="reveal" style="overflow-x:auto">
-      <table class="compare-table">
-        <thead><tr><th style="width:40%">Critère</th><th class="col-us">Fondation Studio</th><th class="col-wp">Agence classique</th></tr></thead>
-        <tbody>
-          <tr><td>Vitesse de chargement</td><td class="col-us"><span class="check-good">✓</span> &lt; 1 seconde</td><td class="col-wp"><span class="check-bad">✗</span> 3–8 secondes</td></tr>
-          <tr><td>Score PageSpeed</td><td class="col-us"><span class="check-good">✓</span> 95–100 / 100</td><td class="col-wp"><span class="check-bad">✗</span> 30–60 / 100</td></tr>
-          <tr><td>Sécurité</td><td class="col-us"><span class="check-good">✓</span> Architecture statique, sans faille</td><td class="col-wp"><span class="check-bad">✗</span> Sites vulnérables, failles régulières</td></tr>
-          <tr><td>Délai de livraison</td><td class="col-us"><span class="check-good">✓</span> 14 à 21 jours</td><td class="col-wp"><span class="check-bad">✗</span> 6 semaines à 6 mois</td></tr>
-          <tr><td>Copywriting stratégique</td><td class="col-us"><span class="check-good">✓</span> Inclus, orienté conversion</td><td class="col-wp"><span class="check-bad">✗</span> En supplément ou absent</td></tr>
-          <tr><td>Propriété du code</td><td class="col-us"><span class="check-good">✓</span> 100% à vous</td><td class="col-wp"><span class="check-bad">✗</span> Dépendance plateforme / agence</td></tr>
-        </tbody>
-      </table>
-    </div>
+  </div>
+  <div class="reveal" style="width:100%;padding:0 2rem;box-sizing:border-box">
+    <table class="compare-table" style="max-width:1280px;margin:0 auto">
+      <thead><tr><th style="width:35%">Critère</th><th class="col-us">Fondation Studio</th><th class="col-wp">Agence classique</th></tr></thead>
+      <tbody>
+        <tr><td>Vitesse de chargement</td><td class="col-us"><span class="check-good">✓</span> Rapide, optimisé dès le départ</td><td class="col-wp"><span class="check-bad">✗</span> Souvent lent, surtout sur mobile</td></tr>
+        <tr><td>Sécurité</td><td class="col-us"><span class="check-good">✓</span> Sans base de données, risque de piratage réduit</td><td class="col-wp"><span class="check-bad">✗</span> Sites régulièrement compromis (WordPress)</td></tr>
+        <tr><td>Délai de livraison</td><td class="col-us"><span class="check-good">✓</span> 14 à 21 jours</td><td class="col-wp"><span class="check-bad">✗</span> 6 semaines à 6 mois</td></tr>
+        <tr><td>Design</td><td class="col-us"><span class="check-good">✓</span> Sur-mesure, 100 % unique</td><td class="col-wp"><span class="check-bad">✗</span> Template générique ou design peu différenciant</td></tr>
+        <tr><td>Copywriting</td><td class="col-us"><span class="check-good">✓</span> Inclus, orienté conversion</td><td class="col-wp"><span class="check-bad">✗</span> En supplément ou absent</td></tr>
+        <tr><td>Propriété du site</td><td class="col-us"><span class="check-good">✓</span> 100 % à vous, aucun abonnement imposé</td><td class="col-wp"><span class="check-bad">✗</span> Dépendance à la plateforme ou à l'agence</td></tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
-<!-- GARANTIES -->
-<section class="section section-dark">
-  <div class="dark-vlines" aria-hidden="true"><div class="vl"></div><div class="vl"></div><div class="vl"></div><div class="vl"></div></div>
-  <div class="container" style="position:relative;z-index:1">
-    <div class="section-head reveal">
-      <span class="mono" style="color:rgba(255,255,255,0.35)">03 / Ce que vous obtenez</span>
-      <h2 class="section-h2" style="color:white;margin-top:0.75rem;font-size:clamp(1.8rem,3.5vw,2.8rem)">Des garanties concrètes,<br>pas des promesses.</h2>
+<!-- GARANTIES + CTA — fond commun -->
+<div style="position:relative;background-image:linear-gradient(rgba(10,18,30,0.78) 0%,rgba(10,18,30,0.72) 50%,rgba(10,18,30,0.82) 100%),url('images/hero-performances.jpg');background-size:cover;background-position:center">
+  <div style="position:absolute;inset:0;pointer-events:none" aria-hidden="true">
+    <div style="position:absolute;inset:0;display:flex;justify-content:space-between;padding:0 2rem">
+      <div style="width:1px;height:100%;background:rgba(255,255,255,0.04)"></div>
+      <div style="width:1px;height:100%;background:rgba(255,255,255,0.04)"></div>
+      <div style="width:1px;height:100%;background:rgba(255,255,255,0.04)"></div>
+      <div style="width:1px;height:100%;background:rgba(255,255,255,0.04)"></div>
     </div>
-    <div class="guar-list">
-  <div class="guar-row reveal">
-    <div class="guar-row-num">01</div>
-    <div class="guar-row-body">
-      <h3>Vous voyez avant de payer</h3>
-      <p>La maquette est livrée gratuitement avant tout engagement. Si elle ne vous convient pas : zéro obligation, zéro frais.</p>
-    </div>
-    <div class="guar-row-tag">Zéro risque</div>
   </div>
-  <div class="guar-row reveal">
-    <div class="guar-row-num">02</div>
-    <div class="guar-row-body">
-      <h3>Un seul interlocuteur</h3>
-      <p>Du brief à la mise en ligne, vous parlez directement aux fondateurs. Pas d'intermédiaire, pas de jargon.</p>
+
+  <!-- GARANTIES -->
+  <section class="section" style="background:transparent;position:relative;z-index:1;padding-bottom:3rem">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="mono" style="color:rgba(255,255,255,0.35)">03 / Ce que vous obtenez</span>
+        <h2 class="section-h2" style="color:white;margin-top:0.75rem;font-size:clamp(1.8rem,3.5vw,2.8rem)">Des garanties concrètes,<br>pas des promesses.</h2>
+      </div>
+      <div class="guar-list">
+        <div class="guar-row reveal">
+          <div class="guar-row-num">01</div>
+          <div class="guar-row-body">
+            <h3>Vous voyez avant de payer</h3>
+            <p>La maquette est livrée gratuitement avant tout engagement. Si elle ne vous convient pas : zéro obligation, zéro frais.</p>
+          </div>
+          <div class="guar-row-tag">Zéro risque</div>
+        </div>
+        <div class="guar-row reveal">
+          <div class="guar-row-num">02</div>
+          <div class="guar-row-body">
+            <h3>Un seul interlocuteur</h3>
+            <p>Du brief à la mise en ligne, vous parlez directement aux fondateurs. Pas d'intermédiaire, pas de jargon.</p>
+          </div>
+          <div class="guar-row-tag">Simplicité totale</div>
+        </div>
+        <div class="guar-row reveal">
+          <div class="guar-row-num">03</div>
+          <div class="guar-row-body">
+            <h3>Le site est à vous</h3>
+            <p>Hébergement naturellement gratuit, domaine à votre nom, aucun abonnement imposé. Aucune dépendance à notre agence.</p>
+          </div>
+          <div class="guar-row-tag">Propriété totale</div>
+        </div>
+      </div>
     </div>
-    <div class="guar-row-tag">Simplicité totale</div>
-  </div>
-  <div class="guar-row reveal">
-    <div class="guar-row-num">03</div>
-    <div class="guar-row-body">
-      <h3>Le site est à vous</h3>
-      <p>Code source livré, hébergement naturellement gratuit grâce à notre méthode, domaine à votre nom. Aucune dépendance à notre studio.</p>
+  </section>
+
+  <!-- CTA -->
+  <section class="section cta-center" style="background:transparent;position:relative;z-index:1;padding-top:2rem">
+    <div class="container">
+      <div class="reveal" style="margin-bottom:1rem"><span class="mono" style="color:rgba(255,255,255,0.4)">Votre projet</span></div>
+      <h2 class="section-h2 reveal" style="max-width:640px;margin:0 auto 1rem;color:white">Prêt à démarrer ?</h2>
+      <p class="section-lead reveal" style="margin:0 auto;color:rgba(255,255,255,0.6)">En 14 à 21 jours, votre site est en ligne.</p>
+      <div style="margin-top:2.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap" class="reveal">
+        <a href="contact.html" class="cta-btn lg">Démarrer mon projet <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="tarifs.html" class="btn-ghost" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.85)">Voir les tarifs</a>
+      </div>
     </div>
-    <div class="guar-row-tag">Propriété totale</div>
-  </div>
+  </section>
 </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="section cta-center cta-dark">
-  <div class="container">
-    <div class="reveal" style="margin-bottom:1rem"><span class="mono">Votre projet</span></div>
-    <h2 class="section-h2 reveal" style="max-width:640px;margin:0 auto 1rem">Prêt à démarrer ?</h2>
-    <p class="section-lead reveal" style="margin:0 auto">En 14 à 21 jours, votre site haute performance est en ligne.</p>
-    <div style="margin-top:2.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap" class="reveal">
-      <a href="contact.html" class="cta-btn lg">Démarrer mon projet <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      <a href="tarifs.html" class="btn-ghost" style="background:rgba(43,55,80,0.08);color:var(--midnight)">Voir les tarifs</a>
-    </div>
-  </div>
-</section>
 
 <footer>
   <div class="footer-main">
