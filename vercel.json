@@ -1,0 +1,10 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/accueil", "destination": "/index.html" }
+  ],
+  "redirects": [
+    { "source": "/index", "destination": "/accueil", "permanent": true }
+  ]
+}
