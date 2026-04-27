@@ -333,8 +333,7 @@
   .toast-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; flex-shrink: 0; }
 
   .freelance-grid { display: none; }
-  .freelance-section { padding: 5rem 0; border-top: 1px solid var(--grid); position: relative; background-image: url('images/tom-coworking.jpg'); background-attachment: scroll; background-size: cover; background-position: center; }
-  .freelance-section::before { content: ''; position: absolute; inset: 0; background: rgba(15,23,42,0.75); z-index: 0; }
+  .freelance-section { padding: 5rem 0; position: relative; }
   .freelance-section .container { position: relative; z-index: 1; }
   .freelance-header h2, .freelance-header .mono { color: #fff; }
   .freelance-header h2 em { color: var(--terra); font-style: normal; }
@@ -734,6 +733,8 @@
 <!-- ══════════════════════════════════════
      COMMENT ON TRAVAILLE
 ══════════════════════════════════════ -->
+<div style="position:relative;background-image:linear-gradient(rgba(15,23,42,0.78) 0%,rgba(15,23,42,0.72) 50%,rgba(15,23,42,0.82) 100%),url('images/tom-coworking.jpg');background-size:cover;background-position:center;background-attachment:scroll">
+
 <section class="freelance-section">
   <div class="container">
     <div class="freelance-header reveal">
@@ -755,10 +756,7 @@
 </section>
 
 <!-- CTA avant footer -->
-<section style="background:var(--midnight);position:relative;overflow:hidden;padding:clamp(4rem,8vw,6rem) 0;text-align:center">
-  <div style="position:absolute;inset:0;pointer-events:none;z-index:0">
-    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 80%,rgba(194,65,12,0.08) 0%,transparent 70%)"></div>
-  </div>
+<section style="position:relative;overflow:hidden;padding:clamp(4rem,8vw,6rem) 0;text-align:center">
   <div class="container" style="position:relative;z-index:1">
     <div class="reveal" style="margin-bottom:1rem"><span style="font-family:'DM Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.35)">Votre projet</span></div>
     <h2 class="reveal" style="font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:1.1;letter-spacing:-0.02em;color:#fff;max-width:600px;margin:0 auto 1rem">Travaillons ensemble.</h2>
@@ -769,6 +767,8 @@
     </div>
   </div>
 </section>
+
+</div>
 
 <footer>
   <div class="footer-main">
