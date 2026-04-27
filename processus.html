@@ -515,12 +515,12 @@
 
   /* ── Guarantees  :  liste éditoriale ── */
   .guar-list { display: flex; flex-direction: column; border-top: 1px solid rgba(255,255,255,0.1); }
-  .guar-row { display: grid; grid-template-columns: 3rem 1fr auto; gap: 2rem; align-items: center; padding: 2.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
-  .guar-row-num { font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.25); }
+  .guar-row { display: grid; grid-template-columns: 5.5rem 1fr auto; gap: 1.5rem; align-items: center; padding: 2rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .guar-row-num { font-family: 'Inter', sans-serif; font-size: clamp(3rem,8vw,4.5rem); font-weight: 800; letter-spacing: -0.05em; color: rgba(255,255,255,0.13); line-height: 1; }
   .guar-row-body h3 { font-weight: 700; font-size: 1.1rem; color: white; margin-bottom: 0.35rem; }
   .guar-row-body p { color: rgba(255,255,255,0.5); font-size: 0.875rem; line-height: 1.65; max-width: 480px; }
   .guar-row-tag { font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--terra); white-space: nowrap; }
-  @media (max-width: 640px) { .guar-row { grid-template-columns: 2rem 1fr; } .guar-row-tag { display: none; } }
+  @media (max-width: 640px) { .guar-row { grid-template-columns: 3.5rem 1fr; gap: 1rem; } .guar-row-tag { display: none; } .guar-row-num { font-size: clamp(2rem,6vw,3rem); } }
 
   @media (max-width: 640px) {
     .proc-card-grid { grid-template-columns: 1fr; gap: 0.75rem; padding: 0.75rem; }
@@ -528,28 +528,31 @@
     .guar-grid { grid-template-columns: 1fr; }
   }
 
-  /* ── Tech split  :  2 colonnes ── */
-  .tech-split { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 3rem; border-top: 1px solid var(--grid); }
-  .tech-split-item { padding: 2.5rem 2rem; border-bottom: 1px solid var(--grid); }
-  .tech-split-item:nth-child(odd) { border-right: 1px solid var(--grid); }
-  .tech-split-num { font-family: 'Inter', sans-serif; font-weight: 800; font-size: clamp(2.5rem,4vw,3.5rem); line-height: 1; letter-spacing: -0.04em; color: var(--terra); margin-bottom: 0.5rem; }
-  .tech-split-num span { font-size: 0.45em; color: var(--midnight); }
-  .tech-split-item h3 { font-weight: 700; font-size: 1.05rem; color: var(--midnight); margin-bottom: 0.4rem; }
-  .tech-split-item p { color: var(--steel); font-size: 0.88rem; line-height: 1.6; }
-  @media (max-width: 600px) { .tech-split { grid-template-columns: 1fr; } .tech-split-item:nth-child(odd) { border-right: none; } }
+  /* ── Tech carousel ── */
+  .tech-carousel-outer { margin: 2.5rem -2rem 0; padding: 0 2rem; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; cursor: grab; }
+  .tech-carousel-outer::-webkit-scrollbar { display: none; }
+  .tech-carousel { display: flex; gap: 1rem; width: max-content; padding-bottom: 1rem; }
+  .tech-card { flex-shrink: 0; width: 220px; padding: 2rem 1.75rem; border: 1px solid var(--grid); background: white; border-radius: 4px; }
+  .tech-card-label { font-family: 'Inter', sans-serif; font-weight: 800; font-size: clamp(1.6rem,3vw,2rem); color: var(--terra); letter-spacing: -0.03em; line-height: 1; margin-bottom: 0.75rem; }
+  .tech-card h3 { font-weight: 700; font-size: 0.95rem; color: var(--midnight); margin-bottom: 0.4rem; }
+  .tech-card p { color: var(--steel); font-size: 0.82rem; line-height: 1.6; }
 
+  /* ── Comparaison ── */
   .vs-divider { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin: 3.5rem 0 2rem; }
   .vs-divider::before, .vs-divider::after { content: ''; flex: 1; height: 1px; background: var(--grid); }
   .vs-label { font-family: 'Inter', sans-serif; font-size: clamp(1rem,2vw,1.4rem); font-weight: 700; letter-spacing: -0.02em; color: var(--midnight); text-align: center; }
-  .compare-table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
-  .compare-table th { font-family: 'DM Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--steel); text-align: left; padding: 0.75rem 1rem; border-bottom: 2px solid var(--grid); }
-  .compare-table td { padding: 0.85rem 1rem; font-size: 0.9rem; border-bottom: 1px solid var(--grid); vertical-align: middle; }
-  .compare-table tr:last-child td { border-bottom: none; }
-  .compare-table .col-us { font-weight: 600; color: var(--midnight); }
-  .compare-table .col-wp { color: #94a3b8; }
-  .check-good { color: #22c55e; font-size: 1.1rem; }
-  .check-bad { color: #f87171; font-size: 1.1rem; }
-  @media (max-width: 600px) { .compare-table { font-size: 0.82rem; } .compare-table td, .compare-table th { padding: 0.6rem 0.6rem; } }
+
+  .cmp-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 2px solid var(--grid); margin-top: 1.5rem; }
+  .cmp-head { font-family: 'DM Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--steel); padding: 0.65rem 1rem; border-bottom: 2px solid var(--grid); }
+  .cmp-head.cmp-us { color: var(--midnight); font-weight: 600; }
+  .cmp-row { display: contents; }
+  .cmp-cell { padding: 0.85rem 1rem; border-bottom: 1px solid var(--grid); font-size: 0.88rem; line-height: 1.35; display: flex; align-items: center; gap: 0.4rem; }
+  .cmp-cell.cmp-crit { font-size: 0.82rem; color: var(--steel); font-weight: 500; }
+  .cmp-cell.cmp-us { font-weight: 600; color: var(--midnight); }
+  .cmp-cell.cmp-wp { color: #b0bec5; font-size: 0.82rem; }
+  .cmp-row:last-child .cmp-cell { border-bottom: none; }
+  .check-good { color: #22c55e; font-size: 1rem; flex-shrink: 0; }
+  .check-bad { color: #f87171; font-size: 1rem; flex-shrink: 0; }
 
 
   /* ── Performance mobile ── */
@@ -715,43 +718,76 @@
       <h2 class="section-h2 reveal">La technologie<br>qui change tout.</h2>
     </div>
 
-    <div class="tech-split reveal">
-  <div class="tech-split-item">
-    <div class="tech-split-num" style="font-size:clamp(1.4rem,2.5vw,2rem);letter-spacing:0">Rapide</div>
-    <h3>Chargement ultra-rapide</h3>
-    <p>Votre site s'affiche en une fraction de seconde. Une expérience fluide qui retient vos visiteurs.</p>
-  </div>
-  <div class="tech-split-item">
-    <div class="tech-split-num" style="font-size:clamp(1.4rem,2.5vw,2rem);letter-spacing:0">Sécurisé</div>
-    <h3>Sécurité renforcée</h3>
-    <p>Sans base de données ni CMS, notre architecture réduit considérablement les risques de piratage — un problème fréquent sur WordPress.</p>
-  </div>
-  <div class="tech-split-item">
-    <div class="tech-split-num" style="font-size:clamp(1.4rem,2.5vw,2rem);letter-spacing:0">Unique</div>
-    <h3>100 % sur-mesure</h3>
-    <p>Pas de modèle préfabriqué. Chaque page est conçue pour votre secteur et vos clients.</p>
-  </div>
-  <div class="tech-split-item">
-    <div class="tech-split-num" style="font-size:clamp(1.4rem,2.5vw,2rem);letter-spacing:0">Visible</div>
-    <h3>Référencement intégré</h3>
-    <p>Google, ChatGPT, Perplexity, assistants vocaux. Votre site est trouvé partout dès le lancement.</p>
-  </div>
-</div>
+    <div class="tech-carousel-outer reveal">
+      <div class="tech-carousel" id="techCarousel">
+        <div class="tech-card">
+          <div class="tech-card-label">Rapide</div>
+          <h3>Chargement ultra-rapide</h3>
+          <p>Votre site s'affiche en une fraction de seconde. Une expérience fluide qui retient vos visiteurs.</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-card-label">Sécurisé</div>
+          <h3>Sécurité renforcée</h3>
+          <p>Sans base de données ni CMS, les risques de piratage sont considérablement réduits.</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-card-label">Unique</div>
+          <h3>100 % sur-mesure</h3>
+          <p>Pas de modèle préfabriqué. Chaque page est conçue pour votre secteur et vos clients.</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-card-label">Visible</div>
+          <h3>Référencement intégré</h3>
+          <p>Google, ChatGPT, Perplexity, assistants vocaux. Votre site est trouvé partout dès le lancement.</p>
+        </div>
+      </div>
+    </div>
 
     <div class="vs-divider reveal"><span class="vs-label">Fondation Studio vs Agence classique</span></div>
-  </div>
-  <div class="reveal" style="width:100%;padding:0 2rem;box-sizing:border-box">
-    <table class="compare-table" style="max-width:1280px;margin:0 auto">
-      <thead><tr><th style="width:35%">Critère</th><th class="col-us">Fondation Studio</th><th class="col-wp">Agence classique</th></tr></thead>
-      <tbody>
-        <tr><td>Vitesse de chargement</td><td class="col-us"><span class="check-good">✓</span> Rapide, optimisé dès le départ</td><td class="col-wp"><span class="check-bad">✗</span> Souvent lent, surtout sur mobile</td></tr>
-        <tr><td>Sécurité</td><td class="col-us"><span class="check-good">✓</span> Sans base de données, risque de piratage réduit</td><td class="col-wp"><span class="check-bad">✗</span> Sites régulièrement compromis (WordPress)</td></tr>
-        <tr><td>Délai de livraison</td><td class="col-us"><span class="check-good">✓</span> 14 à 21 jours</td><td class="col-wp"><span class="check-bad">✗</span> 6 semaines à 6 mois</td></tr>
-        <tr><td>Design</td><td class="col-us"><span class="check-good">✓</span> Sur-mesure, 100 % unique</td><td class="col-wp"><span class="check-bad">✗</span> Template générique ou design peu différenciant</td></tr>
-        <tr><td>Copywriting</td><td class="col-us"><span class="check-good">✓</span> Inclus, orienté conversion</td><td class="col-wp"><span class="check-bad">✗</span> En supplément ou absent</td></tr>
-        <tr><td>Propriété du site</td><td class="col-us"><span class="check-good">✓</span> 100 % à vous, aucun abonnement imposé</td><td class="col-wp"><span class="check-bad">✗</span> Dépendance à la plateforme ou à l'agence</td></tr>
-      </tbody>
-    </table>
+
+    <div class="reveal" style="overflow-x:auto;-webkit-overflow-scrolling:touch">
+      <div class="cmp-grid" style="min-width:480px">
+        <div class="cmp-head">Critère</div>
+        <div class="cmp-head cmp-us">Fondation Studio</div>
+        <div class="cmp-head">Agence classique</div>
+
+        <div class="cmp-row">
+          <div class="cmp-cell cmp-crit">Design</div>
+          <div class="cmp-cell cmp-us"><span class="check-good">✓</span> Sur-mesure, 100 % unique</div>
+          <div class="cmp-cell cmp-wp"><span class="check-bad">✗</span> Template générique</div>
+        </div>
+        <div class="cmp-row">
+          <div class="cmp-cell cmp-crit">Prix</div>
+          <div class="cmp-cell cmp-us"><span class="check-good">✓</span> Transparent, sans surprise</div>
+          <div class="cmp-cell cmp-wp"><span class="check-bad">✗</span> Souvent opaque</div>
+        </div>
+        <div class="cmp-row">
+          <div class="cmp-cell cmp-crit">Vitesse</div>
+          <div class="cmp-cell cmp-us"><span class="check-good">✓</span> Site rapide dès le départ</div>
+          <div class="cmp-cell cmp-wp"><span class="check-bad">✗</span> Souvent lent sur mobile</div>
+        </div>
+        <div class="cmp-row">
+          <div class="cmp-cell cmp-crit">Sécurité</div>
+          <div class="cmp-cell cmp-us"><span class="check-good">✓</span> Architecture solide</div>
+          <div class="cmp-cell cmp-wp"><span class="check-bad">✗</span> Sites régulièrement piratés</div>
+        </div>
+        <div class="cmp-row">
+          <div class="cmp-cell cmp-crit">Délai</div>
+          <div class="cmp-cell cmp-us"><span class="check-good">✓</span> 14 à 21 jours</div>
+          <div class="cmp-cell cmp-wp"><span class="check-bad">✗</span> 6 sem. à 6 mois</div>
+        </div>
+        <div class="cmp-row">
+          <div class="cmp-cell cmp-crit">Conversion</div>
+          <div class="cmp-cell cmp-us"><span class="check-good">✓</span> Incluse, orientée client</div>
+          <div class="cmp-cell cmp-wp"><span class="check-bad">✗</span> En supplément</div>
+        </div>
+        <div class="cmp-row">
+          <div class="cmp-cell cmp-crit">Propriété</div>
+          <div class="cmp-cell cmp-us"><span class="check-good">✓</span> 100 % à vous</div>
+          <div class="cmp-cell cmp-wp"><span class="check-bad">✗</span> Dépendance agence</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -899,6 +935,17 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
   }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
   revEls.forEach(el => obs.observe(el));
+
+  // ── Drag-scroll carousel ──
+  (function() {
+    const el = document.querySelector('.tech-carousel-outer');
+    if (!el) return;
+    let isDown = false, startX, scrollLeft;
+    el.addEventListener('mousedown', e => { isDown = true; el.style.cursor = 'grabbing'; startX = e.pageX - el.offsetLeft; scrollLeft = el.scrollLeft; });
+    el.addEventListener('mouseleave', () => { isDown = false; el.style.cursor = 'grab'; });
+    el.addEventListener('mouseup', () => { isDown = false; el.style.cursor = 'grab'; });
+    el.addEventListener('mousemove', e => { if (!isDown) return; e.preventDefault(); const x = e.pageX - el.offsetLeft; el.scrollLeft = scrollLeft - (x - startX) * 1.5; });
+  })();
 
 
   (function initHoverButtons() {
