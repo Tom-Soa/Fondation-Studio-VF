@@ -588,12 +588,27 @@
   .pourquoi-pillar-icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; opacity: 0.7; }
   .pourquoi-pillar h4 { font-weight: 700; font-size: 1rem; color: white; margin-bottom: 0.2rem; }
   .pourquoi-pillar p { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.55; }
+  .pourquoi-benefit {
+    display: flex; gap: 1.5rem; align-items: start;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .pourquoi-benefit:last-child { border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .pourquoi-benefit-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem; font-weight: 400;
+    color: var(--terra); letter-spacing: 0.1em;
+    flex-shrink: 0; padding-top: 0.2rem;
+    width: 2rem;
+  }
+  .pourquoi-benefit h4 { font-weight: 700; font-size: 1rem; color: white; margin-bottom: 0.3rem; }
+  .pourquoi-benefit p { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
   .pourquoi-cta-block { display: flex; flex-direction: column; gap: 2.5rem; }
   .pourquoi-quote { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 2.5rem 2rem 2rem; position: relative; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
   .pourquoi-quote::before { content: '"'; position: absolute; top: 1rem; left: 2rem; font-size: 5rem; font-weight: 800; color: var(--terra); opacity: 0.4; line-height: 1; }
   .pourquoi-quote p { font-size: 1.2rem; font-weight: 600; line-height: 1.55; color: white; letter-spacing: -0.01em; padding-top: 2rem; }
   .pourquoi-numbers { display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr; gap: 1px; border-radius: 16px; overflow: hidden; }
-  .pourquoi-num-item { padding: 2rem 1.5rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .pourquoi-num-item { padding: 2rem 1.5rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
   .pourquoi-num-item .val { font-weight: 800; font-size: clamp(1.6rem, 3.5vw, 2.2rem); color: white; line-height: 1; letter-spacing: -0.02em; white-space: nowrap; }
   .pourquoi-num-item .val em { font-style: normal; color: var(--terra); }
   .pourquoi-num-item .lbl { font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); margin-top: 0.4rem; }
@@ -627,6 +642,15 @@
   }
   .sol-slab:last-child { border-right: none; }
   .sol-slab.active { flex: 4; background: var(--midnight); }
+  .sol-slab { background-size: cover !important; background-position: center !important; }
+  .sol-slab:not(.active) { background-image: none !important; }
+  .sol-slab.active::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(15,23,42,0.90) 0%, rgba(15,23,42,0.75) 100%);
+    z-index: 0; pointer-events: none;
+  }
+  .sol-body, .sol-tab { position: relative; z-index: 1; }
   .sol-slab:not(.active):hover { background: #f5f4f2; }
   .sol-slab:not(.active)::after {
     content: '';
@@ -648,10 +672,10 @@
     letter-spacing: 0.18em; color: var(--terra); text-transform: uppercase;
   }
   .sol-tab-label {
-    writing-mode: vertical-lr; transform: rotate(180deg);
-    font-size: 0.75rem; font-weight: 600;
-    color: var(--steel); letter-spacing: 0.04em; white-space: nowrap;
-    transition: color 0.25s;
+    font-size: 0.7rem; font-weight: 700; color: var(--steel);
+    text-align: center; letter-spacing: 0.04em;
+    transition: color 0.3s;
+    max-width: 80px; word-break: break-word; line-height: 1.3;
   }
   .sol-slab:hover .sol-tab-label { color: var(--midnight); }
   .sol-tab-cue {
@@ -672,13 +696,7 @@
     pointer-events: none; min-width: 260px;
   }
   .sol-slab.active .sol-body { opacity: 1; transform: translateX(0); pointer-events: auto; }
-  .sol-ghost-num {
-    font-family: 'DM Mono', monospace;
-    font-size: clamp(5rem, 8vw, 8rem); font-weight: 700;
-    color: rgba(194,65,12,0.09); line-height: 1;
-    letter-spacing: -0.04em; user-select: none;
-    position: absolute; top: 1.5rem; left: 2.25rem;
-  }
+  .sol-ghost-num { display: none; }
   .sol-body h3 {
     font-weight: 800; font-size: clamp(1.2rem, 1.7vw, 1.5rem);
     color: #fff; margin-bottom: 0.65rem;
@@ -708,7 +726,7 @@
       position: relative; flex-direction: row; justify-content: flex-start;
       padding: 0 1.25rem; gap: 0.8rem; height: 60px; inset: auto;
     }
-    .sol-tab-label { writing-mode: horizontal-tb; transform: none; font-size: 0.9rem; font-weight: 700; color: var(--midnight); }
+    .sol-tab-label { font-size: 0.9rem; font-weight: 700; color: var(--midnight); max-width: none; word-break: normal; }
     .sol-slab:not(.active):hover .sol-tab-label { color: var(--terra); }
     .sol-tab-cue {
       font-size: 1.1rem; margin-top: 0; margin-left: auto; padding-bottom: 0;
@@ -720,7 +738,7 @@
       transition: opacity 0.35s, max-height 0.45s cubic-bezier(0.23,1,0.32,1), padding 0.35s;
     }
     .sol-slab.active .sol-body { opacity: 1; max-height: 300px; padding: 0.25rem 1.25rem 1.75rem; transform: none; }
-    .sol-ghost-num { position: absolute; font-size: 3rem; top: -0.5rem; right: 1rem; left: auto; }
+    .sol-ghost-num { display: none; }
   }
 
   /* ── Problem dashboard card ── */
@@ -958,7 +976,7 @@
     </div>
     <div class="sol-accord reveal" id="solAccord">
 
-      <div class="sol-slab active">
+      <div class="sol-slab active" style="background-image: url('https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80&fit=crop')">
         <div class="sol-tab">
           <span class="sol-tab-num">01</span>
           <span class="sol-tab-label">Design</span>
@@ -973,7 +991,7 @@
         <div class="sol-progress"></div>
       </div>
 
-      <div class="sol-slab">
+      <div class="sol-slab" style="background-image: url('https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80&fit=crop')">
         <div class="sol-tab">
           <span class="sol-tab-num">02</span>
           <span class="sol-tab-label">Délai</span>
@@ -987,7 +1005,7 @@
         <div class="sol-progress"></div>
       </div>
 
-      <div class="sol-slab">
+      <div class="sol-slab" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80&fit=crop')">
         <div class="sol-tab">
           <span class="sol-tab-num">03</span>
           <span class="sol-tab-label">Propriété</span>
@@ -1001,7 +1019,7 @@
         <div class="sol-progress"></div>
       </div>
 
-      <div class="sol-slab">
+      <div class="sol-slab" style="background-image: url('https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=800&q=80&fit=crop')">
         <div class="sol-tab">
           <span class="sol-tab-num">04</span>
           <span class="sol-tab-label">Référencement</span>
@@ -1029,28 +1047,22 @@
         <h2 class="reveal">Un site qui <em>vous distingue.</em></h2>
         <p class="reveal">On livre des sites qui rivalisent avec les plus grandes marques. Pas un template. Pas juste un beau site. Un site qui convertit et qui vous différencie dès la première visite.</p>
         <div class="pourquoi-pillars reveal">
-          <div class="pourquoi-pillar">
-            <div class="pourquoi-pillar-icon">
-              <svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-            </div>
+          <div class="pourquoi-benefit">
+            <span class="pourquoi-benefit-num">01</span>
             <div>
               <h4>Le meilleur de votre secteur</h4>
               <p>Vos concurrents ont des sites moyens ou pas de site du tout. Le vôtre sera dans une autre catégorie.</p>
             </div>
           </div>
-          <div class="pourquoi-pillar">
-            <div class="pourquoi-pillar-icon">
-              <svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            </div>
+          <div class="pourquoi-benefit">
+            <span class="pourquoi-benefit-num">02</span>
             <div>
               <h4>Confiance immédiate</h4>
               <p>En 3 secondes, votre visiteur comprend qu'il est au bon endroit. La crédibilité se voit, elle ne se lit pas.</p>
             </div>
           </div>
-          <div class="pourquoi-pillar">
-            <div class="pourquoi-pillar-icon">
-              <svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
-            </div>
+          <div class="pourquoi-benefit">
+            <span class="pourquoi-benefit-num">03</span>
             <div>
               <h4>Un résultat qui se mesure</h4>
               <p>Plus de demandes, plus de contacts, plus de ventes. La différence avec votre ancien site est quantifiable.</p>
