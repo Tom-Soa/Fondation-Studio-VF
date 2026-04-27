@@ -258,6 +258,10 @@
         <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
         Contact
       </button>
+      <button class="admin-nav-item" onclick="showPanel('testimonials')">
+        <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Temoignages
+      </button>
     </nav>
     <div class="admin-sidebar-footer">
       <button class="admin-logout" onclick="logout()">Deconnexion</button>
@@ -354,6 +358,21 @@
       </div>
     </div>
 
+    <!-- ── TESTIMONIALS PANEL ── -->
+    <div class="admin-panel" id="panel-testimonials">
+      <div class="admin-page-title">Temoignages</div>
+      <div class="admin-page-sub">Les 4 temoignages affiches sur la page d'accueil</div>
+
+      <div id="testi-editor-list" style="display:flex;flex-direction:column;gap:1.5rem"></div>
+
+      <div style="display:flex;justify-content:flex-end;gap:1rem;margin-top:1.5rem">
+        <button class="admin-save-btn" onclick="saveTestimonials()">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          Enregistrer les temoignages
+        </button>
+      </div>
+    </div>
+
   </main>
 </div>
 
@@ -433,6 +452,7 @@
     initTarifs();
     initRealisations();
     initContact();
+    initTestimonials();
   }
 
   /* ── Homepage ── */
@@ -581,6 +601,9 @@
             <label>Categorie (filtre)</label>
             <select class="proj-category" style="background:var(--alabaster);border:1px solid var(--grid);border-radius:8px;padding:0.75rem 1rem;color:var(--midnight);font-size:0.9rem;outline:none;width:100%">
               <option value="btp" ${(proj.category||'')==='btp'?'selected':''}>Construction / BTP</option>
+              <option value="bien-etre" ${(proj.category||'')==='bien-etre'?'selected':''}>Bien-etre</option>
+              <option value="restaurant" ${(proj.category||'')==='restaurant'?'selected':''}>Restaurant</option>
+              <option value="boutique" ${(proj.category||'')==='boutique'?'selected':''}>Boutique</option>
               <option value="autre" ${(proj.category||'autre')==='autre'?'selected':''}>Autre secteur</option>
             </select>
           </div>
@@ -643,6 +666,9 @@
           <label>Categorie (filtre)</label>
           <select class="proj-category" style="background:var(--alabaster);border:1px solid var(--grid);border-radius:8px;padding:0.75rem 1rem;color:var(--midnight);font-size:0.9rem;outline:none;width:100%">
             <option value="btp">Construction / BTP</option>
+            <option value="bien-etre">Bien-etre</option>
+            <option value="restaurant">Restaurant</option>
+            <option value="boutique">Boutique</option>
             <option value="autre" selected>Autre secteur</option>
           </select>
         </div>
@@ -689,6 +715,51 @@
     if (error) { showToast('Erreur : ' + error.message); return; }
     showToast('Réalisations sauvegardées dans Supabase.');
     await initRealisations();
+  }
+
+  /* ── Testimonials ── */
+  const defaultTestimonials = [
+    { name: 'Marie-Laure Donnet', role: 'Gerante · Maison Leconte', quote: 'En 3 semaines apres la mise en ligne, notre taux de demandes de contact a double. Le site attire des clients qu\'on n\'aurait jamais touches avec notre ancien WordPress.', photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=72&q=80&fit=crop&crop=face' },
+    { name: 'Thomas Durif', role: 'Artisan · Atelier Durif', quote: 'Le PageSpeed score est a 98. Mon site charge en moins d\'une seconde. Les clients me le font remarquer spontanement, et ca se sent sur les reservations.', photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=72&q=80&fit=crop&crop=face' },
+    { name: 'Sophie Carpentier', role: 'Avocate · Cabinet Moreau', quote: 'J\'avais un budget serre et des doutes. Finalement, c\'est le meilleur investissement de l\'annee. Process simple, livraison rapide, et le resultat depasse mes attentes.', photo: 'https://images.unsplash.com/photo-1548142813-c348350df52b?w=72&q=80&fit=crop&crop=face' },
+    { name: 'Pierre-Louis Fabre', role: 'Directeur · Fabre Immobilier', quote: 'Resultat professionnel, delai tenu. Notre agence immobiliere a vu ses demandes de visite augmenter des la premiere semaine. Le site inspire vraiment confiance.', photo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=72&q=80&fit=crop&crop=face' }
+  ];
+
+  function initTestimonials() {
+    var saved = null;
+    try { saved = JSON.parse(localStorage.getItem('fs_testimonials')); } catch(e) {}
+    var data = (saved && saved.length >= 4) ? saved : defaultTestimonials;
+    var list = document.getElementById('testi-editor-list');
+    list.innerHTML = '';
+    data.forEach(function(t, i) {
+      var card = document.createElement('div');
+      card.className = 'admin-card';
+      card.dataset.testiIdx = i;
+      card.innerHTML = '<div class="admin-card-title">Temoignage ' + (i+1) + '</div>' +
+        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">' +
+          '<div class="fgrp"><label>Nom</label><input type="text" class="ti-name" value="'+escHtml(t.name||'')+'" /></div>' +
+          '<div class="fgrp"><label>Titre / Entreprise</label><input type="text" class="ti-role" value="'+escHtml(t.role||'')+'" /></div>' +
+        '</div>' +
+        '<div class="fgrp" style="margin-top:0.75rem"><label>Temoignage (sans guillemets)</label><textarea class="ti-quote" rows="3" style="width:100%;background:var(--alabaster);border:1px solid var(--grid);border-radius:8px;padding:0.75rem 1rem;font-size:0.9rem;color:var(--midnight);resize:vertical;outline:none;font-family:inherit">'+escHtml(t.quote||'')+'</textarea></div>' +
+        '<div class="fgrp" style="margin-top:0.75rem"><label>URL photo de profil <span style="font-weight:400;color:var(--steel)">(Unsplash, lien direct)</span></label><input type="url" class="ti-photo" value="'+escHtml(t.photo||'')+'" placeholder="https://images.unsplash.com/photo-..." />' +
+        (t.photo ? '<img src="'+escHtml(t.photo)+'" alt="" style="width:36px;height:36px;border-radius:50%;object-fit:cover;margin-top:0.5rem;display:block;" onerror="this.style.display=\'none\'">' : '') +
+        '</div>';
+      list.appendChild(card);
+    });
+  }
+
+  function saveTestimonials() {
+    var data = [];
+    document.querySelectorAll('#testi-editor-list .admin-card').forEach(function(card) {
+      data.push({
+        name: card.querySelector('.ti-name').value.trim(),
+        role: card.querySelector('.ti-role').value.trim(),
+        quote: card.querySelector('.ti-quote').value.trim(),
+        photo: card.querySelector('.ti-photo').value.trim()
+      });
+    });
+    localStorage.setItem('fs_testimonials', JSON.stringify(data));
+    showToast('Temoignages sauvegardes. Rechargez la page d\'accueil pour voir les changements.');
   }
 
   /* ── Helpers ── */
