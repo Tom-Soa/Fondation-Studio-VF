@@ -515,12 +515,12 @@
 
   /* ── Guarantees  :  liste éditoriale ── */
   .guar-list { display: flex; flex-direction: column; border-top: 1px solid rgba(255,255,255,0.1); }
-  .guar-row { display: grid; grid-template-columns: 5.5rem 1fr auto; gap: 1.5rem; align-items: center; padding: 2rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
-  .guar-row-num { font-family: 'Inter', sans-serif; font-size: clamp(3rem,8vw,4.5rem); font-weight: 800; letter-spacing: -0.05em; color: rgba(255,255,255,0.13); line-height: 1; }
+  .guar-row { display: grid; grid-template-columns: min-content 1fr auto; gap: 1.5rem; align-items: center; padding: 1.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .guar-row-num { font-family: 'Inter', sans-serif; font-size: clamp(12rem,30vw,18rem); font-weight: 800; letter-spacing: -0.06em; color: rgba(255,255,255,0.13); line-height: 0.85; white-space: nowrap; }
   .guar-row-body h3 { font-weight: 700; font-size: 1.1rem; color: white; margin-bottom: 0.35rem; }
   .guar-row-body p { color: rgba(255,255,255,0.5); font-size: 0.875rem; line-height: 1.65; max-width: 480px; }
   .guar-row-tag { font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--terra); white-space: nowrap; }
-  @media (max-width: 640px) { .guar-row { grid-template-columns: 3.5rem 1fr; gap: 1rem; } .guar-row-tag { display: none; } .guar-row-num { font-size: clamp(2rem,6vw,3rem); } }
+  @media (max-width: 640px) { .guar-row { grid-template-columns: min-content 1fr; gap: 1rem; } .guar-row-tag { display: none; } }
 
   @media (max-width: 640px) {
     .proc-card-grid { grid-template-columns: 1fr; gap: 0.75rem; padding: 0.75rem; }
@@ -540,7 +540,16 @@
   /* ── Comparaison ── */
   .vs-divider { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin: 3.5rem 0 2rem; }
   .vs-divider::before, .vs-divider::after { content: ''; flex: 1; height: 1px; background: var(--grid); }
-  .vs-label { font-family: 'Inter', sans-serif; font-size: clamp(1rem,2vw,1.4rem); font-weight: 700; letter-spacing: -0.02em; color: var(--midnight); text-align: center; }
+  .vs-label { font-family: 'Inter', sans-serif; font-size: clamp(1rem,2vw,1.4rem); font-weight: 700; letter-spacing: -0.02em; color: var(--midnight); text-align: center; line-height: 1.25; }
+  .vs-versus { font-style: normal; color: var(--terra); font-size: 1.35em; font-weight: 900; letter-spacing: -0.03em; }
+
+  .cmp-scroll-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  @media (max-width: 639px) {
+    .cmp-scroll-wrap::-webkit-scrollbar { height: 4px; display: block; }
+    .cmp-scroll-wrap::-webkit-scrollbar-track { background: var(--grid); border-radius: 99px; }
+    .cmp-scroll-wrap::-webkit-scrollbar-thumb { background: var(--terra); border-radius: 99px; min-width: 40px; }
+    .cmp-scroll-wrap { scrollbar-width: thin; scrollbar-color: var(--terra) var(--grid); }
+  }
 
   .cmp-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 2px solid var(--grid); margin-top: 1.5rem; }
   .cmp-head { font-family: 'DM Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--steel); padding: 0.65rem 1rem; border-bottom: 2px solid var(--grid); }
@@ -743,9 +752,9 @@
       </div>
     </div>
 
-    <div class="vs-divider reveal"><span class="vs-label">Fondation Studio vs Agence classique</span></div>
+    <div class="vs-divider reveal"><span class="vs-label">Fondation Studio <em class="vs-versus">VS</em><br>Agence Classique</span></div>
 
-    <div class="reveal" style="overflow-x:auto;-webkit-overflow-scrolling:touch">
+    <div class="reveal cmp-scroll-wrap">
       <div class="cmp-grid" style="min-width:480px">
         <div class="cmp-head">Critère</div>
         <div class="cmp-head cmp-us">Fondation Studio</div>
@@ -811,7 +820,7 @@
       </div>
       <div class="guar-list">
         <div class="guar-row reveal">
-          <div class="guar-row-num">01</div>
+          <div class="guar-row-num">1</div>
           <div class="guar-row-body">
             <h3>Vous voyez avant de payer</h3>
             <p>La maquette est livrée gratuitement avant tout engagement. Si elle ne vous convient pas : zéro obligation, zéro frais.</p>
@@ -819,7 +828,7 @@
           <div class="guar-row-tag">Zéro risque</div>
         </div>
         <div class="guar-row reveal">
-          <div class="guar-row-num">02</div>
+          <div class="guar-row-num">2</div>
           <div class="guar-row-body">
             <h3>Un seul interlocuteur</h3>
             <p>Du brief à la mise en ligne, vous parlez directement aux fondateurs. Pas d'intermédiaire, pas de jargon.</p>
@@ -827,7 +836,7 @@
           <div class="guar-row-tag">Simplicité totale</div>
         </div>
         <div class="guar-row reveal">
-          <div class="guar-row-num">03</div>
+          <div class="guar-row-num">3</div>
           <div class="guar-row-body">
             <h3>Le site est à vous</h3>
             <p>Hébergement naturellement gratuit, domaine à votre nom, aucun abonnement imposé. Aucune dépendance à notre agence.</p>
