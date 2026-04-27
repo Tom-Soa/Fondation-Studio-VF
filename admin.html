@@ -474,7 +474,7 @@
     });
   }
 
-  function savePanel(panel) {
+  async function savePanel(panel) {
     if (panel === 'homepage') {
       const items = [];
       document.querySelectorAll('#solution-items > div').forEach(div => {
