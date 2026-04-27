@@ -101,10 +101,10 @@
   .pill-cta:hover { background: var(--terra-hover) !important; transform: scale(1.02); }
   @media (max-width: 639px) { .pill-label { display: none; } .pill-item { padding: 0.65rem 0.85rem; } .pill-cta { padding: 0.65rem 1rem; font-size: 0; gap: 0; } }
 
-  #hero { min-height: 100svh; position: relative; overflow: hidden; background-image: url('images/hero-index.jpg'); background-attachment: scroll; background-size: cover; background-position: center; display: flex; flex-direction: column; }
+  #hero { min-height: 100svh; position: relative; overflow: hidden; display: flex; flex-direction: column; }
   .vlines { position: absolute; inset: 0; display: flex; justify-content: space-between; pointer-events: none; z-index: 1; }
   .vlines .vl { width: 1px; height: 100%; background: rgba(255,255,255,0.07); }
-  #hero-bg-image { position: absolute; inset: 0; z-index: 0; }
+  #hero-bg-image { position: absolute; inset: 0; z-index: 0; background-image: url('images/hero-index.jpg'); background-size: cover; background-position: center; transform: translateZ(0); }
   #hero-bg-image img { display: none; }
   #hero-bg-dim { position: absolute; inset: 0; background: rgba(15,23,42,0.68); }
   .hero-center { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100svh; width: 100%; padding: 6rem 2rem 5rem; text-align: center; }
@@ -557,23 +557,27 @@
   .prob-lead-desc p { color: var(--steel); font-size: 0.82rem; line-height: 1.7; }
   .prob-lead-cta { display: inline-flex; align-items: center; gap: 0.6rem; font-family: 'DM Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--terra); text-decoration: none; border-bottom: 1px solid rgba(194,65,12,0.3); padding-bottom: 0.2rem; transition: border-color 0.2s; }
   .prob-lead-cta:hover { border-color: var(--terra); }
-  .prob-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .prob-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--grid); border-radius: 4px; overflow: hidden; }
   .prob-card {
-    padding: 1.5rem; border-radius: 14px;
-    border: 1px solid var(--grid);
+    padding: 1.5rem 1.35rem 1.35rem;
+    border-right: 1px solid var(--grid);
+    border-bottom: 1px solid var(--grid);
     background: white;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    position: relative;
+    transition: background 0.2s;
   }
-  .prob-card:hover { border-color: rgba(194,65,12,0.25); box-shadow: 0 4px 16px rgba(15,23,42,0.07); }
-  .prob-card-num { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--terra); letter-spacing: 0.08em; margin-bottom: 0.75rem; }
-  .prob-card h3 { font-weight: 700; font-size: 1rem; color: var(--midnight); margin-bottom: 0.4rem; line-height: 1.2; }
-  .prob-card-impact { font-size: 0.82rem; color: var(--steel); line-height: 1.5; }
-  .prob-card-impact strong { color: var(--terra); font-weight: 600; }
-  @media (max-width: 860px) { .prob-split { grid-template-columns: 1fr; gap: 3rem; } .prob-lead { position: static; } }
+  .prob-card:nth-child(2n) { border-right: none; }
+  .prob-card:nth-child(3), .prob-card:nth-child(4) { border-bottom: none; }
+  .prob-card:hover { background: #fafaf8; }
+  .prob-card-num { font-family: 'DM Mono', monospace; font-size: 0.55rem; color: var(--terra); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.9rem; display: block; }
+  .prob-card h3 { font-weight: 700; font-size: 0.95rem; color: var(--midnight); margin-bottom: 0.5rem; line-height: 1.25; }
+  .prob-card-impact { font-size: 0.8rem; color: var(--steel); line-height: 1.55; }
+  .prob-card-impact strong { color: var(--midnight); font-weight: 700; display: block; font-size: 1.05rem; margin-bottom: 0.15rem; letter-spacing: -0.02em; }
+  @media (max-width: 860px) { .prob-split { grid-template-columns: 1fr; gap: 1.5rem; } .prob-lead { position: static; } .prob-lead-desc { margin-bottom: 1.25rem; } }
   @media (max-width: 420px) { .prob-cards { grid-template-columns: 1fr; } }
 
   /* ── Pourquoi nous choisir ── */
-  .pourquoi { background: var(--midnight); padding: 8rem 0; position: relative; overflow: hidden; background-image: url('https://images.pexels.com/photos/1482193/pexels-photo-1482193.jpeg?auto=compress&cs=tinysrgb&w=1920'); background-size: cover; background-position: center 50%; background-attachment: scroll; }
+  .pourquoi { background: var(--midnight); padding: 8rem 0; position: relative; overflow: hidden; background-image: url('images/hero-performances.jpg'); background-size: cover; background-position: center 40%; background-attachment: scroll; }
   .pourquoi::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(15,23,42,0.92) 0%, rgba(15,23,42,0.80) 60%, rgba(30,10,5,0.90) 100%); z-index: 0; }
   .pourquoi .container { position: relative; z-index: 1; }
   .pourquoi-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
@@ -944,20 +948,24 @@
       <div class="prob-dashboard reveal">
         <div class="prob-cards">
           <div class="prob-card">
+            <span class="prob-card-num">01</span>
+            <p class="prob-card-impact"><strong>-0,5 %</strong> de conversion</p>
             <h3>Aucune conversion</h3>
-            <p class="prob-card-impact"><strong>Moins de 0,5 %</strong> des visiteurs prennent contact.</p>
           </div>
           <div class="prob-card">
+            <span class="prob-card-num">02</span>
+            <p class="prob-card-impact"><strong>70 % abandonnent</strong> sous 3 secondes</p>
             <h3>Site trop lent</h3>
-            <p class="prob-card-impact"><strong>70 % des visiteurs</strong> abandonnent après 3 secondes.</p>
           </div>
           <div class="prob-card">
+            <span class="prob-card-num">03</span>
+            <p class="prob-card-impact"><strong>3 000 € min.</strong> pour un résultat décevant</p>
             <h3>Agence trop chère</h3>
-            <p class="prob-card-impact"><strong>3 000 € minimum</strong> pour un résultat souvent décevant.</p>
           </div>
           <div class="prob-card">
-            <h3>Design générique</h3>
-            <p class="prob-card-impact">Un template qui <strong>ne vous distingue pas</strong> de vos concurrents.</p>
+            <span class="prob-card-num">04</span>
+            <p class="prob-card-impact"><strong>Template générique</strong> sans identité propre</p>
+            <h3>Design sans âme</h3>
           </div>
         </div>
       </div>
@@ -1076,22 +1084,14 @@
         <div class="pourquoi-quote reveal">
           <p>Des agences comme Fondation Studio, c'est 1&nbsp;% du marché. Ce n'est pas un hasard, c'est un niveau d'exigence que peu sont prêts à tenir.</p>
         </div>
-        <div class="pourquoi-numbers reveal">
+        <div class="pourquoi-numbers reveal" style="grid-template-columns:1fr 1fr">
           <div class="pourquoi-num-item">
             <div class="val">42<em>+</em></div>
             <div class="lbl">Projets livrés</div>
           </div>
           <div class="pourquoi-num-item">
-            <div class="val">100<em>/100</em></div>
-            <div class="lbl">PageSpeed élevé</div>
-          </div>
-          <div class="pourquoi-num-item">
             <div class="val">14–21<em>j</em></div>
             <div class="lbl">Délai de livraison</div>
-          </div>
-          <div class="pourquoi-num-item">
-            <div class="val">4.9<em>/5</em></div>
-            <div class="lbl">Satisfaction client</div>
           </div>
         </div>
         <div class="pourquoi-final-cta reveal">
