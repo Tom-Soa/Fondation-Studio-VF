@@ -597,10 +597,8 @@
     <p class="reveal" style="font-size:1rem;color:var(--steel);line-height:1.65;max-width:480px;margin-bottom:2rem">Sites codés à la main, pensés pour convertir. Pas des templates, pas du WordPress.</p>
     <div class="filter-row reveal" id="filter-row">
       <button class="filter-btn active" data-filter="all">Tous</button>
-      <button class="filter-btn" data-filter="restaurant">Restaurant</button>
-      <button class="filter-btn" data-filter="boutique">Boutique</button>
-      <button class="filter-btn" data-filter="btp">BTP</button>
-      <button class="filter-btn" data-filter="autre">Autre</button>
+      <button class="filter-btn" data-filter="btp">Construction</button>
+      <button class="filter-btn" data-filter="autre">Autres secteurs</button>
     </div>
   </div>
 </section>
@@ -677,42 +675,22 @@
   };
 
   var defaultProjects = [
-    { name: 'Bistrot du Marché', sector: 'Restaurant', category: 'restaurant',
-      desc: 'Site vitrine + carte digitale + réservation en ligne pour un bistrot parisien.',
-      detailDesc: 'Conception complète du site vitrine avec un système de réservation en ligne fluide. Design élégant et appétissant, optimisé pour transformer les visiteurs en réservations. SEO local intégré dès le lancement.',
-      imageUrl: 'https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#' },
-    { name: 'Menuiserie Vallet', sector: 'BTP', category: 'btp',
-      desc: 'Portfolio haute qualité pour un menuisier ébéniste qui voulait attirer une clientèle haut de gamme.',
-      detailDesc: 'Site vitrine premium avec galerie de réalisations immersive. Formulaire de devis personnalisé, photos professionnelles intégrées. Résultat : +60% de demandes qualifiées dès le premier mois.',
-      imageUrl: 'https://images.pexels.com/photos/1109543/pexels-photo-1109543.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#' },
-    { name: 'Cabinet Moreau Droit', sector: 'Professionnel libéral', category: 'autre',
-      desc: 'Site institutionnel pour un cabinet d\'avocats : crédibilité, prise de contact, SEO local.',
-      detailDesc: 'Site sobre et professionnel pour un cabinet d\'avocats parisien. Architecture pensée pour établir la confiance et faciliter la prise de contact. SEO local optimisé pour les recherches "avocat [ville]".',
-      imageUrl: 'https://images.pexels.com/photos/1170979/pexels-photo-1170979.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#' },
-    { name: 'Helio SaaS RH', sector: 'Startup', category: 'autre',
-      desc: 'Landing page haute conversion pour une startup RH en phase d\'acquisition.',
-      detailDesc: 'Landing page animée pour une startup RH : storytelling scroll, preuve sociale, onboarding guidé. Taux de conversion optimisé par des tests A/B sur les CTA et la hiérarchie visuelle.',
-      imageUrl: 'https://images.pexels.com/photos/3184298/pexels-photo-3184298.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#' },
-    { name: 'Fleurs & Sens', sector: 'Boutique', category: 'boutique',
-      desc: 'Boutique en ligne pour une fleuriste artisanale : catalogue produits, commande en ligne, livraison locale.',
-      detailDesc: 'E-commerce minimaliste et élégant pour une fleuriste artisanale. Catalogue produits avec filtres par occasion, système de commande simplifié, gestion des créneaux de livraison locale.',
-      imageUrl: 'https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#' },
-    { name: 'Dr. Aurélie Blanc Ostéopathie', sector: 'Santé', category: 'autre',
-      desc: 'Site de présentation + prise de rendez-vous en ligne pour une ostéopathe libérale.',
-      detailDesc: 'Site rassurant et accessible pour une ostéopathe libérale. Présentation claire des techniques, prise de rendez-vous en ligne intégrée, section FAQ pour rassurer les nouveaux patients.',
-      imageUrl: 'https://images.pexels.com/photos/3779409/pexels-photo-3779409.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#' },
-    { name: 'L\'Atelier Fumé', sector: 'Restaurant', category: 'restaurant',
-      desc: 'BBQ moderne avec menu digital QR code, galerie photos, commande click & collect.',
-      detailDesc: 'Identité digitale forte pour un restaurant BBQ : menu QR code dynamique, galerie appétissante, commande click & collect intégrée. Fort impact sur les réservations du week-end.',
-      imageUrl: 'https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#' },
-    { name: 'Planify Gestion de planning', sector: 'Startup', category: 'autre',
-      desc: 'Site marketing animé pour une app de gestion d\'équipes. Scroll storytelling, démo interactive.',
-      detailDesc: 'Site marketing haute performance pour une app B2B de gestion d\'équipes. Scroll storytelling, animations au défilement, démo interactive intégrée. Optimisé pour les campagnes Google Ads.',
-      imageUrl: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#' },
-    { name: 'Ébénisterie Durand', sector: 'BTP', category: 'btp',
-      desc: 'Portfolio visuel pour un ébéniste passionné : galerie immersive, devis en ligne, témoignages clients.',
-      detailDesc: 'Portfolio immersif en plein écran pour un ébéniste d\'exception. Galerie plein format, formulaire de devis sur-mesure, témoignages clients certifiés. Référencement optimisé pour les recherches "ébéniste artisan".',
-      imageUrl: 'https://images.pexels.com/photos/1416736/pexels-photo-1416736.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#' }
+    { name: 'AC Run Transport', sector: 'Transport', category: 'autre',
+      desc: 'Site vitrine pour un service de chauffeur privé et excursions accompagnées à La Réunion.',
+      detailDesc: 'Site premium pour deux chauffeurs réunionnais proposant des transferts privés et excursions sur toute l\'île. Design immersif avec paysages de La Réunion, système de réservation en ligne, fiches excursions détaillées.',
+      imageUrl: 'images/real-ac-run.jpg', siteUrl: '#' },
+    { name: 'SICO PREFA', sector: 'Construction', category: 'btp',
+      desc: 'Site vitrine pour un spécialiste de la construction préfabriquée dans les îles de l\'Océan Indien et des Antilles.',
+      detailDesc: 'Site institutionnel fort pour SICO PREFA, acteur de la construction préfabriquée haute qualité. Présentation des services, formulaire d\'estimation de projet, galerie de réalisations. Optimisé pour les marchés insulaires.',
+      imageUrl: 'images/real-sico-prefa.jpg', siteUrl: '#' },
+    { name: 'CIAS Sud Mayotte', sector: 'Établissement public', category: 'autre',
+      desc: 'Site institutionnel pour le Centre Intercommunal d\'Action Sociale du Sud de Mayotte.',
+      detailDesc: 'Plateforme d\'information complète pour le CIAS CCSUD Mayotte, accompagnant les habitants de Bandrélé, Chirongui, Kani-Kéli et Bouéni. Navigation claire, accès rapide aux services sociaux, actualités et contact.',
+      imageUrl: 'images/real-cias.jpg', siteUrl: '#' },
+    { name: 'Tuy Run - Dien Chan', sector: 'Bien-être', category: 'autre',
+      desc: 'Site vitrine pour une praticienne en réflexothérapie faciale Dien Chan à La Réunion.',
+      detailDesc: 'Identité digitale envoûtante pour une praticienne Dien Chan à La Réunion. Design inspiré des paysages réunionnais, présentation de la méthode, prise de rendez-vous en ligne, blog actualités bien-être.',
+      imageUrl: 'images/real-tuy-run.jpg', siteUrl: '#' }
   ];
 
   // ── Reveal observer ──
