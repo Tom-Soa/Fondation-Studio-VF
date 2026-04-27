@@ -498,6 +498,50 @@
   .testi-col { will-change: transform; }
   .reveal { will-change: opacity, transform; }
 
+  /* ── Options disponibles ── */
+  .opts-section { background: var(--alabaster); padding: clamp(4rem,8vw,6rem) 0; border-top: 1px solid var(--grid); }
+  .opts-header { max-width: 600px; margin-bottom: 3rem; }
+  .opts-header .mono { display: block; margin-bottom: 0.75rem; }
+  .opts-header h2 { font-weight: 800; font-size: clamp(1.8rem,3vw,2.5rem); letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.85rem; }
+  .opts-header p { color: var(--steel); font-size: 0.95rem; line-height: 1.65; }
+
+  .opts-table { border: 1px solid var(--grid); border-radius: 16px; overflow: hidden; }
+  .opts-head-row {
+    display: grid; grid-template-columns: 2.5fr 1fr 3fr;
+    padding: 0.75rem 1.75rem;
+    background: var(--midnight); gap: 1.5rem;
+  }
+  .opts-head-row span { font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.45); }
+  .opts-row {
+    display: grid; grid-template-columns: 2.5fr 1fr 3fr;
+    padding: 1.25rem 1.75rem; gap: 1.5rem;
+    border-top: 1px solid var(--grid);
+    background: white;
+    align-items: center;
+    transition: background 0.2s;
+  }
+  .opts-row:hover { background: #fdf9f7; }
+  .opts-name { font-weight: 700; font-size: 0.95rem; color: var(--midnight); }
+  .opts-price { font-weight: 800; font-size: 1.05rem; color: var(--terra); white-space: nowrap; }
+  .opts-desc { font-size: 0.85rem; color: var(--steel); line-height: 1.55; }
+
+  .opts-notes {
+    margin-top: 2rem; padding: 1.5rem 1.75rem;
+    border: 1px solid var(--grid); border-radius: 12px;
+    background: white;
+  }
+  .opts-notes-title { font-weight: 700; font-size: 0.85rem; color: var(--terra); margin-bottom: 0.85rem; }
+  .opts-notes ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .opts-notes li { font-size: 0.82rem; color: var(--steel); line-height: 1.55; padding-left: 1rem; position: relative; }
+  .opts-notes li::before { content: '·'; position: absolute; left: 0; color: var(--terra); font-weight: 700; }
+
+  @media (max-width: 640px) {
+    .opts-head-row { display: none; }
+    .opts-row { grid-template-columns: 1fr; gap: 0.4rem; padding: 1.1rem 1.25rem; }
+    .opts-price { font-size: 1.1rem; }
+    .opts-notes { padding: 1.25rem; }
+  }
+
 </style>
   <link rel="preload" as="image" href="images/hero-tarifs.jpg" fetchpriority="high">
 </head>
@@ -750,6 +794,64 @@
       <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Que comprend le copywriting stratégique ?<span class="faq-icon"></span></button><div class="faq-body"><p>On rédige l'intégralité des textes de votre site : accroche, argumentaire, descriptions, appels à l'action. Le tout adapté à votre secteur et à votre client cible. Pas de texte générique : chaque mot est réfléchi.</p></div></div>
       <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Comment fonctionne la maquette gratuite ?<span class="faq-icon"></span></button><div class="faq-body"><p>Vous nous contactez et décrivez votre activité. Si votre projet est éligible, on conçoit la maquette de votre page d'accueil sans frais. C'est une vraie proposition visuelle, pas un brouillon. Vous la découvrez lors d'un second appel en partage d'écran. Si elle vous convient, on signe. Sinon, aucune obligation.</p></div></div>
       <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Que se passe-t-il après la mise en ligne ?<span class="faq-icon"></span></button><div class="faq-body"><p>Les offres Standard (1 mois) et Prestige (6 mois) incluent une maintenance offerte. L'offre Conversion n'inclut pas de maintenance : elle est en option à 150€/mois, à préciser dans le contrat. Dans tous les cas, on reste disponibles pour les évolutions de votre site après livraison.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- OPTIONS DISPONIBLES -->
+<section class="opts-section">
+  <div class="container">
+    <div class="opts-header reveal">
+      <span class="mono">Options</span>
+      <h2>Personnalisez votre site<br>à la carte.</h2>
+      <p>Ces options s'ajoutent à n'importe quelle offre. Elles vous donnent une autonomie réelle sur votre site, sans dépendance technique et sans abonnement caché.</p>
+    </div>
+    <div class="opts-table reveal">
+      <div class="opts-head-row">
+        <span>Option</span>
+        <span>Prix HT</span>
+        <span>Description</span>
+      </div>
+      <div class="opts-row">
+        <div class="opts-name">Maintenance mensuelle</div>
+        <div class="opts-price">150 €/mois</div>
+        <div class="opts-desc">Modifications régulières du site après la période offerte incluse dans votre formule.</div>
+      </div>
+      <div class="opts-row">
+        <div class="opts-name">Campagne pub Google</div>
+        <div class="opts-price">300 €</div>
+        <div class="opts-desc">Lancement d'une campagne Search + nom de marque, paramétrage complet inclus.</div>
+      </div>
+      <div class="opts-row">
+        <div class="opts-name">Séquences emailing</div>
+        <div class="opts-price">300 €</div>
+        <div class="opts-desc">Écriture et paramétrage de séquences automatisées : panier abandonné, relances, bienvenue.</div>
+      </div>
+      <div class="opts-row">
+        <div class="opts-name">Refonte branding</div>
+        <div class="opts-price">500 €</div>
+        <div class="opts-desc">Logo, identité visuelle, polices, couleurs, packaging. Tout ce qui rend votre marque reconnaissable.</div>
+      </div>
+      <div class="opts-row">
+        <div class="opts-name">Système de blog</div>
+        <div class="opts-price">300 €</div>
+        <div class="opts-desc">Intégration d'un blog complet avec gestion des articles, catégories et SEO par article.</div>
+      </div>
+      <div class="opts-row">
+        <div class="opts-name">Page admin — édition autonome</div>
+        <div class="opts-price">300 €</div>
+        <div class="opts-desc">Interface sur mesure pour modifier vos textes, prix et contenus directement sur votre site, sans toucher au code.</div>
+      </div>
+    </div>
+    <div class="opts-notes reveal">
+      <div class="opts-notes-title">Notes générales</div>
+      <ul>
+        <li>Tous les prix sont hors taxes (HT). Micro-entrepreneur, TVA non applicable (art. 293 B CGI).</li>
+        <li>L'hébergement est assuré via Vercel et GitHub (gratuit). Le nom de domaine est à la charge du client (~20 €/an).</li>
+        <li>Le site est construit en collaboration avec le client : validation à chaque étape clé.</li>
+        <li>Modifications de design conséquentes après validation : sur devis.</li>
+        <li>Acompte de 40 % à la commande, solde de 60 % à la livraison (paiement en 4x disponible).</li>
+      </ul>
     </div>
   </div>
 </section>
