@@ -556,15 +556,20 @@
   .prob-lead-desc p { color: var(--steel); font-size: 0.9rem; line-height: 1.75; }
   .prob-lead-cta { display: inline-flex; align-items: center; gap: 0.6rem; font-family: 'DM Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--terra); text-decoration: none; border-bottom: 1px solid rgba(194,65,12,0.3); padding-bottom: 0.2rem; transition: border-color 0.2s; }
   .prob-lead-cta:hover { border-color: var(--terra); }
-  .prob-list { display: flex; flex-direction: column; gap: 0; }
-  .prob-row { display: grid; grid-template-columns: 2.5rem 1fr; gap: 1.5rem; padding: 2rem 0; border-bottom: 1px solid var(--grid); align-items: start; }
-  .prob-row:first-child { border-top: 1px solid var(--grid); }
-  .prob-row-num { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--terra); letter-spacing: 0.05em; padding-top: 0.2rem; }
-  .prob-row h3 { font-weight: 700; font-size: 1.05rem; margin-bottom: 0.4rem; color: var(--midnight); }
-  .prob-row p { color: var(--steel); font-size: 0.875rem; line-height: 1.65; }
-  .prob-row-icon { width: 32px; height: 32px; border-radius: 0; background: rgba(194,65,12,0.07); border: 1px solid rgba(194,65,12,0.15); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; color: var(--terra); }
+  .prob-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .prob-card {
+    padding: 1.5rem; border-radius: 14px;
+    border: 1px solid var(--grid);
+    background: white;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .prob-card:hover { border-color: rgba(194,65,12,0.25); box-shadow: 0 4px 16px rgba(15,23,42,0.07); }
+  .prob-card-num { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--terra); letter-spacing: 0.08em; margin-bottom: 0.75rem; }
+  .prob-card h3 { font-weight: 700; font-size: 1rem; color: var(--midnight); margin-bottom: 0.4rem; line-height: 1.2; }
+  .prob-card-impact { font-size: 0.82rem; color: var(--steel); line-height: 1.5; }
+  .prob-card-impact strong { color: var(--terra); font-weight: 600; }
   @media (max-width: 860px) { .prob-split { grid-template-columns: 1fr; gap: 3rem; } .prob-lead { position: static; } }
-  @media (max-width: 540px) { .prob-row { grid-template-columns: 1fr; gap: 0.4rem; } }
+  @media (max-width: 420px) { .prob-cards { grid-template-columns: 1fr; } }
 
   /* ── Pourquoi nous choisir ── */
   .pourquoi { background: var(--midnight); padding: 8rem 0; position: relative; overflow: hidden; background-image: url('https://images.pexels.com/photos/1482193/pexels-photo-1482193.jpeg?auto=compress&cs=tinysrgb&w=1920'); background-size: cover; background-position: center 50%; background-attachment: scroll; }
@@ -891,64 +896,26 @@
         <a href="contact.html" class="prob-lead-cta">Parler de mon projet <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
       <div class="prob-dashboard reveal">
-        <div class="prob-db-card">
-          <div class="prob-db-header">
-            <div class="prob-db-dots">
-              <span class="prob-db-dot"></span>
-              <span class="prob-db-dot"></span>
-              <span class="prob-db-dot"></span>
-            </div>
-            <h3>Diagnostic site web · PME standard</h3>
-            <p>État observé sur la majorité des sites vitrines de PME en France</p>
+        <div class="prob-cards">
+          <div class="prob-card">
+            <div class="prob-card-num">01</div>
+            <h3>Aucune conversion</h3>
+            <p class="prob-card-impact"><strong>Moins de 0,5 %</strong> des visiteurs prennent contact.</p>
           </div>
-          <div class="prob-db-table-wrap">
-            <table class="prob-db-table">
-              <thead>
-                <tr>
-                  <th style="width:2.5rem">#</th>
-                  <th>Symptôme</th>
-                  <th>Impact réel</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>01</td>
-                  <td>
-                    <span class="prob-db-issue-title">Aucune conversion</span>
-                    <span class="prob-db-issue-detail">&lt; 0,5 % des visiteurs contactent</span>
-                  </td>
-                  <td class="prob-db-impact">Prospects perdus chaque jour</td>
-                </tr>
-                <tr>
-                  <td>02</td>
-                  <td>
-                    <span class="prob-db-issue-title">Vitesse insuffisante</span>
-                    <span class="prob-db-issue-detail">Score PageSpeed &lt; 50 · &gt; 4s de chargement</span>
-                  </td>
-                  <td class="prob-db-impact">70 % des visiteurs abandonnent</td>
-                </tr>
-                <tr>
-                  <td>03</td>
-                  <td>
-                    <span class="prob-db-issue-title">Budget agence disproportionné</span>
-                    <span class="prob-db-issue-detail">3 000 € min · délai 3 à 6 mois</span>
-                  </td>
-                  <td class="prob-db-impact">ROI négatif, délai interminable</td>
-                </tr>
-                <tr>
-                  <td>04</td>
-                  <td>
-                    <span class="prob-db-issue-title">Design non professionnel</span>
-                    <span class="prob-db-issue-detail">Template générique · pas mobile-first</span>
-                  </td>
-                  <td class="prob-db-impact">Image dégradée, confiance perdue</td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="prob-card">
+            <div class="prob-card-num">02</div>
+            <h3>Site trop lent</h3>
+            <p class="prob-card-impact"><strong>70 % des visiteurs</strong> abandonnent après 3 secondes.</p>
           </div>
-          <div class="prob-db-footer">
-            <span>Analyse de <strong>247</strong> sites PME, secteurs variés</span>
-            <span>Données 2024-2025</span>
+          <div class="prob-card">
+            <div class="prob-card-num">03</div>
+            <h3>Agence trop chère</h3>
+            <p class="prob-card-impact"><strong>3 000 € minimum</strong> pour un résultat souvent décevant.</p>
+          </div>
+          <div class="prob-card">
+            <div class="prob-card-num">04</div>
+            <h3>Design générique</h3>
+            <p class="prob-card-impact">Un template qui <strong>ne vous distingue pas</strong> de vos concurrents.</p>
           </div>
         </div>
       </div>
