@@ -592,9 +592,9 @@
   .pourquoi-quote { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 2.5rem 2rem 2rem; position: relative; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
   .pourquoi-quote::before { content: '"'; position: absolute; top: 1rem; left: 2rem; font-size: 5rem; font-weight: 800; color: var(--terra); opacity: 0.4; line-height: 1; }
   .pourquoi-quote p { font-size: 1.2rem; font-weight: 600; line-height: 1.55; color: white; letter-spacing: -0.01em; padding-top: 2rem; }
-  .pourquoi-numbers { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; border-radius: 16px; overflow: hidden; }
-  .pourquoi-num-item { padding: 2rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); text-align: center; }
-  .pourquoi-num-item .val { font-weight: 800; font-size: 2.2rem; color: white; line-height: 1; letter-spacing: -0.02em; }
+  .pourquoi-numbers { display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr; gap: 1px; border-radius: 16px; overflow: hidden; }
+  .pourquoi-num-item { padding: 2rem 1.5rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .pourquoi-num-item .val { font-weight: 800; font-size: clamp(1.6rem, 3.5vw, 2.2rem); color: white; line-height: 1; letter-spacing: -0.02em; white-space: nowrap; }
   .pourquoi-num-item .val em { font-style: normal; color: var(--terra); }
   .pourquoi-num-item .lbl { font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); margin-top: 0.4rem; }
   .pourquoi-final-cta { text-align: center; }
@@ -654,6 +654,14 @@
     transition: color 0.25s;
   }
   .sol-slab:hover .sol-tab-label { color: var(--midnight); }
+  .sol-tab-cue {
+    font-size: 0.85rem; color: var(--terra); opacity: 0.5;
+    margin-top: auto; padding-bottom: 0.75rem;
+    transition: opacity 0.2s, transform 0.2s;
+    line-height: 1;
+  }
+  .sol-slab:hover .sol-tab-cue { opacity: 1; transform: scale(1.2); }
+  .sol-slab.active .sol-tab-cue { display: none; }
 
   .sol-body {
     position: absolute; inset: 0;
@@ -694,13 +702,18 @@
 
   @media (max-width: 768px) {
     .sol-accord { flex-direction: column; height: auto; border-radius: 16px; }
-    .sol-slab { flex: none; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .sol-slab { flex: none; border-right: none; border-bottom: 1px solid var(--grid); }
     .sol-slab:last-child { border-bottom: none; }
     .sol-tab {
       position: relative; flex-direction: row; justify-content: flex-start;
-      padding: 0 1.25rem; gap: 0.8rem; height: 54px; inset: auto;
+      padding: 0 1.25rem; gap: 0.8rem; height: 60px; inset: auto;
     }
-    .sol-tab-label { writing-mode: horizontal-tb; transform: none; font-size: 0.88rem; }
+    .sol-tab-label { writing-mode: horizontal-tb; transform: none; font-size: 0.9rem; font-weight: 700; color: var(--midnight); }
+    .sol-slab:not(.active):hover .sol-tab-label { color: var(--terra); }
+    .sol-tab-cue {
+      font-size: 1.1rem; margin-top: 0; margin-left: auto; padding-bottom: 0;
+      opacity: 0.7; display: block;
+    }
     .sol-body {
       position: relative; opacity: 0; transform: none;
       padding: 0; max-height: 0; overflow: hidden; min-width: 0;
@@ -949,6 +962,7 @@
         <div class="sol-tab">
           <span class="sol-tab-num">01</span>
           <span class="sol-tab-label">Design</span>
+          <span class="sol-tab-cue" aria-hidden="true">+</span>
         </div>
         <div class="sol-body">
           <div class="sol-ghost-num">01</div>
@@ -963,6 +977,7 @@
         <div class="sol-tab">
           <span class="sol-tab-num">02</span>
           <span class="sol-tab-label">Délai</span>
+          <span class="sol-tab-cue" aria-hidden="true">+</span>
         </div>
         <div class="sol-body">
           <div class="sol-ghost-num">02</div>
@@ -976,6 +991,7 @@
         <div class="sol-tab">
           <span class="sol-tab-num">03</span>
           <span class="sol-tab-label">Propriété</span>
+          <span class="sol-tab-cue" aria-hidden="true">+</span>
         </div>
         <div class="sol-body">
           <div class="sol-ghost-num">03</div>
@@ -989,6 +1005,7 @@
         <div class="sol-tab">
           <span class="sol-tab-num">04</span>
           <span class="sol-tab-label">Référencement</span>
+          <span class="sol-tab-cue" aria-hidden="true">+</span>
         </div>
         <div class="sol-body">
           <div class="sol-ghost-num">04</div>
