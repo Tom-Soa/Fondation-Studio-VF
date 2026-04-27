@@ -150,22 +150,31 @@
   .dark-vlines { position: absolute; inset: 0; pointer-events: none; display: flex; justify-content: space-between; padding: 0 2rem; }
   .dark-vlines .vl { width: 1px; height: 100%; background: rgba(255,255,255,0.04); }
 
+  /* ── Réalisations header ── */
+  .real-header { background: var(--midnight); color: white; padding: 5rem 0 4rem; position: relative; overflow: hidden; }
+  .real-header::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(194,65,12,0.18) 0%, transparent 70%); pointer-events: none; }
+  .real-header .mono { color: rgba(255,255,255,0.4); }
+  .real-header .section-h2 { color: white; margin-bottom: 0.75rem; }
+  .real-header-lead { font-size: 1rem; color: rgba(255,255,255,0.48); max-width: 460px; line-height: 1.6; margin-bottom: 2.5rem; }
+  .real-stats { display: flex; gap: 2.5rem; flex-wrap: wrap; }
+  .real-stat-num { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.03em; color: white; line-height: 1; }
+  .real-stat-label { font-size: 0.72rem; font-family: 'DM Mono', monospace; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.3rem; }
+
   /* ── Filter tabs ── */
-  .filter-row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 3.5rem; }
+  .filter-row { display: flex; gap: 0.4rem; flex-wrap: wrap; padding: 1.5rem 0 0; }
   .filter-btn {
-    padding: 0.45rem 1rem; border-radius: 7px;
+    padding: 0.35rem 0.85rem; border-radius: 100px;
     font-family: 'Inter', sans-serif; font-size: 0.72rem;
-    text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600;
-    border: 1px solid var(--grid);
-    background: linear-gradient(to bottom, white, rgba(249,249,247,0.9));
-    color: var(--steel); cursor: pointer;
-    box-shadow: 0 1px 2px rgba(15,23,42,0.06), inset 0 1px 0 rgba(255,255,255,0.9);
+    text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.07);
+    color: rgba(255,255,255,0.55); cursor: pointer;
     transition: all 0.15s var(--ease-out);
   }
   .filter-btn:active { transform: scale(0.97); }
-  .filter-btn.active { background: linear-gradient(to bottom, var(--midnight), rgba(15,23,42,0.92)); color: white; border-color: var(--midnight); box-shadow: 0 2px 8px rgba(15,23,42,0.25), inset 0 1px 0 rgba(255,255,255,0.08); }
+  .filter-btn.active { background: var(--terra); color: white; border-color: var(--terra); box-shadow: 0 2px 10px rgba(194,65,12,0.4); }
   @media (hover: hover) and (pointer: fine) {
-    .filter-btn:not(.active):hover { border-color: rgba(15,23,42,0.25); color: var(--midnight); box-shadow: 0 2px 6px rgba(15,23,42,0.08), inset 0 1px 0 rgba(255,255,255,0.9); }
+    .filter-btn:not(.active):hover { border-color: rgba(255,255,255,0.35); color: white; }
   }
 
   /* ── Réalisations grid ── */
@@ -572,20 +581,38 @@
 
 
 <!-- RÉALISATIONS -->
-<section class="section">
+<section class="real-header">
   <div class="container">
     <div class="reveal" style="margin-bottom:1rem"><span class="mono">Nos réalisations</span></div>
-    <h2 class="section-h2 reveal" style="margin-bottom:3rem">Des sites qui convertissent.</h2>
-
+    <h2 class="section-h2 reveal">Des sites qui convertissent.</h2>
+    <p class="real-header-lead reveal">Chaque projet est pensé pour générer des contacts, des réservations et des ventes — pas juste pour être beau.</p>
+    <div class="real-stats reveal">
+      <div>
+        <div class="real-stat-num">+40</div>
+        <div class="real-stat-label">Sites livrés</div>
+      </div>
+      <div>
+        <div class="real-stat-num">100%</div>
+        <div class="real-stat-label">Clients satisfaits</div>
+      </div>
+      <div>
+        <div class="real-stat-num">7j</div>
+        <div class="real-stat-label">Délai moyen</div>
+      </div>
+    </div>
     <!-- FILTER TABS -->
     <div class="filter-row reveal" id="filter-row">
-      <button class="filter-btn active" data-filter="all">Tous les projets</button>
+      <button class="filter-btn active" data-filter="all">Tous</button>
       <button class="filter-btn" data-filter="restaurant">Restaurant</button>
-      <button class="filter-btn" data-filter="artisan">Artisan & Commerce</button>
-      <button class="filter-btn" data-filter="pro">Professionnel libéral</button>
-      <button class="filter-btn" data-filter="startup">Startup & Saas</button>
+      <button class="filter-btn" data-filter="boutique">Boutique</button>
+      <button class="filter-btn" data-filter="btp">BTP</button>
+      <button class="filter-btn" data-filter="autre">Autre</button>
     </div>
+  </div>
+</section>
 
+<section class="section">
+  <div class="container">
     <!-- RÉALISATIONS GRID (rendu dynamique par JS) -->
     <div class="real-grid" id="real-grid"></div><!-- /real-grid -->
   </div>
@@ -661,23 +688,23 @@
       desc: 'Site vitrine + carte digitale + réservation en ligne pour un bistrot parisien.',
       detailDesc: 'Conception complète du site vitrine avec un système de réservation en ligne fluide. Design élégant et appétissant, optimisé pour transformer les visiteurs en réservations. SEO local intégré dès le lancement.',
       imageUrl: 'https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#' },
-    { name: 'Menuiserie Vallet', sector: 'Artisan', category: 'artisan',
+    { name: 'Menuiserie Vallet', sector: 'BTP', category: 'btp',
       desc: 'Portfolio haute qualité pour un menuisier ébéniste qui voulait attirer une clientèle haut de gamme.',
       detailDesc: 'Site vitrine premium avec galerie de réalisations immersive. Formulaire de devis personnalisé, photos professionnelles intégrées. Résultat : +60% de demandes qualifiées dès le premier mois.',
       imageUrl: 'https://images.pexels.com/photos/1109543/pexels-photo-1109543.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#' },
-    { name: 'Cabinet Moreau Droit', sector: 'Professionnel libéral', category: 'pro',
+    { name: 'Cabinet Moreau Droit', sector: 'Professionnel libéral', category: 'autre',
       desc: 'Site institutionnel pour un cabinet d\'avocats : crédibilité, prise de contact, SEO local.',
       detailDesc: 'Site sobre et professionnel pour un cabinet d\'avocats parisien. Architecture pensée pour établir la confiance et faciliter la prise de contact. SEO local optimisé pour les recherches "avocat [ville]".',
       imageUrl: 'https://images.pexels.com/photos/1170979/pexels-photo-1170979.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#' },
-    { name: 'Helio SaaS RH', sector: 'Startup', category: 'startup',
+    { name: 'Helio SaaS RH', sector: 'Startup', category: 'autre',
       desc: 'Landing page haute conversion pour une startup RH en phase d\'acquisition.',
       detailDesc: 'Landing page animée pour une startup RH : storytelling scroll, preuve sociale, onboarding guidé. Taux de conversion optimisé par des tests A/B sur les CTA et la hiérarchie visuelle.',
       imageUrl: 'https://images.pexels.com/photos/3184298/pexels-photo-3184298.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#' },
-    { name: 'Fleurs & Sens', sector: 'Commerce', category: 'artisan',
+    { name: 'Fleurs & Sens', sector: 'Boutique', category: 'boutique',
       desc: 'Boutique en ligne pour une fleuriste artisanale : catalogue produits, commande en ligne, livraison locale.',
       detailDesc: 'E-commerce minimaliste et élégant pour une fleuriste artisanale. Catalogue produits avec filtres par occasion, système de commande simplifié, gestion des créneaux de livraison locale.',
       imageUrl: 'https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#' },
-    { name: 'Dr. Aurélie Blanc Ostéopathie', sector: 'Santé', category: 'pro',
+    { name: 'Dr. Aurélie Blanc Ostéopathie', sector: 'Santé', category: 'autre',
       desc: 'Site de présentation + prise de rendez-vous en ligne pour une ostéopathe libérale.',
       detailDesc: 'Site rassurant et accessible pour une ostéopathe libérale. Présentation claire des techniques, prise de rendez-vous en ligne intégrée, section FAQ pour rassurer les nouveaux patients.',
       imageUrl: 'https://images.pexels.com/photos/3779409/pexels-photo-3779409.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#' },
@@ -685,11 +712,11 @@
       desc: 'BBQ moderne avec menu digital QR code, galerie photos, commande click & collect.',
       detailDesc: 'Identité digitale forte pour un restaurant BBQ : menu QR code dynamique, galerie appétissante, commande click & collect intégrée. Fort impact sur les réservations du week-end.',
       imageUrl: 'https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#' },
-    { name: 'Planify Gestion de planning', sector: 'Startup', category: 'startup',
+    { name: 'Planify Gestion de planning', sector: 'Startup', category: 'autre',
       desc: 'Site marketing animé pour une app de gestion d\'équipes. Scroll storytelling, démo interactive.',
       detailDesc: 'Site marketing haute performance pour une app B2B de gestion d\'équipes. Scroll storytelling, animations au défilement, démo interactive intégrée. Optimisé pour les campagnes Google Ads.',
       imageUrl: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#' },
-    { name: 'Ébénisterie Durand', sector: 'Artisan', category: 'artisan',
+    { name: 'Ébénisterie Durand', sector: 'BTP', category: 'btp',
       desc: 'Portfolio visuel pour un ébéniste passionné : galerie immersive, devis en ligne, témoignages clients.',
       detailDesc: 'Portfolio immersif en plein écran pour un ébéniste d\'exception. Galerie plein format, formulaire de devis sur-mesure, témoignages clients certifiés. Référencement optimisé pour les recherches "ébéniste artisan".',
       imageUrl: 'https://images.pexels.com/photos/1416736/pexels-photo-1416736.jpeg?auto=compress&cs=tinysrgb&w=800', siteUrl: '#' }
