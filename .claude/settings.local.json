@@ -47,7 +47,13 @@
       "Bash(sed -n '556,575p' processus.html)",
       "Bash(perl -i -pe 's/hébergement offert la première année/hébergement naturellement gratuit grâce à notre méthode/g; s/Hébergement offert \\\\\\(1 an\\\\\\)/Hébergement gratuit \\\\\\(illimité\\\\\\)/g; s/Hébergement offert\\\\. /Hébergement gratuit par notre méthode. /g; s/Hébergement offert 1 an/Hébergement gratuit illimité/g' processus.html tarifs.html)",
       "Bash(vercel --prod)",
-      "Bash(vercel --prod --name fondation-studio)"
+      "Bash(vercel --prod --name fondation-studio)",
+      "Bash(git commit *)",
+      "Bash(/opt/homebrew/bin/vercel --prod)",
+      "Bash(/opt/homebrew/bin/vercel --prod --yes)",
+      "Bash(python3)",
+      "Bash(grep -E \"\\\\.\\(jpg|jpeg|png|webp|heic\\)$\")",
+      "Bash(git push *)"
     ]
   }
 }
