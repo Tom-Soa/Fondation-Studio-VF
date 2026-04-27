@@ -605,95 +605,41 @@
   .sol-head .section-h2 { color: white; font-size: clamp(2rem, 3.5vw, 3rem); margin: 0.75rem 0 1rem; }
   .sol-head p { color: rgba(255,255,255,0.5); font-size: 0.95rem; line-height: 1.7; margin-bottom: 2rem; }
 
-  .sol-method {
-    display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
-    gap: 0; margin-bottom: 3rem;
-  }
-  .sol-step {
-    padding: 0.5rem 1rem; border: 1px solid rgba(255,255,255,0.07);
-    font-family: 'DM Mono', monospace; font-size: 0.6rem; text-transform: uppercase;
-    letter-spacing: 0.08em; color: rgba(255,255,255,0.4);
-    background: rgba(255,255,255,0.02); white-space: nowrap;
-    transition: color 0.2s, border-color 0.2s;
-  }
-  .sol-step.highlight { border-color: rgba(194,65,12,0.4); color: var(--terra); background: rgba(194,65,12,0.06); }
-  .sol-arrow { color: rgba(255,255,255,0.2); font-size: 0.65rem; padding: 0 0.15rem; flex-shrink: 0; line-height: 1; display: flex; align-items: center; }
-
-  .sol-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-  .sol-card {
-    position: relative; padding: 2rem 2rem 1.75rem; overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.08);
-    transition: border-color 0.3s, background 0.3s;
-  }
-  .sol-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, var(--terra), rgba(194,65,12,0.15));
-    opacity: 0.45; transition: opacity 0.3s;
-  }
-  .sol-card:hover { border-color: rgba(194,65,12,0.3); background: rgba(255,255,255,0.02); }
-  .sol-card:hover::before { opacity: 1; }
-  .sol-card-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1.25rem; }
-  .sol-card-num { font-family: 'DM Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--terra); opacity: 0.65; }
-  .sol-card-ico {
-    width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
-    border: 1px solid rgba(255,255,255,0.08); flex-shrink: 0;
-    transition: border-color 0.3s, background 0.3s;
-  }
-  .sol-card:hover .sol-card-ico { border-color: rgba(194,65,12,0.3); background: rgba(194,65,12,0.08); }
-  .sol-card h3 { font-weight: 700; font-size: 1.1rem; color: white; margin-bottom: 0.55rem; letter-spacing: -0.015em; }
-  .sol-card p { color: rgba(255,255,255,0.45); font-size: 0.875rem; line-height: 1.65; margin: 0; }
-  .sol-card-tag {
-    display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1.25rem;
-    font-family: 'DM Mono', monospace; font-size: 0.57rem; text-transform: uppercase;
-    letter-spacing: 0.1em; color: rgba(194,65,12,0.7);
-  }
-  .sol-card-tag::before { content: ''; display: block; width: 14px; height: 1px; background: var(--terra); opacity: 0.6; }
-
   @media (max-width: 860px) { .sol-head { text-align: left; } }
 
-  .sol-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 3rem; border-top: 1px solid rgba(255,255,255,0.08); }
-  .sol-item { padding: 2rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
-  .sol-item:nth-child(odd) { padding-right: 3rem; border-right: 1px solid rgba(255,255,255,0.08); }
-  .sol-item:nth-child(even) { padding-left: 3rem; }
-  .sol-item-num { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--terra); letter-spacing: 0.1em; margin-bottom: 0.75rem; }
-  .sol-item h3 { font-weight: 700; font-size: 1.1rem; color: #fff; margin-bottom: 0.5rem; }
-  .sol-item p { color: rgba(255,255,255,0.5); font-size: 0.88rem; line-height: 1.6; }
-  .sol-link { display: inline-block; margin-top: 0.6rem; font-size: 0.82rem; font-weight: 600; color: var(--terra); text-decoration: none; }
-  .sol-link:hover { text-decoration: underline; }
-  @media (max-width: 640px) { .sol-list { grid-template-columns: 1fr; } .sol-item:nth-child(odd) { padding-right: 0; border-right: none; } .sol-item:nth-child(even) { padding-left: 0; } }
-
-  /* Elevated sol cards — frosted glass over bg-cta image */
-  .sol-item.elevated {
+  .sol-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-top: 3rem;
+  }
+  .sol-card {
+    padding: 2rem 2rem 1.75rem;
     border-radius: 16px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.65), 0 4px 16px rgba(0,0,0,0.3);
-    position: relative; z-index: 2;
-    padding: 2rem 2rem !important;
-    border: none !important;
-    overflow: hidden;
-    background: transparent;
-    /* No margin — keeps text top-aligned with adjacent cards */
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.03);
+    transition: border-color 0.25s, background 0.25s, transform 0.25s;
   }
-  .sol-item.elevated::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: url('images/bg-cta.jpg') center/cover scroll;
-    filter: brightness(0.72);
-    z-index: 0;
+  .sol-card:hover {
+    border-color: rgba(194,65,12,0.35);
+    background: rgba(194,65,12,0.04);
+    transform: translateY(-3px);
   }
-  .sol-item.elevated::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(15,23,42,0.38);
-    z-index: 1;
+  .sol-card-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: rgba(194,65,12,0.12);
+    border: 1px solid rgba(194,65,12,0.2);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.25rem;
+    transition: background 0.25s, border-color 0.25s;
   }
-  .sol-item.elevated > * { position: relative; z-index: 2; }
-  .sol-item.elevated:nth-child(odd) { border-right: none !important; }
-  .sol-item.elevated .sol-item-num { color: #f97316; }
-  .sol-item.elevated h3 { color: #fff; }
-  .sol-item.elevated p { color: rgba(255,255,255,0.78); }
-  .sol-item.elevated .sol-link { color: #fdba74; }
+  .sol-card:hover .sol-card-icon { background: rgba(194,65,12,0.2); border-color: rgba(194,65,12,0.4); }
+  .sol-card h3 { font-weight: 700; font-size: 1.1rem; color: white; margin-bottom: 0.6rem; letter-spacing: -0.015em; }
+  .sol-card p { color: rgba(255,255,255,0.5); font-size: 0.875rem; line-height: 1.65; margin: 0; }
+  .sol-link { display: inline-flex; align-items: center; gap: 0.3rem; margin-top: 1rem; font-size: 0.82rem; font-weight: 600; color: var(--terra); text-decoration: none; }
+  .sol-link:hover { text-decoration: underline; }
+  @media (max-width: 640px) { .sol-grid { grid-template-columns: 1fr; gap: 0.85rem; } }
 
   /* ── Problem dashboard card ── */
   .prob-db-card {
@@ -928,28 +874,36 @@
       <p style="color:rgba(255,255,255,0.55);font-size:1rem;line-height:1.6;max-width:480px">Code pur, maquette offerte, livraison en 14 à 21 jours. Tout est fait pour vous générer des clients.</p>
       <a href="contact.html" class="cta-btn">Démarrer mon projet <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
-    <div class="sol-list">
-      <div class="sol-item elevated reveal">
-        <div class="sol-item-num">01</div>
+    <div class="sol-grid">
+      <div class="sol-card reveal">
+        <div class="sol-card-icon">
+          <svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        </div>
         <h3>Design orienté conversion</h3>
         <p>Grâce à l'expertise de Tom-Soa en analyse et optimisation de sites, chaque élément est conçu pour transformer un visiteur en client.</p>
-        <a href="qui-sommes-nous.html" class="sol-link">Rencontrer l'équipe &rarr;</a>
+        <a href="qui-sommes-nous.html" class="sol-link">Rencontrer l'équipe →</a>
       </div>
-      <div class="sol-item reveal reveal-delay-1">
-        <div class="sol-item-num">02</div>
+      <div class="sol-card reveal reveal-delay-1">
+        <div class="sol-card-icon">
+          <svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        </div>
         <h3>Livré en 14 à 21 jours</h3>
         <p>À partir de la réception du paiement, si le client est réactif. Pas de délais flous, pas de mauvaises surprises.</p>
       </div>
-      <div class="sol-item elevated reveal">
-        <div class="sol-item-num">03</div>
+      <div class="sol-card reveal">
+        <div class="sol-card-icon">
+          <svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+        </div>
         <h3>Propriété totale, hébergement gratuit</h3>
         <p>Nous livrons du code HTML pur. L'hébergement est naturellement gratuit grâce à cette méthode : aucun abonnement, aucune dépendance.</p>
       </div>
-      <div class="sol-item reveal reveal-delay-1">
-        <div class="sol-item-num">04</div>
+      <div class="sol-card reveal reveal-delay-1">
+        <div class="sol-card-icon">
+          <svg width="20" height="20" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </div>
         <h3>Référencement intégré dès le lancement</h3>
         <p>Votre site est optimisé pour Google, mais aussi pour les IA comme ChatGPT et Perplexity qui deviennent des moteurs de recherche à part entière.</p>
-        <a href="faq.html" class="sol-link">En savoir plus &rarr;</a>
+        <a href="faq.html" class="sol-link">En savoir plus →</a>
       </div>
     </div>
   </div>
