@@ -569,10 +569,9 @@
   .prob-card:nth-child(2n) { border-right: none; }
   .prob-card:nth-child(3), .prob-card:nth-child(4) { border-bottom: none; }
   .prob-card:hover { background: #fafaf8; }
-  .prob-card-num { font-family: 'DM Mono', monospace; font-size: 0.55rem; color: var(--terra); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.9rem; display: block; }
-  .prob-card h3 { font-weight: 700; font-size: 0.95rem; color: var(--midnight); margin-bottom: 0.5rem; line-height: 1.25; }
-  .prob-card-impact { font-size: 0.8rem; color: var(--steel); line-height: 1.55; }
-  .prob-card-impact strong { color: var(--midnight); font-weight: 700; display: block; font-size: 1.05rem; margin-bottom: 0.15rem; letter-spacing: -0.02em; }
+  .prob-card h3 { font-weight: 700; font-size: 1rem; color: var(--midnight); margin-bottom: 0.45rem; line-height: 1.2; }
+  .prob-card-impact { font-size: 0.82rem; color: var(--steel); line-height: 1.55; }
+  .prob-card-impact strong { color: var(--terra); font-weight: 600; }
   @media (max-width: 860px) { .prob-split { grid-template-columns: 1fr; gap: 1.5rem; } .prob-lead { position: static; } .prob-lead-desc { margin-bottom: 1.25rem; } }
   @media (max-width: 420px) { .prob-cards { grid-template-columns: 1fr; } }
 
@@ -948,24 +947,20 @@
       <div class="prob-dashboard reveal">
         <div class="prob-cards">
           <div class="prob-card">
-            <span class="prob-card-num">01</span>
-            <p class="prob-card-impact"><strong>-0,5 %</strong> de conversion</p>
             <h3>Aucune conversion</h3>
+            <p class="prob-card-impact"><strong>Moins de 0,5 %</strong> des visiteurs prennent contact.</p>
           </div>
           <div class="prob-card">
-            <span class="prob-card-num">02</span>
-            <p class="prob-card-impact"><strong>70 % abandonnent</strong> sous 3 secondes</p>
             <h3>Site trop lent</h3>
+            <p class="prob-card-impact"><strong>70 % des visiteurs</strong> abandonnent après 3 secondes.</p>
           </div>
           <div class="prob-card">
-            <span class="prob-card-num">03</span>
-            <p class="prob-card-impact"><strong>3 000 € min.</strong> pour un résultat décevant</p>
             <h3>Agence trop chère</h3>
+            <p class="prob-card-impact"><strong>3 000 € minimum</strong> pour un résultat souvent décevant.</p>
           </div>
           <div class="prob-card">
-            <span class="prob-card-num">04</span>
-            <p class="prob-card-impact"><strong>Template générique</strong> sans identité propre</p>
-            <h3>Design sans âme</h3>
+            <h3>Design générique</h3>
+            <p class="prob-card-impact">Un template qui <strong>ne vous distingue pas</strong> de vos concurrents.</p>
           </div>
         </div>
       </div>
