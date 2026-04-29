@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fondationstudio.fr/sitemap.xml
+
+Disallow: /admin.html
+Disallow: /diaporama.html
+Disallow: /agent-fondation-studio.html
+Disallow: /bases-du-code.html
