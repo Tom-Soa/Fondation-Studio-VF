@@ -669,7 +669,7 @@
   <div class="container" style="position:relative;z-index:1">
     <div class="founders-head">
       <div class="label reveal">Les fondateurs</div>
-      <h2 class="reveal">Deux entrepreneurs.<br>Une obsession commune.</h2>
+      <h2 class="reveal" data-s="heroTitre">Deux entrepreneurs.<br>Une obsession commune.</h2>
     </div>
 
     <div class="founder-cards">
@@ -717,7 +717,7 @@
     <div class="vision-inner">
       <div class="vision-text">
         <div class="label reveal">Notre vision</div>
-        <h2 class="reveal">Un site, c'est un <em>levier de croissance.</em> Pas une dépense.</h2>
+        <h2 class="reveal" data-s="visionTitre">Un site, c'est un <em>levier de croissance.</em> Pas une dépense.</h2>
         <div class="vision-quote reveal">
           <p>Aujourd'hui trop de sites sont moches et vendus cher, ou alors beaux mais qui <em>ne convertissent pas du tout.</em></p>
         </div>
@@ -740,10 +740,10 @@
   <div class="container">
     <div class="freelance-header reveal">
       <span class="mono">Comment on travaille</span>
-      <h2>Pas une agence. Pas des freelances seuls.<br><em>Le meilleur des deux.</em></h2>
+      <h2 data-s="methodeTitre">Pas une agence. Pas des freelances seuls.<br><em>Le meilleur des deux.</em></h2>
     </div>
     <div class="freelance-body reveal">
-      <p class="freelance-intro">On s'appuie sur un réseau de <strong>freelances spécialisés</strong> (designers, développeurs, copywriters) sélectionnés sur leur niveau d'exigence. Chaque projet mobilise les bonnes compétences, sans intermédiaire inutile.</p>
+      <p class="freelance-intro" data-s="methodeCorps">On s'appuie sur un réseau de <strong>freelances spécialisés</strong> (designers, développeurs, copywriters) sélectionnés sur leur niveau d'exigence. Chaque projet mobilise les bonnes compétences, sans intermédiaire inutile.</p>
     </div>
     <div class="freelance-pills reveal reveal-delay-1">
       <span class="f-pill">Freelances experts</span>
@@ -986,5 +986,20 @@
   });
 </script>
 
+<script src="/cookie-consent.js"></script>
+<script src="/sanity-content.js"></script>
+<script>
+(function() {
+  sanityFetch('*[_type == "pageQuiSommesNous" && _id == "page-qui-sommes-nous"][0]').then(function(d) {
+    if (!d) return;
+    sanityApply(d, {
+      'heroTitre': 'heroTitre',
+      'visionTitre': 'visionTitre',
+      'methodeTitre': 'methodeTitre',
+      'methodeCorps': 'methodeCorps'
+    });
+  }).catch(function() {});
+})();
+</script>
 </body>
 </html>

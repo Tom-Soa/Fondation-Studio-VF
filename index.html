@@ -22,9 +22,8 @@
     --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { overflow-x: hidden; }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Inter', sans-serif; background: var(--alabaster); color: var(--midnight); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  html { overflow-x: hidden; scroll-behavior: smooth; background: transparent; }
+  body { font-family: 'Inter', sans-serif; background: transparent; color: var(--midnight); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
   h1,h2,h3,h4 { font-family: 'Inter', sans-serif; }
   img { max-width: 100%; display: block; }
   a { text-decoration: none; color: inherit; }
@@ -101,12 +100,11 @@
   .pill-cta:hover { background: var(--terra-hover) !important; transform: scale(1.02); }
   @media (max-width: 639px) { .pill-label { display: none; } .pill-item { padding: 0.65rem 0.85rem; } .pill-cta { padding: 0.65rem 1rem; font-size: 0; gap: 0; } }
 
-  #hero { min-height: 100svh; position: relative; overflow: hidden; display: flex; flex-direction: column; }
-  .vlines { position: absolute; inset: 0; display: flex; justify-content: space-between; pointer-events: none; z-index: 1; }
+  #hero { height: 100svh; min-height: 100svh; max-height: 100svh; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .vlines { position: absolute; inset: 0; display: flex; justify-content: space-between; pointer-events: none; z-index: 2; }
   .vlines .vl { width: 1px; height: 100%; background: rgba(255,255,255,0.07); }
-  #hero-bg-image { position: absolute; inset: 0; z-index: 0; background-image: url('images/hero-index.jpg'); background-size: cover; background-position: center; transform: translateZ(0); }
-  #hero-bg-image img { display: none; }
-  #hero-bg-dim { position: absolute; inset: 0; background: rgba(15,23,42,0.68); }
+  .hero-logo-mob { position: relative; z-index: 2; }
+  .mountain-divider { position: relative; z-index: 2; }
   .hero-center { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100svh; width: 100%; padding: 6rem 2rem 5rem; text-align: center; }
   .hero-title { font-family: 'Inter', sans-serif; font-weight: 800; font-size: clamp(2.4rem, 5.5vw, 5rem); line-height: 1.05; letter-spacing: -0.025em; color: #fff; text-shadow: 0 2px 40px rgba(0,0,0,0.6); margin-bottom: 1.6rem; max-width: 820px; }
   .hero-title em { font-style: normal; color: var(--terra); }
@@ -804,10 +802,1292 @@
   .testi-col { will-change: transform; }
   .reveal { will-change: opacity, transform; }
 
+  /* ── PROBLÈME v2 ── */
+  .pnew-section { position: relative; background: var(--alabaster); padding: 6rem 0; overflow: hidden; }
+  .pnew-stripe { position: absolute; inset: 0; pointer-events: none; opacity: 0.05; background-image: repeating-linear-gradient(135deg, rgba(15,23,42,0.6) 0 1px, transparent 1px 14px); }
+  .pnew-header { display: grid; grid-template-columns: 7fr 5fr; gap: 2rem; margin-bottom: 4rem; align-items: end; }
+  .pnew-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--terra); margin-bottom: 1.25rem; }
+  .pnew-h2 { font-weight: 800; font-size: clamp(2.25rem, 5vw, 4.5rem); line-height: 0.98; letter-spacing: -0.035em; }
+  .pnew-h2 em { font-style: normal; color: var(--terra); }
+  .pnew-lead { font-size: clamp(1rem, 1.2vw, 1.1rem); line-height: 1.65; color: var(--steel); }
+  .pnew-grid { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid rgba(15,23,42,0.1); border-radius: 24px; overflow: hidden; gap: 1px; background: rgba(15,23,42,0.08); }
+  .pnew-card { position: relative; background: var(--alabaster); padding: 2rem 2.5rem 2.5rem; transition: background 0.2s; }
+  .pnew-card:hover { background: white; }
+  .pnew-card-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 2rem; }
+  .pnew-num { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.16em; color: var(--terra); }
+  .pnew-metric-val { font-weight: 800; font-size: clamp(2.5rem, 4vw, 3.75rem); line-height: 1; letter-spacing: -0.03em; color: var(--terra); text-align: right; }
+  .pnew-metric-lbl { margin-top: 0.4rem; font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--steel); text-align: right; }
+  .pnew-card h3 { font-weight: 700; font-size: clamp(1.2rem, 1.9vw, 1.6rem); letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 0.85rem; }
+  .pnew-card p { font-size: 0.88rem; line-height: 1.65; color: var(--steel); max-width: 340px; }
+  .pnew-card-accent { position: absolute; top: 0; left: 1.75rem; right: 1.75rem; height: 1px; background: linear-gradient(to right, transparent, var(--terra), transparent); opacity: 0; transition: opacity 0.4s; }
+  .pnew-card:hover .pnew-card-accent { opacity: 1; }
+  .pnew-strap { margin-top: 3rem; display: grid; grid-template-columns: 7fr 5fr; gap: 2rem; align-items: center; }
+  .pnew-strap-left { display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+  .pnew-strap-mono { font-family: 'DM Mono', monospace; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--steel); }
+  .pnew-strap-num { font-weight: 800; font-size: clamp(2rem, 3.5vw, 3rem); line-height: 1; letter-spacing: -0.03em; color: var(--terra); }
+  .pnew-strap-txt { font-size: 0.95rem; color: var(--midnight); max-width: 320px; line-height: 1.45; }
+  .pnew-strap-cta { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--midnight); color: white; padding: 0.8rem 1.5rem; border-radius: 100px; font-weight: 600; font-size: 0.875rem; transition: background 0.2s; white-space: nowrap; }
+  .pnew-strap-cta:hover { background: rgba(15,23,42,0.85); }
+  @media (max-width: 860px) { .pnew-header { grid-template-columns: 1fr; } .pnew-strap { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) { .pnew-grid { grid-template-columns: 1fr; } .pnew-card { padding: 1.5rem; } .pnew-metric-val { font-size: 2.5rem; } }
+
+  /* ── SOLUTION v2 ── */
+  .snew-section { position: relative; background: var(--midnight); color: white; padding: 6rem 0; overflow: hidden; }
+  .snew-glow { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(55% 60% at 75% 15%, rgba(249,115,22,0.12) 0%, transparent 60%), radial-gradient(45% 55% at 10% 85%, rgba(194,65,12,0.08) 0%, transparent 60%); }
+  .snew-header { display: grid; grid-template-columns: 7fr 5fr; gap: 2rem; margin-bottom: 4rem; align-items: end; }
+  .snew-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--terra); margin-bottom: 1.25rem; }
+  .snew-h2 { font-weight: 800; font-size: clamp(2.25rem, 5vw, 4.5rem); line-height: 0.98; letter-spacing: -0.035em; color: white; }
+  .snew-h2 em { font-style: normal; color: var(--terra); }
+  .snew-lead { font-size: clamp(1rem, 1.2vw, 1.1rem); line-height: 1.65; color: rgba(255,255,255,0.6); }
+  .snew-manifesto { position: relative; border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%); padding: 3rem 4rem; overflow: hidden; margin-bottom: 5rem; }
+  .snew-manifesto-glow1 { position: absolute; top: -5rem; right: -5rem; width: 20rem; height: 20rem; border-radius: 50%; background: rgba(194,65,12,0.15); filter: blur(60px); pointer-events: none; }
+  .snew-manifesto-glow2 { position: absolute; bottom: -8rem; left: -5rem; width: 18rem; height: 18rem; border-radius: 50%; background: rgba(194,65,12,0.08); filter: blur(60px); pointer-events: none; }
+  .snew-manifesto-line { position: absolute; top: 0; left: 2.5rem; right: 2.5rem; height: 1px; background: linear-gradient(to right, transparent, rgba(194,65,12,0.6), transparent); }
+  .snew-manifesto-inner { position: relative; display: grid; grid-template-columns: 7fr 5fr; gap: 2.5rem; align-items: center; }
+  .snew-mani-tag { font-family: 'DM Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(194,65,12,0.9); margin-bottom: 1.25rem; }
+  .snew-mani-title { font-weight: 800; font-size: clamp(3rem, 8vw, 6.5rem); line-height: 0.92; letter-spacing: -0.04em; color: white; }
+  .snew-mani-title em { font-style: normal; color: var(--terra); }
+  .snew-mani-desc { margin-top: 1.75rem; max-width: 420px; font-size: 0.95rem; line-height: 1.65; color: rgba(255,255,255,0.6); }
+  .snew-badges { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 2rem; }
+  .snew-badge { display: flex; align-items: center; gap: 0.65rem; padding: 0.5rem 0.9rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 100px; background: rgba(255,255,255,0.03); }
+  .snew-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--terra); flex-shrink: 0; }
+  .snew-badge-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.14em; color: rgba(255,255,255,0.75); }
+  .snew-row { position: relative; display: grid; grid-template-columns: 2fr 4fr 4fr 2fr; gap: 2rem; align-items: start; padding: 2.5rem 0; border-top: 1px solid rgba(255,255,255,0.06); }
+  .snew-row:first-child { border-top: none; }
+  .snew-row-num { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.18em; color: var(--terra); padding-top: 0.4rem; }
+  .snew-row h3 { font-weight: 700; font-size: clamp(1.25rem, 2vw, 1.75rem); letter-spacing: -0.02em; line-height: 1.15; color: white; }
+  .snew-row-body { font-size: 0.9rem; line-height: 1.65; color: rgba(255,255,255,0.6); }
+  .snew-row-metric { text-align: right; }
+  .snew-row-metric-val { font-weight: 700; font-size: clamp(1.5rem, 2.2vw, 2rem); line-height: 1; letter-spacing: -0.03em; color: var(--terra); }
+  .snew-row-metric-lbl { margin-top: 0.4rem; font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.16em; color: rgba(255,255,255,0.4); }
+  .snew-closing { margin-top: 4rem; padding-top: 2.5rem; border-top: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+  .snew-closing-txt { font-size: 0.95rem; color: rgba(255,255,255,0.6); max-width: 380px; }
+  .snew-closing-btn { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.8rem 1.5rem; border: 1px solid rgba(255,255,255,0.15); border-radius: 100px; color: white; font-weight: 600; font-size: 0.875rem; transition: border-color 0.2s, background 0.2s; white-space: nowrap; }
+  .snew-closing-btn:hover { border-color: var(--terra); background: rgba(194,65,12,0.1); }
+  @media (max-width: 1024px) { .snew-row { grid-template-columns: 1fr 2fr; } .snew-row-metric { grid-column: 1 / -1; text-align: left; } }
+  @media (max-width: 860px) { .snew-header { grid-template-columns: 1fr; } .snew-manifesto { padding: 2rem; } .snew-manifesto-inner { grid-template-columns: 1fr; } .snew-row { grid-template-columns: 1fr; gap: 0.6rem; } .snew-row-metric { text-align: left; } }
+
+  /* ── PROBLÈME v4 — Stats 4 colonnes ── */
+  .pv4-section { background: var(--alabaster); padding: 5.5rem 0; }
+  .pv4-header { display: grid; grid-template-columns: 7fr 5fr; gap: 3rem; align-items: end; margin-bottom: 3.5rem; }
+  .pv4-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--terra); margin-bottom: 1.25rem; }
+  .pv4-h2 { font-weight: 800; font-size: clamp(2.4rem, 5.5vw, 4.5rem); line-height: 0.96; letter-spacing: -0.04em; }
+  .pv4-h2 em { font-style: normal; color: var(--terra); }
+  .pv4-lead { font-size: 1rem; line-height: 1.7; color: var(--steel); border-left: 2px solid var(--grid); padding-left: 1.5rem; }
+  .pv4-stats { display: grid; grid-template-columns: repeat(4,1fr); border-top: 1px solid rgba(15,23,42,0.1); border-bottom: 1px solid rgba(15,23,42,0.1); }
+  .pv4-stat { padding: 2rem 1.5rem; border-right: 1px solid rgba(15,23,42,0.08); position: relative; transition: background 0.2s; cursor: default; overflow: hidden; }
+  .pv4-stat:first-child { padding-left: 0; }
+  .pv4-stat:last-child { border-right: none; padding-right: 0; }
+  .pv4-stat::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--terra); transform: scaleX(0); transition: transform 0.35s cubic-bezier(0.23,1,0.32,1); transform-origin: left; }
+  .pv4-stat:hover::before { transform: scaleX(1); }
+  .pv4-stat:hover { background: white; }
+  .pv4-snum { display: block; font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.14em; color: rgba(194,65,12,0.4); margin-bottom: 0.6rem; }
+  .pv4-smetric { font-weight: 800; font-size: clamp(1.8rem, 3.5vw, 3rem); line-height: 0.9; letter-spacing: -0.04em; color: var(--terra); margin-bottom: 0.75rem; }
+  .pv4-stitle { font-weight: 700; font-size: 0.88rem; letter-spacing: -0.01em; color: var(--midnight); margin-bottom: 0.3rem; }
+  .pv4-sbody { font-size: 0.78rem; line-height: 1.55; color: var(--steel); }
+  .pv4-strap { margin-top: 2.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
+  .pv4-strap-left { display: flex; align-items: baseline; gap: 0.85rem; flex-wrap: wrap; }
+  .pv4-strap-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--steel); }
+  .pv4-strap-num { font-weight: 800; font-size: clamp(2rem, 3.5vw, 3rem); color: var(--terra); line-height: 1; letter-spacing: -0.04em; }
+  .pv4-strap-txt { font-size: 0.88rem; color: var(--midnight); max-width: 260px; line-height: 1.4; }
+  .pv4-strap-cta { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--midnight); color: white; padding: 0.75rem 1.5rem; border-radius: 100px; font-weight: 600; font-size: 0.875rem; white-space: nowrap; transition: background 0.2s; }
+  .pv4-strap-cta:hover { background: rgba(15,23,42,0.85); }
+  @media (max-width: 900px) { .pv4-header { grid-template-columns: 1fr; gap: 1.5rem; } .pv4-stats { grid-template-columns: 1fr 1fr; } .pv4-stat:nth-child(2) { border-right: none; padding-right: 0; } .pv4-stat:nth-child(3) { border-top: 1px solid rgba(15,23,42,0.08); padding-left: 0; } .pv4-stat:nth-child(4) { border-top: 1px solid rgba(15,23,42,0.08); border-right: none; padding-right: 0; } .pv4-strap { flex-direction: column; align-items: flex-start; } }
+  @media (max-width: 480px) { .pv4-stats { grid-template-columns: 1fr; } .pv4-stat { border-right: none; border-top: 1px solid rgba(15,23,42,0.08); padding: 1.5rem 0; } .pv4-stat:first-child { border-top: none; } }
+
+  /* ── SOLUTION v4 — Split compact ── */
+  .sv4-section { position: relative; background: var(--midnight); color: white; padding: 5.5rem 0; overflow: hidden; }
+  .sv4-glow1 { position: absolute; top: -6rem; right: -6rem; width: 30rem; height: 30rem; border-radius: 50%; background: radial-gradient(circle, rgba(194,65,12,0.14) 0%, transparent 70%); filter: blur(60px); pointer-events: none; }
+  .sv4-glow2 { position: absolute; bottom: -6rem; left: -6rem; width: 24rem; height: 24rem; border-radius: 50%; background: radial-gradient(circle, rgba(194,65,12,0.08) 0%, transparent 70%); filter: blur(60px); pointer-events: none; }
+  .sv4-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 5fr 7fr; gap: 5rem; align-items: center; }
+  .sv4-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--terra); margin-bottom: 1.75rem; }
+  .sv4-manifesto { font-weight: 800; font-size: clamp(3.5rem, 7vw, 6rem); line-height: 0.92; letter-spacing: -0.045em; color: white; margin-bottom: 1.5rem; }
+  .sv4-manifesto em { font-style: normal; color: var(--terra); }
+  .sv4-desc { font-size: 0.9rem; line-height: 1.7; color: rgba(255,255,255,0.5); max-width: 280px; margin-bottom: 2rem; }
+  .sv4-cta { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--terra); color: white; padding: 0.9rem 1.75rem; border-radius: 100px; font-weight: 600; font-size: 0.875rem; white-space: nowrap; transition: background 0.2s; }
+  .sv4-cta:hover { background: var(--terra-hover); }
+  .sv4-pillars { border-top: 1px solid rgba(255,255,255,0.07); }
+  .sv4-pillar { display: grid; grid-template-columns: 2rem 1fr auto; gap: 1.25rem; align-items: center; padding: 1.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); transition: background 0.15s; }
+  .sv4-pillar:last-child { border-bottom: none; }
+  .sv4-pnum { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.14em; color: rgba(194,65,12,0.5); }
+  .sv4-pillar h3 { font-weight: 600; font-size: clamp(0.95rem, 1.3vw, 1.1rem); letter-spacing: -0.01em; color: rgba(255,255,255,0.9); }
+  .sv4-pmetric { font-weight: 800; font-size: clamp(1.1rem, 1.8vw, 1.5rem); letter-spacing: -0.03em; color: var(--terra); white-space: nowrap; }
+  .sv4-foot { margin-top: 4rem; padding-top: 2.5rem; border-top: 1px solid rgba(255,255,255,0.07); display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; position: relative; z-index: 1; }
+  .sv4-foot-txt { font-size: 0.9rem; color: rgba(255,255,255,0.5); max-width: 360px; }
+  .sv4-foot-btn { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.75rem 1.4rem; border: 1px solid rgba(255,255,255,0.15); border-radius: 100px; color: white; font-weight: 600; font-size: 0.875rem; transition: border-color 0.2s, background 0.2s; white-space: nowrap; }
+  .sv4-foot-btn:hover { border-color: var(--terra); background: rgba(194,65,12,0.1); }
+  @media (max-width: 900px) { .sv4-inner { grid-template-columns: 1fr; gap: 3rem; } .sv4-foot { flex-direction: column; align-items: flex-start; } }
+
+  /* ═══════════════════════════════════════════════════════════
+     L'OBSESSION DU DÉTAIL — ANIMATIONS & SECTIONS
+  ═══════════════════════════════════════════════════════════ */
+
+  /* BlurText reveal */
+  .blur-reveal {
+    opacity: 0;
+    filter: blur(14px);
+    transform: translateY(22px);
+    transition: opacity 0.75s var(--ease-out), filter 0.75s var(--ease-out), transform 0.75s var(--ease-out);
+    transition-delay: var(--delay, 0s);
+  }
+  .blur-reveal.in {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+
+  /* Typewriter cursor */
+  @keyframes cursor-blink { 0%,49%{opacity:1} 50%,100%{opacity:0} }
+  .tw-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 0.9em;
+    background: var(--terra);
+    vertical-align: text-bottom;
+    margin-left: 2px;
+    animation: cursor-blink 0.9s step-end infinite;
+  }
+
+  /* ── Section Problème ── */
+  .od-problem {
+    padding: 5rem 0 4rem;
+    position: relative;
+  }
+  .od-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--terra);
+    margin-bottom: 3rem;
+  }
+  .od-problem-lines {
+    margin-bottom: 5rem;
+  }
+  .od-problem-line {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 5vw, 4.2rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: rgba(255,255,255,0.45);
+  }
+  .od-problem-line--accent {
+    color: white;
+    font-size: clamp(2.4rem, 6vw, 5.2rem);
+  }
+  .od-problem-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 4rem;
+  }
+  .od-stat {
+    padding: 2.5rem 2rem 2.5rem 0;
+    border-right: 1px solid rgba(255,255,255,0.06);
+    position: relative;
+    overflow: hidden;
+  }
+  .od-stat:last-child { border-right: none; }
+  .od-stat::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--terra);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s var(--ease-out);
+  }
+  .od-stat.in::before { transform: scaleX(1); transition-delay: 0.3s; }
+  .od-stat-num {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: white;
+    text-shadow: 0 0 40px rgba(194,65,12,0.3);
+    margin-bottom: 0.5rem;
+  }
+  .od-stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--terra);
+    margin-bottom: 0.8rem;
+  }
+  .od-stat-body {
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.45);
+  }
+  .od-problem-strap {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    padding: 2rem 2.5rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+  .od-strap-big {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    letter-spacing: -0.04em;
+    color: var(--terra);
+    white-space: nowrap;
+    line-height: 1;
+  }
+  .od-strap-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.7);
+    flex: 1;
+  }
+  .od-strap-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--terra);
+    border-bottom: 1px solid rgba(194,65,12,0.3);
+    padding-bottom: 0.15rem;
+    white-space: nowrap;
+    transition: border-color 0.2s;
+  }
+  .od-strap-link:hover { border-color: var(--terra); }
+  @media (max-width: 768px) {
+    .od-problem-stats { grid-template-columns: 1fr; }
+    .od-stat { border-right: none; padding-right: 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .od-stat:last-child { border-bottom: none; }
+    .od-problem-strap { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+  }
+
+  /* ── Section Solution / Qualité — SpotlightCards ── */
+  .od-solution {
+    padding: 5rem 0;
+    position: relative;
+  }
+  .od-sol-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: end;
+    margin-bottom: 4rem;
+  }
+  .od-sol-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: 0.92;
+    letter-spacing: -0.045em;
+    color: white;
+  }
+  .od-sol-title em { font-style: normal; color: var(--terra); }
+  .od-sol-lead {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.5);
+    max-width: 360px;
+    align-self: end;
+  }
+  .od-sol-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .od-sol-card {
+    position: relative;
+    padding: 2.5rem;
+    background: rgba(6,11,20,0.6);
+    overflow: hidden;
+    transition: background 0.3s;
+    cursor: default;
+  }
+  .od-sol-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    background: radial-gradient(500px circle at var(--mx,50%) var(--my,50%), rgba(194,65,12,0.14), transparent 40%);
+    transition: opacity 0.4s;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .od-sol-card:hover::before { opacity: 1; }
+  .od-sol-card:hover { background: rgba(15,23,42,0.5); }
+  .od-sol-card > * { position: relative; z-index: 1; }
+  .od-sol-card-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    color: var(--terra);
+    margin-bottom: 1.5rem;
+  }
+  .od-sol-card h3 {
+    font-weight: 700;
+    font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+    letter-spacing: -0.02em;
+    color: white;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+  .od-sol-card p {
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 1.75rem;
+  }
+  .od-sol-card-metric {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: -0.03em;
+    color: var(--terra);
+  }
+  .od-sol-closing {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .od-sol-closing-txt { font-size: 0.9rem; color: rgba(255,255,255,0.45); max-width: 420px; }
+  .od-sol-closing-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--terra);
+    border-bottom: 1px solid rgba(194,65,12,0.3);
+    padding-bottom: 0.15rem;
+    white-space: nowrap;
+    transition: border-color 0.2s;
+  }
+  .od-sol-closing-link:hover { border-color: var(--terra); }
+  @media (max-width: 768px) {
+    .od-sol-header { grid-template-columns: 1fr; gap: 1.5rem; }
+    .od-sol-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── Section Réalisations ── */
+  .od-real {
+    padding: 5rem 0 3rem;
+    position: relative;
+  }
+  .od-real-header { margin-bottom: 3rem; }
+  .od-real-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: white;
+    margin-top: 1rem;
+  }
+  .od-real-title em { font-style: normal; color: var(--terra); }
+  .od-real-scroll-wrap {
+    overflow: hidden;
+    position: relative;
+  }
+  .od-real-track {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0 2rem 2rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    cursor: grab;
+  }
+  .od-real-track::-webkit-scrollbar { display: none; }
+  .od-real-track.dragging { cursor: grabbing; user-select: none; }
+  .od-real-card {
+    flex-shrink: 0;
+    width: clamp(280px, 38vw, 460px);
+    scroll-snap-align: start;
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.08);
+    overflow: hidden;
+    transform-style: preserve-3d;
+    transition: border-color 0.3s;
+  }
+  .od-real-card:hover { border-color: rgba(194,65,12,0.3); }
+  .od-real-img {
+    aspect-ratio: 4/3;
+    position: relative;
+    overflow: hidden;
+    background: rgba(15,23,42,0.5);
+  }
+  .od-real-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s var(--ease-out);
+    clip-path: inset(0 100% 0 0);
+  }
+  .od-real-card.in .od-real-img img {
+    clip-path: inset(0 0% 0 0);
+    transition: clip-path 0.9s var(--ease-out), transform 0.6s var(--ease-out);
+    transition-delay: var(--card-delay, 0s), 0s;
+  }
+  .od-real-card:hover .od-real-img img { transform: scale(1.04); }
+  .od-real-body {
+    padding: 1.5rem;
+  }
+  .od-real-cat {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--terra);
+    margin-bottom: 0.5rem;
+  }
+  .od-real-name {
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+    color: white;
+    margin-bottom: 0.35rem;
+  }
+  .od-real-desc {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.55;
+  }
+  .od-real-scroll-hint {
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+  .od-real-scroll-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.2);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* ── Section Méthode — SVG Timeline ── */
+  .od-method {
+    padding: 5rem 0;
+    position: relative;
+  }
+  .od-meth-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: white;
+    margin: 1rem 0 4rem;
+  }
+  .od-meth-title em { font-style: normal; color: var(--terra); }
+  .od-meth-inner {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 0 3rem;
+    position: relative;
+  }
+  .od-meth-svg-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .od-meth-svg {
+    position: sticky;
+    top: 50vh;
+    width: 40px;
+  }
+  .od-timeline-track {
+    position: relative;
+    width: 2px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 100px;
+    margin: 0 auto;
+  }
+  .od-timeline-fill {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    background: linear-gradient(to bottom, var(--terra), rgba(194,65,12,0.3));
+    border-radius: 100px;
+    height: 0%;
+    transition: height 0.08s linear;
+  }
+  .od-meth-steps { padding-bottom: 2rem; }
+  .od-meth-step {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0 2rem;
+    align-items: start;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    position: relative;
+  }
+  .od-meth-step:last-child { border-bottom: none; }
+  .od-meth-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.15);
+    background: rgba(6,11,20,1);
+    flex-shrink: 0;
+    margin-top: 0.3rem;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .od-meth-step.in .od-meth-dot {
+    border-color: var(--terra);
+    background: var(--terra);
+    box-shadow: 0 0 12px rgba(194,65,12,0.5);
+  }
+  .od-meth-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+    color: var(--terra);
+    margin-bottom: 0.6rem;
+  }
+  .od-meth-step h3 {
+    font-weight: 700;
+    font-size: clamp(1.15rem, 2vw, 1.4rem);
+    letter-spacing: -0.02em;
+    color: white;
+    margin-bottom: 0.6rem;
+  }
+  .od-meth-step p {
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.45);
+    max-width: 540px;
+  }
+  .od-meth-duration {
+    display: inline-block;
+    margin-top: 1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(194,65,12,0.6);
+    border: 1px solid rgba(194,65,12,0.2);
+    padding: 0.2rem 0.65rem;
+  }
+  @media (max-width: 768px) {
+    .od-meth-inner { grid-template-columns: 1fr; }
+    .od-meth-svg-col { display: none; }
+  }
+
+  /* ── Section Pourquoi nous ── */
+  .od-why {
+    padding: 5rem 0;
+    position: relative;
+  }
+  .od-why-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+    margin-top: 3rem;
+  }
+  .od-why-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: white;
+    margin-bottom: 2.5rem;
+  }
+  .od-why-title em { font-style: normal; color: var(--terra); }
+  .od-why-benefits { display: flex; flex-direction: column; gap: 0; }
+  .od-why-benefit {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 0 1.5rem;
+    align-items: start;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .od-why-benefit:last-child { border-bottom: none; }
+  .od-why-num {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 2.2rem;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: rgba(255,255,255,0.06);
+  }
+  .od-why-benefit h4 {
+    font-weight: 700;
+    font-size: 1rem;
+    color: white;
+    margin-bottom: 0.3rem;
+  }
+  .od-why-benefit p {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.45);
+  }
+  /* Stats row */
+  .od-why-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid rgba(255,255,255,0.07);
+    margin-bottom: 2rem;
+  }
+  .od-why-stat {
+    padding: 1.5rem 1rem;
+    border-right: 1px solid rgba(255,255,255,0.05);
+    text-align: center;
+  }
+  .od-why-stat:last-child { border-right: none; }
+  .od-why-stat-val {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+    letter-spacing: -0.03em;
+    color: white;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .od-why-stat-val em { font-style: normal; color: var(--terra); }
+  .od-why-stat-lbl {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.3);
+  }
+  /* Crossfade quotes */
+  .od-why-quotes {
+    position: relative;
+    padding: 2rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(12px);
+    margin-bottom: 2rem;
+    min-height: 140px;
+  }
+  .od-why-quotes::before {
+    content: '"';
+    position: absolute;
+    top: 0.75rem;
+    left: 1.5rem;
+    font-size: 4rem;
+    font-weight: 800;
+    color: var(--terra);
+    opacity: 0.3;
+    line-height: 1;
+    font-family: 'Inter', sans-serif;
+  }
+  .od-why-quote {
+    position: absolute;
+    inset: 0;
+    padding: 2rem;
+    padding-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    opacity: 0;
+    transition: opacity 0.8s var(--ease-out);
+    pointer-events: none;
+  }
+  .od-why-quote.active {
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    inset: auto;
+  }
+  .od-why-quote p {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.75);
+    font-style: italic;
+    flex: 1;
+  }
+  .od-why-quote-author {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.3);
+  }
+  .od-why-dots {
+    display: flex;
+    gap: 6px;
+    margin-top: 0.75rem;
+    justify-content: center;
+  }
+  .od-why-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .od-why-dot.active { background: var(--terra); }
+  /* CTA spark */
+  .od-why-cta { text-align: center; }
+  .od-spark-btn {
+    position: relative;
+    isolation: isolate;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    background: var(--terra);
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 1rem 2.2rem;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    overflow: hidden;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .od-spark-btn:hover { background: var(--terra-hover); }
+  .od-spark-btn:active { transform: scale(0.975); }
+  .od-spark-canvas {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+  }
+  .od-why-cta-hint {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.25);
+    margin-top: 0.85rem;
+  }
+  @media (max-width: 900px) {
+    .od-why-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .od-why-stats { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 520px) {
+    .od-why-stats { grid-template-columns: 1fr; }
+    .od-why-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .od-why-stat:last-child { border-bottom: none; }
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     SCROLL-SCRUB VIDEO BACKGROUND
+  ═══════════════════════════════════════════════════════════ */
+
+  #scroll-video-wrap {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    background: #060B14;
+  }
+  #scroll-video {
+    position: absolute;
+    top: 50%; left: 50%;
+    min-width: 100%; min-height: 100%;
+    width: auto; height: auto;
+    transform: translate3d(-50%, -50%, 0);
+    backface-visibility: hidden;
+  }
+  #scroll-dim {
+    position: absolute;
+    inset: 0;
+    background: rgba(6, 11, 20, 0.15);
+  }
+  #hero, main, section, footer, nav, header { position: relative; z-index: 1; }
+  #pill-nav { z-index: 100 !important; }
+
+
+  /* ═══════════════════════════════════════════
+     SECTIONS NS — REDESIGN 2025
+  ═══════════════════════════════════════════ */
+
+  /* Base */
+  .ns-section { padding: 5rem 0; position: relative; z-index: 1; }
+  .ns-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem; text-transform: uppercase;
+    letter-spacing: 0.18em; color: var(--terra);
+    margin-bottom: 2rem;
+  }
+  .ns-title {
+    font-family: 'Inter', sans-serif; font-weight: 800;
+    font-size: clamp(2.6rem, 5.5vw, 5.2rem);
+    line-height: 1.0; letter-spacing: -0.04em; color: white;
+    margin-bottom: 1.5rem;
+  }
+  .ns-title em { font-style: normal; color: var(--terra); }
+  .ns-title-lg {
+    font-family: 'Inter', sans-serif; font-weight: 800;
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    line-height: 1.0; letter-spacing: -0.04em; color: white;
+    margin-bottom: 0;
+  }
+  .ns-title-lg em { font-style: normal; color: var(--terra); }
+  .ns-body {
+    font-size: 1rem; line-height: 1.72;
+    color: rgba(255,255,255,0.55); max-width: 500px;
+    margin-bottom: 1.25rem;
+  }
+  .ns-sub-body {
+    font-size: 0.88rem; line-height: 1.7;
+    color: rgba(255,255,255,0.38); max-width: 480px;
+    margin-bottom: 0;
+  }
+  .ns-divider { width: 2.5rem; height: 1px; background: rgba(194,65,12,0.5); margin: 1.25rem 0; }
+  .ns-text-link {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    font-family: 'DM Mono', monospace; font-size: 0.62rem;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--terra); text-decoration: none;
+    border-bottom: 1px solid rgba(194,65,12,0.3);
+    padding-bottom: 0.15rem;
+    transition: border-color 0.2s;
+  }
+  .ns-text-link:hover { border-color: var(--terra); }
+
+  /* ── PROBLÈME ── */
+  .ns-problem-layout {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: start; margin-bottom: 2.5rem;
+  }
+  .ns-stat-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .ns-stat {
+    padding: 1.75rem 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-right: 1px solid rgba(255,255,255,0.06);
+  }
+  .ns-stat:nth-child(2n) { border-right: none; }
+  .ns-stat:nth-child(3), .ns-stat:nth-child(4) { border-bottom: none; }
+  .ns-stat-num {
+    font-family: 'Inter', sans-serif; font-weight: 800;
+    font-size: clamp(2rem, 3.5vw, 2.8rem); line-height: 1;
+    letter-spacing: -0.04em; color: var(--terra);
+    margin-bottom: 0.35rem;
+  }
+  .ns-stat-label {
+    font-weight: 700; font-size: 0.78rem;
+    color: white; margin-bottom: 0.5rem;
+    text-transform: uppercase; letter-spacing: 0.03em;
+  }
+  .ns-stat p {
+    font-size: 0.78rem; color: rgba(255,255,255,0.38);
+    line-height: 1.55; margin: 0;
+  }
+  .ns-problem-strap {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 2rem; flex-wrap: wrap;
+    padding: 1.25rem 2rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(6,11,20,0.55);
+  }
+  .ns-strap-content { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+  .ns-strap-big {
+    font-family: 'Inter', sans-serif; font-weight: 800;
+    font-size: 2.4rem; line-height: 1; letter-spacing: -0.04em;
+    color: var(--terra);
+  }
+  .ns-strap-unit { font-size: 1.4rem; }
+  .ns-strap-text { font-size: 0.92rem; color: rgba(255,255,255,0.6); max-width: 400px; }
+  .ns-strap-cta {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: 'DM Mono', monospace; font-size: 0.62rem;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--terra); text-decoration: none;
+    border-bottom: 1px solid rgba(194,65,12,0.35);
+    padding-bottom: 0.15rem; white-space: nowrap;
+    transition: border-color 0.2s;
+  }
+
+  /* ── SOLUTION ── */
+  .ns-solution-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .ns-solution-header .ns-body { margin-bottom: 1.5rem; }
+  .ns-pillars {
+    display: flex; flex-direction: column; gap: 0;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .ns-pillar {
+    display: flex; gap: 1.5rem; padding: 1.5rem 1.75rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.2s;
+  }
+  .ns-pillar:last-child { border-bottom: none; }
+  .ns-pillar:hover { background: rgba(194,65,12,0.04); }
+  .ns-pillar-num {
+    font-family: 'DM Mono', monospace; font-size: 0.58rem;
+    color: var(--terra); letter-spacing: 0.12em;
+    padding-top: 0.25rem; flex-shrink: 0; width: 1.8rem;
+  }
+  .ns-pillar-body { flex: 1; }
+  .ns-pillar h3 {
+    font-weight: 700; font-size: 0.98rem; color: white;
+    margin-bottom: 0.4rem; letter-spacing: -0.01em;
+  }
+  .ns-pillar p {
+    font-size: 0.83rem; color: rgba(255,255,255,0.42);
+    line-height: 1.6; margin-bottom: 0.6rem;
+  }
+  .ns-pillar-metric {
+    font-family: 'DM Mono', monospace; font-size: 0.6rem;
+    font-weight: 700; color: var(--terra);
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+
+  /* ── RÉALISATIONS ── */
+  .ns-real { padding: 5rem 0 3rem; }
+  .ns-real-header-wrap { margin-bottom: 2.5rem; }
+  .ns-real-header-layout {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 3rem; align-items: end; margin-top: 1rem;
+  }
+  .ns-real-header-right .ns-body { max-width: 100%; margin-bottom: 1rem; }
+  .ns-real-scroll-wrap { overflow: hidden; position: relative; }
+  .ns-real-track {
+    display: flex; gap: 1.5rem;
+    padding: 0 2rem 2rem;
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; cursor: grab;
+  }
+  .ns-real-track::-webkit-scrollbar { display: none; }
+  .ns-real-track.dragging { cursor: grabbing; user-select: none; }
+  .ns-real-card {
+    flex-shrink: 0; width: clamp(280px, 36vw, 440px);
+    scroll-snap-align: start;
+    border: 1px solid rgba(255,255,255,0.08);
+    overflow: hidden; transition: border-color 0.3s;
+  }
+  .ns-real-card:hover { border-color: rgba(194,65,12,0.3); }
+  .ns-real-img { aspect-ratio: 4/3; position: relative; overflow: hidden; background: rgba(15,23,42,0.5); }
+  .ns-real-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.45s ease; display: block; }
+  .ns-real-card:hover .ns-real-img img { transform: scale(1.04); }
+  .ns-real-body { padding: 1.25rem 1.5rem 1.5rem; }
+  .ns-real-cat {
+    font-family: 'DM Mono', monospace; font-size: 0.58rem;
+    font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--terra); margin-bottom: 0.35rem;
+  }
+  .ns-real-name {
+    font-weight: 700; font-size: 1rem; color: white;
+    margin-bottom: 0.4rem; letter-spacing: -0.01em;
+  }
+  .ns-real-body p { font-size: 0.8rem; color: rgba(255,255,255,0.4); line-height: 1.55; margin: 0; }
+  .ns-real-hint { text-align: center; margin-top: 1.25rem; }
+  .ns-real-hint-label {
+    font-family: 'DM Mono', monospace; font-size: 0.58rem;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.2);
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+
+  /* ── MÉTHODE ── */
+  .ns-method-layout {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: start; margin-top: 0;
+  }
+  .ns-method-left .ns-body { margin-top: 1rem; }
+  .ns-method-stats {
+    display: flex; gap: 0;
+    border: 1px solid rgba(255,255,255,0.08);
+    margin: 2rem 0 2rem;
+  }
+  .ns-mstat {
+    flex: 1; padding: 1.25rem 1rem; text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.06);
+  }
+  .ns-mstat:last-child { border-right: none; }
+  .ns-mstat-num {
+    font-family: 'Inter', sans-serif; font-weight: 800;
+    font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1;
+    letter-spacing: -0.03em; color: white; margin-bottom: 0.3rem;
+  }
+  .ns-mstat-lbl {
+    font-family: 'DM Mono', monospace; font-size: 0.55rem;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.3);
+  }
+  .ns-cta-btn {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: var(--terra); color: white; text-decoration: none;
+    font-family: 'Inter', sans-serif; font-weight: 700;
+    font-size: 0.92rem; padding: 0.85rem 1.75rem;
+    border-radius: 2px; transition: background 0.2s;
+    margin-bottom: 0.75rem;
+  }
+  .ns-cta-btn:hover { background: #a83a09; }
+  .ns-cta-hint {
+    font-family: 'DM Mono', monospace; font-size: 0.58rem;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.25); display: block;
+  }
+  .ns-steps { display: flex; flex-direction: column; gap: 0; }
+  .ns-step {
+    display: grid; grid-template-columns: 2.5rem 1fr;
+    gap: 0; padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .ns-step:last-child { border-bottom: none; }
+  .ns-step-num {
+    font-family: 'DM Mono', monospace; font-size: 0.58rem;
+    color: var(--terra); letter-spacing: 0.14em;
+    padding-top: 0.3rem;
+  }
+  .ns-step-content { flex: 1; }
+  .ns-step-header {
+    display: flex; align-items: baseline;
+    justify-content: space-between; gap: 1rem; margin-bottom: 0.4rem;
+  }
+  .ns-step h3 {
+    font-weight: 700; font-size: 0.95rem; color: white;
+    letter-spacing: -0.01em; margin: 0;
+  }
+  .ns-step-duration {
+    font-family: 'DM Mono', monospace; font-size: 0.55rem;
+    color: rgba(194,65,12,0.65); letter-spacing: 0.08em;
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .ns-step p { font-size: 0.8rem; color: rgba(255,255,255,0.38); line-height: 1.6; margin: 0; }
+
+  /* Responsive */
+  @media (max-width: 860px) {
+    .ns-problem-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+    .ns-solution-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+    .ns-real-header-layout { grid-template-columns: 1fr; gap: 1.5rem; }
+    .ns-method-layout { grid-template-columns: 1fr; gap: 3rem; }
+    .ns-problem-strap { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  }
+  @media (max-width: 600px) {
+    .ns-stat-grid { grid-template-columns: 1fr; }
+    .ns-stat:nth-child(2n) { border-right: 1px solid rgba(255,255,255,0.06); }
+    .ns-stat:nth-child(3) { border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .ns-stat:nth-child(4) { border-bottom: none; }
+    .ns-method-stats { flex-direction: column; }
+    .ns-mstat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .ns-mstat:last-child { border-bottom: none; }
+  }
+
+
+  /* ── Frosted glass panels for text readability over video ── */
+  .od-problem .container,
+  .od-real .container,
+  .od-method .container,
+  .od-why .container {
+    background: rgba(6, 11, 20, 0.45);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    border-radius: 2px;
+  }
+  .od-solution .container {
+    background: rgba(6, 11, 20, 0.38);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    border-radius: 2px;
+  }
+  footer {
+    background: rgba(6, 11, 20, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+
+
+  /* ── AI Story section ── */
+  .ai-story-section {
+    position: relative;
+    background: transparent;
+  }
+  .ai-story-inner {
+    position: relative; z-index: 1;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .ai-panel {
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    padding: 6rem 0;
+  }
+  .ai-panel--right { justify-content: flex-end; }
+  .ai-panel--center { justify-content: center; }
+  .ai-panel-content { max-width: 600px; }
+  .ai-panel-content--center { text-align: center; max-width: 740px; }
+  .ai-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--terra);
+    margin-bottom: 1.25rem;
+  }
+  .ai-headline {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    color: white;
+    text-shadow: 0 2px 30px rgba(0,0,0,0.65);
+    margin-bottom: 1.25rem;
+  }
+  .ai-headline em { font-style: normal; color: var(--terra); }
+  .ai-headline--large { font-size: clamp(2.4rem, 5.5vw, 4.5rem); }
+  .ai-body {
+    font-size: 1.05rem;
+    line-height: 1.72;
+    color: rgba(255,255,255,0.68);
+    text-shadow: 0 1px 8px rgba(0,0,0,0.45);
+    margin-bottom: 2rem;
+  }
+  .ai-cta {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: var(--terra); color: white;
+    padding: 0.9rem 1.75rem; border-radius: 100px;
+    font-weight: 600; font-size: 0.9rem;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .ai-cta:hover { background: var(--terra-hover); }
+  .ai-number {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(5rem, 15vw, 12rem);
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+    color: rgba(255,255,255,0.04);
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+  }
+  .ai-panel { position: relative; }
+  @media (max-width: 768px) {
+    .ai-panel--right { justify-content: flex-start; }
+    .ai-headline { font-size: clamp(1.7rem, 7vw, 2.6rem); }
+    .ai-headline--large { font-size: clamp(2rem, 8vw, 3rem); }
+  }
+
+  /* ── Mountain dividers et waves cachés (vidéo en fond) ── */
+  .mountain-divider, .mountain-divider-top { display: none !important; }
+  .nobrainer > [aria-hidden="true"]:first-child { display: none !important; }
+
+  /* ═══════════════════════════════════════════════════════
+     SECTIONS TRANSPARENTES — fond vidéo visible partout
+  ═══════════════════════════════════════════════════════ */
+
+  /* ── Problème ── */
+  .pv4-section { background: transparent !important; }
+  .pv4-h2 { color: white !important; }
+  .pv4-lead { color: rgba(255,255,255,0.65) !important; border-left-color: rgba(255,255,255,0.18) !important; }
+  .pv4-stats { border-top-color: rgba(255,255,255,0.1) !important; border-bottom-color: rgba(255,255,255,0.1) !important; }
+  .pv4-stat { border-right-color: rgba(255,255,255,0.07) !important; }
+  .pv4-stat:hover { background: rgba(255,255,255,0.04) !important; }
+  .pv4-smetric { color: white !important; text-shadow: 0 2px 30px rgba(0,0,0,0.7); }
+  .pv4-stitle { color: rgba(255,255,255,0.92) !important; }
+  .pv4-sbody { color: rgba(255,255,255,0.52) !important; }
+  .pv4-strap {
+    background: rgba(255,255,255,0.07) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255,255,255,0.12) !important;
+  }
+  .pv4-strap-label { color: rgba(255,255,255,0.4) !important; }
+  .pv4-strap-num { color: var(--terra) !important; }
+  .pv4-strap-txt { color: rgba(255,255,255,0.82) !important; }
+  .pv4-strap-cta { background: var(--terra) !important; color: white !important; border: none !important; }
+  .pv4-strap-cta:hover { background: var(--terra-hover) !important; }
+  @media (max-width:900px) {
+    .pv4-stat:nth-child(3), .pv4-stat:nth-child(4) { border-top-color: rgba(255,255,255,0.07) !important; }
+  }
+  @media (max-width:480px) { .pv4-stat { border-top-color: rgba(255,255,255,0.07) !important; } }
+
+  /* ── Solution ── */
+  .sv4-section { background: transparent !important; }
+  .sv4-pillars { border-top-color: rgba(255,255,255,0.1) !important; }
+  .sv4-pillar { border-bottom-color: rgba(255,255,255,0.08) !important; }
+
+  /* ── Pourquoi ── */
+  .pourquoi { background: transparent !important; background-image: none !important; }
+  .pourquoi::before { display: none !important; }
+  .pourquoi .label { color: var(--terra) !important; }
+  .pourquoi h2 { color: white !important; }
+  .pourquoi h2 em { color: var(--terra) !important; }
+  .pourquoi-left > p { color: rgba(255,255,255,0.65) !important; }
+  .pourquoi-benefit h4 { color: white !important; }
+  .pourquoi-benefit p { color: rgba(255,255,255,0.55) !important; }
+  .pourquoi-benefit-num {
+    background: rgba(255,255,255,0.08) !important;
+    border-color: rgba(255,255,255,0.12) !important;
+    color: var(--terra) !important;
+  }
+  .pourquoi-quote {
+    background: rgba(255,255,255,0.07) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255,255,255,0.12) !important;
+    border-left: 3px solid var(--terra) !important;
+  }
+  .pourquoi-quote p { color: rgba(255,255,255,0.75) !important; }
+  .pourquoi-num-item .val { color: white !important; }
+  .pourquoi-num-item .lbl { color: rgba(255,255,255,0.5) !important; }
+  .pourquoi-final-cta > p { color: rgba(255,255,255,0.5) !important; }
+
+  /* ── No-brainer ── */
+  .nobrainer { background: transparent !important; }
+  .nobrainer::before { display: none !important; }
+  .nobrainer .container { position: relative; z-index: 1; }
+
+
 </style>
-  <link rel="preload" as="image" href="images/hero-index.jpg" fetchpriority="high">
 </head>
 <body>
+
+<!-- SCROLL-SCRUB VIDEO BACKGROUND -->
+<div id="scroll-video-wrap" aria-hidden="true">
+  <video
+    id="scroll-video"
+    muted
+    playsinline
+    preload="auto"
+  >
+    <source src="videos/gifs-scrub.mp4" type="video/mp4" />
+  </video>
+  <div id="scroll-dim"></div>
+</div>
 
 <!-- Toast -->
 <div class="toast" id="toast"><div class="toast-dot"></div><span id="toast-msg">Message envoyé !</span></div>
@@ -907,246 +2187,292 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div id="hero-bg-image">
-    <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=1920&q=80&fit=crop" alt="" aria-hidden="true" />
-    <div id="hero-bg-dim"></div>
-  </div>
   <div class="hero-logo-mob" aria-hidden="true">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
     Fondation&nbsp;<span>Studio</span>
   </div>
   <div class="vlines" aria-hidden="true"><div class="vl"></div><div class="vl"></div><div class="vl"></div><div class="vl"></div></div>
   <div class="hero-center">
-    <h1 class="hero-title">Votre site.<br><em>Conçu pour vendre.</em><br>Livré en 21 jours.</h1>
-    <p class="hero-sub">Code pur, design sur-mesure, référencement intégré. À partir de 1 400€. Maquette offerte avant tout engagement.</p>
+    <h1 class="hero-title" data-s="heroTitre">Votre site.<br><em>Conçu pour vendre.</em><br>Livré en 21 jours.</h1>
+    <p class="hero-sub" data-s="heroSousTitre">IA maîtrisée. Design singulier. Sites qui durent des années. À partir de 1 400 €. Maquette offerte avant tout engagement.</p>
     <div class="hero-btns">
       <a href="contact.html" class="cta-btn lg">Démarrer mon projet <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       <a href="contact.html#offre-gratuite" class="btn-ghost" style="border:1px solid rgba(255,255,255,0.3)">Tester gratuitement <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></a>
     </div>
   </div>
-  <div class="mountain-divider" aria-hidden="true"><svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:60px;"><defs><linearGradient id="hero-wave-grad" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#0F172A" stop-opacity="0"/><stop offset="100%" stop-color="#F9F9F7" stop-opacity="1"/></linearGradient></defs><rect width="1440" height="80" fill="url(#hero-wave-grad)"/><path d="M0,80 L0,50 C360,8 1080,72 1440,38 L1440,80 Z" fill="#F9F9F7"/></svg></div>
 </section>
 
-<!-- PROBLÈME -->
-<section class="section grid-bg">
+<!-- ═══════════════════════ 01 — LE PROBLÈME ═══════════════════════ -->
+<section class="ns-section ns-problem" id="probleme">
   <div class="container">
-    <div class="prob-split">
-      <div class="prob-lead reveal">
-        <div style="margin-bottom:1.5rem"><span class="mono">01 / Le problème</span></div>
-        <div class="prob-headline">
-          <span class="prob-hl-top">Votre site pourrait</span>
-          <strong class="prob-hl-accent">générer bien plus</strong>
-          <span class="prob-hl-bot">de clients.</span>
-        </div>
-        <div class="prob-lead-desc">
-          <p>La majorité des PME n'ont pas de stratégie de conversion claire. Résultat : des visiteurs qui repartent sans agir. Une structure orientée conversion change tout. On a construit Fondation Studio pour ça.</p>
-        </div>
+
+    <div class="ns-eyebrow">01 / Le problème</div>
+
+    <div class="ns-problem-layout">
+      <div class="ns-problem-left">
+        <h2 class="ns-title" data-s="problemeTitre">Votre site perd<br>des clients<br><em>chaque jour.</em></h2>
+        <p class="ns-body" data-s="problemeCorps">La plupart des PME ont un site qui n'inspire ni confiance, ni action. Les visiteurs arrivent, hésitent, et repartent chez un concurrent. Ce n'est pas un problème de budget. C'est un problème de design.</p>
+        <div class="ns-divider"></div>
+        <p class="ns-sub-body" data-s="problemeSousCorps">Un site mal conçu coûte. En trafic perdu, en conversions manquées, en crédibilité dilapidée. Chaque jour sans optimisation, c'est du chiffre d'affaires offert à vos concurrents.</p>
       </div>
-      <div class="prob-dashboard reveal">
-        <div class="prob-cards">
-          <div class="prob-card">
-            <h3>Aucune conversion</h3>
-            <p class="prob-card-impact"><strong>Moins de 0,5 %</strong> des visiteurs prennent contact.</p>
+      <div class="ns-problem-right">
+        <div class="ns-stat-grid">
+          <div class="ns-stat">
+            <div class="ns-stat-num">8s</div>
+            <div class="ns-stat-label">avant la fuite</div>
+            <p>Sans preuve ni confiance immédiate, le visiteur part avant d'avoir lu une ligne</p>
           </div>
-          <div class="prob-card">
-            <h3>Site trop lent</h3>
-            <p class="prob-card-impact"><strong>70 % des visiteurs</strong> abandonnent après 3 secondes.</p>
+          <div class="ns-stat">
+            <div class="ns-stat-num">73%</div>
+            <div class="ns-stat-label">quittent sans agir</div>
+            <p>Navigation confuse, parcours illisible, action impossible à identifier</p>
           </div>
-          <div class="prob-card">
-            <h3>Agence trop chère</h3>
-            <p class="prob-card-impact"><strong>3 000 € minimum</strong> pour un résultat souvent décevant.</p>
+          <div class="ns-stat">
+            <div class="ns-stat-num">9/10</div>
+            <div class="ns-stat-label">visiteurs perdus</div>
+            <p>Votre site travaille activement contre vous. Pas pour vous.</p>
           </div>
-          <div class="prob-card">
-            <h3>Design générique</h3>
-            <p class="prob-card-impact">Un template qui <strong>ne vous distingue pas</strong> de vos concurrents.</p>
+          <div class="ns-stat">
+            <div class="ns-stat-num">5+</div>
+            <div class="ns-stat-label">clics pour l'essentiel</div>
+            <p>L'information clé enfouie sous des menus. Le visiteur abandonne.</p>
           </div>
         </div>
       </div>
     </div>
+
+    <div class="ns-problem-strap">
+      <div class="ns-strap-content">
+        <span class="ns-strap-big">9<span class="ns-strap-unit">/10</span></span>
+        <span class="ns-strap-text">visiteurs repartent sans avoir agi. Votre site travaille contre vous.</span>
+      </div>
+      <a href="#solution" class="ns-strap-cta">
+        Comment on règle ça
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </a>
+    </div>
+
   </div>
 </section>
 
-<!-- SOLUTION -->
-<section class="section section-dark">
-  <div class="dark-vlines" aria-hidden="true"><div class="vl"></div><div class="vl"></div><div class="vl"></div><div class="vl"></div></div>
-  <div class="container" style="position:relative;z-index:1">
-    <div class="sol-head reveal">
-      <span class="mono" style="color:rgba(255,255,255,0.35)">02 / La solution</span>
-      <h2 class="section-h2">Construit pour convertir,<br>de A à Z.</h2>
-      <p style="color:rgba(255,255,255,0.55);font-size:1rem;line-height:1.6;max-width:480px">Code pur, maquette offerte, livraison en 14 à 21 jours. Tout est fait pour vous générer des clients.</p>
-      <a href="contact.html" class="cta-btn">Démarrer mon projet <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-    </div>
-    <div class="sol-accord reveal" id="solAccord">
-
-      <div class="sol-slab active" style="background-image: url('https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80&fit=crop')">
-        <div class="sol-tab">
-          <span class="sol-tab-num">01</span>
-          <span class="sol-tab-label">Design</span>
-          <span class="sol-tab-cue" aria-hidden="true">+</span>
-        </div>
-        <div class="sol-body">
-          <div class="sol-ghost-num">01</div>
-          <h3>Design orienté conversion</h3>
-          <p>Chaque élément est conçu pour transformer un visiteur en client, grâce à l'expertise de Tom-Soa en optimisation de sites.</p>
-          <a href="qui-sommes-nous.html" class="sol-link">Rencontrer l'équipe →</a>
-        </div>
-        <div class="sol-progress"></div>
-      </div>
-
-      <div class="sol-slab" style="background-image: url('https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80&fit=crop')">
-        <div class="sol-tab">
-          <span class="sol-tab-num">02</span>
-          <span class="sol-tab-label">Délai</span>
-          <span class="sol-tab-cue" aria-hidden="true">+</span>
-        </div>
-        <div class="sol-body">
-          <div class="sol-ghost-num">02</div>
-          <h3>Livré en 14 à 21 jours</h3>
-          <p>À partir de la réception du paiement, si le client est réactif. Pas de délais flous, pas de mauvaises surprises.</p>
-        </div>
-        <div class="sol-progress"></div>
-      </div>
-
-      <div class="sol-slab" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80&fit=crop')">
-        <div class="sol-tab">
-          <span class="sol-tab-num">03</span>
-          <span class="sol-tab-label">Propriété</span>
-          <span class="sol-tab-cue" aria-hidden="true">+</span>
-        </div>
-        <div class="sol-body">
-          <div class="sol-ghost-num">03</div>
-          <h3>Propriété totale, hébergement gratuit</h3>
-          <p>Nous livrons du code HTML pur. L'hébergement est naturellement gratuit : aucun abonnement, aucune dépendance.</p>
-        </div>
-        <div class="sol-progress"></div>
-      </div>
-
-      <div class="sol-slab" style="background-image: url('https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=800&q=80&fit=crop')">
-        <div class="sol-tab">
-          <span class="sol-tab-num">04</span>
-          <span class="sol-tab-label">Référencement</span>
-          <span class="sol-tab-cue" aria-hidden="true">+</span>
-        </div>
-        <div class="sol-body">
-          <div class="sol-ghost-num">04</div>
-          <h3>Référencement intégré dès le lancement</h3>
-          <p>Votre site est optimisé pour Google, mais aussi pour les IA comme ChatGPT et Perplexity.</p>
-          <a href="faq.html" class="sol-link">En savoir plus →</a>
-        </div>
-        <div class="sol-progress"></div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- POURQUOI NOUS CHOISIR -->
-<section class="pourquoi">
+<!-- ═══════════════════════ 02 — LA SOLUTION ═══════════════════════ -->
+<section class="ns-section ns-solution" id="solution">
   <div class="container">
-    <div class="pourquoi-inner">
-      <div class="pourquoi-left">
-        <div class="label reveal">Pourquoi nous choisir</div>
-        <h2 class="reveal">Un site qui <em>vous distingue.</em></h2>
-        <p class="reveal">On livre des sites qui rivalisent avec les plus grandes marques. Pas un template. Pas juste un beau site. Un site qui convertit et qui vous différencie dès la première visite.</p>
-        <div class="pourquoi-pillars reveal">
-          <div class="pourquoi-benefit">
-            <span class="pourquoi-benefit-num">1</span>
-            <h4>Le meilleur de votre secteur</h4>
-            <p>Vos concurrents ont des sites moyens ou pas de site du tout. Le vôtre sera dans une autre catégorie.</p>
+    <div class="ns-solution-layout">
+
+      <div class="ns-solution-header">
+        <div class="ns-eyebrow">02 / La solution</div>
+        <h2 class="ns-title" data-s="piliersTitre">Quatre piliers.<br>Zéro <em>friction.</em></h2>
+        <p class="ns-body" data-s="piliersCorps">Une méthode conçue pour convertir. Chaque décision de design sert un seul objectif : transformer vos visiteurs en clients. Pas de compromis, pas de raccourcis, pas de template.</p>
+        <a href="processus.html" class="ns-text-link">
+          Voir le processus complet
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="ns-pillars">
+        <div class="ns-pillar">
+          <div class="ns-pillar-num">01</div>
+          <div class="ns-pillar-body">
+            <h3>Design orienté conversion</h3>
+            <p>Un seul CTA par page. Une seule action attendue. Le visiteur sait exactement quoi faire et pourquoi le faire maintenant.</p>
+            <span class="ns-pillar-metric">1 CTA &middot; Clarté maximale</span>
           </div>
-          <div class="pourquoi-benefit">
-            <span class="pourquoi-benefit-num">2</span>
-            <h4>Confiance immédiate</h4>
-            <p>En 3 secondes, votre visiteur comprend qu'il est au bon endroit. La crédibilité se voit, elle ne se lit pas.</p>
+        </div>
+        <div class="ns-pillar">
+          <div class="ns-pillar-num">02</div>
+          <div class="ns-pillar-body">
+            <h3>Livré en 21 jours chrono</h3>
+            <p>Process rigoureux avec jalons clairs. Pas d'attente à 6 mois. Votre site en ligne avant que vos concurrents terminent leur brief.</p>
+            <span class="ns-pillar-metric">14-21 jours &middot; Délai garanti</span>
           </div>
-          <div class="pourquoi-benefit">
-            <span class="pourquoi-benefit-num">3</span>
-            <h4>Un résultat qui se mesure</h4>
-            <p>Plus de demandes, plus de contacts, plus de ventes. La différence avec votre ancien site est quantifiable.</p>
+        </div>
+        <div class="ns-pillar">
+          <div class="ns-pillar-num">03</div>
+          <div class="ns-pillar-body">
+            <h3>Propriété totale du code</h3>
+            <p>Aucun abonnement, aucune plateforme SaaS, aucune dépendance. Le code vous appartient entièrement et pour toujours.</p>
+            <span class="ns-pillar-metric">0 €/mois &middot; Propriété absolue</span>
+          </div>
+        </div>
+        <div class="ns-pillar">
+          <div class="ns-pillar-num">04</div>
+          <div class="ns-pillar-body">
+            <h3>SEO intégré dès le jour 1</h3>
+            <p>Structure sémantique, Core Web Vitals, balisage schema. PageSpeed 95+ garanti. Visible sur Google avant même le lancement.</p>
+            <span class="ns-pillar-metric">PageSpeed 95+ &middot; 100 % optimisé</span>
           </div>
         </div>
       </div>
 
-      <div class="pourquoi-cta-block">
-        <div class="pourquoi-quote reveal">
-          <p>Des agences comme Fondation Studio, c'est 1&nbsp;% du marché. Ce n'est pas un hasard, c'est un niveau d'exigence que peu sont prêts à tenir.</p>
-        </div>
-        <div class="pourquoi-numbers reveal" style="grid-template-columns:1fr 1fr">
-          <div class="pourquoi-num-item">
-            <div class="val">42<em>+</em></div>
-            <div class="lbl">Projets livrés</div>
-          </div>
-          <div class="pourquoi-num-item">
-            <div class="val">14–21<em>j</em></div>
-            <div class="lbl">Délai de livraison</div>
-          </div>
-        </div>
-        <div class="pourquoi-final-cta reveal">
-          <a href="contact.html" class="cta-btn" style="width:100%;justify-content:center;font-size:1.05rem;padding:1rem 2rem">
-            Démarrer mon projet
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <p>Sans engagement · Réponse sous 24h</p>
-        </div>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- TÉMOIGNAGES -->
-<section class="section" style="padding-bottom:clamp(3rem,6vw,5rem)">
+<!-- ═══════════════════════ 03 — RÉALISATIONS ═══════════════════════ -->
+<section class="ns-section ns-real" id="realisations">
+  <div class="container ns-real-header-wrap">
+    <div class="ns-eyebrow">03 / Réalisations</div>
+    <div class="ns-real-header-layout">
+      <h2 class="ns-title-lg" data-s="realisationsTitre">Des sites qui<br><em>convertissent.</em></h2>
+      <div class="ns-real-header-right">
+        <p class="ns-body" data-s="realisationsCorps">42 projets livrés. Restaurants, artisans, cabinets, e-commerces. Chaque site pensé pour son secteur, conçu pour se démarquer de la concurrence.</p>
+        <a href="realisations.html" class="ns-text-link">
+          Voir tous les projets
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="ns-real-scroll-wrap">
+    <div class="ns-real-track" id="ns-real-track">
+      <div class="ns-real-card">
+        <div class="ns-real-img"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80&fit=crop" alt="Restaurant La Table du Chef" loading="lazy" /></div>
+        <div class="ns-real-body">
+          <div class="ns-real-cat">Restauration</div>
+          <div class="ns-real-name">La Table du Chef</div>
+          <p>Site vitrine avec réservation intégrée. PageSpeed 97. Réservations +60% en 6 semaines.</p>
+        </div>
+      </div>
+      <div class="ns-real-card">
+        <div class="ns-real-img"><img src="https://images.unsplash.com/photo-1521791055366-0d553872952f?w=800&q=80&fit=crop" alt="Cabinet Moreau Avocats" loading="lazy" /></div>
+        <div class="ns-real-body">
+          <div class="ns-real-cat">Professionnel libéral</div>
+          <div class="ns-real-name">Cabinet Moreau</div>
+          <p>Identité premium, prise de contact optimisée. Demandes de consultation doublées en 1 mois.</p>
+        </div>
+      </div>
+      <div class="ns-real-card">
+        <div class="ns-real-img"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80&fit=crop" alt="Atelier Durif" loading="lazy" /></div>
+        <div class="ns-real-body">
+          <div class="ns-real-cat">Artisan</div>
+          <div class="ns-real-name">Atelier Durif</div>
+          <p>Galerie de réalisations, mise en avant du savoir-faire. PageSpeed 98. Clients +40%.</p>
+        </div>
+      </div>
+      <div class="ns-real-card">
+        <div class="ns-real-img"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80&fit=crop" alt="Fabre Immobilier" loading="lazy" /></div>
+        <div class="ns-real-body">
+          <div class="ns-real-cat">Immobilier</div>
+          <div class="ns-real-name">Fabre Immobilier</div>
+          <p>Catalogue de biens, formulaire de visite simplifié. Demandes de visite ×3 après refonte.</p>
+        </div>
+      </div>
+      <div class="ns-real-card">
+        <div class="ns-real-img"><img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800&q=80&fit=crop" alt="Maison Leconte" loading="lazy" /></div>
+        <div class="ns-real-body">
+          <div class="ns-real-cat">Maison de luxe</div>
+          <div class="ns-real-name">Maison Leconte</div>
+          <p>Expérience éditoriale haut de gamme. Taux de contact doublé. PageSpeed 96.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ns-real-hint">
+    <span class="ns-real-hint-label">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Faites défiler pour voir tous les projets
+    </span>
+  </div>
+</section>
+
+<!-- ═══════════════════════ 04 — MÉTHODE ═══════════════════════ -->
+<section class="ns-section ns-method" id="methode">
   <div class="container">
-    <div class="reveal" style="text-align:center; margin-bottom:clamp(2rem,4vw,3.5rem)">
-      <span class="mono" style="display:block; margin-bottom:0.75rem; color:var(--terra)">Témoignages</span>
-      <h2 style="font-family:'Inter',sans-serif; font-weight:800; font-size:clamp(2rem,4.5vw,3.2rem); letter-spacing:-0.025em; line-height:1.05; color:var(--midnight); margin:0 0 0.75rem">Ils nous font confiance.</h2>
-      <p style="font-size:1rem;color:var(--steel);line-height:1.6;margin:0">Ce que disent nos clients après livraison.</p>
-    </div>
-  </div>
-  <div class="testi-cols-wrap">
-    <!-- Colonne 1 : A B C D -->
-    <div class="testi-col" style="--dur:18s">
-      <div class="testi-col-inner">
-        <div class="testi-card"><div class="testi-stars"><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><p class="testi-quote">"En 3 semaines après la mise en ligne, notre taux de demandes de contact a doublé. Le site attire des clients qu'on n'aurait jamais touchés avec notre ancien WordPress."</p><div class="testi-author"><div class="testi-avatar">ML</div><div><div class="testi-name">Marie-Laure Donnet</div><div class="testi-role">Gérante · Maison Leconte</div></div></div></div>
-        <div class="testi-card"><div class="testi-stars"><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><p class="testi-quote">"Le PageSpeed score est à 98. Mon site charge en moins d'une seconde. Les clients me le font remarquer spontanément, et ça se sent sur les réservations."</p><div class="testi-author"><div class="testi-avatar">TD</div><div><div class="testi-name">Thomas Durif</div><div class="testi-role">Artisan · Atelier Durif</div></div></div></div>
-        <div class="testi-card"><div class="testi-stars"><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><p class="testi-quote">"J'avais un budget serré et des doutes. Finalement, c'est le meilleur investissement de l'année. Process simple, livraison rapide, et le résultat dépasse mes attentes."</p><div class="testi-author"><div class="testi-avatar">SC</div><div><div class="testi-name">Sophie Carpentier</div><div class="testi-role">Avocate · Cabinet Moreau</div></div></div></div>
-        <div class="testi-card"><div class="testi-stars"><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><p class="testi-quote">"Résultat professionnel, délai tenu. Notre agence immobilière a vu ses demandes de visite augmenter dès la première semaine. Le site inspire vraiment confiance."</p><div class="testi-author"><div class="testi-avatar">PL</div><div><div class="testi-name">Pierre-Louis Fabre</div><div class="testi-role">Directeur · Fabre Immobilier</div></div></div></div>
+
+    <div class="ns-method-layout">
+
+      <div class="ns-method-left">
+        <div class="ns-eyebrow">04 / Notre méthode</div>
+        <h2 class="ns-title" data-s="processusTitre">De l'idée au site<br>en <em>21 jours.</em></h2>
+        <p class="ns-body" data-s="processusCorps">Un process éprouvé sur 42 projets. Chaque étape a une date, un livrable, un responsable. Aucune zone grise, aucune surprise en fin de projet.</p>
+        <div class="ns-method-stats">
+          <div class="ns-mstat">
+            <div class="ns-mstat-num">42</div>
+            <div class="ns-mstat-lbl">Projets livrés</div>
+          </div>
+          <div class="ns-mstat">
+            <div class="ns-mstat-num">21j</div>
+            <div class="ns-mstat-lbl">Délai max</div>
+          </div>
+          <div class="ns-mstat">
+            <div class="ns-mstat-num">0€</div>
+            <div class="ns-mstat-lbl">Abonnement</div>
+          </div>
+        </div>
+        <a href="contact.html" class="ns-cta-btn">
+          Démarrer mon projet
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <span class="ns-cta-hint">Sans engagement &middot; Réponse sous 24h</span>
       </div>
-    </div>
-    <!-- Colonne 2 : C D A B -->
-    <div class="testi-col" style="--dur:24s">
-      <div class="testi-col-inner">
-        <div class="testi-card"><div class="testi-stars"><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><p class="testi-quote">"J'avais un budget serré et des doutes. Finalement, c'est le meilleur investissement de l'année. Process simple, livraison rapide, et le résultat dépasse mes attentes."</p><div class="testi-author"><div class="testi-avatar">SC</div><div><div class="testi-name">Sophie Carpentier</div><div class="testi-role">Avocate · Cabinet Moreau</div></div></div></div>
-        <div class="testi-card"><div class="testi-stars"><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><p class="testi-quote">"Résultat professionnel, délai tenu. Notre agence immobilière a vu ses demandes de visite augmenter dès la première semaine. Le site inspire vraiment confiance."</p><div class="testi-author"><div class="testi-avatar">PL</div><div><div class="testi-name">Pierre-Louis Fabre</div><div class="testi-role">Directeur · Fabre Immobilier</div></div></div></div>
-        <div class="testi-card"><div class="testi-stars"><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><p class="testi-quote">"En 3 semaines après la mise en ligne, notre taux de demandes de contact a doublé. Le site attire des clients qu'on n'aurait jamais touchés avec notre ancien WordPress."</p><div class="testi-author"><div class="testi-avatar">ML</div><div><div class="testi-name">Marie-Laure Donnet</div><div class="testi-role">Gérante · Maison Leconte</div></div></div></div>
-        <div class="testi-card"><div class="testi-stars"><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><p class="testi-quote">"Le PageSpeed score est à 98. Mon site charge en moins d'une seconde. Les clients me le font remarquer spontanément, et ça se sent sur les réservations."</p><div class="testi-author"><div class="testi-avatar">TD</div><div><div class="testi-name">Thomas Durif</div><div class="testi-role">Artisan · Atelier Durif</div></div></div></div>
+
+      <div class="ns-method-right">
+        <div class="ns-steps">
+          <div class="ns-step">
+            <div class="ns-step-num">01</div>
+            <div class="ns-step-content">
+              <div class="ns-step-header">
+                <h3>Brief et stratégie</h3>
+                <span class="ns-step-duration">Jours 1-2</span>
+              </div>
+              <p>Analyse de votre secteur, de vos concurrents, de vos clients cibles. Définition de l'objectif unique et de la structure qui le sert.</p>
+            </div>
+          </div>
+          <div class="ns-step">
+            <div class="ns-step-num">02</div>
+            <div class="ns-step-content">
+              <div class="ns-step-header">
+                <h3>Identité visuelle et maquette</h3>
+                <span class="ns-step-duration">Jours 3-7</span>
+              </div>
+              <p>Design sur-mesure : palette, typographie, hiérarchie, ton. Vous validez chaque décision avant qu'une ligne de code soit écrite.</p>
+            </div>
+          </div>
+          <div class="ns-step">
+            <div class="ns-step-num">03</div>
+            <div class="ns-step-content">
+              <div class="ns-step-header">
+                <h3>Développement sur-mesure</h3>
+                <span class="ns-step-duration">Jours 8-14</span>
+              </div>
+              <p>IA maîtrisée par des experts. Là où d'autres produisent des sites identiques, nous construisons une identité digitale que vos concurrents ne peuvent pas reproduire.</p>
+            </div>
+          </div>
+          <div class="ns-step">
+            <div class="ns-step-num">04</div>
+            <div class="ns-step-content">
+              <div class="ns-step-header">
+                <h3>Tests et optimisations</h3>
+                <span class="ns-step-duration">Jours 15-18</span>
+              </div>
+              <p>PageSpeed, accessibilité, multi-navigateurs, tests mobiles réels. Votre site dépasse 95 sur tous les indicateurs Lighthouse.</p>
+            </div>
+          </div>
+          <div class="ns-step">
+            <div class="ns-step-num">05</div>
+            <div class="ns-step-content">
+              <div class="ns-step-header">
+                <h3>Mise en ligne et passation</h3>
+                <span class="ns-step-duration">Jours 19-21</span>
+              </div>
+              <p>Déploiement, formation, documentation, suivi post-livraison inclus. Le code vous appartient. Vous en faites ce que vous voulez.</p>
+            </div>
+          </div>
+        </div>
       </div>
+
     </div>
-    <!-- Colonne 3 : B D A C -->
-    <div class="testi-col" style="--dur:21s">
-      <div class="testi-col-inner">
-        <div class="testi-card"><div class="testi-stars"><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><p class="testi-quote">"Le PageSpeed score est à 98. Mon site charge en moins d'une seconde. Les clients me le font remarquer spontanément, et ça se sent sur les réservations."</p><div class="testi-author"><div class="testi-avatar">TD</div><div><div class="testi-name">Thomas Durif</div><div class="testi-role">Artisan · Atelier Durif</div></div></div></div>
-        <div class="testi-card"><div class="testi-stars"><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><p class="testi-quote">"Résultat professionnel, délai tenu. Notre agence immobilière a vu ses demandes de visite augmenter dès la première semaine. Le site inspire vraiment confiance."</p><div class="testi-author"><div class="testi-avatar">PL</div><div><div class="testi-name">Pierre-Louis Fabre</div><div class="testi-role">Directeur · Fabre Immobilier</div></div></div></div>
-        <div class="testi-card"><div class="testi-stars"><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><p class="testi-quote">"En 3 semaines après la mise en ligne, notre taux de demandes de contact a doublé. Le site attire des clients qu'on n'aurait jamais touchés avec notre ancien WordPress."</p><div class="testi-author"><div class="testi-avatar">ML</div><div><div class="testi-name">Marie-Laure Donnet</div><div class="testi-role">Gérante · Maison Leconte</div></div></div></div>
-        <div class="testi-card"><div class="testi-stars"><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><p class="testi-quote">"J'avais un budget serré et des doutes. Finalement, c'est le meilleur investissement de l'année. Process simple, livraison rapide, et le résultat dépasse mes attentes."</p><div class="testi-author"><div class="testi-avatar">SC</div><div><div class="testi-name">Sophie Carpentier</div><div class="testi-role">Avocate · Cabinet Moreau</div></div></div></div>
-      </div>
-    </div>
-  </div>
-  <div style="text-align:center; margin-top:3rem">
-    <a href="https://maps.app.goo.gl/placeholder" target="_blank" rel="noopener" class="btn-ghost" style="background:rgba(15,23,42,0.06);border:1px solid var(--grid);color:var(--midnight);display:inline-flex;align-items:center;gap:0.6rem;padding:0.8rem 1.8rem;border-radius:100px;font-family:'Inter',sans-serif;font-weight:600;font-size:0.9rem">
-      Voir tous les avis Google
-      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-    </a>
   </div>
 </section>
 
 <!-- NO-BRAINER BANDEAU -->
 <section class="nobrainer" id="no-brainer">
-  <div aria-hidden="true" style="line-height:0;display:block;margin-bottom:-1px"><svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:50px;transform:rotate(180deg);"><path d="M0,80 L0,50 C360,8 1080,72 1440,38 L1440,80 Z" fill="#F9F9F7"/></svg></div>
   <div class="container">
     <div class="nobrainer-center">
       <div class="nobrainer-badge"><div class="nobrainer-badge-tag">Gratuit</div><div class="nobrainer-badge-body">Places limitées ce mois</div></div>
-      <h2>La maquette de votre<br>futur site. <em>Gratuite.</em></h2>
-      <p class="nobrainer-desc">Une vraie proposition visuelle, sur-mesure. Présentée en appel vidéo. Si ça vous convient, on démarre.</p>
+      <h2 data-s="nobrainerTitre">La maquette de votre<br>futur site. <em>Gratuite.</em></h2>
+      <p class="nobrainer-desc" data-s="nobrainerDescription">Une vraie proposition visuelle, sur-mesure. Présentée en appel vidéo. Si ça vous convient, on démarre.</p>
       <div class="nobrainer-cta">
         <a href="contact.html#offre-gratuite" class="btn-nobrainer">
           Demander ma maquette gratuite
@@ -1168,8 +2494,8 @@
           <p class="footer-tagline">Sites haute performance, pensés pour convertir. Pas des templates, du sur-mesure.</p>
           <p class="footer-origin">Livraison 14-21 jours</p>
           <div class="footer-contact" style="margin-top:1rem;display:flex;flex-direction:column;gap:0.45rem">
-            <a href="tel:+262692000000" style="font-size:0.82rem;color:rgba(255,255,255,0.5);display:flex;align-items:center;gap:0.5rem;transition:color 0.2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 14a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 3.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.91a16 16 0 0 0 6 6l.91-1.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17z"/></svg>+262 6 92 00 00 00</a>
-            <a href="mailto:contact@fondationstudio.fr" style="font-size:0.82rem;color:rgba(255,255,255,0.5);display:flex;align-items:center;gap:0.5rem;transition:color 0.2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>contact@fondationstudio.fr</a>
+            <a href="tel:+33637999738" style="font-size:0.82rem;color:rgba(255,255,255,0.5);display:flex;align-items:center;gap:0.5rem;transition:color 0.2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 14a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 3.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.91a16 16 0 0 0 6 6l.91-1.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17z"/></svg>+33 6 37 99 97 38</a>
+            <a href="mailto:fondationstudio.fr@gmail.com" style="font-size:0.82rem;color:rgba(255,255,255,0.5);display:flex;align-items:center;gap:0.5rem;transition:color 0.2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>fondationstudio.fr@gmail.com</a>
           </div>
         </div>
         <div class="footer-nav-col">
@@ -1311,12 +2637,348 @@
     });
   })();
 
-  // Testimonials columns  :  duplicate cards for seamless infinite scroll
-  (function() {
-    document.querySelectorAll('.testi-col-inner').forEach(function(el) {
-      el.innerHTML += el.innerHTML;
-    });
+
+  // ── Scroll-scrub video background ──
+  (function initScrollScrub() {
+    var vid = document.getElementById('scroll-video');
+    if (!vid) return;
+
+    var isMobile = window.innerWidth <= 768;
+    var videoSrc = isMobile ? 'videos/gifs-scrub-mobile.mp4' : 'videos/gifs-scrub.mp4';
+
+    var duration   = 0;
+    var targetTime = 0;
+    var lastSet    = -1;
+
+    // ── Calcul de SCROLL_RANGE ──
+    // On mappe la durée complète de la vidéo sur la distance de scroll
+    // depuis le haut de la page jusqu'au bas de la dernière section de contenu
+    // (#pourquoi). Ainsi chaque section affiche son image correspondante.
+    var SCROLL_RANGE = window.innerHeight * 5; // fallback initial
+
+    function computeRange() {
+      var anchor = document.getElementById('pourquoi')
+                || document.getElementById('methode')
+                || document.getElementById('solution');
+      if (anchor) {
+        // Distance du haut de la page jusqu'au bas de la section
+        var rect = anchor.getBoundingClientRect();
+        var bottomAbs = window.scrollY + rect.bottom;
+        SCROLL_RANGE = Math.max(bottomAbs - window.innerHeight, window.innerHeight * 2);
+      }
+    }
+
+    // Recalculer après rendu complet (fonts, images)
+    window.addEventListener('load', computeRange);
+    window.addEventListener('resize', computeRange);
+
+    // ── Boucle RAF permanente ──
+    function loop() {
+      requestAnimationFrame(loop);
+      if (!duration) return;
+      var t = Math.min(duration, Math.max(0, targetTime));
+      if (Math.abs(t - lastSet) > 0.001) {
+        try { vid.currentTime = t; } catch (e) {}
+        lastSet = t;
+      }
+    }
+
+    // ── Calcul de targetTime à chaque scroll ──
+    window.addEventListener('scroll', function() {
+      if (!duration) return;
+      var progress = Math.min(1, Math.max(0, window.scrollY / SCROLL_RANGE));
+      targetTime = progress * duration;
+    }, { passive: true });
+
+    // ── Fetch blob : tout en mémoire → seeks instantanés ──
+    fetch(videoSrc)
+      .then(function(r) {
+        if (!r.ok) throw new Error(r.status);
+        return r.blob();
+      })
+      .then(function(blob) {
+        vid.src = URL.createObjectURL(blob);
+        vid.load();
+        vid.addEventListener('loadedmetadata', function() {
+          duration = vid.duration;
+          vid.pause();
+          vid.currentTime = 0;
+          lastSet = 0;
+          computeRange(); // calcul précis dès que la page est rendue
+          // Position initiale si on arrive déjà scrollé
+          var progress = Math.min(1, Math.max(0, window.scrollY / SCROLL_RANGE));
+          targetTime = progress * duration;
+          loop();
+        }, { once: true });
+      })
+      .catch(function() {
+        var source = vid.querySelector('source');
+        if (source && source.src) vid.src = source.src;
+        vid.load();
+        vid.addEventListener('loadedmetadata', function() {
+          duration = vid.duration;
+          vid.pause();
+          vid.currentTime = 0;
+          lastSet = 0;
+          computeRange();
+          loop();
+        }, { once: true });
+      });
   })();
+
+/* ═══════════════════════════════════════
+   L'OBSESSION DU DÉTAIL — ANIMATIONS JS
+   ═══════════════════════════════════════ */
+(function() {
+
+  /* ── 1. BlurReveal via IntersectionObserver ── */
+  var blurEls = document.querySelectorAll('.blur-reveal');
+  if (blurEls.length) {
+    var blurObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          blurObs.unobserve(e.target);
+        }
+      });
+    }, {
+      threshold: 0.08,
+      rootMargin: '0px 0px -60px 0px'
+    });
+    blurEls.forEach(function(el) { blurObs.observe(el); });
+  }
+
+  /* ── 2. CountUp ── */
+  function animateCountUp(el) {
+    var target = parseInt(el.dataset.target, 10);
+    var suffix = el.dataset.suffix || '';
+    var duration = 1600;
+    var start = performance.now();
+    var initial = 0;
+    function step(now) {
+      var progress = Math.min((now - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      var val = Math.round(initial + (target - initial) * eased);
+      el.textContent = val + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = target + suffix;
+    }
+    requestAnimationFrame(step);
+  }
+  var countEls = document.querySelectorAll('.od-countup');
+  if (countEls.length) {
+    var countObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          animateCountUp(e.target);
+          countObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    countEls.forEach(function(el) { countObs.observe(el); });
+  }
+
+  /* ── 3. Stats bar reveal (top line) ── */
+  var statEls = document.querySelectorAll('.od-stat');
+  if (statEls.length) {
+    var statObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          statObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    statEls.forEach(function(el) { statObs.observe(el); });
+  }
+
+  /* ── 4. SpotlightCard cursor tracking ── */
+  document.querySelectorAll('.od-sol-card').forEach(function(card) {
+    card.addEventListener('mousemove', function(e) {
+      var r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+
+  /* ── 5. Gallery wipe-in + drag scroll ── */
+  var realCards = document.querySelectorAll('.od-real-card');
+  if (realCards.length) {
+    var cardObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          cardObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    realCards.forEach(function(el) { cardObs.observe(el); });
+  }
+  var track = document.getElementById('ns-real-track');
+  if (track) {
+    var isDown = false, startX, scrollLeft;
+    track.addEventListener('mousedown', function(e) {
+      isDown = true; track.classList.add('dragging');
+      startX = e.pageX - track.offsetLeft;
+      scrollLeft = track.scrollLeft;
+    });
+    ['mouseleave','mouseup'].forEach(function(ev) {
+      track.addEventListener(ev, function() { isDown = false; track.classList.remove('dragging'); });
+    });
+    track.addEventListener('mousemove', function(e) {
+      if (!isDown) return;
+      e.preventDefault();
+      var x = e.pageX - track.offsetLeft;
+      track.scrollLeft = scrollLeft - (x - startX) * 1.5;
+    });
+  }
+
+  /* ── 6. Méthode — timeline fill on scroll ── */
+  var methSection = document.querySelector('.od-method');
+  var timelineFill = document.getElementById('od-timeline-fill');
+  var methSteps = document.querySelectorAll('.od-meth-step');
+  if (methSection && timelineFill) {
+    var trackEl = document.getElementById('od-timeline-track');
+    function updateTimeline() {
+      var rect = methSection.getBoundingClientRect();
+      var progress = Math.max(0, Math.min(1, (-rect.top) / (rect.height - window.innerHeight)));
+      var pct = Math.round(progress * 100);
+      if (trackEl) trackEl.style.height = methSection.offsetHeight + 'px';
+      timelineFill.style.height = pct + '%';
+      methSteps.forEach(function(step, i) {
+        var sr = step.getBoundingClientRect();
+        if (sr.top < window.innerHeight * 0.65) {
+          step.classList.add('in');
+        }
+      });
+    }
+    window.addEventListener('scroll', updateTimeline, { passive: true });
+    updateTimeline();
+  }
+
+  /* ── 7. Crossfade testimonials ── */
+  var quotesContainer = document.getElementById('od-quotes');
+  var dotsContainer = document.getElementById('od-dots');
+  if (quotesContainer && dotsContainer) {
+    var quotes = quotesContainer.querySelectorAll('.od-why-quote');
+    var dots = dotsContainer.querySelectorAll('.od-why-dot');
+    var current = 0;
+    var quoteTimer;
+    function showQuote(idx) {
+      quotes[current].classList.remove('active');
+      quotes[current].style.position = 'absolute';
+      quotes[current].style.inset = '0';
+      dots[current].classList.remove('active');
+      current = idx;
+      quotes[current].classList.add('active');
+      quotes[current].style.position = 'relative';
+      quotes[current].style.inset = 'auto';
+      dots[current].classList.add('active');
+    }
+    function nextQuote() {
+      showQuote((current + 1) % quotes.length);
+    }
+    function startTimer() { quoteTimer = setInterval(nextQuote, 4000); }
+    function stopTimer() { clearInterval(quoteTimer); }
+    dots.forEach(function(dot) {
+      dot.addEventListener('click', function() {
+        stopTimer();
+        showQuote(parseInt(dot.dataset.idx));
+        startTimer();
+      });
+    });
+    startTimer();
+  }
+
+  /* ── 8. ClickSpark on CTA ── */
+  var sparkBtn = document.getElementById('od-spark-btn');
+  var sparkCanvas = document.getElementById('od-spark-canvas');
+  if (sparkBtn && sparkCanvas) {
+    var sCtx = sparkCanvas.getContext('2d');
+    var sparks = [];
+    function resizeSpark() {
+      sparkCanvas.width = sparkBtn.offsetWidth;
+      sparkCanvas.height = sparkBtn.offsetHeight;
+    }
+    resizeSpark();
+    window.addEventListener('resize', resizeSpark);
+    sparkBtn.addEventListener('click', function(e) {
+      var r = sparkBtn.getBoundingClientRect();
+      var ox = e.clientX - r.left;
+      var oy = e.clientY - r.top;
+      for (var i = 0; i < 18; i++) {
+        var angle = (Math.PI * 2 * i) / 18 + Math.random() * 0.3;
+        var speed = 3 + Math.random() * 4;
+        sparks.push({
+          x: ox, y: oy,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          life: 1,
+          size: 2 + Math.random() * 3
+        });
+      }
+    });
+    function animateSparks() {
+      requestAnimationFrame(animateSparks);
+      if (!sparks.length) { sCtx.clearRect(0, 0, sparkCanvas.width, sparkCanvas.height); return; }
+      sCtx.clearRect(0, 0, sparkCanvas.width, sparkCanvas.height);
+      sparks = sparks.filter(function(s) {
+        s.x += s.vx;
+        s.y += s.vy;
+        s.vy += 0.2;
+        s.life -= 0.04;
+        if (s.life <= 0) return false;
+        sCtx.beginPath();
+        sCtx.arc(s.x, s.y, s.size * s.life, 0, Math.PI * 2);
+        sCtx.fillStyle = 'rgba(255,160,80,' + s.life + ')';
+        sCtx.fill();
+        return true;
+      });
+    }
+    animateSparks();
+  }
+
+  /* ── 9. Magnetic button (subtle) ── */
+  if (sparkBtn) {
+    sparkBtn.addEventListener('mousemove', function(e) {
+      var r = sparkBtn.getBoundingClientRect();
+      var cx = r.left + r.width / 2;
+      var cy = r.top + r.height / 2;
+      var dx = (e.clientX - cx) * 0.18;
+      var dy = (e.clientY - cy) * 0.18;
+      sparkBtn.style.transform = 'translate(' + dx + 'px, ' + dy + 'px)';
+    });
+    sparkBtn.addEventListener('mouseleave', function() {
+      sparkBtn.style.transform = '';
+    });
+  }
+
+  /* ── 10. Hero typewriter on subtitle ── */
+  var heroSub = document.querySelector('.hero-sub');
+  if (heroSub) {
+    var fullText = heroSub.textContent;
+    heroSub.textContent = '';
+    var cursor = document.createElement('span');
+    cursor.className = 'tw-cursor';
+    cursor.setAttribute('aria-hidden', 'true');
+    heroSub.appendChild(cursor);
+    var charIdx = 0;
+    var twDelay = 600;
+    var twTimer = setTimeout(function typeChar() {
+      if (charIdx < fullText.length) {
+        heroSub.insertBefore(document.createTextNode(fullText[charIdx]), cursor);
+        charIdx++;
+        setTimeout(typeChar, 22 + Math.random() * 18);
+      } else {
+        setTimeout(function() {
+          cursor.style.animation = 'none';
+          cursor.style.opacity = '0';
+        }, 2000);
+      }
+    }, twDelay);
+  }
+
+})();
 
   // Cookie consent
   (function() {
@@ -1345,5 +3007,32 @@
   </div>
 </div>
 
+<script src="/cookie-consent.js"></script>
+<script src="/sanity-content.js"></script>
+<script>
+(function() {
+  sanityFetch('*[_type == "pageAccueil" && _id == "page-accueil"][0]').then(function(d) {
+    if (!d) return;
+    sanityApply(d, {
+      'heroTitre': 'heroTitre',
+      'heroSousTitre': 'heroSousTitre',
+      'heroCta': 'heroCta',
+      'heroCtaSecondaire': 'heroCtaSecondaire',
+      'problemeTitre': 'problemeTitre',
+      'problemeCorps': 'problemeCorps',
+      'problemeSousCorps': 'problemeSousCorps',
+      'piliersTitre': 'piliersTitre',
+      'piliersCorps': 'piliersCorps',
+      'realisationsTitre': 'realisationsTitre',
+      'realisationsCorps': 'realisationsCorps',
+      'processusTitre': 'processusTitre',
+      'processusCorps': 'processusCorps',
+      'nobrainerTitre': 'nobrainerTitre',
+      'nobrainerDescription': 'nobrainerDescription',
+      'nobrainerCta': 'nobrainerCta'
+    });
+  }).catch(function() {});
+})();
+</script>
 </body>
 </html>

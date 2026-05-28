@@ -307,30 +307,60 @@
     <!-- ── TARIFS PANEL ── -->
     <div class="admin-panel" id="panel-tarifs">
       <div class="admin-page-title">Tarifs</div>
-      <div class="admin-page-sub">Offres affichees sur la page tarifs.html</div>
-      <div id="tarifs-offers"></div>
-      <div style="display:flex;justify-content:flex-end;gap:1rem;margin-top:1rem">
-        <button class="admin-save-btn" onclick="savePanel('tarifs')">
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          Enregistrer
-        </button>
+      <div class="admin-page-sub">Les prix sont maintenant geres via Sanity CMS.</div>
+      <div class="admin-card" style="border-left:3px solid var(--terra)">
+        <div class="admin-card-title" style="display:flex;align-items:center;gap:0.5rem">
+          <svg width="18" height="18" fill="none" stroke="var(--terra)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          Sanity CMS — Tarifs &amp; Offres
+        </div>
+        <p style="font-size:0.88rem;color:var(--steel);line-height:1.65;margin-bottom:1.5rem">Modifiez les prix (Standard, Conversion, Prestige) et les options directement dans le studio Sanity. Les modifications sont visibles en temps reel sur <strong>tarifs.html</strong> sans redeploiement.</p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap">
+          <a href="http://localhost:3333" target="_blank" rel="noopener" class="admin-save-btn" style="text-decoration:none;font-size:0.85rem">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Ouvrir en local (port 3333)
+          </a>
+          <a href="https://fondation-studio.sanity.studio" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(194,65,12,0.08);border:1px solid rgba(194,65,12,0.2);color:var(--terra);border-radius:8px;padding:0.65rem 1.2rem;font-weight:600;font-size:0.85rem;text-decoration:none;transition:background 0.2s" onmouseover="this.style.background='rgba(194,65,12,0.15)'" onmouseout="this.style.background='rgba(194,65,12,0.08)'">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Studio deploye
+          </a>
+        </div>
+        <div style="margin-top:1.25rem;padding:0.85rem;background:#F8FAFC;border-radius:8px;font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--steel);line-height:1.7">
+          Pour demarrer en local : <strong style="color:var(--midnight)">cd studio &amp;&amp; npx sanity dev</strong><br>
+          Pour deployer : <strong style="color:var(--midnight)">cd studio &amp;&amp; npx sanity deploy</strong>
+        </div>
       </div>
     </div>
 
     <!-- ── REALISATIONS PANEL ── -->
     <div class="admin-panel" id="panel-realisations">
       <div class="admin-page-title">Realisations</div>
-      <div class="admin-page-sub">Projets affiches sur realisations.html</div>
-      <div id="projects-list"></div>
-      <button class="admin-add-btn" style="margin-bottom:1.5rem" onclick="addProject()">
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        Ajouter un projet
-      </button>
-      <div style="display:flex;justify-content:flex-end;gap:1rem;margin-top:0.5rem">
-        <button class="admin-save-btn" onclick="savePanel('realisations')">
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          Enregistrer
-        </button>
+      <div class="admin-page-sub">Les projets sont maintenant geres via Sanity CMS.</div>
+      <div class="admin-card" style="border-left:3px solid var(--terra)">
+        <div class="admin-card-title" style="display:flex;align-items:center;gap:0.5rem">
+          <svg width="18" height="18" fill="none" stroke="var(--terra)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          Sanity CMS — Realisations
+        </div>
+        <p style="font-size:0.88rem;color:var(--steel);line-height:1.65;margin-bottom:0.75rem">Ajoutez, modifiez et supprimez vos projets directement dans le studio Sanity. Chaque projet supporte : image native, categorie, description courte, description modale, URL site, ordre et statut (visible / masque / archive).</p>
+        <ul style="font-size:0.82rem;color:var(--steel);line-height:2;margin-bottom:1.5rem;padding-left:1.2rem">
+          <li><strong style="color:var(--midnight)">Ajouter</strong> un projet : bouton "+" dans Sanity Studio</li>
+          <li><strong style="color:var(--midnight)">Masquer</strong> un projet : champ Statut → "Masque"</li>
+          <li><strong style="color:var(--midnight)">Supprimer</strong> : icone corbeille dans le document</li>
+          <li><strong style="color:var(--midnight)">Ordre</strong> : champ "Ordre d'affichage" (entier, tri croissant)</li>
+        </ul>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap">
+          <a href="http://localhost:3333" target="_blank" rel="noopener" class="admin-save-btn" style="text-decoration:none;font-size:0.85rem">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Ouvrir en local (port 3333)
+          </a>
+          <a href="https://fondation-studio.sanity.studio" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(194,65,12,0.08);border:1px solid rgba(194,65,12,0.2);color:var(--terra);border-radius:8px;padding:0.65rem 1.2rem;font-weight:600;font-size:0.85rem;text-decoration:none;transition:background 0.2s" onmouseover="this.style.background='rgba(194,65,12,0.15)'" onmouseout="this.style.background='rgba(194,65,12,0.08)'">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Studio deploye
+          </a>
+        </div>
+        <div style="margin-top:1.25rem;padding:0.85rem;background:#F8FAFC;border-radius:8px;font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--steel);line-height:1.7">
+          Pour demarrer en local : <strong style="color:var(--midnight)">cd studio &amp;&amp; npx sanity dev</strong><br>
+          Pour deployer : <strong style="color:var(--midnight)">cd studio &amp;&amp; npx sanity deploy</strong>
+        </div>
       </div>
     </div>
 
@@ -366,21 +396,8 @@
   <span id="admin-toast-msg">Modifications enregistrees.</span>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script>
   const ADMIN_PASS = 'Fondationstudio2026fontdetresbonsite1231?';
-  const SUPABASE_URL = 'https://ccteajpsdsecrkqvfnyl.supabase.co';
-  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNjdGVhanBzZHNlY3JrcXZmbnlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczMTI1NjEsImV4cCI6MjA5Mjg4ODU2MX0.hOwrzZR5dVV11huCtp_xz2xKXJI25heAZrQEE76UB9w';
-  let sb = null;
-  try { sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY); } catch(e) { console.warn('Supabase SDK non chargé', e); }
-
-  // Migration auto: ajouter colonne statut si absente (best-effort)
-  async function ensureStatutColumn() {
-    if (!sb) return;
-    try {
-      await sb.rpc('exec_sql', { sql: "ALTER TABLE realisations ADD COLUMN IF NOT EXISTS statut TEXT DEFAULT 'visible';" });
-    } catch(e) { /* anon key ne peut pas exécuter de DDL - normal */ }
-  }
   const LS = {
     get: (k, d) => { try { const v = localStorage.getItem('fs_admin_' + k); return v ? JSON.parse(v) : d; } catch(e) { return d; } },
     set: (k, v) => { try { localStorage.setItem('fs_admin_' + k, JSON.stringify(v)); } catch(e) {} }
@@ -424,8 +441,6 @@
 
   function initApp() {
     initHomepage();
-    initTarifs();
-    initRealisations();
     initContact();
   }
 
@@ -477,21 +492,6 @@
         heroCta: document.getElementById('h-hero-cta').value,
         solutionItems: items
       });
-    } else if (panel === 'tarifs') {
-      const offers = [];
-      document.querySelectorAll('.tarif-offer-item').forEach(item => {
-        const feats = [];
-        item.querySelectorAll('.feature-item input').forEach(i => feats.push(i.value));
-        offers.push({
-          name: item.querySelector('.tarif-name').value,
-          price: item.querySelector('.tarif-price').value,
-          desc: item.querySelector('.tarif-desc').value,
-          features: feats
-        });
-      });
-      LS.set('tarifs', { offers });
-    } else if (panel === 'realisations') {
-      await saveRealisations(); return;
     } else if (panel === 'contact-cfg') {
       LS.set('contact', {
         whatsapp: document.getElementById('c-whatsapp').value,
@@ -501,240 +501,6 @@
     showToast('Modifications enregistrees.');
   }
 
-  /* ── Tarifs ── */
-  const defaultOffers = [
-    { name: 'Starter', price: '1 400', desc: 'Site vitrine 3-5 pages pour independants et TPE.', features: ['Design sur-mesure', '3 a 5 pages', 'Formulaire de contact', 'SEO de base', 'Livraison en 14 jours'] },
-    { name: 'Business', price: '2 400', desc: 'Site complet pour PME avec contenu avance.', features: ['Tout Starter', 'Jusqu\'a 10 pages', 'Blog ou actualites', 'SEO avance', 'Google Analytics', '1 mois de maintenance'] },
-    { name: 'Premium', price: 'Sur devis', desc: 'Projet complet : e-commerce, SaaS, plateforme.', features: ['Tout Business', 'E-commerce ou app', 'Animations avancees', 'Multilingue', 'Support prioritaire'] },
-  ];
-
-  function initTarifs() {
-    const data = LS.get('tarifs', { offers: defaultOffers });
-    renderTarifsOffers(data.offers || defaultOffers);
-  }
-
-  function renderTarifsOffers(offers) {
-    const container = document.getElementById('tarifs-offers');
-    container.innerHTML = '';
-    offers.forEach((offer, i) => {
-      const div = document.createElement('div');
-      div.className = 'admin-card tarif-offer-item';
-      div.innerHTML = `
-        <div class="admin-card-title">Offre ${i+1}</div>
-        <div class="form-row">
-          <div class="fgrp"><label>Nom</label><input type="text" class="tarif-name" value="${escHtml(offer.name)}" /></div>
-          <div class="fgrp"><label>Prix (ex: 1 400 ou Sur devis)</label><input type="text" class="tarif-price" value="${escHtml(offer.price)}" /></div>
-        </div>
-        <div class="fgrp"><label>Description courte</label><textarea class="tarif-desc">${escHtml(offer.desc)}</textarea></div>
-        <div class="fgrp">
-          <label>Fonctionnalites incluses</label>
-          <div class="feature-list">${(offer.features||[]).map(f => `<div class="feature-item"><input type="text" value="${escHtml(f)}" /><button class="feature-remove" onclick="this.closest('.feature-item').remove()">x</button></div>`).join('')}</div>
-          <button class="admin-add-btn" style="margin-top:0.4rem" onclick="addFeature(this)">+ Ajouter une fonctionnalite</button>
-        </div>
-      `;
-      container.appendChild(div);
-    });
-  }
-
-  function addFeature(btn) {
-    const list = btn.previousElementSibling;
-    const div = document.createElement('div');
-    div.className = 'feature-item';
-    div.innerHTML = '<input type="text" placeholder="Nouvelle fonctionnalite..." /><button class="feature-remove" onclick="this.closest(\'.feature-item\').remove()">x</button>';
-    list.appendChild(div);
-  }
-
-  /* ── Realisations (Supabase) ── */
-  async function initRealisations() {
-    const container = document.getElementById('projects-list');
-    if (!sb) { container.innerHTML = '<p style="color:orange;padding:1rem">Supabase non connecté. Rechargez la page.</p>'; return; }
-    container.innerHTML = '<p style="color:var(--steel);font-size:0.9rem;padding:1rem">Chargement...</p>';
-    const { data, error } = await sb.from('realisations').select('*').order('ordre', { ascending: true });
-    if (error) { container.innerHTML = '<p style="color:red">Erreur chargement : ' + error.message + '</p>'; return; }
-    renderProjects(data || []);
-  }
-
-  function renderProjects(projects) {
-    const container = document.getElementById('projects-list');
-    container.innerHTML = '';
-    projects.forEach((proj, i) => {
-      const div = document.createElement('div');
-      div.className = 'project-item';
-      div.dataset.id = proj.id || '';
-      div.innerHTML = `
-        <div class="project-item-header">
-          <span class="project-item-num">Projet ${i+1}</span>
-          ${proj.statut && proj.statut !== 'visible' ? `<span style="font-size:0.65rem;padding:0.2rem 0.5rem;border-radius:4px;background:${proj.statut==='masque'?'#FEF3C7':'#F1F5F9'};color:${proj.statut==='masque'?'#92400E':'#475569'}">${proj.statut==='masque'?'Masqué':'Archivé'}</span>` : ''}
-          <div style="display:flex;gap:0.5rem;align-items:center">
-            <button class="proj-toggle-btn" onclick="toggleStatut(this, '${proj.id||''}', '${proj.statut||'visible'}')" style="font-size:0.78rem;padding:0.3rem 0.7rem;border-radius:6px;border:1px solid var(--grid);background:white;color:var(--steel);cursor:pointer">${proj.statut==='masque'?'👁 Afficher':'🙈 Masquer'}</button>
-            <button onclick="toggleArchive(this, '${proj.id||''}', '${proj.statut||'visible'}')" style="font-size:0.78rem;padding:0.3rem 0.7rem;border-radius:6px;border:1px solid var(--grid);background:white;color:var(--steel);cursor:pointer">${proj.statut==='archive'?'📤 Désarchiver':'📦 Archiver'}</button>
-            <button class="admin-remove-btn" onclick="askDeleteProject('${proj.id||''}', '${escHtml(proj.name||'ce projet')}', this)">🗑 Supprimer</button>
-          </div>
-        </div>
-        <input type="hidden" class="proj-statut" value="${proj.statut||'visible'}" />
-        <div class="form-row">
-          <div class="fgrp"><label>Nom / Client</label><input type="text" class="proj-name" value="${escHtml(proj.name||'')}" /></div>
-          <div class="fgrp"><label>Secteur (affiché)</label><input type="text" class="proj-sector" value="${escHtml(proj.sector||'')}" placeholder="ex : Transport, Construction..." /></div>
-        </div>
-        <div class="form-row">
-          <div class="fgrp">
-            <label>Categorie (filtre)</label>
-            <select class="proj-category" style="background:var(--alabaster);border:1px solid var(--grid);border-radius:8px;padding:0.75rem 1rem;color:var(--midnight);font-size:0.9rem;outline:none;width:100%">
-              <option value="btp" ${(proj.category||'')==='btp'?'selected':''}>BTP / Construction</option>
-              <option value="restaurant" ${(proj.category||'')==='restaurant'?'selected':''}>Restaurant</option>
-              <option value="boutique" ${(proj.category||'')==='boutique'?'selected':''}>Boutique</option>
-              <option value="bien-etre" ${(proj.category||'')==='bien-etre'?'selected':''}>Bien-être</option>
-              <option value="autre" ${(proj.category||'autre')==='autre'?'selected':''}>Autre</option>
-            </select>
-          </div>
-          <div class="fgrp"><label>Ordre d'affichage</label><input type="number" class="proj-ordre" value="${proj.ordre||i}" style="background:var(--alabaster);border:1px solid var(--grid);border-radius:8px;padding:0.75rem 1rem;width:100%;font-size:0.9rem" /></div>
-        </div>
-        <div class="fgrp"><label>Description courte (carte)</label><textarea class="proj-desc">${escHtml(proj.description||'')}</textarea></div>
-        <div class="fgrp"><label>Description détaillée</label><textarea class="proj-detail-desc" style="min-height:110px">${escHtml(proj.detail_desc||'')}</textarea></div>
-        <div class="fgrp">
-          <label>Image (upload ou URL directe)</label>
-          <input type="text" class="proj-image-url" value="${escHtml(proj.image_url||'')}" placeholder="https://... ou uploader ci-dessous" style="margin-bottom:0.5rem" />
-          <input type="file" accept="image/*" onchange="uploadImage(this, this.previousElementSibling)" style="font-size:0.8rem;color:var(--steel)" />
-          ${proj.image_url ? `<img src="${escHtml(proj.image_url)}" style="margin-top:0.5rem;max-height:80px;border-radius:6px;object-fit:cover" />` : ''}
-        </div>
-        <div class="fgrp"><label>URL du site client</label><input type="text" class="proj-url" value="${escHtml(proj.site_url||'')}" placeholder="https://..." /></div>
-      `;
-      container.appendChild(div);
-    });
-  }
-
-  async function deleteProject(id, btn) {
-    if (!confirm('Supprimer ce projet ?')) return;
-    if (id) {
-      const { error } = await sb.from('realisations').delete().eq('id', id);
-      if (error) { showToast('Erreur suppression : ' + error.message); return; }
-    }
-    btn.closest('.project-item').remove();
-    showToast('Projet supprimé.');
-  }
-
-  async function askDeleteProject(id, nom, btn) {
-    const modal = document.getElementById('delete-confirm-modal');
-    const nomSpan = document.getElementById('delete-project-name');
-    nomSpan.textContent = nom;
-    modal.dataset.projectId = id;
-    modal.dataset.btn = '';
-    window._deleteBtn = btn;
-    document.getElementById('delete-confirm-input').value = '';
-    document.getElementById('delete-confirm-error').style.display = 'none';
-    modal.style.display = 'flex';
-  }
-
-  function closeDeleteModal() {
-    document.getElementById('delete-confirm-modal').style.display = 'none';
-  }
-
-  async function confirmDelete() {
-    const modal = document.getElementById('delete-confirm-modal');
-    const input = document.getElementById('delete-confirm-input');
-    const err = document.getElementById('delete-confirm-error');
-    if (input.value.trim().toUpperCase() !== 'SUPPRIMER') {
-      err.style.display = 'block';
-      input.focus();
-      return;
-    }
-    const id = modal.dataset.projectId;
-    if (id) {
-      const { error } = await sb.from('realisations').delete().eq('id', id);
-      if (error) { showToast('Erreur suppression : ' + error.message); closeDeleteModal(); return; }
-    }
-    if (window._deleteBtn) window._deleteBtn.closest('.project-item').remove();
-    closeDeleteModal();
-    showToast('Projet supprimé définitivement.');
-  }
-
-  async function toggleStatut(btn, id, currentStatut) {
-    const item = btn.closest('.project-item');
-    const statutField = item.querySelector('.proj-statut');
-    const newStatut = currentStatut === 'masque' ? 'visible' : 'masque';
-    if (id) {
-      const { error } = await sb.from('realisations').update({ statut: newStatut }).eq('id', id);
-      if (error) { showToast('Erreur : ' + error.message); return; }
-    }
-    statutField.value = newStatut;
-    btn.textContent = newStatut === 'masque' ? '👁 Afficher' : '🙈 Masquer';
-    btn.setAttribute('onclick', `toggleStatut(this, '${id}', '${newStatut}')`);
-    showToast(newStatut === 'masque' ? 'Projet masqué sur le site public.' : 'Projet visible sur le site public.');
-  }
-
-  async function toggleArchive(btn, id, currentStatut) {
-    const item = btn.closest('.project-item');
-    const statutField = item.querySelector('.proj-statut');
-    const newStatut = currentStatut === 'archive' ? 'visible' : 'archive';
-    if (id) {
-      const { error } = await sb.from('realisations').update({ statut: newStatut }).eq('id', id);
-      if (error) { showToast('Erreur : ' + error.message); return; }
-    }
-    statutField.value = newStatut;
-    btn.textContent = newStatut === 'archive' ? '📤 Désarchiver' : '📦 Archiver';
-    btn.setAttribute('onclick', `toggleArchive(this, '${id}', '${newStatut}')`);
-    showToast(newStatut === 'archive' ? 'Projet archivé.' : 'Projet désarchivé.');
-  }
-
-  async function uploadImage(input, urlField) {
-    const file = input.files[0];
-    if (!file) return;
-    showToast('Upload en cours...');
-    const ext = file.name.split('.').pop();
-    const filename = 'proj-' + Date.now() + '.' + ext;
-    const { error } = await sb.storage.from('realisations').upload(filename, file, { upsert: true });
-    if (error) { showToast('Erreur upload : ' + error.message); return; }
-    const { data } = sb.storage.from('realisations').getPublicUrl(filename);
-    urlField.value = data.publicUrl;
-    showToast('Image uploadée.');
-  }
-
-  function addProject() {
-    const container = document.getElementById('projects-list');
-    const count = container.querySelectorAll('.project-item').length;
-    const div = document.createElement('div');
-    div.className = 'project-item';
-    div.dataset.id = '';
-    div.innerHTML = `
-      <div class="project-item-header">
-        <span class="project-item-num">Nouveau projet</span>
-        <div style="display:flex;gap:0.5rem;align-items:center">
-          <button class="proj-toggle-btn" onclick="toggleStatut(this, '', 'visible')" style="font-size:0.78rem;padding:0.3rem 0.7rem;border-radius:6px;border:1px solid var(--grid);background:white;color:var(--steel);cursor:pointer">🙈 Masquer</button>
-          <button onclick="toggleArchive(this, '', 'visible')" style="font-size:0.78rem;padding:0.3rem 0.7rem;border-radius:6px;border:1px solid var(--grid);background:white;color:var(--steel);cursor:pointer">📦 Archiver</button>
-          <button class="admin-remove-btn" onclick="this.closest('.project-item').remove()">🗑 Supprimer</button>
-        </div>
-      </div>
-      <input type="hidden" class="proj-statut" value="visible" />
-      <div class="form-row">
-        <div class="fgrp"><label>Nom / Client</label><input type="text" class="proj-name" value="" /></div>
-        <div class="fgrp"><label>Secteur (affiché)</label><input type="text" class="proj-sector" value="" placeholder="ex : Transport, Construction..." /></div>
-      </div>
-      <div class="form-row">
-        <div class="fgrp">
-          <label>Categorie (filtre)</label>
-          <select class="proj-category" style="background:var(--alabaster);border:1px solid var(--grid);border-radius:8px;padding:0.75rem 1rem;color:var(--midnight);font-size:0.9rem;outline:none;width:100%">
-            <option value="btp">BTP / Construction</option>
-            <option value="restaurant">Restaurant</option>
-            <option value="boutique">Boutique</option>
-            <option value="bien-etre">Bien-être</option>
-            <option value="autre" selected>Autre</option>
-          </select>
-        </div>
-        <div class="fgrp"><label>Ordre d'affichage</label><input type="number" class="proj-ordre" value="${count}" style="background:var(--alabaster);border:1px solid var(--grid);border-radius:8px;padding:0.75rem 1rem;width:100%;font-size:0.9rem" /></div>
-      </div>
-      <div class="fgrp"><label>Description courte (carte)</label><textarea class="proj-desc"></textarea></div>
-      <div class="fgrp"><label>Description détaillée</label><textarea class="proj-detail-desc" style="min-height:110px"></textarea></div>
-      <div class="fgrp">
-        <label>Image (upload ou URL directe)</label>
-        <input type="text" class="proj-image-url" value="" placeholder="https://... ou uploader ci-dessous" style="margin-bottom:0.5rem" />
-        <input type="file" accept="image/*" onchange="uploadImage(this, this.previousElementSibling)" style="font-size:0.8rem;color:var(--steel)" />
-      </div>
-      <div class="fgrp"><label>URL du site client</label><input type="text" class="proj-url" value="" placeholder="https://..." /></div>
-    `;
-    container.appendChild(div);
-    div.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
-
   /* ── Contact ── */
   function initContact() {
     const data = LS.get('contact', { whatsapp: '262XXXXXXXXX', email: 'fondationstudio.fr@gmail.com' });
@@ -742,70 +508,10 @@
     document.getElementById('c-email').value = data.email || '';
   }
 
-  async function saveRealisations() {
-    const toUpdate = [];
-    const toInsert = [];
-
-    document.querySelectorAll('.project-item').forEach((item, i) => {
-      const id = item.dataset.id;
-      const statutEl = item.querySelector('.proj-statut');
-      const row = {
-        name: item.querySelector('.proj-name').value,
-        sector: item.querySelector('.proj-sector').value,
-        category: item.querySelector('.proj-category').value,
-        description: item.querySelector('.proj-desc').value,
-        detail_desc: item.querySelector('.proj-detail-desc').value,
-        image_url: item.querySelector('.proj-image-url').value,
-        site_url: item.querySelector('.proj-url').value,
-        ordre: parseInt(item.querySelector('.proj-ordre').value) || i
-      };
-      if (statutEl) row.statut = statutEl.value || 'visible';
-      if (id) { row.id = id; toUpdate.push(row); }
-      else { toInsert.push(row); }
-    });
-
-    // Mettre à jour les projets existants
-    if (toUpdate.length) {
-      const { error } = await sb.from('realisations').upsert(toUpdate, { onConflict: 'id' });
-      if (error) {
-        // Si erreur sur colonne statut absente, retry sans statut
-        if (error.message && error.message.includes('statut')) {
-          toUpdate.forEach(r => delete r.statut);
-          const { error: e2 } = await sb.from('realisations').upsert(toUpdate, { onConflict: 'id' });
-          if (e2) { showToast('Erreur : ' + e2.message); return; }
-        } else { showToast('Erreur : ' + error.message); return; }
-      }
-    }
-
-    // Insérer les nouveaux projets (Supabase génère l'UUID)
-    if (toInsert.length) {
-      const rowsNoStatut = toInsert.map(r => { const c = {...r}; delete c.statut; return c; });
-      const { error } = await sb.from('realisations').insert(rowsNoStatut);
-      if (error) { showToast('Erreur insertion : ' + error.message); return; }
-    }
-
-    showToast('Réalisations sauvegardées dans Supabase.');
-    await initRealisations();
-  }
-
   /* ── Helpers ── */
   function escHtml(str) {
     return String(str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
 </script>
-<!-- Modal confirmation suppression -->
-<div id="delete-confirm-modal" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:1.5rem">
-  <div style="background:white;border-radius:16px;padding:2rem;max-width:440px;width:100%;position:relative">
-    <h3 style="font-weight:800;font-size:1.15rem;margin-bottom:0.5rem;color:#0F172A">Supprimer ce projet ?</h3>
-    <p style="font-size:0.88rem;color:#64748B;line-height:1.6;margin-bottom:1.25rem">Cette action est <strong>irréversible</strong>. Le projet <strong id="delete-project-name"></strong> sera définitivement supprimé de Supabase.</p>
-    <p style="font-size:0.82rem;color:#0F172A;margin-bottom:0.5rem;font-weight:600">Tapez <code style="background:#FEF2F2;color:#DC2626;padding:0.1rem 0.4rem;border-radius:4px;font-family:monospace">SUPPRIMER</code> pour confirmer :</p>
-    <input type="text" id="delete-confirm-input" placeholder="SUPPRIMER" style="width:100%;border:1.5px solid #E5E5E1;border-radius:8px;padding:0.75rem 1rem;font-size:0.9rem;outline:none;margin-bottom:0.5rem;font-family:inherit" oninput="this.style.borderColor=this.value.toUpperCase()==='SUPPRIMER'?'#22c55e':'#E5E5E1'" />
-    <p id="delete-confirm-error" style="display:none;color:#DC2626;font-size:0.8rem;margin-bottom:0.75rem">⚠ Tapez exactement "SUPPRIMER" en majuscules.</p>
-    <div style="display:flex;gap:0.75rem;justify-content:flex-end;margin-top:1rem">
-      <button onclick="closeDeleteModal()" style="padding:0.65rem 1.25rem;border-radius:8px;border:1px solid #E5E5E1;background:white;font-size:0.88rem;font-weight:600;cursor:pointer;color:#64748B">Annuler</button>
-      <button onclick="confirmDelete()" style="padding:0.65rem 1.4rem;border-radius:8px;background:#DC2626;color:white;border:none;font-size:0.88rem;font-weight:700;cursor:pointer">Supprimer définitivement</button>
-    </div>
-  </div>
-</div>
 </body>
 </html>

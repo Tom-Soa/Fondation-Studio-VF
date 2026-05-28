@@ -316,8 +316,8 @@
   <div class="container">
     <div class="faq-hero-inner">
       <div class="faq-hero-label reveal">Questions fréquentes</div>
-      <h1 class="reveal">Tout ce que vous voulez <em>savoir.</em></h1>
-      <p class="faq-hero-sub reveal">Délais, tarifs, propriété, SEO : les réponses claires à vos vraies questions.</p>
+      <h1 class="reveal" data-s="heroTitre">Tout ce que vous voulez <em>savoir.</em></h1>
+      <p class="faq-hero-sub reveal" data-s="heroSousTitre">Délais, tarifs, propriété, SEO : les réponses claires à vos vraies questions.</p>
     </div>
   </div>
 </section>
@@ -790,7 +790,7 @@
 <!-- CTA -->
 <section class="faq-cta">
   <div class="container">
-    <h2 class="reveal">Vous n'avez pas trouvé votre réponse ?<br><em>Parlons-en.</em></h2>
+    <h2 class="reveal" data-s="ctaTitre">Vous n'avez pas trouvé votre réponse ?<br><em>Parlons-en.</em></h2>
     <p class="reveal">On répond à toutes vos questions en moins de 24h.</p>
     <div class="reveal">
       <a href="contact.html" class="cta-btn" style="font-size:1.05rem;padding:1rem 2.4rem">
@@ -906,5 +906,19 @@
   })();
 </script>
 
+<script src="/cookie-consent.js"></script>
+<script src="/sanity-content.js"></script>
+<script>
+(function() {
+  sanityFetch('*[_type == "pageFaq" && _id == "page-faq"][0]').then(function(d) {
+    if (!d) return;
+    sanityApply(d, {
+      'heroTitre': 'heroTitre',
+      'heroSousTitre': 'heroSousTitre',
+      'ctaTitre': 'ctaTitre'
+    });
+  }).catch(function() {});
+})();
+</script>
 </body>
 </html>

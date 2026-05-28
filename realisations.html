@@ -672,13 +672,20 @@
 </footer>
 
 <script>
-  // ── Données projets (modifiables via admin.html) ──
-  var LS = {
-    get: function(k, d) { try { var v = localStorage.getItem('fs_admin_' + k); return v ? JSON.parse(v) : d; } catch(e) { return d; } }
-  };
+  // ── Données projets via Sanity CMS ──
+  var SANITY_PROJECT_ID = 'm2u2eg5e';
+  var SANITY_DATASET = 'production';
+  var SANITY_API_VERSION = '2021-10-21';
 
-  var SUPABASE_URL = 'https://ccteajpsdsecrkqvfnyl.supabase.co';
-  var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNjdGVhanBzZHNlY3JrcXZmbnlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczMTI1NjEsImV4cCI6MjA5Mjg4ODU2MX0.hOwrzZR5dVV11huCtp_xz2xKXJI25heAZrQEE76UB9w';
+  function sanityImageUrl(image) {
+    if (!image || !image.asset || !image.asset._ref) return '';
+    var ref = image.asset._ref; // "image-abc123def456-800x600-jpg"
+    var parts = ref.split('-');
+    var fmt = parts[parts.length - 1];
+    var dims = parts[parts.length - 2];
+    var id = parts.slice(1, parts.length - 2).join('-');
+    return 'https://cdn.sanity.io/images/' + SANITY_PROJECT_ID + '/' + SANITY_DATASET + '/' + id + '-' + dims + '.' + fmt;
+  }
 
   var defaultProjects = [];
 
@@ -756,18 +763,22 @@
       }
     });
 
-    // Charger projets depuis Supabase
-    fetch(SUPABASE_URL + '/rest/v1/realisations?select=*&order=ordre', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
-    })
+    // Charger projets depuis Sanity CDN
+    var groq = encodeURIComponent('*[_type == "realisation" && statut == "visible"] | order(ordre asc) { _id, nom, offre, description, image, siteUrl }');
+    fetch('https://' + SANITY_PROJECT_ID + '.apicdn.sanity.io/v' + SANITY_API_VERSION + '/data/query/' + SANITY_DATASET + '?query=' + groq)
     .then(function(r) { return r.json(); })
     .then(function(data) {
-      var projects = (data && data.length) ? data.filter(function(r) {
-        return !r.statut || r.statut === 'visible';
-      }).map(function(r) {
-        return { name: r.name, sector: r.sector, category: r.category,
-          desc: r.description, detailDesc: r.detail_desc,
-          imageUrl: r.image_url, siteUrl: r.site_url };
+      var items = data && data.result;
+      var projects = (items && items.length) ? items.map(function(r) {
+        return {
+          name: r.nom || '',
+          sector: r.offre || '',
+          category: 'all',
+          desc: r.description || '',
+          detailDesc: r.description || '',
+          imageUrl: r.image ? sanityImageUrl(r.image) : '',
+          siteUrl: r.siteUrl || ''
+        };
       }) : defaultProjects;
       renderProjects(projects);
     })
@@ -877,5 +888,22 @@
   </div>
 </div>
 
+<script src="/cookie-consent.js"></script>
+<script src="/sanity-content.js"></script>
+<script>
+(function() {
+  sanityFetch('*[_type == "pageRealisations" && _id == "page-realisations"][0]').then(function(d) {
+    if (!d) return;
+    sanityApply(d, {
+      'heroTitre': 'heroTitre',
+      'heroSousTitre': 'heroSousTitre',
+      'ctaTitre': 'ctaTitre',
+      'ctaDescription': 'ctaDescription',
+      'ctaPrincipal': 'ctaPrincipal',
+      'ctaSecondaire': 'ctaSecondaire'
+    });
+  }).catch(function() {});
+})();
+</script>
 </body>
 </html>

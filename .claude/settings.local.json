@@ -53,7 +53,13 @@
       "Bash(/opt/homebrew/bin/vercel --prod --yes)",
       "Bash(python3)",
       "Bash(grep -E \"\\\\.\\(jpg|jpeg|png|webp|heic\\)$\")",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(/Users/tomchazoule/.claude/plugins/cache/claude-plugins-official/superpowers/5.0.7/skills/brainstorming/scripts/start-server.sh --project-dir \"/Users/tomchazoule/Documents/Fondation Studio/Création de site/Fondation Studio\")",
+      "Bash(npx --yes create-next-app@latest site-next --ts --tailwind --app --no-src-dir --import-alias \"@/*\" --turbopack --no-eslint --use-npm --yes)",
+      "mcp__magic__21st_magic_component_inspiration",
+      "Bash(vercel whoami *)",
+      "Bash(curl -sI https://site-next-smoky.vercel.app)",
+      "Bash(curl -s https://site-next-smoky.vercel.app)"
     ]
   }
 }
