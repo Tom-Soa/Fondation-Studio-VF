@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+<link rel="apple-touch-icon" sizes="192x192" href="favicon.png" />
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Admin  :  Fondation Studio</title>
@@ -257,6 +260,10 @@
         <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
         Contact
       </button>
+      <button class="admin-nav-item" onclick="showPanel('testimonials')">
+        <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Temoignages
+      </button>
     </nav>
     <div class="admin-sidebar-footer">
       <button class="admin-logout" onclick="logout()">Deconnexion</button>
@@ -265,10 +272,6 @@
 
   <!-- Main content -->
   <main class="admin-main">
-
-    <div class="admin-note">
-      Note : ces modifications sont locales a ce navigateur. Pour les appliquer definitivement, transmettez les valeurs a votre developpeur.
-    </div>
 
     <!-- ── HOMEPAGE PANEL ── -->
     <div class="admin-panel active" id="panel-homepage">
@@ -387,6 +390,21 @@
       </div>
     </div>
 
+    <!-- ── TESTIMONIALS PANEL ── -->
+    <div class="admin-panel" id="panel-testimonials">
+      <div class="admin-page-title">Temoignages</div>
+      <div class="admin-page-sub">Les 4 temoignages affiches sur la page d'accueil</div>
+
+      <div id="testi-editor-list" style="display:flex;flex-direction:column;gap:1.5rem"></div>
+
+      <div style="display:flex;justify-content:flex-end;gap:1rem;margin-top:1.5rem">
+        <button class="admin-save-btn" onclick="saveTestimonials()">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          Enregistrer les temoignages
+        </button>
+      </div>
+    </div>
+
   </main>
 </div>
 
@@ -406,10 +424,17 @@
   function tryLogin() {
     const pwd = document.getElementById('admin-pwd').value;
     const err = document.getElementById('login-error');
+    const btn = document.querySelector('.login-btn');
     if (pwd === ADMIN_PASS) {
-      document.getElementById('login-screen').style.display = 'none';
-      document.getElementById('admin-app').style.display = 'flex';
-      initApp();
+      btn.textContent = 'Connexion...';
+      btn.disabled = true;
+      loadSupabase(function() {
+        document.getElementById('login-screen').style.display = 'none';
+        document.getElementById('admin-app').style.display = 'flex';
+        btn.textContent = 'Acceder au panneau';
+        btn.disabled = false;
+        initApp();
+      });
     } else {
       err.textContent = pwd.length === 0 ? 'Entrez le mot de passe.' : 'Mot de passe incorrect.';
       err.style.cssText = 'display:block;color:#f87171;font-size:0.85rem;margin-top:0.75rem;text-align:center';
@@ -442,6 +467,7 @@
   function initApp() {
     initHomepage();
     initContact();
+    initTestimonials();
   }
 
   /* ── Homepage ── */
@@ -480,7 +506,7 @@
     });
   }
 
-  function savePanel(panel) {
+  async function savePanel(panel) {
     if (panel === 'homepage') {
       const items = [];
       document.querySelectorAll('#solution-items > div').forEach(div => {
