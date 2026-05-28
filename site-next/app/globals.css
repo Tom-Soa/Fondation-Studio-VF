@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── BRAND COLORS (exact tokens from index.html) ─────────────────── */
+  --color-alabaster: #f9f9f7;
+  --color-midnight: #0f172a;
+  --color-terra: #c2410c;
+  --color-terra-hover: #9a3412;
+  --color-steel: #64748b;
+  --color-grid-line: #e5e5e1;
+
+  /* ── FONTS ──────────────────────────────────────────────────────── */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: var(--font-dm-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* ── EASINGS ────────────────────────────────────────────────────── */
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+
+  /* ── SHADOWS / GLOW ─────────────────────────────────────────────── */
+  --shadow-terra: 0 6px 20px 0 rgba(194, 65, 12, 0.35);
+  --shadow-card-light: 0 8px 24px rgba(15, 23, 42, 0.07);
+  --shadow-card-dark: 0 1px 0 rgba(255, 255, 255, 0.05) inset,
+    0 24px 60px -24px rgba(0, 0, 0, 0.6);
+
+  /* ── ANIMATIONS ─────────────────────────────────────────────────── */
+  --animate-marquee-y: marquee-y 22s linear infinite;
+  --animate-marquee-x: marquee-x 28s linear infinite;
+  --animate-grain: grain 8s steps(10) infinite;
+
+  @keyframes marquee-y {
+    from { transform: translateY(0); }
+    to { transform: translateY(-50%); }
+  }
+  @keyframes marquee-x {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes grain {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-5%, -10%); }
+    20% { transform: translate(-15%, 5%); }
+    30% { transform: translate(7%, -25%); }
+    40% { transform: translate(-5%, 25%); }
+    50% { transform: translate(-15%, 10%); }
+    60% { transform: translate(15%, 0); }
+    70% { transform: translate(0, 15%); }
+    80% { transform: translate(3%, 35%); }
+    90% { transform: translate(-10%, 10%); }
+  }
+}
+
+/* ── BASE (light by default — matches original index.html) ───────── */
+html {
+  background: var(--color-alabaster);
+  color: var(--color-midnight);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--color-alabaster);
+  color: var(--color-midnight);
+  font-family: var(--font-sans);
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-terra);
+  color: white;
+}
+
+/* ── FONT UTILITIES ──────────────────────────────────────────────── */
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* ── `em` from original — plain Inter, just terra coloring ───────── */
+em {
+  font-style: normal;
+  color: var(--color-terra);
+}
+
+/* ── GRAIN OVERLAY ──────────────────────────────────────────────── */
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  opacity: 0.13;
+  mix-blend-mode: overlay;
+  animation: var(--animate-grain);
+}
+
+/* ── REDUCED MOTION ─────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ── HERO GRADIENT MASK ─────────────────────────────────────────── */
+.hero-mask {
+  mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
+}
+
+/* ── BUTTON GLOW (terra) ────────────────────────────────────────── */
+.glow-terra {
+  box-shadow: 0 0 0 1px rgba(194, 65, 12, 0.30),
+    0 12px 36px -12px rgba(194, 65, 12, 0.55);
+}
+
+/* ── NAV LIVE INDICATOR ─────────────────────────────────────────── */
+.live-dot {
+  position: relative;
+}
+.live-dot::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 999px;
+  border: 1px solid rgba(194, 65, 12, 0.4);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0; }
+}

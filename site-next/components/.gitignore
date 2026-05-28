@@ -9,8 +9,3 @@
 
 # Dependencies
 node_modules/
-studio/node_modules/
-studio/dist/
-site-next/node_modules/
-site-next/.next/
-.vercel
