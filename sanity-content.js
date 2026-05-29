@@ -5,8 +5,8 @@
   var API_VERSION = '2021-10-21';
 
   window.sanityFetch = function(groq) {
-    var url = 'https://' + PROJECT_ID + '.apicdn.sanity.io/v' + API_VERSION + '/data/query/' + DATASET + '?query=' + encodeURIComponent(groq);
-    return fetch(url).then(function(r) { return r.json(); }).then(function(d) { return d.result || null; });
+    var url = 'https://' + PROJECT_ID + '.api.sanity.io/v' + API_VERSION + '/data/query/' + DATASET + '?query=' + encodeURIComponent(groq);
+    return fetch(url, { cache: 'no-store' }).then(function(r) { return r.json(); }).then(function(d) { return d.result || null; });
   };
 
   window.sanityImageUrl = function(image, width) {
