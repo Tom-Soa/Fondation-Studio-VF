@@ -26,7 +26,7 @@ export default function CGVPage() {
             <h2 className="font-display text-lg font-bold text-midnight mb-3">2. Prestations proposées</h2>
             <p>Fondation Studio propose notamment :</p>
             <ul className="mt-2 space-y-1 list-disc list-inside">
-              <li>Création de sites vitrines (forfaits Standard, Conversion, Prestige)</li>
+              <li>Création de sites vitrines (forfaits Standard, Conversion, Premium)</li>
               <li>Création de boutiques e-commerce Shopify</li>
               <li>Création de logo et identité visuelle</li>
               <li>Copywriting et rédaction web</li>

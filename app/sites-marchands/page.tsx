@@ -106,32 +106,46 @@ export default function SitesMarchandsPage() {
         </div>
       </section>
 
-      {/* Tarif */}
+      {/* Tarif : carte offre visuelle (même esprit que la page Tarifs) */}
       <section className="bg-white py-14 border-b border-grid-line">
-        <div className="max-w-3xl mx-auto px-6">
-          <div className="relative overflow-hidden rounded-[2rem] bg-terra px-8 py-10 lg:px-12 lg:py-12">
-            <div className="absolute inset-0 opacity-[0.10] mix-blend-overlay pointer-events-none" aria-hidden>
-              <svg className="w-full h-full"><filter id="cta-grain-tarif"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" /></filter><rect width="100%" height="100%" filter="url(#cta-grain-tarif)" /></svg>
+        <div className="max-w-md mx-auto px-6">
+          <div className="relative flex h-full flex-col rounded-3xl border border-terra bg-white p-7 shadow-[0_24px_60px_-24px_rgba(194,65,12,0.45)]">
+            <span className="absolute -top-3 left-7 inline-flex items-center gap-1.5 rounded-full bg-terra px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-white shadow-terra">
+              <Icon icon="fa6-brands:shopify" width={12} height={12} aria-hidden />
+              E-commerce Shopify
+            </span>
+            <div className="font-display text-xl font-bold text-midnight">Boutique en ligne</div>
+            <div className="mt-1 text-[13px] text-steel">Vendez vos produits, on s'occupe de tout</div>
+            <div className="mt-5 flex items-end gap-1">
+              <span className="mb-1.5 text-[13px] text-steel">À partir de</span>
+              <span className="font-display text-4xl font-extrabold tracking-tight text-midnight">3 900 €</span>
             </div>
-            <div className="absolute -top-20 right-0 w-64 h-64 rounded-full bg-white/10 blur-3xl pointer-events-none" aria-hidden />
-            <div className="relative flex flex-col lg:flex-row items-center gap-8">
-              <div className="text-center lg:text-left lg:flex-1">
-                <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.12em] text-white backdrop-blur-sm mb-4">
-                  <span className="h-1.5 w-1.5 rounded-full bg-white" />
-                  Tarif
-                </span>
-                <div className="font-display font-extrabold text-[clamp(2.5rem,6vw,4rem)] tracking-[-0.04em] text-white leading-none mb-3">
-                  Sur devis
-                </div>
-                <p className="text-[14.5px] text-white/80 leading-relaxed max-w-sm">
-                  À partir de <strong className="text-white">3 900 €</strong>. Selon la taille du catalogue et les fonctionnalités, certains projets montent à plusieurs dizaines de milliers d'euros.
-                </p>
-                <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-[13px] font-semibold text-white backdrop-blur-sm">
-                  <Icon icon="ph:gift-duotone" width={16} height={16} aria-hidden />
-                  1 mois de publicité Facebook &amp; Instagram ou Google offert
-                </p>
-              </div>
-              <a href="/contact" className="shrink-0 inline-flex items-center gap-2 rounded-full bg-white px-7 py-4 text-terra font-bold text-[15px] transition-transform hover:scale-[1.02] whitespace-nowrap">
+            <div className="mt-2 text-[12.5px] text-steel">Sur devis selon la taille du catalogue</div>
+
+            {/* Offre pub mise en avant */}
+            <div className="mt-4 flex items-center gap-2 rounded-xl bg-terra/8 border border-terra/20 px-3.5 py-3 text-[13px] font-semibold text-terra">
+              <Icon icon="ph:gift-duotone" width={18} height={18} className="shrink-0" aria-hidden />
+              1 mois de publicité Facebook &amp; Instagram ou Google offert
+            </div>
+
+            <div className="my-6 h-px bg-grid-line" />
+            <ul className="flex flex-col gap-3 mb-7">
+              {[
+                "Boutique Shopify sur-mesure",
+                "Catalogue, panier & paiement sécurisé",
+                "Gestion des commandes simplifiée",
+                "Design pensé pour vendre",
+                "SEO & visibilité sur Google",
+                "Hébergement & écosystème complet",
+              ].map((f) => (
+                <li key={f} className="flex items-start gap-2.5 text-[14px]">
+                  <Icon icon="lucide:check" width={18} height={18} className="mt-0.5 shrink-0 text-terra" aria-hidden />
+                  <span className="text-midnight/80">{f}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-auto">
+              <a href="/contact" className="flex w-full items-center justify-center gap-2 rounded-full bg-terra hover:bg-terra-hover px-5 py-3.5 text-[14px] font-bold text-white transition-all glow-terra">
                 Obtenir un devis gratuit
                 <Icon icon="lucide:arrow-right" width={16} height={16} aria-hidden />
               </a>

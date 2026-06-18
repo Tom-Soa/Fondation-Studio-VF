@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { OFFERS, depositLabel, PAYMENT_NOTE } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Détail des offres · Standard, Conversion, Prestige",
+  title: "Détail des offres · Standard, Conversion, Premium",
   description:
-    "Comparez nos trois offres de création de site (Standard, Conversion, Prestige) : ce qui est inclus, pour qui, et à quel prix. Site en propriété, hébergement gratuit, acompte 60 %.",
+    "Comparez nos trois offres de création de site (Standard, Conversion, Premium) : ce qui est inclus, pour qui, et à quel prix. Site en propriété, hébergement gratuit, acompte 60 %.",
 };
 
 const STEPS = [

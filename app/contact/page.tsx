@@ -94,11 +94,11 @@ export default function ContactPage() {
                 </a>
               ))}
               <a
-                href="/offres#prestige"
+                href="/offres#premium"
                 className="flex items-center justify-between rounded-xl border border-grid-line bg-alabaster px-4 py-3 hover:border-terra/40 transition-colors group"
               >
                 <div>
-                  <span className="text-[14px] font-semibold text-midnight">Prestige</span>
+                  <span className="text-[14px] font-semibold text-midnight">Premium</span>
                   <span className="text-[12px] text-steel ml-2">Sur devis</span>
                 </div>
                 <Icon icon="lucide:arrow-right" width={14} height={14} className="text-steel group-hover:text-terra transition-colors" aria-hidden />

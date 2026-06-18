@@ -20,7 +20,7 @@ export interface Offer {
   ctaLabel: string;
   highlighted?: boolean;
   badge?: string;
-  quoteOnly?: boolean; // Prestige : sur devis, pas de paiement direct
+  quoteOnly?: boolean; // Premium : sur devis, pas de paiement direct
   paymentUrl?: string; // Stripe Payment Link (acompte 60%) — à fournir par le client
 }
 
@@ -33,8 +33,9 @@ export const OFFERS: Offer[] = [
     forWho: "PME locale, budget maîtrisé",
     features: [
       { text: "Site vitrine jusqu'à 5 pages", included: true },
-      { text: "Design sur-mesure", included: true },
-      { text: "Copywriting stratégique", included: false },
+      { text: "Design sur-mesure pensé pour vendre", included: true },
+      { text: "Optimisation du texte", included: false },
+      { text: "Gestion autonome de votre site", included: false },
       { text: "Animations & interactions", included: false },
       { text: "SEO technique de base", included: true },
       { text: "Formulaire de contact", included: true },
@@ -54,8 +55,9 @@ export const OFFERS: Offer[] = [
     forWho: "PME ambitieuse, croissance accélérée",
     features: [
       { text: "Site vitrine jusqu'à 8 pages", included: true },
-      { text: "Design sur-mesure orienté conversion", included: true },
-      { text: "Copywriting stratégique inclus", included: true },
+      { text: "Design sur-mesure pensé pour vendre", included: true },
+      { text: "Optimisation du texte incluse", included: true },
+      { text: "Autonomie sur votre site (jusqu'à 80%)", included: true },
       { text: "Animations & interactions", included: true },
       { text: "SEO technique avancé", included: true },
       { text: "Intégration d'outils & formulaires avancés", included: true },
@@ -70,15 +72,16 @@ export const OFFERS: Offer[] = [
     paymentUrl: "",
   },
   {
-    slug: "prestige",
-    name: "Prestige",
+    slug: "premium",
+    name: "Premium",
     price: "2 400 €",
     priceNote: "À partir de",
     forWho: "Image ultra premium · sur devis",
     features: [
       { text: "Pages illimitées & fonctionnalités sur-mesure", included: true },
-      { text: "Design ultra premium", included: true },
-      { text: "Copywriting ultra premium", included: true },
+      { text: "Design ultra premium pensé pour vendre", included: true },
+      { text: "Optimisation du texte premium", included: true },
+      { text: "Autonomie totale : modifiez textes & images vous-même", included: true },
       { text: "Animations & effets visuels premium", included: true },
       { text: "SEO technique avancé + audit de performances", included: true },
       { text: "Intégration IA & outils avancés", included: true },
@@ -162,7 +165,7 @@ export interface Service {
 export const SERVICES: Service[] = [
   {
     title: "Boutique en ligne Shopify",
-    price: "À partir de 2 900 €",
+    price: "À partir de 3 900 €",
     description:
       "Vous vendez vos produits en ligne ? On crée votre boutique Shopify complète : catalogue, panier, paiement sécurisé et gestion des commandes. Pensée pour vendre, simple à gérer au quotidien.",
   },
@@ -225,7 +228,7 @@ export const SHOWCASE: ShowcaseItem[] = [
     src: "/showcase/elity.jpg",
     alt: "Site web Elity Conseils",
     name: "Elity Conseils",
-    offer: "Offre Prestige",
+    offer: "Offre Premium",
     sector: "Conseil / cession d'entreprise",
     duration: "4 semaines",
     type: "Site vitrine premium",
@@ -239,7 +242,7 @@ export const SHOWCASE: ShowcaseItem[] = [
     name: "Roboli Audio",
     offer: "E-commerce Shopify",
     sector: "Hi-Fi / produits audio",
-    duration: "5 semaines",
+    duration: "4 semaines",
     type: "Boutique e-commerce",
     summary:
       "Boutique en ligne pour une marque de câbles et meubles Hi-Fi artisanaux. Catalogue produits, panier, paiement sécurisé et mise en avant de la garantie à vie.",
@@ -285,7 +288,7 @@ export const SHOWCASE: ShowcaseItem[] = [
     src: "/showcase/sico-prefa.jpg",
     alt: "Site web Sico Prefa",
     name: "Sico Prefa",
-    offer: "Offre Prestige",
+    offer: "Offre Premium",
     sector: "Construction préfabriquée",
     duration: "4 semaines",
     type: "Site vitrine premium",
@@ -492,11 +495,11 @@ export interface FaqItem {
 export const FAQ: FaqItem[] = [
   {
     q: "Combien coûte un site ?",
-    a: "Nos offres démarrent à 1 400 € pour un site vitrine sur-mesure (offre Standard), 2 400 € pour l'offre Conversion, et sur devis pour l'offre Prestige. Votre site vous appartient totalement, sans abonnement caché.",
+    a: "Nos offres démarrent à 1 400 € pour un site vitrine sur-mesure (offre Standard), 1 900 € pour l'offre Conversion, et à partir de 2 400 € sur devis pour l'offre Premium. Votre site vous appartient totalement, sans abonnement caché.",
   },
   {
     q: "En combien de temps mon site est-il livré ?",
-    a: "Entre 14 et 21 jours pour l'offre Standard, 21 à 30 jours pour Conversion, et 30 à 45 jours pour Prestige. Chaque étape a une date et un livrable précis.",
+    a: "Entre 2 et 4 semaines selon l'offre et la complexité du projet. Chaque étape a une date et un livrable précis.",
   },
   {
     q: "Le site m'appartient-il vraiment ?",

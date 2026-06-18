@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { Icon } from "@iconify/react";
 import { SHOWCASE, type ShowcaseItem } from "@/lib/content";
 
-const OFFER_FILTERS = ["Tous", "Offre Standard", "Offre Conversion", "Offre Prestige", "E-commerce Shopify"];
+const OFFER_FILTERS = ["Tous", "Offre Standard", "Offre Conversion", "Offre Premium", "E-commerce Shopify"];
 const TYPE_FILTERS = ["Tous types", "Site vitrine", "Site vitrine premium", "Boutique e-commerce"];
 
 export default function RealisationsGrid() {
