@@ -76,7 +76,7 @@ export default function Pricing({
               <div className="flex flex-wrap items-center gap-3 mb-2">
                 <h3 className="font-display text-xl font-bold text-midnight">On crée aussi des sites marchands</h3>
                 <span className="rounded-full bg-terra/10 px-3 py-1 text-[11px] font-semibold text-terra">E-commerce Shopify</span>
-                <span className="rounded-full border border-midnight/15 px-3 py-1 text-[11px] font-semibold text-midnight">À partir de 2 900 €</span>
+                <span className="rounded-full border border-midnight/15 px-3 py-1 text-[11px] font-semibold text-midnight">À partir de 3 900 €</span>
               </div>
               <p className="text-[14.5px] leading-relaxed text-steel max-w-2xl">
                 Vous vendez vos produits en ligne ? On crée votre boutique complète : catalogue,

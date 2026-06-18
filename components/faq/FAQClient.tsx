@@ -21,7 +21,7 @@ const FAQ_CATEGORIES = [
     id: "tarifs",
     label: "Tarifs et paiement",
     questions: [
-      { q: "Quels sont vos tarifs ?", a: "Nos forfaits démarrent à 1 400 € (Standard, jusqu'à 5 pages), 1 900 € (Conversion, jusqu'à 8 pages avec copywriting), et 2 400 € et plus (Prestige, sur devis). Les boutiques e-commerce Shopify démarrent à 3 000 €." },
+      { q: "Quels sont vos tarifs ?", a: "Nos forfaits démarrent à 1 400 € (Standard, jusqu'à 5 pages), 1 900 € (Conversion, jusqu'à 8 pages avec copywriting), et 2 400 € et plus (Prestige, sur devis). Les boutiques e-commerce Shopify démarrent à 3 900 €, avec 1 mois de publicité Facebook & Instagram ou Google offert." },
       { q: "Comment se passe le paiement ?", a: "Un acompte de 60 % est demandé à la commande pour démarrer le projet. Le solde de 40 % est réglé à la livraison, une fois que vous avez validé votre site." },
       { q: "Peut-on payer en plusieurs fois ?", a: "Oui, le paiement en plusieurs fois est possible. On en discute lors de l'appel de découverte selon votre situation." },
       { q: "Les prix incluent-ils la TVA ?", a: "Nos tarifs sont hors taxes. La TVA n'est pas applicable (article 293 B du CGI). Vous ne payez pas de TVA sur nos prestations." },
@@ -83,7 +83,7 @@ const FAQ_CATEGORIES = [
     id: "ecommerce",
     label: "E-commerce",
     questions: [
-      { q: "Faites-vous des boutiques en ligne ?", a: "Oui. On crée des boutiques Shopify complètes : catalogue, panier, paiement sécurisé, gestion des commandes. Tarif à partir de 3 000 €, sur devis selon votre catalogue." },
+      { q: "Faites-vous des boutiques en ligne ?", a: "Oui. On crée des boutiques Shopify complètes : catalogue, panier, paiement sécurisé, gestion des commandes. Tarif à partir de 3 900 €, sur devis selon votre catalogue. 1 mois de publicité Facebook & Instagram ou Google offert." },
       { q: "Pourquoi Shopify ?", a: "C'est la référence mondiale de l'e-commerce : fiable, sécurisé, facile à gérer au quotidien. Vous ajoutez des produits, gérez vos stocks et vos commandes sans aucune compétence technique." },
       { q: "Peut-on vendre à l'international ?", a: "Oui. On configure devises, langues, taxes et modes de livraison pour chaque marché. Boutique multilingue et multi-devises tout à fait réalisable." },
       { q: "Quels modes de paiement peut-on intégrer ?", a: "Tous les grands moyens de paiement via Shopify Payments : CB, Apple Pay, Google Pay, PayPal, et plus. Paiement sécurisé par défaut." },

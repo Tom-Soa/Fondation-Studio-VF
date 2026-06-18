@@ -5,7 +5,7 @@ import { Reveal } from "@/components/ui/Reveal";
 export const metadata: Metadata = {
   title: "Création de boutique e-commerce Shopify · Fondation Studio",
   description:
-    "On crée votre boutique Shopify sur-mesure et on s'occupe de tout l'écosystème : publicité Meta & Google, newsletter, SEO, relances email. À partir de 2 900 €, sur devis.",
+    "On crée votre boutique Shopify sur-mesure et on s'occupe de tout l'écosystème : publicité Meta & Google, newsletter, SEO, relances email. À partir de 3 900 €, sur devis. 1 mois de publicité offert.",
 };
 
 const SHOPIFY_ATOUTS = [
@@ -85,7 +85,7 @@ export default function SitesMarchandsPage() {
         <div className="max-w-4xl mx-auto px-6 text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-grid-line bg-white px-4 py-1.5 shadow-card-light mb-6">
             <Icon icon="fa6-brands:shopify" width={15} height={15} className="text-[#5E8E3E]" aria-hidden />
-            <span className="text-[12px] font-semibold text-midnight/70">E-commerce Shopify · À partir de 2 900 €</span>
+            <span className="text-[12px] font-semibold text-midnight/70">E-commerce Shopify · À partir de 3 900 €</span>
           </div>
           <h1 className="font-display font-extrabold tracking-[-0.035em] text-[clamp(2.5rem,6.5vw,5rem)] leading-[1.02] text-midnight">
             Une boutique en ligne{" "}
@@ -124,7 +124,11 @@ export default function SitesMarchandsPage() {
                   Sur devis
                 </div>
                 <p className="text-[14.5px] text-white/80 leading-relaxed max-w-sm">
-                  À partir de <strong className="text-white">2 900 €</strong>. Selon la taille du catalogue et les fonctionnalités, certains projets montent à plusieurs dizaines de milliers d'euros.
+                  À partir de <strong className="text-white">3 900 €</strong>. Selon la taille du catalogue et les fonctionnalités, certains projets montent à plusieurs dizaines de milliers d'euros.
+                </p>
+                <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-[13px] font-semibold text-white backdrop-blur-sm">
+                  <Icon icon="ph:gift-duotone" width={16} height={16} aria-hidden />
+                  1 mois de publicité Facebook &amp; Instagram ou Google offert
                 </p>
               </div>
               <a href="/contact" className="shrink-0 inline-flex items-center gap-2 rounded-full bg-white px-7 py-4 text-terra font-bold text-[15px] transition-transform hover:scale-[1.02] whitespace-nowrap">
