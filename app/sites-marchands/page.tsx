@@ -106,30 +106,42 @@ export default function SitesMarchandsPage() {
         </div>
       </section>
 
-      {/* Tarif : carte offre visuelle (même esprit que la page Tarifs) */}
+      {/* Tarif : carte offre visuelle horizontale (rectangle large sur desktop) */}
       <section className="bg-white py-14 border-b border-grid-line">
-        <div className="max-w-md mx-auto px-6">
-          <div className="relative flex h-full flex-col rounded-3xl border border-terra bg-white p-7 shadow-[0_24px_60px_-24px_rgba(194,65,12,0.45)]">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="relative grid gap-8 lg:grid-cols-[1.1fr_1px_1fr] rounded-3xl border border-terra bg-white p-7 lg:p-9 shadow-[0_24px_60px_-24px_rgba(194,65,12,0.45)]">
             <span className="absolute -top-3 left-7 inline-flex items-center gap-1.5 rounded-full bg-terra px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-white shadow-terra">
               <Icon icon="fa6-brands:shopify" width={12} height={12} aria-hidden />
               E-commerce Shopify
             </span>
-            <div className="font-display text-xl font-bold text-midnight">Boutique en ligne</div>
-            <div className="mt-1 text-[13px] text-steel">Vendez vos produits, on s'occupe de tout</div>
-            <div className="mt-5 flex items-end gap-1">
-              <span className="mb-1.5 text-[13px] text-steel">À partir de</span>
-              <span className="font-display text-4xl font-extrabold tracking-tight text-midnight">3 900 €</span>
-            </div>
-            <div className="mt-2 text-[12.5px] text-steel">Sur devis selon la taille du catalogue</div>
 
-            {/* Offre pub mise en avant */}
-            <div className="mt-4 flex items-center gap-2 rounded-xl bg-terra/8 border border-terra/20 px-3.5 py-3 text-[13px] font-semibold text-terra">
-              <Icon icon="ph:gift-duotone" width={18} height={18} className="shrink-0" aria-hidden />
-              1 mois de publicité Facebook &amp; Instagram ou Google offert
+            {/* Colonne gauche : identité + prix + offre + CTA */}
+            <div className="flex flex-col">
+              <div className="font-display text-2xl font-bold text-midnight">Boutique en ligne</div>
+              <div className="mt-1 text-[13px] text-steel">Vendez vos produits, on s'occupe de tout</div>
+              <div className="mt-5 flex items-end gap-1">
+                <span className="mb-1.5 text-[13px] text-steel">À partir de</span>
+                <span className="font-display text-4xl font-extrabold tracking-tight text-midnight">3 900 €</span>
+              </div>
+              <div className="mt-2 text-[12.5px] text-steel">Sur devis selon la taille du catalogue</div>
+
+              {/* Offre pub mise en avant */}
+              <div className="mt-4 flex items-center gap-2 rounded-xl bg-terra/8 border border-terra/20 px-3.5 py-3 text-[13px] font-semibold text-terra">
+                <Icon icon="ph:gift-duotone" width={18} height={18} className="shrink-0" aria-hidden />
+                1 mois de publicité Facebook &amp; Instagram ou Google offert
+              </div>
+
+              <a href="/contact" className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-terra hover:bg-terra-hover px-6 py-3.5 text-[14px] font-bold text-white transition-all glow-terra">
+                Obtenir un devis gratuit
+                <Icon icon="lucide:arrow-right" width={16} height={16} aria-hidden />
+              </a>
             </div>
 
-            <div className="my-6 h-px bg-grid-line" />
-            <ul className="flex flex-col gap-3 mb-7">
+            {/* Séparateur (vertical sur desktop, horizontal sur mobile) */}
+            <div className="h-px w-full lg:h-full lg:w-px bg-grid-line" aria-hidden />
+
+            {/* Colonne droite : features */}
+            <ul className="flex flex-col justify-center gap-3.5">
               {[
                 "Boutique Shopify sur-mesure",
                 "Catalogue, panier & paiement sécurisé",
@@ -144,12 +156,6 @@ export default function SitesMarchandsPage() {
                 </li>
               ))}
             </ul>
-            <div className="mt-auto">
-              <a href="/contact" className="flex w-full items-center justify-center gap-2 rounded-full bg-terra hover:bg-terra-hover px-5 py-3.5 text-[14px] font-bold text-white transition-all glow-terra">
-                Obtenir un devis gratuit
-                <Icon icon="lucide:arrow-right" width={16} height={16} aria-hidden />
-              </a>
-            </div>
           </div>
         </div>
       </section>
