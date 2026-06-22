@@ -34,6 +34,32 @@ export default function Footer() {
                 </svg>
                 fondationstudio.fr@gmail.com
               </a>
+              <a
+                href="https://www.instagram.com/tomso.ads"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-white/55 hover:text-white transition-colors"
+              >
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+                @tomso.ads
+              </a>
+              <a
+                href="https://www.linkedin.com/in/tom-soa-cyprien-934798333/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-white/55 hover:text-white transition-colors"
+              >
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                  <rect x="2" y="9" width="4" height="12" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+                Tom Soa Cyprien
+              </a>
             </div>
           </div>
 
