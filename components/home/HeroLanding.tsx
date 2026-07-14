@@ -7,26 +7,7 @@ import { Icon } from "@iconify/react";
 import { MockupCard } from "@/components/ui/MockupCard";
 import HeroBackground from "@/components/ui/HeroBackground";
 import { SHOWCASE } from "@/lib/content";
-import type { PageAccueilData } from "@/lib/sanity";
 
-// Le contenu du hero est éditable via Sanity. On assainit systématiquement les
-// valeurs reçues pour garantir qu'aucun prix ni CTA obsolète ne s'affiche, même
-// si l'ancien contenu Sanity n'a pas été mis à jour.
-function stripPrix(text?: string): string | undefined {
-  if (!text) return text;
-  // Retire toute mention de prix : "À partir de 1 400 €.", "1 400€", "dès 900 €", etc.
-  return text
-    .replace(/\s*(à partir de|dès|a partir de)?\s*\d[\d\s ]*€\.?/gi, "")
-    .replace(/\s{2,}/g, " ")
-    .trim();
-}
-
-function cleanCta(cta?: string): string | undefined {
-  if (!cta) return cta;
-  // Les anciens CTA trop vagues sont remplacés par un intitulé clair.
-  if (/d[ée]marrer/i.test(cta)) return "Obtenir un devis";
-  return cta;
-}
 
 // Une ligne d'aperçus. `reverse` inverse le sens de défilement, `offset`
 // décale le point de départ pour que les 2 lignes ne soient pas alignées.
@@ -47,7 +28,7 @@ function MarqueeRow({ reverse = false, offset = 0 }: { reverse?: boolean; offset
   );
 }
 
-export default function HeroLanding({ data }: { data?: PageAccueilData | null }) {
+export default function HeroLanding() {
   return (
     <header className="relative isolate overflow-hidden bg-alabaster pt-28 lg:pt-36 pb-16" style={{ transform: "translateZ(0)" }}>
       {/* Halo terracotta */}
@@ -97,8 +78,7 @@ export default function HeroLanding({ data }: { data?: PageAccueilData | null })
           transition={{ duration: 0.7, delay: 0.25 }}
           className="mt-7 max-w-2xl mx-auto text-[clamp(1rem,1.3vw,1.2rem)] leading-relaxed text-midnight/70"
         >
-          {stripPrix(data?.heroSousTitre) ??
-            "Un site qui dure des années et qui inspire confiance à vos visiteurs. On réalise gratuitement votre page d'accueil, avant tout engagement."}
+          {"Un site qui dure des années et qui inspire confiance à vos visiteurs. On réalise gratuitement votre page d'accueil, avant tout engagement."}
         </motion.p>
 
         {/* CTAs */}
@@ -112,7 +92,7 @@ export default function HeroLanding({ data }: { data?: PageAccueilData | null })
             href="/contact"
             className="group inline-flex items-center gap-2.5 rounded-full bg-terra hover:bg-terra-hover px-7 py-4 text-white font-semibold text-[15px] transition-all glow-terra"
           >
-            {cleanCta(data?.heroCta) ?? "Obtenir un devis"}
+            Obtenir un devis
             <Icon icon="lucide:arrow-right" width={16} height={16} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
           </a>
           <a

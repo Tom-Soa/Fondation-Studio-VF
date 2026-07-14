@@ -6,21 +6,18 @@ import Pricing from "@/components/home/Pricing";
 import Comparison from "@/components/home/Comparison";
 import FaqLanding from "@/components/home/FaqLanding";
 import CtaBand from "@/components/home/CtaBand";
-import { getPageAccueil } from "@/lib/sanity";
 
-export default async function Home() {
-  const data = await getPageAccueil();
-
+export default function Home() {
   return (
     <main className="relative">
-      <HeroLanding data={data} />
+      <HeroLanding />
       <StatementBand />
       <Showcase />
       <Process />
       <Pricing />
       <Comparison />
       <FaqLanding />
-      <CtaBand data={data} />
+      <CtaBand />
     </main>
   );
 }

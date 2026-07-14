@@ -3,9 +3,8 @@
 
 import { motion } from "motion/react";
 import { Icon } from "@iconify/react";
-import type { PageAccueilData } from "@/lib/sanity";
 
-export default function CtaBand({ data }: { data?: PageAccueilData | null }) {
+export default function CtaBand() {
   return (
     <section id="cta" className="bg-alabaster py-16 lg:py-24">
       <div className="max-w-7xl mx-auto px-6">
@@ -43,15 +42,14 @@ export default function CtaBand({ data }: { data?: PageAccueilData | null }) {
               <span className="font-emphasis font-normal">Offerte.</span>
             </h2>
             <p className="mt-6 max-w-xl mx-auto text-[clamp(1rem,1.2vw,1.15rem)] leading-relaxed text-white/85">
-              {data?.nobrainerDescription ??
-                "On échange lors d'un premier appel, puis on conçoit une vraie maquette sur-mesure. Si ça vous convient, on démarre."}
+              On échange lors d&apos;un premier appel, puis on conçoit une vraie maquette sur-mesure. Si ça vous convient, on démarre.
             </p>
             <div className="mt-9 flex flex-col items-center gap-3">
               <a
                 href="/contact"
                 className="group inline-flex items-center gap-3 rounded-full bg-white px-8 py-4 text-terra font-bold text-[16px] transition-transform hover:scale-[1.02]"
               >
-                {data?.nobrainerCta ?? "Réserver un appel gratuit"}
+                Réserver un appel gratuit
                 <Icon icon="lucide:arrow-right" width={18} height={18} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
               </a>
               <p className="text-[13px] text-white/80">Réponse rapide · sans engagement</p>
