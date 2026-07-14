@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
 import { Reveal } from "@/components/ui/Reveal";
 import { Icon } from "@iconify/react";
+import { JsonLd } from "@/components/JsonLd";
+import { personSchema, breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "L'équipe · Fondation Studio",
+  title: "L'équipe",
   description:
     "Tom-Soa Cyprien et Andylane Chatenay, entrepreneurs et fondateurs de Fondation Studio. On comprend les problématiques des entreprises de l'intérieur et on accompagne pour trouver des clients et se développer.",
+  alternates: { canonical: "/qui-sommes-nous" },
+  openGraph: {
+    title: "L'équipe · Fondation Studio",
+    description:
+      "Tom-Soa Cyprien et Andylane Chatenay, entrepreneurs et fondateurs de Fondation Studio.",
+  },
 };
 
 const VALEURS = [
@@ -29,6 +37,32 @@ const VALEURS = [
 export default function EquipePage() {
   return (
     <main>
+      <JsonLd
+        schema={[
+          personSchema({
+            name: "Tom-Soa Cyprien",
+            jobTitle: "Co-fondateur de Fondation Studio",
+            description:
+              "Entrepreneur, Tom-Soa Cyprien pilote la direction artistique, le parcours client et les stratégies d'acquisition payante (Meta, Google) chez Fondation Studio. Il conçoit des sites qui convertissent et des campagnes qui ramènent des clients.",
+            image: "/images/tom-soa.jpg",
+            sameAs: [
+              "https://www.instagram.com/tomso.ads",
+              "https://www.linkedin.com/in/tom-soa-cyprien-934798333/",
+            ],
+          }),
+          personSchema({
+            name: "Andylane Chatenay",
+            jobTitle: "Co-fondateur de Fondation Studio",
+            description:
+              "Entrepreneur expérimenté, Andylane Chatenay maîtrise le référencement naturel, l'optimisation des textes pour vendre et la stratégie commerciale chez Fondation Studio. Il aide les entrepreneurs à réduire leurs coûts et à trouver de meilleures solutions opérationnelles.",
+            image: "/images/andy-lan.png",
+          }),
+          breadcrumbSchema([
+            { name: "Accueil", path: "/" },
+            { name: "L'équipe", path: "/qui-sommes-nous" },
+          ]),
+        ]}
+      />
       {/* Hero */}
       <section className="relative isolate overflow-hidden bg-alabaster pt-32 pb-16 lg:pt-44 lg:pb-20">
         <div className="absolute inset-x-0 top-0 -z-10 h-[60vh]" style={{ background: "radial-gradient(60% 60% at 50% 0%, rgba(194,65,12,0.08) 0%, transparent 70%)" }} aria-hidden />

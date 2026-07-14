@@ -11,6 +11,12 @@ export const metadata: Metadata = {
   title: "Nos offres",
   description:
     "Forfaits sur devis, options à la carte, sites e-commerce Shopify et publicité Meta/Google. Site en propriété, acompte 60 %, paiement en plusieurs fois.",
+  alternates: { canonical: "/tarifs" },
+  openGraph: {
+    title: "Nos offres · Fondation Studio",
+    description:
+      "Forfaits sur devis, options à la carte, sites e-commerce Shopify et publicité Meta/Google. Site en propriété, paiement en plusieurs fois.",
+  },
 };
 
 export default function TarifsPage() {

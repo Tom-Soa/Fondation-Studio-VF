@@ -3,6 +3,8 @@ import { inter, dmMono, display, emphasis } from "@/lib/fonts";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Maintenance from "@/components/Maintenance";
+import { JsonLd } from "@/components/JsonLd";
+import { organizationSchema, websiteSchema } from "@/lib/schema";
 import "./globals.css";
 
 // Mode maintenance : passer à `false` puis redéployer pour réafficher le site complet.
@@ -13,6 +15,7 @@ const showMaintenance = MAINTENANCE && process.env.NODE_ENV === "production";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://fondationstudio.fr"),
+  alternates: { canonical: "/" },
   title: {
     default: "Fondation Studio · Sites web qui convertissent · Livrés en 21 jours",
     template: "%s | Fondation Studio",
@@ -52,30 +55,6 @@ export const metadata: Metadata = {
   },
 };
 
-// Schema.org Organization : déclare officiellement la marque et son logo à Google.
-// C'est ce balisage qui permet d'associer le logo Fondation Studio à la marque
-// dans les résultats de recherche (favicon + image de marque).
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "@id": "https://fondationstudio.fr/#organization",
-  name: "Fondation Studio",
-  url: "https://fondationstudio.fr",
-  logo: {
-    "@type": "ImageObject",
-    url: "https://fondationstudio.fr/icon.png",
-    width: 512,
-    height: 512,
-  },
-  image: "https://fondationstudio.fr/icon.png",
-  description:
-    "Studio web pour PME et artisans. Sites premium, design sur-mesure, hébergement gratuit, référencement intégré.",
-  email: "fondationstudio.fr@gmail.com",
-  telephone: "+33637999738",
-  areaServed: "FR",
-  sameAs: [],
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -87,10 +66,7 @@ export default function RootLayout({
       className={`${inter.variable} ${dmMono.variable} ${display.variable} ${emphasis.variable}`}
     >
       <body className="font-sans bg-alabaster text-midnight antialiased min-h-screen flex flex-col">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-        />
+        <JsonLd schema={[organizationSchema, websiteSchema]} />
         {showMaintenance ? (
           <Maintenance />
         ) : (

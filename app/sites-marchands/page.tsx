@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
 import { Icon } from "@iconify/react";
 import { Reveal } from "@/components/ui/Reveal";
+import { JsonLd } from "@/components/JsonLd";
+import { serviceSchema, breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Création de boutique e-commerce Shopify · Fondation Studio",
+  title: "Création de boutique e-commerce Shopify",
   description:
     "On crée votre boutique Shopify sur-mesure et on s'occupe de tout l'écosystème : publicité Meta & Google, newsletter, SEO, relances email. Sur devis. 1 mois de publicité offert.",
+  alternates: { canonical: "/sites-marchands" },
+  openGraph: {
+    title: "Création de boutique e-commerce Shopify",
+    description:
+      "Boutique Shopify sur-mesure et écosystème complet : publicité Meta & Google, newsletter, SEO. Sur devis. 1 mois de publicité offert.",
+  },
 };
 
 const SHOPIFY_ATOUTS = [
@@ -75,6 +83,21 @@ const PUB_STEPS = [
 export default function SitesMarchandsPage() {
   return (
     <main>
+      <JsonLd
+        schema={[
+          serviceSchema({
+            name: "Création de boutique e-commerce Shopify",
+            serviceType: "Création de boutique e-commerce",
+            description:
+              "Boutique Shopify sur-mesure et écosystème complet : publicité Meta & Google, newsletter, SEO, relances email. Sur devis, 1 mois de publicité offert.",
+            path: "/sites-marchands",
+          }),
+          breadcrumbSchema([
+            { name: "Accueil", path: "/" },
+            { name: "Sites marchands", path: "/sites-marchands" },
+          ]),
+        ]}
+      />
       {/* Hero + tarif intégré */}
       <section className="relative isolate overflow-hidden bg-alabaster pt-32 pb-20 lg:pt-44 lg:pb-28">
         <div

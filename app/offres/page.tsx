@@ -5,6 +5,12 @@ export const metadata: Metadata = {
   title: "Détail des offres · Standard, Conversion, Premium",
   description:
     "Comparez nos trois offres de création de site (Standard, Conversion, Premium) : ce qui est inclus et pour qui. Site en propriété, hébergement gratuit, devis personnalisé.",
+  alternates: { canonical: "/offres" },
+  openGraph: {
+    title: "Nos offres · Standard, Conversion, Premium",
+    description:
+      "Comparez nos trois offres de création de site : ce qui est inclus et pour qui. Site en propriété, hébergement gratuit, devis personnalisé.",
+  },
 };
 
 const STEPS = [

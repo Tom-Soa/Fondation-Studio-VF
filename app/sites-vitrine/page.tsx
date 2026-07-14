@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
 import { Icon } from "@iconify/react";
 import { Reveal } from "@/components/ui/Reveal";
+import { JsonLd } from "@/components/JsonLd";
+import { serviceSchema, breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Création de site vitrine pour PME et artisans",
   description:
     "Site vitrine sur-mesure pour PME, artisans et indépendants : design unique, référencement intégré, hébergement gratuit. Page d'accueil offerte avant tout engagement.",
+  alternates: { canonical: "/sites-vitrine" },
+  openGraph: {
+    title: "Création de site vitrine pour PME et artisans",
+    description:
+      "Site vitrine sur-mesure : design unique, référencement intégré, hébergement gratuit. Page d'accueil offerte avant tout engagement.",
+  },
 };
 
 const POUR_QUI = [
@@ -51,6 +59,21 @@ const ETAPES = [
 export default function SitesVitrinePage() {
   return (
     <main>
+      <JsonLd
+        schema={[
+          serviceSchema({
+            name: "Création de site vitrine sur-mesure",
+            serviceType: "Création de site vitrine",
+            description:
+              "Site vitrine sur-mesure pour PME, artisans et indépendants : design unique, référencement intégré, hébergement gratuit. Page d'accueil offerte avant tout engagement.",
+            path: "/sites-vitrine",
+          }),
+          breadcrumbSchema([
+            { name: "Accueil", path: "/" },
+            { name: "Sites vitrines", path: "/sites-vitrine" },
+          ]),
+        ]}
+      />
       {/* Hero */}
       <section className="relative isolate overflow-hidden bg-alabaster pt-32 pb-20 lg:pt-44 lg:pb-28">
         <div className="absolute inset-x-0 top-0 -z-10 h-[60vh]" style={{ background: "radial-gradient(60% 60% at 50% 0%, rgba(194,65,12,0.10) 0%, transparent 70%)" }} aria-hidden />

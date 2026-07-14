@@ -5,6 +5,12 @@ export const metadata: Metadata = {
   title: "Réalisations",
   description:
     "Ce qu'on a fait pour nos clients : sites vitrines et e-commerce dans tous les secteurs. Hébergement gratuit, site en propriété totale.",
+  alternates: { canonical: "/realisations" },
+  openGraph: {
+    title: "Réalisations · Fondation Studio",
+    description:
+      "Sites vitrines et e-commerce livrés dans tous les secteurs. Hébergement gratuit, site en propriété totale.",
+  },
 };
 
 export default function RealisationsPage() {
