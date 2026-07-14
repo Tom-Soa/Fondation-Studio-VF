@@ -6,7 +6,7 @@ import { CALENDLY_URL, WHATSAPP_URL, OFFERS } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Contact · Réservez un appel gratuit",
   description:
-    "Réservez un appel gratuit de 20 minutes, démarrez directement en ligne, ou écrivez-nous. Maquette offerte avant tout engagement. Sites premium à partir de 1 400 €.",
+    "Réservez un appel gratuit de 20 minutes, démarrez directement en ligne, ou écrivez-nous. Maquette offerte avant tout engagement.",
 };
 
 export const dynamic = "force-static";

@@ -78,7 +78,6 @@ export default function HeroLanding({ data }: { data?: PageAccueilData | null })
           transition={{ duration: 0.7, delay: 0.25 }}
           className="mt-7 max-w-2xl mx-auto text-[clamp(1rem,1.3vw,1.2rem)] leading-relaxed text-midnight/70"
         >
-          <span className="font-semibold text-midnight">{data?.heroSousTitre ? "" : "À partir de 1 400 €. "}</span>
           {data?.heroSousTitre ??
             "Un site qui dure des années et qui inspire confiance à vos visiteurs. On réalise gratuitement votre page d'accueil, avant tout engagement."}
         </motion.p>

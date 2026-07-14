@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     template: "%s | Fondation Studio",
   },
   description:
-    "Studio web pour PME et artisans. Sites premium, design sur-mesure, hébergement gratuit, référencement intégré. À partir de 1 400€. Page d'accueil offerte avant tout engagement.",
+    "Studio web pour PME et artisans. Sites premium, design sur-mesure, hébergement gratuit, référencement intégré. Page d'accueil offerte avant tout engagement.",
   // Les icônes (favicon.ico, icon.png, apple-icon.png) sont auto-détectées par Next.js
   // via la convention de fichiers dans app/. Pas besoin de les redéclarer ici.
   keywords: [
@@ -37,13 +37,13 @@ export const metadata: Metadata = {
     siteName: "Fondation Studio",
     title: "Votre site. Conçu pour vendre. Livré en 21 jours.",
     description:
-      "Sites premium pour PME : design sur-mesure, SEO intégré, hébergement gratuit. À partir de 1 400€.",
+      "Sites premium pour PME : design sur-mesure, SEO intégré, hébergement gratuit. Page d'accueil offerte avant tout engagement.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Fondation Studio",
     description:
-      "Sites web qui convertissent. Design sur-mesure. Hébergement gratuit. À partir de 1 400€.",
+      "Sites web qui convertissent. Design sur-mesure. Hébergement gratuit. Page d'accueil offerte.",
   },
   // En maintenance : noindex (on n'indexe pas la page "en construction").
   robots: {

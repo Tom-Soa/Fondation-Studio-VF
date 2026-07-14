@@ -28,8 +28,7 @@ export const OFFERS: Offer[] = [
   {
     slug: "standard",
     name: "Standard",
-    price: "1 400 €",
-    priceValue: 1400,
+    price: "Sur devis",
     forWho: "PME locale, budget maîtrisé",
     features: [
       { text: "Site vitrine jusqu'à 5 pages", included: true },
@@ -50,8 +49,7 @@ export const OFFERS: Offer[] = [
   {
     slug: "conversion",
     name: "Conversion",
-    price: "1 900 €",
-    priceValue: 1900,
+    price: "Sur devis",
     forWho: "PME ambitieuse, croissance accélérée",
     features: [
       { text: "Site vitrine jusqu'à 8 pages", included: true },
@@ -74,9 +72,8 @@ export const OFFERS: Offer[] = [
   {
     slug: "premium",
     name: "Premium",
-    price: "2 400 €",
-    priceNote: "À partir de",
-    forWho: "Image ultra premium · sur devis",
+    price: "Sur devis",
+    forWho: "Image ultra premium",
     features: [
       { text: "Pages illimitées & fonctionnalités sur-mesure", included: true },
       { text: "Design ultra premium pensé pour vendre", included: true },
@@ -118,14 +115,9 @@ export const OPTIONS: OptionItem[] = [
     description: "Modifications régulières de votre site après la période offerte incluse dans votre forfait.",
   },
   {
-    name: "Publicité sur Google",
-    price: "300 €",
-    description: "Création et mise en place de votre publicité Google pour attirer de nouveaux clients, configuration complète incluse. 300 € par régie.",
-  },
-  {
-    name: "Publicité sur Meta",
-    price: "300 €",
-    description: "Création et mise en place de vos campagnes sur Instagram et Facebook pour générer des contacts qualifiés, configuration complète incluse. 300 € par régie.",
+    name: "Media Buying",
+    price: "400 €",
+    description: "Gestion de votre publicité sur Google et Meta (Instagram/Facebook) pour attirer de nouveaux clients. Premier mois : 400 € pour 1 régie, 500 € pour 2 régies, puis 750 €/mois ensuite.",
   },
   {
     name: "Séquences de mails",
@@ -165,7 +157,7 @@ export interface Service {
 export const SERVICES: Service[] = [
   {
     title: "Boutique en ligne Shopify",
-    price: "À partir de 3 900 €",
+    price: "Sur devis",
     description:
       "Vous vendez vos produits en ligne ? On crée votre boutique Shopify complète : catalogue, panier, paiement sécurisé et gestion des commandes. Pensée pour vendre, simple à gérer au quotidien.",
   },
@@ -495,7 +487,7 @@ export interface FaqItem {
 export const FAQ: FaqItem[] = [
   {
     q: "Combien coûte un site ?",
-    a: "Nos offres démarrent à 1 400 € pour un site vitrine sur-mesure (offre Standard), 1 900 € pour l'offre Conversion, et à partir de 2 400 € sur devis pour l'offre Premium. Votre site vous appartient totalement, sans abonnement caché.",
+    a: "Chaque projet fait l'objet d'un devis personnalisé, selon le nombre de pages, le contenu et le niveau de sur-mesure. Trois offres structurent nos prestations : Standard, Conversion et Premium. Votre site vous appartient totalement, sans abonnement caché.",
   },
   {
     q: "En combien de temps mon site est-il livré ?",

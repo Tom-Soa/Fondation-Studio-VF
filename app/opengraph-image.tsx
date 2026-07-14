@@ -132,7 +132,7 @@ export default function Image() {
             textAlign: "center",
           }}
         >
-          Sites premium pour PME et artisans. À partir de 1 400 €.
+          Sites premium pour PME et artisans. Page d&apos;accueil offerte.
         </div>
       </div>
     ),

@@ -11,8 +11,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-16">
           <div className="md:col-span-5">
             <p className="text-[14.5px] leading-relaxed text-white/55 max-w-sm mb-6">
-              Design sur-mesure. Référencement intégré. Hébergement gratuit. À partir de
-              1 400 €, page d'accueil offerte avant tout engagement.
+              Design sur-mesure. Référencement intégré. Hébergement gratuit. Page
+              d'accueil offerte avant tout engagement.
             </p>
             <div className="space-y-2 text-[13px]">
               <a

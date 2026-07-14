@@ -5,7 +5,7 @@ import { Reveal } from "@/components/ui/Reveal";
 export const metadata: Metadata = {
   title: "Création de boutique e-commerce Shopify · Fondation Studio",
   description:
-    "On crée votre boutique Shopify sur-mesure et on s'occupe de tout l'écosystème : publicité Meta & Google, newsletter, SEO, relances email. À partir de 3 900 €, sur devis. 1 mois de publicité offert.",
+    "On crée votre boutique Shopify sur-mesure et on s'occupe de tout l'écosystème : publicité Meta & Google, newsletter, SEO, relances email. Sur devis. 1 mois de publicité offert.",
 };
 
 const SHOPIFY_ATOUTS = [
@@ -85,7 +85,7 @@ export default function SitesMarchandsPage() {
         <div className="max-w-4xl mx-auto px-6 text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-grid-line bg-white px-4 py-1.5 shadow-card-light mb-6">
             <Icon icon="fa6-brands:shopify" width={15} height={15} className="text-[#5E8E3E]" aria-hidden />
-            <span className="text-[12px] font-semibold text-midnight/70">E-commerce Shopify · À partir de 3 900 €</span>
+            <span className="text-[12px] font-semibold text-midnight/70">E-commerce Shopify · Sur devis</span>
           </div>
           <h1 className="font-display font-extrabold tracking-[-0.035em] text-[clamp(2.5rem,6.5vw,5rem)] leading-[1.02] text-midnight">
             Une boutique en ligne{" "}
@@ -120,10 +120,9 @@ export default function SitesMarchandsPage() {
               <div className="font-display text-2xl font-bold text-midnight">Boutique en ligne</div>
               <div className="mt-1 text-[13px] text-steel">Vendez vos produits, on s'occupe de tout</div>
               <div className="mt-5 flex items-end gap-1">
-                <span className="mb-1.5 text-[13px] text-steel">À partir de</span>
-                <span className="font-display text-4xl font-extrabold tracking-tight text-midnight">3 900 €</span>
+                <span className="font-display text-4xl font-extrabold tracking-tight text-midnight">Sur devis</span>
               </div>
-              <div className="mt-2 text-[12.5px] text-steel">Sur devis selon la taille du catalogue</div>
+              <div className="mt-2 text-[12.5px] text-steel">Selon la taille de votre catalogue et vos besoins</div>
 
               {/* Offre pub mise en avant */}
               <div className="mt-4 flex items-center gap-2 rounded-xl bg-terra/8 border border-terra/20 px-3.5 py-3 text-[13px] font-semibold text-terra">
@@ -209,7 +208,7 @@ export default function SitesMarchandsPage() {
                 <ul className="space-y-4">
                   {[
                     { icon: "ph:target-duotone", text: "On cible vos futurs clients : âge, intérêts, localisation, comportement d'achat" },
-                    { icon: "ph:currency-eur-duotone", text: "Vous choisissez le budget. On peut démarrer à 300 €/mois et scaler selon les résultats" },
+                    { icon: "ph:currency-eur-duotone", text: "Vous choisissez le budget. On peut démarrer petit et scaler selon les résultats" },
                     { icon: "ph:chart-bar-duotone", text: "Chaque vente est tracée. Vous savez exactement ce que rapporte chaque euro investi" },
                     { icon: "ph:arrows-clockwise-duotone", text: "Chaque mois : nouveaux visuels, nouvelles campagnes, rapport de résultats" },
                   ].map((item) => (

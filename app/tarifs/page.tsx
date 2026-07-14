@@ -10,7 +10,7 @@ const PUBLICITE = SERVICES.find((s) => s.title.includes("Publicité"));
 export const metadata: Metadata = {
   title: "Tarifs",
   description:
-    "Forfaits à partir de 1 400 €, options à la carte, sites e-commerce Shopify et publicité Meta/Google. Site en propriété, acompte 60 %, paiement en plusieurs fois.",
+    "Forfaits sur devis, options à la carte, sites e-commerce Shopify et publicité Meta/Google. Site en propriété, acompte 60 %, paiement en plusieurs fois.",
 };
 
 export default function TarifsPage() {
@@ -24,7 +24,7 @@ export default function TarifsPage() {
             Des sites qui se <span className="font-emphasis font-normal text-terra">remboursent.</span>
           </h1>
           <p className="mt-6 max-w-2xl mx-auto text-[clamp(1rem,1.2vw,1.2rem)] leading-relaxed text-steel">
-            Un investissement, pas une dépense. Prix fixe, tout inclus, hébergement gratuit.
+            Un investissement, pas une dépense. Devis personnalisé, tout inclus, hébergement gratuit.
             Votre site vous appartient. Des forfaits de base à enrichir avec des options à la carte.
           </p>
         </div>

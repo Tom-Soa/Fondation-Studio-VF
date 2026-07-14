@@ -38,7 +38,7 @@ export default function Pricing({
               Des sites qui se <span className="font-emphasis font-normal text-terra">remboursent.</span>
             </h2>
             <p className="mt-5 text-[clamp(1rem,1.2vw,1.15rem)] leading-relaxed text-steel">
-              Prix fixe, tout inclus. Hébergement gratuit. Paiement en plusieurs fois. Votre site vous appartient.
+              Tout inclus. Hébergement gratuit. Paiement en plusieurs fois. Votre site vous appartient.
             </p>
           </div>
         )}
@@ -76,7 +76,7 @@ export default function Pricing({
               <div className="flex flex-wrap items-center gap-3 mb-2">
                 <h3 className="font-display text-xl font-bold text-midnight">On crée aussi des sites marchands</h3>
                 <span className="rounded-full bg-terra/10 px-3 py-1 text-[11px] font-semibold text-terra">E-commerce Shopify</span>
-                <span className="rounded-full border border-midnight/15 px-3 py-1 text-[11px] font-semibold text-midnight">À partir de 3 900 €</span>
+                <span className="rounded-full border border-midnight/15 px-3 py-1 text-[11px] font-semibold text-midnight">Sur devis</span>
               </div>
               <p className="text-[14.5px] leading-relaxed text-steel max-w-2xl">
                 Vous vendez vos produits en ligne ? On crée votre boutique complète : catalogue,

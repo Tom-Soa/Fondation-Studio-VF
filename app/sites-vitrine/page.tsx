@@ -5,7 +5,7 @@ import { Reveal } from "@/components/ui/Reveal";
 export const metadata: Metadata = {
   title: "Création de site vitrine pour PME et artisans",
   description:
-    "Site vitrine sur-mesure pour PME, artisans et indépendants : design unique, référencement intégré, hébergement gratuit. À partir de 1 400 €, page d'accueil offerte avant tout engagement.",
+    "Site vitrine sur-mesure pour PME, artisans et indépendants : design unique, référencement intégré, hébergement gratuit. Page d'accueil offerte avant tout engagement.",
 };
 
 const POUR_QUI = [
@@ -82,10 +82,10 @@ export default function SitesVitrinePage() {
             <Reveal delay={0.15}>
               <div className="rounded-3xl border border-grid-line bg-white p-8 shadow-card-light">
                 <div className="flex items-baseline gap-2 mb-1">
-                  <span className="font-display font-extrabold text-[2.2rem] tracking-[-0.04em] text-midnight leading-none">À partir de</span>
+                  <span className="font-display font-extrabold text-[2.2rem] tracking-[-0.04em] text-midnight leading-none">Votre site vitrine</span>
                 </div>
                 <div className="font-display font-extrabold text-[3.5rem] tracking-[-0.05em] text-terra leading-none mb-5">
-                  1&nbsp;400&nbsp;€
+                  sur devis
                 </div>
                 <div className="space-y-2.5">
                   {[
