@@ -34,8 +34,39 @@ export interface PageAccueilData {
   nobrainerCta?: string
 }
 
-export function getPageAccueil(): Promise<PageAccueilData | null> {
-  return sanityFetch<PageAccueilData>(
-    `*[_type == "pageAccueil" && _id == "page-accueil"][0]`
+// Retire toute mention de prix d'un texte éditorial (ex. "À partir de 1 400 €.").
+function stripPrix(text?: string): string | undefined {
+  if (!text) return text
+  return text
+    .replace(/\s*(à partir de|dès|a partir de)?\s*\d[\d\s ]*€\.?/gi, "")
+    .replace(/\s{2,}/g, " ")
+    .trim()
+}
+
+// Remplace un CTA obsolète trop vague par un intitulé clair.
+function cleanCta(cta?: string): string | undefined {
+  if (!cta) return cta
+  if (/d[ée]marrer/i.test(cta)) return "Obtenir un devis"
+  return cta
+}
+
+export async function getPageAccueil(): Promise<PageAccueilData | null> {
+  // On ne récupère que les champs réellement utilisés (évite d'exposer les
+  // métadonnées Sanity dans le payload de la page).
+  const data = await sanityFetch<PageAccueilData>(
+    `*[_type == "pageAccueil" && _id == "page-accueil"][0]{
+      heroTitre, heroSousTitre, heroCta, heroCtaSecondaire,
+      problemeTitre, problemeCorps, problemeSousCorps,
+      piliersTitre, piliersCorps, realisationsTitre, realisationsCorps,
+      processusTitre, processusCorps,
+      nobrainerTitre, nobrainerDescription, nobrainerCta
+    }`
   )
+  if (!data) return data
+  // Assainit le contenu éditable : aucun prix ni CTA obsolète ne doit passer.
+  return {
+    ...data,
+    heroSousTitre: stripPrix(data.heroSousTitre),
+    heroCta: cleanCta(data.heroCta),
+  }
 }
