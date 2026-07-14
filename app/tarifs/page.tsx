@@ -8,7 +8,7 @@ import { OPTIONS, SERVICES, FAQ } from "@/lib/content";
 const PUBLICITE = SERVICES.find((s) => s.title.includes("Publicité"));
 
 export const metadata: Metadata = {
-  title: "Tarifs",
+  title: "Nos offres",
   description:
     "Forfaits sur devis, options à la carte, sites e-commerce Shopify et publicité Meta/Google. Site en propriété, acompte 60 %, paiement en plusieurs fois.",
 };
@@ -19,7 +19,7 @@ export default function TarifsPage() {
       {/* Titre de page (clair) — directement au-dessus des forfaits, même flux */}
       <section className="bg-alabaster pt-32 pb-10 lg:pt-44 lg:pb-12 text-center">
         <div className="max-w-3xl mx-auto px-6">
-          <div className="text-[11px] uppercase tracking-[0.18em] text-terra mb-6 font-medium">Tarifs</div>
+          <div className="text-[11px] uppercase tracking-[0.18em] text-terra mb-6 font-medium">Nos offres</div>
           <h1 className="font-display font-extrabold tracking-[-0.035em] text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.02] text-midnight">
             Des sites qui se <span className="font-emphasis font-normal text-terra">remboursent.</span>
           </h1>

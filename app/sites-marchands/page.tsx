@@ -302,7 +302,7 @@ export default function SitesMarchandsPage() {
                     <Icon icon="lucide:arrow-right" width={16} height={16} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
                   </a>
                   <a href="/tarifs" className="inline-flex items-center gap-2 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-sm text-white px-6 py-4 text-[15px] font-medium transition-colors">
-                    Voir les tarifs
+                    Voir nos offres
                   </a>
                 </div>
               </div>

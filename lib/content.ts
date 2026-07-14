@@ -111,32 +111,32 @@ export interface OptionItem {
 export const OPTIONS: OptionItem[] = [
   {
     name: "Maintenance mensuelle",
-    price: "150 €/mois",
+    price: "Sur devis",
     description: "Modifications régulières de votre site après la période offerte incluse dans votre forfait.",
   },
   {
     name: "Media Buying",
-    price: "400 €",
-    description: "Gestion de votre publicité sur Google et Meta (Instagram/Facebook) pour attirer de nouveaux clients. Premier mois : 400 € pour 1 régie, 500 € pour 2 régies, puis 750 €/mois ensuite.",
+    price: "Sur devis",
+    description: "Gestion de votre publicité sur Google et Meta (Instagram/Facebook) pour attirer de nouveaux clients, avec un suivi mensuel de vos campagnes.",
   },
   {
     name: "Séquences de mails",
-    price: "300 €",
+    price: "Sur devis",
     description: "Rédaction et mise en place de séquences automatiques : mail de bienvenue, relances, suivi après achat.",
   },
   {
     name: "Refonte branding",
-    price: "500 €",
+    price: "Sur devis",
     description: "Logo, identité visuelle, polices, couleurs, packaging. Tout ce qui rend votre marque reconnaissable.",
   },
   {
     name: "Système de blog",
-    price: "300 €",
+    price: "Sur devis",
     description: "Ajout d'un blog à votre site, avec gestion des articles, catégories et optimisation pour Google.",
   },
   {
     name: "Création de logo",
-    price: "150 €",
+    price: "Sur devis",
     description: "Conception d'un logo professionnel : typographie, couleurs, déclinaisons. Fichiers livrés en haute définition.",
   },
 ];

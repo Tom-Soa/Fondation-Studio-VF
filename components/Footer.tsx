@@ -73,7 +73,7 @@ export default function Footer() {
                 ["Sites vitrines", "/sites-vitrine"],
                 ["Sites marchands", "/sites-marchands"],
                 ["Réalisations", "/realisations"],
-                ["Tarifs", "/tarifs"],
+                ["Nos offres", "/tarifs"],
                 ["L'équipe", "/qui-sommes-nous"],
                 ["FAQ", "/faq"],
                 ["Contact", "/contact"],

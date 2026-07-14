@@ -108,7 +108,7 @@ export default function ContactPage() {
               href="/tarifs"
               className="flex items-center justify-center gap-2 w-full rounded-full border border-grid-line bg-white hover:border-terra/40 text-midnight px-6 py-3.5 text-[14px] font-medium transition-colors"
             >
-              Voir tous les tarifs
+              Voir toutes nos offres
             </a>
           </div>
 

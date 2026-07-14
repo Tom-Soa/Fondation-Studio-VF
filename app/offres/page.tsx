@@ -48,7 +48,7 @@ export default function OffresPage() {
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
               <path d="M19 12H5M12 19l-7-7 7-7" />
             </svg>
-            Retour aux tarifs
+            Retour aux offres
           </a>
           <div className="text-[11px] uppercase tracking-[0.18em] text-terra mb-5 font-medium">Détail des offres</div>
           <h1 className="font-display font-extrabold tracking-[-0.035em] text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.02] text-midnight">

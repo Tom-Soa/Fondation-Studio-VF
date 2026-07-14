@@ -93,7 +93,7 @@ export default function HeroLanding({ data }: { data?: PageAccueilData | null })
             href="/contact"
             className="group inline-flex items-center gap-2.5 rounded-full bg-terra hover:bg-terra-hover px-7 py-4 text-white font-semibold text-[15px] transition-all glow-terra"
           >
-            {data?.heroCta ?? "Je veux mon site en 21 jours"}
+            {data?.heroCta ?? "Obtenir un devis"}
             <Icon icon="lucide:arrow-right" width={16} height={16} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
           </a>
           <a

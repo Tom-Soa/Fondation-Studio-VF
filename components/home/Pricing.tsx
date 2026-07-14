@@ -33,7 +33,7 @@ export default function Pricing({
       <div className="relative max-w-7xl mx-auto px-6">
         {!hideHead && (
           <div className="text-center max-w-2xl mx-auto mb-14">
-            <div className="text-[11px] uppercase tracking-[0.18em] text-terra mb-5 font-medium">Tarifs</div>
+            <div className="text-[11px] uppercase tracking-[0.18em] text-terra mb-5 font-medium">Nos offres</div>
             <h2 className="font-display font-extrabold tracking-[-0.03em] text-[clamp(2rem,5vw,3.75rem)] leading-[1.05] text-midnight">
               Des sites qui se <span className="font-emphasis font-normal text-terra">remboursent.</span>
             </h2>

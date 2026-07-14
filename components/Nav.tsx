@@ -12,7 +12,7 @@ const NAV_ITEMS = [
   { label: "Sites vitrines", href: "/sites-vitrine" },
   { label: "Sites marchands", href: "/sites-marchands" },
   { label: "Réalisations", href: "/realisations" },
-  { label: "Tarifs", href: "/tarifs" },
+  { label: "Nos offres", href: "/tarifs" },
   { label: "L'équipe", href: "/qui-sommes-nous" },
   { label: "FAQ", href: "/faq" },
 ];
