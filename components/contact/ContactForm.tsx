@@ -35,7 +35,8 @@ export default function ContactForm() {
     e.preventDefault();
     if (status.kind === "loading") return;
 
-    const fd = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const fd = new FormData(form);
     const payload = {
       firstName: String(fd.get("firstName") ?? ""),
       lastName: String(fd.get("lastName") ?? ""),
@@ -49,19 +50,37 @@ export default function ContactForm() {
     };
 
     setStatus({ kind: "loading" });
+
+    // Honeypot anti-spam : on simule un succès sans rien envoyer
+    if (payload.hp) {
+      setStatus({ kind: "success" });
+      return;
+    }
+
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      const data = (await res.json()) as { ok: boolean; error?: string };
-      if (!res.ok || !data.ok) {
-        setStatus({ kind: "error", message: data.error ?? "Une erreur est survenue." });
+      // Appel direct depuis le navigateur : Web3Forms refuse les requêtes
+      // serveur (403, plan Pro requis), donc pas de route API intermédiaire.
+      // Envoi en FormData : leur API rejette le preflight CORS du JSON,
+      // il faut une "simple request" sans en-tête Content-Type manuel.
+      const body = new FormData();
+      body.append("access_key", "b6b5fc4f-7945-47ca-8bb4-8c0461855bec");
+      body.append("subject", `Nouveau projet · ${payload.firstName} ${payload.lastName}${payload.sector ? ` (${payload.sector})` : ""}`);
+      body.append("from_name", `${payload.firstName} ${payload.lastName}`);
+      body.append("email", payload.email);
+      body.append("phone", payload.phone);
+      body.append("sector", payload.sector);
+      body.append("budget", payload.budget || "Non renseigné");
+      body.append("site_type", payload.siteType || "Non renseigné");
+      body.append("message", payload.message);
+      body.append("botcheck", "");
+      const res = await fetch("https://api.web3forms.com/submit", { method: "POST", body });
+      const data = (await res.json()) as { success: boolean; message?: string };
+      if (!res.ok || !data.success) {
+        setStatus({ kind: "error", message: "Envoi impossible. Réessayez ou écrivez-nous directement." });
         return;
       }
       setStatus({ kind: "success" });
-      e.currentTarget.reset();
+      form.reset();
       setBudget("");
       setSiteType("");
     } catch {
