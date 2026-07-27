@@ -16,7 +16,7 @@ export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "@id": ORG_ID,
-  name: "Fondation Studio",
+  name: "ACTC",
   url: SITE_URL,
   logo: {
     "@type": "ImageObject",
@@ -55,7 +55,7 @@ export const websiteSchema = {
   "@type": "WebSite",
   "@id": WEBSITE_ID,
   url: SITE_URL,
-  name: "Fondation Studio",
+  name: "ACTC",
   inLanguage: "fr-FR",
   publisher: { "@id": ORG_ID },
 };

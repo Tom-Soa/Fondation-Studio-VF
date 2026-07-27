@@ -1,13 +1,14 @@
 import type { MetadataRoute } from "next";
+import { locales } from "@/lib/i18n";
 
 const BASE = "https://fondationstudio.fr";
 
-// Toutes les pages publiques du site, par ordre d'importance SEO.
+// Toutes les pages publiques du site, par ordre d'importance SEO, déclinées en /fr et /en.
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
   const pages: { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] }[] = [
-    { path: "/", priority: 1.0, changeFrequency: "weekly" },
+    { path: "", priority: 1.0, changeFrequency: "weekly" },
     { path: "/offres", priority: 0.9, changeFrequency: "monthly" },
     { path: "/sites-vitrine", priority: 0.9, changeFrequency: "monthly" },
     { path: "/sites-marchands", priority: 0.9, changeFrequency: "monthly" },
@@ -21,10 +22,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/cgv", priority: 0.3, changeFrequency: "yearly" },
   ];
 
-  return pages.map(({ path, priority, changeFrequency }) => ({
-    url: `${BASE}${path}`,
-    lastModified: now,
-    changeFrequency,
-    priority,
-  }));
+  return locales.flatMap((lang) =>
+    pages.map(({ path, priority, changeFrequency }) => ({
+      url: `${BASE}/${lang}${path}`,
+      lastModified: now,
+      changeFrequency,
+      // Le français est la langue principale : légère priorité au-dessus de l'anglais.
+      priority: lang === "fr" ? priority : Math.max(0.1, priority - 0.2),
+      alternates: {
+        languages: {
+          fr: `${BASE}/fr${path}`,
+          en: `${BASE}/en${path}`,
+        },
+      },
+    })),
+  );
 }

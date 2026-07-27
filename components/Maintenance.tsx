@@ -5,8 +5,39 @@ import { motion } from "motion/react";
 import { Icon } from "@iconify/react";
 import HeroBackground from "@/components/ui/HeroBackground";
 import { WHATSAPP_URL } from "@/lib/content";
+import type { Locale } from "@/lib/i18n";
 
-export default function Maintenance() {
+const T: Record<
+  Locale,
+  {
+    badge: string;
+    titleStart: string;
+    titleEmphasis: string;
+    subtitle: string;
+    whatsapp: string;
+  }
+> = {
+  fr: {
+    badge: "Site en cours de construction",
+    titleStart: "On prépare quelque chose",
+    titleEmphasis: "de beau.",
+    subtitle:
+      "Notre nouveau site arrive très bientôt. En attendant, on reste joignables : écrivez-nous directement, on répond vite.",
+    whatsapp: "Nous écrire sur WhatsApp",
+  },
+  en: {
+    badge: "Website under construction",
+    titleStart: "We are building something",
+    titleEmphasis: "beautiful.",
+    subtitle:
+      "Our new website is coming very soon. In the meantime, we are easy to reach: write to us directly, we reply fast.",
+    whatsapp: "Message us on WhatsApp",
+  },
+};
+
+export default function Maintenance({ lang = "fr" }: { lang?: Locale }) {
+  const t = T[lang];
+
   return (
     <main className="relative isolate min-h-screen overflow-hidden bg-alabaster flex items-center justify-center px-6 py-20">
       {/* Halo terracotta + particules (identité de marque) */}
@@ -31,7 +62,7 @@ export default function Maintenance() {
           <span className="relative flex h-2 w-2 live-dot">
             <span className="block h-2 w-2 rounded-full bg-terra" />
           </span>
-          Fondation<span className="text-terra">Studio</span>
+          AC<span className="text-terra">TC</span>
         </motion.div>
 
         {/* Badge */}
@@ -42,7 +73,7 @@ export default function Maintenance() {
           className="mt-8 inline-flex items-center gap-2 rounded-full border border-grid-line bg-white px-4 py-1.5 shadow-card-light"
         >
           <Icon icon="ph:wrench-duotone" width={16} height={16} className="text-terra" aria-hidden />
-          <span className="text-[13px] font-medium text-midnight/70">Site en cours de construction</span>
+          <span className="text-[13px] font-medium text-midnight/70">{t.badge}</span>
         </motion.div>
 
         {/* Titre */}
@@ -52,8 +83,8 @@ export default function Maintenance() {
           transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           className="mt-7 font-display font-extrabold tracking-[-0.03em] leading-[1.04] text-midnight text-[clamp(2.75rem,9vw,5.5rem)]"
         >
-          On prépare quelque chose{" "}
-          <span className="font-emphasis font-normal text-terra">de beau.</span>
+          {t.titleStart}{" "}
+          <span className="font-emphasis font-normal text-terra">{t.titleEmphasis}</span>
         </motion.h1>
 
         {/* Sous-titre */}
@@ -63,8 +94,7 @@ export default function Maintenance() {
           transition={{ duration: 0.7, delay: 0.3 }}
           className="mt-6 max-w-lg mx-auto text-[clamp(1rem,1.4vw,1.2rem)] leading-relaxed text-midnight/70"
         >
-          Notre nouveau site arrive très bientôt. En attendant, on reste joignables :
-          écrivez-nous directement, on répond vite.
+          {t.subtitle}
         </motion.p>
 
         {/* Coordonnées */}
@@ -81,7 +111,7 @@ export default function Maintenance() {
             className="group inline-flex items-center gap-2.5 rounded-full bg-terra hover:bg-terra-hover px-7 py-4 text-white font-semibold text-[15px] transition-all glow-terra"
           >
             <Icon icon="ph:whatsapp-logo-duotone" width={20} height={20} aria-hidden />
-            Nous écrire sur WhatsApp
+            {t.whatsapp}
           </a>
           <a
             href="tel:+33637999738"

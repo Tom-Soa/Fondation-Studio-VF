@@ -1,10 +1,17 @@
 import { ImageResponse } from "next/og";
+import type { Locale } from "@/lib/i18n";
+import { hasLocale, locales } from "@/lib/i18n";
+
+// Une image par langue, générée au build plutôt qu'à la demande.
+export function generateStaticParams() {
+  return locales.map((lang) => ({ lang }));
+}
 
 // Image Open Graph officielle : vignette affichée dans les résultats Google
 // et lors du partage du lien (réseaux sociaux, WhatsApp...).
-// Reprend l'identité Fondation Studio : fond alabaster, emphase terracotta.
+// Reprend l'identité ACTC : fond alabaster, emphase terracotta.
 export const alt =
-  "Fondation Studio : on crée des sites web qui captent vos futurs clients";
+  "ACTC : on crée des sites web qui captent vos futurs clients";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -13,7 +20,33 @@ const MIDNIGHT = "#0f172a";
 const TERRA = "#c2410c";
 const STEEL = "#64748b";
 
-export default function Image() {
+const T: Record<
+  Locale,
+  { badge: string; titleStart: string; titleEmphasis: string; subtitle: string }
+> = {
+  fr: {
+    badge: "Places limitées chaque mois",
+    titleStart: "On crée des sites web qui",
+    titleEmphasis: "captent vos futurs clients",
+    subtitle: "Sites premium pour PME et artisans. Page d'accueil offerte.",
+  },
+  en: {
+    badge: "Limited spots each month",
+    titleStart: "We build websites that",
+    titleEmphasis: "win you new clients",
+    subtitle: "Premium websites for small businesses. Free homepage included.",
+  },
+};
+
+export default async function Image({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  const locale: Locale = hasLocale(lang) ? lang : "fr";
+  const t = T[locale];
+
   return new ImageResponse(
     (
       <div
@@ -29,7 +62,7 @@ export default function Image() {
           position: "relative",
         }}
       >
-        {/* Logo F en haut */}
+        {/* Logo A en haut */}
         <div
           style={{
             display: "flex",
@@ -55,11 +88,10 @@ export default function Image() {
               fontWeight: 800,
             }}
           >
-            F
+            A
           </div>
           <span style={{ fontSize: 28, fontWeight: 700, color: MIDNIGHT }}>
-            Fondation{" "}
-            <span style={{ color: TERRA }}>Studio</span>
+            AC<span style={{ color: TERRA }}>TC</span>
           </span>
         </div>
 
@@ -97,7 +129,7 @@ export default function Image() {
               />
             ))}
           </div>
-          <span>Places limitées chaque mois</span>
+          <span>{t.badge}</span>
         </div>
 
         {/* Titre principal */}
@@ -115,9 +147,9 @@ export default function Image() {
             maxWidth: 980,
           }}
         >
-          On crée des sites web qui{" "}
+          {t.titleStart}{" "}
           <span style={{ color: TERRA, fontStyle: "italic", fontWeight: 600 }}>
-            &nbsp;captent vos futurs clients
+            &nbsp;{t.titleEmphasis}
           </span>
           .
         </div>
@@ -132,7 +164,7 @@ export default function Image() {
             textAlign: "center",
           }}
         >
-          Sites premium pour PME et artisans. Page d&apos;accueil offerte.
+          {t.subtitle}
         </div>
       </div>
     ),

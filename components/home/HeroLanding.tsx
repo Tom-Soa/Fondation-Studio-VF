@@ -7,12 +7,62 @@ import { Icon } from "@iconify/react";
 import { MockupCard } from "@/components/ui/MockupCard";
 import HeroBackground from "@/components/ui/HeroBackground";
 import { SHOWCASE } from "@/lib/content";
+import type { Locale } from "@/lib/i18n";
+import { localeHref } from "@/lib/i18n";
 
+const T: Record<
+  Locale,
+  {
+    pill: string;
+    h1Start: string;
+    h1Em1: string;
+    h1Mid: string;
+    h1Em2: string;
+    subtitle: string;
+    ctaPrimary: string;
+    ctaSecondary: string;
+    features: [string, string][];
+  }
+> = {
+  fr: {
+    pill: "Places limitées chaque mois",
+    h1Start: "On crée des sites web qui",
+    h1Em1: "captent",
+    h1Mid: "vos",
+    h1Em2: "futurs clients.",
+    subtitle:
+      "Un site qui dure des années et qui inspire confiance à vos visiteurs. On réalise gratuitement votre page d'accueil, avant tout engagement.",
+    ctaPrimary: "Obtenir un devis",
+    ctaSecondary: "Voir nos réalisations",
+    features: [
+      ["ph:cloud-duotone", "Hébergement gratuit"],
+      ["ph:sliders-duotone", "Vous gérez votre site en autonomie"],
+      ["ph:key-duotone", "Vous êtes propriétaire de votre site"],
+    ],
+  },
+  en: {
+    pill: "Limited spots every month",
+    h1Start: "We build websites that",
+    h1Em1: "capture",
+    h1Mid: "your",
+    h1Em2: "future customers.",
+    subtitle:
+      "A website that lasts for years and earns your visitors' trust. We design your homepage for free, before any commitment.",
+    ctaPrimary: "Get a quote",
+    ctaSecondary: "See our work",
+    features: [
+      ["ph:cloud-duotone", "Free hosting"],
+      ["ph:sliders-duotone", "Run your website on your own"],
+      ["ph:key-duotone", "You own your website"],
+    ],
+  },
+};
 
 // Une ligne d'aperçus. `reverse` inverse le sens de défilement, `offset`
 // décale le point de départ pour que les 2 lignes ne soient pas alignées.
-function MarqueeRow({ reverse = false, offset = 0 }: { reverse?: boolean; offset?: number }) {
-  const items = [...SHOWCASE.slice(offset), ...SHOWCASE.slice(0, offset)];
+function MarqueeRow({ lang, reverse = false, offset = 0 }: { lang: Locale; reverse?: boolean; offset?: number }) {
+  const showcase = SHOWCASE[lang];
+  const items = [...showcase.slice(offset), ...showcase.slice(0, offset)];
   const loop = [...items, ...items];
   return (
     <div className="flex w-max gap-4 sm:gap-5">
@@ -28,7 +78,8 @@ function MarqueeRow({ reverse = false, offset = 0 }: { reverse?: boolean; offset
   );
 }
 
-export default function HeroLanding() {
+export default function HeroLanding({ lang }: { lang: Locale }) {
+  const t = T[lang];
   return (
     <header className="relative isolate overflow-hidden bg-alabaster pt-28 lg:pt-36 pb-16" style={{ transform: "translateZ(0)" }}>
       {/* Halo terracotta */}
@@ -56,7 +107,7 @@ export default function HeroLanding() {
               <Icon key={i} icon="mdi:star" width={13} height={13} aria-hidden />
             ))}
           </span>
-          <span className="text-[13px] font-medium text-midnight/70">Places limitées chaque mois</span>
+          <span className="text-[13px] font-medium text-midnight/70">{t.pill}</span>
         </motion.div>
 
         {/* H1 */}
@@ -66,9 +117,9 @@ export default function HeroLanding() {
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="mt-8 font-display font-extrabold tracking-[-0.03em] leading-[1.05] text-midnight text-[clamp(2.6rem,7vw,5.25rem)]"
         >
-          On crée des sites web qui{" "}
-          <span className="font-emphasis font-normal text-terra">captent</span> vos{" "}
-          <span className="font-emphasis font-normal text-terra">futurs clients.</span>
+          {t.h1Start}{" "}
+          <span className="font-emphasis font-normal text-terra">{t.h1Em1}</span> {t.h1Mid}{" "}
+          <span className="font-emphasis font-normal text-terra">{t.h1Em2}</span>
         </motion.h1>
 
         {/* Sous-titre */}
@@ -78,7 +129,7 @@ export default function HeroLanding() {
           transition={{ duration: 0.7, delay: 0.25 }}
           className="mt-7 max-w-2xl mx-auto text-[clamp(1rem,1.3vw,1.2rem)] leading-relaxed text-midnight/70"
         >
-          {"Un site qui dure des années et qui inspire confiance à vos visiteurs. On réalise gratuitement votre page d'accueil, avant tout engagement."}
+          {t.subtitle}
         </motion.p>
 
         {/* CTAs */}
@@ -89,17 +140,17 @@ export default function HeroLanding() {
           className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3"
         >
           <a
-            href="/contact"
+            href={localeHref(lang, "/contact")}
             className="group inline-flex items-center gap-2.5 rounded-full bg-terra hover:bg-terra-hover px-7 py-4 text-white font-semibold text-[15px] transition-all glow-terra"
           >
-            Obtenir un devis
+            {t.ctaPrimary}
             <Icon icon="lucide:arrow-right" width={16} height={16} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
           </a>
           <a
-            href="/realisations"
+            href={localeHref(lang, "/realisations")}
             className="inline-flex items-center gap-2 rounded-full border border-midnight/15 hover:border-midnight/40 bg-white/60 backdrop-blur-md px-6 py-4 text-midnight font-medium text-[15px] transition-colors"
           >
-            Voir nos réalisations
+            {t.ctaSecondary}
           </a>
         </motion.div>
 
@@ -110,11 +161,7 @@ export default function HeroLanding() {
           transition={{ duration: 0.7, delay: 0.45 }}
           className="mt-10 hidden sm:flex flex-wrap items-center justify-center gap-x-7 gap-y-3 text-[13.5px] text-midnight/65"
         >
-          {[
-            ["ph:cloud-duotone", "Hébergement gratuit"],
-            ["ph:sliders-duotone", "Vous gérez votre site en autonomie"],
-            ["ph:key-duotone", "Vous êtes propriétaire de votre site"],
-          ].map(([icon, label]) => (
+          {t.features.map(([icon, label]) => (
             <span key={label} className="inline-flex items-center gap-2">
               <Icon icon={icon} width={18} height={18} className="text-terra" aria-hidden />
               {label}
@@ -130,8 +177,8 @@ export default function HeroLanding() {
         transition={{ duration: 0.9, delay: 0.5 }}
         className="relative mt-16 space-y-4 sm:space-y-5 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]"
       >
-        <MarqueeRow reverse offset={0} />
-        <MarqueeRow offset={3} />
+        <MarqueeRow lang={lang} reverse offset={0} />
+        <MarqueeRow lang={lang} offset={3} />
       </motion.div>
     </header>
   );

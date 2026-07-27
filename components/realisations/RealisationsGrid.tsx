@@ -4,22 +4,67 @@ import { useEffect, useState, useMemo } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Icon } from "@iconify/react";
 import { SHOWCASE, type ShowcaseItem } from "@/lib/content";
+import { localeHref, type Locale } from "@/lib/i18n";
 
-const OFFER_FILTERS = ["Tous", "Offre Standard", "Offre Conversion", "Offre Premium", "E-commerce Shopify"];
-const TYPE_FILTERS = ["Tous types", "Site vitrine", "Site vitrine premium", "Boutique e-commerce"];
+const T: Record<
+  Locale,
+  {
+    offerFilters: string[];
+    typeFilters: string[];
+    reset: string;
+    empty: string;
+    seeDetail: string;
+    learnMore: string;
+    close: string;
+    sectorLabel: string;
+    durationLabel: string;
+    deliveredLabel: string;
+    ctaButton: string;
+  }
+> = {
+  fr: {
+    offerFilters: ["Tous", "Offre Standard", "Offre Conversion", "Offre Premium", "E-commerce Shopify"],
+    typeFilters: ["Tous types", "Site vitrine", "Site vitrine premium", "Boutique e-commerce"],
+    reset: "Réinitialiser les filtres",
+    empty: "Aucun projet pour ces filtres.",
+    seeDetail: "Voir le détail de",
+    learnMore: "En savoir plus",
+    close: "Fermer",
+    sectorLabel: "Secteur",
+    durationLabel: "Délai",
+    deliveredLabel: "Ce qu'on a livré",
+    ctaButton: "Je veux un site comme celui-ci",
+  },
+  en: {
+    offerFilters: ["All", "Standard plan", "Conversion plan", "Premium plan", "Shopify e-commerce"],
+    typeFilters: ["All types", "Showcase website", "Premium showcase website", "E-commerce store"],
+    reset: "Reset filters",
+    empty: "No projects match these filters.",
+    seeDetail: "View details for",
+    learnMore: "Learn more",
+    close: "Close",
+    sectorLabel: "Industry",
+    durationLabel: "Timeline",
+    deliveredLabel: "What we delivered",
+    ctaButton: "I want a website like this",
+  },
+};
 
-export default function RealisationsGrid() {
+export default function RealisationsGrid({ lang }: { lang: Locale }) {
+  const t = T[lang];
+  const items = SHOWCASE[lang];
+
   const [active, setActive] = useState<ShowcaseItem | null>(null);
-  const [filterOffer, setFilterOffer] = useState("Tous");
-  const [filterType, setFilterType] = useState("Tous types");
+  const [filterOffer, setFilterOffer] = useState(t.offerFilters[0]);
+  const [filterType, setFilterType] = useState(t.typeFilters[0]);
 
   const filtered = useMemo(() => {
-    return SHOWCASE.filter((s) => {
-      const matchOffer = filterOffer === "Tous" || s.offer === filterOffer;
-      const matchType = filterType === "Tous types" || s.type === filterType;
+    return items.filter((s) => {
+      const matchOffer = filterOffer === t.offerFilters[0] || s.offer === filterOffer;
+      const matchType = filterType === t.typeFilters[0] || s.type === filterType;
       return matchOffer && matchType;
     });
-  }, [filterOffer, filterType]);
+  }, [items, filterOffer, filterType, t]);
 
   useEffect(() => {
     if (!active) return;
@@ -37,7 +82,7 @@ export default function RealisationsGrid() {
       {/* Filtres */}
       <div className="mb-8 space-y-3">
         <div className="flex flex-wrap gap-2">
-          {OFFER_FILTERS.map((f) => (
+          {t.offerFilters.map((f) => (
             <button
               key={f}
               onClick={() => setFilterOffer(f)}
@@ -52,7 +97,7 @@ export default function RealisationsGrid() {
           ))}
         </div>
         <div className="flex flex-wrap gap-2">
-          {TYPE_FILTERS.map((f) => (
+          {t.typeFilters.map((f) => (
             <button
               key={f}
               onClick={() => setFilterType(f)}
@@ -66,13 +111,13 @@ export default function RealisationsGrid() {
             </button>
           ))}
         </div>
-        {(filterOffer !== "Tous" || filterType !== "Tous types") && (
+        {(filterOffer !== t.offerFilters[0] || filterType !== t.typeFilters[0]) && (
           <button
-            onClick={() => { setFilterOffer("Tous"); setFilterType("Tous types"); }}
+            onClick={() => { setFilterOffer(t.offerFilters[0]); setFilterType(t.typeFilters[0]); }}
             className="text-[12px] text-terra hover:underline flex items-center gap-1"
           >
             <Icon icon="lucide:x" width={12} height={12} aria-hidden />
-            Réinitialiser les filtres
+            {t.reset}
           </button>
         )}
       </div>
@@ -81,7 +126,7 @@ export default function RealisationsGrid() {
       <AnimatePresence mode="popLayout">
         {filtered.length === 0 ? (
           <motion.div key="empty" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="py-16 text-center text-steel">
-            Aucun projet pour ces filtres.
+            {t.empty}
           </motion.div>
         ) : (
           <motion.div layout className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -98,7 +143,7 @@ export default function RealisationsGrid() {
                 <button
                   onClick={() => setActive(s)}
                   className="relative aspect-[16/10] overflow-hidden border-b border-grid-line bg-alabaster text-left"
-                  aria-label={`Voir le détail de ${s.name}`}
+                  aria-label={`${t.seeDetail} ${s.name}`}
                 >
                   <img src={s.src} alt={s.alt} loading="lazy" decoding="async" className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]" />
                 </button>
@@ -112,7 +157,7 @@ export default function RealisationsGrid() {
                     onClick={() => setActive(s)}
                     className="group/btn mt-5 inline-flex items-center gap-1.5 self-start rounded-full border border-midnight/15 px-4 py-2 text-[13.5px] font-semibold text-midnight transition-colors hover:border-terra hover:text-terra"
                   >
-                    En savoir plus
+                    {t.learnMore}
                     <Icon icon="lucide:arrow-right" width={15} height={15} className="transition-transform group-hover/btn:translate-x-0.5" aria-hidden />
                   </button>
                 </div>
@@ -139,7 +184,7 @@ export default function RealisationsGrid() {
               onClick={(e) => e.stopPropagation()}
               className="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto rounded-t-3xl sm:rounded-3xl bg-white shadow-2xl"
             >
-              <button onClick={() => setActive(null)} aria-label="Fermer" className="absolute right-4 top-4 z-10 grid h-10 w-10 place-items-center rounded-full bg-white/90 text-midnight shadow-card-light hover:bg-white transition-colors">
+              <button onClick={() => setActive(null)} aria-label={t.close} className="absolute right-4 top-4 z-10 grid h-10 w-10 place-items-center rounded-full bg-white/90 text-midnight shadow-card-light hover:bg-white transition-colors">
                 <Icon icon="lucide:x" width={18} height={18} aria-hidden />
               </button>
               <div className="relative aspect-[16/9] overflow-hidden border-b border-grid-line bg-alabaster">
@@ -155,19 +200,19 @@ export default function RealisationsGrid() {
                 <div className="mt-6 grid grid-cols-2 gap-4">
                   <div className="rounded-2xl border border-grid-line bg-alabaster p-4">
                     <div className="flex items-center gap-2 text-[11px] uppercase tracking-wider text-steel mb-1">
-                      <Icon icon="ph:briefcase-duotone" width={15} height={15} className="text-terra" aria-hidden />Secteur
+                      <Icon icon="ph:briefcase-duotone" width={15} height={15} className="text-terra" aria-hidden />{t.sectorLabel}
                     </div>
                     <div className="text-[14px] font-semibold text-midnight">{active.sector}</div>
                   </div>
                   <div className="rounded-2xl border border-grid-line bg-alabaster p-4">
                     <div className="flex items-center gap-2 text-[11px] uppercase tracking-wider text-steel mb-1">
-                      <Icon icon="ph:clock-duotone" width={15} height={15} className="text-terra" aria-hidden />Délai
+                      <Icon icon="ph:clock-duotone" width={15} height={15} className="text-terra" aria-hidden />{t.durationLabel}
                     </div>
                     <div className="text-[14px] font-semibold text-midnight">{active.duration}</div>
                   </div>
                 </div>
                 <div className="mt-6">
-                  <div className="text-[11px] uppercase tracking-wider text-steel mb-3">Ce qu'on a livré</div>
+                  <div className="text-[11px] uppercase tracking-wider text-steel mb-3">{t.deliveredLabel}</div>
                   <ul className="grid sm:grid-cols-2 gap-2.5">
                     {active.highlights.map((h) => (
                       <li key={h} className="flex items-start gap-2.5 text-[14px] text-midnight/85">
@@ -178,12 +223,12 @@ export default function RealisationsGrid() {
                   </ul>
                 </div>
                 <div className="mt-8 flex flex-col sm:flex-row gap-3">
-                  <a href="/contact" className="group inline-flex items-center justify-center gap-2 rounded-full bg-terra hover:bg-terra-hover px-6 py-3.5 text-white font-semibold text-[14px] transition-all glow-terra">
-                    Je veux un site comme celui-ci
+                  <a href={localeHref(lang, "/contact")} className="group inline-flex items-center justify-center gap-2 rounded-full bg-terra hover:bg-terra-hover px-6 py-3.5 text-white font-semibold text-[14px] transition-all glow-terra">
+                    {t.ctaButton}
                     <Icon icon="lucide:arrow-right" width={16} height={16} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
                   </a>
                   <button onClick={() => setActive(null)} className="inline-flex items-center justify-center rounded-full border border-midnight/15 px-6 py-3.5 text-midnight font-medium text-[14px] hover:border-midnight/40 transition-colors">
-                    Fermer
+                    {t.close}
                   </button>
                 </div>
               </div>

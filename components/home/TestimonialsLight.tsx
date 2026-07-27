@@ -1,10 +1,47 @@
-// Avis clients — un avis à la fois + gros logo client cliquable vers sa réalisation.
+// Avis clients : un avis à la fois + gros logo client cliquable vers sa réalisation.
 "use client";
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Icon } from "@iconify/react";
 import { TESTIMONIALS } from "@/lib/content";
+import type { Locale } from "@/lib/i18n";
+import { localeHref } from "@/lib/i18n";
+
+const T: Record<
+  Locale,
+  {
+    kicker: string;
+    h2Start: string;
+    h2Em: string;
+    projectLabel: string;
+    seeProject: string;
+    prev: string;
+    next: string;
+    reviewLabel: (n: number) => string;
+  }
+> = {
+  fr: {
+    kicker: "Avis clients",
+    h2Start: "Des résultats,",
+    h2Em: "pas des promesses.",
+    projectLabel: "Projet client",
+    seeProject: "Voir la réalisation",
+    prev: "Avis précédent",
+    next: "Avis suivant",
+    reviewLabel: (n) => `Avis ${n}`,
+  },
+  en: {
+    kicker: "Client reviews",
+    h2Start: "Results,",
+    h2Em: "not promises.",
+    projectLabel: "Client project",
+    seeProject: "See the project",
+    prev: "Previous review",
+    next: "Next review",
+    reviewLabel: (n) => `Review ${n}`,
+  },
+};
 
 function Stars() {
   return (
@@ -16,19 +53,23 @@ function Stars() {
   );
 }
 
-export default function TestimonialsLight() {
+export default function TestimonialsLight({ lang }: { lang: Locale }) {
   const [i, setI] = useState(0);
-  const t = TESTIMONIALS[i];
-  const href = t.realisationSlug ? `/realisations#${t.realisationSlug}` : "/realisations";
-  const go = (d: number) => setI((p) => (p + d + TESTIMONIALS.length) % TESTIMONIALS.length);
+  const tr = T[lang];
+  const testimonials = TESTIMONIALS[lang];
+  const t = testimonials[i];
+  const href = t.realisationSlug
+    ? localeHref(lang, `/realisations#${t.realisationSlug}`)
+    : localeHref(lang, "/realisations");
+  const go = (d: number) => setI((p) => (p + d + testimonials.length) % testimonials.length);
 
   return (
     <section id="avis" className="bg-alabaster pt-16 lg:pt-20 pb-24 lg:pb-32">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-terra mb-5">Avis clients</div>
+          <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-terra mb-5">{tr.kicker}</div>
           <h2 className="font-display font-extrabold tracking-[-0.03em] text-[clamp(2rem,5vw,3.5rem)] leading-[1.05] text-midnight">
-            Des résultats, <span className="font-emphasis font-normal text-terra">pas des promesses.</span>
+            {tr.h2Start} <span className="font-emphasis font-normal text-terra">{tr.h2Em}</span>
           </h2>
         </div>
 
@@ -71,10 +112,10 @@ export default function TestimonialsLight() {
                   aria-hidden
                 />
                 <div className="relative">
-                  <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/55 mb-3">Projet client</div>
+                  <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/55 mb-3">{tr.projectLabel}</div>
                   <div className="font-display text-3xl lg:text-4xl font-extrabold tracking-[-0.02em] text-white">{t.project}</div>
                   <span className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-[13px] font-semibold text-white backdrop-blur-sm transition-colors group-hover:border-terra group-hover:bg-terra">
-                    Voir la réalisation
+                    {tr.seeProject}
                     <Icon icon="lucide:arrow-right" width={14} height={14} aria-hidden />
                   </span>
                 </div>
@@ -85,20 +126,20 @@ export default function TestimonialsLight() {
 
         {/* Navigation */}
         <div className="mt-7 flex items-center justify-center gap-5">
-          <button onClick={() => go(-1)} aria-label="Avis précédent" className="grid place-items-center h-11 w-11 rounded-full border border-grid-line bg-white text-midnight hover:border-terra hover:text-terra transition-colors">
+          <button onClick={() => go(-1)} aria-label={tr.prev} className="grid place-items-center h-11 w-11 rounded-full border border-grid-line bg-white text-midnight hover:border-terra hover:text-terra transition-colors">
             <Icon icon="lucide:chevron-left" width={18} height={18} aria-hidden />
           </button>
           <div className="flex gap-2">
-            {TESTIMONIALS.map((_, idx) => (
+            {testimonials.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setI(idx)}
-                aria-label={`Avis ${idx + 1}`}
+                aria-label={tr.reviewLabel(idx + 1)}
                 className={`h-2 rounded-full transition-all ${idx === i ? "w-6 bg-terra" : "w-2 bg-midnight/20 hover:bg-midnight/40"}`}
               />
             ))}
           </div>
-          <button onClick={() => go(1)} aria-label="Avis suivant" className="grid place-items-center h-11 w-11 rounded-full border border-grid-line bg-white text-midnight hover:border-terra hover:text-terra transition-colors">
+          <button onClick={() => go(1)} aria-label={tr.next} className="grid place-items-center h-11 w-11 rounded-full border border-grid-line bg-white text-midnight hover:border-terra hover:text-terra transition-colors">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M9 18l6-6-6-6" /></svg>
           </button>
         </div>

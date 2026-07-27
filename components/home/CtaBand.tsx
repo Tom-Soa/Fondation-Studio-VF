@@ -3,8 +3,33 @@
 
 import { motion } from "motion/react";
 import { Icon } from "@iconify/react";
+import type { Locale } from "@/lib/i18n";
+import { localeHref } from "@/lib/i18n";
 
-export default function CtaBand() {
+const T: Record<
+  Locale,
+  { badge: string; h2Start: string; h2Em: string; body: string; cta: string; note: string }
+> = {
+  fr: {
+    badge: "Gratuit · Places limitées ce mois",
+    h2Start: "Votre page d'accueil.",
+    h2Em: "Offerte.",
+    body: "Vous nous décrivez votre projet, puis on conçoit une vraie maquette sur-mesure. Si ça vous convient, on démarre.",
+    cta: "Demander un devis gratuit",
+    note: "Réponse rapide · sans engagement",
+  },
+  en: {
+    badge: "Free · Limited spots this month",
+    h2Start: "Your homepage.",
+    h2Em: "On us.",
+    body: "You tell us about your project, then we design a real custom mockup. If you like it, we start.",
+    cta: "Get a free quote",
+    note: "Fast response · no commitment",
+  },
+};
+
+export default function CtaBand({ lang }: { lang: Locale }) {
+  const t = T[lang];
   return (
     <section id="cta" className="bg-alabaster py-16 lg:py-24">
       <div className="max-w-7xl mx-auto px-6">
@@ -35,24 +60,24 @@ export default function CtaBand() {
           <div className="relative">
             <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.12em] text-white backdrop-blur-sm">
               <span className="h-1.5 w-1.5 rounded-full bg-white" />
-              Gratuit · Places limitées ce mois
+              {t.badge}
             </span>
             <h2 className="mt-7 font-display font-extrabold tracking-[-0.03em] leading-[1.04] text-white text-[clamp(2rem,6vw,4.75rem)]">
-              Votre page d'accueil.{" "}
-              <span className="font-emphasis font-normal">Offerte.</span>
+              {t.h2Start}{" "}
+              <span className="font-emphasis font-normal">{t.h2Em}</span>
             </h2>
             <p className="mt-6 max-w-xl mx-auto text-[clamp(1rem,1.2vw,1.15rem)] leading-relaxed text-white/85">
-              On échange lors d&apos;un premier appel, puis on conçoit une vraie maquette sur-mesure. Si ça vous convient, on démarre.
+              {t.body}
             </p>
             <div className="mt-9 flex flex-col items-center gap-3">
               <a
-                href="/contact"
+                href={localeHref(lang, "/contact")}
                 className="group inline-flex items-center gap-3 rounded-full bg-white px-8 py-4 text-terra font-bold text-[16px] transition-transform hover:scale-[1.02]"
               >
-                Réserver un appel gratuit
+                {t.cta}
                 <Icon icon="lucide:arrow-right" width={18} height={18} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
               </a>
-              <p className="text-[13px] text-white/80">Réponse rapide · sans engagement</p>
+              <p className="text-[13px] text-white/80">{t.note}</p>
             </div>
           </div>
         </motion.div>

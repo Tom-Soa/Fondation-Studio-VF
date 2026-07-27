@@ -2,8 +2,72 @@
 "use client";
 
 import { motion } from "motion/react";
+import { localeHref, type Locale } from "@/lib/i18n";
 
-export default function Footer() {
+const T: Record<
+  Locale,
+  {
+    blurb: string;
+    navTitle: string;
+    legalTitle: string;
+    nav: [string, string][];
+    legal: [string, string][];
+    copyright: string;
+    tagline: string;
+  }
+> = {
+  fr: {
+    blurb:
+      "Design sur-mesure. Référencement intégré. Hébergement gratuit. Page d'accueil offerte avant tout engagement.",
+    navTitle: "Navigation",
+    legalTitle: "Légal",
+    nav: [
+      ["Accueil", "/"],
+      ["Sites vitrines", "/sites-vitrine"],
+      ["Sites marchands", "/sites-marchands"],
+      ["Réalisations", "/realisations"],
+      ["Nos offres", "/tarifs"],
+      ["L'équipe", "/qui-sommes-nous"],
+      ["FAQ", "/faq"],
+      ["Contact", "/contact"],
+    ],
+    legal: [
+      ["Mentions légales", "/mentions-legales"],
+      ["CGV", "/cgv"],
+      ["Politique de confidentialité", "/politique-confidentialite"],
+      ["Cookies", "/mentions-legales#politique-cookies"],
+    ],
+    copyright: "© 2026 ACTC · Tous droits réservés",
+    tagline: "Sites premium pour PME ambitieuses",
+  },
+  en: {
+    blurb:
+      "Custom design. Built-in SEO. Free hosting. Free homepage before any commitment.",
+    navTitle: "Navigation",
+    legalTitle: "Legal",
+    nav: [
+      ["Home", "/"],
+      ["Showcase sites", "/sites-vitrine"],
+      ["E-commerce", "/sites-marchands"],
+      ["Our work", "/realisations"],
+      ["Pricing", "/tarifs"],
+      ["The team", "/qui-sommes-nous"],
+      ["FAQ", "/faq"],
+      ["Contact", "/contact"],
+    ],
+    legal: [
+      ["Legal notice", "/mentions-legales"],
+      ["Terms of sale", "/cgv"],
+      ["Privacy policy", "/politique-confidentialite"],
+      ["Cookies", "/mentions-legales#politique-cookies"],
+    ],
+    copyright: "© 2026 ACTC · All rights reserved",
+    tagline: "Premium websites for ambitious businesses",
+  },
+};
+
+export default function Footer({ lang }: { lang: Locale }) {
+  const t = T[lang];
   return (
     <footer className="relative bg-midnight text-white/70 border-t border-white/[0.06] pt-20 pb-10">
       <div className="max-w-7xl mx-auto px-6">
@@ -11,8 +75,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-16">
           <div className="md:col-span-5">
             <p className="text-[14.5px] leading-relaxed text-white/55 max-w-sm mb-6">
-              Design sur-mesure. Référencement intégré. Hébergement gratuit. Page
-              d'accueil offerte avant tout engagement.
+              {t.blurb}
             </p>
             <div className="space-y-2 text-[13px]">
               <a
@@ -65,22 +128,13 @@ export default function Footer() {
 
           <div className="md:col-span-3 md:col-start-7">
             <div className="text-[10px] uppercase tracking-[0.18em] text-white/40 mb-5 font-medium">
-              Navigation
+              {t.navTitle}
             </div>
             <ul className="space-y-2.5 text-[14px]">
-              {[
-                ["Accueil", "/"],
-                ["Sites vitrines", "/sites-vitrine"],
-                ["Sites marchands", "/sites-marchands"],
-                ["Réalisations", "/realisations"],
-                ["Nos offres", "/tarifs"],
-                ["L'équipe", "/qui-sommes-nous"],
-                ["FAQ", "/faq"],
-                ["Contact", "/contact"],
-              ].map(([label, href]) => (
+              {t.nav.map(([label, href]) => (
                 <li key={href}>
                   <a
-                    href={href}
+                    href={localeHref(lang, href)}
                     className="text-white/65 hover:text-white transition-colors"
                   >
                     {label}
@@ -92,18 +146,13 @@ export default function Footer() {
 
           <div className="md:col-span-3">
             <div className="text-[10px] uppercase tracking-[0.18em] text-white/40 mb-5 font-medium">
-              Légal
+              {t.legalTitle}
             </div>
             <ul className="space-y-2.5 text-[14px]">
-              {[
-                ["Mentions légales", "/mentions-legales"],
-                ["CGV", "/cgv"],
-                ["Politique de confidentialité", "/politique-confidentialite"],
-                ["Cookies", "/mentions-legales#politique-cookies"],
-              ].map(([label, href]) => (
+              {t.legal.map(([label, href]) => (
                 <li key={href}>
                   <a
-                    href={href}
+                    href={localeHref(lang, href)}
                     className="text-white/65 hover:text-white transition-colors"
                   >
                     {label}
@@ -116,7 +165,7 @@ export default function Footer() {
 
         {/* Bas de page : copyright */}
         <div className="pt-8 border-t border-white/[0.06] text-[12px] uppercase tracking-[0.14em] text-white/40">
-          <div>© 2026 Fondation Studio · Tous droits réservés</div>
+          <div>{t.copyright}</div>
         </div>
 
         {/* Grande signature de marque + tagline, tout en bas (même police que la navbar) */}
@@ -128,10 +177,10 @@ export default function Footer() {
           className="mt-14"
         >
           <h2 className="font-display font-extrabold tracking-[-0.04em] text-[clamp(2.5rem,9vw,7rem)] leading-[0.95] text-white">
-            Fondation<span className="text-terra">&nbsp;Studio</span>
+            AC<span className="text-terra">TC</span>
           </h2>
           <p className="mt-3 font-display font-medium text-[clamp(0.95rem,2vw,1.25rem)] tracking-[-0.01em] text-white/40">
-            Sites premium pour PME ambitieuses
+            {t.tagline}
           </p>
         </motion.div>
       </div>

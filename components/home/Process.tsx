@@ -1,45 +1,99 @@
-// "Comment ça marche" — 5 étapes, fond clair, cartes à contour terracotta, CTAs en bas.
+// "Comment ça marche" : 5 étapes, fond clair, cartes à contour terracotta, CTAs en bas.
 "use client";
 
 import { motion } from "motion/react";
 import { Icon } from "@iconify/react";
+import type { Locale } from "@/lib/i18n";
+import { localeHref } from "@/lib/i18n";
 
 type Step = { n: string; icon: string; title: string; body: string };
 
-const STEPS: Step[] = [
-  {
-    n: "01",
-    icon: "ph:phone-call-duotone",
-    title: "Prendre un appel",
-    body: "On échange sur votre activité et vos objectifs. Réservez votre appel en ligne, sans engagement.",
+const T: Record<
+  Locale,
+  { kicker: string; h2Start: string; h2Em: string; steps: Step[]; ctaCall: string; ctaBuy: string }
+> = {
+  fr: {
+    kicker: "Comment ça marche",
+    h2Start: "Votre site, en 5 étapes",
+    h2Em: "claires.",
+    steps: [
+      {
+        n: "01",
+        icon: "ph:chat-circle-text-duotone",
+        title: "Votre demande",
+        body: "Vous nous décrivez votre activité et vos objectifs via le formulaire. On vous répond rapidement, sans engagement.",
+      },
+      {
+        n: "02",
+        icon: "ph:pen-nib-duotone",
+        title: "Maquette gratuite",
+        body: "On conçoit une vraie maquette sur-mesure de votre page d'accueil. Comptez 5 à 7 jours. Pressé ? Vous pouvez démarrer directement, sans maquette.",
+      },
+      {
+        n: "03",
+        icon: "ph:check-circle-duotone",
+        title: "Validation",
+        body: "On vous présente le résultat. Vous validez la direction, le contenu et le calendrier.",
+      },
+      {
+        n: "04",
+        icon: "ph:code-duotone",
+        title: "Design & développement",
+        body: "On crée votre site sur-mesure : design unique, SEO intégré, rapide et sécurisé. Comptez 14 à 21 jours.",
+      },
+      {
+        n: "05",
+        icon: "ph:rocket-launch-duotone",
+        title: "Mise en ligne",
+        body: "On vous accompagne pour la mise en ligne. Votre site vous appartient à 100 %, avec un hébergement gratuit.",
+      },
+    ],
+    ctaCall: "Demander un devis gratuit",
+    ctaBuy: "Acheter maintenant",
   },
-  {
-    n: "02",
-    icon: "ph:pen-nib-duotone",
-    title: "Maquette gratuite",
-    body: "On conçoit une vraie maquette sur-mesure de votre page d'accueil. Comptez 5 à 7 jours. Pressé ? Vous pouvez démarrer directement, sans maquette.",
+  en: {
+    kicker: "How it works",
+    h2Start: "Your website, in 5",
+    h2Em: "clear steps.",
+    steps: [
+      {
+        n: "01",
+        icon: "ph:chat-circle-text-duotone",
+        title: "Your request",
+        body: "You tell us about your business and your goals through the form. We reply quickly, no commitment.",
+      },
+      {
+        n: "02",
+        icon: "ph:pen-nib-duotone",
+        title: "Free mockup",
+        body: "We design a real, custom mockup of your homepage. Allow 5 to 7 days. In a hurry? You can start right away, without a mockup.",
+      },
+      {
+        n: "03",
+        icon: "ph:check-circle-duotone",
+        title: "Approval",
+        body: "We present the result. You approve the direction, the content and the timeline.",
+      },
+      {
+        n: "04",
+        icon: "ph:code-duotone",
+        title: "Design & development",
+        body: "We build your custom website: unique design, built-in SEO, fast and secure. Allow 14 to 21 days.",
+      },
+      {
+        n: "05",
+        icon: "ph:rocket-launch-duotone",
+        title: "Launch",
+        body: "We guide you through going live. Your website is 100% yours, with free hosting.",
+      },
+    ],
+    ctaCall: "Get a free quote",
+    ctaBuy: "Buy now",
   },
-  {
-    n: "03",
-    icon: "ph:check-circle-duotone",
-    title: "Validation",
-    body: "On vous présente le résultat lors d'un second appel. Vous validez la direction, le contenu et le calendrier.",
-  },
-  {
-    n: "04",
-    icon: "ph:code-duotone",
-    title: "Design & développement",
-    body: "On crée votre site sur-mesure : design unique, SEO intégré, rapide et sécurisé. Comptez 14 à 21 jours.",
-  },
-  {
-    n: "05",
-    icon: "ph:rocket-launch-duotone",
-    title: "Mise en ligne",
-    body: "On vous accompagne pour la mise en ligne. Votre site vous appartient à 100 %, avec un hébergement gratuit.",
-  },
-];
+};
 
-export default function Process() {
+export default function Process({ lang }: { lang: Locale }) {
+  const t = T[lang];
   return (
     <section id="process" className="relative bg-alabaster pt-24 lg:pt-32 pb-16 lg:pb-20 overflow-hidden">
       {/* Atmosphère : halo terracotta doux + grille de points subtile */}
@@ -61,16 +115,16 @@ export default function Process() {
       <div className="relative max-w-7xl mx-auto px-6">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <div className="text-[11px] uppercase tracking-[0.18em] text-terra mb-5 font-medium">
-            Comment ça marche
+            {t.kicker}
           </div>
           <h2 className="font-display font-extrabold tracking-[-0.03em] text-[clamp(2rem,5vw,3.5rem)] leading-[1.05] text-midnight">
-            Votre site, en 5 étapes{" "}
-            <span className="font-emphasis font-normal text-terra">claires.</span>
+            {t.h2Start}{" "}
+            <span className="font-emphasis font-normal text-terra">{t.h2Em}</span>
           </h2>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-          {STEPS.map((s, i) => (
+          {t.steps.map((s, i) => (
             <motion.div
               key={s.n}
               initial={{ opacity: 0, y: 24 }}
@@ -96,18 +150,18 @@ export default function Process() {
         {/* CTAs de section */}
         <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-3">
           <a
-            href="/contact"
+            href={localeHref(lang, "/contact")}
             className="group inline-flex items-center gap-2.5 rounded-full bg-terra hover:bg-terra-hover px-7 py-4 text-white font-semibold text-[15px] transition-all glow-terra"
           >
-            <Icon icon="ph:phone-call-duotone" width={18} height={18} aria-hidden />
-            Prendre un appel
+            <Icon icon="ph:chat-circle-text-duotone" width={18} height={18} aria-hidden />
+            {t.ctaCall}
             <Icon icon="lucide:arrow-right" width={16} height={16} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
           </a>
           <a
-            href="/tarifs"
+            href={localeHref(lang, "/tarifs")}
             className="inline-flex items-center gap-2 rounded-full border border-midnight/15 hover:border-terra hover:text-terra px-6 py-4 text-midnight font-medium text-[15px] transition-colors"
           >
-            Acheter maintenant
+            {t.ctaBuy}
           </a>
         </div>
       </div>

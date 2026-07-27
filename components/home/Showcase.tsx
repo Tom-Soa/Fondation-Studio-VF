@@ -1,22 +1,45 @@
-// Réalisations (home) — bande d'aperçus qui défile automatiquement vers la gauche.
+// Réalisations (home) : bande d'aperçus qui défile automatiquement vers la gauche.
 "use client";
 
 import { Icon } from "@iconify/react";
 import { SHOWCASE } from "@/lib/content";
+import type { Locale } from "@/lib/i18n";
+import { localeHref } from "@/lib/i18n";
 
-export default function Showcase() {
+const T: Record<
+  Locale,
+  { kicker: string; h2Start: string; h2Em: string; note: string; cta: string }
+> = {
+  fr: {
+    kicker: "Nos réalisations",
+    h2Start: "Des sites qui",
+    h2Em: "convertissent.",
+    note: "Et bien d'autres projets dans tous les secteurs.",
+    cta: "Voir toutes nos réalisations",
+  },
+  en: {
+    kicker: "Our work",
+    h2Start: "Websites that",
+    h2Em: "convert.",
+    note: "And many more projects across every industry.",
+    cta: "See all our work",
+  },
+};
+
+export default function Showcase({ lang }: { lang: Locale }) {
+  const t = T[lang];
   // doublé pour une boucle continue (translateX -50%)
-  const loop = [...SHOWCASE, ...SHOWCASE];
+  const loop = [...SHOWCASE[lang], ...SHOWCASE[lang]];
 
   return (
     <section id="realisations" className="bg-white py-24 lg:py-32 border-y border-grid-line overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <div className="text-[11px] uppercase tracking-[0.18em] text-terra mb-5 font-medium">
-            Nos réalisations
+            {t.kicker}
           </div>
           <h2 className="font-display font-extrabold tracking-[-0.03em] text-[clamp(2rem,5vw,3.5rem)] leading-[1.05] text-midnight">
-            Des sites qui <span className="font-emphasis font-normal text-terra">convertissent.</span>
+            {t.h2Start} <span className="font-emphasis font-normal text-terra">{t.h2Em}</span>
           </h2>
         </div>
       </div>
@@ -58,13 +81,13 @@ export default function Showcase() {
       {/* Note + CTA sous les cartes */}
       <div className="max-w-7xl mx-auto px-6 mt-12 text-center">
         <p className="text-[14.5px] text-steel mb-5">
-          Et bien d'autres projets dans tous les secteurs.
+          {t.note}
         </p>
         <a
-          href="/realisations"
+          href={localeHref(lang, "/realisations")}
           className="inline-flex items-center gap-2 rounded-full bg-midnight hover:bg-midnight/90 px-7 py-4 text-[15px] font-semibold text-white transition-colors"
         >
-          Voir toutes nos réalisations
+          {t.cta}
           <Icon icon="lucide:arrow-right" width={16} height={16} aria-hidden />
         </a>
       </div>

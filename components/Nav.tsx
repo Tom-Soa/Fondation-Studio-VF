@@ -6,25 +6,63 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
+import { localeHref, switchLocalePath, type Locale } from "@/lib/i18n";
 
-const NAV_ITEMS = [
-  { label: "Accueil", href: "/" },
-  { label: "Sites vitrines", href: "/sites-vitrine" },
-  { label: "Sites marchands", href: "/sites-marchands" },
-  { label: "Réalisations", href: "/realisations" },
-  { label: "Nos offres", href: "/tarifs" },
-  { label: "L'équipe", href: "/qui-sommes-nous" },
-  { label: "FAQ", href: "/faq" },
+const NAV_ITEMS: { label: Record<Locale, string>; href: string }[] = [
+  { label: { fr: "Accueil", en: "Home" }, href: "/" },
+  { label: { fr: "Sites vitrines", en: "Showcase sites" }, href: "/sites-vitrine" },
+  { label: { fr: "Sites marchands", en: "E-commerce" }, href: "/sites-marchands" },
+  { label: { fr: "Réalisations", en: "Our work" }, href: "/realisations" },
+  { label: { fr: "Nos offres", en: "Pricing" }, href: "/tarifs" },
+  { label: { fr: "L'équipe", en: "The team" }, href: "/qui-sommes-nous" },
+  { label: { fr: "FAQ", en: "FAQ" }, href: "/faq" },
 ];
 
-function isActive(pathname: string, href: string) {
-  return href === "/" ? pathname === "/" : pathname.startsWith(href);
+const T: Record<Locale, { contact: string; menu: string; close: string; open: string; cta: string; mainNav: string; mobileNav: string; homeAria: string; switchAria: string }> = {
+  fr: {
+    contact: "Contact",
+    menu: "Menu",
+    close: "Fermer le menu",
+    open: "Ouvrir le menu",
+    cta: "Demander un devis gratuit",
+    mainNav: "Navigation principale",
+    mobileNav: "Navigation mobile",
+    homeAria: "Accueil ACTC",
+    switchAria: "Switch to English",
+  },
+  en: {
+    contact: "Contact",
+    menu: "Menu",
+    close: "Close menu",
+    open: "Open menu",
+    cta: "Get a free quote",
+    mainNav: "Main navigation",
+    mobileNav: "Mobile navigation",
+    homeAria: "ACTC home",
+    switchAria: "Passer en français",
+  },
+};
+
+function Logo({ className }: { className?: string }) {
+  return (
+    <span className={className}>
+      AC<span className="text-terra">TC</span>
+    </span>
+  );
 }
 
-export default function Nav() {
+function isActive(pathname: string, lang: Locale, href: string) {
+  const full = localeHref(lang, href);
+  return href === "/" ? pathname === full : pathname.startsWith(full);
+}
+
+export default function Nav({ lang }: { lang: Locale }) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const t = T[lang];
+  const otherLang: Locale = lang === "fr" ? "en" : "fr";
+  const switchHref = switchLocalePath(pathname, otherLang);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -44,7 +82,7 @@ export default function Nav() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
         className="fixed top-3 left-1/2 -translate-x-1/2 z-50 hidden lg:flex transition-all duration-500"
-        aria-label="Navigation principale"
+        aria-label={t.mainNav}
       >
         <div
           className={cn(
@@ -55,18 +93,18 @@ export default function Nav() {
           )}
         >
           <a
-            href="/"
+            href={localeHref(lang, "/")}
             className="flex items-center pl-3 pr-3 py-1 font-display font-extrabold text-[15px] text-white tracking-[-0.02em] whitespace-nowrap"
           >
-            Fondation<span className="text-terra">&nbsp;Studio</span>
+            <Logo />
           </a>
           <div className="h-5 w-px bg-white/10 mx-1" aria-hidden />
           {NAV_ITEMS.map((item) => {
-            const active = isActive(pathname, item.href);
+            const active = isActive(pathname, lang, item.href);
             return (
               <a
                 key={item.href}
-                href={item.href}
+                href={localeHref(lang, item.href)}
                 aria-current={active ? "page" : undefined}
                 className={cn(
                   "relative px-3.5 py-2 rounded-full text-[13.5px] font-medium tracking-tight transition-colors whitespace-nowrap",
@@ -80,15 +118,22 @@ export default function Nav() {
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
-                <span className="relative">{item.label}</span>
+                <span className="relative">{item.label[lang]}</span>
               </a>
             );
           })}
           <a
-            href="/contact"
+            href={switchHref}
+            aria-label={t.switchAria}
+            className="ml-1 px-3 py-2 rounded-full border border-white/15 text-white/70 hover:text-white hover:border-white/30 text-[12.5px] font-semibold tracking-[0.08em] transition-colors whitespace-nowrap uppercase"
+          >
+            {otherLang}
+          </a>
+          <a
+            href={localeHref(lang, "/contact")}
             className="ml-1 flex items-center gap-1.5 px-4 py-2 rounded-full bg-terra hover:bg-terra-hover text-white text-[13.5px] font-semibold tracking-tight transition-colors whitespace-nowrap"
           >
-            Contact
+            {t.contact}
             <Icon icon="lucide:arrow-right" width={14} height={14} aria-hidden />
           </a>
         </div>
@@ -116,41 +161,48 @@ export default function Nav() {
               aria-label="Menu"
             >
               <div className="flex items-center justify-between mb-4">
-                <span className="font-display font-extrabold text-[16px] text-white tracking-[-0.02em]">
-                  Fondation<span className="text-terra">&nbsp;Studio</span>
-                </span>
-                <button
-                  onClick={() => setOpen(false)}
-                  aria-label="Fermer le menu"
-                  className="grid h-9 w-9 place-items-center rounded-full bg-white/10 text-white"
-                >
-                  <Icon icon="lucide:x" width={18} height={18} aria-hidden />
-                </button>
+                <Logo className="font-display font-extrabold text-[16px] text-white tracking-[-0.02em]" />
+                <div className="flex items-center gap-2">
+                  <a
+                    href={switchHref}
+                    aria-label={t.switchAria}
+                    className="grid h-9 px-3 place-items-center rounded-full bg-white/10 text-white text-[12px] font-semibold uppercase tracking-[0.08em]"
+                  >
+                    {otherLang}
+                  </a>
+                  <button
+                    onClick={() => setOpen(false)}
+                    aria-label={t.close}
+                    className="grid h-9 w-9 place-items-center rounded-full bg-white/10 text-white"
+                  >
+                    <Icon icon="lucide:x" width={18} height={18} aria-hidden />
+                  </button>
+                </div>
               </div>
-              <nav className="flex flex-col" aria-label="Navigation mobile">
+              <nav className="flex flex-col" aria-label={t.mobileNav}>
                 {NAV_ITEMS.map((item) => {
-                  const active = isActive(pathname, item.href);
+                  const active = isActive(pathname, lang, item.href);
                   return (
                     <a
                       key={item.href}
-                      href={item.href}
+                      href={localeHref(lang, item.href)}
                       aria-current={active ? "page" : undefined}
                       className={cn(
                         "flex items-center justify-between py-3.5 border-b border-white/[0.06] text-[17px]",
                         active ? "text-terra font-semibold" : "text-white/85",
                       )}
                     >
-                      {item.label}
+                      {item.label[lang]}
                       <Icon icon="lucide:arrow-up-right" width={18} height={18} className="text-white/30" aria-hidden />
                     </a>
                   );
                 })}
               </nav>
               <a
-                href="/contact"
+                href={localeHref(lang, "/contact")}
                 className="mt-5 flex items-center justify-center gap-2 w-full rounded-full bg-terra hover:bg-terra-hover px-5 py-4 text-white font-semibold text-[15px]"
               >
-                Réserver un appel gratuit
+                {t.cta}
                 <Icon icon="lucide:arrow-right" width={16} height={16} aria-hidden />
               </a>
             </motion.div>
@@ -160,32 +212,30 @@ export default function Nav() {
 
       {/* ── Mobile : petit logo flottant en haut à gauche ────────────── */}
       <a
-        href="/"
+        href={localeHref(lang, "/")}
         className="lg:hidden fixed top-3 left-3 z-40 flex items-center gap-2 rounded-full border border-white/10 bg-midnight/85 backdrop-blur-xl pl-3 pr-4 py-2 shadow-[0_6px_24px_rgba(0,0,0,0.3)]"
-        aria-label="Accueil Fondation Studio"
+        aria-label={t.homeAria}
       >
-        <span className="font-display font-extrabold text-[14px] text-white tracking-[-0.02em]">
-          Fondation<span className="text-terra">&nbsp;Studio</span>
-        </span>
+        <Logo className="font-display font-extrabold text-[14px] text-white tracking-[-0.02em]" />
       </a>
 
       {/* ── Mobile : barre flottante en bas (menu + contact) ─────────── */}
       <div className="lg:hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-40 flex items-center gap-2">
         <button
           onClick={() => setOpen(true)}
-          aria-label="Ouvrir le menu"
+          aria-label={t.open}
           aria-expanded={open}
           className="flex items-center gap-2 rounded-full border border-white/10 bg-midnight/90 backdrop-blur-xl pl-4 pr-5 py-3 text-white text-[14px] font-medium shadow-[0_8px_30px_rgba(0,0,0,0.35)]"
         >
           <Icon icon="lucide:menu" width={18} height={18} aria-hidden />
-          Menu
+          {t.menu}
         </button>
         <a
-          href="/contact"
+          href={localeHref(lang, "/contact")}
           className="flex items-center gap-2 rounded-full bg-terra hover:bg-terra-hover px-5 py-3 text-white text-[14px] font-semibold shadow-[0_8px_30px_rgba(194,65,12,0.45)]"
         >
-          <Icon icon="ph:phone-call-duotone" width={18} height={18} aria-hidden />
-          Contact
+          <Icon icon="ph:chat-circle-text-duotone" width={18} height={18} aria-hidden />
+          {t.contact}
         </a>
       </div>
     </>

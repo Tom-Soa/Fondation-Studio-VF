@@ -1,14 +1,19 @@
-// Bande confiance — chips clients défilants (section-confiance Miniamea), en clair.
+// Bande confiance : chips clients défilants (section-confiance Miniamea), en clair.
 import { REALISATIONS } from "@/lib/content";
+import type { Locale } from "@/lib/i18n";
 
-const CLIENTS = REALISATIONS.map((r) => `${r.title} · ${r.sector}`);
+const T: Record<Locale, { title: string }> = {
+  fr: { title: "Ils nous font confiance" },
+  en: { title: "They trust us" },
+};
 
-export default function TrustStrip() {
-  const loop = [...CLIENTS, ...CLIENTS];
+export default function TrustStrip({ lang }: { lang: Locale }) {
+  const clients = REALISATIONS[lang].map((r) => `${r.title} · ${r.sector}`);
+  const loop = [...clients, ...clients];
   return (
     <section className="bg-white border-y border-grid-line py-10">
       <p className="text-center font-mono text-[11px] uppercase tracking-[0.18em] text-steel mb-7">
-        Ils nous font confiance
+        {T[lang].title}
       </p>
       <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
         <div className="flex w-max items-center gap-3 animate-marquee-x" style={{ animationDuration: "32s" }}>

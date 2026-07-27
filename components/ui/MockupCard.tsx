@@ -50,7 +50,7 @@ export function MockupCard({
         <div className="relative h-full w-full bg-white">
           <img
             src={image}
-            alt={alt ?? "Aperçu d'un site réalisé par Fondation Studio"}
+            alt={alt ?? "Aperçu d'un site réalisé par ACTC"}
             loading="lazy"
             decoding="async"
             draggable={false}

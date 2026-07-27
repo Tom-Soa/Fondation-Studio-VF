@@ -5,23 +5,38 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { cn } from "@/lib/utils";
 import { FAQ } from "@/lib/content";
+import type { Locale } from "@/lib/i18n";
 
-export default function FaqLanding() {
+const T: Record<Locale, { kicker: string; h2Start: string; h2Em: string }> = {
+  fr: {
+    kicker: "FAQ",
+    h2Start: "Les questions",
+    h2Em: "qu'on nous pose.",
+  },
+  en: {
+    kicker: "FAQ",
+    h2Start: "The questions",
+    h2Em: "we get asked.",
+  },
+};
+
+export default function FaqLanding({ lang }: { lang: Locale }) {
   const [open, setOpen] = useState<number | null>(0);
+  const t = T[lang];
 
   return (
     <section id="faq" className="bg-white py-24 lg:py-32 border-t border-grid-line">
       <div className="max-w-3xl mx-auto px-6">
         <div className="text-center mb-12">
-          <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-terra mb-5">FAQ</div>
+          <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-terra mb-5">{t.kicker}</div>
           <h2 className="font-display font-extrabold tracking-[-0.03em] text-[clamp(2rem,5vw,3.5rem)] leading-[1.05] text-midnight">
-            Les questions{" "}
-            <span className="font-emphasis font-normal text-terra">qu'on nous pose.</span>
+            {t.h2Start}{" "}
+            <span className="font-emphasis font-normal text-terra">{t.h2Em}</span>
           </h2>
         </div>
 
         <div className="space-y-3">
-          {FAQ.map((it, i) => {
+          {FAQ[lang].map((it, i) => {
             const isOpen = open === i;
             return (
               <div
