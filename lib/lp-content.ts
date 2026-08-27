@@ -5,24 +5,34 @@ export const LP = {
   // ── Au-dessus de la vidéo ──────────────────────────────────────────────
   hero: {
     pill: "Places limitées ce mois",
-    h1Start: "La plupart des sites internet ne rapportent",
-    h1Em: "aucun client.",
-    h1End: "Voici comment on inverse ça.",
-    sub: "Regardez la vidéo : on vous explique comment choisir un site qui vous rapporte des clients, pourquoi la majorité des sites n'en apportent aucun, et comment les nôtres commencent à en générer en moins de 30 jours en moyenne.",
-    watchNote: "Regardez la vidéo en entier avant de réserver votre créneau.",
+    h1Start: "Votre site ne vous rapporte",
+    h1Em: "aucun client ?",
+    h1End: "Voici pourquoi, et comment on le corrige.",
+    sub: "En 8 minutes, on vous montre pourquoi la majorité des sites ne génèrent jamais un seul appel, comment reconnaître un prestataire qui vend du design d'un prestataire qui vend des clients, et la méthode qui fait rentrer les premières demandes en moins de 30 jours.",
+    watchNote: "Regardez la vidéo en entier : tout y est expliqué, sans rien vous vendre.",
   },
 
   // ── Juste sous la vidéo ────────────────────────────────────────────────
   underVideo: {
-    title: "Ce que vous découvrez dans cette vidéo",
+    // Bloc CTA, placé immédiatement sous le lecteur.
+    ctaTitle: "Recevez votre page d'accueil, gratuitement",
+    ctaLead: "Décrivez-nous votre activité : on dessine une vraie maquette sur-mesure de votre page d'accueil. Vous la voyez avant de payer quoi que ce soit. Si elle ne vous plaît pas, vous ne devez rien.",
+    cta: "Recevoir ma page d'accueil offerte",
+    ctaNote: "2 minutes · sans engagement · réponse sous 24 h",
+    ctaMicro: [
+      "Aucune carte bancaire",
+      "Aucun engagement",
+      "Réponse sous 24 h",
+    ],
+
+    // Rappel du contenu de la vidéo, sous le CTA.
+    title: "Ce que vous apprenez dans la vidéo",
     bullets: [
-      "Les 3 raisons pour lesquelles un site refait à neuf ne génère toujours aucun appel.",
-      "Comment reconnaître un prestataire qui vend du design et un prestataire qui vend des clients.",
-      "La méthode qu'on applique pour qu'un site commence à rapporter en moins de 30 jours.",
+      "Les 3 raisons pour lesquelles un site tout neuf ne génère toujours aucun appel.",
+      "Comment reconnaître un prestataire qui vend du design d'un prestataire qui vend des clients.",
+      "La méthode qui fait rentrer les premières demandes en moins de 30 jours.",
       "Ce qu'il faut exiger avant de signer : propriété du site, hébergement, autonomie.",
     ],
-    cta: "Réserver mon appel gratuit",
-    ctaNote: "Sans engagement · réponse sous 24 h",
   },
 
   // ── Réassurance en bande ───────────────────────────────────────────────
@@ -88,7 +98,7 @@ export const LP = {
 
   // ── Objections ─────────────────────────────────────────────────────────
   faq: {
-    kicker: "Avant de réserver",
+    kicker: "Vos questions",
     h2Start: "Les questions",
     h2Em: "qu'on nous pose le plus.",
     items: [
@@ -105,8 +115,8 @@ export const LP = {
         a: "Oui. Vous changez vos textes, vos photos, vos tarifs en quelques clics, sans nous appeler et sans surcoût.",
       },
       {
-        q: "Et si le design ne me plaît pas ?",
-        a: "On conçoit votre page d'accueil avant tout engagement. Vous la voyez, vous la validez, et seulement ensuite on construit le reste.",
+        q: "Et si la maquette ne me plaît pas ?",
+        a: "Vous ne devez rien. La page d'accueil est offerte, sans contrepartie : vous la recevez, vous jugez. On ne construit la suite que si vous validez.",
       },
       {
         q: "Vous travaillez avec quels types d'entreprises ?",
@@ -117,12 +127,12 @@ export const LP = {
 
   // ── CTA final ──────────────────────────────────────────────────────────
   finalCta: {
-    badge: "Gratuit · sans engagement",
-    h2Start: "Votre page d'accueil,",
-    h2Em: "offerte.",
-    body: "Vous nous décrivez votre activité, on conçoit une vraie maquette sur-mesure. Si elle vous convient, on construit le site. Sinon, vous ne devez rien.",
-    cta: "Réserver mon appel gratuit",
-    note: "2 minutes pour remplir le formulaire",
+    badge: "Gratuit · places limitées ce mois",
+    h2Start: "Voyez votre nouveau site",
+    h2Em: "avant de payer.",
+    body: "On dessine votre page d'accueil sur-mesure, gratuitement. Vous la recevez, vous jugez sur pièce. Si elle vous plaît, on construit le reste. Sinon, vous ne devez rien.",
+    cta: "Recevoir ma page d'accueil offerte",
+    note: "2 minutes · sans engagement",
   },
 } as const;
 

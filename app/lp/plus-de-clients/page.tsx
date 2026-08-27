@@ -54,7 +54,7 @@ export default function LandingPage() {
         </div>
 
         {/* ── Juste sous la vidéo : bénéfices + CTA principal ─────────── */}
-        <div className="relative mx-auto mt-14 max-w-3xl px-6">
+        <div className="relative mx-auto mt-7 max-w-3xl px-6">
           <VideoBenefits />
 
           <p className="mt-5 text-center text-[13px] italic text-steel">
