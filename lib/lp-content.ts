@@ -9,21 +9,13 @@ export const LP = {
     h1Em: "aucun client ?",
     h1End: "Voici pourquoi, et comment on le corrige.",
     sub: "En 8 minutes, on vous montre pourquoi la majorité des sites ne génèrent jamais un seul appel, comment reconnaître un prestataire qui vend du design d'un prestataire qui vend des clients, et la méthode qui fait rentrer les premières demandes en moins de 30 jours.",
-    watchNote: "Regardez la vidéo en entier : tout y est expliqué, sans rien vous vendre.",
+    watchNote: "Regardez la vidéo en entier avant de remplir le formulaire.",
   },
 
   // ── Juste sous la vidéo ────────────────────────────────────────────────
   underVideo: {
-    // Bloc CTA, placé immédiatement sous le lecteur.
-    ctaTitle: "Recevez votre page d'accueil, gratuitement",
-    ctaLead: "Décrivez-nous votre activité : on dessine une vraie maquette sur-mesure de votre page d'accueil. Vous la voyez avant de payer quoi que ce soit. Si elle ne vous plaît pas, vous ne devez rien.",
-    cta: "Recevoir ma page d'accueil offerte",
+    cta: "Remplir le formulaire",
     ctaNote: "2 minutes · sans engagement · réponse sous 24 h",
-    ctaMicro: [
-      "Aucune carte bancaire",
-      "Aucun engagement",
-      "Réponse sous 24 h",
-    ],
 
     // Rappel du contenu de la vidéo, sous le CTA.
     title: "Ce que vous apprenez dans la vidéo",
@@ -115,8 +107,8 @@ export const LP = {
         a: "Oui. Vous changez vos textes, vos photos, vos tarifs en quelques clics, sans nous appeler et sans surcoût.",
       },
       {
-        q: "Et si la maquette ne me plaît pas ?",
-        a: "Vous ne devez rien. La page d'accueil est offerte, sans contrepartie : vous la recevez, vous jugez. On ne construit la suite que si vous validez.",
+        q: "Le formulaire m'engage à quelque chose ?",
+        a: "Non. Il sert à comprendre votre activité et votre situation. On revient vers vous sous 24 h avec une réponse claire, et vous décidez ensuite.",
       },
       {
         q: "Vous travaillez avec quels types d'entreprises ?",
@@ -127,11 +119,11 @@ export const LP = {
 
   // ── CTA final ──────────────────────────────────────────────────────────
   finalCta: {
-    badge: "Gratuit · places limitées ce mois",
-    h2Start: "Voyez votre nouveau site",
-    h2Em: "avant de payer.",
-    body: "On dessine votre page d'accueil sur-mesure, gratuitement. Vous la recevez, vous jugez sur pièce. Si elle vous plaît, on construit le reste. Sinon, vous ne devez rien.",
-    cta: "Recevoir ma page d'accueil offerte",
+    badge: "Places limitées ce mois",
+    h2Start: "Passez au site qui",
+    h2Em: "vous rapporte.",
+    body: "Dites-nous où vous en êtes et ce que vous visez. On revient vers vous sous 24 h avec une réponse claire sur ce qu'on peut faire, et en combien de temps.",
+    cta: "Remplir le formulaire",
     note: "2 minutes · sans engagement",
   },
 } as const;

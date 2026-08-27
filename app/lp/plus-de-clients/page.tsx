@@ -48,13 +48,20 @@ export default function LandingPage() {
           </p>
         </div>
 
-        {/* Vidéo */}
+        {/* Vidéo, puis le bouton directement en dessous */}
         <div className="relative mx-auto mt-11 max-w-3xl px-6">
           <VslPlayer />
+
+          <div className="mt-7 text-center">
+            <CtaButton className="w-full py-5 text-[17px] sm:w-auto sm:px-12">
+              {LP.underVideo.cta}
+            </CtaButton>
+            <p className="mt-3 text-[13px] text-steel">{LP.underVideo.ctaNote}</p>
+          </div>
         </div>
 
-        {/* ── Juste sous la vidéo : bénéfices + CTA principal ─────────── */}
-        <div className="relative mx-auto mt-7 max-w-3xl px-6">
+        {/* Rappel du contenu de la vidéo, pour ceux qui hésitent encore */}
+        <div className="relative mx-auto mt-12 max-w-3xl px-6">
           <VideoBenefits />
 
           <p className="mt-5 text-center text-[13px] italic text-steel">
