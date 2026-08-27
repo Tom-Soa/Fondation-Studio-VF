@@ -25,7 +25,7 @@ export const VSL_DURATION = "8 min";
 export const PIPEDRIVE_FORM_URL = "https://forms.pipedrive.com/s/REMPLACER";
 
 /** Page de remerciement où est posé le pixel Meta (événement Lead). */
-export const THANK_YOU_PATH = "/lp/plus-de-clients/merci";
+export const THANK_YOU_PATH = "/lp/merci";
 
 /**
  * ID du pixel Meta. Renseigner NEXT_PUBLIC_META_PIXEL_ID dans les variables
