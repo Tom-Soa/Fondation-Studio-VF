@@ -1,0 +1,35 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Configuration de la landing page publicitaire (VSL + formulaire Pipedrive).
+// Tout ce qui change d'une campagne à l'autre se règle ICI, en un seul endroit.
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * URL d'embed de la VSL.
+ * - YouTube  : https://www.youtube.com/embed/ID?rel=0&modestbranding=1
+ * - Vimeo    : https://player.vimeo.com/video/ID
+ * - Mux/Wistia : l'URL d'iframe fournie par la plateforme
+ * Laisser vide affiche un bloc "vidéo à venir" (utile en préprod).
+ */
+export const VSL_EMBED_URL = "";
+
+/** Miniature affichée avant lecture (facade). Placer le fichier dans /public. */
+export const VSL_POSTER = "/images/hero-index.jpg";
+
+/** Durée annoncée sous le lecteur (texte libre, sert de repère au visiteur). */
+export const VSL_DURATION = "8 min";
+
+/**
+ * Lien du formulaire Pipedrive (Web Forms → Partager → lien direct).
+ * Le visiteur y est envoyé au clic sur les CTA de la landing.
+ */
+export const PIPEDRIVE_FORM_URL = "https://forms.pipedrive.com/s/REMPLACER";
+
+/** Page de remerciement où est posé le pixel Meta (événement Lead). */
+export const THANK_YOU_PATH = "/lp/plus-de-clients/merci";
+
+/**
+ * ID du pixel Meta. Renseigner NEXT_PUBLIC_META_PIXEL_ID dans les variables
+ * d'environnement Vercel, ou remplacer la valeur par défaut ci-dessous.
+ * Tant qu'il est vide, aucun script de tracking n'est injecté.
+ */
+export const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID ?? "";

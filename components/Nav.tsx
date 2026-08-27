@@ -15,6 +15,7 @@ const NAV_ITEMS: { label: Record<Locale, string>; href: string }[] = [
   { label: { fr: "Réalisations", en: "Our work" }, href: "/realisations" },
   { label: { fr: "Nos offres", en: "Pricing" }, href: "/tarifs" },
   { label: { fr: "L'équipe", en: "The team" }, href: "/qui-sommes-nous" },
+  { label: { fr: "Ressources", en: "Resources" }, href: "/ressources" },
   { label: { fr: "FAQ", en: "FAQ" }, href: "/faq" },
 ];
 
@@ -107,7 +108,9 @@ export default function Nav({ lang }: { lang: Locale }) {
                 href={localeHref(lang, item.href)}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "relative px-3.5 py-2 rounded-full text-[13.5px] font-medium tracking-tight transition-colors whitespace-nowrap",
+                  // Padding un peu resserre entre 1024 et 1280px : 8 entrees de
+                  // menu tiennent alors sans coller aux bords de l'ecran.
+                  "relative px-2.5 xl:px-3.5 py-2 rounded-full text-[13px] xl:text-[13.5px] font-medium tracking-tight transition-colors whitespace-nowrap",
                   active ? "text-white" : "text-white/50 hover:text-white/90",
                 )}
               >

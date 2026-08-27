@@ -9,6 +9,10 @@ const defaultLocale = "fr";
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // Les landing pages publicitaires (/lp/...) vivent hors du système de langues :
+  // elles sont en français uniquement et n'ont ni navigation ni pied de page.
+  if (pathname === "/lp" || pathname.startsWith("/lp/")) return;
+
   const hasLocalePrefix = locales.some(
     (locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`),
   );
