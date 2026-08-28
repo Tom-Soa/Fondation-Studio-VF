@@ -22,7 +22,10 @@ export default function LandingPage() {
       <MetaPixel event="PageView" />
 
       {/* ── Haut de page : texte court, puis la vidéo ─────────────────── */}
-      <header className="relative isolate overflow-hidden bg-alabaster pb-16 pt-12 lg:pt-16">
+      <header
+        className="relative isolate overflow-hidden bg-alabaster pb-16 pt-12 lg:pt-16"
+        style={{ transform: "translateZ(0)" }}
+      >
         <LpHeroDecor />
 
         <div className="relative mx-auto max-w-4xl px-6 text-center">
