@@ -28,13 +28,13 @@ const T: Record<
     badge: "Places limitées chaque mois",
     titleStart: "On crée des sites web qui",
     titleEmphasis: "captent vos futurs clients",
-    subtitle: "Sites premium pour PME et artisans. Page d'accueil offerte.",
+    subtitle: "Sites premium pour PME et artisans. À partir de 1 400 €.",
   },
   en: {
     badge: "Limited spots each month",
     titleStart: "We build websites that",
     titleEmphasis: "win you new clients",
-    subtitle: "Premium websites for small businesses. Free homepage included.",
+    subtitle: "Premium websites for small businesses. From €1,400.",
   },
 };
 

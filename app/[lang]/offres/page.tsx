@@ -37,10 +37,10 @@ const T: Record<Locale, Dict> = {
   fr: {
     metaTitle: "Détail des offres · Standard, Conversion, Premium",
     metaDescription:
-      "Comparez nos trois offres de création de site (Standard, Conversion, Premium) : ce qui est inclus et pour qui. Site en propriété, hébergement gratuit, devis personnalisé.",
+      "Comparez nos trois offres de création de site (Standard, Conversion, Premium) : ce qui est inclus et pour qui. Site en propriété, hébergement gratuit, à partir de 1 400 €.",
     ogTitle: "Nos offres · Standard, Conversion, Premium",
     ogDescription:
-      "Comparez nos trois offres de création de site : ce qui est inclus et pour qui. Site en propriété, hébergement gratuit, devis personnalisé.",
+      "Comparez nos trois offres de création de site : ce qui est inclus et pour qui. Site en propriété, hébergement gratuit, à partir de 1 400 €.",
     backLink: "Retour aux offres",
     kicker: "Détail des offres",
     h1Before: "Trois offres, une seule logique : ",
@@ -84,10 +84,10 @@ const T: Record<Locale, Dict> = {
   en: {
     metaTitle: "Package Details · Standard, Conversion, Premium",
     metaDescription:
-      "Compare our three website packages (Standard, Conversion, Premium): what's included and who each one is for. You own your site, free hosting, personalized quote.",
+      "Compare our three website packages (Standard, Conversion, Premium): what's included and who each one is for. You own your site, free hosting, from €1,400.",
     ogTitle: "Our packages · Standard, Conversion, Premium",
     ogDescription:
-      "Compare our three website packages: what's included and who each one is for. You own your site, free hosting, personalized quote.",
+      "Compare our three website packages: what's included and who each one is for. You own your site, free hosting, from €1,400.",
     backLink: "Back to packages",
     kicker: "Package details",
     h1Before: "Three packages, one simple logic: ",

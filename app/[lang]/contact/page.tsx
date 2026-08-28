@@ -27,7 +27,7 @@ const T: Record<Locale, {
   fr: {
     metaTitle: "Contact · Demandez un devis gratuit",
     metaDescription:
-      "Demandez un devis gratuit, démarrez directement en ligne, ou écrivez-nous. Maquette offerte avant tout engagement.",
+      "Demandez un devis gratuit, démarrez directement en ligne, ou écrivez-nous. Maquette offerte avant tout engagement. Sites premium à partir de 1 400 €.",
     ogTitle: "Contact · ACTC",
     ogDescription:
       "Demandez un devis gratuit ou écrivez-nous. Maquette offerte avant tout engagement.",
@@ -50,7 +50,7 @@ const T: Record<Locale, {
   en: {
     metaTitle: "Contact · Get a free quote",
     metaDescription:
-      "Get a free quote, get started directly online, or send us a message. Free mockup before any commitment.",
+      "Get a free quote, get started directly online, or send us a message. Free mockup before any commitment. Premium websites from €1,400.",
     ogTitle: "Contact · ACTC",
     ogDescription:
       "Get a free quote or send us a message. Free mockup before any commitment.",

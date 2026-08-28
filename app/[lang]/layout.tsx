@@ -19,12 +19,12 @@ const META: Record<Locale, { title: string; description: string; ogTitle: string
   fr: {
     title: "ACTC · Sites web qui convertissent · Livrés en 21 jours",
     description:
-      "Studio web pour PME et artisans. Sites premium, design sur-mesure, hébergement gratuit, référencement intégré. Page d'accueil offerte avant tout engagement.",
+      "Studio web pour PME et artisans. Sites premium, design sur-mesure, hébergement gratuit, référencement intégré. À partir de 1 400 €. Page d'accueil offerte avant tout engagement.",
     ogTitle: "Votre site. Conçu pour vendre. Livré en 21 jours.",
     ogDescription:
-      "Sites premium pour PME : design sur-mesure, SEO intégré, hébergement gratuit. Page d'accueil offerte avant tout engagement.",
+      "Sites premium pour PME : design sur-mesure, SEO intégré, hébergement gratuit. À partir de 1 400 €.",
     twitterDescription:
-      "Sites web qui convertissent. Design sur-mesure. Hébergement gratuit. Page d'accueil offerte.",
+      "Sites web qui convertissent. Design sur-mesure. Hébergement gratuit. À partir de 1 400 €.",
     keywords: [
       "création site internet",
       "site web PME",
@@ -37,12 +37,12 @@ const META: Record<Locale, { title: string; description: string; ogTitle: string
   en: {
     title: "ACTC · Websites that convert · Delivered in 21 days",
     description:
-      "Web studio for small businesses and tradespeople. Premium websites, custom design, free hosting, built-in SEO. Free homepage before any commitment.",
+      "Web studio for small businesses and tradespeople. Premium websites, custom design, free hosting, built-in SEO. From €1,400. Free homepage before any commitment.",
     ogTitle: "Your website. Built to sell. Delivered in 21 days.",
     ogDescription:
-      "Premium websites for small businesses: custom design, built-in SEO, free hosting. Free homepage before any commitment.",
+      "Premium websites for small businesses: custom design, built-in SEO, free hosting. From €1,400.",
     twitterDescription:
-      "Websites that convert. Custom design. Free hosting. Free homepage.",
+      "Websites that convert. Custom design. Free hosting. From €1,400.",
     keywords: [
       "website creation",
       "small business website",

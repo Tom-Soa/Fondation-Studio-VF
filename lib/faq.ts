@@ -88,8 +88,8 @@ const CATEGORIES: FaqCategoryByLocale[] = [
       {
         q: { fr: "Comment fixez-vous vos prix ?", en: "How do you set your prices?" },
         a: {
-          fr: "Chaque projet fait l'objet d'un devis personnalisé, selon le nombre de pages, le contenu et le niveau de sur-mesure. Trois offres structurent nos prestations : Standard (jusqu'à 5 pages), Conversion (jusqu'à 8 pages avec texte optimisé) et Premium (pages illimitées). Les boutiques e-commerce Shopify sont aussi sur devis, avec 1 mois de publicité Facebook & Instagram ou Google offert.",
-          en: "Every project gets a personalized quote, based on the number of pages, the content and the level of customization. Three plans structure our services: Standard (up to 5 pages), Conversion (up to 8 pages with optimized copy) and Premium (unlimited pages). Shopify e-commerce stores are also quoted individually, with 1 month of Facebook & Instagram or Google advertising included.",
+          fr: "Nos forfaits démarrent à 1 400 € (Standard, jusqu'à 5 pages), 1 900 € (Conversion, jusqu'à 8 pages avec texte optimisé), et 2 400 € et plus (Premium, pages illimitées, sur devis). Les boutiques e-commerce Shopify démarrent à 2 900 €, avec 1 mois de publicité Facebook & Instagram ou Google offert.",
+          en: "Our packages start at €1,400 (Standard, up to 5 pages), €1,900 (Conversion, up to 8 pages with optimized copy), and €2,400 and up (Premium, unlimited pages, custom quote). Shopify e-commerce stores start at €2,900, with 1 month of Facebook & Instagram or Google advertising included.",
         },
       },
       {
@@ -342,8 +342,8 @@ const CATEGORIES: FaqCategoryByLocale[] = [
       {
         q: { fr: "Faites-vous des boutiques en ligne ?", en: "Do you build online stores?" },
         a: {
-          fr: "Oui. On crée des boutiques Shopify complètes : catalogue, panier, paiement sécurisé, gestion des commandes. Sur devis selon votre catalogue. 1 mois de publicité Facebook & Instagram ou Google offert.",
-          en: "Yes. We build complete Shopify stores: catalog, cart, secure checkout, order management. Quoted based on your catalog. 1 month of Facebook & Instagram or Google advertising included.",
+          fr: "Oui. On crée des boutiques Shopify complètes : catalogue, panier, paiement sécurisé, gestion des commandes. Tarif à partir de 2 900 €, sur devis selon votre catalogue. 1 mois de publicité Facebook & Instagram ou Google offert.",
+          en: "Yes. We build complete Shopify stores: catalog, cart, secure checkout, order management. From €2,900, quoted based on your catalog. 1 month of Facebook & Instagram or Google advertising included.",
         },
       },
       {

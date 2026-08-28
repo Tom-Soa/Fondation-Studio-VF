@@ -32,7 +32,8 @@ export const OFFERS: Record<Locale, Offer[]> = {
     {
       slug: "standard",
       name: "Standard",
-      price: "Sur devis",
+      price: "1 400 €",
+      priceValue: 1400,
       forWho: "PME locale, budget maîtrisé",
       features: [
         { text: "Site vitrine jusqu'à 5 pages", included: true },
@@ -53,7 +54,8 @@ export const OFFERS: Record<Locale, Offer[]> = {
     {
       slug: "conversion",
       name: "Conversion",
-      price: "Sur devis",
+      price: "1 900 €",
+      priceValue: 1900,
       forWho: "PME ambitieuse, croissance accélérée",
       features: [
         { text: "Site vitrine jusqu'à 8 pages", included: true },
@@ -76,8 +78,9 @@ export const OFFERS: Record<Locale, Offer[]> = {
     {
       slug: "premium",
       name: "Premium",
-      price: "Sur devis",
-      forWho: "Image ultra premium",
+      price: "2 400 €",
+      priceNote: "À partir de",
+      forWho: "Image ultra premium · sur devis",
       features: [
         { text: "Pages illimitées & fonctionnalités sur-mesure", included: true },
         { text: "Design ultra premium pensé pour vendre", included: true },
@@ -99,7 +102,8 @@ export const OFFERS: Record<Locale, Offer[]> = {
     {
       slug: "standard",
       name: "Standard",
-      price: "Custom quote",
+      price: "€1,400",
+      priceValue: 1400,
       forWho: "Local small business, controlled budget",
       features: [
         { text: "Showcase website with up to 5 pages", included: true },
@@ -120,7 +124,8 @@ export const OFFERS: Record<Locale, Offer[]> = {
     {
       slug: "conversion",
       name: "Conversion",
-      price: "Custom quote",
+      price: "€1,900",
+      priceValue: 1900,
       forWho: "Ambitious SMB, accelerated growth",
       features: [
         { text: "Showcase website with up to 8 pages", included: true },
@@ -143,8 +148,9 @@ export const OFFERS: Record<Locale, Offer[]> = {
     {
       slug: "premium",
       name: "Premium",
-      price: "Custom quote",
-      forWho: "Ultra premium brand image",
+      price: "€2,400",
+      priceNote: "From",
+      forWho: "Ultra premium brand image · custom quote",
       features: [
         { text: "Unlimited pages & custom features", included: true },
         { text: "Ultra premium design built to sell", included: true },
@@ -268,7 +274,7 @@ export const SERVICES: Record<Locale, Service[]> = {
   fr: [
     {
       title: "Boutique en ligne Shopify",
-      price: "Sur devis",
+      price: "À partir de 2 900 €",
       description:
         "Vous vendez vos produits en ligne ? On crée votre boutique Shopify complète : catalogue, panier, paiement sécurisé et gestion des commandes. Pensée pour vendre, simple à gérer au quotidien.",
     },
@@ -282,7 +288,7 @@ export const SERVICES: Record<Locale, Service[]> = {
   en: [
     {
       title: "Shopify online store",
-      price: "Custom quote",
+      price: "From €2,900",
       description:
         "Selling products online? We build your complete Shopify store: catalog, cart, secure checkout and order management. Built to sell, simple to run day to day.",
     },
@@ -866,7 +872,7 @@ export const FAQ: Record<Locale, FaqItem[]> = {
   fr: [
     {
       q: "Combien coûte un site ?",
-      a: "Chaque projet fait l'objet d'un devis personnalisé, selon le nombre de pages, le contenu et le niveau de sur-mesure. Trois offres structurent nos prestations : Standard, Conversion et Premium. Votre site vous appartient totalement, sans abonnement caché.",
+      a: "Nos forfaits démarrent à 1 400 € (Standard), 1 900 € (Conversion) et 2 400 € et plus (Premium, sur devis). Votre site vous appartient totalement, sans abonnement caché.",
     },
     {
       q: "En combien de temps mon site est-il livré ?",
@@ -892,7 +898,7 @@ export const FAQ: Record<Locale, FaqItem[]> = {
   en: [
     {
       q: "How much does a website cost?",
-      a: "Every project gets a personalized quote, based on the number of pages, the content and the level of customization. Three plans structure our services: Standard, Conversion and Premium. Your website belongs entirely to you, with no hidden subscription.",
+      a: "Our packages start at €1,400 (Standard), €1,900 (Conversion) and €2,400 and up (Premium, custom quote). Your website belongs entirely to you, with no hidden subscription.",
     },
     {
       q: "How long until my website is delivered?",

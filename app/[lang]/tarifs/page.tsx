@@ -41,15 +41,15 @@ const T: Record<
   fr: {
     metaTitle: "Nos offres",
     metaDescription:
-      "Forfaits sur devis, options à la carte, sites e-commerce Shopify et publicité Meta/Google. Site en propriété, acompte 60 %, paiement en plusieurs fois.",
+      "Forfaits à partir de 1 400 €, options à la carte, sites e-commerce Shopify et publicité Meta/Google. Site en propriété, acompte 60 %, paiement en plusieurs fois.",
     ogTitle: "Nos offres · ACTC",
     ogDescription:
-      "Forfaits sur devis, options à la carte, sites e-commerce Shopify et publicité Meta/Google. Site en propriété, paiement en plusieurs fois.",
+      "Forfaits à partir de 1 400 €, options à la carte, sites e-commerce Shopify et publicité Meta/Google. Site en propriété, paiement en plusieurs fois.",
     kicker: "Nos offres",
     h1Start: "Des sites qui se",
     h1Em: "remboursent.",
     intro:
-      "Un investissement, pas une dépense. Devis personnalisé, tout inclus, hébergement gratuit. Votre site vous appartient. Des forfaits de base à enrichir avec des options à la carte.",
+      "Un investissement, pas une dépense. À partir de 1 400 €, tout inclus, hébergement gratuit. Votre site vous appartient. Des forfaits de base à enrichir avec des options à la carte.",
     optionsKicker: "Options",
     optionsTitle: "Personnalisez votre site à la carte.",
     optionsNote: "Chaque option s'ajoute à n'importe quel forfait, sans dépendance ni abonnement caché.",
@@ -72,7 +72,7 @@ const T: Record<
     h1Start: "Websites that pay for",
     h1Em: "themselves.",
     intro:
-      "An investment, not an expense. Personalized quote, everything included, free hosting. Your site belongs to you. Base plans you can extend with a la carte options.",
+      "An investment, not an expense. From €1,400, everything included, free hosting. Your site belongs to you. Base plans you can extend with a la carte options.",
     optionsKicker: "Options",
     optionsTitle: "Customize your website, a la carte.",
     optionsNote: "Each option can be added to any plan, with no dependencies and no hidden subscription.",
@@ -122,7 +122,7 @@ const T: Record<
     faq: [
       {
         q: "How much does a website cost?",
-        a: "Every project gets a personalized quote, based on the number of pages, the content and the level of customization. Three plans structure our services: Standard, Conversion and Premium. Your site is fully yours, with no hidden subscription.",
+        a: "Our packages start at €1,400 (Standard), €1,900 (Conversion) and €2,400 and up (Premium, custom quote). Your site is fully yours, with no hidden subscription.",
       },
       {
         q: "How long until my site is delivered?",

@@ -56,14 +56,14 @@ const T: Record<Locale, Dict> = {
   fr: {
     metaTitle: "Création de site vitrine pour PME et artisans",
     metaDescription:
-      "Site vitrine sur-mesure pour PME, artisans et indépendants : design unique, référencement intégré, hébergement gratuit. Page d'accueil offerte avant tout engagement.",
+      "Site vitrine sur-mesure pour PME, artisans et indépendants : design unique, référencement intégré, hébergement gratuit. À partir de 1 400 €, page d'accueil offerte avant tout engagement.",
     ogTitle: "Création de site vitrine pour PME et artisans",
     ogDescription:
       "Site vitrine sur-mesure : design unique, référencement intégré, hébergement gratuit. Page d'accueil offerte avant tout engagement.",
     schemaName: "Création de site vitrine sur-mesure",
     schemaServiceType: "Création de site vitrine",
     schemaDescription:
-      "Site vitrine sur-mesure pour PME, artisans et indépendants : design unique, référencement intégré, hébergement gratuit. Page d'accueil offerte avant tout engagement.",
+      "Site vitrine sur-mesure pour PME, artisans et indépendants : design unique, référencement intégré, hébergement gratuit. À partir de 1 400 €, page d'accueil offerte avant tout engagement.",
     breadcrumbHome: "Accueil",
     breadcrumbPage: "Sites vitrines",
     heroKicker: "Sites vitrines",
@@ -75,8 +75,8 @@ const T: Record<Locale, Dict> = {
       "Pour PME, artisans et indépendants. Sur-mesure, crédible et bien référencé. Pensé pour transformer vos visiteurs en clients.",
     heroCtaPrimary: "Maquette offerte, sans engagement",
     heroCtaSecondary: "Voir nos offres",
-    cardTitle: "Votre site vitrine",
-    cardPrice: "sur devis",
+    cardTitle: "À partir de",
+    cardPrice: "1 400 €",
     cardItems: [
       { icon: "ph:paint-brush-duotone", label: "Design 100 % sur-mesure" },
       { icon: "ph:magnifying-glass-duotone", label: "SEO intégré dès le départ" },
@@ -166,8 +166,8 @@ const T: Record<Locale, Dict> = {
       "For small businesses, tradespeople and independents. Custom-built, credible and search-ready. Designed to turn your visitors into customers.",
     heroCtaPrimary: "Free mockup, no commitment",
     heroCtaSecondary: "See our packages",
-    cardTitle: "Your website",
-    cardPrice: "custom quote",
+    cardTitle: "From",
+    cardPrice: "€1,400",
     cardItems: [
       { icon: "ph:paint-brush-duotone", label: "100% custom design" },
       { icon: "ph:magnifying-glass-duotone", label: "SEO built in from day one" },

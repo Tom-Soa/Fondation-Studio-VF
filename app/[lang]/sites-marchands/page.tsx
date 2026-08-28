@@ -56,17 +56,17 @@ const T: Record<Locale, Dict> = {
   fr: {
     metaTitle: "Création de boutique e-commerce Shopify",
     metaDescription:
-      "On crée votre boutique Shopify sur-mesure et on s'occupe de tout l'écosystème : publicité Meta & Google, newsletter, SEO, relances email. Sur devis. 1 mois de publicité offert.",
+      "On crée votre boutique Shopify sur-mesure et on s'occupe de tout l'écosystème : publicité Meta & Google, newsletter, SEO, relances email. À partir de 2 900 €, sur devis. 1 mois de publicité offert.",
     ogTitle: "Création de boutique e-commerce Shopify",
     ogDescription:
-      "Boutique Shopify sur-mesure et écosystème complet : publicité Meta & Google, newsletter, SEO. Sur devis. 1 mois de publicité offert.",
+      "Boutique Shopify sur-mesure et écosystème complet : publicité Meta & Google, newsletter, SEO. À partir de 2 900 €. 1 mois de publicité offert.",
     schemaName: "Création de boutique e-commerce Shopify",
     schemaServiceType: "Création de boutique e-commerce",
     schemaDescription:
-      "Boutique Shopify sur-mesure et écosystème complet : publicité Meta & Google, newsletter, SEO, relances email. Sur devis, 1 mois de publicité offert.",
+      "Boutique Shopify sur-mesure et écosystème complet : publicité Meta & Google, newsletter, SEO, relances email. À partir de 2 900 €, 1 mois de publicité offert.",
     breadcrumbHome: "Accueil",
     breadcrumbPage: "Sites marchands",
-    heroBadge: "E-commerce Shopify · Sur devis",
+    heroBadge: "E-commerce Shopify · À partir de 2 900 €",
     heroTitle1: "Une boutique en ligne",
     heroTitleEm: "qui vend vraiment.",
     heroSub:
@@ -76,7 +76,7 @@ const T: Record<Locale, Dict> = {
     offerBadge: "E-commerce Shopify",
     offerTitle: "Boutique en ligne",
     offerSub: "Vendez vos produits, on s'occupe de tout",
-    offerPrice: "Sur devis",
+    offerPrice: "2 900 €",
     offerPriceNote: "Selon la taille de votre catalogue et vos besoins",
     offerGift: "1 mois de publicité Facebook & Instagram ou Google offert",
     offerCta: "Obtenir un devis gratuit",
@@ -176,17 +176,17 @@ const T: Record<Locale, Dict> = {
   en: {
     metaTitle: "Shopify E-commerce Store Design",
     metaDescription:
-      "We build your custom Shopify store and run the entire ecosystem: Meta & Google ads, newsletter, SEO, email follow-ups. Custom quote. 1 month of advertising free.",
+      "We build your custom Shopify store and run the entire ecosystem: Meta & Google ads, newsletter, SEO, email follow-ups. From €2,900, custom quote. 1 month of advertising free.",
     ogTitle: "Shopify E-commerce Store Design",
     ogDescription:
-      "Custom Shopify store and a complete ecosystem: Meta & Google ads, newsletter, SEO. Custom quote. 1 month of advertising free.",
+      "Custom Shopify store and a complete ecosystem: Meta & Google ads, newsletter, SEO. From €2,900. 1 month of advertising free.",
     schemaName: "Shopify e-commerce store design",
     schemaServiceType: "E-commerce store design",
     schemaDescription:
-      "Custom Shopify store and a complete ecosystem: Meta & Google ads, newsletter, SEO, email follow-ups. Custom quote, 1 month of advertising free.",
+      "Custom Shopify store and a complete ecosystem: Meta & Google ads, newsletter, SEO, email follow-ups. From €2,900, 1 month of advertising free.",
     breadcrumbHome: "Home",
     breadcrumbPage: "Online stores",
-    heroBadge: "Shopify e-commerce · Custom quote",
+    heroBadge: "Shopify e-commerce · From €2,900",
     heroTitle1: "An online store",
     heroTitleEm: "that actually sells.",
     heroSub:
@@ -196,7 +196,7 @@ const T: Record<Locale, Dict> = {
     offerBadge: "Shopify e-commerce",
     offerTitle: "Online store",
     offerSub: "Sell your products, we handle everything",
-    offerPrice: "Custom quote",
+    offerPrice: "€2,900",
     offerPriceNote: "Based on your catalog size and your needs",
     offerGift: "1 month of Facebook & Instagram or Google advertising free",
     offerCta: "Get a free quote",
