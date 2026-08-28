@@ -77,15 +77,21 @@ export const LP = {
     ],
   },
 
-  // ── Avant / après ──────────────────────────────────────────────────────
-  beforeAfter: {
-    kicker: "Avant / après",
-    h2Start: "Le même métier.",
-    h2Em: "Un tout autre effet.",
-    sub: "Faites défiler pour voir ce que voyaient les visiteurs avant, puis ce qu'ils voient aujourd'hui.",
-    beforeLabel: "Avant",
-    afterLabel: "Après",
-    hint: "Faites glisser →",
+  // ── Vocaux clients ─────────────────────────────────────────────────────
+  voices: {
+    kicker: "Ce qu'en disent nos clients",
+    h2Start: "Écoutez-les",
+    h2Em: "le raconter eux-mêmes.",
+    sub: "Deux messages vocaux reçus après la mise en ligne de leur site.",
+  },
+
+  // ── Sites en ligne ─────────────────────────────────────────────────────
+  sites: {
+    kicker: "Nos réalisations",
+    h2Start: "Jugez sur pièce.",
+    h2Em: "Voici nos sites.",
+    sub: "Cliquez sur un site pour l'ouvrir et le parcourir comme le ferait un de vos clients.",
+    linkLabel: "Voir le site",
   },
 
   // ── Objections ─────────────────────────────────────────────────────────
@@ -128,40 +134,78 @@ export const LP = {
   },
 } as const;
 
-// Paires avant/après.
+// Les deux messages vocaux clients.
 //
-// `before: null` affiche une vignette de substitution propre : c'est l'état
-// par défaut tant que les captures des anciens sites ne sont pas fournies.
-// Pour publier une paire, déposer la capture dans /public/avant-apres/ et
-// remplacer `null` par son chemin, par exemple "/avant-apres/elity-avant.jpg".
-export type BeforeAfterItem = {
+// `src: null` affiche un lecteur désactivé avec la mention "à venir" : c'est
+// l'état par défaut tant que le fichier audio n'est pas fourni. Pour publier,
+// déposer le .mp3 (ou .m4a) dans /public/vocaux/ et remplacer null par son
+// chemin, par exemple "/vocaux/medium.mp3".
+export type Voice = {
   name: string;
-  sector: string;
-  before: string | null;
-  after: string;
-  gain: string;
+  job: string;
+  quote: string;
+  result: string;
+  src: string | null;
 };
 
-export const BEFORE_AFTER: BeforeAfterItem[] = [
+export const VOICES: Voice[] = [
   {
-    name: "Cabinet de conseil",
-    sector: "Conseil / cession d'entreprise",
-    before: null,
-    after: "/showcase/elity.jpg",
-    gain: "Demandes qualifiées multipliées",
+    name: "Un médium",
+    job: "Voyance / accompagnement",
+    quote:
+      "Dix nouveaux clients dans la semaine qui a suivi la mise en ligne de son site.",
+    result: "10 clients en 1 semaine",
+    src: null,
   },
   {
-    name: "Constructeur",
-    sector: "BTP / préfabrication",
-    before: null,
-    after: "/showcase/sico-prefa.jpg",
-    gain: "Devis entrants dès le 1er mois",
-  },
-  {
-    name: "Académie sportive",
-    sector: "Club / association",
-    before: null,
-    after: "/showcase/academie-sportive.jpg",
-    gain: "Inscriptions en ligne automatisées",
+    name: "Un photographe",
+    job: "Photographie",
+    quote:
+      "Il ne s'attendait pas à ce niveau de qualité pour son site : il nous le dit de vive voix.",
+    result: "Surpris par la qualité",
+    src: null,
   },
 ];
+
+// Les sites clients en ligne, ouverts dans un nouvel onglet.
+// La capture est générée depuis l'URL et déposée dans /public/sites-clients/.
+export type ClientSite = {
+  name: string;
+  sector: string;
+  url: string;
+  shot: string;
+};
+
+export const CLIENT_SITES: ClientSite[] = [
+  {
+    name: "La Conciergerie Bunel",
+    sector: "Conciergerie / location meublée",
+    url: "https://concierge-chi-three.vercel.app/",
+    shot: "/sites-clients/conciergerie-bunel.jpg",
+  },
+  {
+    name: "Saint-Martin Autrement",
+    sector: "Association / seniors",
+    url: "https://association-autrement.vercel.app/",
+    shot: "/sites-clients/saint-martin-autrement.jpg",
+  },
+  {
+    name: "SICO PREFA",
+    sector: "BTP / construction préfabriquée",
+    url: "https://sico-prefa.vercel.app/",
+    shot: "/sites-clients/sico-prefa.jpg",
+  },
+  {
+    name: "Épicerie Lafonke",
+    sector: "Épicerie / produits naturels",
+    url: "https://lafonke.vercel.app/",
+    shot: "/sites-clients/lafonke.jpg",
+  },
+  {
+    name: "Chez Andy's",
+    sector: "Grossiste alimentaire",
+    url: "https://andys-mayotte-refonte.vercel.app/",
+    shot: "/sites-clients/andys.jpg",
+  },
+];
+

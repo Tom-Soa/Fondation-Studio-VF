@@ -3,7 +3,8 @@ import { LP } from "@/lib/lp-content";
 import VslPlayer from "@/components/lp/VslPlayer";
 import VideoBenefits from "@/components/lp/VideoBenefits";
 import { CtaButton } from "@/components/lp/CtaButton";
-import BeforeAfter from "@/components/lp/BeforeAfter";
+import Voices from "@/components/lp/Voices";
+import ClientSites from "@/components/lp/ClientSites";
 import Versus from "@/components/lp/Versus";
 import LpFaq from "@/components/lp/LpFaq";
 import MetaPixel from "@/components/lp/MetaPixel";
@@ -79,8 +80,11 @@ export default function LandingPage() {
       {/* ── Eux / nous ───────────────────────────────────────────────── */}
       <Versus />
 
-      {/* ── Avant / après ────────────────────────────────────────────── */}
-      <BeforeAfter />
+      {/* ── Vocaux clients ───────────────────────────────────────────── */}
+      <Voices />
+
+      {/* ── Sites clients en ligne ───────────────────────────────────── */}
+      <ClientSites />
 
       {/* ── Objections ───────────────────────────────────────────────── */}
       <LpFaq />
