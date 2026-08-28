@@ -213,5 +213,11 @@ export const CLIENT_SITES: ClientSite[] = [
     url: "https://la-villa-de-pecheur.vercel.app/",
     shot: "/sites-clients/villa-des-pecheurs.jpg",
   },
+  {
+    name: "Soumoili Auto",
+    sector: "Concession / véhicules d'occasion",
+    url: "https://soumoili-auto-main.vercel.app/",
+    shot: "/sites-clients/soumoili-auto.jpg",
+  },
 ];
 
