@@ -207,5 +207,11 @@ export const CLIENT_SITES: ClientSite[] = [
     url: "https://andys-mayotte-refonte.vercel.app/",
     shot: "/sites-clients/andys.jpg",
   },
+  {
+    name: "La Villa des Pêcheurs",
+    sector: "Location saisonnière / hébergement",
+    url: "https://la-villa-de-pecheur.vercel.app/",
+    shot: "/sites-clients/villa-des-pecheurs.jpg",
+  },
 ];
 
