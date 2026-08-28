@@ -9,12 +9,16 @@ import HeroBackground from "@/components/ui/HeroBackground";
  * Le mouvement des particules est autonome et n'est lié à aucun scroll, comme
  * sur le site. Le lecteur vidéo étant posé au-dessus sur fond opaque, rien ne
  * bouge derrière la vidéo pendant la lecture.
+ *
+ * Le halo est dimensionné en pixels et non en `vh` : sur mobile, la barre d'URL
+ * qui se rétracte fait varier `vh` en cours de défilement, ce qui donnait
+ * l'impression d'un zoom de l'arrière-plan.
  */
 export default function LpHeroDecor() {
   return (
     <>
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 -z-20 h-[70vh]"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-20 h-[560px]"
         style={{
           background:
             "radial-gradient(60% 50% at 50% 0%, rgba(194,65,12,0.14) 0%, transparent 70%)",

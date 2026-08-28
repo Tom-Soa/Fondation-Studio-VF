@@ -22,6 +22,8 @@ export default function HeroBackground() {
     type P = { x: number; y: number; vx: number; vy: number };
     let pts: P[] = [];
 
+    let lastW = -1;
+
     const resize = () => {
       const parent = canvas.parentElement;
       w = parent?.clientWidth ?? window.innerWidth;
@@ -31,6 +33,12 @@ export default function HeroBackground() {
       canvas.style.width = w + "px";
       canvas.style.height = h + "px";
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      // On ne resème les particules que si la largeur a vraiment changé. Sur
+      // mobile, la barre d'URL qui se rétracte au défilement déclenche un
+      // `resize` de hauteur seule : tout recalculer donnait alors l'impression
+      // d'un zoom de l'arrière-plan pendant le scroll.
+      if (w === lastW && pts.length) return;
+      lastW = w;
       const count = Math.min(95, Math.round((w * h) / 15000));
       pts = Array.from({ length: count }, () => ({
         x: Math.random() * w,

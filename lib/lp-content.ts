@@ -5,10 +5,10 @@ export const LP = {
   // ── Au-dessus de la vidéo ──────────────────────────────────────────────
   hero: {
     pill: "Places limitées ce mois",
-    h1Start: "Votre site ne vous rapporte",
-    h1Em: "aucun client ?",
-    h1End: "Voici pourquoi, et comment on le corrige.",
-    sub: "En 8 minutes, on vous montre pourquoi la majorité des sites ne génèrent jamais un seul appel, comment reconnaître un prestataire qui vend du design d'un prestataire qui vend des clients, et la méthode qui fait rentrer les premières demandes en moins de 30 jours.",
+    h1Start: "Un site internet qui",
+    h1Em: "se rentabilise",
+    h1End: "vraiment tout seul.",
+    sub: "Que votre site actuel ne vous rapporte rien ou que vous n'en ayez pas encore, on vous montre en 8 minutes pourquoi la plupart des sites ne génèrent jamais un seul appel, et la méthode qui fait rentrer les premières demandes en moins de 30 jours.",
     watchNote: "Regardez la vidéo en entier avant de remplir le formulaire.",
   },
 
@@ -20,7 +20,7 @@ export const LP = {
     // Rappel du contenu de la vidéo, sous le CTA.
     title: "Ce que vous apprenez dans la vidéo",
     bullets: [
-      "Les 3 raisons pour lesquelles un site tout neuf ne génère toujours aucun appel.",
+      "Les 3 raisons pour lesquelles un site, même refait à neuf, ne génère aucun appel.",
       "Comment reconnaître un prestataire qui vend du design d'un prestataire qui vend des clients.",
       "La méthode qui fait rentrer les premières demandes en moins de 30 jours.",
       "Ce qu'il faut exiger avant de signer : propriété du site, hébergement, autonomie.",
@@ -51,7 +51,7 @@ export const LP = {
     usTitle: "ACTC",
     rows: [
       {
-        them: "Vend un site, puis passe au client suivant.",
+        them: "Livre un joli site, sans se soucier de ce qu'il rapporte.",
         us: "Conçoit un parcours pensé pour transformer un visiteur en demande de devis.",
       },
       {
@@ -73,6 +73,14 @@ export const LP = {
       {
         them: "Facture le référencement en supplément.",
         us: "Intègre le référencement Google et IA dès la conception.",
+      },
+      {
+        them: "Disparaît une fois le site livré et la facture payée.",
+        us: "Reste à vos côtés après la mise en ligne : référencement, réseaux sociaux, conseils pour faire grandir votre activité.",
+      },
+      {
+        them: "Met des semaines à répondre pour la moindre modification.",
+        us: "Répond vite et applique vos modifications sans vous faire attendre.",
       },
     ],
   },

@@ -42,8 +42,7 @@ export default function LandingPage() {
 
           <h1 className="mt-7 font-display text-[clamp(2.1rem,5.5vw,4rem)] font-extrabold leading-[1.06] tracking-[-0.03em] text-midnight">
             {LP.hero.h1Start}{" "}
-            <span className="font-emphasis font-normal text-terra">{LP.hero.h1Em}</span>
-            <br className="hidden sm:block" />{" "}
+            <span className="font-emphasis font-normal text-terra">{LP.hero.h1Em}</span>{" "}
             {LP.hero.h1End}
           </h1>
 
