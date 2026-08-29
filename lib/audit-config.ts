@@ -9,7 +9,18 @@
 // La photo du fondateur est déjà en place : /images/tom-soa.jpg
 // ─────────────────────────────────────────────────────────────────────────────
 
-/** Lien de paiement Stripe. Tant qu'il n'est pas renseigné, les boutons sont inactifs. */
+/**
+ * Lien de paiement Stripe (Payment Link). Tant qu'il n'est pas renseigné, les
+ * boutons de la page restent visibles mais inactifs.
+ *
+ * À régler dans Stripe, sur le lien de paiement :
+ *   1. Champ personnalisé obligatoire "Adresse de votre site" : c'est ainsi
+ *      que vous récupérez le site à analyser, sans formulaire séparé.
+ *   2. Après le paiement, rediriger vers :
+ *      https://www.actcstudio.fr/audit/merci
+ *      Cette page confirme le paiement, récapitule la suite, et porte
+ *      l'événement Purchase du pixel Meta.
+ */
 export const STRIPE_PAYMENT_LINK = "STRIPE_PAYMENT_LINK";
 
 /** Prix affiché, délai de livraison et fenêtre de déduction. */

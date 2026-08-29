@@ -142,15 +142,84 @@ export const AUDIT = {
 
   auteur: {
     kicker: "Qui réalise l'audit",
+    h2Start: "Ce n'est pas un outil",
+    h2Em: "qui regarde votre site.",
     nom: "Tom-Soa Cyprien",
     role: "Fondateur d'ACTC",
     photo: "/images/tom-soa.jpg",
     corps: [
-      `C'est moi qui regarde votre site et qui enregistre la vidéo. Pas un outil automatique, pas un rapport généré : une analyse commentée, faite à la main.`,
-      `Nous créons des sites pour des dirigeants de PME et des indépendants en Guadeloupe, en Martinique, à La Réunion, à Saint-Martin et à Nosy Be. Ce que je regarde chez vous, je l'ai déjà corrigé ailleurs.`,
+      `C'est moi qui parcours votre site et qui enregistre la vidéo. Pas un rapport généré automatiquement : une analyse commentée, faite à la main, par quelqu'un qui construit des sites et achète de la publicité tous les jours.`,
+      `Ce que je regarde chez vous, je l'ai déjà corrigé ailleurs. C'est la seule raison pour laquelle je peux vous dire quoi traiter en premier.`,
     ],
-    preuveValeur: `${SITES_CREES}+`,
-    preuveLabel: "sites créés ces 6 derniers mois",
+
+    // Repères chiffrés, affichés en bandeau sous la présentation.
+    reperes: [
+      { valeur: "19 ans", label: "dont 15 à entreprendre" },
+      { valeur: `${SITES_CREES}+`, label: "entreprises accompagnées" },
+      { valeur: "Meta & Google", label: "publicité, formé et certifié" },
+    ],
+
+    // Le parcours en étapes : c'est ce qui légitime le regard porté sur un
+    // site, davantage qu'une liste de compétences.
+    parcoursKicker: "Le parcours",
+    parcours: [
+      {
+        icone: "ph:code-duotone",
+        periode: "Les débuts",
+        titre: "La création de sites, vitrines et marchands",
+        corps:
+          "J'ai commencé par construire des sites, y compris des boutiques en ligne. C'est là que j'ai appris ce qui fait qu'une page vend, ou ne vend pas.",
+      },
+      {
+        icone: "ph:trend-up-duotone",
+        periode: "Ensuite",
+        titre: "Des dizaines de millions de vues par mois",
+        corps:
+          "J'ai géré des comptes de réseaux sociaux qui généraient plusieurs dizaines de millions de vues mensuelles. On y apprend vite ce qui retient une attention, et ce qui la perd.",
+      },
+      {
+        icone: "ph:target-duotone",
+        periode: "À 18 ans",
+        titre: "4 500 € investis dans deux formations",
+        corps:
+          "De ma poche, pour devenir expert en publicité Meta et Google. Depuis, je mets en avant les offres de mes clients pour leur amener des clients, et j'analyse leurs pages pour comprendre où l'argent se perd.",
+      },
+      {
+        icone: "ph:handshake-duotone",
+        periode: "Depuis début 2026",
+        titre: "ACTC, officialisé avec Andy Lannes",
+        corps:
+          "Nous créions déjà des sites ensemble. Nous en avons fait une structure, et nous avons accompagné une cinquantaine d'entreprises depuis, dans des secteurs très différents les uns des autres.",
+      },
+    ],
+
+    // Résultats : attribués à des cas précis, jamais généralisés.
+    resultatsKicker: "Ce que ça donne",
+    resultats: [
+      {
+        icone: "ph:currency-eur-duotone",
+        chiffre: "1 M€",
+        corps:
+          "de chiffre d'affaires généré par un client du BTP dès le premier mois, avec 70 € investis en publicité. Un cas particulier, pas une moyenne.",
+      },
+      {
+        icone: "ph:magnifying-glass-duotone",
+        chiffre: "Référencement",
+        corps:
+          "nos clients sont positionnés sur leur métier et leur zone, et ce référencement leur amène des demandes sans publicité.",
+      },
+      {
+        icone: "ph:seal-check-duotone",
+        chiffre: "Crédibilité",
+        corps:
+          "un site sérieux change la façon dont on vous prend au sérieux. C'est le retour qui revient le plus souvent chez nos clients.",
+      },
+    ],
+    resultatsNote:
+      "Les clients qui s'impliquent et appliquent mes retours obtiennent des résultats. C'est la condition, et je le dis avant de commencer.",
+
+    territoire:
+      "Nous travaillons régulièrement avec des entreprises de Guadeloupe, de Martinique, de La Réunion, de Saint-Martin et de Nosy Be.",
   },
 
   offre: {
@@ -176,8 +245,8 @@ export const AUDIT = {
     h2: "Ce qu'on nous demande avant de commander.",
     items: [
       {
-        q: "Que se passe-t-il juste après le paiement ?",
-        a: `Vous arrivez sur une page de confirmation où vous indiquez l'adresse de votre site. Vous recevez aussi un courriel récapitulatif. Il n'y a rien d'autre à faire de votre côté : je m'occupe du reste.`,
+        q: "Que se passe-t-il juste après le paiement ?",
+        a: `L'adresse de votre site vous est demandée pendant le paiement. Vous recevez ensuite un reçu par courriel et arrivez sur une page de confirmation qui récapitule la suite. Il n'y a rien d'autre à faire de votre côté : je m'occupe du reste.`,
       },
       {
         q: "En combien de temps je reçois mon audit ?",
@@ -208,5 +277,38 @@ export const AUDIT = {
     corps: `Une vidéo, une note sur 100, trois priorités. Sous ${DELAI}, sans rendez-vous.`,
     cta: "Commander mon audit",
     ctaNote: `Paiement sécurisé · déduit si vous démarrez avec nous sous ${FENETRE_DEDUCTION}`,
+  },
+
+  // Page de confirmation, atteinte après le paiement Stripe.
+  merci: {
+    titreStart: "Paiement confirmé.",
+    titreEm: "Merci.",
+    sous: `Votre audit est lancé. Voici exactement ce qui se passe maintenant.`,
+    etapes: [
+      {
+        icone: "ph:envelope-simple-duotone",
+        titre: "Vous recevez un reçu par courriel",
+        corps:
+          "Envoyé par Stripe dans les minutes qui suivent. Pensez à vérifier vos indésirables si vous ne le voyez pas.",
+      },
+      {
+        icone: "ph:magnifying-glass-duotone",
+        titre: "J'analyse votre site",
+        corps:
+          "Je le parcours sur les six axes annoncés, sur ordinateur et sur téléphone, et j'enregistre la vidéo commentée.",
+      },
+      {
+        icone: "ph:video-camera-duotone",
+        titre: `Vous recevez votre vidéo sous ${DELAI}`,
+        corps:
+          "Par courriel, avec la note sur 100 et les 3 priorités classées par impact. Vous la gardez et la revoyez autant de fois que vous voulez.",
+      },
+    ],
+    rappelTitre: "Vous n'avez pas indiqué l'adresse de votre site ?",
+    rappelCorps:
+      "Répondez simplement au courriel de confirmation en indiquant l'adresse. Sans elle, je ne peux pas démarrer l'analyse.",
+    contactLabel: "Une question ?",
+    contactMail: "contact@actcstudio.fr",
+    deduction: `Gardez ce reçu : les ${PRIX} sont déduits du montant de votre site si vous démarrez avec nous dans les ${FENETRE_DEDUCTION}.`,
   },
 } as const;

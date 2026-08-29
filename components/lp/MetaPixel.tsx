@@ -9,11 +9,17 @@ import { META_PIXEL_ID } from "@/lib/lp-config";
  * - `event="PageView"` : à poser sur la landing (mesure du trafic publicitaire).
  * - `event="Lead"`     : à poser UNIQUEMENT sur la page de remerciement, qui
  *   n'est atteinte qu'après soumission du formulaire Pipedrive.
+ * - `event="Purchase"` : à poser UNIQUEMENT sur la confirmation de paiement,
+ *   qui n'est atteinte qu'après un paiement Stripe abouti.
  *
  * Si NEXT_PUBLIC_META_PIXEL_ID n'est pas défini, rien n'est injecté : la page
  * fonctionne normalement et aucune requête de tracking n'est émise.
  */
-export default function MetaPixel({ event = "PageView" }: { event?: "PageView" | "Lead" }) {
+export default function MetaPixel({
+  event = "PageView",
+}: {
+  event?: "PageView" | "Lead" | "Purchase";
+}) {
   if (!META_PIXEL_ID) return null;
 
   return (

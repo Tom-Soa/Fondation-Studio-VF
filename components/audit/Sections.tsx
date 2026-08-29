@@ -173,22 +173,21 @@ export function Axes() {
   );
 }
 
-/** 6. Qui réalise l'audit. */
+/** 6. Qui réalise l'audit : présentation, repères, parcours, résultats. */
 export function Auteur() {
   const t = AUDIT.auteur;
   return (
     <section className="bg-alabaster py-20 lg:py-28">
       <div className="mx-auto max-w-4xl px-6">
+        <TitreSection kicker={t.kicker} debut={t.h2Start} accent={t.h2Em} />
+
+        {/* Présentation + repères chiffrés */}
         <motion.div
           {...monte}
           transition={{ duration: 0.7, ease: doux }}
-          className="rounded-[2rem] border border-grid-line bg-white p-6 shadow-card-light sm:p-10"
+          className="overflow-hidden rounded-[2rem] border border-grid-line bg-white shadow-card-light"
         >
-          <div className="mb-6 text-[11px] font-medium uppercase tracking-[0.18em] text-terra">
-            {t.kicker}
-          </div>
-
-          <div className="flex flex-col gap-7 sm:flex-row sm:items-start">
+          <div className="flex flex-col gap-7 p-6 sm:flex-row sm:items-start sm:p-10">
             <img
               src={t.photo}
               alt={`${t.nom}, ${t.role}`}
@@ -198,30 +197,96 @@ export function Auteur() {
               decoding="async"
               className="h-[140px] w-[140px] shrink-0 rounded-2xl border border-grid-line object-cover"
             />
-
             <div className="min-w-0">
-              <h2 className="font-display text-[25px] font-extrabold tracking-[-0.02em] text-midnight sm:text-[29px]">
+              <h3 className="font-display text-[25px] font-extrabold tracking-[-0.02em] text-midnight sm:text-[29px]">
                 {t.nom}
-              </h2>
+              </h3>
               <p className="mt-1 text-[13px] font-medium uppercase tracking-[0.12em] text-terra">
                 {t.role}
               </p>
-
               {t.corps.map((p) => (
                 <p key={p} className="mt-4 text-[14.5px] leading-relaxed text-midnight/70">
                   {p}
                 </p>
               ))}
-
-              <div className="mt-6 flex items-center gap-4 border-t border-grid-line pt-6">
-                <span className="font-display text-[40px] font-extrabold leading-none tracking-[-0.03em] text-terra">
-                  {t.preuveValeur}
-                </span>
-                <span className="text-[13.5px] leading-snug text-steel">{t.preuveLabel}</span>
-              </div>
             </div>
           </div>
+
+          <div className="grid divide-y divide-grid-line border-t border-grid-line sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+            {t.reperes.map((r) => (
+              <div key={r.label} className="px-5 py-6 text-center">
+                <div className="font-display text-[24px] font-extrabold leading-none tracking-[-0.02em] text-terra">
+                  {r.valeur}
+                </div>
+                <p className="mt-2 text-[12.5px] leading-snug text-steel">{r.label}</p>
+              </div>
+            ))}
+          </div>
         </motion.div>
+
+        {/* Le parcours, en étapes */}
+        <div className="mt-14">
+          <div className="mb-7 text-center text-[11px] font-medium uppercase tracking-[0.18em] text-terra">
+            {t.parcoursKicker}
+          </div>
+          <ol className="relative space-y-4 sm:space-y-0">
+            {t.parcours.map((etape, i) => (
+              <motion.li
+                key={etape.titre}
+                {...monte}
+                transition={{ duration: 0.6, delay: i * 0.08, ease: doux }}
+                className="relative flex gap-5 rounded-3xl border border-grid-line bg-white p-6 shadow-card-light sm:mb-4"
+              >
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-terra/10 text-terra">
+                  <Icon icon={etape.icone} width={24} height={24} aria-hidden />
+                </span>
+                <div className="min-w-0">
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-terra">
+                    {etape.periode}
+                  </span>
+                  <h4 className="mt-1.5 font-display text-[17px] font-bold leading-snug text-midnight">
+                    {etape.titre}
+                  </h4>
+                  <p className="mt-2 text-[14.5px] leading-relaxed text-midnight/70">
+                    {etape.corps}
+                  </p>
+                </div>
+              </motion.li>
+            ))}
+          </ol>
+        </div>
+
+        {/* Les résultats obtenus, attribués à des cas précis */}
+        <div className="mt-14">
+          <div className="mb-7 text-center text-[11px] font-medium uppercase tracking-[0.18em] text-terra">
+            {t.resultatsKicker}
+          </div>
+          <ul className="grid gap-4 md:grid-cols-3">
+            {t.resultats.map((r, i) => (
+              <motion.li
+                key={r.chiffre}
+                {...monte}
+                transition={{ duration: 0.6, delay: i * 0.08, ease: doux }}
+                className="rounded-3xl border border-grid-line bg-white p-6 shadow-card-light"
+              >
+                <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-terra/10 text-terra">
+                  <Icon icon={r.icone} width={22} height={22} aria-hidden />
+                </span>
+                <div className="mt-4 font-display text-[21px] font-extrabold leading-none tracking-[-0.02em] text-terra">
+                  {r.chiffre}
+                </div>
+                <p className="mt-3 text-[14px] leading-relaxed text-midnight/70">{r.corps}</p>
+              </motion.li>
+            ))}
+          </ul>
+
+          <p className="mx-auto mt-6 max-w-xl rounded-2xl border border-grid-line bg-white px-5 py-4 text-center text-[13.5px] leading-relaxed text-midnight/75">
+            {t.resultatsNote}
+          </p>
+          <p className="mx-auto mt-4 max-w-xl text-center text-[13.5px] leading-relaxed text-steel">
+            {t.territoire}
+          </p>
+        </div>
       </div>
     </section>
   );
