@@ -86,6 +86,14 @@ export default function AuditMerci() {
             {t.contactMail}
           </a>
         </p>
+
+        <p className="mt-6 border-t border-grid-line pt-6 text-[13px] text-midnight/70">
+          En attendant,{" "}
+          <a href="/fr" className="text-terra underline underline-offset-2">
+            découvrez nos réalisations
+          </a>
+          .
+        </p>
       </motion.div>
     </section>
   );

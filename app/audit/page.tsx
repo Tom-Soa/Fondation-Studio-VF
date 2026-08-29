@@ -63,6 +63,10 @@ export default function PageAudit() {
       <footer className="border-t border-grid-line bg-alabaster py-8 text-center">
         <p className="text-[12.5px] text-midnight/70">
           © {new Date().getFullYear()} ACTC ·{" "}
+          <a href="/fr" className="underline hover:text-midnight">
+            Notre site
+          </a>{" "}
+          ·{" "}
           <a href="/fr/mentions-legales" className="underline hover:text-midnight">
             Mentions légales
           </a>{" "}
