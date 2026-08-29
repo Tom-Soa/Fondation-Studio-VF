@@ -25,19 +25,23 @@ export const AUDIT = {
 
   probleme: {
     kicker: "Le point de départ",
-    h2: "Vous reconnaissez sûrement l'une de ces situations.",
+    h2Start: "Vous reconnaissez",
+    h2Em: "sûrement l'une de ces situations.",
     items: [
       {
+        icone: "ph:phone-slash-duotone",
         titre: "Votre site a l'air correct, mais le téléphone ne sonne pas",
         corps:
           "Le design vous plaît, vos proches vous disent qu'il est réussi, et pourtant les demandes n'arrivent pas. Quelque chose bloque entre la visite et le contact.",
       },
       {
+        icone: "ph:users-three-duotone",
         titre: "Vous ne savez pas où partent vos visiteurs",
         corps:
           "Des gens arrivent sur votre site. Vous ignorez ce qu'ils lisent, à quel moment ils s'arrêtent, et ce qui les fait repartir sans rien faire.",
       },
       {
+        icone: "ph:signpost-duotone",
         titre: "Vous ne savez pas par quoi commencer",
         corps:
           "On vous parle de référencement, de vitesse, de textes, de photos. Impossible de savoir ce qui compte vraiment pour votre activité, ni dans quel ordre s'y prendre.",
@@ -47,7 +51,8 @@ export const AUDIT = {
 
   livrables: {
     kicker: "Ce que vous recevez",
-    h2: "Un livrable unique, concret, à regarder quand vous voulez.",
+    h2Start: "Un livrable concret,",
+    h2Em: "à revoir quand vous voulez.",
     items: [
       {
         icone: "ph:video-camera-duotone",
@@ -78,7 +83,8 @@ export const AUDIT = {
 
   etapes: {
     kicker: "Comment ça marche",
-    h2: "Trois étapes, aucun rendez-vous.",
+    h2Start: "Trois étapes,",
+    h2Em: "aucun rendez-vous.",
     items: [
       {
         titre: "Vous commandez",
@@ -98,7 +104,8 @@ export const AUDIT = {
 
   axes: {
     kicker: "Ce que j'analyse",
-    h2: "Six axes qui décident si un visiteur vous contacte.",
+    h2Start: "Six axes qui décident",
+    h2Em: "si un visiteur vous contacte.",
     items: [
       {
         icone: "ph:eye-duotone",

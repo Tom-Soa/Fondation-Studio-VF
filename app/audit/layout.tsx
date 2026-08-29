@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import { inter, display, emphasis, dmMono } from "@/lib/fonts";
 import { AUDIT } from "@/lib/audit-content";
 import "../globals.css";
-import "./audit.css";
 
 // Page de vente autonome : ni navigation ni pied de page du site. Le seul
-// chemin de sortie est le bouton de paiement.
+// chemin de sortie est le bouton de paiement. Le design reprend exactement
+// celui du site (alabaster, midnight, terracotta, Inter Tight + Instrument
+// Serif italic pour les mots accentués).
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.actcstudio.fr"),
@@ -39,7 +40,9 @@ export default function AuditLayout({ children }: { children: React.ReactNode })
         variable d'environnement NEXT_PUBLIC_META_PIXEL_ID. Tant qu'elle n'est
         pas définie, aucun script de suivi n'est chargé.
       */}
-      <body className="audit-body font-sans antialiased">{children}</body>
+      <body className="font-sans bg-alabaster text-midnight antialiased overflow-x-hidden">
+        {children}
+      </body>
     </html>
   );
 }
