@@ -66,6 +66,17 @@ export default function AuditFaq() {
             );
           })}
         </motion.div>
+
+        {/* Sortie de secours pour qui hésite encore : la page doit vendre seule */}
+        <p className="mt-8 text-center text-[14px] leading-relaxed text-midnight/70">
+          {t.contactAmorce}{" "}
+          <a
+            href={`mailto:${t.contactMail}`}
+            className="font-medium text-terra underline underline-offset-2"
+          >
+            {t.contactLien}
+          </a>
+        </p>
       </div>
     </section>
   );

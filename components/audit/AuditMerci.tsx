@@ -64,7 +64,7 @@ export default function AuditMerci() {
                   <span className="mr-2 text-terra">{i + 1}.</span>
                   {etape.titre}
                 </p>
-                <p className="mt-1 text-[14px] leading-relaxed text-steel">{etape.corps}</p>
+                <p className="mt-1 text-[14px] leading-relaxed text-midnight/70">{etape.corps}</p>
               </div>
             </motion.li>
           ))}
@@ -76,11 +76,11 @@ export default function AuditMerci() {
           <p className="mt-1.5 text-[14px] leading-relaxed text-midnight/75">{t.rappelCorps}</p>
         </div>
 
-        <p className="mt-8 text-[13.5px] text-steel">
+        <p className="mt-8 text-[13.5px] text-midnight/70">
           {t.deduction}
         </p>
 
-        <p className="mt-5 text-[13px] text-steel">
+        <p className="mt-5 text-[13px] text-midnight/70">
           {t.contactLabel}{" "}
           <a href={`mailto:${t.contactMail}`} className="text-terra underline">
             {t.contactMail}

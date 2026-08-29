@@ -222,6 +222,16 @@ export const AUDIT = {
       "Nous travaillons régulièrement avec des entreprises de Guadeloupe, de Martinique, de La Réunion, de Saint-Martin et de Nosy Be.",
   },
 
+  // Les sites déjà réalisés : la liste vient de lib/lp-content.ts, un seul
+  // endroit à mettre à jour quand un site s'ajoute.
+  sites: {
+    kicker: "Ce qu'on construit",
+    h2Start: "Les sites qu'on a faits,",
+    h2Em: "à parcourir vous-même.",
+    sub: "Le regard que je porte sur votre site vient de là. Ouvrez-en un et jugez par vous-même.",
+    linkLabel: "Voir le site",
+  },
+
   offre: {
     kicker: "L'offre",
     h2Start: "Un audit à",
@@ -269,6 +279,9 @@ export const AUDIT = {
         a: "Cet audit porte sur un site existant : sans adresse à analyser, il n'a pas d'objet. Écrivez-nous directement, nous partirons de votre activité et de vos objectifs plutôt que d'une page à corriger.",
       },
     ],
+    contactAmorce: "Une question avant de commander ?",
+    contactLien: "Écrivez-moi, je réponds moi-même.",
+    contactMail: "tomsoa.actc@gmail.com",
   },
 
   final: {
@@ -308,7 +321,7 @@ export const AUDIT = {
     rappelCorps:
       "Répondez simplement au courriel de confirmation en indiquant l'adresse. Sans elle, je ne peux pas démarrer l'analyse.",
     contactLabel: "Une question ?",
-    contactMail: "contact@actcstudio.fr",
+    contactMail: "tomsoa.actc@gmail.com",
     deduction: `Gardez ce reçu : les ${PRIX} sont déduits du montant de votre site si vous démarrez avec nous dans les ${FENETRE_DEDUCTION}.`,
   },
 } as const;

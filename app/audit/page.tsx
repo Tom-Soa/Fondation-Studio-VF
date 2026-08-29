@@ -13,6 +13,7 @@ import { AUDIT } from "@/lib/audit-content";
 import MetaPixel from "@/components/lp/MetaPixel";
 import AuditHero from "@/components/audit/AuditHero";
 import AuditFaq from "@/components/audit/AuditFaq";
+import SitesRealises from "@/components/audit/SitesRealises";
 import {
   Probleme,
   Livrables,
@@ -34,30 +35,33 @@ export default function PageAudit() {
       {/* 2. Les symptômes que le visiteur reconnaît chez lui */}
       <Probleme />
 
-      {/* 3. Ce qu'il reçoit concrètement */}
-      <Livrables />
-
-      {/* 4. Les trois étapes */}
-      <Etapes />
-
-      {/* 5. Les six axes analysés */}
-      <Axes />
-
-      {/* 6. Qui réalise l'audit */}
+      {/* 3. Qui réalise l'audit : la crédibilité avant l'offre */}
       <Auteur />
 
-      {/* 7. L'offre et la déduction */}
+      {/* 4. Les sites déjà réalisés, en preuve */}
+      <SitesRealises />
+
+      {/* 5. Ce qu'il reçoit concrètement */}
+      <Livrables />
+
+      {/* 6. Les trois étapes */}
+      <Etapes />
+
+      {/* 7. Les six axes analysés */}
+      <Axes />
+
+      {/* 8. L'offre et la déduction */}
       <Offre />
 
-      {/* 8. Questions fréquentes */}
+      {/* 9. Questions fréquentes */}
       <AuditFaq />
 
-      {/* 9. Dernier appel à l'action */}
+      {/* 10. Dernier appel à l'action */}
       <AppelFinal />
 
       {/* Pied de page minimal : mentions obligatoires, aucune navigation */}
       <footer className="border-t border-grid-line bg-alabaster py-8 text-center">
-        <p className="text-[12.5px] text-steel">
+        <p className="text-[12.5px] text-midnight/70">
           © {new Date().getFullYear()} ACTC ·{" "}
           <a href="/fr/mentions-legales" className="underline hover:text-midnight">
             Mentions légales

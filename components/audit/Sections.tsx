@@ -218,7 +218,7 @@ export function Auteur() {
                 <div className="font-display text-[24px] font-extrabold leading-none tracking-[-0.02em] text-terra">
                   {r.valeur}
                 </div>
-                <p className="mt-2 text-[12.5px] leading-snug text-steel">{r.label}</p>
+                <p className="mt-2 text-[12.5px] leading-snug text-midnight/70">{r.label}</p>
               </div>
             ))}
           </div>
@@ -283,7 +283,7 @@ export function Auteur() {
           <p className="mx-auto mt-6 max-w-xl rounded-2xl border border-grid-line bg-white px-5 py-4 text-center text-[13.5px] leading-relaxed text-midnight/75">
             {t.resultatsNote}
           </p>
-          <p className="mx-auto mt-4 max-w-xl text-center text-[13.5px] leading-relaxed text-steel">
+          <p className="mx-auto mt-4 max-w-xl text-center text-[13.5px] leading-relaxed text-midnight/70">
             {t.territoire}
           </p>
         </div>
@@ -309,7 +309,7 @@ export function Offre() {
             <div className="font-display text-[clamp(3.4rem,12vw,5rem)] font-extrabold leading-none tracking-[-0.04em] text-terra">
               {PRIX}
             </div>
-            <p className="mt-2 text-[12.5px] uppercase tracking-[0.16em] text-steel">
+            <p className="mt-2 text-[12.5px] uppercase tracking-[0.16em] text-midnight/70">
               Paiement unique
             </p>
 
@@ -332,7 +332,7 @@ export function Offre() {
               <BoutonPaiement taille="grand" className="w-full sm:w-auto">
                 {t.cta}
               </BoutonPaiement>
-              <p className="mt-3 text-[13px] text-steel">{t.ctaNote}</p>
+              <p className="mt-3 text-[13px] text-midnight/70">{t.ctaNote}</p>
             </div>
           </div>
 

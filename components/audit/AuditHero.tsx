@@ -33,6 +33,10 @@ export default function AuditHero() {
         aria-hidden
       />
       <HeroBackground />
+      <div
+        className="pointer-events-none absolute inset-0 -z-[5] bg-alabaster/65"
+        aria-hidden
+      />
 
       <div className="relative mx-auto max-w-3xl px-6 text-center">
         {/* Logo seul, non cliquable : identité sans porte de sortie */}
@@ -85,7 +89,7 @@ export default function AuditHero() {
           className="mx-auto mt-8 flex max-w-sm items-stretch gap-3"
         >
           <div className="flex-1 rounded-2xl border border-grid-line bg-white px-4 py-3 shadow-card-light">
-            <div className="text-[10.5px] font-semibold uppercase tracking-[0.14em] text-steel">
+            <div className="text-[10.5px] font-semibold uppercase tracking-[0.14em] text-midnight/70">
               {t.priceLabel}
             </div>
             <div className="mt-1 font-display text-[27px] font-extrabold leading-none text-terra">
@@ -93,7 +97,7 @@ export default function AuditHero() {
             </div>
           </div>
           <div className="flex-1 rounded-2xl border border-grid-line bg-white px-4 py-3 shadow-card-light">
-            <div className="text-[10.5px] font-semibold uppercase tracking-[0.14em] text-steel">
+            <div className="text-[10.5px] font-semibold uppercase tracking-[0.14em] text-midnight/70">
               {t.delayLabel}
             </div>
             <div className="mt-1 font-display text-[27px] font-extrabold leading-none text-midnight">
@@ -111,7 +115,7 @@ export default function AuditHero() {
           <BoutonPaiement taille="grand" className="w-full sm:w-auto">
             {t.cta}
           </BoutonPaiement>
-          <p className="mt-3 text-[13px] text-steel">{t.ctaNote}</p>
+          <p className="mt-3 text-[13px] text-midnight/70">{t.ctaNote}</p>
         </motion.div>
 
         <motion.p
