@@ -21,7 +21,8 @@
  *      Cette page confirme le paiement, récapitule la suite, et porte
  *      l'événement Purchase du pixel Meta.
  */
-export const STRIPE_PAYMENT_LINK = "STRIPE_PAYMENT_LINK";
+export const STRIPE_PAYMENT_LINK: string =
+  "https://buy.stripe.com/9B66oJ94Bg1g7XNgvd5Ne01";
 
 /** Prix affiché, délai de livraison et fenêtre de déduction. */
 export const PRIX = "97 €";
@@ -31,5 +32,9 @@ export const FENETRE_DEDUCTION = "30 jours";
 /** Preuve chiffrée, à mettre à jour quand le nombre évolue. */
 export const SITES_CREES = 50;
 
-/** Le lien est-il réellement configuré ? */
-export const PAIEMENT_ACTIF = STRIPE_PAYMENT_LINK !== "STRIPE_PAYMENT_LINK";
+/**
+ * Le lien est-il réellement configuré ? Sert de garde : tant que le lien vaut
+ * le texte de remplacement, les boutons restent visibles mais inactifs.
+ */
+export const PAIEMENT_ACTIF =
+  STRIPE_PAYMENT_LINK.startsWith("https://") && !STRIPE_PAYMENT_LINK.includes("REMPLACER");
