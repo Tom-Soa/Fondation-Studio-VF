@@ -15,6 +15,9 @@ export function proxy(request: NextRequest) {
   if (pathname === "/lp" || pathname.startsWith("/lp/")) return;
   if (pathname === "/audit" || pathname.startsWith("/audit/")) return;
 
+  // Outils internes : hors du système de langues également.
+  if (pathname === "/studio" || pathname.startsWith("/studio/")) return;
+
   const hasLocalePrefix = locales.some(
     (locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`),
   );
