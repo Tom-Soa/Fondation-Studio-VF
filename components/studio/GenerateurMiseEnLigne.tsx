@@ -198,27 +198,19 @@ function dessiner(
 ) {
   const T = TAILLE;
 
-  // Fond
-  ctx.fillStyle = ALABASTER;
-  ctx.fillRect(0, 0, T, T);
+  fondDecor(ctx, T);
 
-  // Halo terracotta en haut, comme sur le site
-  const halo = ctx.createRadialGradient(T / 2, 0, 0, T / 2, 0, T * 0.75);
-  halo.addColorStop(0, "rgba(194,65,12,0.16)");
-  halo.addColorStop(1, "rgba(194,65,12,0)");
-  ctx.fillStyle = halo;
-  ctx.fillRect(0, 0, T, T * 0.6);
-
-  const marge = 72;
+  const marge = 64;
 
   // ── Pastille de mention, en haut ──────────────────────────────────────────
   const mention = (champs.mention || "Nouveau site en ligne").toUpperCase();
-  ctx.font = "700 24px Inter, system-ui, sans-serif";
+  ctx.font = "700 23px Inter, system-ui, sans-serif";
   ctx.letterSpacing = "2px";
   const largeurTexte = ctx.measureText(mention).width - 2;
   ctx.letterSpacing = "0px";
-  const pastilleL = largeurTexte + 96;
-  const pastilleH = 60;
+
+  const pastilleL = largeurTexte + 92;
+  const pastilleH = 56;
   const pastilleX = (T - pastilleL) / 2;
   const pastilleY = marge;
 
@@ -229,9 +221,8 @@ function dessiner(
   ctx.lineWidth = 2;
   ctx.stroke();
 
-  // Point terracotta
   ctx.beginPath();
-  ctx.arc(pastilleX + 34, pastilleY + pastilleH / 2, 7, 0, Math.PI * 2);
+  ctx.arc(pastilleX + 32, pastilleY + pastilleH / 2, 6.5, 0, Math.PI * 2);
   ctx.fillStyle = TERRA;
   ctx.fill();
 
@@ -239,7 +230,7 @@ function dessiner(
   ctx.textAlign = "left";
   ctx.textBaseline = "middle";
   ctx.letterSpacing = "2px";
-  ctx.fillText(mention, pastilleX + 56, pastilleY + pastilleH / 2 + 1);
+  ctx.fillText(mention, pastilleX + 52, pastilleY + pastilleH / 2 + 1);
   ctx.letterSpacing = "0px";
 
   // ── Nom de l'entreprise ───────────────────────────────────────────────────
@@ -247,28 +238,52 @@ function dessiner(
   ctx.textAlign = "center";
   ctx.fillStyle = MIDNIGHT;
 
-  // Réduit la taille si le nom est long, pour qu'il tienne toujours sur une ligne.
-  let taille = 76;
+  let taille = 68;
   ctx.font = `800 ${taille}px Inter, system-ui, sans-serif`;
-  while (ctx.measureText(nom).width > T - marge * 2 && taille > 40) {
+  while (ctx.measureText(nom).width > T - marge * 2 && taille > 36) {
     taille -= 2;
     ctx.font = `800 ${taille}px Inter, system-ui, sans-serif`;
   }
-  const nomY = pastilleY + pastilleH + 76;
+  const nomY = pastilleY + pastilleH + 52;
   ctx.textBaseline = "top";
   ctx.fillText(nom, T / 2, nomY);
 
-  // ── Capture du site, dans un cadre de navigateur ──────────────────────────
-  const cadreX = marge;
-  const cadreY = nomY + taille + 56;
-  const cadreL = T - marge * 2;
-  const barreH = 44;
-  const cadreH = 470;
+  // ── Bloc du bas, mesuré d'abord : le cadre occupe tout ce qui reste ───────
+  const hauteurUrl = champs.url.trim() ? 62 : 0;
+  const hauteurSignature = 132;
+  const basReserve = hauteurSignature + hauteurUrl + 40;
 
+  const cadreY = nomY + taille + 44;
+  const hauteurDispo = T - cadreY - basReserve;
+
+  // Le cadre épouse les proportions de la capture pour l'afficher en entier,
+  // dans la limite de la place disponible.
+  const barreH = 40;
+  const ratioCapture = capture ? capture.width / capture.height : 16 / 10;
+
+  let cadreL = T - marge * 2;
+  let zoneH = cadreL / ratioCapture;
+
+  if (zoneH + barreH > hauteurDispo) {
+    zoneH = hauteurDispo - barreH;
+    cadreL = zoneH * ratioCapture;
+  }
+
+  const cadreH = zoneH + barreH;
+  const cadreX = (T - cadreL) / 2;
+
+  // Ombre portée sous le cadre
   ctx.save();
-  arrondi(ctx, cadreX, cadreY, cadreL, cadreH, 22);
+  ctx.shadowColor = "rgba(15,23,42,0.18)";
+  ctx.shadowBlur = 40;
+  ctx.shadowOffsetY = 16;
+  arrondi(ctx, cadreX, cadreY, cadreL, cadreH, 20);
   ctx.fillStyle = BLANC;
   ctx.fill();
+  ctx.restore();
+
+  ctx.save();
+  arrondi(ctx, cadreX, cadreY, cadreL, cadreH, 20);
   ctx.strokeStyle = "#e5e5e1";
   ctx.lineWidth = 2;
   ctx.stroke();
@@ -277,64 +292,39 @@ function dessiner(
   // Barre du navigateur
   ctx.fillStyle = BLANC;
   ctx.fillRect(cadreX, cadreY, cadreL, barreH);
-  const pastilles = ["#ff5f57", "#febc2e", "#28c840"];
-  pastilles.forEach((c, i) => {
+  ["#ff5f57", "#febc2e", "#28c840"].forEach((c, i) => {
     ctx.beginPath();
-    ctx.arc(cadreX + 28 + i * 24, cadreY + barreH / 2, 7, 0, Math.PI * 2);
+    ctx.arc(cadreX + 24 + i * 21, cadreY + barreH / 2, 6, 0, Math.PI * 2);
     ctx.fillStyle = c;
     ctx.fill();
   });
-  // Barre d'adresse
-  arrondi(ctx, cadreX + 108, cadreY + 13, cadreL - 140, 18, 9);
+  arrondi(ctx, cadreX + 96, cadreY + 12, cadreL - 124, 16, 8);
   ctx.fillStyle = "#eceae4";
   ctx.fill();
 
-  // La capture, recadrée pour remplir la zone sans se déformer
+  // La capture entière, sans rognage : le cadre a été calé sur son ratio.
   if (capture) {
-    const zoneY = cadreY + barreH;
-    const zoneH = cadreH - barreH;
-    const ratioZone = cadreL / zoneH;
-    const ratioImg = capture.width / capture.height;
-
-    let sx = 0,
-      sy = 0,
-      sw = capture.width,
-      sh = capture.height;
-
-    if (ratioImg > ratioZone) {
-      // Image trop large : on rogne les côtés.
-      sw = capture.height * ratioZone;
-      sx = (capture.width - sw) / 2;
-    } else {
-      // Image trop haute : on garde le haut de la page.
-      sh = capture.width / ratioZone;
-    }
-    ctx.drawImage(capture, sx, sy, sw, sh, cadreX, zoneY, cadreL, zoneH);
+    ctx.drawImage(capture, cadreX, cadreY + barreH, cadreL, zoneH);
   } else {
     ctx.fillStyle = "#f1efe9";
-    ctx.fillRect(cadreX, cadreY + barreH, cadreL, cadreH - barreH);
+    ctx.fillRect(cadreX, cadreY + barreH, cadreL, zoneH);
     ctx.fillStyle = GRIS;
-    ctx.font = "500 26px Inter, system-ui, sans-serif";
+    ctx.font = "500 24px Inter, system-ui, sans-serif";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillText(
-      "Déposez la capture du site",
-      T / 2,
-      cadreY + barreH + (cadreH - barreH) / 2,
-    );
+    ctx.fillText("Déposez la capture du site", T / 2, cadreY + barreH + zoneH / 2);
   }
   ctx.restore();
 
-  // Trait de séparation
-  const basY = cadreY + cadreH;
-
   // ── Adresse du site ───────────────────────────────────────────────────────
+  const basCadre = cadreY + cadreH;
+
   if (champs.url.trim()) {
     const url = champs.url.replace(/^https?:\/\//, "").replace(/\/$/, "");
-    const urlY = basY + 46;
-    ctx.font = "700 34px Inter, system-ui, sans-serif";
-    const urlL = ctx.measureText(url).width + 72;
-    const urlH = 66;
+    const urlY = basCadre + 30;
+    ctx.font = "700 31px Inter, system-ui, sans-serif";
+    const urlL = ctx.measureText(url).width + 64;
+    const urlH = 60;
     arrondi(ctx, (T - urlL) / 2, urlY, urlL, urlH, urlH / 2);
     ctx.fillStyle = TERRA;
     ctx.fill();
@@ -346,24 +336,87 @@ function dessiner(
   }
 
   // ── Signature ACTC, en bas ────────────────────────────────────────────────
-  const sigY = T - marge - 30;
+  const sigY = T - marge - 26;
 
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
 
-  ctx.font = "500 24px Inter, system-ui, sans-serif";
+  ctx.font = "500 22px Inter, system-ui, sans-serif";
   ctx.fillStyle = GRIS;
-  ctx.fillText("Site créé par", T / 2, sigY - 22);
+  ctx.fillText("Site créé par", T / 2, sigY - 20);
 
-  ctx.font = "800 40px Inter, system-ui, sans-serif";
+  ctx.font = "800 37px Inter, system-ui, sans-serif";
   ctx.fillStyle = MIDNIGHT;
   ctx.letterSpacing = "6px";
-  ctx.fillText("ACTC", T / 2, sigY + 18);
+  ctx.fillText("ACTC", T / 2, sigY + 16);
   ctx.letterSpacing = "0px";
 
-  ctx.font = "500 22px Inter, system-ui, sans-serif";
+  ctx.font = "500 21px Inter, system-ui, sans-serif";
   ctx.fillStyle = TERRA;
-  ctx.fillText("actcstudio.fr", T / 2, sigY + 54);
+  ctx.fillText("actcstudio.fr", T / 2, sigY + 50);
+}
+
+/**
+ * Arrière-plan : halo terracotta, réseau de points relié façon hero du site,
+ * et grain léger. Le tracé est déterministe (générateur pseudo-aléatoire à
+ * graine fixe) pour que deux visuels successifs se ressemblent.
+ */
+function fondDecor(ctx: CanvasRenderingContext2D, T: number) {
+  ctx.fillStyle = ALABASTER;
+  ctx.fillRect(0, 0, T, T);
+
+  // Halo haut
+  const haloHaut = ctx.createRadialGradient(T / 2, 0, 0, T / 2, 0, T * 0.8);
+  haloHaut.addColorStop(0, "rgba(194,65,12,0.18)");
+  haloHaut.addColorStop(1, "rgba(194,65,12,0)");
+  ctx.fillStyle = haloHaut;
+  ctx.fillRect(0, 0, T, T * 0.65);
+
+  // Halo bas, plus discret, pour équilibrer la composition
+  const haloBas = ctx.createRadialGradient(T / 2, T, 0, T / 2, T, T * 0.55);
+  haloBas.addColorStop(0, "rgba(194,65,12,0.10)");
+  haloBas.addColorStop(1, "rgba(194,65,12,0)");
+  ctx.fillStyle = haloBas;
+  ctx.fillRect(0, T * 0.5, T, T * 0.5);
+
+  // Réseau de points, repris du hero du site
+  let graine = 20260831;
+  const alea = () => {
+    graine = (graine * 1103515245 + 12345) % 2147483648;
+    return graine / 2147483648;
+  };
+
+  const points: { x: number; y: number }[] = [];
+  for (let i = 0; i < 46; i++) {
+    points.push({ x: alea() * T, y: alea() * T });
+  }
+
+  // Liens entre points proches
+  ctx.lineWidth = 1.4;
+  for (let a = 0; a < points.length; a++) {
+    for (let b = a + 1; b < points.length; b++) {
+      const dx = points[a].x - points[b].x;
+      const dy = points[a].y - points[b].y;
+      const d = Math.sqrt(dx * dx + dy * dy);
+      if (d < 210) {
+        ctx.strokeStyle = `rgba(194,65,12,${(1 - d / 210) * 0.22})`;
+        ctx.beginPath();
+        ctx.moveTo(points[a].x, points[a].y);
+        ctx.lineTo(points[b].x, points[b].y);
+        ctx.stroke();
+      }
+    }
+  }
+  for (const p of points) {
+    ctx.fillStyle = "rgba(194,65,12,0.34)";
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 2.6, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // Voile clair : le réseau reste perceptible sans gêner la lecture
+  ctx.fillStyle = "rgba(249,249,247,0.55)";
+  ctx.fillRect(0, 0, T, T);
 }
 
 /** Rectangle à coins arrondis, tracé sans le remplir. */
