@@ -27,7 +27,7 @@ TEXT TO RENDER, French, perfect spelling and accents:
 - Below it, LARGE, bold, terracotta #c2410c:
   « On l'analyse et on débloque la situation pour 97 € »
 - Below that, MEDIUM-LARGE, regular weight, dark grey, clearly readable:
-  « Sans refaire votre site. Vous recevez sous 48 h ce qui bloque et quoi corriger. »
+  « Toutes vos pages analysées. Sous 48 h, vous savez ce qui bloque et quoi corriger. »
 - Bottom bar, MEDIUM-LARGE, bold, white text on solid terracotta #c2410c
   rounded pill button: « Réservez mon audit »
 - Small corner label, MEDIUM, bold, dark navy: « La Réunion »
@@ -55,7 +55,7 @@ TEXT TO RENDER, French, perfect spelling and accents:
 - Below, LARGE, bold, terracotta #c2410c:
   « Il faut juste savoir ce qui bloque »
 - Below, MEDIUM-LARGE, regular, dark grey, clearly readable:
-  « En 48 h, un expert analyse votre site et vous dit précisément quoi modifier. »
+  « En 48 h, un expert analyse toutes vos pages et vous dit précisément quoi modifier. »
 - In the navy band, LARGE bold white: « 97 € » and next to it a terracotta
   rounded pill button with white bold text: « Réservez mon audit »
 - Small corner label, MEDIUM, bold, on the navy band, white: « La Réunion »
@@ -82,7 +82,7 @@ TEXT TO RENDER, French, perfect spelling and accents:
 - Below, LARGE, bold, terracotta #c2410c:
   « Faites auditer votre site par un expert »
 - Below, MEDIUM-LARGE, regular, dark grey, clearly readable:
-  « Il identifie ce qui bloque et vous débloque la situation. 97 €, reçu sous 48 h. »
+  « Il analyse toutes vos pages, identifie ce qui bloque et vous débloque la situation. 97 €. »
 - Bottom, terracotta rounded pill button, white bold text, LARGE:
   « Réservez mon audit »
 - Small corner label, MEDIUM, bold, dark navy: « La Réunion »
@@ -109,7 +109,7 @@ TEXT TO RENDER, French, perfect spelling and accents:
 - Second block, HUGE, BOLD HEAVY SANS-SERIF, terracotta #c2410c:
   « Savoir ce qui bloque : 97 € »
 - Below, MEDIUM-LARGE, regular, light warm grey #f9f9f7, clearly readable:
-  « Une analyse vidéo de votre site en 48 h, et les 3 corrections prioritaires. »
+  « Toutes vos pages analysées en vidéo sous 48 h, et les 3 corrections prioritaires. »
 - Bottom, terracotta rounded pill button, white bold text, LARGE:
   « Réservez mon audit »
 - Small corner label, MEDIUM, bold, white: « La Réunion »
@@ -137,7 +137,7 @@ TEXT TO RENDER, French, perfect spelling and accents:
 - Below, LARGE, bold, terracotta #c2410c:
   « La réponse en 48 h, pour 97 € »
 - Below, MEDIUM-LARGE, regular, dark grey, clearly readable:
-  « Un expert analyse votre site et vous montre ce qui peut encore être débloqué. »
+  « Un expert analyse toutes vos pages et vous montre ce qui peut encore être débloqué. »
 - Terracotta rounded pill button, white bold text, LARGE: « Réservez mon audit »
 - Small corner label, MEDIUM, bold, dark navy: « La Réunion »
 
@@ -162,7 +162,7 @@ TEXT TO RENDER, French, perfect spelling and accents:
   « VOUS PAYEZ UN SITE QUI NE TRAVAILLE PAS »
 - In the terracotta band, LARGE, bold, white: « 97 € pour savoir pourquoi »
 - Below the band, MEDIUM-LARGE, regular, dark grey, clearly readable:
-  « Analyse vidéo sous 48 h. Ce qui bloque, et quoi corriger sans tout refaire. »
+  « Toutes vos pages analysées sous 48 h. Ce qui bloque, et quoi corriger sans tout refaire. »
 - Bottom, dark navy rounded pill button, white bold text, LARGE:
   « Réservez mon audit »
 - Small corner label, MEDIUM, bold, dark navy: « La Réunion »
