@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>VSL Fondation Studio · 18 slides</title>
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   Deck VSL Fondation Studio, 18 slides en 1920x1080.
+   Tout est en code : textures, grain et dégradés sont produits en CSS,
+   aucune image générée, aucune dépendance externe. Le fichier s'ouvre
+   hors ligne.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --terra: #C0592A;
+  --terra-vif: #E0703A;
+  --sombre: #17171F;
+  --sombre-2: #1E1E28;
+  --corps: #22252C;
+  --gris: #7C818A;
+  --bord: #E3E3E3;
+  --clair: #F6F6F6;
+  --blanc: #FFFFFF;
+
+  /* Échelle typographique très contrastée, pensée pour du 1920x1080 lu de loin. */
+  --t-geant: 190px;
+  --t-enorme: 132px;
+  --t-grand: 88px;
+  --t-moyen: 54px;
+  --t-normal: 34px;
+  --t-petit: 26px;
+  --t-mini: 19px;
+
+  --police: Arial, Helvetica, "Helvetica Neue", sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  background: #0B0B0F;
+  font-family: var(--police);
+  overflow: hidden;
+}
+
+/* ── Cadre de slide ───────────────────────────────────────────────────── */
+.slide {
+  position: fixed;
+  inset: 0;
+  width: 1920px;
+  height: 1080px;
+  transform-origin: top left;
+  background: var(--sombre);
+  color: var(--blanc);
+  display: none;
+  overflow: hidden;
+}
+.slide.actif { display: block; }
+
+/* Grain : donne de la matière aux grands aplats sombres. */
+.slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+.contenu { position: relative; z-index: 2; height: 100%; padding: 110px 130px; display: flex; flex-direction: column; }
+
+/* ── Éléments partagés ────────────────────────────────────────────────── */
+.marque {
+  position: absolute;
+  top: 62px; left: 130px;
+  font-size: var(--t-mini);
+  font-weight: 900;
+  letter-spacing: 0.34em;
+  color: rgba(255,255,255,0.45);
+  z-index: 3;
+}
+.slide.clair .marque { color: rgba(34,37,44,0.45); }
+
+.numero {
+  position: absolute;
+  bottom: 58px; right: 130px;
+  font-size: var(--t-mini);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: rgba(255,255,255,0.28);
+  z-index: 3;
+  font-variant-numeric: tabular-nums;
+}
+.slide.clair .numero { color: rgba(34,37,44,0.3); }
+
+.eyebrow {
+  font-size: var(--t-mini);
+  font-weight: 900;
+  letter-spacing: 0.3em;
+  color: var(--terra);
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+.titre {
+  font-size: var(--t-grand);
+  font-weight: 900;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+.titre.enorme { font-size: var(--t-enorme); }
+.titre.geant { font-size: var(--t-geant); line-height: 0.9; letter-spacing: -0.05em; }
+
+.accent { color: var(--terra-vif); }
+
+.sous {
+  font-size: var(--t-normal);
+  font-weight: 400;
+  line-height: 1.45;
+  color: rgba(255,255,255,0.6);
+  max-width: 1000px;
+}
+.slide.clair .sous { color: var(--gris); }
+
+/* Filet terracotta : marqueur de section, remplace les puces. */
+.filet {
+  width: 96px; height: 7px;
+  background: var(--terra);
+  margin-bottom: 46px;
+}
+
+/* Variante claire, pour rompre le rythme du sombre. */
+.slide.clair { background: var(--clair); color: var(--corps); }
+.slide.clair .titre { color: var(--corps); }
+
+/* ── Décors : halos et trames, purement CSS ───────────────────────────── */
+.halo {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(150px);
+  pointer-events: none;
+  z-index: 1;
+}
+.trame {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px);
+  background-size: 120px 120px;
+}
+.slide.clair .trame {
+  background-image:
+    linear-gradient(rgba(34,37,44,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34,37,44,0.045) 1px, transparent 1px);
+}
+
+/* Bandes diagonales, pour les slides de rupture. */
+.rayures {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(192,89,42,0.075) 0 3px,
+    transparent 3px 26px
+  );
+}
+
+/* ── Colonnes ─────────────────────────────────────────────────────────── */
+.colonnes { display: grid; gap: 3px; flex: 1; align-content: stretch; align-items: stretch; }
+.col-2 { grid-template-columns: 1fr 1fr; }
+.col-3 { grid-template-columns: repeat(3, 1fr); }
+
+.bloc {
+  background: rgba(255,255,255,0.032);
+  border-top: 5px solid rgba(255,255,255,0.12);
+  padding: 62px 54px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+.bloc.souligne { border-top-color: var(--terra); background: rgba(192,89,42,0.1); }
+.slide.clair .bloc { background: rgba(34,37,44,0.035); border-top-color: rgba(34,37,44,0.14); }
+.slide.clair .bloc.souligne { border-top-color: var(--terra); background: rgba(192,89,42,0.07); }
+
+.bloc-etiquette {
+  font-size: var(--t-mini);
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.42);
+  margin-bottom: 30px;
+}
+.bloc.souligne .bloc-etiquette { color: var(--terra-vif); }
+.slide.clair .bloc-etiquette { color: var(--gris); }
+
+.bloc-titre { font-size: var(--t-moyen); font-weight: 900; line-height: 1.06; letter-spacing: -0.025em; }
+.bloc-texte { font-size: var(--t-petit); line-height: 1.5; color: rgba(255,255,255,0.55); margin-top: 26px; }
+.slide.clair .bloc-texte { color: var(--gris); }
+
+/* ── Chiffres ─────────────────────────────────────────────────────────── */
+.chiffre {
+  font-size: 148px;
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: -0.05em;
+  color: var(--terra-vif);
+  font-variant-numeric: tabular-nums;
+}
+.chiffre-label { font-size: var(--t-petit); color: rgba(255,255,255,0.55); margin-top: 24px; line-height: 1.4; }
+
+/* ── Emplacements à remplir ───────────────────────────────────────────── */
+.emplacement {
+  border: 2px dashed rgba(192,89,42,0.55);
+  background: rgba(192,89,42,0.07);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--terra-vif);
+  font-size: var(--t-mini);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 20px;
+}
+
+/* ── Icônes Lucide ────────────────────────────────────────────────────── */
+.icone { width: 52px; height: 52px; stroke: var(--terra); stroke-width: 1.6; fill: none;
+  stroke-linecap: round; stroke-linejoin: round; margin-bottom: 34px; }
+
+/* ── Aide navigation, masquée à l'export ──────────────────────────────── */
+#aide {
+  position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
+  z-index: 99; color: rgba(255,255,255,0.4); font-size: 13px;
+  letter-spacing: 0.1em; font-family: var(--police);
+  background: rgba(0,0,0,0.55); padding: 9px 20px; border-radius: 100px;
+}
+body.export #aide { display: none; }
+</style>
+</head>
+<body>
+
+<!-- ══ 1. OUVERTURE ═══════════════════════════════════════════════════ -->
+<section class="slide" data-n="1">
+  <div class="trame"></div>
+  <div class="halo" style="width:1000px;height:1000px;background:rgba(192,89,42,0.4);top:-330px;left:-180px"></div>
+  <div class="halo" style="width:760px;height:760px;background:rgba(192,89,42,0.17);bottom:-330px;right:-160px"></div>
+  <div class="marque">FONDATION STUDIO</div>
+  <div class="contenu" style="justify-content:center">
+    <div class="filet"></div>
+    <h1 class="titre geant">Votre site<br>ne vous<br><span class="accent">rapporte rien.</span></h1>
+  </div>
+  <div class="numero">01</div>
+</section>
+
+<!-- ══ 2 à 5. LES QUATRE SITUATIONS ═══════════════════════════════════ -->
+<section class="slide" data-n="2">
+  <div class="trame"></div>
+  <div class="halo" style="width:820px;height:820px;background:rgba(192,89,42,0.22);top:-260px;right:-200px"></div>
+  <div class="marque">FONDATION STUDIO</div>
+  <div class="contenu" style="justify-content:center">
+    <div class="eyebrow">Situation 01</div>
+    <h1 class="titre enorme">Vous n'avez<br>pas de site.</h1>
+  </div>
+  <div class="numero">02</div>
+</section>
+
+<section class="slide" data-n="3">
+  <div class="trame"></div>
+  <div class="halo" style="width:820px;height:820px;background:rgba(192,89,42,0.2);bottom:-280px;left:-180px"></div>
+  <div class="marque">FONDATION STUDIO</div>
+  <div class="contenu" style="justify-content:center">
+    <div class="eyebrow">Situation 02</div>
+    <h1 class="titre enorme">Vous n'osez pas<br>l'envoyer.</h1>
+  </div>
+  <div class="numero">03</div>
+</section>
+
+<section class="slide" data-n="4">
+  <div class="trame"></div>
+  <div class="halo" style="width:900px;height:900px;background:rgba(192,89,42,0.24);top:-300px;left:38%"></div>
+  <div class="marque">FONDATION STUDIO</div>
+  <div class="contenu" style="justify-content:center">
+    <div class="eyebrow">Situation 03</div>
+    <h1 class="titre enorme">En ligne depuis 2 ans.<br><span class="accent">Zéro client.</span></h1>
+  </div>
+  <div class="numero">04</div>
+</section>
+
+<section class="slide" data-n="5">
+  <div class="trame"></div>
+  <div class="halo" style="width:820px;height:820px;background:rgba(192,89,42,0.2);bottom:-300px;right:-150px"></div>
+  <div class="marque">FONDATION STUDIO</div>
+  <div class="contenu" style="justify-content:center">
+    <div class="eyebrow">Situation 04</div>
+    <h1 class="titre enorme">Vous êtes bloqué<br>avec une agence.</h1>
+  </div>
+  <div class="numero">05</div>
+</section>
+
+<!-- ══ 6. DÉPENSE VS INVESTISSEMENT (slide pivot) ═════════════════════ -->
+<section class="slide" data-n="6">
+  <div class="rayures"></div>
+  <div class="marque">FONDATION STUDIO</div>
+  <div class="contenu" style="padding:130px">
+    <div class="colonnes col-2" style="gap:0;align-items:stretch">
+      <div style="padding:78px 70px;background:rgba(255,255,255,0.035);display:flex;flex-direction:column;justify-content:center">
+        <div class="bloc-etiquette" style="color:rgba(255,255,255,0.35)">Mal conçu</div>
+        <div class="titre" style="font-size:82px;color:rgba(255,255,255,0.42)">Une<br>dépense.</div>
+        <div class="bloc-texte" style="margin-top:44px;max-width:400px">Il coûte, il dort, et il ne revient jamais.</div>
+      </div>
+      <div style="padding:78px 70px;background:rgba(192,89,42,0.13);display:flex;flex-direction:column;justify-content:center">
+        <div class="bloc-etiquette" style="color:var(--terra-vif)">Bien conçu</div>
+        <div class="titre accent" style="font-size:82px">Un<br>investissement.</div>
+        <div class="bloc-texte" style="margin-top:44px;max-width:400px;color:rgba(255,255,255,0.72)">Il travaille, il rapporte, il se rembourse.</div>
+      </div>
+    </div>
+  </div>
+  <div class="numero">06</div>
+</section>
+
+<!-- ══ 7. LE CHOIX À L'AVEUGLE ═══════════════════════════════════════ -->
+<section class="slide clair" data-n="7">
+  <div class="trame"></div>
+  <div class="marque">FONDATION STUDIO</div>
+  <div class="contenu" style="justify-content:center">
+    <div class="filet"></div>
+    <h1 class="titre" style="font-size:100px;max-width:1450px">Personne ne vous a expliqué<br>ce qui fait qu'un site<br><span class="accent">convertit.</span></h1>
+  </div>
+  <div class="numero">07</div>
+</section>
+
+<!-- ══ 8. LE MARCHÉ ══════════════════════════════════════════════════ -->
+<section class="slide" data-n="8">
+  <div class="trame"></div>
+  <div class="marque">FONDATION STUDIO</div>
+  <div class="contenu">
+    <div class="eyebrow" style="margin-top:44px">Ce que propose le marché</div>
+    <div class="colonnes col-3" style="margin-top:20px">
+      <div class="bloc" style="justify-content:flex-start">
+        <div>
+          <div class="bloc-etiquette">Option 01</div>
+          <div class="bloc-titre">Modèles<br>et low cost</div>
+          <div class="bloc-texte">Un site rapide à mettre en ligne, identique à des milliers d'autres.</div>
+        </div>
+      </div>
+      <div class="bloc" style="justify-content:flex-start">
+        <div>
+          <div class="bloc-etiquette">Option 02</div>
+          <div class="bloc-titre">Freelance</div>
+          <div class="bloc-texte">Une personne seule, qui maîtrise rarement à la fois le design, le code et l'acquisition.</div>
+        </div>
+      </div>
+      <div class="bloc" style="justify-content:flex-start">
+        <div>
+          <div class="bloc-etiquette">Option 03</div>
+          <div class="bloc-titre">Agence</div>
+          <div class="bloc-texte">Un budget plus élevé, des délais longs, et souvent une dépendance qui s'installe.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="numero">08</div>
+</section>
+
+<!-- ══ 9. LE MANQUE COMMUN ═══════════════════════════════════════════ -->
+<section class="slide" data-n="9">
+  <div class="halo" style="width:1150px;height:1150px;background:rgba(192,89,42,0.2);top:50%;left:50%;transform:translate(-50%,-50%)"></div>
+  <div class="marque">FONDATION STUDIO</div>
+  <div class="contenu" style="justify-content:center;align-items:center;text-align:center">
+    <h1 class="titre" style="font-size:96px;max-width:1500px">On vous vend un site.</h1>
+    <h1 class="titre accent" style="font-size:96px;max-width:1500px;margin-top:34px">Personne ne vous vend<br>un retour sur investissement.</h1>
+  </div>
+  <div class="numero">09</div>
+</section>
+
+<!-- ══ 10. L'ÉQUIPE ══════════════════════════════════════════════════ -->
+<section class="slide clair" data-n="10">
+  <div class="trame"></div>
+  <div class="marque">FONDATION STUDIO</div>
+  <div class="contenu">
+    <div class="eyebrow" style="margin-top:44px">Qui construit votre site</div>
+    <div class="colonnes col-2" style="margin-top:20px;gap:3px">
+      <div class="bloc souligne" style="justify-content:flex-start">
+        <div>
+          <div class="bloc-etiquette">Fondateur</div>
+          <div class="bloc-titre">Tom-Soa</div>
+          <div class="bloc-texte" style="margin-top:22px;font-weight:700;color:var(--terra)">Acquisition client</div>
+        </div>
+        <div class="bloc-texte">Publicité Meta et Google. Amener des clients à ceux qui vendent, et comprendre où l'argent se perd.</div>
+      </div>
+      <div class="bloc souligne" style="justify-content:flex-start">
+        <div>
+          <div class="bloc-etiquette">Associé</div>
+          <div class="bloc-titre">Andylane</div>
+          <div class="bloc-texte" style="margin-top:22px;font-weight:700;color:var(--terra)">Développement d'entreprise</div>
+        </div>
+        <div class="bloc-texte">Une trentaine d'entreprises accompagnées, dans des secteurs très différents les uns des autres.</div>
+      </div>
+    </div>
+  </div>
+  <div class="numero">10</div>
+</section>
+
+<!-- ══ 11. LE SYSTÈME ════════════════════════════════════════════════ -->
+<section class="slide" data-n="11">
+  <div class="rayures"></div>
+  <div class="halo" style="width:900px;height:900px;background:rgba(192,89,42,0.26);top:50%;right:-260px;transform:translateY(-50%)"></div>
+  <div class="marque">FONDATION STUDIO</div>
+  <div class="contenu" style="justify-content:center">
+    <div class="filet"></div>
+    <div style="display:flex;align-items:center;gap:52px;flex-wrap:wrap">
+      <span class="titre" style="font-size:76px">Site conçu<br>pour convertir</span>
+      <span class="titre accent" style="font-size:120px;line-height:1">+</span>
+      <span class="titre" style="font-size:76px">Publicité</span>
+    </div>
+    <div style="width:100%;height:1px;background:rgba(255,255,255,0.16);margin:66px 0"></div>
+    <div class="titre accent" style="font-size:104px">Système d'acquisition.</div>
+  </div>
+  <div class="numero">11</div>
+</section>
+
+<!-- ══ 12 à 14. RÉALISATIONS ═════════════════════════════════════════ -->
+<section class="slide" data-n="12">
+  <div class="marque">FONDATION STUDIO</div>
+  <div class="contenu" style="flex-direction:row;gap:78px;align-items:center">
+    <div style="flex:1.25;align-self:stretch" class="emplacement">Capture du site<br>client 01<br><span style="opacity:0.6;font-size:15px">1600 × 1000</span></div>
+    <div style="flex:1">
+      <div class="eyebrow">Réalisation 01</div>
+      <div class="titre" style="font-size:66px">Nom du client</div>
+      <div class="bloc-texte" style="margin-top:38px;font-size:29px">Le besoin, en une ligne.</div>
+      <div style="width:74px;height:5px;background:var(--terra);margin:38px 0"></div>
+      <div class="bloc-texte" style="font-size:29px;color:var(--terra-vif);font-weight:700">Le résultat, en une ligne.</div>
+    </div>
+  </div>
+  <div class="numero">12</div>
+</section>
+
+<section class="slide" data-n="13">
+  <div class="marque">FONDATION STUDIO</div>
+  <div class="contenu" style="flex-direction:row-reverse;gap:78px;align-items:center">
+    <div style="flex:1.25;align-self:stretch" class="emplacement">Capture du site<br>client 02<br><span style="opacity:0.6;font-size:15px">1600 × 1000</span></div>
+    <div style="flex:1">
+      <div class="eyebrow">Réalisation 02</div>
+      <div class="titre" style="font-size:66px">Nom du client</div>
+      <div class="bloc-texte" style="margin-top:38px;font-size:29px">Le besoin, en une ligne.</div>
+      <div style="width:74px;height:5px;background:var(--terra);margin:38px 0"></div>
+      <div class="bloc-texte" style="font-size:29px;color:var(--terra-vif);font-weight:700">Le résultat, en une ligne.</div>
+    </div>
+  </div>
+  <div class="numero">13</div>
+</section>
+
+<section class="slide" data-n="14">
+  <div class="marque">FONDATION STUDIO</div>
+  <div class="contenu" style="flex-direction:row;gap:78px;align-items:center">
+    <div style="flex:1.25;align-self:stretch" class="emplacement">Capture du site<br>client 03<br><span style="opacity:0.6;font-size:15px">1600 × 1000</span></div>
+    <div style="flex:1">
+      <div class="eyebrow">Réalisation 03</div>
+      <div class="titre" style="font-size:66px">Nom du client</div>
+      <div class="bloc-texte" style="margin-top:38px;font-size:29px">Le besoin, en une ligne.</div>
+      <div style="width:74px;height:5px;background:var(--terra);margin:38px 0"></div>
+      <div class="bloc-texte" style="font-size:29px;color:var(--terra-vif);font-weight:700">Le résultat, en une ligne.</div>
+    </div>
+  </div>
+  <div class="numero">14</div>
+</section>
+
+<!-- ══ 15. RÉSULTATS ═════════════════════════════════════════════════ -->
+<section class="slide" data-n="15">
+  <div class="trame"></div>
+  <div class="halo" style="width:1000px;height:1000px;background:rgba(192,89,42,0.17);bottom:-380px;left:50%;transform:translateX(-50%)"></div>
+  <div class="marque">FONDATION STUDIO</div>
+  <div class="contenu">
+    <div class="eyebrow" style="margin-top:44px">Ce que ça donne</div>
+    <div class="colonnes col-3" style="gap:3px;margin-top:30px">
+      <div class="bloc" style="justify-content:center">
+        <div class="chiffre">00</div>
+        <div class="chiffre-label">Premier indicateur<br>à renseigner</div>
+      </div>
+      <div class="bloc souligne" style="justify-content:center">
+        <div class="chiffre">00</div>
+        <div class="chiffre-label">Deuxième indicateur<br>à renseigner</div>
+      </div>
+      <div class="bloc" style="justify-content:center">
+        <div class="chiffre">00</div>
+        <div class="chiffre-label">Troisième indicateur<br>à renseigner</div>
+      </div>
+    </div>
+  </div>
+  <div class="numero">15</div>
+</section>
+
+<!-- ══ 16. LES OFFRES ════════════════════════════════════════════════ -->
+<section class="slide clair" data-n="16">
+  <div class="trame"></div>
+  <div class="marque">FONDATION STUDIO</div>
+  <div class="contenu">
+    <div class="eyebrow" style="margin-top:44px">Nos offres</div>
+    <div class="colonnes col-3" style="gap:3px;margin-top:20px">
+      <div class="bloc">
+        <div>
+          <div class="bloc-etiquette">Standard</div>
+          <div class="titre" style="font-size:64px">1 400 €</div>
+          <div class="bloc-texte" style="margin-top:32px;line-height:1.9">Site vitrine jusqu'à 5 pages<br>Design sur-mesure<br>Hébergement gratuit</div>
+        </div>
+      </div>
+      <div class="bloc souligne">
+        <div>
+          <div class="bloc-etiquette">Conversion</div>
+          <div class="titre accent" style="font-size:64px">1 900 €</div>
+          <div class="bloc-texte" style="margin-top:32px;line-height:1.9">Jusqu'à 8 pages<br>Texte optimisé pour vendre<br>Gestion en autonomie</div>
+        </div>
+      </div>
+      <div class="bloc">
+        <div>
+          <div class="bloc-etiquette">Premium</div>
+          <div class="titre" style="font-size:64px">2 400 €<span style="font-size:26px;font-weight:400;color:var(--gris)"> et +</span></div>
+          <div class="bloc-texte" style="margin-top:32px;line-height:1.9">Pages illimitées<br>Fonctionnalités sur-mesure<br>Direction artistique dédiée</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="numero">16</div>
+</section>
+
+<!-- ══ 17. LES CONDITIONS ════════════════════════════════════════════ -->
+<section class="slide" data-n="17">
+  <div class="trame"></div>
+  <div class="marque">FONDATION STUDIO</div>
+  <div class="contenu">
+    <div class="eyebrow" style="margin-top:44px">Les conditions</div>
+    <div class="colonnes col-3" style="gap:3px;margin-top:20px">
+      <div class="bloc">
+        <div>
+          <svg class="icone" viewBox="0 0 24 24"><path d="M2 18v3c0 .6.4 1 1 1h4v-3h3v-3h2l1.4-1.4a6.5 6.5 0 1 0-4-4Z"/><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"/></svg>
+          <div class="bloc-titre" style="font-size:44px">Le site vous appartient à 100 %</div>
+        </div>
+        <div class="bloc-texte">Aucune dépendance, aucun abonnement caché.</div>
+      </div>
+      <div class="bloc">
+        <div>
+          <svg class="icone" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+          <div class="bloc-titre" style="font-size:44px">Paiement de 1 à 4 fois</div>
+        </div>
+        <div class="bloc-texte">Vous étalez l'investissement sans frais supplémentaires.</div>
+      </div>
+      <div class="bloc">
+        <div>
+          <svg class="icone" viewBox="0 0 24 24"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+          <div class="bloc-titre" style="font-size:44px">Tarif réduit sur la publicité</div>
+        </div>
+        <div class="bloc-texte">Pour aller chercher des clients dès la mise en ligne.</div>
+      </div>
+    </div>
+  </div>
+  <div class="numero">17</div>
+</section>
+
+<!-- ══ 18. APPEL À L'ACTION ══════════════════════════════════════════ -->
+<section class="slide" data-n="18">
+  <div class="halo" style="width:1300px;height:1300px;background:rgba(192,89,42,0.24);top:50%;left:50%;transform:translate(-50%,-50%)"></div>
+  <div class="marque">FONDATION STUDIO</div>
+  <div class="contenu" style="justify-content:center;align-items:center;text-align:center">
+    <h1 class="titre geant" style="font-size:172px">Réservez<br>votre appel.</h1>
+    <svg style="width:88px;height:88px;stroke:var(--terra-vif);stroke-width:1.4;fill:none;stroke-linecap:round;stroke-linejoin:round;margin-top:88px" viewBox="0 0 24 24"><path d="M12 4v16"/><path d="m5 13 7 7 7-7"/></svg>
+  </div>
+  <div class="numero">18</div>
+</section>
+
+<div id="aide">← → naviguer · F plein écran</div>
+
+<script>
+/* Mise à l'échelle : le deck est dessiné en 1920x1080 puis réduit à la
+   fenêtre, ce qui garde des proportions identiques à l'export. */
+const slides = [...document.querySelectorAll(".slide")];
+let index = 0;
+
+function ajuster() {
+  const k = Math.min(innerWidth / 1920, innerHeight / 1080);
+  const dx = (innerWidth - 1920 * k) / 2;
+  const dy = (innerHeight - 1080 * k) / 2;
+  slides.forEach(s => { s.style.transform = `translate(${dx}px, ${dy}px) scale(${k})`; });
+}
+
+function afficher(i) {
+  index = Math.max(0, Math.min(slides.length - 1, i));
+  slides.forEach((s, n) => s.classList.toggle("actif", n === index));
+}
+
+addEventListener("keydown", e => {
+  if (e.key === "ArrowRight" || e.key === " ") afficher(index + 1);
+  if (e.key === "ArrowLeft") afficher(index - 1);
+  if (e.key === "f" || e.key === "F") {
+    document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
+  }
+});
+addEventListener("resize", ajuster);
+
+/* Utilisé par le script d'export. */
+window.allerA = n => { afficher(n); };
+window.nbSlides = slides.length;
+
+ajuster();
+afficher(0);
+</script>
+</body>
+</html>
