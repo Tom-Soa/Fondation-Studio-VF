@@ -16,7 +16,6 @@ import BoutonFlottant from "@/components/audit/BoutonFlottant";
 import AuditFaq from "@/components/audit/AuditFaq";
 import SitesRealises from "@/components/audit/SitesRealises";
 import {
-  Probleme,
   Livrables,
   Etapes,
   Axes,
@@ -34,25 +33,22 @@ export default function PageAudit() {
       {/* 1. Accroche : prix, délai et bouton visibles sans défiler */}
       <AuditHero />
 
-      {/* 2. Les symptômes que le visiteur reconnaît chez lui */}
-      <Probleme />
-
-      {/* 3. Qui réalise l'audit : la crédibilité avant l'offre */}
+      {/* 2. Qui réalise l'audit : la crédibilité d'abord */}
       <Auteur />
 
-      {/* 4. Les sites déjà réalisés, en preuve */}
+      {/* 3. Les sites déjà réalisés, en preuve */}
       <SitesRealises />
 
-      {/* 5. Ce qu'il reçoit concrètement */}
+      {/* 4. Ce qu'il reçoit concrètement */}
       <Livrables />
 
-      {/* 6. Les trois étapes */}
-      <Etapes />
-
-      {/* 7. Les six axes analysés */}
+      {/* 5. Les cinq axes analysés */}
       <Axes />
 
-      {/* 8. L'offre et la déduction */}
+      {/* 6. Les trois étapes, dépliables */}
+      <Etapes />
+
+      {/* 7. L'offre et la déduction */}
       <Offre />
 
       {/* 9. Questions fréquentes */}

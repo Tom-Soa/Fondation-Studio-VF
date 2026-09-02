@@ -31,7 +31,7 @@ export default function SitesRealises() {
           </p>
         </div>
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="-mx-6 flex snap-x snap-mandatory gap-5 overflow-x-auto overflow-y-hidden scroll-px-6 px-6 pb-10 pt-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {CLIENT_SITES.map((site, i) => (
             <motion.a
               key={site.url}
@@ -42,7 +42,7 @@ export default function SitesRealises() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.6, delay: (i % 3) * 0.07, ease: [0.23, 1, 0.32, 1] }}
-              className="group flex flex-col overflow-hidden rounded-3xl border border-grid-line bg-alabaster shadow-card-light transition-colors hover:border-terra/40"
+              className="group flex w-[80vw] max-w-[380px] shrink-0 snap-start flex-col overflow-hidden rounded-3xl border-2 border-grid-line bg-alabaster shadow-card-light transition-colors hover:border-terra"
             >
               <div className="relative aspect-[16/10] overflow-hidden border-b border-grid-line bg-white">
                 <img
@@ -76,6 +76,10 @@ export default function SitesRealises() {
             </motion.a>
           ))}
         </div>
+        <p className="mt-1 flex items-center justify-center gap-2 text-[12.5px] text-midnight/70 sm:hidden">
+          <Icon icon="lucide:move-horizontal" width={15} height={15} aria-hidden />
+          Faites glisser pour voir les autres
+        </p>
       </div>
     </section>
   );

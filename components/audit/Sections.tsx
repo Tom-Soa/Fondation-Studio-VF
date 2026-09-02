@@ -5,6 +5,7 @@ import { motion } from "motion/react";
 import { AUDIT } from "@/lib/audit-content";
 import { PRIX } from "@/lib/audit-config";
 import { BoutonPaiement } from "@/components/audit/BoutonPaiement";
+import Deroulant from "@/components/audit/Deroulant";
 import { Grille, Halo, Formes, Couture, contour, lisere, pastille } from "@/components/audit/Decor";
 
 // Apparition douce au scroll, reprise du site : fondu + légère montée, sans
@@ -54,38 +55,6 @@ function TitreSection({
   );
 }
 
-/** 2. Les symptômes que le visiteur reconnaît chez lui. */
-export function Probleme() {
-  const t = AUDIT.probleme;
-  return (
-    <section className="relative isolate overflow-hidden bg-alabaster py-20 lg:py-28">
-      <Grille className="-z-10 opacity-70" />
-      <Halo className="inset-x-0 top-0 -z-10 h-80" />
-      <div className="relative mx-auto max-w-5xl px-6">
-        <TitreSection kicker={t.kicker} debut={t.h2Start} accent={t.h2Em} />
-        <ul className="grid gap-5 md:grid-cols-3">
-          {t.items.map((item, i) => (
-            <motion.li
-              key={item.titre}
-              {...monte}
-              transition={{ duration: 0.6, delay: i * 0.09, ease: doux }}
-              className="rounded-3xl border border-grid-line bg-white p-6 shadow-card-light"
-            >
-              <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-terra/10 text-terra">
-                <Icon icon={item.icone} width={22} height={22} aria-hidden />
-              </span>
-              <h3 className="mt-5 font-display text-[17px] font-bold leading-snug text-midnight">
-                {item.titre}
-              </h3>
-              <p className="mt-3 text-[14.5px] leading-relaxed text-midnight/70">{item.corps}</p>
-            </motion.li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  );
-}
-
 /** 3. Ce que le client reçoit concrètement. */
 export function Livrables() {
   const t = AUDIT.livrables;
@@ -118,33 +87,36 @@ export function Livrables() {
 }
 
 /** 4. Les trois étapes, numérotées car l'ordre compte. */
+/** 4. Les trois étapes, repliées dans un bloc dépliable pour raccourcir la page. */
 export function Etapes() {
   const t = AUDIT.etapes;
   return (
-    <section className="relative isolate overflow-hidden bg-terra/[0.045] py-20 lg:py-28">
+    <section className="relative isolate overflow-hidden bg-terra/[0.045] py-16 lg:py-20">
       <Couture className="top-0" />
       <Grille className="-z-10 opacity-50" />
       <div className="relative mx-auto max-w-4xl px-6">
-        <TitreSection kicker={t.kicker} debut={t.h2Start} accent={t.h2Em} />
-        <ol className="grid gap-5 md:grid-cols-3">
-          {t.items.map((item, i) => (
-            <motion.li
-              key={item.titre}
-              {...monte}
-              transition={{ duration: 0.6, delay: i * 0.1, ease: doux }}
-              className={`relative overflow-hidden rounded-3xl border-2 bg-white p-6 shadow-card-light transition-colors ${contour(i)}`}
-            >
-              <span className={`absolute inset-x-0 top-0 h-2 ${lisere(i)}`} aria-hidden />
-              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-terra/10 font-display text-[19px] font-extrabold text-terra">
-                {i + 1}
-              </span>
-              <h3 className="mt-5 font-display text-[17px] font-bold text-midnight">
-                {item.titre}
-              </h3>
-              <p className="mt-2 text-[14.5px] leading-relaxed text-midnight/70">{item.corps}</p>
-            </motion.li>
-          ))}
-        </ol>
+        <Deroulant
+          titre={t.deroulantTitre}
+          soustitre={t.deroulantSous}
+          icone="ph:list-numbers-duotone"
+          enfants={
+            <ol className="space-y-6">
+              {t.items.map((item, i) => (
+                <li key={item.titre} className="flex gap-4">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-terra/10 font-display text-[18px] font-extrabold text-terra">
+                    {i + 1}
+                  </span>
+                  <div className="min-w-0">
+                    <h4 className="font-display text-[17px] font-bold text-midnight">{item.titre}</h4>
+                    <p className="mt-1.5 text-[14.5px] leading-relaxed text-midnight/70">
+                      {item.corps}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          }
+        />
       </div>
     </section>
   );
@@ -182,7 +154,7 @@ export function Axes() {
   );
 }
 
-/** 6. Qui réalise l'audit : présentation, repères, parcours, résultats. */
+/** 6. Qui réalise l'audit : présentation, repères, puis parcours et résultats dépliables. */
 export function Auteur() {
   const t = AUDIT.auteur;
   return (
@@ -235,69 +207,69 @@ export function Auteur() {
           </div>
         </motion.div>
 
-        {/* Le parcours, en étapes */}
-        <div className="mt-14">
-          <div className="mb-7 text-center text-[11px] font-medium uppercase tracking-[0.18em] text-terra">
-            {t.parcoursKicker}
-          </div>
-          <ol className="relative space-y-4 sm:space-y-0">
-            {t.parcours.map((etape, i) => (
-              <motion.li
-                key={etape.titre}
-                {...monte}
-                transition={{ duration: 0.6, delay: i * 0.08, ease: doux }}
-                className={`relative overflow-hidden flex gap-5 rounded-3xl border-2 bg-white p-6 shadow-card-light transition-colors sm:mb-4 ${contour(i)}`}
-              >
-                <span className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl ${pastille(i)}`}>
-                  <Icon icon={etape.icone} width={24} height={24} aria-hidden />
-                </span>
-                <div className="min-w-0">
-                  <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-terra">
-                    {etape.periode}
-                  </span>
-                  <h4 className="mt-1.5 font-display text-[17px] font-bold leading-snug text-midnight">
-                    {etape.titre}
-                  </h4>
-                  <p className="mt-2 text-[14.5px] leading-relaxed text-midnight/70">
-                    {etape.corps}
-                  </p>
-                </div>
-              </motion.li>
-            ))}
-          </ol>
-        </div>
+        {/* Parcours et résultats : dépliables, pour ne pas allonger la page */}
+        <div className="mt-6 space-y-4">
+          <Deroulant
+            titre={t.parcoursTitre}
+            soustitre={t.parcoursSous}
+            icone="ph:path-duotone"
+            enfants={
+              <ol className="space-y-5">
+                {t.parcours.map((etape, i) => (
+                  <li key={etape.titre} className="flex gap-4">
+                    <span
+                      className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl ${pastille(i)}`}
+                    >
+                      <Icon icon={etape.icone} width={22} height={22} aria-hidden />
+                    </span>
+                    <div className="min-w-0">
+                      <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-terra">
+                        {etape.periode}
+                      </span>
+                      <h4 className="mt-1 font-display text-[16.5px] font-bold leading-snug text-midnight">
+                        {etape.titre}
+                      </h4>
+                      <p className="mt-1.5 text-[14px] leading-relaxed text-midnight/70">
+                        {etape.corps}
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            }
+          />
 
-        {/* Les résultats obtenus, attribués à des cas précis */}
-        <div className="mt-14">
-          <div className="mb-7 text-center text-[11px] font-medium uppercase tracking-[0.18em] text-terra">
-            {t.resultatsKicker}
-          </div>
-          <ul className="grid gap-4 md:grid-cols-3">
-            {t.resultats.map((r, i) => (
-              <motion.li
-                key={r.chiffre}
-                {...monte}
-                transition={{ duration: 0.6, delay: i * 0.08, ease: doux }}
-                className={`relative overflow-hidden rounded-3xl border-2 bg-white p-6 shadow-card-light transition-colors ${contour(i)}`}
-              >
-                <span className={`absolute inset-x-0 top-0 h-2 ${lisere(i)}`} aria-hidden />
-                <span className={`flex h-11 w-11 items-center justify-center rounded-2xl ${pastille(i)}`}>
-                  <Icon icon={r.icone} width={22} height={22} aria-hidden />
-                </span>
-                <div className="mt-4 font-display text-[21px] font-extrabold leading-none tracking-[-0.02em] text-terra">
-                  {r.chiffre}
-                </div>
-                <p className="mt-3 text-[14px] leading-relaxed text-midnight/70">{r.corps}</p>
-              </motion.li>
-            ))}
-          </ul>
-
-          <p className="mx-auto mt-6 max-w-xl rounded-2xl border border-grid-line bg-white px-5 py-4 text-center text-[13.5px] leading-relaxed text-midnight/75">
-            {t.resultatsNote}
-          </p>
-          <p className="mx-auto mt-4 max-w-xl text-center text-[13.5px] leading-relaxed text-midnight/70">
-            {t.territoire}
-          </p>
+          <Deroulant
+            titre={t.resultatsTitre}
+            soustitre={t.resultatsSous}
+            icone="ph:trend-up-duotone"
+            enfants={
+              <div>
+                <ul className="grid gap-4 sm:grid-cols-3">
+                  {t.resultats.map((r, i) => (
+                    <li
+                      key={r.chiffre}
+                      className={`rounded-2xl border-2 bg-alabaster p-5 ${contour(i)}`}
+                    >
+                      <span
+                        className={`flex h-10 w-10 items-center justify-center rounded-xl ${pastille(i)}`}
+                      >
+                        <Icon icon={r.icone} width={20} height={20} aria-hidden />
+                      </span>
+                      <div className="mt-3 font-display text-[19px] font-extrabold leading-none tracking-[-0.02em] text-terra">
+                        {r.chiffre}
+                      </div>
+                      <p className="mt-2 text-[13.5px] leading-relaxed text-midnight/70">{r.corps}</p>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-5 text-[13.5px] leading-relaxed text-midnight/75">
+                  {t.resultatsNote}
+                </p>
+                <p className="mt-3 text-[13.5px] leading-relaxed text-midnight/70">{t.territoire}</p>
+              </div>
+            }
+          />
         </div>
       </div>
     </section>

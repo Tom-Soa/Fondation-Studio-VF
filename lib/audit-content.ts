@@ -85,6 +85,8 @@ export const AUDIT = {
     kicker: "Comment ça marche",
     h2Start: "Trois étapes,",
     h2Em: "aucun rendez-vous.",
+    deroulantTitre: "Comment ça se passe, étape par étape",
+    deroulantSous: "De la commande à la réception de votre vidéo.",
     items: [
       {
         titre: "Vous commandez",
@@ -156,7 +158,8 @@ export const AUDIT = {
 
     // Le parcours en étapes : c'est ce qui légitime le regard porté sur un
     // site, davantage qu'une liste de compétences.
-    parcoursKicker: "Le parcours",
+    parcoursTitre: "Le parcours qui m'a amené là",
+    parcoursSous: "Quinze ans à entreprendre, résumés en quatre étapes.",
     parcours: [
       {
         icone: "ph:code-duotone",
@@ -189,7 +192,8 @@ export const AUDIT = {
     ],
 
     // Résultats : attribués à des cas précis, jamais généralisés.
-    resultatsKicker: "Ce que ça donne",
+    resultatsTitre: "Résultats",
+    resultatsSous: "Ce que nos clients obtiennent, concrètement.",
     resultats: [
       {
         icone: "ph:currency-eur-duotone",
@@ -214,7 +218,7 @@ export const AUDIT = {
       "Les clients qui s'impliquent et appliquent mes retours obtiennent des résultats. C'est la condition, et je le dis avant de commencer.",
 
     territoire:
-      "Nous travaillons régulièrement avec des entreprises de Guadeloupe, de Martinique, de La Réunion, de Saint-Martin, de Nosy Be et de France métropolitaine.",
+      "Nous travaillons régulièrement avec des entreprises de Guadeloupe, de Martinique, de La Réunion et de France métropolitaine.",
   },
 
   // Les sites déjà réalisés : la liste vient de lib/lp-content.ts, un seul
