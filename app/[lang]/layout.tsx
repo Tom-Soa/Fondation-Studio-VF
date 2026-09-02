@@ -98,6 +98,10 @@ export async function generateMetadata({
       index: !showMaintenance,
       follow: !showMaintenance,
     },
+    // Vérification du domaine par Meta (Business Manager > Domaines).
+    other: {
+      "facebook-domain-verification": "u9q0id5krgam036378mc6u6j169yue",
+    },
   };
 }
 
