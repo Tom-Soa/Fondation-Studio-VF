@@ -10,7 +10,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { AUDIT } from "@/lib/audit-content";
-import MetaPixel from "@/components/lp/MetaPixel";
+import PixelAudit from "@/components/audit/PixelAudit";
 import AuditHero from "@/components/audit/AuditHero";
 import BoutonFlottant from "@/components/audit/BoutonFlottant";
 import AuditFaq from "@/components/audit/AuditFaq";
@@ -28,7 +28,7 @@ import {
 export default function PageAudit() {
   return (
     <main className="relative">
-      <MetaPixel event="PageView" />
+      <PixelAudit />
       <BoutonFlottant />
 
       {/* 1. Accroche : prix, délai et bouton visibles sans défiler */}

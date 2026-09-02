@@ -29,6 +29,15 @@ export const PRIX = "97 €";
 export const DELAI = "48 h";
 export const FENETRE_DEDUCTION = "30 jours";
 
+/**
+ * Pixel Meta de la campagne audit.
+ *
+ * PageView est envoyé sur la page de vente, et la conversion (Purchase, avec
+ * le montant, plus Lead) uniquement sur la page de confirmation, qui n'est
+ * atteignable qu'après un paiement abouti.
+ */
+export const META_PIXEL_AUDIT = "1268635575330992";
+
 /** Lien WhatsApp Business, proposé sur la page de confirmation. */
 export const WHATSAPP_URL = "https://wa.me/message/Z3SK7EX5AXBZL1";
 

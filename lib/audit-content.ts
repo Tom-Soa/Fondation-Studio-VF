@@ -6,16 +6,16 @@ import { PRIX, DELAI, FENETRE_DEDUCTION, SITES_CREES } from "./audit-config";
 
 export const AUDIT = {
   meta: {
-    title: `Audit de votre site en ${DELAI} · ${PRIX} · ACTC`,
-    description: `Recevez une vidéo d'analyse commentée de votre site entier, toutes les pages : une note sur 100, ce qui bloque, et 3 priorités classées par impact. Livrée en ${DELAI}. Les ${PRIX} sont déduits si vous nous confiez ensuite votre site.`,
+    title: `Obtenez plus de résultats avec votre site · Audit ${PRIX} · ACTC`,
+    description: `Obtenez plus de résultats avec le site que vous avez déjà : une vidéo commentée : une note sur 100, ce qui bloque, et 3 priorités classées par impact. Livrée en ${DELAI}. Les ${PRIX} sont déduits si vous nous confiez ensuite votre site.`,
   },
 
   hero: {
     eyebrow: "Audit de site internet",
-    h1Start: "Votre site est en ligne.",
-    h1Em: "Mais que fait-il vraiment",
-    h1End: "de vos visiteurs ?",
-    sub: `Recevez une vidéo où j'analyse votre site en entier, toutes les pages, pas seulement l'accueil : une note sur 100, ce qui bloque concrètement, et les 3 priorités à corriger, classées par impact.`,
+    h1Start: "Obtenez plus de résultats",
+    h1Em: "avec le site",
+    h1End: "que vous avez déjà.",
+    sub: `Je passe votre site en revue et je vous envoie une vidéo commentée : une note sur 100, ce qui bloque concrètement, et les 3 corrections à faire en priorité. Jusqu'à 8 pages, hors pages légales.`,
     priceLabel: "Prix unique",
     delayLabel: "Livraison",
     cta: "Commander mon audit",
@@ -58,7 +58,7 @@ export const AUDIT = {
         icone: "ph:video-camera-duotone",
         titre: "Une vidéo commentée",
         corps:
-          "Je parcours toutes les pages de votre site à l'écran et je commente ce que je vois, comme si j'étais à côté de vous. Vous la gardez et la revoyez autant de fois que nécessaire.",
+          "Je parcours votre site à l'écran, page après page et je commente ce que je vois, comme si j'étais à côté de vous. Vous la gardez et la revoyez autant de fois que nécessaire.",
       },
       {
         icone: "ph:gauge-duotone",
@@ -93,7 +93,7 @@ export const AUDIT = {
       {
         titre: "J'analyse",
         corps:
-          "Je passe chaque page de votre site en revue sur les six axes qui décident du passage d'un visiteur à une demande, sur ordinateur comme sur téléphone.",
+          "Je passe votre site en revue sur les cinq axes qui décident du passage d'un visiteur à une demande, sur ordinateur comme sur téléphone.",
       },
       {
         titre: "Vous recevez votre vidéo",
@@ -104,7 +104,7 @@ export const AUDIT = {
 
   axes: {
     kicker: "Ce que j'analyse",
-    h2Start: "Six axes qui décident",
+    h2Start: "Cinq axes qui décident",
     h2Em: "si un visiteur vous contacte.",
     items: [
       {
@@ -131,11 +131,6 @@ export const AUDIT = {
         icone: "ph:lightning-duotone",
         titre: "La vitesse de chargement",
         corps: "Le temps d'attente avant que votre page s'affiche vraiment, et ce qu'il coûte.",
-      },
-      {
-        icone: "ph:magnifying-glass-duotone",
-        titre: "La visibilité sur Google",
-        corps: "Ce qui permet, ou empêche, qu'on vous trouve en cherchant votre métier.",
       },
     ],
   },
@@ -239,7 +234,7 @@ export const AUDIT = {
     h2End: "qui peut ne rien vous coûter.",
     corps: `Vous commandez votre audit ${PRIX}. Si vous nous confiez ensuite la création ou la refonte de votre site dans les ${FENETRE_DEDUCTION}, les ${PRIX} sont intégralement déduits du montant du projet.`,
     inclus: [
-      "La vidéo d'analyse commentée de votre site entier",
+      "La vidéo commentée de votre site, jusqu'à 8 pages",
       "La note sur 100, décomposée axe par axe",
       "Les 3 priorités classées par impact",
       `Livraison sous ${DELAI}, sans rendez-vous`,
@@ -259,8 +254,8 @@ export const AUDIT = {
         a: `L'adresse de votre site vous est demandée pendant le paiement. Vous recevez ensuite un reçu par courriel et arrivez sur une page de confirmation qui récapitule la suite. Il n'y a rien d'autre à faire de votre côté : je m'occupe du reste.`,
       },
       {
-        q: "Vous analysez toutes les pages, ou seulement l'accueil ?",
-        a: "Toutes les pages de votre site, sans exception : accueil, pages de services, page contact, articles, boutique s'il y en a une. L'audit porte sur l'ensemble du parcours, parce que c'est rarement l'accueil seul qui fait perdre une demande.",
+        q: "Combien de pages sont analysées ?",
+        a: "Jusqu'à 8 pages, hors pages légales : accueil, pages de services, page contact, et les pages qui comptent le plus dans votre parcours. C'est rarement l'accueil seul qui fait perdre une demande, l'audit porte donc sur l'ensemble du chemin vers le contact.",
       },
       {
         q: "En combien de temps je reçois mon audit ?",
@@ -269,6 +264,10 @@ export const AUDIT = {
       {
         q: "Est-ce que ça vaut le coup si mon site est très récent ?",
         a: "Oui, et c'est souvent le meilleur moment. Corriger un parcours ou une promesse peu claire coûte beaucoup moins cher au début qu'après plusieurs mois de trafic. L'analyse porte sur ce que voit votre visiteur, pas sur l'âge du site.",
+      },
+      {
+        q: "L'audit remplace-t-il une refonte ?",
+        a: "Non, et c'est important. L'audit vous dit où en est votre site : parfois quelques corrections suffisent, parfois les bases mêmes du site posent problème et une refonte s'impose. Dans les deux cas, vous décidez en connaissance de cause au lieu d'avancer à l'aveugle.",
       },
       {
         q: "Est-ce que je suis obligé de travailler avec vous ensuite ?",

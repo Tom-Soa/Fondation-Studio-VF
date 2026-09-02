@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import MetaPixel from "@/components/lp/MetaPixel";
+import PixelAudit from "@/components/audit/PixelAudit";
 import AuditMerci from "@/components/audit/AuditMerci";
 
 export const metadata: Metadata = {
@@ -14,13 +14,13 @@ export const metadata: Metadata = {
  * À renseigner comme URL de redirection dans le lien de paiement Stripe :
  * https://www.actcstudio.fr/audit/merci
  *
- * C'est ici, et nulle part ailleurs, qu'est déclenché l'événement Purchase du
- * pixel Meta : la page n'est atteignable qu'après un paiement abouti.
+ * C'est ici, et nulle part ailleurs, que la conversion est envoyée au pixel
+ * Meta : la page n'est atteignable qu'après un paiement abouti.
  */
 export default function PageMerci() {
   return (
     <main className="relative">
-      <MetaPixel event="Purchase" />
+      <PixelAudit conversion />
       <AuditMerci />
     </main>
   );
