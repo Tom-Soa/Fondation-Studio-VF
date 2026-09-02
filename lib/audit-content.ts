@@ -151,7 +151,7 @@ export const AUDIT = {
 
     // Repères chiffrés, affichés en bandeau sous la présentation.
     reperes: [
-      { valeur: "19 ans", label: "dont 15 à entreprendre" },
+      { valeur: "19 ans", label: "entrepreneur depuis ses 15 ans" },
       { valeur: `${SITES_CREES}+`, label: "entreprises accompagnées" },
       { valeur: "Meta & Google", label: "publicité, formé et certifié" },
     ],
