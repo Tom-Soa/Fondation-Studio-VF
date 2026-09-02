@@ -344,6 +344,78 @@ export interface ShowcaseItem {
 export const SHOWCASE: Record<Locale, ShowcaseItem[]> = {
   fr: [
     {
+      src: "/showcase/conciergerie-bunel.jpg",
+      alt: "Site web La Conciergerie Bunel",
+      name: "La Conciergerie Bunel",
+      offer: "Offre Conversion",
+      sector: "Conciergerie / location meublée",
+      duration: "3 semaines",
+      type: "Site vitrine",
+      summary:
+        "Site pour une conciergerie de logements meublés en Guadeloupe. Mise en valeur des hébergements et des services, avec une prise de contact directe pour les voyageurs.",
+      highlights: ["Présentation des logements", "Services de conciergerie", "Formulaire de réservation", "Version anglaise"],
+    },
+    {
+      src: "/showcase/saint-martin-autrement.jpg",
+      alt: "Site web Saint-Martin Autrement",
+      name: "Saint-Martin Autrement",
+      offer: "Offre Conversion",
+      sector: "Association / seniors",
+      duration: "3 semaines",
+      type: "Site vitrine",
+      summary:
+        "Site pour une association qui crée un centre de loisirs contre l'isolement des seniors à Saint-Martin. Présentation du projet, des activités et appel aux soutiens.",
+      highlights: ["Présentation du projet", "Agenda des activités", "Espace actualités", "Formulaire d'adhésion"],
+    },
+    {
+      src: "/showcase/lafonke.jpg",
+      alt: "Site e-commerce Épicerie Lafonke",
+      name: "Épicerie Lafonke",
+      offer: "E-commerce Shopify",
+      sector: "Épicerie / produits naturels",
+      duration: "4 semaines",
+      type: "Boutique en ligne",
+      summary:
+        "Boutique en ligne pour une épicerie spécialisée en épices, huiles et infusions naturelles. Catalogue complet, paiement sécurisé et gestion des commandes.",
+      highlights: ["Catalogue par univers", "Paiement sécurisé", "Livraison et retrait", "Fiches produits détaillées"],
+    },
+    {
+      src: "/showcase/villa-des-pecheurs.jpg",
+      alt: "Site web La Villa des Pêcheurs",
+      name: "La Villa des Pêcheurs",
+      offer: "Offre Premium",
+      sector: "Location saisonnière / hébergement",
+      duration: "4 semaines",
+      type: "Site vitrine premium",
+      summary:
+        "Site haut de gamme pour des logements à Saint-Gilles-les-Bains, à La Réunion. Réservation en direct pour sortir de la dépendance aux plateformes.",
+      highlights: ["Présentation des logements", "Réservation en direct", "Blog et FAQ", "Avis clients intégrés"],
+    },
+    {
+      src: "/showcase/soumoili-auto.jpg",
+      alt: "Site web Soumoili Auto",
+      name: "Soumoili Auto",
+      offer: "Offre Conversion",
+      sector: "Concession / véhicules d'occasion",
+      duration: "3 semaines",
+      type: "Site vitrine",
+      summary:
+        "Site pour un concessionnaire multimarques de véhicules d'occasion à Rennes. Mise en avant du parc, du financement et de la reprise.",
+      highlights: ["Catalogue de véhicules", "Simulation de financement", "Demande de reprise", "Prise de rendez-vous"],
+    },
+    {
+      src: "/showcase/andys.jpg",
+      alt: "Site web Chez Andy's",
+      name: "Chez Andy's",
+      offer: "Offre Conversion",
+      sector: "Grossiste alimentaire",
+      duration: "3 semaines",
+      type: "Site vitrine avec commande",
+      summary:
+        "Site pour un grossiste alimentaire à Mayotte. Catalogue en ligne, réservation de créneau de retrait et paiement sur place.",
+      highlights: ["Catalogue en ligne", "Réservation de créneau", "Retrait en magasin", "Espace actualités"],
+    },
+    {
       src: "/showcase/academie-sportive.jpg",
       alt: "Site web Académie Sportive La Redoute",
       name: "Académie Sportive",
@@ -429,6 +501,78 @@ export const SHOWCASE: Record<Locale, ShowcaseItem[]> = {
     },
   ],
   en: [
+    {
+      src: "/showcase/conciergerie-bunel.jpg",
+      alt: "La Conciergerie Bunel website",
+      name: "La Conciergerie Bunel",
+      offer: "Conversion plan",
+      sector: "Property management / short-term rental",
+      duration: "3 weeks",
+      type: "Showcase website",
+      summary:
+        "Website for a furnished rental and concierge business in Guadeloupe. Showcases the properties and services, with direct enquiries from travellers.",
+      highlights: ["Property showcase", "Concierge services", "Booking form", "English version"],
+    },
+    {
+      src: "/showcase/saint-martin-autrement.jpg",
+      alt: "Saint-Martin Autrement website",
+      name: "Saint-Martin Autrement",
+      offer: "Conversion plan",
+      sector: "Non-profit / seniors",
+      duration: "3 weeks",
+      type: "Showcase website",
+      summary:
+        "Website for a non-profit building a leisure centre to fight isolation among seniors in Saint-Martin. Project, activities and calls for support.",
+      highlights: ["Project overview", "Activity calendar", "News section", "Membership form"],
+    },
+    {
+      src: "/showcase/lafonke.jpg",
+      alt: "Épicerie Lafonke online store",
+      name: "Épicerie Lafonke",
+      offer: "Shopify e-commerce",
+      sector: "Grocery / natural products",
+      duration: "4 weeks",
+      type: "Online store",
+      summary:
+        "Online store for a grocery specialising in spices, oils and natural infusions. Full catalog, secure checkout and order management.",
+      highlights: ["Catalog by category", "Secure checkout", "Delivery and pickup", "Detailed product pages"],
+    },
+    {
+      src: "/showcase/villa-des-pecheurs.jpg",
+      alt: "La Villa des Pêcheurs website",
+      name: "La Villa des Pêcheurs",
+      offer: "Premium plan",
+      sector: "Holiday rental / accommodation",
+      duration: "4 weeks",
+      type: "Premium showcase website",
+      summary:
+        "High-end website for accommodation in Saint-Gilles-les-Bains, Reunion Island. Direct booking to reduce reliance on platforms.",
+      highlights: ["Property showcase", "Direct booking", "Blog and FAQ", "Embedded reviews"],
+    },
+    {
+      src: "/showcase/soumoili-auto.jpg",
+      alt: "Soumoili Auto website",
+      name: "Soumoili Auto",
+      offer: "Conversion plan",
+      sector: "Dealership / used cars",
+      duration: "3 weeks",
+      type: "Showcase website",
+      summary:
+        "Website for a multi-brand used car dealership in Rennes. Highlights the stock, financing options and trade-ins.",
+      highlights: ["Vehicle catalog", "Financing simulation", "Trade-in request", "Appointment booking"],
+    },
+    {
+      src: "/showcase/andys.jpg",
+      alt: "Chez Andy's website",
+      name: "Chez Andy's",
+      offer: "Conversion plan",
+      sector: "Food wholesaler",
+      duration: "3 weeks",
+      type: "Showcase website with ordering",
+      summary:
+        "Website for a food wholesaler in Mayotte. Online catalog, pickup slot booking and payment on site.",
+      highlights: ["Online catalog", "Pickup slot booking", "In-store collection", "News section"],
+    },
     {
       src: "/showcase/academie-sportive.jpg",
       alt: "Académie Sportive La Redoute website",
