@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 import { AUDIT } from "@/lib/audit-content";
 import { PRIX } from "@/lib/audit-config";
 import { BoutonPaiement } from "@/components/audit/BoutonPaiement";
-import { Grille, Halo, Formes, Couture } from "@/components/audit/Decor";
+import { Grille, Halo, Formes, Couture, contour, lisere, pastille } from "@/components/audit/Decor";
 
 // Apparition douce au scroll, reprise du site : fondu + légère montée, sans
 // aucun lien au défilement une fois déclenchée.
@@ -100,9 +100,9 @@ export function Livrables() {
               key={item.titre}
               {...monte}
               transition={{ duration: 0.6, delay: (i % 2) * 0.09, ease: doux }}
-              className="group flex gap-4 rounded-3xl border border-grid-line bg-alabaster p-6 transition-colors hover:border-terra/40"
+              className={`group relative overflow-hidden flex gap-4 rounded-3xl border-2 bg-alabaster p-6 transition-colors ${contour(i)}`}
             >
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-terra text-white shadow-terra transition-transform group-hover:scale-105">
+              <span className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-white shadow-card-light transition-transform group-hover:scale-105 ${lisere(i)}`}>
                 <Icon icon={item.icone} width={24} height={24} aria-hidden />
               </span>
               <div>
@@ -132,8 +132,9 @@ export function Etapes() {
               key={item.titre}
               {...monte}
               transition={{ duration: 0.6, delay: i * 0.1, ease: doux }}
-              className="relative rounded-3xl border border-grid-line bg-white p-6 shadow-card-light"
+              className={`relative overflow-hidden rounded-3xl border-2 bg-white p-6 shadow-card-light transition-colors ${contour(i)}`}
             >
+              <span className={`absolute inset-x-0 top-0 h-2 ${lisere(i)}`} aria-hidden />
               <span className="flex h-11 w-11 items-center justify-center rounded-full bg-terra/10 font-display text-[19px] font-extrabold text-terra">
                 {i + 1}
               </span>
@@ -164,9 +165,9 @@ export function Axes() {
               key={item.titre}
               {...monte}
               transition={{ duration: 0.55, delay: (i % 3) * 0.08, ease: doux }}
-              className="group rounded-3xl border border-grid-line bg-alabaster p-6 transition-colors hover:border-terra/40"
+              className={`group relative overflow-hidden rounded-3xl border-2 bg-alabaster p-6 transition-colors ${contour(i)}`}
             >
-              <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-terra/10 text-terra transition-colors group-hover:bg-terra group-hover:text-white">
+              <span className={`flex h-11 w-11 items-center justify-center rounded-2xl transition-colors ${pastille(i)}`}>
                 <Icon icon={item.icone} width={22} height={22} aria-hidden />
               </span>
               <h3 className="mt-5 font-display text-[16.5px] font-bold text-midnight">
@@ -245,9 +246,9 @@ export function Auteur() {
                 key={etape.titre}
                 {...monte}
                 transition={{ duration: 0.6, delay: i * 0.08, ease: doux }}
-                className="relative flex gap-5 rounded-3xl border border-grid-line bg-white p-6 shadow-card-light sm:mb-4"
+                className={`relative overflow-hidden flex gap-5 rounded-3xl border-2 bg-white p-6 shadow-card-light transition-colors sm:mb-4 ${contour(i)}`}
               >
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-terra/10 text-terra">
+                <span className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl ${pastille(i)}`}>
                   <Icon icon={etape.icone} width={24} height={24} aria-hidden />
                 </span>
                 <div className="min-w-0">
@@ -277,9 +278,10 @@ export function Auteur() {
                 key={r.chiffre}
                 {...monte}
                 transition={{ duration: 0.6, delay: i * 0.08, ease: doux }}
-                className="rounded-3xl border border-grid-line bg-white p-6 shadow-card-light"
+                className={`relative overflow-hidden rounded-3xl border-2 bg-white p-6 shadow-card-light transition-colors ${contour(i)}`}
               >
-                <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-terra/10 text-terra">
+                <span className={`absolute inset-x-0 top-0 h-2 ${lisere(i)}`} aria-hidden />
+                <span className={`flex h-11 w-11 items-center justify-center rounded-2xl ${pastille(i)}`}>
                   <Icon icon={r.icone} width={22} height={22} aria-hidden />
                 </span>
                 <div className="mt-4 font-display text-[21px] font-extrabold leading-none tracking-[-0.02em] text-terra">
@@ -306,7 +308,7 @@ export function Auteur() {
 export function Offre() {
   const t = AUDIT.offre;
   return (
-    <section className="relative isolate overflow-hidden border-y border-grid-line bg-white py-20 lg:py-28">
+    <section id="bloc-offre" className="relative isolate overflow-hidden border-y border-grid-line bg-white py-20 lg:py-28">
       <Halo className="inset-0 -z-10" taille="70% 60%" couleur="rgba(194,65,12,0.15)" />
       <Grille className="-z-10 opacity-60" />
       <div className="relative mx-auto max-w-3xl px-6">

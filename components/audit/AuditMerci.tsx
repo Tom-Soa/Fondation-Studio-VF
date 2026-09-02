@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { Icon } from "@iconify/react";
 import { AUDIT } from "@/lib/audit-content";
+import { WHATSAPP_URL } from "@/lib/audit-config";
 
 /** Confirmation de paiement : ce qui se passe ensuite, étape par étape. */
 export default function AuditMerci() {
@@ -80,8 +81,26 @@ export default function AuditMerci() {
           {t.deduction}
         </p>
 
+        <div className="mt-8 rounded-2xl border-2 border-[#25D366]/35 bg-[#25D366]/[0.07] p-5">
+          <p className="font-display text-[15px] font-bold text-midnight">
+            Une question sur votre audit ?
+          </p>
+          <p className="mt-1.5 text-[13.5px] leading-relaxed text-midnight/75">
+            Écrivez-moi directement, je réponds moi-même.
+          </p>
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-flex items-center gap-2.5 rounded-full bg-[#25D366] px-6 py-3.5 text-[15px] font-bold text-white transition-transform hover:scale-[1.02]"
+          >
+            <Icon icon="ic:baseline-whatsapp" width={20} height={20} aria-hidden />
+            Me contacter sur WhatsApp
+          </a>
+        </div>
+
         <p className="mt-5 text-[13px] text-midnight/70">
-          {t.contactLabel}{" "}
+          Ou par courriel :{" "}
           <a href={`mailto:${t.contactMail}`} className="text-terra underline">
             {t.contactMail}
           </a>

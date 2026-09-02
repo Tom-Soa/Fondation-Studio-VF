@@ -29,6 +29,9 @@ export const PRIX = "97 €";
 export const DELAI = "48 h";
 export const FENETRE_DEDUCTION = "30 jours";
 
+/** Lien WhatsApp Business, proposé sur la page de confirmation. */
+export const WHATSAPP_URL = "https://wa.me/message/Z3SK7EX5AXBZL1";
+
 /** Preuve chiffrée, à mettre à jour quand le nombre évolue. */
 export const SITES_CREES = 50;
 

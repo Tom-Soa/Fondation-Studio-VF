@@ -92,3 +92,46 @@ export function Couture({ className = "" }: { className?: string }) {
     />
   );
 }
+
+/**
+ * Contours colorés des cartes.
+ *
+ * Toutes les cartes portaient le même filet gris : la page paraissait terne.
+ * Chaque carte reçoit maintenant un liseré tiré d'une petite palette, appliqué
+ * en fonction de sa position, ce qui colore l'ensemble sans le rendre bariolé.
+ */
+export const CONTOURS = [
+  "border-terra/60 hover:border-terra",
+  "border-[#1d7a8c]/55 hover:border-[#1d7a8c]",
+  "border-[#c9a227]/65 hover:border-[#c9a227]",
+  "border-[#8b3a62]/50 hover:border-[#8b3a62]",
+] as const;
+
+/** Contour coloré correspondant à une position dans une liste. */
+export function contour(index: number) {
+  return CONTOURS[index % CONTOURS.length];
+}
+
+/** Filet coloré épais posé en haut d'une carte. */
+export const LISERES = [
+  "bg-terra",
+  "bg-[#1d7a8c]",
+  "bg-[#c9a227]",
+  "bg-[#8b3a62]",
+] as const;
+
+export function lisere(index: number) {
+  return LISERES[index % LISERES.length];
+}
+
+/** Fond de pastille d'icône, assorti au liseré de la carte. */
+export const PASTILLES = [
+  "bg-terra/15 text-terra",
+  "bg-[#1d7a8c]/15 text-[#1d7a8c]",
+  "bg-[#c9a227]/20 text-[#a8851d]",
+  "bg-[#8b3a62]/15 text-[#8b3a62]",
+] as const;
+
+export function pastille(index: number) {
+  return PASTILLES[index % PASTILLES.length];
+}

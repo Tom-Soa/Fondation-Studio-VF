@@ -219,7 +219,7 @@ export const AUDIT = {
       "Les clients qui s'impliquent et appliquent mes retours obtiennent des résultats. C'est la condition, et je le dis avant de commencer.",
 
     territoire:
-      "Nous travaillons régulièrement avec des entreprises de Guadeloupe, de Martinique, de La Réunion, de Saint-Martin et de Nosy Be.",
+      "Nous travaillons régulièrement avec des entreprises de Guadeloupe, de Martinique, de La Réunion, de Saint-Martin, de Nosy Be et de France métropolitaine.",
   },
 
   // Les sites déjà réalisés : la liste vient de lib/lp-content.ts, un seul
