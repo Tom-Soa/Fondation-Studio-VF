@@ -185,7 +185,7 @@ export const AUDIT = {
       {
         icone: "ph:handshake-duotone",
         periode: "Depuis début 2026",
-        titre: "ACTC, officialisé avec Andy Lannes",
+        titre: "ACTC, officialisé avec Andylane",
         corps:
           "Nous créions déjà des sites ensemble. Nous en avons fait une structure, et nous avons accompagné une cinquantaine d'entreprises depuis, dans des secteurs très différents les uns des autres.",
       },
