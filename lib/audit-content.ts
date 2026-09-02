@@ -145,7 +145,7 @@ export const AUDIT = {
     role: "Fondateur d'ACTC",
     photo: "/images/tom-soa.jpg",
     corps: [
-      `C'est moi qui parcours votre site, page après page, et qui enregistre la vidéo. Pas un rapport généré automatiquement : une analyse commentée, faite à la main, par quelqu'un qui construit des sites et achète de la publicité tous les jours.`,
+      `C'est moi qui parcours votre site, page après page, et qui enregistre la vidéo. Pas un rapport généré automatiquement : une analyse commentée, faite à la main, par quelqu'un qui construit des sites et analyse tous les jours le trafic payant qu'on y envoie.`,
       `Ce que je regarde chez vous, je l'ai déjà corrigé ailleurs. C'est la seule raison pour laquelle je peux vous dire quoi traiter en premier.`,
     ],
 
