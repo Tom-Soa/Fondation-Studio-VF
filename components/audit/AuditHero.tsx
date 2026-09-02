@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { Icon } from "@iconify/react";
 import HeroBackground from "@/components/ui/HeroBackground";
+import { Grille, Formes } from "@/components/audit/Decor";
 import { AUDIT } from "@/lib/audit-content";
 import { PRIX, DELAI } from "@/lib/audit-config";
 import { BoutonPaiement } from "@/components/audit/BoutonPaiement";
@@ -32,9 +33,11 @@ export default function AuditHero() {
         }}
         aria-hidden
       />
+      <Grille className="-z-[21] opacity-60" />
+      <Formes variante="terra" className="-z-[21]" />
       <HeroBackground />
       <div
-        className="pointer-events-none absolute inset-0 -z-[5] bg-alabaster/65"
+        className="pointer-events-none absolute inset-0 -z-[5] bg-alabaster/60"
         aria-hidden
       />
 

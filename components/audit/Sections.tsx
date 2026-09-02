@@ -5,6 +5,7 @@ import { motion } from "motion/react";
 import { AUDIT } from "@/lib/audit-content";
 import { PRIX } from "@/lib/audit-config";
 import { BoutonPaiement } from "@/components/audit/BoutonPaiement";
+import { Grille, Halo, Formes, Couture } from "@/components/audit/Decor";
 
 // Apparition douce au scroll, reprise du site : fondu + légère montée, sans
 // aucun lien au défilement une fois déclenchée.
@@ -57,8 +58,10 @@ function TitreSection({
 export function Probleme() {
   const t = AUDIT.probleme;
   return (
-    <section className="bg-alabaster py-20 lg:py-28">
-      <div className="mx-auto max-w-5xl px-6">
+    <section className="relative isolate overflow-hidden bg-alabaster py-20 lg:py-28">
+      <Grille className="-z-10 opacity-70" />
+      <Halo className="inset-x-0 top-0 -z-10 h-80" />
+      <div className="relative mx-auto max-w-5xl px-6">
         <TitreSection kicker={t.kicker} debut={t.h2Start} accent={t.h2Em} />
         <ul className="grid gap-5 md:grid-cols-3">
           {t.items.map((item, i) => (
@@ -87,8 +90,9 @@ export function Probleme() {
 export function Livrables() {
   const t = AUDIT.livrables;
   return (
-    <section className="border-y border-grid-line bg-white py-20 lg:py-28">
-      <div className="mx-auto max-w-5xl px-6">
+    <section className="relative isolate overflow-hidden border-y border-grid-line bg-white py-20 lg:py-28">
+      <Formes variante="terra" className="-z-10" />
+      <div className="relative mx-auto max-w-5xl px-6">
         <TitreSection kicker={t.kicker} debut={t.h2Start} accent={t.h2Em} />
         <ul className="grid gap-5 sm:grid-cols-2">
           {t.items.map((item, i) => (
@@ -117,8 +121,10 @@ export function Livrables() {
 export function Etapes() {
   const t = AUDIT.etapes;
   return (
-    <section className="bg-alabaster py-20 lg:py-28">
-      <div className="mx-auto max-w-4xl px-6">
+    <section className="relative isolate overflow-hidden bg-terra/[0.045] py-20 lg:py-28">
+      <Couture className="top-0" />
+      <Grille className="-z-10 opacity-50" />
+      <div className="relative mx-auto max-w-4xl px-6">
         <TitreSection kicker={t.kicker} debut={t.h2Start} accent={t.h2Em} />
         <ol className="grid gap-5 md:grid-cols-3">
           {t.items.map((item, i) => (
@@ -147,8 +153,10 @@ export function Etapes() {
 export function Axes() {
   const t = AUDIT.axes;
   return (
-    <section className="border-y border-grid-line bg-white py-20 lg:py-28">
-      <div className="mx-auto max-w-5xl px-6">
+    <section className="relative isolate overflow-hidden border-y border-grid-line bg-white py-20 lg:py-28">
+      <Formes variante="mixte" className="-z-10" />
+      <Grille className="-z-10 opacity-40" />
+      <div className="relative mx-auto max-w-5xl px-6">
         <TitreSection kicker={t.kicker} debut={t.h2Start} accent={t.h2Em} />
         <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {t.items.map((item, i) => (
@@ -177,8 +185,10 @@ export function Axes() {
 export function Auteur() {
   const t = AUDIT.auteur;
   return (
-    <section className="bg-alabaster py-20 lg:py-28">
-      <div className="mx-auto max-w-4xl px-6">
+    <section className="relative isolate overflow-hidden bg-alabaster py-20 lg:py-28">
+      <Halo className="inset-x-0 bottom-0 -z-10 h-96" position="50% 100%" couleur="rgba(194,65,12,0.13)" />
+      <Formes variante="nuit" className="-z-10" />
+      <div className="relative mx-auto max-w-4xl px-6">
         <TitreSection kicker={t.kicker} debut={t.h2Start} accent={t.h2Em} />
 
         {/* Présentation + repères chiffrés */}
@@ -296,8 +306,10 @@ export function Auteur() {
 export function Offre() {
   const t = AUDIT.offre;
   return (
-    <section className="border-y border-grid-line bg-white py-20 lg:py-28">
-      <div className="mx-auto max-w-3xl px-6">
+    <section className="relative isolate overflow-hidden border-y border-grid-line bg-white py-20 lg:py-28">
+      <Halo className="inset-0 -z-10" taille="70% 60%" couleur="rgba(194,65,12,0.15)" />
+      <Grille className="-z-10 opacity-60" />
+      <div className="relative mx-auto max-w-3xl px-6">
         <TitreSection kicker={t.kicker} debut={t.h2Start} accent={t.h2Em} fin={t.h2End} sous={t.corps} />
 
         <motion.div

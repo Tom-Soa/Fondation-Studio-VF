@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Icon } from "@iconify/react";
 import { motion } from "motion/react";
 import { AUDIT } from "@/lib/audit-content";
+import { Formes } from "@/components/audit/Decor";
 
 /** Questions fréquentes, dépliables une à une. Style identique au site. */
 export default function AuditFaq() {
@@ -11,8 +12,9 @@ export default function AuditFaq() {
   const [ouvert, setOuvert] = useState<number | null>(0);
 
   return (
-    <section className="border-t border-grid-line bg-white py-20 lg:py-28">
-      <div className="mx-auto max-w-3xl px-6">
+    <section className="relative isolate overflow-hidden border-t border-grid-line bg-white py-20 lg:py-28">
+      <Formes variante="mixte" className="-z-10" />
+      <div className="relative mx-auto max-w-3xl px-6">
         <div className="mb-12 text-center">
           <div className="mb-5 text-[11px] font-medium uppercase tracking-[0.18em] text-terra">
             {t.kicker}
