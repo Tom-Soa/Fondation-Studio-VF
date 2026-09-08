@@ -216,10 +216,16 @@ export const CLIENT_SITES: ClientSite[] = [
     shot: "/sites-clients/andys.jpg",
   },
   {
-    name: "La Villa des Pêcheurs",
-    sector: "Location saisonnière / hébergement",
-    url: "https://la-villa-de-pecheur.vercel.app/",
-    shot: "/sites-clients/villa-des-pecheurs.jpg",
+    name: "L'Arbradelis",
+    sector: "Restaurant créole",
+    url: "https://abradelis-restaurant.vercel.app/",
+    shot: "/sites-clients/arbradelis.jpg",
+  },
+  {
+    name: "Tuy Run · Dien Chan",
+    sector: "Bien-être / réflexothérapie faciale",
+    url: "https://dienchan-re.vercel.app/",
+    shot: "/sites-clients/dienchan.jpg",
   },
   {
     name: "Soumoili Auto",

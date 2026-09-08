@@ -38,14 +38,13 @@ export const OFFERS: Record<Locale, Offer[]> = {
       features: [
         { text: "Site vitrine jusqu'à 5 pages", included: true },
         { text: "Design sur-mesure pensé pour vendre", included: true },
-        { text: "Optimisation du texte", included: false },
-        { text: "Gestion autonome de votre site", included: false },
+        { text: "Optimisation du texte", included: true },
+        { text: "Gestion autonome de votre site", included: true },
         { text: "Animations & interactions", included: false },
         { text: "SEO technique de base", included: true },
         { text: "Formulaire de contact", included: true },
         { text: "Hébergement gratuit (illimité)", included: true },
         { text: "1 mois de maintenance offert", included: true },
-        { text: "Support prioritaire", included: false },
       ],
       note: "Livraison en 14 à 21 jours · Contrat signé avant démarrage",
       ctaLabel: "Voir le détail",
@@ -67,7 +66,6 @@ export const OFFERS: Record<Locale, Offer[]> = {
         { text: "Intégration d'outils & formulaires avancés", included: true },
         { text: "Hébergement gratuit (illimité)", included: true },
         { text: "3 mois de maintenance offerts", included: true },
-        { text: "Support prioritaire", included: false },
       ],
       note: "Livraison en 14 à 21 jours · Contrat signé avant démarrage",
       ctaLabel: "Voir le détail",
@@ -91,7 +89,6 @@ export const OFFERS: Record<Locale, Offer[]> = {
         { text: "Intégration IA & outils avancés", included: true },
         { text: "Hébergement gratuit (illimité)", included: true },
         { text: "6 mois de maintenance offerts", included: true },
-        { text: "Support prioritaire", included: true },
       ],
       note: "Devis personnalisé · Contrat signé avant démarrage",
       ctaLabel: "Voir le détail",
@@ -108,14 +105,13 @@ export const OFFERS: Record<Locale, Offer[]> = {
       features: [
         { text: "Showcase website with up to 5 pages", included: true },
         { text: "Custom design built to sell", included: true },
-        { text: "Copy optimization", included: false },
-        { text: "Manage your site on your own", included: false },
+        { text: "Copy optimization", included: true },
+        { text: "Manage your site on your own", included: true },
         { text: "Animations & interactions", included: false },
         { text: "Essential technical SEO", included: true },
         { text: "Contact form", included: true },
         { text: "Free hosting (unlimited)", included: true },
         { text: "1 month of maintenance included", included: true },
-        { text: "Priority support", included: false },
       ],
       note: "Delivered in 14 to 21 days · Contract signed before kickoff",
       ctaLabel: "See details",
@@ -137,7 +133,6 @@ export const OFFERS: Record<Locale, Offer[]> = {
         { text: "Advanced tools & form integrations", included: true },
         { text: "Free hosting (unlimited)", included: true },
         { text: "3 months of maintenance included", included: true },
-        { text: "Priority support", included: false },
       ],
       note: "Delivered in 14 to 21 days · Contract signed before kickoff",
       ctaLabel: "See details",
@@ -161,7 +156,6 @@ export const OFFERS: Record<Locale, Offer[]> = {
         { text: "AI integration & advanced tools", included: true },
         { text: "Free hosting (unlimited)", included: true },
         { text: "6 months of maintenance included", included: true },
-        { text: "Priority support", included: true },
       ],
       note: "Personalized quote · Contract signed before kickoff",
       ctaLabel: "See details",
@@ -259,8 +253,8 @@ export const OPTIONS_NOTE: Record<Locale, string> = {
 };
 
 export const PAYMENT_NOTE: Record<Locale, string> = {
-  fr: "Acompte de 60 % à la commande, solde de 40 % à la livraison. Paiement en plusieurs fois possible. Prix hors taxes (TVA non applicable, art. 293 B du CGI).",
-  en: "60% deposit when you order, 40% balance on delivery. Installment payments available. Prices before tax (VAT not applicable, art. 293 B of the French CGI).",
+  fr: "Acompte de 60 % à la commande, solde de 40 % à la livraison. Paiement en 3 fois sans frais sur l'offre Standard, en 4 fois sans frais sur les offres Conversion et Premium. Prix hors taxes (TVA non applicable, art. 293 B du CGI).",
+  en: "60% deposit when you order, 40% balance on delivery. Pay in 3 interest-free installments on the Standard plan, or 4 on the Conversion and Premium plans. Prices before tax (VAT not applicable, art. 293 B of the French CGI).",
 };
 
 // ── Services sur-mesure (e-commerce + acquisition) ─────────────────
@@ -332,6 +326,7 @@ export const WHATSAPP_URL = "https://wa.me/33637999738";
 export interface ShowcaseItem {
   src: string;
   alt: string;
+  url?: string;      // lien vers le site en ligne
   name: string;
   offer: string;
   sector: string;     // secteur d'activité
@@ -346,6 +341,7 @@ export const SHOWCASE: Record<Locale, ShowcaseItem[]> = {
     {
       src: "/showcase/conciergerie-bunel.jpg",
       alt: "Site web La Conciergerie Bunel",
+      url: "https://concierge-chi-three.vercel.app/",
       name: "La Conciergerie Bunel",
       offer: "Offre Conversion",
       sector: "Conciergerie / location meublée",
@@ -358,6 +354,7 @@ export const SHOWCASE: Record<Locale, ShowcaseItem[]> = {
     {
       src: "/showcase/saint-martin-autrement.jpg",
       alt: "Site web Saint-Martin Autrement",
+      url: "https://association-autrement.vercel.app/",
       name: "Saint-Martin Autrement",
       offer: "Offre Conversion",
       sector: "Association / seniors",
@@ -370,6 +367,7 @@ export const SHOWCASE: Record<Locale, ShowcaseItem[]> = {
     {
       src: "/showcase/lafonke.jpg",
       alt: "Site e-commerce Épicerie Lafonke",
+      url: "https://lafonke.vercel.app/",
       name: "Épicerie Lafonke",
       offer: "E-commerce Shopify",
       sector: "Épicerie / produits naturels",
@@ -380,20 +378,35 @@ export const SHOWCASE: Record<Locale, ShowcaseItem[]> = {
       highlights: ["Catalogue par univers", "Paiement sécurisé", "Livraison et retrait", "Fiches produits détaillées"],
     },
     {
-      src: "/showcase/villa-des-pecheurs.jpg",
-      alt: "Site web La Villa des Pêcheurs",
-      name: "La Villa des Pêcheurs",
-      offer: "Offre Premium",
-      sector: "Location saisonnière / hébergement",
-      duration: "4 semaines",
-      type: "Site vitrine premium",
+      src: "/showcase/arbradelis.jpg",
+      alt: "Site web L'Arbradelis",
+      url: "https://abradelis-restaurant.vercel.app/",
+      name: "L'Arbradelis",
+      offer: "Offre Conversion",
+      sector: "Restaurant créole",
+      duration: "3 semaines",
+      type: "Site vitrine",
       summary:
-        "Site haut de gamme pour des logements à Saint-Gilles-les-Bains, à La Réunion. Réservation en direct pour sortir de la dépendance aux plateformes.",
-      highlights: ["Présentation des logements", "Réservation en direct", "Blog et FAQ", "Avis clients intégrés"],
+        "Site pour un restaurant créole en plein centre de Saint-Denis, à La Réunion. La carte, l'ambiance et les repas de groupe mis en avant, avec la réservation à portée de clic.",
+      highlights: ["Carte complète avec photos", "Réservation de table", "Offre groupes & événements", "Galerie et FAQ"],
+    },
+    {
+      src: "/showcase/dienchan.jpg",
+      alt: "Site web Tuy Run · Dien Chan La Réunion",
+      url: "https://dienchan-re.vercel.app/",
+      name: "Tuy Run · Dien Chan",
+      offer: "Offre Conversion",
+      sector: "Bien-être / réflexothérapie faciale",
+      duration: "3 semaines",
+      type: "Site vitrine",
+      summary:
+        "Site pour une praticienne en multiréflexologie Dien Chan à La Réunion. La méthode expliquée simplement, les formules détaillées et la prise de rendez-vous directe.",
+      highlights: ["Méthode expliquée", "Formules & formations", "Prise de rendez-vous", "Témoignages clients"],
     },
     {
       src: "/showcase/soumoili-auto.jpg",
       alt: "Site web Soumoili Auto",
+      url: "https://soumoili-auto-main.vercel.app/",
       name: "Soumoili Auto",
       offer: "Offre Conversion",
       sector: "Concession / véhicules d'occasion",
@@ -406,6 +419,7 @@ export const SHOWCASE: Record<Locale, ShowcaseItem[]> = {
     {
       src: "/showcase/andys.jpg",
       alt: "Site web Chez Andy's",
+      url: "https://andys-mayotte-refonte.vercel.app/",
       name: "Chez Andy's",
       offer: "Offre Conversion",
       sector: "Grossiste alimentaire",
@@ -490,6 +504,7 @@ export const SHOWCASE: Record<Locale, ShowcaseItem[]> = {
     {
       src: "/showcase/sico-prefa.jpg",
       alt: "Site web Sico Prefa",
+      url: "https://sico-prefa.vercel.app/",
       name: "Sico Prefa",
       offer: "Offre Premium",
       sector: "Construction préfabriquée",
@@ -504,6 +519,7 @@ export const SHOWCASE: Record<Locale, ShowcaseItem[]> = {
     {
       src: "/showcase/conciergerie-bunel.jpg",
       alt: "La Conciergerie Bunel website",
+      url: "https://concierge-chi-three.vercel.app/",
       name: "La Conciergerie Bunel",
       offer: "Conversion plan",
       sector: "Property management / short-term rental",
@@ -516,6 +532,7 @@ export const SHOWCASE: Record<Locale, ShowcaseItem[]> = {
     {
       src: "/showcase/saint-martin-autrement.jpg",
       alt: "Saint-Martin Autrement website",
+      url: "https://association-autrement.vercel.app/",
       name: "Saint-Martin Autrement",
       offer: "Conversion plan",
       sector: "Non-profit / seniors",
@@ -528,6 +545,7 @@ export const SHOWCASE: Record<Locale, ShowcaseItem[]> = {
     {
       src: "/showcase/lafonke.jpg",
       alt: "Épicerie Lafonke online store",
+      url: "https://lafonke.vercel.app/",
       name: "Épicerie Lafonke",
       offer: "Shopify e-commerce",
       sector: "Grocery / natural products",
@@ -538,20 +556,35 @@ export const SHOWCASE: Record<Locale, ShowcaseItem[]> = {
       highlights: ["Catalog by category", "Secure checkout", "Delivery and pickup", "Detailed product pages"],
     },
     {
-      src: "/showcase/villa-des-pecheurs.jpg",
-      alt: "La Villa des Pêcheurs website",
-      name: "La Villa des Pêcheurs",
-      offer: "Premium plan",
-      sector: "Holiday rental / accommodation",
-      duration: "4 weeks",
-      type: "Premium showcase website",
+      src: "/showcase/arbradelis.jpg",
+      alt: "L'Arbradelis website",
+      url: "https://abradelis-restaurant.vercel.app/",
+      name: "L'Arbradelis",
+      offer: "Conversion plan",
+      sector: "Creole restaurant",
+      duration: "3 weeks",
+      type: "Showcase website",
       summary:
-        "High-end website for accommodation in Saint-Gilles-les-Bains, Reunion Island. Direct booking to reduce reliance on platforms.",
-      highlights: ["Property showcase", "Direct booking", "Blog and FAQ", "Embedded reviews"],
+        "Website for a Creole restaurant in the centre of Saint-Denis, Reunion Island. Menu, atmosphere and group bookings up front, with reservations one click away.",
+      highlights: ["Full menu with photos", "Table booking", "Groups & events", "Gallery and FAQ"],
+    },
+    {
+      src: "/showcase/dienchan.jpg",
+      alt: "Tuy Run · Dien Chan Reunion website",
+      url: "https://dienchan-re.vercel.app/",
+      name: "Tuy Run · Dien Chan",
+      offer: "Conversion plan",
+      sector: "Wellness / facial reflexology",
+      duration: "3 weeks",
+      type: "Showcase website",
+      summary:
+        "Website for a Dien Chan facial reflexology practitioner in Reunion Island. The method explained plainly, clear packages and direct appointment booking.",
+      highlights: ["Method explained", "Packages & training", "Appointment booking", "Client testimonials"],
     },
     {
       src: "/showcase/soumoili-auto.jpg",
       alt: "Soumoili Auto website",
+      url: "https://soumoili-auto-main.vercel.app/",
       name: "Soumoili Auto",
       offer: "Conversion plan",
       sector: "Dealership / used cars",
@@ -564,6 +597,7 @@ export const SHOWCASE: Record<Locale, ShowcaseItem[]> = {
     {
       src: "/showcase/andys.jpg",
       alt: "Chez Andy's website",
+      url: "https://andys-mayotte-refonte.vercel.app/",
       name: "Chez Andy's",
       offer: "Conversion plan",
       sector: "Food wholesaler",
@@ -648,6 +682,7 @@ export const SHOWCASE: Record<Locale, ShowcaseItem[]> = {
     {
       src: "/showcase/sico-prefa.jpg",
       alt: "Sico Prefa website",
+      url: "https://sico-prefa.vercel.app/",
       name: "Sico Prefa",
       offer: "Premium plan",
       sector: "Prefabricated construction",

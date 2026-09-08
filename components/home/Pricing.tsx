@@ -27,7 +27,7 @@ const T: Record<
     kicker: "Nos offres",
     h2Start: "Des sites qui se",
     h2Em: "remboursent.",
-    subtitle: "Prix fixe, tout inclus. Hébergement gratuit. Paiement en plusieurs fois. Votre site vous appartient.",
+    subtitle: "Prix fixe, tout inclus. Hébergement gratuit. Paiement jusqu'à 4 fois sans frais. Votre site vous appartient.",
     ecomTitle: "On crée aussi des sites marchands",
     ecomBadge: "E-commerce Shopify",
     ecomPrice: "À partir de 2 900 €",

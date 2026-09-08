@@ -20,6 +20,8 @@ const T: Record<
     durationLabel: string;
     deliveredLabel: string;
     ctaButton: string;
+    visitSite: string;
+    visitSiteAria: string;
   }
 > = {
   fr: {
@@ -34,6 +36,8 @@ const T: Record<
     durationLabel: "Délai",
     deliveredLabel: "Ce qu'on a livré",
     ctaButton: "Je veux un site comme celui-ci",
+    visitSite: "Visiter le site",
+    visitSiteAria: "Visiter le site de",
   },
   en: {
     offerFilters: ["All", "Standard plan", "Conversion plan", "Premium plan", "Shopify e-commerce"],
@@ -47,6 +51,8 @@ const T: Record<
     durationLabel: "Timeline",
     deliveredLabel: "What we delivered",
     ctaButton: "I want a website like this",
+    visitSite: "Visit the site",
+    visitSiteAria: "Visit the website of",
   },
 };
 
@@ -153,13 +159,27 @@ export default function RealisationsGrid({ lang }: { lang: Locale }) {
                     <span className="shrink-0 rounded-full bg-terra/10 px-2.5 py-1 text-[11px] font-semibold text-terra">{s.offer}</span>
                   </div>
                   <p className="mt-1 text-[13px] text-steel">{s.sector}</p>
-                  <button
-                    onClick={() => setActive(s)}
-                    className="group/btn mt-5 inline-flex items-center gap-1.5 self-start rounded-full border border-midnight/15 px-4 py-2 text-[13.5px] font-semibold text-midnight transition-colors hover:border-terra hover:text-terra"
-                  >
-                    {t.learnMore}
-                    <Icon icon="lucide:arrow-right" width={15} height={15} className="transition-transform group-hover/btn:translate-x-0.5" aria-hidden />
-                  </button>
+                  <div className="mt-5 flex flex-wrap items-center gap-2">
+                    <button
+                      onClick={() => setActive(s)}
+                      className="group/btn inline-flex items-center gap-1.5 rounded-full border border-midnight/15 px-4 py-2 text-[13.5px] font-semibold text-midnight transition-colors hover:border-terra hover:text-terra"
+                    >
+                      {t.learnMore}
+                      <Icon icon="lucide:arrow-right" width={15} height={15} className="transition-transform group-hover/btn:translate-x-0.5" aria-hidden />
+                    </button>
+                    {s.url && (
+                      <a
+                        href={s.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${t.visitSiteAria} ${s.name}`}
+                        className="inline-flex items-center gap-1.5 rounded-full bg-terra/10 px-4 py-2 text-[13.5px] font-semibold text-terra transition-colors hover:bg-terra hover:text-white"
+                      >
+                        {t.visitSite}
+                        <Icon icon="lucide:external-link" width={14} height={14} aria-hidden />
+                      </a>
+                    )}
+                  </div>
                 </div>
               </motion.article>
             ))}
@@ -227,6 +247,17 @@ export default function RealisationsGrid({ lang }: { lang: Locale }) {
                     {t.ctaButton}
                     <Icon icon="lucide:arrow-right" width={16} height={16} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
                   </a>
+                  {active.url && (
+                    <a
+                      href={active.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 rounded-full border border-midnight/15 px-6 py-3.5 text-midnight font-semibold text-[14px] hover:border-terra hover:text-terra transition-colors"
+                    >
+                      {t.visitSite}
+                      <Icon icon="lucide:external-link" width={15} height={15} aria-hidden />
+                    </a>
+                  )}
                   <button onClick={() => setActive(null)} className="inline-flex items-center justify-center rounded-full border border-midnight/15 px-6 py-3.5 text-midnight font-medium text-[14px] hover:border-midnight/40 transition-colors">
                     {t.close}
                   </button>

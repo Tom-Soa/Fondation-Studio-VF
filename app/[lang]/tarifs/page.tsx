@@ -41,10 +41,10 @@ const T: Record<
   fr: {
     metaTitle: "Nos offres",
     metaDescription:
-      "Forfaits à partir de 1 400 €, options à la carte, sites e-commerce Shopify et publicité Meta/Google. Site en propriété, acompte 60 %, paiement en plusieurs fois.",
+      "Forfaits à partir de 1 400 €, options à la carte, sites e-commerce Shopify et publicité Meta/Google. Site en propriété, acompte 60 %, paiement jusqu'à 4 fois sans frais.",
     ogTitle: "Nos offres · ACTC",
     ogDescription:
-      "Forfaits à partir de 1 400 €, options à la carte, sites e-commerce Shopify et publicité Meta/Google. Site en propriété, paiement en plusieurs fois.",
+      "Forfaits à partir de 1 400 €, options à la carte, sites e-commerce Shopify et publicité Meta/Google. Site en propriété, paiement jusqu'à 4 fois sans frais.",
     kicker: "Nos offres",
     h1Start: "Des sites qui se",
     h1Em: "remboursent.",
@@ -55,7 +55,7 @@ const T: Record<
     optionsNote: "Chaque option s'ajoute à n'importe quel forfait, sans dépendance ni abonnement caché.",
     options: OPTIONS.fr,
     finePrint:
-      "Prix hors taxes (TVA non applicable, art. 293 B du CGI) · Acompte 60 % à la commande, solde 40 % à la livraison",
+      "Prix hors taxes (TVA non applicable, art. 293 B du CGI) · Acompte 60 % à la commande, solde 40 % à la livraison · Paiement en 3 fois sans frais sur l'offre Standard, en 4 fois sans frais sur les offres Conversion et Premium",
     publicite: PUBLICITE,
     publiciteCta: "En parler avec nous",
     faqTitle: "Questions fréquentes",
@@ -110,7 +110,7 @@ const T: Record<
       },
     ],
     finePrint:
-      "Prices before tax (VAT not applicable, art. 293 B of the French tax code) · 60% deposit at order, 40% balance on delivery",
+      "Prices before tax (VAT not applicable, art. 293 B of the French tax code) · 60% deposit at order, 40% balance on delivery · Pay in 3 interest-free installments on the Standard plan, or 4 on the Conversion and Premium plans",
     publicite: PUBLICITE && {
       title: "Meta & Google advertising",
       price: "Custom quote",

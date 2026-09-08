@@ -102,8 +102,8 @@ const CATEGORIES: FaqCategoryByLocale[] = [
       {
         q: { fr: "Peut-on payer en plusieurs fois ?", en: "Can I pay in installments?" },
         a: {
-          fr: "Oui, le paiement en plusieurs fois est possible. On en discute lors de l'appel de découverte selon votre situation.",
-          en: "Yes, paying in installments is possible. We discuss it during the discovery call, based on your situation.",
+          fr: "Oui. L'offre Standard se règle en 3 fois sans frais maximum, les offres Conversion et Premium en 4 fois sans frais maximum. On fixe l'échéancier ensemble lors de l'appel de découverte.",
+          en: "Yes. The Standard plan can be split into up to 3 interest-free installments, and the Conversion and Premium plans into up to 4. We set the schedule together during the discovery call.",
         },
       },
       {
@@ -308,8 +308,8 @@ const CATEGORIES: FaqCategoryByLocale[] = [
       {
         q: { fr: "Que se passe-t-il après la mise en ligne ?", en: "What happens after launch?" },
         a: {
-          fr: "Vous bénéficiez d'une maintenance offerte (1 mois en Standard/Conversion, 6 mois en Premium). Passé ce délai, maintenance mensuelle optionnelle ou autonomie totale, c'est vous qui choisissez.",
-          en: "You get free maintenance (1 month with Standard/Conversion, 6 months with Premium). After that, optional monthly maintenance or full autonomy, you choose.",
+          fr: "Vous bénéficiez d'une maintenance offerte : 1 mois en Standard, 3 mois en Conversion, 6 mois en Premium, et 3 mois sur les boutiques e-commerce. Passé ce délai, maintenance mensuelle optionnelle ou autonomie totale, c'est vous qui choisissez.",
+          en: "You get free maintenance: 1 month with Standard, 3 months with Conversion, 6 months with Premium, and 3 months with e-commerce stores. After that, optional monthly maintenance or full autonomy, you choose.",
         },
       },
       {

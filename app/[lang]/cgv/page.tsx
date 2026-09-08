@@ -56,6 +56,7 @@ const T: Record<
         paragraphs: [
           "**Tarifs :** Tous les tarifs sont exprimés en euros hors taxes. La TVA n'est pas applicable (art. 293 B du CGI).",
           "**Modalités :** Un acompte de 60 % est exigible à la commande. Le solde de 40 % est dû à la livraison, avant transfert définitif des fichiers et mise en ligne.",
+          "**Paiement échelonné :** Sur demande, le montant peut être réglé sans frais supplémentaires en 3 échéances maximum pour l'offre Standard, et en 4 échéances maximum pour les offres Conversion et Premium. L'échéancier est fixé au devis, la première échéance valant acompte de démarrage.",
           "**Retard de paiement :** Tout retard de paiement entraîne de plein droit l'application d'une pénalité de 10 % du montant dû, ainsi que l'arrêt des travaux jusqu'à régularisation.",
           "**Paiement en ligne :** Les paiements effectués via les liens Stripe sont sécurisés. ACTC ne conserve aucune donnée bancaire.",
         ],
@@ -151,6 +152,7 @@ const T: Record<
         paragraphs: [
           "**Prices:** All prices are expressed in euros, exclusive of tax. VAT is not applicable (art. 293 B of the French General Tax Code).",
           "**Terms:** A 60% deposit is due upon ordering. The remaining 40% is due upon delivery, before the final transfer of files and the site going live.",
+          "**Installment payment:** On request, the amount may be paid at no extra cost in up to 3 installments for the Standard plan, and up to 4 installments for the Conversion and Premium plans. The schedule is set out in the quote, the first installment serving as the kickoff deposit.",
           "**Late payment:** Any late payment automatically triggers a penalty of 10% of the amount due, as well as the suspension of work until the situation is resolved.",
           "**Online payment:** Payments made through Stripe links are secure. ACTC does not store any banking data.",
         ],

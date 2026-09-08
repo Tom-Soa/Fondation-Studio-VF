@@ -27,6 +27,24 @@ type Champs = {
   mention: string;
 };
 
+/**
+ * Un style de fond, c'est un tracé plus une palette de texte : sur les fonds
+ * sombres, le nom et la signature passent en blanc, sinon ils resteraient
+ * illisibles. Chaque style porte donc ses propres couleurs de texte.
+ */
+type Theme = {
+  id: string;
+  nom: string;
+  sombre: boolean;
+  texte: string;      // nom du client, signature
+  texteFaible: string; // mention « Site créé par »
+  accent: string;      // pastille d'URL, liseré
+  pastilleFond: string;
+  pastilleTexte: string;
+  pastilleBord: string;
+  peindre: (ctx: CanvasRenderingContext2D, T: number) => void;
+};
+
 export default function GenerateurMiseEnLigne() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [capture, setCapture] = useState<HTMLImageElement | null>(null);
@@ -36,6 +54,8 @@ export default function GenerateurMiseEnLigne() {
     url: "",
     mention: "Nouveau site en ligne",
   });
+  const [themeId, setThemeId] = useState(THEMES[0].id);
+  const theme = THEMES.find((t) => t.id === themeId) ?? THEMES[0];
 
   // Redessine à chaque changement de champ ou de capture.
   useEffect(() => {
@@ -44,8 +64,8 @@ export default function GenerateurMiseEnLigne() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    dessiner(ctx, champs, capture);
-  }, [champs, capture]);
+    dessiner(ctx, champs, capture, theme);
+  }, [champs, capture, theme]);
 
   const chargerCapture = (fichier: File) => {
     const lecteur = new FileReader();
@@ -65,7 +85,7 @@ export default function GenerateurMiseEnLigne() {
     const nom = champs.entreprise
       ? champs.entreprise.toLowerCase().replace(/[^a-z0-9]+/g, "-")
       : "mise-en-ligne";
-    lien.download = `${nom}-mise-en-ligne.png`;
+    lien.download = `${nom}-mise-en-ligne-${theme.id}.png`;
     lien.href = canvas.toDataURL("image/png");
     lien.click();
   };
@@ -153,6 +173,42 @@ export default function GenerateurMiseEnLigne() {
               </span>
             </label>
 
+            <div>
+              <span className="mb-2 block text-[13px] font-semibold text-midnight">
+                Arrière-plan
+              </span>
+              <div className="grid grid-cols-3 gap-2">
+                {THEMES.map((th) => (
+                  <button
+                    key={th.id}
+                    type="button"
+                    onClick={() => setThemeId(th.id)}
+                    aria-pressed={th.id === themeId}
+                    className={`overflow-hidden rounded-xl border-2 bg-white transition-all ${
+                      th.id === themeId
+                        ? "border-terra shadow-[0_4px_14px_rgba(194,65,12,0.28)]"
+                        : "border-grid-line hover:border-terra/40"
+                    }`}
+                  >
+                    <VignetteFond theme={th} />
+                    <span className="block px-1 py-1.5 text-[11.5px] font-semibold text-midnight">
+                      {th.nom}
+                    </span>
+                  </button>
+                ))}
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  const autres = THEMES.filter((t) => t.id !== themeId);
+                  setThemeId(autres[Math.floor(Math.random() * autres.length)].id);
+                }}
+                className="mt-2 w-full rounded-lg border border-grid-line bg-white px-3 py-2 text-[12.5px] font-semibold text-midnight/70 transition-colors hover:border-terra hover:text-terra"
+              >
+                Au hasard
+              </button>
+            </div>
+
             <button
               type="button"
               onClick={telecharger}
@@ -189,16 +245,274 @@ export default function GenerateurMiseEnLigne() {
   );
 }
 
+
+/** Vignette d'aperçu d'un fond, dessinée sur un petit canvas. */
+function VignetteFond({ theme }: { theme: Theme }) {
+  const ref = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const c = ref.current;
+    const ctx = c?.getContext("2d");
+    if (!c || !ctx) return;
+    // Le tracé est écrit pour 1080 : on dessine en grand puis on réduit.
+    ctx.save();
+    ctx.scale(c.width / TAILLE, c.height / TAILLE);
+    theme.peindre(ctx, TAILLE);
+    ctx.restore();
+  }, [theme]);
+
+  return <canvas ref={ref} width={132} height={132} className="block h-auto w-full" />;
+}
+
+// ─── Arrière-plans ───────────────────────────────────────────────────────────
+
+/** Générateur pseudo-aléatoire à graine fixe : deux rendus sont identiques. */
+function alea(graine: number) {
+  let g = graine;
+  return () => {
+    g = (g * 1103515245 + 12345) % 2147483648;
+    return g / 2147483648;
+  };
+}
+
+/** Réseau de points relié, repris du hero du site. */
+function reseau(
+  ctx: CanvasRenderingContext2D,
+  T: number,
+  couleur: string,
+  opacite: number,
+) {
+  const r = alea(20260831);
+  const points: { x: number; y: number }[] = [];
+  for (let i = 0; i < 46; i++) points.push({ x: r() * T, y: r() * T });
+
+  ctx.lineWidth = 1.4;
+  for (let a = 0; a < points.length; a++) {
+    for (let b = a + 1; b < points.length; b++) {
+      const dx = points[a].x - points[b].x;
+      const dy = points[a].y - points[b].y;
+      const d = Math.sqrt(dx * dx + dy * dy);
+      if (d < 210) {
+        ctx.strokeStyle = `rgba(${couleur},${(1 - d / 210) * opacite})`;
+        ctx.beginPath();
+        ctx.moveTo(points[a].x, points[a].y);
+        ctx.lineTo(points[b].x, points[b].y);
+        ctx.stroke();
+      }
+    }
+  }
+  for (const pt of points) {
+    ctx.fillStyle = `rgba(${couleur},${opacite * 1.5})`;
+    ctx.beginPath();
+    ctx.arc(pt.x, pt.y, 2.6, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+/** 1. Clair : le fond d'origine, halo terracotta et réseau de points. */
+function fondClair(ctx: CanvasRenderingContext2D, T: number) {
+  ctx.fillStyle = ALABASTER;
+  ctx.fillRect(0, 0, T, T);
+
+  const haut = ctx.createRadialGradient(T / 2, 0, 0, T / 2, 0, T * 0.8);
+  haut.addColorStop(0, "rgba(194,65,12,0.18)");
+  haut.addColorStop(1, "rgba(194,65,12,0)");
+  ctx.fillStyle = haut;
+  ctx.fillRect(0, 0, T, T * 0.65);
+
+  const bas = ctx.createRadialGradient(T / 2, T, 0, T / 2, T, T * 0.55);
+  bas.addColorStop(0, "rgba(194,65,12,0.10)");
+  bas.addColorStop(1, "rgba(194,65,12,0)");
+  ctx.fillStyle = bas;
+  ctx.fillRect(0, T * 0.5, T, T * 0.5);
+
+  reseau(ctx, T, "194,65,12", 0.22);
+
+  ctx.fillStyle = "rgba(249,249,247,0.55)";
+  ctx.fillRect(0, 0, T, T);
+}
+
+/** 2. Terra plein : dégradé orange franc, halo clair derrière le cadre. */
+function fondTerra(ctx: CanvasRenderingContext2D, T: number) {
+  const g = ctx.createLinearGradient(0, 0, T * 0.35, T);
+  g.addColorStop(0, "#e2570f");
+  g.addColorStop(0.55, "#c2410c");
+  g.addColorStop(1, "#8f2d06");
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, T, T);
+
+  // Arcs concentriques très discrets, pour éviter l'aplat plat.
+  ctx.strokeStyle = "rgba(255,255,255,0.09)";
+  ctx.lineWidth = 2;
+  for (let i = 1; i <= 6; i++) {
+    ctx.beginPath();
+    ctx.arc(T * 0.5, T * 0.42, i * 118, 0, Math.PI * 2);
+    ctx.stroke();
+  }
+
+  const halo = ctx.createRadialGradient(T / 2, T * 0.5, 0, T / 2, T * 0.5, T * 0.6);
+  halo.addColorStop(0, "rgba(255,255,255,0.20)");
+  halo.addColorStop(1, "rgba(255,255,255,0)");
+  ctx.fillStyle = halo;
+  ctx.fillRect(0, 0, T, T);
+}
+
+/** 3. Navy : fond sombre premium, la capture blanche ressort au maximum. */
+function fondNavy(ctx: CanvasRenderingContext2D, T: number) {
+  const g = ctx.createLinearGradient(0, 0, T * 0.3, T);
+  g.addColorStop(0, "#182742");
+  g.addColorStop(0.5, "#0f172a");
+  g.addColorStop(1, "#070d18");
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, T, T);
+
+  reseau(ctx, T, "226,87,15", 0.30);
+
+  const halo = ctx.createRadialGradient(T / 2, T * 0.30, 0, T / 2, T * 0.30, T * 0.72);
+  halo.addColorStop(0, "rgba(194,65,12,0.30)");
+  halo.addColorStop(1, "rgba(194,65,12,0)");
+  ctx.fillStyle = halo;
+  ctx.fillRect(0, 0, T, T);
+
+  ctx.fillStyle = "rgba(7,13,24,0.30)";
+  ctx.fillRect(0, 0, T, T);
+}
+
+/** 4. Rayures : diagonales larges, façon store de commerçant. */
+function fondRayures(ctx: CanvasRenderingContext2D, T: number) {
+  ctx.fillStyle = "#fdf6f1";
+  ctx.fillRect(0, 0, T, T);
+
+  ctx.save();
+  ctx.translate(T / 2, T / 2);
+  ctx.rotate(-Math.PI / 6);
+  ctx.translate(-T, -T);
+  const pas = 96;
+  for (let x = 0; x < T * 3; x += pas * 2) {
+    ctx.fillStyle = "rgba(194,65,12,0.10)";
+    ctx.fillRect(x, 0, pas, T * 3);
+  }
+  ctx.restore();
+
+  const halo = ctx.createRadialGradient(T / 2, T * 0.45, 0, T / 2, T * 0.45, T * 0.62);
+  halo.addColorStop(0, "rgba(253,246,241,0.92)");
+  halo.addColorStop(1, "rgba(253,246,241,0.30)");
+  ctx.fillStyle = halo;
+  ctx.fillRect(0, 0, T, T);
+}
+
+/** 5. Blueprint : grille technique sur fond encre, clin d'œil au « sur-mesure ». */
+function fondBlueprint(ctx: CanvasRenderingContext2D, T: number) {
+  const g = ctx.createLinearGradient(0, 0, 0, T);
+  g.addColorStop(0, "#12314f");
+  g.addColorStop(1, "#0a1c30");
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, T, T);
+
+  // Grille fine, puis lignes maîtresses tous les 5 carreaux.
+  const pas = 54;
+  ctx.lineWidth = 1;
+  ctx.strokeStyle = "rgba(255,255,255,0.07)";
+  ctx.beginPath();
+  for (let i = pas; i < T; i += pas) {
+    ctx.moveTo(i, 0); ctx.lineTo(i, T);
+    ctx.moveTo(0, i); ctx.lineTo(T, i);
+  }
+  ctx.stroke();
+
+  ctx.lineWidth = 1.6;
+  ctx.strokeStyle = "rgba(255,255,255,0.13)";
+  ctx.beginPath();
+  for (let i = pas * 5; i < T; i += pas * 5) {
+    ctx.moveTo(i, 0); ctx.lineTo(i, T);
+    ctx.moveTo(0, i); ctx.lineTo(T, i);
+  }
+  ctx.stroke();
+
+  const halo = ctx.createRadialGradient(T / 2, T * 0.42, 0, T / 2, T * 0.42, T * 0.66);
+  halo.addColorStop(0, "rgba(194,65,12,0.26)");
+  halo.addColorStop(1, "rgba(194,65,12,0)");
+  ctx.fillStyle = halo;
+  ctx.fillRect(0, 0, T, T);
+}
+
+/** 6. Tropical : formes organiques dans des tons chauds, pour l'outre-mer. */
+function fondTropical(ctx: CanvasRenderingContext2D, T: number) {
+  const g = ctx.createLinearGradient(0, 0, T, T);
+  g.addColorStop(0, "#0d3b34");
+  g.addColorStop(0.55, "#12564a");
+  g.addColorStop(1, "#07231f");
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, T, T);
+
+  // Grandes taches molles, tracées à graine fixe.
+  const r = alea(4071988);
+  const teintes = ["rgba(226,87,15,0.30)", "rgba(240,180,41,0.20)", "rgba(20,138,111,0.34)"];
+  for (let i = 0; i < 7; i++) {
+    const cx = r() * T;
+    const cy = r() * T;
+    const rayon = 150 + r() * 260;
+    const tache = ctx.createRadialGradient(cx, cy, 0, cx, cy, rayon);
+    tache.addColorStop(0, teintes[i % teintes.length]);
+    tache.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = tache;
+    ctx.fillRect(0, 0, T, T);
+  }
+
+  ctx.fillStyle = "rgba(7,35,31,0.34)";
+  ctx.fillRect(0, 0, T, T);
+}
+
+const THEMES: Theme[] = [
+  {
+    id: "clair", nom: "Clair", sombre: false,
+    texte: MIDNIGHT, texteFaible: GRIS, accent: TERRA,
+    pastilleFond: BLANC, pastilleTexte: MIDNIGHT, pastilleBord: "#e5e5e1",
+    peindre: fondClair,
+  },
+  {
+    id: "terra", nom: "Terra", sombre: true,
+    texte: BLANC, texteFaible: "rgba(255,255,255,0.82)", accent: MIDNIGHT,
+    pastilleFond: BLANC, pastilleTexte: MIDNIGHT, pastilleBord: "rgba(255,255,255,0.55)",
+    peindre: fondTerra,
+  },
+  {
+    id: "navy", nom: "Navy", sombre: true,
+    texte: BLANC, texteFaible: "rgba(255,255,255,0.72)", accent: TERRA,
+    pastilleFond: "rgba(255,255,255,0.10)", pastilleTexte: BLANC, pastilleBord: "rgba(255,255,255,0.30)",
+    peindre: fondNavy,
+  },
+  {
+    id: "rayures", nom: "Rayures", sombre: false,
+    texte: MIDNIGHT, texteFaible: GRIS, accent: TERRA,
+    pastilleFond: BLANC, pastilleTexte: MIDNIGHT, pastilleBord: "#ecd9cc",
+    peindre: fondRayures,
+  },
+  {
+    id: "blueprint", nom: "Blueprint", sombre: true,
+    texte: BLANC, texteFaible: "rgba(255,255,255,0.70)", accent: TERRA,
+    pastilleFond: "rgba(255,255,255,0.10)", pastilleTexte: BLANC, pastilleBord: "rgba(255,255,255,0.32)",
+    peindre: fondBlueprint,
+  },
+  {
+    id: "tropical", nom: "Tropical", sombre: true,
+    texte: BLANC, texteFaible: "rgba(255,255,255,0.74)", accent: "#e2570f",
+    pastilleFond: "rgba(255,255,255,0.12)", pastilleTexte: BLANC, pastilleBord: "rgba(255,255,255,0.32)",
+    peindre: fondTropical,
+  },
+];
+
 // ─── Dessin du visuel ────────────────────────────────────────────────────────
 
 function dessiner(
   ctx: CanvasRenderingContext2D,
   champs: Champs,
   capture: HTMLImageElement | null,
+  theme: Theme,
 ) {
   const T = TAILLE;
 
-  fondDecor(ctx, T);
+  theme.peindre(ctx, T);
 
   const marge = 64;
 
@@ -215,18 +529,18 @@ function dessiner(
   const pastilleY = marge;
 
   arrondi(ctx, pastilleX, pastilleY, pastilleL, pastilleH, pastilleH / 2);
-  ctx.fillStyle = BLANC;
+  ctx.fillStyle = theme.pastilleFond;
   ctx.fill();
-  ctx.strokeStyle = "#e5e5e1";
+  ctx.strokeStyle = theme.pastilleBord;
   ctx.lineWidth = 2;
   ctx.stroke();
 
   ctx.beginPath();
   ctx.arc(pastilleX + 32, pastilleY + pastilleH / 2, 6.5, 0, Math.PI * 2);
-  ctx.fillStyle = TERRA;
+  ctx.fillStyle = theme.sombre && theme.id !== "terra" ? theme.accent : TERRA;
   ctx.fill();
 
-  ctx.fillStyle = MIDNIGHT;
+  ctx.fillStyle = theme.pastilleTexte;
   ctx.textAlign = "left";
   ctx.textBaseline = "middle";
   ctx.letterSpacing = "2px";
@@ -236,7 +550,7 @@ function dessiner(
   // ── Nom de l'entreprise ───────────────────────────────────────────────────
   const nom = champs.entreprise || "Nom du client";
   ctx.textAlign = "center";
-  ctx.fillStyle = MIDNIGHT;
+  ctx.fillStyle = theme.texte;
 
   let taille = 68;
   ctx.font = `800 ${taille}px Inter, system-ui, sans-serif`;
@@ -326,10 +640,10 @@ function dessiner(
     const urlL = ctx.measureText(url).width + 64;
     const urlH = 60;
     arrondi(ctx, (T - urlL) / 2, urlY, urlL, urlH, urlH / 2);
-    ctx.fillStyle = TERRA;
+    ctx.fillStyle = theme.id === "terra" ? BLANC : theme.accent;
     ctx.fill();
 
-    ctx.fillStyle = BLANC;
+    ctx.fillStyle = theme.id === "terra" ? TERRA : BLANC;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.fillText(url, T / 2, urlY + urlH / 2 + 1);
@@ -342,81 +656,18 @@ function dessiner(
   ctx.textBaseline = "middle";
 
   ctx.font = "500 22px Inter, system-ui, sans-serif";
-  ctx.fillStyle = GRIS;
+  ctx.fillStyle = theme.texteFaible;
   ctx.fillText("Site créé par", T / 2, sigY - 20);
 
   ctx.font = "800 37px Inter, system-ui, sans-serif";
-  ctx.fillStyle = MIDNIGHT;
+  ctx.fillStyle = theme.texte;
   ctx.letterSpacing = "6px";
   ctx.fillText("ACTC", T / 2, sigY + 16);
   ctx.letterSpacing = "0px";
 
   ctx.font = "500 21px Inter, system-ui, sans-serif";
-  ctx.fillStyle = TERRA;
+  ctx.fillStyle = theme.sombre ? "rgba(255,255,255,0.90)" : TERRA;
   ctx.fillText("actcstudio.fr", T / 2, sigY + 50);
-}
-
-/**
- * Arrière-plan : halo terracotta, réseau de points relié façon hero du site,
- * et grain léger. Le tracé est déterministe (générateur pseudo-aléatoire à
- * graine fixe) pour que deux visuels successifs se ressemblent.
- */
-function fondDecor(ctx: CanvasRenderingContext2D, T: number) {
-  ctx.fillStyle = ALABASTER;
-  ctx.fillRect(0, 0, T, T);
-
-  // Halo haut
-  const haloHaut = ctx.createRadialGradient(T / 2, 0, 0, T / 2, 0, T * 0.8);
-  haloHaut.addColorStop(0, "rgba(194,65,12,0.18)");
-  haloHaut.addColorStop(1, "rgba(194,65,12,0)");
-  ctx.fillStyle = haloHaut;
-  ctx.fillRect(0, 0, T, T * 0.65);
-
-  // Halo bas, plus discret, pour équilibrer la composition
-  const haloBas = ctx.createRadialGradient(T / 2, T, 0, T / 2, T, T * 0.55);
-  haloBas.addColorStop(0, "rgba(194,65,12,0.10)");
-  haloBas.addColorStop(1, "rgba(194,65,12,0)");
-  ctx.fillStyle = haloBas;
-  ctx.fillRect(0, T * 0.5, T, T * 0.5);
-
-  // Réseau de points, repris du hero du site
-  let graine = 20260831;
-  const alea = () => {
-    graine = (graine * 1103515245 + 12345) % 2147483648;
-    return graine / 2147483648;
-  };
-
-  const points: { x: number; y: number }[] = [];
-  for (let i = 0; i < 46; i++) {
-    points.push({ x: alea() * T, y: alea() * T });
-  }
-
-  // Liens entre points proches
-  ctx.lineWidth = 1.4;
-  for (let a = 0; a < points.length; a++) {
-    for (let b = a + 1; b < points.length; b++) {
-      const dx = points[a].x - points[b].x;
-      const dy = points[a].y - points[b].y;
-      const d = Math.sqrt(dx * dx + dy * dy);
-      if (d < 210) {
-        ctx.strokeStyle = `rgba(194,65,12,${(1 - d / 210) * 0.22})`;
-        ctx.beginPath();
-        ctx.moveTo(points[a].x, points[a].y);
-        ctx.lineTo(points[b].x, points[b].y);
-        ctx.stroke();
-      }
-    }
-  }
-  for (const p of points) {
-    ctx.fillStyle = "rgba(194,65,12,0.34)";
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, 2.6, 0, Math.PI * 2);
-    ctx.fill();
-  }
-
-  // Voile clair : le réseau reste perceptible sans gêner la lecture
-  ctx.fillStyle = "rgba(249,249,247,0.55)";
-  ctx.fillRect(0, 0, T, T);
 }
 
 /** Rectangle à coins arrondis, tracé sans le remplir. */
