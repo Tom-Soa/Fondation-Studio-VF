@@ -41,15 +41,12 @@ export default function LandingPage() {
             <span className="text-[13px] font-medium text-midnight/70">{LP.hero.pill}</span>
           </span>
 
-          <h1 className="mt-7 font-display text-[clamp(2.1rem,5.5vw,4rem)] font-extrabold leading-[1.06] tracking-[-0.03em] text-midnight">
+          <h1 className="mt-7 font-display text-[clamp(1.85rem,4.2vw,3.1rem)] font-extrabold leading-[1.08] tracking-[-0.03em] text-midnight">
             {LP.hero.h1Start}{" "}
             <span className="font-emphasis font-normal text-terra">{LP.hero.h1Em}</span>{" "}
             {LP.hero.h1End}
           </h1>
 
-          <p className="mx-auto mt-6 max-w-2xl text-[clamp(0.98rem,1.25vw,1.15rem)] leading-relaxed text-midnight/70">
-            {LP.hero.sub}
-          </p>
         </div>
 
         {/* Vidéo, puis le bouton directement en dessous */}
@@ -57,6 +54,9 @@ export default function LandingPage() {
           <VslPlayer />
 
           <div className="mt-7 text-center">
+            <p className="mx-auto mb-5 max-w-xl text-[clamp(1rem,1.2vw,1.12rem)] font-semibold text-midnight">
+              {LP.hero.underPlayer}
+            </p>
             <CtaButton className="w-full py-5 text-[17px] sm:w-auto sm:px-12">
               {LP.underVideo.cta}
             </CtaButton>

@@ -5,11 +5,13 @@ export const LP = {
   // ── Au-dessus de la vidéo ──────────────────────────────────────────────
   hero: {
     pill: "90 % des prestataires ne vous rapporteront aucun client",
-    h1Start: "Un site qui",
-    h1Em: "vous rapporte de l'argent.",
-    h1End: "Pas juste un joli site.",
-    sub: "La plupart des prestataires ne vous livreront jamais un site qui vous apporte des résultats. Même les plus grosses agences de France vendent du design, pas des clients. Dans cette vidéo, on vous montre comment on s'y prend pour que nos sites se remboursent et génèrent réellement du chiffre.",
+    h1Start: "Dans cette vidéo, je vous explique comment nos clients ont un site",
+    h1Em: "qui se rembourse tout seul",
+    h1End: "et qui leur rapporte de l'argent.",
     watchNote: "Regardez la vidéo en entier avant de remplir le formulaire.",
+    // Phrase de reprise, posee sous le lecteur plutot qu'au-dessus : au-dessus
+    // de la video, seul le gros titre doit parler.
+    underPlayer: "9 minutes, et vous saurez exactement comment on s'y prend.",
   },
 
   // ── Le constat, juste sous le CTA ──────────────────────────────────────
