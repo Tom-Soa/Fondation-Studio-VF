@@ -10,13 +10,13 @@
  * - Mux/Wistia : l'URL d'iframe fournie par la plateforme
  * Laisser vide affiche un bloc "vidéo à venir" (utile en préprod).
  */
-export const VSL_EMBED_URL = "";
+export const VSL_EMBED_URL = "https://www.youtube.com/embed/6WEvd6GK3KQ?rel=0&modestbranding=1";
 
 /** Miniature affichée avant lecture (facade). Placer le fichier dans /public. */
-export const VSL_POSTER = "/images/hero-index.jpg";
+export const VSL_POSTER = "/lp/vsl-poster.jpg";
 
 /** Durée annoncée sous le lecteur (texte libre, sert de repère au visiteur). */
-export const VSL_DURATION = "8 min";
+export const VSL_DURATION = "9 min";
 
 /**
  * Lien du formulaire Pipedrive (Web Forms → Partager → lien direct).

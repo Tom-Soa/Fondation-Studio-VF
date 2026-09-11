@@ -23,7 +23,9 @@ export default function VslPlayer() {
       <div className="relative aspect-video overflow-hidden rounded-3xl border border-grid-line bg-midnight shadow-card-light">
         {playing && configured ? (
           <iframe
-            src={`${VSL_EMBED_URL}${VSL_EMBED_URL.includes("?") ? "&" : "?"}autoplay=1`}
+            // autoplay=1 ne demarre la video qu'apres le clic sur la facade :
+            // le geste de l'utilisateur autorise le navigateur a garder le son.
+            src={`${VSL_EMBED_URL}${VSL_EMBED_URL.includes("?") ? "&" : "?"}autoplay=1&playsinline=1`}
             title="Comment choisir un site internet qui vous rapporte des clients"
             allow="autoplay; fullscreen; picture-in-picture"
             allowFullScreen
@@ -64,7 +66,7 @@ export default function VslPlayer() {
         </span>
         <span className="inline-flex items-center gap-2">
           <Icon icon="ph:speaker-high-duotone" width={16} height={16} className="text-terra" aria-hidden />
-          Pensez à activer le son
+          Son activé dès la lecture
         </span>
       </div>
     </div>
