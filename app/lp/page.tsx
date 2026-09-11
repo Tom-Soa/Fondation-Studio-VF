@@ -10,6 +10,7 @@ import LpFaq from "@/components/lp/LpFaq";
 import MetaPixel from "@/components/lp/MetaPixel";
 import LpHeroDecor from "@/components/lp/LpHeroDecor";
 import TrustRow from "@/components/lp/TrustRow";
+import Constat from "@/components/lp/Constat";
 
 export const metadata: Metadata = {
   title: "Plus de clients grâce à votre site · ACTC",
@@ -75,6 +76,9 @@ export default function LandingPage() {
 
       {/* ── Réassurance + chiffres ───────────────────────────────────── */}
       <TrustRow />
+
+      {/* ── Le constat sur le marché ─────────────────────────────────── */}
+      <Constat />
 
       {/* ── Eux / nous ───────────────────────────────────────────────── */}
       <Versus />

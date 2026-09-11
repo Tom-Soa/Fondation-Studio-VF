@@ -4,12 +4,37 @@
 export const LP = {
   // ── Au-dessus de la vidéo ──────────────────────────────────────────────
   hero: {
-    pill: "Places limitées ce mois",
-    h1Start: "Un site internet qui",
-    h1Em: "se rentabilise",
-    h1End: "vraiment tout seul.",
-    sub: "Que votre site actuel ne vous rapporte rien ou que vous n'en ayez pas encore, on vous montre en 8 minutes pourquoi la plupart des sites ne génèrent jamais un seul appel, et la méthode qui fait rentrer les premières demandes en moins de 30 jours.",
+    pill: "90 % des prestataires ne vous rapporteront aucun client",
+    h1Start: "Un site qui",
+    h1Em: "vous rapporte de l'argent.",
+    h1End: "Pas juste un joli site.",
+    sub: "La plupart des prestataires ne vous livreront jamais un site qui vous apporte des résultats. Même les plus grosses agences de France vendent du design, pas des clients. Dans cette vidéo, on vous montre comment on s'y prend pour que nos sites se remboursent et génèrent réellement du chiffre.",
     watchNote: "Regardez la vidéo en entier avant de remplir le formulaire.",
+  },
+
+  // ── Le constat, juste sous le CTA ──────────────────────────────────────
+  // Le passage le plus frontal de la page : il nomme le problème avant que
+  // le visiteur ait à se demander si son propre site en fait partie.
+  constat: {
+    kicker: "Le vrai problème",
+    h2Start: "Le marché du site internet",
+    h2Em: "est rempli de mauvais travail.",
+    body: "90 % des prestataires ne font pas du travail de qualité. Ils livrent une vitrine, encaissent, et passent au client suivant. Le site est en ligne, il est joli, et il ne sonne jamais.",
+    points: [
+      {
+        title: "La notoriété n'est pas un gage de qualité",
+        body: "Même les plus grosses agences de France livrent des sites qui ne rapportent rien. Un nom connu et un gros budget ne garantissent pas un seul appel de plus. Ce n'est pas parce qu'une agence est connue qu'il faut lui faire confiance.",
+      },
+      {
+        title: "On vous vend du design, pas des clients",
+        body: "La plupart des prestataires sont jugés sur le rendu visuel, jamais sur ce que le site rapporte. Personne ne revient six mois plus tard vous demander combien de demandes il a généré.",
+      },
+      {
+        title: "Un site qui ne rapporte rien vous coûte deux fois",
+        body: "Une fois à la création, et chaque mois où il ne vous amène aucune demande pendant que vos concurrents, eux, en reçoivent.",
+      },
+    ],
+    closing: "Notre promesse est l'inverse : un site qui vous génère de l'argent.",
   },
 
   // ── Juste sous la vidéo ────────────────────────────────────────────────
@@ -20,9 +45,9 @@ export const LP = {
     // Rappel du contenu de la vidéo, sous le CTA.
     title: "Ce que vous apprenez dans la vidéo",
     bullets: [
-      "Les 3 raisons pour lesquelles un site, même refait à neuf, ne génère aucun appel.",
-      "Comment reconnaître un prestataire qui vend du design d'un prestataire qui vend des clients.",
-      "La méthode qui fait rentrer les premières demandes en moins de 30 jours.",
+      "Pourquoi 90 % des sites livrés aujourd'hui ne génèrent pas un seul appel, même refaits à neuf.",
+      "Pourquoi les plus grosses agences ne font pas mieux, et ce qu'elles facturent à la place.",
+      "Comment on s'y prend, concrètement, pour que nos sites rapportent réellement du chiffre.",
       "Ce qu'il faut exiger avant de signer : propriété du site, hébergement, autonomie.",
     ],
   },
