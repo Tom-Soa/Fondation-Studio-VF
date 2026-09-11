@@ -16,16 +16,18 @@ export default function VideoBenefits() {
       <h2 className="font-display text-[17px] font-bold text-midnight sm:text-[19px]">
         {LP.underVideo.title}
       </h2>
-      <ul className="mt-5 space-y-3.5">
+      <ul className="mt-5 space-y-3">
         {LP.underVideo.bullets.map((b) => (
-          <li key={b} className="flex gap-3 text-[15px] leading-relaxed text-midnight/80">
-            <Icon
-              icon="lucide:check"
-              width={17}
-              height={17}
-              className="mt-1 shrink-0 text-terra"
+          <li
+            key={b}
+            className="flex gap-3 rounded-2xl bg-alabaster p-3.5 text-[14.5px] leading-relaxed text-midnight/85 sm:bg-transparent sm:p-0 sm:text-[15px] sm:text-midnight/80"
+          >
+            <span
+              className="mt-0.5 grid h-[22px] w-[22px] shrink-0 place-items-center rounded-full bg-terra/12 text-terra"
               aria-hidden
-            />
+            >
+              <Icon icon="lucide:check" width={14} height={14} />
+            </span>
             {b}
           </li>
         ))}
