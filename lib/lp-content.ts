@@ -5,7 +5,7 @@ export const LP = {
   // ── Au-dessus de la vidéo ──────────────────────────────────────────────
   hero: {
     pill: "90 % des prestataires ne vous rapporteront aucun client",
-    h1Start: "Dans cette vidéo, je vous explique comment nos clients ont un site",
+    h1Start: "Je vous explique comment nos clients ont obtenu un site",
     h1Em: "qui se rembourse tout seul",
     h1End: "et qui leur rapporte de l'argent.",
     watchNote: "Regardez la vidéo en entier avant de remplir le formulaire.",
