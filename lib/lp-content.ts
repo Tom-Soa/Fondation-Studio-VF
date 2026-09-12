@@ -185,20 +185,20 @@ export type Voice = {
 
 export const VOICES: Voice[] = [
   {
-    name: "Un médium",
-    job: "Voyance / accompagnement",
-    quote:
-      "Dix nouveaux clients dans la semaine qui a suivi la mise en ligne de son site.",
-    result: "10 clients en 1 semaine",
-    src: null,
-  },
-  {
     name: "Un photographe",
     job: "Photographie",
     quote:
       "Il ne s'attendait pas à ce niveau de qualité pour son site : il nous le dit de vive voix.",
     result: "Surpris par la qualité",
-    src: null,
+    src: "/vocaux/photographe.mp3",
+  },
+  {
+    name: "Un médium",
+    job: "Voyance / accompagnement",
+    quote:
+      "Dix nouveaux clients dans la semaine qui a suivi la mise en ligne de son site.",
+    result: "10 clients en 1 semaine",
+    src: "/vocaux/medium.mp3",
   },
 ];
 
