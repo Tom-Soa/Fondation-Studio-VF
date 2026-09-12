@@ -35,8 +35,8 @@ export const LP = {
 
   // ── Promesse chiffrée ──────────────────────────────────────────────────
   stats: [
-    { value: "21 j", label: "entre la signature du contrat et la mise en ligne" },
-    { value: "0 €", label: "d'hébergement et d'abonnement mensuel" },
+    { value: "21 j", label: "du contrat signé à la mise en ligne" },
+    { value: "0 €", label: "d'hébergement, sans abonnement" },
   ],
 
   // ── Comparaison eux / nous ─────────────────────────────────────────────

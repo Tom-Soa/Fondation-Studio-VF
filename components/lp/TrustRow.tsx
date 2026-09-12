@@ -34,14 +34,14 @@ export default function TrustRow() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
-          className="mt-10 grid grid-cols-3 gap-4 border-t border-grid-line pt-10 sm:gap-6"
+          className="mx-auto mt-10 grid max-w-2xl grid-cols-2 gap-8 border-t border-grid-line pt-10 sm:gap-12"
         >
           {LP.stats.map((s) => (
             <div key={s.label} className="text-center">
-              <div className="font-display text-[clamp(2rem,4vw,2.75rem)] font-extrabold tracking-[-0.03em] text-terra">
+              <div className="font-display text-[clamp(2.4rem,5vw,3.4rem)] font-extrabold tracking-[-0.03em] text-terra">
                 {s.value}
               </div>
-              <p className="mx-auto mt-2 max-w-[16rem] text-[12px] leading-snug text-steel sm:text-[13.5px]">
+              <p className="mx-auto mt-2.5 max-w-[13rem] text-[13px] leading-snug text-steel sm:max-w-[15rem] sm:text-[14.5px]">
                 {s.label}
               </p>
             </div>
