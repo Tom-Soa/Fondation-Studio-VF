@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Icon } from "@iconify/react";
+import LpIcon from "@/components/lp/LpIcon";
 import { LP } from "@/lib/lp-content";
 
 /** Objections traitées juste avant le dernier CTA. */
@@ -36,15 +36,7 @@ export default function LpFaq() {
                   <span className="font-display text-[16px] font-semibold text-midnight sm:text-[17px]">
                     {item.q}
                   </span>
-                  <Icon
-                    icon="lucide:plus"
-                    width={18}
-                    height={18}
-                    className={`shrink-0 text-terra transition-transform duration-300 ${
-                      isOpen ? "rotate-45" : ""
-                    }`}
-                    aria-hidden
-                  />
+                  <LpIcon name="plus" size={18} />
                 </button>
                 <div
                   className="grid transition-[grid-template-rows] duration-300 ease-out"

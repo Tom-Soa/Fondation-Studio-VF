@@ -1,5 +1,3 @@
-"use client";
-
 import HeroBackground from "@/components/ui/HeroBackground";
 
 /**

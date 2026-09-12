@@ -1,6 +1,6 @@
 "use client";
 
-import { Icon } from "@iconify/react";
+import LpIcon from "@/components/lp/LpIcon";
 import { VSL_EMBED_URL, VSL_DURATION } from "@/lib/lp-config";
 
 /**
@@ -36,6 +36,7 @@ export default function VslPlayer() {
             title="Comment nos clients ont obtenu un site qui se rembourse tout seul"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
+            loading="lazy"
             className="absolute inset-0 h-full w-full"
           />
         ) : (
@@ -52,7 +53,7 @@ export default function VslPlayer() {
           Durée {VSL_DURATION}
         </span>
         <span className="inline-flex items-center gap-2">
-          <Icon icon="ph:speaker-high-duotone" width={16} height={16} className="text-terra" aria-hidden />
+          <LpIcon name="speaker" size={16} className="text-terra" />
           Pensez à activer le son
         </span>
       </div>

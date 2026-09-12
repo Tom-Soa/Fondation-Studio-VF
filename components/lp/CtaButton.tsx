@@ -1,6 +1,4 @@
-"use client";
-
-import { Icon } from "@iconify/react";
+import LpIcon from "@/components/lp/LpIcon";
 import { cn } from "@/lib/utils";
 import { PIPEDRIVE_FORM_URL } from "@/lib/lp-config";
 
@@ -33,13 +31,7 @@ export function CtaButton({
       )}
     >
       {children}
-      <Icon
-        icon="lucide:arrow-right"
-        width={18}
-        height={18}
-        className="transition-transform group-hover:translate-x-0.5"
-        aria-hidden
-      />
+      <LpIcon name="arrow-right" size={18} className="transition-transform group-hover:translate-x-0.5" />
     </a>
   );
 }

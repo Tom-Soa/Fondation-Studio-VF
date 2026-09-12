@@ -1,7 +1,4 @@
-"use client";
-
-import { Icon } from "@iconify/react";
-import { motion } from "motion/react";
+import LpIcon from "@/components/lp/LpIcon";
 import { LP } from "@/lib/lp-content";
 
 /** Bande de réassurance + les trois chiffres de la promesse. */
@@ -16,25 +13,15 @@ export default function TrustRow() {
               key={label}
               className="flex items-center gap-2 rounded-2xl border border-grid-line bg-alabaster px-3 py-2.5 leading-snug sm:border-0 sm:bg-transparent sm:px-0 sm:py-0"
             >
-              <Icon
-                icon={icon}
-                width={19}
-                height={19}
-                className="shrink-0 text-terra"
-                aria-hidden
-              />
+              <LpIcon name={icon} size={19} className="shrink-0 text-terra" />
               {label}
             </li>
           ))}
         </ul>
 
         {/* Chiffres */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
-          className="mx-auto mt-10 grid max-w-2xl grid-cols-2 gap-8 border-t border-grid-line pt-10 sm:gap-12"
+        <div
+          className="reveal-on-scroll mx-auto mt-10 grid max-w-2xl grid-cols-2 gap-8 border-t border-grid-line pt-10 sm:gap-12"
         >
           {LP.stats.map((s) => (
             <div key={s.label} className="text-center">
@@ -46,7 +33,7 @@ export default function TrustRow() {
               </p>
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

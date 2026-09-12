@@ -16,6 +16,12 @@ export default function LpLayout({ children }: { children: React.ReactNode }) {
       lang="fr"
       className={`${inter.variable} ${dmMono.variable} ${display.variable} ${emphasis.variable}`}
     >
+      <head>
+        {/* La negociation reseau vers YouTube demarre des le HTML, sans
+            attendre que le lecteur soit demande. */}
+        <link rel="preconnect" href="https://www.youtube.com" />
+        <link rel="preconnect" href="https://i.ytimg.com" />
+      </head>
       <body className="font-sans bg-alabaster text-midnight antialiased overflow-x-hidden">
         {children}
       </body>

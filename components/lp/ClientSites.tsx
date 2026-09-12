@@ -1,7 +1,4 @@
-"use client";
-
-import { Icon } from "@iconify/react";
-import { motion } from "motion/react";
+import LpIcon from "@/components/lp/LpIcon";
 import { LP, CLIENT_SITES } from "@/lib/lp-content";
 
 /**
@@ -31,16 +28,12 @@ export default function ClientSites() {
 
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {CLIENT_SITES.map((site, i) => (
-            <motion.a
+            <a
               key={site.url}
               href={site.url}
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6, delay: (i % 3) * 0.07, ease: [0.23, 1, 0.32, 1] }}
-              className="group flex flex-col overflow-hidden rounded-3xl border border-grid-line bg-white shadow-card-light transition-colors hover:border-terra/40"
+              className="reveal-on-scroll group flex flex-col overflow-hidden rounded-3xl border border-grid-line bg-white shadow-card-light transition-colors hover:border-terra/40"
             >
               <div className="relative aspect-[16/10] overflow-hidden border-b border-grid-line bg-alabaster">
                 <img
@@ -62,16 +55,10 @@ export default function ClientSites() {
                 </div>
                 <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-terra/10 px-3 py-1.5 text-[12px] font-semibold text-terra">
                   {t.linkLabel}
-                  <Icon
-                    icon="lucide:arrow-up-right"
-                    width={14}
-                    height={14}
-                    className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                    aria-hidden
-                  />
+                  <LpIcon name="arrow-up-right" size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </span>
               </div>
-            </motion.a>
+            </a>
           ))}
         </div>
       </div>

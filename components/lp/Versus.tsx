@@ -1,7 +1,4 @@
-"use client";
-
-import { motion } from "motion/react";
-import { Icon } from "@iconify/react";
+import LpIcon from "@/components/lp/LpIcon";
 import { LP } from "@/lib/lp-content";
 
 /**
@@ -37,18 +34,14 @@ export default function Versus() {
           </h2>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
-          className="grid gap-5 md:grid-cols-2 md:gap-6"
+        <div
+          className="reveal-on-scroll grid gap-5 md:grid-cols-2 md:gap-6"
         >
           {/* ── Une agence classique ─────────────────────────────────── */}
           <div className="overflow-hidden rounded-3xl border-2 border-rose-300/70 bg-white shadow-[0_18px_44px_-28px_rgba(190,18,60,0.45)]">
             <div className="flex items-center gap-3 border-b-2 border-rose-200/70 bg-rose-50 px-6 py-5">
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-rose-500 text-white shadow-[0_6px_16px_-6px_rgba(190,18,60,0.7)]">
-                <Icon icon="lucide:x" width={19} height={19} aria-hidden />
+                <LpIcon name="x" size={19} />
               </span>
               <h3 className="font-display text-[15.5px] font-bold uppercase tracking-wide text-rose-700">
                 {t.themTitle}
@@ -65,7 +58,7 @@ export default function Versus() {
                     className="mt-[3px] grid h-[18px] w-[18px] shrink-0 place-items-center rounded-full bg-rose-100 text-rose-600"
                     aria-hidden
                   >
-                    <Icon icon="lucide:x" width={11} height={11} />
+                    <LpIcon name="x" size={11} />
                   </span>
                   {r.them}
                 </li>
@@ -77,7 +70,7 @@ export default function Versus() {
           <div className="overflow-hidden rounded-3xl border-2 border-emerald-400/70 bg-white shadow-[0_20px_50px_-26px_rgba(5,150,105,0.5)]">
             <div className="flex items-center gap-3 border-b-2 border-emerald-200/70 bg-emerald-50 px-6 py-5">
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-white shadow-[0_6px_16px_-6px_rgba(5,150,105,0.8)]">
-                <Icon icon="lucide:check" width={19} height={19} aria-hidden />
+                <LpIcon name="check" size={19} />
               </span>
               <h3 className="font-display text-[15.5px] font-bold uppercase tracking-wide text-emerald-700">
                 {t.usTitle}
@@ -94,14 +87,14 @@ export default function Versus() {
                     className="mt-[3px] grid h-[18px] w-[18px] shrink-0 place-items-center rounded-full bg-emerald-100 text-emerald-700"
                     aria-hidden
                   >
-                    <Icon icon="lucide:check" width={11} height={11} />
+                    <LpIcon name="check" size={11} />
                   </span>
                   {r.us}
                 </li>
               ))}
             </ul>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -1,7 +1,4 @@
-"use client";
-
-import { Icon } from "@iconify/react";
-import { motion } from "motion/react";
+import LpIcon from "@/components/lp/LpIcon";
 import { LP, VOICES, type Voice } from "@/lib/lp-content";
 
 /**
@@ -12,14 +9,10 @@ import { LP, VOICES, type Voice } from "@/lib/lp-content";
  * Tant que `src` vaut null, le bloc affiche "enregistrement à venir" au lieu
  * d'un lecteur vide et inutilisable.
  */
-function VoiceCard({ voice, index }: { voice: Voice; index: number }) {
+function VoiceCard({ voice }: { voice: Voice }) {
   return (
-    <motion.figure
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.6, delay: index * 0.08, ease: [0.23, 1, 0.32, 1] }}
-      className="flex flex-col rounded-3xl border-2 border-terra/45 bg-white p-6 shadow-[0_18px_44px_-26px_rgba(194,65,12,0.45)] sm:p-8"
+    <figure
+      className="reveal-on-scroll flex flex-col rounded-3xl border-2 border-terra/45 bg-white p-6 shadow-[0_18px_44px_-26px_rgba(194,65,12,0.45)] sm:p-8"
     >
       {/* Résultat mis en avant : c'est ce qui se retient */}
       <span className="w-fit rounded-full bg-terra/10 px-3 py-1 text-[12px] font-semibold text-terra">
@@ -32,7 +25,7 @@ function VoiceCard({ voice, index }: { voice: Voice; index: number }) {
 
       <figcaption className="mt-5 flex items-center gap-3 border-t border-terra/20 pt-5">
         <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-terra/10 text-terra">
-          <Icon icon="ph:microphone-duotone" width={20} height={20} aria-hidden />
+          <LpIcon name="microphone" size={20} />
         </span>
         <span>
           <span className="block font-display text-[15px] font-bold text-midnight">
@@ -56,12 +49,12 @@ function VoiceCard({ voice, index }: { voice: Voice; index: number }) {
           </audio>
         ) : (
           <div className="flex items-center justify-center gap-2 rounded-full border border-dashed border-grid-line bg-alabaster px-4 py-3 text-[12.5px] text-steel">
-            <Icon icon="ph:waveform-duotone" width={17} height={17} aria-hidden />
+            <LpIcon name="waveform" size={17} />
             Enregistrement à venir
           </div>
         )}
       </div>
-    </motion.figure>
+    </figure>
   );
 }
 
@@ -84,8 +77,8 @@ export default function Voices() {
         </div>
 
         <div className="grid gap-5 md:grid-cols-2 md:gap-6">
-          {VOICES.map((v, i) => (
-            <VoiceCard key={v.name} voice={v} index={i} />
+          {VOICES.map((v) => (
+            <VoiceCard key={v.name} voice={v} />
           ))}
         </div>
       </div>

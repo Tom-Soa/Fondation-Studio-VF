@@ -1,3 +1,5 @@
+import type { IconName } from "@/components/lp/LpIcon";
+
 // Contenu éditorial de la landing page publicitaire.
 // Angle : comparaison frontale avec la concurrence + promesse "plus de clients".
 
@@ -19,11 +21,11 @@ export const LP = {
 
   // ── Réassurance en bande ───────────────────────────────────────────────
   trust: [
-    ["ph:key-duotone", "Votre site vous appartient"],
-    ["ph:cloud-duotone", "Hébergement gratuit"],
-    ["ph:sliders-duotone", "Vous le gérez en autonomie"],
-    ["ph:seal-check-duotone", "Aucun abonnement caché"],
-  ] as [string, string][],
+    ["key", "Votre site vous appartient"],
+    ["cloud", "Hébergement gratuit"],
+    ["sliders", "Vous le gérez en autonomie"],
+    ["seal-check", "Aucun abonnement caché"],
+  ] as [IconName, string][],
 
   // ── Promesse chiffrée ──────────────────────────────────────────────────
   stats: [

@@ -1,16 +1,13 @@
-"use client";
+import LpIcon, { type IconName } from "@/components/lp/LpIcon";
 
-import { Icon } from "@iconify/react";
-import { motion } from "motion/react";
-
-const STEPS = [
+const STEPS: { icon: IconName; title: string; body: string }[] = [
   {
-    icon: "ph:phone-call-duotone",
+    icon: "speaker",
     title: "On vous rappelle sous 24 h ouvrées",
     body: "Un échange court pour comprendre votre activité et vos objectifs.",
   },
   {
-    icon: "ph:chats-circle-duotone",
+    icon: "check",
     title: "On vous dit ce qu'on peut faire, et en combien de temps",
     body: "Une réponse claire sur votre projet. Vous décidez ensuite si on continue.",
   },
@@ -18,18 +15,15 @@ const STEPS = [
 
 export default function ThankYouCard() {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
-      className="w-full max-w-2xl text-center"
+    <div
+      className="reveal-on-scroll w-full max-w-2xl text-center"
     >
       <div className="mb-8 font-display text-[15px] font-extrabold uppercase tracking-[0.22em] text-midnight/70">
         ACTC
       </div>
 
       <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-terra text-white shadow-terra">
-        <Icon icon="lucide:check" width={30} height={30} aria-hidden />
+        <LpIcon name="check" size={30} />
       </span>
 
       <h1 className="mt-8 font-display text-[clamp(2rem,5.5vw,3.5rem)] font-extrabold leading-[1.05] tracking-[-0.03em] text-midnight">
@@ -48,7 +42,7 @@ export default function ThankYouCard() {
             className="flex gap-4 rounded-2xl border border-grid-line bg-white p-5 shadow-card-light"
           >
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-terra/10 text-terra">
-              <Icon icon={s.icon} width={21} height={21} aria-hidden />
+              <LpIcon name={s.icon} size={21} />
             </span>
             <div>
               <p className="font-display text-[15.5px] font-semibold text-midnight">
@@ -76,7 +70,7 @@ export default function ThankYouCard() {
           className="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-terra px-7 py-3.5 text-[15px] font-semibold text-white transition-colors hover:bg-terra-hover"
         >
           Voir nos réalisations
-          <Icon icon="lucide:arrow-right" width={16} height={16} aria-hidden />
+          <LpIcon name="arrow-right" size={16} />
         </a>
       </div>
 
@@ -86,6 +80,6 @@ export default function ThankYouCard() {
           tomsoa.actc@gmail.com
         </a>
       </p>
-    </motion.div>
+    </div>
   );
 }
