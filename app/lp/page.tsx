@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { LP } from "@/lib/lp-content";
 import VslPlayer from "@/components/lp/VslPlayer";
-import VideoBenefits from "@/components/lp/VideoBenefits";
 import { CtaButton } from "@/components/lp/CtaButton";
 import Voices from "@/components/lp/Voices";
 import ClientSites from "@/components/lp/ClientSites";
@@ -55,11 +54,10 @@ export default function LandingPage() {
           </div>
         </div>
 
-        {/* Rappel du contenu de la vidéo, pour ceux qui hésitent encore */}
-        <div className="relative mx-auto mt-12 max-w-4xl px-6">
-          <VideoBenefits />
-
-          <p className="mt-5 text-center text-[13px] italic text-steel">
+        {/* La consigne de visionnage reste sous le bouton : elle suffit,
+            la liste des points faisait doublon avec la vidéo elle-même. */}
+        <div className="relative mx-auto mt-8 max-w-3xl px-6">
+          <p className="text-center text-[13px] italic text-steel">
             {LP.hero.watchNote}
           </p>
         </div>

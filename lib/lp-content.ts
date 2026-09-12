@@ -15,14 +15,6 @@ export const LP = {
     cta: "Remplir le formulaire",
     ctaNote: "2 minutes · sans engagement · réponse sous 24 h",
 
-    // Rappel du contenu de la vidéo, sous le CTA.
-    title: "Ce que vous apprenez dans la vidéo",
-    bullets: [
-      "Pourquoi 90 % des sites livrés aujourd'hui ne génèrent pas un seul appel, même refaits à neuf.",
-      "Pourquoi les plus grosses agences ne font pas mieux, et ce qu'elles facturent à la place.",
-      "Comment on s'y prend, concrètement, pour que nos sites rapportent réellement du chiffre.",
-      "Ce qu'il faut exiger avant de signer : propriété du site, hébergement, autonomie.",
-    ],
   },
 
   // ── Réassurance en bande ───────────────────────────────────────────────
