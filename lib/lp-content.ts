@@ -65,7 +65,7 @@ export const LP = {
   // ── Promesse chiffrée ──────────────────────────────────────────────────
   stats: [
     { value: "30 j", label: "en moyenne avant les premières demandes entrantes" },
-    { value: "14-21 j", label: "de la validation de la maquette à la mise en ligne" },
+    { value: "21 j", label: "entre la signature du contrat et la mise en ligne" },
     { value: "0 €", label: "d'hébergement et d'abonnement mensuel" },
   ],
 
@@ -78,7 +78,7 @@ export const LP = {
     usTitle: "ACTC",
     rows: [
       {
-        them: "Livre un joli site, sans se soucier de ce qu'il rapporte.",
+        them: "Ne livre même pas un joli site, et encore moins un site qui rapporte.",
         us: "Conçoit un parcours pensé pour transformer un visiteur en demande de devis.",
       },
       {
@@ -86,7 +86,7 @@ export const LP = {
         us: "Crée un design original, dessiné pour votre activité et personne d'autre.",
       },
       {
-        them: "Vous enferme dans un abonnement mensuel à vie.",
+        them: "Vous enferme dans un abonnement mensuel à durée indéterminée.",
         us: "Vous laisse propriétaire du site, hébergement compris, sans mensualité.",
       },
       {
@@ -95,7 +95,7 @@ export const LP = {
       },
       {
         them: "Livre en 3 à 6 mois, parfois plus.",
-        us: "Livre en 14 à 21 jours, maquette validée avant de démarrer.",
+        us: "Livre en 21 jours, du contrat signé à la mise en ligne.",
       },
       {
         them: "Facture le référencement en supplément.",

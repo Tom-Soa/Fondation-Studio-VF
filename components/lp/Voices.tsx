@@ -19,7 +19,7 @@ function VoiceCard({ voice, index }: { voice: Voice; index: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.6, delay: index * 0.08, ease: [0.23, 1, 0.32, 1] }}
-      className="flex flex-col rounded-3xl border border-grid-line bg-white p-6 shadow-card-light sm:p-8"
+      className="flex flex-col rounded-3xl border-2 border-terra/45 bg-white p-6 shadow-[0_18px_44px_-26px_rgba(194,65,12,0.45)] sm:p-8"
     >
       {/* Résultat mis en avant : c'est ce qui se retient */}
       <span className="w-fit rounded-full bg-terra/10 px-3 py-1 text-[12px] font-semibold text-terra">
@@ -30,7 +30,7 @@ function VoiceCard({ voice, index }: { voice: Voice; index: number }) {
         {voice.quote}
       </blockquote>
 
-      <figcaption className="mt-5 flex items-center gap-3 border-t border-grid-line pt-5">
+      <figcaption className="mt-5 flex items-center gap-3 border-t border-terra/20 pt-5">
         <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-terra/10 text-terra">
           <Icon icon="ph:microphone-duotone" width={20} height={20} aria-hidden />
         </span>
