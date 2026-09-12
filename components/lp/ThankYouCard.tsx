@@ -5,19 +5,14 @@ import { motion } from "motion/react";
 
 const STEPS = [
   {
-    icon: "ph:envelope-simple-duotone",
-    title: "Vous recevez un e-mail de confirmation",
-    body: "Dans les minutes qui suivent. Pensez à vérifier vos indésirables.",
-  },
-  {
     icon: "ph:phone-call-duotone",
-    title: "On vous appelle sous 24 h ouvrées",
+    title: "On vous rappelle sous 24 h ouvrées",
     body: "Un échange court pour comprendre votre activité et vos objectifs.",
   },
   {
-    icon: "ph:layout-duotone",
-    title: "On conçoit votre page d'accueil, offerte",
-    body: "Une vraie maquette sur-mesure. Vous décidez ensuite si on continue.",
+    icon: "ph:chats-circle-duotone",
+    title: "On vous dit ce qu'on peut faire, et en combien de temps",
+    body: "Une réponse claire sur votre projet. Vous décidez ensuite si on continue.",
   },
 ];
 
@@ -66,10 +61,29 @@ export default function ThankYouCard() {
         ))}
       </ul>
 
-      <p className="mt-10 text-[13px] text-steel">
+      <div className="mt-10 rounded-3xl border border-grid-line bg-white p-6 shadow-card-light sm:p-8">
+        <p className="font-display text-[17px] font-bold text-midnight">
+          En attendant, regardez ce qu&apos;on a fait pour nos clients.
+        </p>
+        <p className="mx-auto mt-2 max-w-md text-[14.5px] leading-relaxed text-steel">
+          Des sites en ligne, que vous pouvez ouvrir et parcourir comme le ferait
+          un de vos clients.
+        </p>
+        <a
+          href="https://www.actcstudio.fr/fr/realisations"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-terra px-7 py-3.5 text-[15px] font-semibold text-white transition-colors hover:bg-terra-hover"
+        >
+          Voir nos réalisations
+          <Icon icon="lucide:arrow-right" width={16} height={16} aria-hidden />
+        </a>
+      </div>
+
+      <p className="mt-8 text-[13px] text-steel">
         Une question en attendant ?{" "}
-        <a href="mailto:contact@fondationstudio.fr" className="text-terra underline">
-          contact@fondationstudio.fr
+        <a href="mailto:tomsoa.actc@gmail.com" className="text-terra underline">
+          tomsoa.actc@gmail.com
         </a>
       </p>
     </motion.div>

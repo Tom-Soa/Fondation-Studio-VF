@@ -35,7 +35,8 @@ export const VSL_DURATION = "9 min";
  * Lien du formulaire Pipedrive (Web Forms → Partager → lien direct).
  * Le visiteur y est envoyé au clic sur les CTA de la landing.
  */
-export const PIPEDRIVE_FORM_URL = "https://forms.pipedrive.com/s/REMPLACER";
+export const PIPEDRIVE_FORM_URL =
+  "https://webforms.pipedrive.com/f/6q8kD2MjdVFcqUsxFGxmdB48PkJhfGNTp7IAGI8aFE7KN5PGIeLAnrSvQs4OuVfaH9";
 
 /** Page de remerciement où est posé le pixel Meta (événement Lead). */
 export const THANK_YOU_PATH = "/lp/merci";
