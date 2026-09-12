@@ -6,15 +6,27 @@ import { LP } from "@/lib/lp-content";
 
 /**
  * Comparatif frontal "ce que font les autres / ce qu'on fait".
- * Deux colonnes sur desktop, deux blocs empilés sur mobile : la colonne "eux"
- * reste volontairement terne, la colonne "nous" porte l'accent terracotta.
+ *
+ * Le verdict se lit avant le texte : la colonne des agences est rouge, la
+ * notre verte. Chaque ligne est une carte a part entiere plutot qu'une puce,
+ * pour que l'oeil puisse comparer deux affirmations a la meme hauteur.
  */
 export default function Versus() {
   const t = LP.versus;
 
   return (
-    <section className="bg-alabaster py-20 lg:py-28">
-      <div className="mx-auto max-w-5xl px-6">
+    <section className="relative overflow-hidden bg-alabaster py-20 lg:py-28">
+      {/* Deux halos, un par camp, qui teintent le fond sans le charger */}
+      <div
+        className="pointer-events-none absolute -left-40 top-1/4 h-[420px] w-[420px] rounded-full bg-rose-500/[0.07] blur-3xl"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute -right-40 top-1/3 h-[420px] w-[420px] rounded-full bg-emerald-500/[0.09] blur-3xl"
+        aria-hidden
+      />
+
+      <div className="relative mx-auto max-w-5xl px-6">
         <div className="mx-auto mb-12 max-w-2xl text-center">
           <div className="mb-5 text-[11px] font-medium uppercase tracking-[0.18em] text-terra">
             {t.kicker}
@@ -30,57 +42,60 @@ export default function Versus() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
-          className="grid gap-4 md:grid-cols-2 md:gap-6"
+          className="grid gap-5 md:grid-cols-2 md:gap-6"
         >
-          {/* Eux */}
-          <div className="rounded-3xl border border-grid-line bg-white/60 p-6 sm:p-8">
-            <div className="mb-6 flex items-center gap-3 border-b border-grid-line pb-5">
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-steel/10 text-steel">
-                <Icon icon="lucide:x" width={18} height={18} aria-hidden />
+          {/* ── Une agence classique ─────────────────────────────────── */}
+          <div className="overflow-hidden rounded-3xl border-2 border-rose-300/70 bg-white shadow-[0_18px_44px_-28px_rgba(190,18,60,0.45)]">
+            <div className="flex items-center gap-3 border-b-2 border-rose-200/70 bg-rose-50 px-6 py-5">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-rose-500 text-white shadow-[0_6px_16px_-6px_rgba(190,18,60,0.7)]">
+                <Icon icon="lucide:x" width={19} height={19} aria-hidden />
               </span>
-              <h3 className="font-display text-[15px] font-semibold uppercase tracking-wide text-steel">
+              <h3 className="font-display text-[15.5px] font-bold uppercase tracking-wide text-rose-700">
                 {t.themTitle}
               </h3>
             </div>
-            <ul className="space-y-4">
+
+            <ul className="divide-y divide-rose-100">
               {t.rows.map((r) => (
-                <li key={r.them} className="flex gap-3 text-[14.5px] leading-relaxed text-steel">
-                  <Icon
-                    icon="lucide:minus"
-                    width={16}
-                    height={16}
-                    className="mt-1 shrink-0 text-steel/40"
+                <li
+                  key={r.them}
+                  className="flex gap-3 px-6 py-4 text-[14.5px] leading-relaxed text-midnight/70"
+                >
+                  <span
+                    className="mt-[3px] grid h-[18px] w-[18px] shrink-0 place-items-center rounded-full bg-rose-100 text-rose-600"
                     aria-hidden
-                  />
+                  >
+                    <Icon icon="lucide:x" width={11} height={11} />
+                  </span>
                   {r.them}
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Nous */}
-          <div className="rounded-3xl border border-terra/25 bg-white p-6 shadow-card-light sm:p-8">
-            <div className="mb-6 flex items-center gap-3 border-b border-terra/15 pb-5">
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-terra text-white">
-                <Icon icon="lucide:check" width={18} height={18} aria-hidden />
+          {/* ── ACTC ─────────────────────────────────────────────────── */}
+          <div className="overflow-hidden rounded-3xl border-2 border-emerald-400/70 bg-white shadow-[0_20px_50px_-26px_rgba(5,150,105,0.5)]">
+            <div className="flex items-center gap-3 border-b-2 border-emerald-200/70 bg-emerald-50 px-6 py-5">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-white shadow-[0_6px_16px_-6px_rgba(5,150,105,0.8)]">
+                <Icon icon="lucide:check" width={19} height={19} aria-hidden />
               </span>
-              <h3 className="font-display text-[15px] font-bold uppercase tracking-wide text-terra">
+              <h3 className="font-display text-[15.5px] font-bold uppercase tracking-wide text-emerald-700">
                 {t.usTitle}
               </h3>
             </div>
-            <ul className="space-y-4">
+
+            <ul className="divide-y divide-emerald-100">
               {t.rows.map((r) => (
                 <li
                   key={r.us}
-                  className="flex gap-3 text-[14.5px] leading-relaxed text-midnight/85"
+                  className="flex gap-3 px-6 py-4 text-[14.5px] font-medium leading-relaxed text-midnight/90"
                 >
-                  <Icon
-                    icon="lucide:check"
-                    width={16}
-                    height={16}
-                    className="mt-1 shrink-0 text-terra"
+                  <span
+                    className="mt-[3px] grid h-[18px] w-[18px] shrink-0 place-items-center rounded-full bg-emerald-100 text-emerald-700"
                     aria-hidden
-                  />
+                  >
+                    <Icon icon="lucide:check" width={11} height={11} />
+                  </span>
                   {r.us}
                 </li>
               ))}

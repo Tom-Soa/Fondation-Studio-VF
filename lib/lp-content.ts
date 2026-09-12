@@ -4,14 +4,10 @@
 export const LP = {
   // ── Au-dessus de la vidéo ──────────────────────────────────────────────
   hero: {
-    pill: "90 % des prestataires ne vous rapporteront aucun client",
     h1Start: "Je vous explique comment nos clients ont obtenu un site",
     h1Em: "qui se rembourse tout seul",
     h1End: "et qui leur rapporte de l'argent.",
     watchNote: "Regardez la vidéo en entier avant de remplir le formulaire.",
-    // Phrase de reprise, posee sous le lecteur plutot qu'au-dessus : au-dessus
-    // de la video, seul le gros titre doit parler.
-    underPlayer: "9 minutes, et vous saurez exactement comment on s'y prend.",
   },
 
   // ── Juste sous la vidéo ────────────────────────────────────────────────
