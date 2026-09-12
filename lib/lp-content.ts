@@ -14,31 +14,6 @@ export const LP = {
     underPlayer: "9 minutes, et vous saurez exactement comment on s'y prend.",
   },
 
-  // ── Le constat, juste sous le CTA ──────────────────────────────────────
-  // Le passage le plus frontal de la page : il nomme le problème avant que
-  // le visiteur ait à se demander si son propre site en fait partie.
-  constat: {
-    kicker: "Le vrai problème",
-    h2Start: "Le marché du site internet",
-    h2Em: "est rempli de mauvais travail.",
-    body: "90 % des prestataires ne font pas du travail de qualité. Ils livrent une vitrine, encaissent, et passent au client suivant. Le site est en ligne, il est joli, et il ne sonne jamais.",
-    points: [
-      {
-        title: "La notoriété n'est pas un gage de qualité",
-        body: "Même les plus grosses agences de France livrent des sites qui ne rapportent rien. Un nom connu et un gros budget ne garantissent pas un seul appel de plus. Ce n'est pas parce qu'une agence est connue qu'il faut lui faire confiance.",
-      },
-      {
-        title: "On vous vend du design, pas des clients",
-        body: "La plupart des prestataires sont jugés sur le rendu visuel, jamais sur ce que le site rapporte. Personne ne revient six mois plus tard vous demander combien de demandes il a généré.",
-      },
-      {
-        title: "Un site qui ne rapporte rien vous coûte deux fois",
-        body: "Une fois à la création, et chaque mois où il ne vous amène aucune demande pendant que vos concurrents, eux, en reçoivent.",
-      },
-    ],
-    closing: "Notre promesse est l'inverse : un site qui vous génère de l'argent.",
-  },
-
   // ── Juste sous la vidéo ────────────────────────────────────────────────
   underVideo: {
     cta: "Remplir le formulaire",
@@ -64,7 +39,6 @@ export const LP = {
 
   // ── Promesse chiffrée ──────────────────────────────────────────────────
   stats: [
-    { value: "30 j", label: "en moyenne avant les premières demandes entrantes" },
     { value: "21 j", label: "entre la signature du contrat et la mise en ligne" },
     { value: "0 €", label: "d'hébergement et d'abonnement mensuel" },
   ],
@@ -136,8 +110,8 @@ export const LP = {
     h2Em: "qu'on nous pose le plus.",
     items: [
       {
-        q: "Combien de temps avant d'avoir des résultats ?",
-        a: "En moyenne moins de 30 jours après la mise en ligne pour les premières demandes entrantes. Le site est livré en 14 à 21 jours, et le référencement est intégré dès la conception, pas ajouté après coup.",
+        q: "En combien de temps mon site est-il en ligne ?",
+        a: "21 jours entre la signature du contrat et la mise en ligne. Le référencement Google est intégré dès la conception, pas ajouté après coup : votre site est prêt à travailler dès le premier jour.",
       },
       {
         q: "Je paie quelque chose tous les mois ?",

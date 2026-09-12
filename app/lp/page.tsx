@@ -10,12 +10,11 @@ import LpFaq from "@/components/lp/LpFaq";
 import MetaPixel from "@/components/lp/MetaPixel";
 import LpHeroDecor from "@/components/lp/LpHeroDecor";
 import TrustRow from "@/components/lp/TrustRow";
-import Constat from "@/components/lp/Constat";
 
 export const metadata: Metadata = {
   title: "Plus de clients grâce à votre site · ACTC",
   description:
-    "La vidéo qui explique comment choisir un site internet qui vous rapporte réellement des clients, et pourquoi nos sites en génèrent en moins de 30 jours en moyenne.",
+    "La vidéo qui explique comment nos clients ont obtenu un site qui se rembourse tout seul, livré en 21 jours, sans abonnement ni frais d'hébergement.",
 };
 
 export default function LandingPage() {
@@ -76,9 +75,6 @@ export default function LandingPage() {
 
       {/* ── Réassurance + chiffres ───────────────────────────────────── */}
       <TrustRow />
-
-      {/* ── Le constat sur le marché ─────────────────────────────────── */}
-      <Constat />
 
       {/* ── Eux / nous ───────────────────────────────────────────────── */}
       <Versus />
