@@ -11,6 +11,7 @@
 
 import { AUDIT } from "@/lib/audit-content";
 import PixelAudit from "@/components/audit/PixelAudit";
+import BandeauLancement from "@/components/audit/BandeauLancement";
 import AuditHero from "@/components/audit/AuditHero";
 import BoutonFlottant from "@/components/audit/BoutonFlottant";
 import AuditFaq from "@/components/audit/AuditFaq";
@@ -25,10 +26,12 @@ import {
 } from "@/components/audit/Sections";
 
 export default function PageAudit() {
+  // Le padding compense le bandeau fixe, sorti du flux.
   return (
-    <main className="relative">
+    <main className="relative pt-[42px]">
       <PixelAudit />
       <BoutonFlottant />
+      <BandeauLancement />
 
       {/* 1. Accroche : prix, délai et bouton visibles sans défiler */}
       <AuditHero />

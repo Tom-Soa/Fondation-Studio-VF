@@ -319,8 +319,8 @@ export const STATS: Record<Locale, Stat[]> = {
 };
 
 // ── Prise de contact ──────────────────────────────────────────────
-// WhatsApp (numéro +33 6 37 99 97 38, format international sans + ni 0).
-export const WHATSAPP_URL = "https://wa.me/33637999738";
+// WhatsApp (numéro +33 6 72 75 84 78, format international sans + ni 0).
+export const WHATSAPP_URL = "https://wa.me/33672758478";
 
 // ── Aperçus de sites réalisés (marquee du hero + cartes réalisations) ─
 export interface ShowcaseItem {

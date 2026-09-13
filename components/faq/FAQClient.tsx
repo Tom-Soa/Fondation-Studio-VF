@@ -229,8 +229,8 @@ export function FAQClient({ lang }: { lang: Locale }) {
               {t.ctaButton}
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M5 12h14M12 5l7 7-7 7" /></svg>
             </a>
-            <a href="tel:+33637999738" className="inline-flex items-center gap-2 rounded-full border border-grid-line bg-white hover:border-terra/40 text-midnight px-6 py-3.5 text-[14.5px] font-medium transition-colors">
-              +33 6 37 99 97 38
+            <a href="tel:+33672758478" className="inline-flex items-center gap-2 rounded-full border border-grid-line bg-white hover:border-terra/40 text-midnight px-6 py-3.5 text-[14.5px] font-medium transition-colors">
+              +33 6 72 75 84 78
             </a>
           </div>
         </div>

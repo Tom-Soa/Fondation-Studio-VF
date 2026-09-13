@@ -165,7 +165,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
               </div>
               <div>
                 <div className="text-[11px] uppercase tracking-wider text-steel">WhatsApp</div>
-                <div className="text-[15px] font-medium text-midnight group-hover:text-[#1ebe5d] transition-colors">+33 6 37 99 97 38</div>
+                <div className="text-[15px] font-medium text-midnight group-hover:text-[#1ebe5d] transition-colors">+33 6 72 75 84 78</div>
               </div>
             </a>
             <a href="mailto:fondationstudio.fr@gmail.com" className="flex items-center gap-4 group rounded-2xl border border-grid-line p-4 hover:border-terra/40 transition-colors">

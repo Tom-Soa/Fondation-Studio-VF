@@ -28,7 +28,7 @@ export const organizationSchema = {
   description:
     "Studio web pour PME et artisans. Sites vitrines et e-commerce sur-mesure, design premium, hébergement gratuit, référencement intégré, livrés en 21 jours.",
   email: "fondationstudio.fr@gmail.com",
-  telephone: "+33637999738",
+  telephone: "+33672758478",
   priceRange: "€€",
   areaServed: [
     { "@type": "Country", name: "France" },

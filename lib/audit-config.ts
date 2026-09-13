@@ -41,6 +41,14 @@ export const META_PIXEL_AUDIT = "1268635575330992";
 /** Lien WhatsApp Business, proposé sur la page de confirmation. */
 export const WHATSAPP_URL = "https://wa.me/message/Z3SK7EX5AXBZL1";
 
+/**
+ * Tarif de lancement et prix cible.
+ *
+ * Le bandeau annonce que le tarif augmentera : il faut donc l'appliquer
+ * réellement le jour venu, sinon l'argument devient une fausse promesse.
+ */
+export const PRIX_APRES = "147 €";
+
 /** Preuve chiffrée, à mettre à jour quand le nombre évolue. */
 export const SITES_CREES = 50;
 

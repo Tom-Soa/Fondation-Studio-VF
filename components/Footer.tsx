@@ -81,13 +81,13 @@ export default function Footer({ lang }: { lang: Locale }) {
             </p>
             <div className="space-y-2 text-[13px]">
               <a
-                href="tel:+33637999738"
+                href="tel:+33672758478"
                 className="flex items-center gap-2 text-white/55 hover:text-white transition-colors"
               >
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 14a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 3.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.91a16 16 0 0 0 6 6l.91-1.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17z" />
                 </svg>
-                +33 6 37 99 97 38
+                +33 6 72 75 84 78
               </a>
               <a
                 href="mailto:fondationstudio.fr@gmail.com"

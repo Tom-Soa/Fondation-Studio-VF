@@ -292,11 +292,19 @@ export function Offre() {
           className="overflow-hidden rounded-[2rem] border-2 border-terra/30 bg-alabaster shadow-card-light"
         >
           <div className="p-7 text-center sm:p-10">
-            <div className="font-display text-[clamp(3.4rem,12vw,5rem)] font-extrabold leading-none tracking-[-0.04em] text-terra">
-              {PRIX}
+            <div className="flex flex-wrap items-baseline justify-center gap-x-4 gap-y-1">
+              <span className="font-display text-[clamp(3.4rem,12vw,5rem)] font-extrabold leading-none tracking-[-0.04em] text-terra">
+                {PRIX}
+              </span>
+              <span className="font-display text-[clamp(1.5rem,5vw,2rem)] font-bold leading-none text-midnight/40 line-through decoration-[2.5px]">
+                {t.prixAvant}
+              </span>
             </div>
             <p className="mt-2 text-[12.5px] uppercase tracking-[0.16em] text-midnight/70">
               Paiement unique
+            </p>
+            <p className="mx-auto mt-3 max-w-xs text-[13px] font-semibold leading-snug text-terra">
+              {t.prixNote}
             </p>
 
             <ul className="mx-auto mt-8 max-w-sm space-y-3 text-left">
@@ -319,6 +327,9 @@ export function Offre() {
                 {t.cta}
               </BoutonPaiement>
               <p className="mt-3 text-[13px] text-midnight/70">{t.ctaNote}</p>
+              <p className="mx-auto mt-2 max-w-sm text-[12.5px] leading-snug text-midnight/60">
+                {AUDIT.hero.ctaPlaces}
+              </p>
             </div>
           </div>
 

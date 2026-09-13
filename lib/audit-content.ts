@@ -2,7 +2,7 @@
 // Rédaction : vouvoiement, phrases courtes, aucun terme anglais, aucune
 // promesse de résultat garanti. Les preuves restent factuelles et vérifiables.
 
-import { PRIX, DELAI, FENETRE_DEDUCTION, SITES_CREES } from "./audit-config";
+import { PRIX, DELAI, FENETRE_DEDUCTION, SITES_CREES, PRIX_APRES } from "./audit-config";
 
 export const AUDIT = {
   meta: {
@@ -19,7 +19,8 @@ export const AUDIT = {
     priceLabel: "Prix unique",
     delayLabel: "Livraison",
     cta: "Commander mon audit",
-    ctaNote: `Paiement en ligne · vidéo reçue sous ${DELAI}`,
+    ctaNote: `Paiement en ligne · vidéo reçue sous ${DELAI} en moyenne`,
+    ctaPlaces: "Places limitées chaque jour, pour garder la qualité de l'analyse.",
     deductionFlash: `Les ${PRIX} sont déduits si vous nous confiez votre site ensuite.`,
   },
 
@@ -247,6 +248,8 @@ export const AUDIT = {
     deductionCorps: `Les ${PRIX} viennent en déduction du prix de votre site si vous démarrez avec nous dans les ${FENETRE_DEDUCTION} suivant l'audit.`,
     cta: "Commander mon audit",
     ctaNote: "Paiement sécurisé par Stripe",
+    prixAvant: PRIX_APRES,
+    prixNote: "Tarif de lancement, il augmentera prochainement.",
   },
 
   faq: {
@@ -264,6 +267,10 @@ export const AUDIT = {
       {
         q: "En combien de temps je reçois mon audit ?",
         a: `Sous ${DELAI} ouvrées après votre commande. La vidéo vous arrive par courriel, avec un lien pour la regarder quand vous voulez, autant de fois que vous voulez.`,
+      },
+      {
+        q: "Et s'il y a beaucoup de demandes ?",
+        a: "J'analyse un nombre limité de sites par jour, pour garder la qualité de chaque analyse. Si la file est pleine au moment de votre commande, vous êtes prévenu et votre dossier passe en attente. Les 48 h courent à partir du moment où je le prends en charge.",
       },
       {
         q: "Est-ce que ça vaut le coup si mon site est très récent ?",

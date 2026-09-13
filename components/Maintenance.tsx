@@ -114,11 +114,11 @@ export default function Maintenance({ lang = "fr" }: { lang?: Locale }) {
             {t.whatsapp}
           </a>
           <a
-            href="tel:+33637999738"
+            href="tel:+33672758478"
             className="inline-flex items-center gap-2 rounded-full border border-midnight/15 hover:border-midnight/40 px-6 py-4 text-midnight font-medium text-[15px] transition-colors"
           >
             <Icon icon="ph:phone-duotone" width={18} height={18} className="text-terra" aria-hidden />
-            06 37 99 97 38
+            06 72 75 84 78
           </a>
         </motion.div>
 

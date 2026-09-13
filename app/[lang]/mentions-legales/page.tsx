@@ -167,7 +167,7 @@ export default async function MentionsLegalesPage({
               <li><strong className="text-midnight">{t.editorName}</strong> {t.editorNameValue}</li>
               <li><strong className="text-midnight">{t.editorFounders}</strong> {t.editorFoundersValue}</li>
               <li><strong className="text-midnight">{t.editorEmail}</strong> fondationstudio.fr@gmail.com</li>
-              <li><strong className="text-midnight">{t.editorPhone}</strong> +33 6 37 99 97 38</li>
+              <li><strong className="text-midnight">{t.editorPhone}</strong> +33 6 72 75 84 78</li>
               <li><strong className="text-midnight">{t.editorStatus}</strong> {t.editorStatusValue}</li>
               <li><strong className="text-midnight">{t.editorVat}</strong> {t.editorVatValue}</li>
             </ul>

@@ -119,6 +119,9 @@ export default function AuditHero() {
             {t.cta}
           </BoutonPaiement>
           <p className="mt-3 text-[13px] text-midnight/70">{t.ctaNote}</p>
+          <p className="mt-1.5 max-w-sm text-[12.5px] leading-snug text-midnight/55">
+            {t.ctaPlaces}
+          </p>
         </motion.div>
 
         <motion.p
