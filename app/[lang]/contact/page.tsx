@@ -125,13 +125,14 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
           <div className="h-px flex-1 bg-grid-line" />
         </div>
 
-        {/* 2 options */}
-        <div className="grid lg:grid-cols-2 gap-5">
+        {/* 2 options, en bandes pleine largeur */}
+        <div className="flex flex-col gap-5">
 
           {/* Option 1 : Appel, mise en avant */}
-          <div className="lg:col-span-1 relative overflow-hidden rounded-3xl border-2 border-terra bg-white p-8 shadow-[0_8px_32px_rgba(194,65,12,0.15)]">
+          <div className="relative overflow-hidden rounded-3xl border-2 border-terra bg-white p-8 shadow-[0_8px_32px_rgba(194,65,12,0.15)] lg:p-10">
             <div className="absolute -top-16 -right-12 h-48 w-48 rounded-full bg-terra/8 blur-3xl pointer-events-none" aria-hidden />
-            <div className="relative">
+            <div className="relative lg:flex lg:items-start lg:gap-12">
+             <div className="lg:flex-1">
               <div className="inline-flex items-center gap-2 rounded-full bg-terra/10 px-3 py-1 text-[11px] font-semibold text-terra mb-5">
                 <Icon icon="ph:star-duotone" width={13} height={13} aria-hidden />
                 {t.recommended}
@@ -142,7 +143,8 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
               <p className="text-[14px] text-steel leading-relaxed mb-6">
                 {t.callBody}
               </p>
-              <ul className="space-y-2 mb-7">
+             </div>
+              <ul className="space-y-2 lg:w-[42%] lg:shrink-0 lg:border-l lg:border-grid-line lg:pl-10">
                 {t.callPoints.map((point) => (
                   <li key={point} className="flex items-center gap-2 text-[13.5px] text-steel">
                     <Icon icon="lucide:check" width={15} height={15} className="text-terra shrink-0" aria-hidden />
@@ -154,7 +156,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
           </div>
 
           {/* Option 2 : Coordonnées directes */}
-          <div className="lg:col-span-1 rounded-3xl border border-grid-line bg-white p-8 flex flex-col gap-4">
+          <div className="rounded-3xl border border-grid-line bg-white p-8 flex flex-col gap-4 lg:p-10">
             <div className="inline-flex items-center gap-2 rounded-full bg-midnight/5 px-3 py-1 text-[11px] font-semibold text-midnight/60 mb-1">
               <Icon icon="ph:chat-duotone" width={13} height={13} aria-hidden />
               {t.writeUs}
