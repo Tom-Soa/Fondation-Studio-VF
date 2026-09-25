@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;600;800;900&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.181.2/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.181.2/examples/jsm/"
+        }
+      }
+    </script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #0f172a;
+      }
+      #root {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        background: #0f172a;
+        overflow: hidden;
+        font-family: "Inter Tight", sans-serif;
+      }
+      #actc-gl {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      .actc-layer {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .actc-copy {
+        position: absolute;
+        left: 60px;
+        right: 60px;
+        color: #f9f9f7;
+        font-family: "Inter Tight", sans-serif;
+        font-weight: 900;
+        font-size: 150px;
+        line-height: 0.92;
+        letter-spacing: -0.03em;
+        text-transform: lowercase;
+        will-change: transform, opacity;
+      }
+      .actc-serif {
+        font-family: "Instrument Serif", serif;
+        font-style: italic;
+        font-weight: 400;
+        color: #c2410c;
+        letter-spacing: -0.01em;
+        text-transform: none;
+      }
+      #actc-line-1 {
+        top: 1120px;
+      }
+      #actc-line-2 {
+        top: 1120px;
+        font-size: 132px;
+      }
+      #actc-line-3 {
+        top: 1060px;
+        font-size: 118px;
+      }
+      #actc-kicker {
+        position: absolute;
+        left: 60px;
+        top: 200px;
+        font-family: "IBM Plex Mono", monospace;
+        font-weight: 500;
+        font-size: 26px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgb(195, 68, 16);
+        will-change: opacity, transform;
+      }
+      #actc-pillars {
+        position: absolute;
+        left: 60px;
+        right: 60px;
+        top: 1280px;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+      }
+      .actc-pillar {
+        display: block;
+        font-family: "Inter Tight", sans-serif;
+        font-weight: 900;
+        font-size: 104px;
+        line-height: 1;
+        letter-spacing: -0.03em;
+        text-transform: lowercase;
+        color: #f9f9f7;
+        will-change: transform, opacity;
+      }
+      .actc-pillar i {
+        display: inline-block;
+        width: 34px;
+        height: 4px;
+        background: #c2410c;
+        vertical-align: middle;
+        margin-right: 26px;
+      }
+      #actc-end {
+        position: absolute;
+        left: 60px;
+        right: 60px;
+        top: 760px;
+        text-align: center;
+        will-change: transform, opacity;
+      }
+      #actc-wordmark {
+        display: block;
+        font-family: "Inter Tight", sans-serif;
+        font-weight: 800;
+        font-size: 230px;
+        line-height: 1;
+        letter-spacing: -0.04em;
+        color: #f9f9f7;
+      }
+      #actc-wordmark span {
+        color: #c2410c;
+      }
+      #actc-offer {
+        display: block;
+        margin-top: 38px;
+        font-family: "Inter Tight", sans-serif;
+        font-weight: 600;
+        font-size: 76px;
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+        text-transform: lowercase;
+        color: #f9f9f7;
+        will-change: transform, opacity;
+      }
+      #actc-offer em {
+        font-family: "Instrument Serif", serif;
+        font-style: italic;
+        font-weight: 400;
+        color: #c2410c;
+      }
+      #actc-url {
+        display: block;
+        margin-top: 46px;
+        font-family: "IBM Plex Mono", monospace;
+        font-weight: 500;
+        font-size: 34px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #c2410c;
+        will-change: opacity;
+      }
+      #actc-scrim {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 1020px;
+        background: linear-gradient(
+          to top,
+          rgba(15, 23, 42, 0.94) 0%,
+          rgba(15, 23, 42, 0.78) 34%,
+          rgba(15, 23, 42, 0.34) 68%,
+          rgba(15, 23, 42, 0) 100%
+        );
+        pointer-events: none;
+      }
+      #actc-vignette {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse 62% 48% at 50% 46%,
+          rgba(15, 23, 42, 0) 0%,
+          rgba(15, 23, 42, 0.28) 74%,
+          rgba(15, 23, 42, 0.74) 100%
+        );
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="15"
+      data-width="1080"
+      data-height="1920"
+    >
+      <canvas id="actc-gl" width="1080" height="1920"></canvas>
+      <div id="actc-scrim"></div>
+      <div id="actc-vignette"></div>
+
+      <div id="actc-copy-layer" class="actc-layer clip" data-start="0" data-duration="15" data-track-index="0">
+        <div id="actc-kicker">ACTC STUDIO</div>
+
+        <div id="actc-line-1" class="actc-copy">joli.</div>
+        <div id="actc-line-2" class="actc-copy">
+          mais <span class="actc-serif">zéro</span> client.
+        </div>
+        <div id="actc-line-3" class="actc-copy">
+          la différence n'est pas la <span class="actc-serif">beauté</span>.
+        </div>
+
+        <div id="actc-pillars">
+          <span class="actc-pillar" id="actc-p0"><i></i>rapide</span>
+          <span class="actc-pillar" id="actc-p1"><i></i>clair</span>
+          <span class="actc-pillar" id="actc-p2"><i></i>preuve</span>
+          <span class="actc-pillar" id="actc-p3"><i></i>action</span>
+        </div>
+
+        <div id="actc-end">
+          <span id="actc-wordmark">AC<span>TC</span></span>
+          <span id="actc-offer">page d'accueil <em>offerte</em>.</span>
+          <span id="actc-url">www.actcstudio.fr</span>
+        </div>
+      </div>
+    </div>
+
+    <script type="module">
+      import * as THREE from "three";
+
+      const W = 1080;
+      const H = 1920;
+
+      const canvas = document.getElementById("actc-gl");
+      const renderer = new THREE.WebGLRenderer({
+        canvas,
+        antialias: true,
+        alpha: false,
+        powerPreference: "high-performance",
+      });
+      renderer.setPixelRatio(1);
+      renderer.setSize(W, H, false);
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.2;
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+      const INK = new THREE.Color("#0f172a");
+      const CREAM = new THREE.Color("#f9f9f7");
+      const FIRE = new THREE.Color("#c2410c");
+
+      const scene = new THREE.Scene();
+      scene.background = INK;
+      scene.fog = new THREE.Fog(INK, 9, 34);
+
+      const camera = new THREE.PerspectiveCamera(38, W / H, 0.1, 120);
+
+      // ---------- environment: a studio box so metal has something to reflect ----------
+      // Built as real geometry inside a PMREM pass: one cool softbox above-left,
+      // one fire-orange strip behind-right. Deterministic, no HDRI fetch.
+      const envScene = new THREE.Scene();
+      envScene.background = new THREE.Color(0x0a0f1c);
+      const envSoftbox = new THREE.Mesh(
+        new THREE.PlaneGeometry(9, 14),
+        new THREE.MeshBasicMaterial({ color: 0xdfe9ff }),
+      );
+      envSoftbox.position.set(-7, 5, 4);
+      envSoftbox.lookAt(0, 0, 0);
+      envScene.add(envSoftbox);
+
+      const envStrip = new THREE.Mesh(
+        new THREE.PlaneGeometry(14, 3.2),
+        new THREE.MeshBasicMaterial({ color: 0xff5a1a }),
+      );
+      envStrip.position.set(6, 1.5, -7);
+      envStrip.lookAt(0, 0, 0);
+      envScene.add(envStrip);
+
+      const envTop = new THREE.Mesh(
+        new THREE.PlaneGeometry(16, 16),
+        new THREE.MeshBasicMaterial({ color: 0x2a3c5c }),
+      );
+      envTop.rotation.x = Math.PI / 2;
+      envTop.position.set(0, 9, 0);
+      envScene.add(envTop);
+
+      const pmrem = new THREE.PMREMGenerator(renderer);
+      pmrem.compileEquirectangularShader();
+      const envMap = pmrem.fromScene(envScene, 0.04).texture;
+      scene.environment = envMap;
+      scene.environmentIntensity = 0.75;
+
+      // ---------- lighting: key, orange rim, low ambient ----------
+      scene.add(new THREE.AmbientLight(0xa8bcd8, 0.35));
+
+      const hemi = new THREE.HemisphereLight(0xa9c0e4, 0x121a2c, 0.55);
+      scene.add(hemi);
+
+      // key: a hard studio spot from front-left, aimed at the action
+      const key = new THREE.SpotLight(0xfff2e2, 520, 60, 0.78, 0.5, 1.7);
+      key.position.set(-6.2, 7.6, 9.4);
+      key.castShadow = true;
+      key.shadow.mapSize.set(1024, 1024);
+      key.shadow.bias = -0.0008;
+      key.shadow.camera.near = 1;
+      key.shadow.camera.far = 40;
+      scene.add(key);
+      scene.add(key.target);
+
+      // rim: fire-orange from behind-right, so edges catch orange
+      const rim = new THREE.DirectionalLight(FIRE, 9.0);
+      rim.position.set(7.4, 2.8, -7.0);
+      scene.add(rim);
+
+      const rimTop = new THREE.PointLight(0xff6a24, 420, 34, 1.7);
+      rimTop.position.set(3.4, 5.2, -3.6);
+      scene.add(rimTop);
+
+      // a second orange kicker low and right, for the underside edges
+      const rimLow = new THREE.PointLight(0xe8560f, 200, 26, 1.8);
+      rimLow.position.set(4.6, -2.6, -1.2);
+      scene.add(rimLow);
+
+      // cool fill so the shadow side is not pure black
+      const fill = new THREE.PointLight(0x8fb0dc, 170, 34, 1.7);
+      fill.position.set(-5.0, -1.8, 6.0);
+      scene.add(fill);
+
+      // ---------- ground plane (catches light, gives the space a floor) ----------
+      const floor = new THREE.Mesh(
+        new THREE.PlaneGeometry(120, 120),
+        new THREE.MeshStandardMaterial({
+          color: 0x172238,
+          roughness: 0.34,
+          metalness: 0.45,
+          envMapIntensity: 0.9,
+        }),
+      );
+      floor.rotation.x = -Math.PI / 2;
+      floor.position.y = -5.0;
+      floor.receiveShadow = true;
+      scene.add(floor);
+
+      const backWall = new THREE.Mesh(
+        new THREE.PlaneGeometry(120, 70),
+        new THREE.MeshStandardMaterial({
+          color: 0x141f34,
+          roughness: 0.88,
+          metalness: 0.1,
+          envMapIntensity: 0.5,
+        }),
+      );
+      backWall.position.set(0, 5, -22);
+      scene.add(backWall);
+
+      // ---------- materials ----------
+      const faceMat = new THREE.MeshStandardMaterial({
+        color: 0x1e2b42,
+        roughness: 0.33,
+        metalness: 0.55,
+        envMapIntensity: 0.9,
+      });
+      const edgeMat = new THREE.MeshStandardMaterial({
+        color: 0x33425e,
+        roughness: 0.13,
+        metalness: 0.9,
+        envMapIntensity: 1.7,
+      });
+
+      // ---------- the shard field (12 pieces that form one slab, then four) ----------
+      const COLS = 3;
+      const ROWS = 4;
+      const SLAB_W = 3.6;
+      const SLAB_H = 6.2;
+      const SLAB_D = 0.34;
+      const PIECE_W = SLAB_W / COLS;
+      const PIECE_H = SLAB_H / ROWS;
+
+      const shards = [];
+      const shardGroup = new THREE.Group();
+      scene.add(shardGroup);
+
+      // deterministic index-derived pseudo-scatter (no Math.random anywhere)
+      function scatter(i, salt) {
+        const s = Math.sin(i * 12.9898 + salt * 78.233) * 43758.5453;
+        return s - Math.floor(s) - 0.5; // in [-0.5, 0.5)
+      }
+
+      for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+          const i = r * COLS + c;
+          const geo = new THREE.BoxGeometry(PIECE_W * 0.985, PIECE_H * 0.985, SLAB_D);
+          const mesh = new THREE.Mesh(geo, [edgeMat, edgeMat, edgeMat, edgeMat, faceMat, faceMat]);
+          mesh.castShadow = true;
+          mesh.receiveShadow = true;
+
+          // pose A: assembled single slab
+          const ax = (c - (COLS - 1) / 2) * PIECE_W;
+          const ay = ((ROWS - 1) / 2 - r) * PIECE_H;
+
+          // pose B: exploded drift
+          const bx = ax + scatter(i, 1) * 5.4;
+          const by = ay + scatter(i, 2) * 4.2;
+          const bz = scatter(i, 3) * 5.2;
+
+          // pose C: four clean slabs in depth, three pieces stack into each
+          const col = r; // slab index 0..3
+          const cx = -2.35 + col * 1.62;
+          const cy = 0.42 - col * 0.16;
+          const cz = 3.4 - col * 3.5;
+
+          shards.push({
+            mesh,
+            i,
+            a: new THREE.Vector3(ax, ay, 0),
+            b: new THREE.Vector3(bx, by, bz),
+            c: new THREE.Vector3(cx, cy + (c - 1) * PIECE_H * 1.02, cz),
+            bRot: new THREE.Vector3(scatter(i, 4) * 1.5, scatter(i, 5) * 1.9, scatter(i, 6) * 1.1),
+            cRot: new THREE.Vector3(0, -0.34 + col * 0.06, 0),
+            spin: scatter(i, 7),
+          });
+          shardGroup.add(mesh);
+        }
+      }
+
+      // ---------- dust motes: depth cue, index-derived ----------
+      const MOTES = 160;
+      const motePos = new Float32Array(MOTES * 3);
+      const moteBase = [];
+      for (let i = 0; i < MOTES; i++) {
+        const x = scatter(i, 11) * 22;
+        const y = scatter(i, 12) * 14 + 1.5;
+        const z = scatter(i, 13) * 24 - 3;
+        moteBase.push([x, y, z, scatter(i, 14)]);
+        motePos[i * 3] = x;
+        motePos[i * 3 + 1] = y;
+        motePos[i * 3 + 2] = z;
+      }
+      const moteGeo = new THREE.BufferGeometry();
+      moteGeo.setAttribute("position", new THREE.BufferAttribute(motePos, 3));
+      const motes = new THREE.Points(
+        moteGeo,
+        new THREE.PointsMaterial({
+          color: FIRE,
+          size: 0.055,
+          sizeAttenuation: true,
+          transparent: true,
+          opacity: 0.5,
+          depthWrite: false,
+        }),
+      );
+      scene.add(motes);
+
+      // ---------- helpers ----------
+      const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
+      const smooth = (t) => {
+        const x = clamp01(t);
+        return x * x * (3 - 2 * x);
+      };
+      const seg = (t, a, b) => smooth((t - a) / (b - a));
+      const lerp = (a, b, t) => a + (b - a) * t;
+
+      const tmpA = new THREE.Vector3();
+      const tmpB = new THREE.Vector3();
+
+      function renderAt(time) {
+        const t = Math.max(0, Math.min(15, time));
+
+        // phase weights
+        const wExplode = seg(t, 3.5, 5.4); // A -> B
+        const wAssemble = seg(t, 5.6, 8.2); // B -> C
+        const wConverge = seg(t, 11.0, 13.4); // C -> converged wall
+
+        for (let n = 0; n < shards.length; n++) {
+          const s = shards[n];
+
+          // position: A -> B -> C
+          tmpA.copy(s.a).lerp(s.b, wExplode);
+          tmpB.copy(s.c);
+          const px = lerp(tmpA.x, tmpB.x, wAssemble);
+          const py = lerp(tmpA.y, tmpB.y, wAssemble);
+          const pz = lerp(tmpA.z, tmpB.z, wAssemble);
+
+          // converge: the four slabs slide together into one wall, pushed back and
+          // low so the wordmark reads against open space above it
+          const col = Math.floor(s.i / COLS);
+          const cvX = lerp(px, 1.15 + (s.i % COLS) * 1.1 + col * 0.08, wConverge);
+          const cvZ = lerp(pz, -6.2 + col * 0.36, wConverge);
+          const cvY = lerp(py, py * 0.85 - 3.4, wConverge);
+
+          s.mesh.position.set(cvX, cvY, cvZ);
+
+          // rotation
+          const idleSpin = (1 - wExplode) * (0.16 * Math.sin(t * 0.55) + 0.34);
+          const rx = lerp(0, s.bRot.x, wExplode) * (1 - wAssemble);
+          const ry = lerp(idleSpin, s.bRot.y + s.spin * (t - 3.5) * 0.5, wExplode);
+          const rz = lerp(0, s.bRot.z, wExplode) * (1 - wAssemble);
+
+          s.mesh.rotation.set(
+            lerp(rx, s.cRot.x, wAssemble),
+            lerp(ry, lerp(s.cRot.y, 0.0, wConverge), wAssemble),
+            lerp(rz, s.cRot.z, wAssemble),
+          );
+
+          // pieces settle to full scale; a hint of pop as each slab locks
+          const lockAt = 6.4 + (s.i % 4) * 0.42;
+          const lock = seg(t, lockAt, lockAt + 0.5);
+          const sc = 1 + 0.06 * lock * (1 - lock) * 4 * wAssemble;
+          s.mesh.scale.setScalar(sc);
+        }
+
+        // motes drift deterministically
+        const attr = motes.geometry.getAttribute("position");
+        for (let i = 0; i < MOTES; i++) {
+          const [x, y, z, ph] = moteBase[i];
+          attr.array[i * 3] = x + Math.sin(t * 0.22 + ph * 6.28) * 0.5;
+          attr.array[i * 3 + 1] = y + Math.sin(t * 0.31 + ph * 3.14) * 0.42;
+          attr.array[i * 3 + 2] = z;
+        }
+        attr.needsUpdate = true;
+
+        // ---------- camera travel ----------
+        // 0-3.5  drift in from darkness onto the single slab
+        // 3.5-6  pull slightly back as it breaks
+        // 6-11   push along the row of slabs (parallax)
+        // 11-15  pull back, centre on the converged wall
+        const k0 = seg(t, 0, 3.5);
+        const k1 = seg(t, 3.5, 6.0);
+        const k2 = seg(t, 6.0, 11.0);
+        const k3 = seg(t, 11.0, 15.0);
+
+        let cx = lerp(-3.6, -1.1, k0);
+        let cy = lerp(1.9, 0.75, k0);
+        let cz = lerp(13.6, 8.4, k0);
+
+        cx = lerp(cx, 0.9, k1);
+        cy = lerp(cy, 1.5, k1);
+        cz = lerp(cz, 10.6, k1);
+
+        cx = lerp(cx, -4.6, k2);
+        cy = lerp(cy, 1.2, k2);
+        cz = lerp(cz, 11.4, k2);
+
+        cx = lerp(cx, 0.0, k3);
+        cy = lerp(cy, 1.6, k3);
+        cz = lerp(cz, 12.6, k3);
+
+        // gentle hand-held breathing, time-derived only
+        cx += Math.sin(t * 0.41) * 0.075;
+        cy += Math.sin(t * 0.29 + 1.2) * 0.06;
+
+        camera.position.set(cx, cy, cz);
+
+        const lookX = lerp(0, -0.9, k2) * (1 - k3);
+        const lookY = lerp(0.1, -1.1, k3);
+        camera.lookAt(lookX, lookY, lerp(0, -3.4, k3));
+        camera.updateProjectionMatrix();
+
+        // key light sweeps with the action so edges keep catching
+        key.position.set(-7.4 + Math.sin(t * 0.36) * 1.6, 9.2, 7.6 - k2 * 3.2);
+        key.target.position.set(lerp(0, -0.6, k2), 0, lerp(0, -1.2, k2));
+        key.target.updateMatrixWorld();
+        rim.position.set(6.6 - k2 * 2.0, 2.4 + k3 * 1.4, -6.2 + k3 * 2.0);
+        rimTop.intensity = 90 + 70 * (k1 - k2 * 0.4);
+
+        renderer.render(scene, camera);
+      }
+
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady =
+        window.__hf.buildReady ||
+        {};
+      window.__hf.buildReady["actc-3d-15s"] = new Promise((resolve) => {
+        renderer.compile(scene, camera);
+        renderAt(0);
+        resolve();
+      });
+
+      window.addEventListener("hf-seek", (event) => {
+        renderAt(event.detail.time);
+      });
+
+      renderAt(window.__hfThreeTime || 0);
+    </script>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+
+      // kicker chrome
+      tl.fromTo("#actc-kicker", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.6 }, 0.35);
+      tl.to("#actc-kicker", { opacity: 0, duration: 0.5 }, 10.6);
+
+      // beat 1 : joli. / mais zéro client.
+      tl.fromTo("#actc-line-1", { opacity: 0, y: 46 }, { opacity: 1, y: 0, duration: 0.7 }, 0.8);
+      tl.to("#actc-line-1", { opacity: 0, y: -34, duration: 0.45 }, 1.95);
+
+      tl.fromTo("#actc-line-2", { opacity: 0, y: 46 }, { opacity: 1, y: 0, duration: 0.7 }, 2.2);
+      tl.to("#actc-line-2", { opacity: 0, y: -34, duration: 0.45 }, 3.5);
+
+      // beat 2 : la différence n'est pas la beauté.
+      tl.fromTo("#actc-line-3", { opacity: 0, y: 52 }, { opacity: 1, y: 0, duration: 0.8 }, 3.95);
+      tl.to("#actc-line-3", { opacity: 0, y: -30, duration: 0.5 }, 5.6);
+
+      // beat 3 : the four pillars lock in with the slabs
+      const pillarAt = [6.55, 7.0, 7.45, 7.9];
+      pillarAt.forEach((at, i) => {
+        tl.fromTo(
+          "#actc-p" + i,
+          { opacity: 0, x: -64 },
+          { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" },
+          at,
+        );
+      });
+      tl.to("#actc-pillars", { opacity: 0, y: -40, duration: 0.6 }, 10.5);
+
+      // beat 4 : wordmark resolve, hold to the last frame
+      tl.fromTo(
+        "#actc-end",
+        { opacity: 0 },
+        { opacity: 1, duration: 0.7, ease: "power2.out" },
+        11.35,
+      );
+      tl.fromTo(
+        "#actc-wordmark",
+        { scale: 0.88, y: 34 },
+        { scale: 1, y: 0, duration: 1.0, ease: "power3.out" },
+        11.35,
+      );
+      tl.fromTo("#actc-offer", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6 }, 12.1);
+      tl.fromTo("#actc-url", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 12.7);
+
+      // keep the timeline the full 15s so the hold is explicit
+      tl.to("#actc-url", { opacity: 1, duration: 0.01 }, 14.99);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
