@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://fondationstudio.fr/sitemap.xml",
-    host: "https://fondationstudio.fr",
+    sitemap: "https://www.actcstudio.fr/sitemap.xml",
+    host: "https://www.actcstudio.fr",
   };
 }

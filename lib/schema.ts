@@ -2,7 +2,7 @@
 // lus par Google, Bing, Perplexity et les IA génératives (SEO / AEO / GEO).
 import { FAQ_CATEGORIES } from "@/lib/faq";
 
-export const SITE_URL = "https://fondationstudio.fr";
+export const SITE_URL = "https://www.actcstudio.fr";
 const ORG_ID = `${SITE_URL}/#organization`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
 

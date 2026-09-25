@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { locales } from "@/lib/i18n";
 import { ressourcesTriees } from "@/lib/ressources";
 
-const BASE = "https://fondationstudio.fr";
+const BASE = "https://www.actcstudio.fr";
 
 // Toutes les pages publiques du site, par ordre d'importance SEO, déclinées en /fr et /en.
 export default function sitemap(): MetadataRoute.Sitemap {

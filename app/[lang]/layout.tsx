@@ -66,7 +66,7 @@ export async function generateMetadata({
   const locale: Locale = hasLocale(lang) ? lang : "fr";
   const m = META[locale];
   return {
-    metadataBase: new URL("https://fondationstudio.fr"),
+    metadataBase: new URL("https://www.actcstudio.fr"),
     alternates: {
       canonical: `/${locale}`,
       languages: { fr: "/fr", en: "/en" },
@@ -83,7 +83,7 @@ export async function generateMetadata({
     openGraph: {
       type: "website",
       locale: locale === "fr" ? "fr_FR" : "en_US",
-      url: `https://fondationstudio.fr/${locale}`,
+      url: `https://www.actcstudio.fr/${locale}`,
       siteName: "ACTC",
       title: m.ogTitle,
       description: m.ogDescription,
