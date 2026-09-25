@@ -110,3 +110,47 @@ Une fois les textes validés : kit HTML/CSS dans `reseaux-sociaux/kit/` (même m
 3. **Liens réseaux dans le pied de page** : ils renvoient vers l'Instagram @tomso.ads et le LinkedIn personnel. À remplacer par les comptes ACTC dès leur création, dans `components/Footer.tsx` et `lib/schema.ts` (sameAs).
 4. **Fiche Google Business Profile « ACTC Studio »** : c'est ce qui apparaît en premier quand on tape le nom. Même logo, même description, mêmes liens.
 5. **Accord des clients** pour publier leurs sites en post (les 6 sont déjà publics sur le site, donc a priori acquis, à confirmer pour les Reels).
+
+## 6. Avis clients : Google Business Profile et Trustpilot
+
+Les deux fiches demandent une connexion à ton compte, donc c'est toi qui les crées. Tout le contenu est prêt ci-dessous, il suffit de copier.
+
+### Google Business Profile (prioritaire)
+
+C'est la fiche qui s'affiche à droite des résultats Google quand on tape « ACTC Studio », avec la note en étoiles. C'est l'élément qui rassure le plus après un appel.
+
+1. Aller sur business.google.com, se connecter avec le compte Google du studio, « Ajouter une entreprise ».
+2. Nom : **ACTC Studio**. Catégorie principale : **Concepteur de sites web**. Catégories secondaires : Agence de marketing, Agence de publicité.
+3. Type : entreprise de services **sans adresse affichée** (zone desservie : France entière). Ne pas afficher d'adresse personnelle.
+4. Téléphone : celui du site. Site web : https://www.actcstudio.fr/fr. Horaires : lundi à vendredi, 9h à 18h.
+5. Description (750 caractères max) :
+
+> ACTC Studio crée des sites web sur-mesure pour les PME et les artisans, conçus pour transformer les visiteurs en clients. Design unique, référencement Google intégré dès la conception, site rapide sur téléphone, hébergement gratuit et aucun abonnement : le site vous appartient. Livraison en 21 jours du contrat signé à la mise en ligne, à partir de 1 400 €, paiement en plusieurs fois possible. Avant tout engagement, nous vous offrons la maquette de votre page d'accueil. Fondé par Tom-Soa Cyprien et Andylane Chatenay, une cinquantaine d'entreprises accompagnées dans tous les secteurs.
+
+6. Logo : `profil/avatar-1080.png`. Photo de couverture : `profil/couverture-facebook.png`. Ajouter ensuite 6 à 10 captures des sites livrés (mêmes visuels que les posts).
+7. Services à déclarer : Création de site vitrine (à partir de 1 400 €), Site e-commerce (à partir de 2 900 €), Refonte de site, Maintenance mensuelle, Création de logo.
+8. Validation : Google envoie un code par vidéo, téléphone ou courrier. Compter 3 à 7 jours.
+9. Récupérer le **lien d'avis** (bouton « Demander des avis ») : c'est ce lien qu'on envoie aux clients.
+
+### Trustpilot (secondaire)
+
+Utile pour le mot « avis » dans la recherche (« ACTC Studio avis ») et comme badge sur le site. Compte gratuit suffisant au départ.
+
+1. business.trustpilot.com, « Créer un compte gratuit », domaine : actcstudio.fr.
+2. Vérifier le domaine (fichier ou balise à ajouter sur le site, je m'en charge dès que tu as le code).
+3. Même logo, même description raccourcie à 2 phrases.
+4. Une fois 5 avis obtenus, ajouter le widget TrustBox sur la page d'accueil et la page Tarifs du site (je l'intègre).
+
+### Obtenir les avis (le vrai sujet)
+
+Une fiche sans avis fait moins confiance qu'aucune fiche. Objectif : 10 avis Google en 30 jours.
+
+- **Qui solliciter en premier** : les clients dont les sites sont déjà en ligne (Conciergerie Bunel, Saint-Martin Autrement, Lafonke, L'Arbradelis, Dien Chan, Soumoili Auto, plus les 8 de la galerie). Ce sont des clients satisfaits et joignables.
+- **Quand** : dans les 48 h après la mise en ligne pour les nouveaux clients, c'est le pic de satisfaction.
+- **Comment** : un message WhatsApp ou SMS personnel, jamais un mail automatique. Modèle :
+
+> Bonjour [Prénom], votre site est en ligne depuis [période] et j'espère qu'il vous amène déjà des contacts. Un petit service : un avis Google de 2 lignes nous aide énormément à convaincre les prochains clients. Ça prend 1 minute avec ce lien : [lien d'avis]. Merci beaucoup, et n'hésitez pas si vous avez besoin de quoi que ce soit sur le site.
+
+- **Répondre à chaque avis** dans les 24 h, en 2 phrases, avec le prénom et un détail du projet. Google valorise les fiches actives.
+- **Réutiliser** : chaque avis reçu devient un post « preuve » (famille 2 du plan) et une story.
+- **Sur le site** : dès 5 avis, remplacer la section témoignages par les vrais avis Google avec la note globale, et ajouter le schema.org AggregateRating (je m'en occupe).
