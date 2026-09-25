@@ -1,0 +1,250 @@
+<template>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..900&family=IBM+Plex+Mono:wght@500&family=Instrument+Serif:ital@1&display=swap"
+  />
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <style>
+    #root {
+      position: relative;
+      width: 1080px;
+      height: 1920px;
+      overflow: hidden;
+      container-type: size;
+      font-family: "Inter Tight", sans-serif;
+      color: #f9f9f7;
+    }
+    [id="03-site-vitrine-ground"] {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background: #0f172a;
+    }
+    [id="03-site-vitrine-stage"] {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    [id="03-site-vitrine-kicker"] {
+      position: absolute;
+      top: 8.5cqh;
+      left: 5.5cqw;
+      font-family: "IBM Plex Mono", monospace;
+      font-weight: 500;
+      font-size: 2.2cqw;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #c2410c;
+      white-space: nowrap;
+      will-change: transform, opacity;
+    }
+    [id="03-site-vitrine-rule"] {
+      position: absolute;
+      top: calc(8.5cqh + 4.4cqw);
+      left: 5.5cqw;
+      width: 36px;
+      height: 2px;
+      background: #c2410c;
+      transform-origin: 0% 50%;
+      will-change: transform;
+    }
+    [id="03-site-vitrine-stack"] {
+      position: absolute;
+      top: 30cqh;
+      left: 5.5cqw;
+      width: 89cqw;
+    }
+    .\30 3-site-vitrine-item {
+      display: block;
+      font-family: "Inter Tight", sans-serif;
+      font-weight: 900;
+      font-size: 11cqw;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      text-transform: lowercase;
+      color: #f9f9f7;
+      white-space: nowrap;
+      height: 11cqw;
+      margin-bottom: 2.2cqw;
+      will-change: opacity;
+    }
+    .\30 3-site-vitrine-w {
+      display: inline-block;
+      will-change: transform, opacity;
+    }
+    .\30 3-site-vitrine-w + .\30 3-site-vitrine-w {
+      margin-left: 0.24em;
+    }
+    [id="03-site-vitrine-title"] {
+      position: absolute;
+      top: 66cqh;
+      left: 5.5cqw;
+      font-family: "Inter Tight", sans-serif;
+      font-weight: 900;
+      font-size: 14cqw;
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      text-transform: lowercase;
+      color: #c2410c;
+      white-space: nowrap;
+      transform-origin: 0% 50%;
+      will-change: transform, opacity;
+    }
+    [id="03-site-vitrine-title"] .\30 3-site-vitrine-serif {
+      font-family: "Instrument Serif", serif;
+      font-style: italic;
+      font-weight: 400;
+      letter-spacing: 0;
+      margin-right: 0.14em;
+    }
+  </style>
+
+  <div id="root" data-composition-id="03-site-vitrine" data-width="1080" data-height="1920">
+    <div
+      id="03-site-vitrine-ground"
+      class="clip"
+      data-start="0"
+      data-duration="8"
+      data-track-index="0"
+    ></div>
+
+    <div
+      id="03-site-vitrine-stage"
+      class="clip"
+      data-start="0"
+      data-duration="8"
+      data-track-index="1"
+    >
+      <div id="03-site-vitrine-kicker">LE SITE QUI NE RAPPORTE PAS</div>
+      <div id="03-site-vitrine-rule"></div>
+
+      <div id="03-site-vitrine-stack">
+        <div class="03-site-vitrine-item" data-idx="0">
+          <span class="03-site-vitrine-w">parle</span
+          ><span class="03-site-vitrine-w">de</span
+          ><span class="03-site-vitrine-w">vous.</span>
+        </div>
+        <div class="03-site-vitrine-item" data-idx="1">
+          <span class="03-site-vitrine-w">dix</span
+          ><span class="03-site-vitrine-w">pages.</span>
+        </div>
+        <div class="03-site-vitrine-item" data-idx="2">
+          <span class="03-site-vitrine-w">aucun</span
+          ><span class="03-site-vitrine-w">bouton.</span>
+        </div>
+      </div>
+
+      <div id="03-site-vitrine-title">
+        <span class="03-site-vitrine-serif">zéro</span><span>appel.</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var ID = "03-site-vitrine";
+      var DURATION = 8;
+
+      window.__timelines = window.__timelines || {};
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines[ID] = tl;
+
+      var q = function (sel) {
+        return document.querySelector(sel);
+      };
+      var kicker = q('[id="' + ID + '-kicker"]');
+      var rule = q('[id="' + ID + '-rule"]');
+      var title = q('[id="' + ID + '-title"]');
+      var items = gsap.utils.toArray('[id="' + ID + '-stack"] > div');
+
+      /* ---------- Scene 1 (0.0-1.2s): kicker + rule stub ---------- */
+      tl.fromTo(
+        kicker,
+        { opacity: 0, y: 14 },
+        { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" },
+        0.1
+      );
+      tl.fromTo(
+        rule,
+        { scaleX: 0 },
+        { scaleX: 1, duration: 0.55, ease: "power3.out" },
+        0.4
+      );
+
+      /* ---------- Scene 2 (1.2-4.6s): dynamic-content-sequencing ---------- */
+      // Pre-computed once at build: each symptom earns time from its length.
+      var SEQ_START = 1.2;
+      var BASE_DURATION = 0.6;
+      var SEC_PER_CHAR = 0.04;
+      var CONTENT = [
+        { body: "parle de vous.", hold: 0 },
+        { body: "dix pages.", hold: 0 },
+        { body: "aucun bouton.", hold: 0 }
+      ];
+      var cumulative = SEQ_START;
+      var TIMELINE = CONTENT.map(function (entry) {
+        var dur = BASE_DURATION + entry.body.length * SEC_PER_CHAR + entry.hold;
+        var start = cumulative;
+        cumulative += dur;
+        return { body: entry.body, start: start, end: cumulative };
+      });
+      // starts: 1.20 / 2.36 / 3.36  -> stack complete by ~4.5s
+
+      var LADDER = [1, 0.5, 0.22];
+      var WORD_STAGGER = 0.07;
+
+      TIMELINE.forEach(function (entry, i) {
+        var item = items[i];
+        var words = gsap.utils.toArray(item.querySelectorAll("span"));
+
+        // the item itself owns the opacity ladder; words own the entrance
+        tl.set(item, { opacity: 1 }, 0);
+        words.forEach(function (w, wi) {
+          tl.fromTo(
+            w,
+            { opacity: 0, y: 44 },
+            { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
+            entry.start + wi * WORD_STAGGER
+          );
+        });
+
+        // as this word lands, the older ones step down the ladder
+        for (var j = 0; j < i; j++) {
+          var age = i - j;
+          tl.to(
+            items[j],
+            { opacity: LADDER[age], duration: 0.5, ease: "power3.out" },
+            entry.start + 0.05
+          );
+        }
+      });
+
+      /* ---------- Scene 3 (4.6-6.0s): spring-pop-entrance, smooth settle ---------- */
+      tl.fromTo(
+        title,
+        { scale: 0, opacity: 0, y: 24 },
+        { scale: 1, opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
+        4.6
+      );
+
+      /* ---------- Scene 4 (6.0-8.0s): held read, stack dims together ---------- */
+      tl.to(
+        items,
+        { opacity: 0.22, duration: 0.8, ease: "power3.out" },
+        6.0
+      );
+      // the faintest possible life on the payoff: a slow push, no loop
+      tl.to(
+        title,
+        { scale: 1.025, duration: 2.0, ease: "power1.inOut" },
+        6.0
+      );
+
+      // pin the timeline to the fixed duration
+      var pace = { t: 0 };
+      tl.to(pace, { t: DURATION, duration: DURATION, ease: "none" }, 0);
+    })();
+  </script>
+</template>

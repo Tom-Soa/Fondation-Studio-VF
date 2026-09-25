@@ -1,0 +1,138 @@
+<template>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..900&family=IBM+Plex+Mono:wght@500&family=Instrument+Serif:ital@1&display=swap"
+  />
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <style>
+    #root {
+      position: relative;
+      width: 1080px;
+      height: 1920px;
+      overflow: hidden;
+      container-type: size;
+      font-family: "Inter Tight", sans-serif;
+    }
+    [id="02-la-difference-ground"] {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background: #c2410c;
+    }
+    [id="02-la-difference-num"] {
+      position: absolute;
+      top: 5.5cqw;
+      left: 5.5cqw;
+      font-family: "IBM Plex Mono", monospace;
+      font-weight: 500;
+      font-size: 2cqw;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #0f172a;
+      opacity: 0;
+      will-change: opacity;
+    }
+    [id="02-la-difference-head"] {
+      position: absolute;
+      top: 36cqh;
+      left: 5.5cqw;
+      width: 78cqw;
+      margin: 0;
+      font-family: "Inter Tight", sans-serif;
+      font-weight: 800;
+      font-size: 11cqw;
+      line-height: 0.92;
+      letter-spacing: -0.03em;
+      text-transform: lowercase;
+      color: #0f172a;
+    }
+    [class~="02-la-difference-line"] {
+      display: block;
+      white-space: nowrap;
+    }
+    [class~="02-la-difference-w"] {
+      display: inline-block;
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+    [class~="02-la-difference-w"] + [class~="02-la-difference-w"] {
+      margin-left: 0.22em;
+    }
+    [class~="02-la-difference-serif"] {
+      font-family: "Instrument Serif", serif;
+      font-style: italic;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      font-size: 1.08em;
+      color: #0f172a;
+    }
+    [id="02-la-difference-w7"] {
+      margin-left: 0 !important;
+    }
+  </style>
+
+  <div id="root" data-composition-id="02-la-difference" data-width="1080" data-height="1920">
+    <div
+      id="02-la-difference-ground"
+      class="clip"
+      data-start="0"
+      data-duration="4"
+      data-track-index="0"
+    ></div>
+
+    <div id="02-la-difference-num">No. 01</div>
+
+    <h1 id="02-la-difference-head" data-layout-allow-overlap>
+      <span class="02-la-difference-line">
+        <span class="02-la-difference-w" id="02-la-difference-w1" data-layout-allow-overlap>la</span><span class="02-la-difference-w" id="02-la-difference-w2" data-layout-allow-overlap>différence</span>
+      </span>
+      <span class="02-la-difference-line">
+        <span class="02-la-difference-w" id="02-la-difference-w3" data-layout-allow-overlap>n'est</span><span class="02-la-difference-w" id="02-la-difference-w4" data-layout-allow-overlap>pas</span>
+      </span>
+      <span class="02-la-difference-line">
+        <span class="02-la-difference-w" id="02-la-difference-w5" data-layout-allow-overlap>la</span><span class="02-la-difference-w 02-la-difference-serif" id="02-la-difference-w6" data-layout-allow-overlap>beauté</span><span class="02-la-difference-w" id="02-la-difference-w7" data-layout-allow-overlap>.</span>
+      </span>
+    </h1>
+  </div>
+
+  <script>
+    (function () {
+      var F = 1 / 60;
+      var tl = gsap.timeline({ paused: true });
+      var q = function (id) { return document.getElementById("02-la-difference-" + id); };
+
+      // waterfall-entry at low intensity: one direction (from below), heavier words travel
+      // further and settle longer on a power3 long tail; opacity resolves fast, transform lingers.
+      function arrive(id, at, travel, settle, fade) {
+        tl.fromTo(q(id), { y: travel }, { y: 0, duration: settle, ease: "power3.out" }, at);
+        tl.fromTo(q(id), { opacity: 0 }, { opacity: 1, duration: fade, ease: "power1.out" }, at);
+      }
+
+      // Scene 1 (0.0-1.4s): catalogue numeral fades in; "la différence" slides up and crossfades in.
+      tl.fromTo(q("num"), { opacity: 0 }, { opacity: 0.4, duration: 0.6, ease: "power2.out" }, 0.05);
+      var t0 = 0.12;
+      arrive("w1", t0, 46, 0.9, 0.22);
+      var t1 = t0 + 0.16;
+      arrive("w2", t1, 70, 1.1, 0.24);
+
+      // Scene 2 (1.4-2.6s): "n'est pas la beauté." arrives beneath on its own beat, gaps tightening.
+      var t2 = 1.4;
+      arrive("w3", t2, 44, 0.8, 0.2);
+      var t3 = t2 + 0.12;
+      arrive("w4", t3, 40, 0.75, 0.18);
+      var t4 = t3 + 0.11;
+      arrive("w5", t4, 40, 0.75, 0.18);
+      var t5 = t4 + 0.1;
+      arrive("w6", t5, 72, 1.0, 0.24); // the accented serif word: heaviest travel, longest settle
+      var t6 = t5 + 0.14 - 2 * F;
+      arrive("w7", t6, 48, 0.6, 0.14);
+
+      // Scene 3 (2.6-4.0s): held read, completely still. Pad the timeline to the full 4s duration.
+      tl.set(q("ground"), { opacity: 1 }, 4.0);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["02-la-difference"] = tl;
+    })();
+  </script>
+</template>

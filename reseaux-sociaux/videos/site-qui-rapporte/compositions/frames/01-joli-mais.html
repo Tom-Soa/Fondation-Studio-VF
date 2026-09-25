@@ -1,0 +1,244 @@
+<template>
+  <div id="root" data-composition-id="01-joli-mais" data-duration="6" data-width="1080" data-height="1920">
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=Instrument+Serif:ital@1&family=Inter+Tight:wght@400..900&display=swap");
+
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        container-type: size;
+      }
+
+      /* full-bleed ground on its own clip, never on #root */
+      [id="01-joli-mais-ground"] {
+        position: absolute;
+        inset: 0;
+        background: #0f172a;
+      }
+
+      [id="01-joli-mais-stage"] {
+        position: absolute;
+        inset: 0;
+        color: #f9f9f7;
+      }
+
+      [id="01-joli-mais-kicker"] {
+        position: absolute;
+        left: 5.5cqw;
+        top: 21.5cqh;
+        font-family: "IBM Plex Mono", monospace;
+        font-weight: 500;
+        font-size: 2.1cqw;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #c2410c;
+        white-space: nowrap;
+      }
+
+      /* beat 1: the display word, centered on y = 0.42 */
+      [id="01-joli-mais-joli"] {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 42cqh;
+        margin-top: -17.6cqw;
+        text-align: center;
+        font-family: "Inter Tight", sans-serif;
+        font-weight: 900;
+        font-size: 40cqw;
+        line-height: 0.88;
+        letter-spacing: -0.04em;
+        text-transform: lowercase;
+        white-space: nowrap;
+      }
+      [id="01-joli-mais-joli"] .ch {
+        display: inline-block;
+      }
+
+      /* beat 2: the question stack, left-aligned, ~70cqw wide, around y = 0.42 */
+      [id="01-joli-mais-question"] {
+        position: absolute;
+        left: 5.5cqw;
+        width: 89cqw;
+        top: 42cqh;
+        margin-top: -13cqw;
+        font-family: "Inter Tight", sans-serif;
+        font-weight: 800;
+        font-size: 8.6cqw;
+        line-height: 1.0;
+        letter-spacing: -0.03em;
+        text-transform: lowercase;
+        opacity: 0;
+      }
+      [id="01-joli-mais-question"] .line {
+        display: block;
+        white-space: nowrap;
+      }
+      [id="01-joli-mais-question"] .w {
+        display: inline-block;
+        will-change: transform, opacity;
+      }
+      [id="01-joli-mais-question"] .w + .w {
+        margin-left: 0.22em;
+      }
+      [id="01-joli-mais-question"] .w.q {
+        margin-left: 0.12em;
+      }
+      [id="01-joli-mais-question"] .accent {
+        font-family: "Instrument Serif", serif;
+        font-style: italic;
+        font-weight: 400;
+        font-size: 1.1em;
+        letter-spacing: 0;
+        color: #c2410c;
+        text-transform: none;
+      }
+
+      /* the only punctuation: 36x2 fire-orange rule stub under the block */
+      [id="01-joli-mais-rule"] {
+        position: absolute;
+        left: 5.5cqw;
+        top: calc(42cqh + 13cqw + 3.4cqw);
+        width: 36px;
+        height: 2px;
+        background: #c2410c;
+        transform-origin: 0 50%;
+      }
+    </style>
+
+    <div id="01-joli-mais-ground" class="clip" data-start="0" data-duration="6" data-track-index="0"></div>
+
+    <div id="01-joli-mais-stage" class="clip" data-start="0" data-duration="6" data-track-index="1">
+      <div id="01-joli-mais-kicker">votre site</div>
+
+      <div id="01-joli-mais-joli"><span class="ch">j</span><span class="ch">o</span><span class="ch">l</span><span class="ch">i</span><span class="ch">.</span></div>
+
+      <div id="01-joli-mais-question">
+        <span class="line"><span class="w">mais</span><span class="w">est-ce</span><span class="w">qu'il</span></span>
+        <span class="line"><span class="w">vous</span><span class="w">rapporte</span></span>
+        <span class="line"><span class="w">des</span><span class="w accent">clients</span><span class="w q">?</span></span>
+      </div>
+
+      <div id="01-joli-mais-rule"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      (function () {
+        var ID = "01-joli-mais";
+        var DURATION = 6;
+        var SETTLE = "power3.out";
+
+        var kicker = document.getElementById(ID + "-kicker");
+        var joli = document.getElementById(ID + "-joli");
+        var question = document.getElementById(ID + "-question");
+        var rule = document.getElementById(ID + "-rule");
+        var chars = joli.querySelectorAll(".ch");
+        var lines = question.querySelectorAll(".line");
+
+        window.__timelines = window.__timelines || {};
+        var tl = gsap.timeline({ paused: true });
+        window.__timelines[ID] = tl;
+
+        /* ---------- discrete-text-sequence: the in-place hard-cut word swap ----------
+           Two whole states, swapped at a threshold with no tween between them.
+           Reverse search on a linear driver; DOM touched only on a state transition. */
+        var STATES = [
+          { t: 0.0, state: "joli" },
+          { t: 2.4, state: "question" },
+        ];
+        function stateAt(time) {
+          for (var i = STATES.length - 1; i >= 0; i--) {
+            if (time >= STATES[i].t) return STATES[i].state;
+          }
+          return STATES[0].state;
+        }
+        var driver = { t: 0 };
+        var lastState = "";
+        function applyState(state) {
+          if (state === lastState) return;
+          lastState = state;
+          joli.style.opacity = state === "joli" ? "1" : "0";
+          question.style.opacity = state === "question" ? "1" : "0";
+        }
+        applyState(stateAt(0));
+        tl.to(
+          driver,
+          {
+            t: DURATION,
+            duration: DURATION,
+            ease: "none",
+            onUpdate: function () {
+              applyState(stateAt(driver.t));
+            },
+          },
+          0
+        );
+
+        /* ---------- Scene 1 (0.0-1.6s): kicker fades in, "joli." lands ---------- */
+        tl.fromTo(
+          kicker,
+          { opacity: 0, y: 14 },
+          { opacity: 1, y: 0, duration: 0.7, ease: SETTLE },
+          0.05
+        );
+
+        // per-token staggered reveal on a long-tail settle (dynamic-content-sequencing pacing:
+        // token windows pre-computed once, never inside onUpdate)
+        var JOLI_START = 0.22;
+        var JOLI_GAP = 0.07;
+        for (var c = 0; c < chars.length; c++) {
+          tl.fromTo(
+            chars[c],
+            { opacity: 0, y: 48, scale: 0.94 },
+            { opacity: 1, y: 0, scale: 1, duration: 1.1, ease: SETTLE },
+            JOLI_START + c * JOLI_GAP
+          );
+        }
+
+        /* ---------- Scene 2 (1.6-2.4s): held pride, nothing moves ---------- */
+
+        /* ---------- Scene 3 (2.4-4.6s): the question stack arrives line by line ----------
+           Each line on its own beat; each word cascades in on a waterfall stagger with
+           shrinking gaps (0.05s x 0.84 per word), mirrored back half only: fromTo x +130 -> 0. */
+        var LINE_BEATS = [2.4, 3.05, 3.7];
+        var WORD_GAP0 = 0.05;
+        var WORD_DECAY = 0.84;
+        for (var l = 0; l < lines.length; l++) {
+          var words = lines[l].querySelectorAll(".w");
+          var at = LINE_BEATS[l];
+          var gap = WORD_GAP0;
+          for (var w = 0; w < words.length; w++) {
+            var isAccent = words[w].classList.contains("accent");
+            var isQ = words[w].classList.contains("q");
+            // the accented word is the last to land, with a longer settle
+            var start = at;
+            if (isAccent) start = at + 0.32;
+            if (isQ) start = at + 0.62;
+            tl.fromTo(
+              words[w],
+              { opacity: 0.0, x: 130 },
+              { opacity: 1, x: 0, duration: isAccent ? 1.0 : 0.7, ease: SETTLE },
+              start
+            );
+            at += gap;
+            gap *= WORD_DECAY;
+          }
+        }
+
+        /* ---------- Scene 4 (4.6-6.0s): held read; the rule stub scales in from the left ---------- */
+        tl.fromTo(
+          rule,
+          { scaleX: 0 },
+          { scaleX: 1, duration: 0.7, ease: SETTLE },
+          4.65
+        );
+
+        // quiet tail so the timeline spans the full 6s window
+        tl.to({}, { duration: 0.01 }, DURATION - 0.01);
+      })();
+    </script>
+  </div>
+</template>
