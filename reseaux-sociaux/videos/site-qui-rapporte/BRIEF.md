@@ -7,7 +7,7 @@ destination: instagram-reels
 aspect: 1080x1920
 language: fr
 audience: dirigeants de PME et artisans qui ont déjà un site ou vont en commander un
-length: 45s
+length: 66s
 angle: concept
 music: none
 ---

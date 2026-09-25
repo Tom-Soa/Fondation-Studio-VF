@@ -22,17 +22,17 @@
 - beat: recognition + tension
 - blueprint: kinetic-type-beats (Adapt)
 - focal: the question line "mais est-ce qu'il vous rapporte des clients ?"
-- roles: kicker "votre site" = supporting mono chrome above · "joli." = foreground display word (beat 1) · question line = foreground h1 (beat 2) · "clients" = the one accented word (Instrument Serif italic, fire-orange) · ground = dark register background
+- roles: kicker "votre site" = supporting mono chrome · "joli." = foreground display word (beat 1) · question line = foreground h1 (beat 2) · "clients" = the accented serif italic word, fire-orange · ground = dark register
 - sfx:
 
-narrativeRole: Opens the gap between what the viewer is proud of (a nice-looking site) and what they actually need (clients), so the rest of the video has a reason to exist.
+narrativeRole: Opens the gap between what the viewer is proud of and what they actually need.
 keyMessage: A pretty site and a site that brings clients are two different things.
 
-Adapt: keep the in-place hard-cut word swap signature; the payoff is not a logo but the accented word "clients".
-Scene 1 (0.0–1.6s): dark ground; mono kicker "VOTRE SITE" fades in top-left of the safe area, then the display word "joli." lands centered at y≈0.42 via per-word staggered reveal (`dynamic-content-sequencing`) on a long-tail settle. Nothing else on screen.
-Scene 2 (1.6–2.4s): hold "joli." still (a beat of held pride).
-Scene 3 (2.4–4.6s): hard-cut word swap (`discrete-text-sequence`): "joli." is replaced in place by the h1 stack "mais est-ce qu'il / vous rapporte / des clients ?", each of the three lines arriving on its own beat (per-word staggered reveal), left-aligned, ~70cqw wide, three lines stacked around y≈0.42. The word "clients" is set in the serif italic accent and arrives last.
-Scene 4 (4.6–6.0s): held read; a 36×2 fire-orange rule stub scales in from the left (transform only) under the block as the only punctuation; subtle jitter at most.
+Adapt: keep the in-place hard-cut word swap signature; payoff is the accented word "clients".
+Scene 1 (0.0–1.6s): dark ground; mono kicker "VOTRE SITE" fades in top-left, then "joli." lands centered at y≈0.42 via per-word staggered reveal (`dynamic-content-sequencing`), long-tail settle. Nothing else.
+Scene 2 (1.6–2.4s): hold "joli." still.
+Scene 3 (2.4–4.6s): hard-cut word swap (`discrete-text-sequence`): "joli." is replaced in place by the h1 stack "mais est-ce qu'il / vous rapporte / des clients ?", each line arriving on its own beat, left-aligned, ~70cqw, around y≈0.42. "clients" is serif italic and arrives last.
+Scene 4 (4.6–6.0s): held read; a 36×2 fire-orange rule stub scales in from the left under the block; subtle jitter at most.
 
 ## Selected blueprint: kinetic-type-beats
 

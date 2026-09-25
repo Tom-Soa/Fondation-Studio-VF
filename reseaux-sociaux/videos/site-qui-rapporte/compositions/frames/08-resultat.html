@@ -1,5 +1,5 @@
 <template>
-  <div id="root" data-composition-id="06-resultat" data-width="1080" data-height="1920">
+  <div id="root" data-composition-id="08-resultat" data-width="1080" data-height="1920">
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..900&family=IBM+Plex+Mono:wght@500&family=Instrument+Serif:ital@1&display=swap');
 
@@ -17,12 +17,12 @@
         width: 100%;
         height: 100%;
       }
-      [id="06-resultat-ground"] {
+      [id="08-resultat-ground"] {
         background: #c2410c;
         container-type: size;
         overflow: hidden;
       }
-      [id="06-resultat-kicker"] {
+      [id="08-resultat-kicker"] {
         position: absolute;
         top: 5.5cqw;
         left: 5.5cqw;
@@ -34,7 +34,7 @@
         color: rgba(17, 17, 17, 0.55);
         line-height: 1;
       }
-      [id="06-resultat-stack"] {
+      [id="08-resultat-stack"] {
         position: absolute;
         top: 32cqh;
         left: 5.5cqw;
@@ -43,7 +43,7 @@
         flex-direction: column;
         gap: 2.6cqw;
       }
-      [id="06-resultat-stack"] .line {
+      [id="08-resultat-stack"] .line {
         font-family: "Inter Tight", sans-serif;
         font-weight: 900;
         font-size: 11cqw;
@@ -54,7 +54,7 @@
         white-space: nowrap;
         will-change: transform, opacity, filter;
       }
-      [id="06-resultat-stack"] .serif {
+      [id="08-resultat-stack"] .serif {
         font-family: "Instrument Serif", serif;
         font-style: italic;
         font-weight: 400;
@@ -62,7 +62,7 @@
         letter-spacing: -0.01em;
         text-transform: lowercase;
       }
-      [id="06-resultat-rule"] {
+      [id="08-resultat-rule"] {
         position: absolute;
         left: 5.5cqw;
         top: calc(32cqh + 36cqw + 8cqw);
@@ -73,14 +73,14 @@
       }
     </style>
 
-    <div id="06-resultat-ground" class="clip" data-start="0" data-duration="5" data-track-index="0">
-      <div id="06-resultat-kicker">Résultat</div>
-      <div id="06-resultat-stack">
-        <div class="line" id="06-resultat-l1">des appels.</div>
-        <div class="line" id="06-resultat-l2">des devis.</div>
-        <div class="line" id="06-resultat-l3">des <span class="serif">clients</span>.</div>
+    <div id="08-resultat-ground" class="clip" data-start="0" data-duration="5" data-track-index="0">
+      <div id="08-resultat-kicker">Résultat</div>
+      <div id="08-resultat-stack">
+        <div class="line" id="08-resultat-l1">des appels.</div>
+        <div class="line" id="08-resultat-l2">des devis.</div>
+        <div class="line" id="08-resultat-l3">des <span class="serif">clients</span>.</div>
       </div>
-      <div id="06-resultat-rule"></div>
+      <div id="08-resultat-rule"></div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -92,13 +92,13 @@
 
         window.__timelines = window.__timelines || {};
         var tl = gsap.timeline({ paused: true });
-        window.__timelines["06-resultat"] = tl;
+        window.__timelines["08-resultat"] = tl;
 
-        var k = document.getElementById("06-resultat-kicker");
-        var l1 = document.getElementById("06-resultat-l1");
-        var l2 = document.getElementById("06-resultat-l2");
-        var l3 = document.getElementById("06-resultat-l3");
-        var rule = document.getElementById("06-resultat-rule");
+        var k = document.getElementById("08-resultat-kicker");
+        var l1 = document.getElementById("08-resultat-l1");
+        var l2 = document.getElementById("08-resultat-l2");
+        var l3 = document.getElementById("08-resultat-l3");
+        var rule = document.getElementById("08-resultat-rule");
 
         // Scene 1: kicker fades in top-left.
         tl.fromTo(k, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 0);

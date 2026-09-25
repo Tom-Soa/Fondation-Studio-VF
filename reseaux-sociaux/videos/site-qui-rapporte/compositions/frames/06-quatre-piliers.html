@@ -1,0 +1,429 @@
+<template>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..900&family=IBM+Plex+Mono:wght@500&family=Instrument+Serif:ital@1&display=swap">
+  <style>
+    #root {
+      position: relative;
+      width: 1080px;
+      height: 1920px;
+      overflow: hidden;
+      container-type: size;
+      font-family: "Inter Tight", sans-serif;
+      color: #f9f9f7;
+    }
+    #root .clip {
+      position: absolute;
+      inset: 0;
+    }
+    #f06-quatre-piliers-ground {
+      background: #0f172a;
+    }
+
+    #f06-quatre-piliers-kicker {
+      position: absolute;
+      left: 5.5cqw;
+      top: 5.5cqw;
+      font-family: "IBM Plex Mono", monospace;
+      font-weight: 500;
+      font-size: 2.2cqw;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #c2410c;
+      white-space: nowrap;
+    }
+    #f06-quatre-piliers-rule {
+      position: absolute;
+      left: 5.5cqw;
+      top: 11cqw;
+      width: 36px;
+      height: 2px;
+      background: #c2410c;
+      transform-origin: left center;
+    }
+
+    #f06-quatre-piliers-stack {
+      position: absolute;
+      left: 5.5cqw;
+      top: 18cqh;
+      width: 78cqw;
+      display: flex;
+      flex-direction: column;
+      gap: 6.8cqw;
+    }
+
+    .f06-quatre-piliers-card {
+      position: relative;
+      padding-top: 2.2cqw;
+      will-change: opacity;
+    }
+    .f06-quatre-piliers-hair {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 1px;
+      background: #282726;
+      transform-origin: left center;
+    }
+    .f06-quatre-piliers-num {
+      font-family: "IBM Plex Mono", monospace;
+      font-weight: 500;
+      font-size: 1.9cqw;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #64748b;
+      display: block;
+      margin-bottom: 0.8cqw;
+      will-change: transform, opacity;
+    }
+    .f06-quatre-piliers-row {
+      display: flex;
+      align-items: center;
+      gap: 3cqw;
+    }
+    .f06-quatre-piliers-head {
+      font-family: "Inter Tight", sans-serif;
+      font-weight: 900;
+      font-size: 10.5cqw;
+      line-height: 1.0;
+      letter-spacing: -0.04em;
+      text-transform: lowercase;
+      color: #f9f9f7;
+      white-space: nowrap;
+      will-change: transform, opacity;
+    }
+    .f06-quatre-piliers-head.f06-quatre-piliers-accent {
+      color: #c2410c;
+    }
+    .f06-quatre-piliers-lead {
+      font-family: "Inter Tight", sans-serif;
+      font-weight: 400;
+      font-size: 2.9cqw;
+      line-height: 1.4;
+      color: #64748b;
+      margin-top: 0.7cqw;
+      will-change: opacity, transform;
+    }
+
+    .f06-quatre-piliers-icon {
+      width: 11cqw;
+      height: 11cqw;
+      flex: 0 0 auto;
+      position: relative;
+    }
+    .f06-quatre-piliers-icon svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+    .f06-quatre-piliers-icon svg .f06-quatre-piliers-stroke {
+      fill: none;
+      stroke: #c2410c;
+      stroke-width: 2;
+      stroke-linecap: square;
+      stroke-linejoin: miter;
+    }
+
+    /* icon 1 : bolt: outline draws, hard cut to filled */
+    #f06-quatre-piliers-bolt-fill {
+      fill: #c2410c;
+      stroke: none;
+      opacity: 0;
+    }
+
+    /* icon 2 : clarity as subtraction: three ragged lines to one */
+    .f06-quatre-piliers-clarity-line {
+      stroke: #c2410c;
+      stroke-width: 2;
+      transform-origin: left center;
+    }
+
+    /* icon 3 : five stars, clip-path fill sweep */
+    #f06-quatre-piliers-stars-wrap {
+      position: absolute;
+      inset: 0;
+    }
+    #f06-quatre-piliers-stars-base svg,
+    #f06-quatre-piliers-stars-fill svg {
+      position: absolute;
+      inset: 0;
+    }
+    #f06-quatre-piliers-stars-base,
+    #f06-quatre-piliers-stars-fill {
+      position: absolute;
+      inset: 0;
+    }
+    #f06-quatre-piliers-stars-fill {
+      clip-path: inset(0 100% 0 0);
+    }
+    #f06-quatre-piliers-stars-fill svg path {
+      fill: #c2410c;
+      stroke: none;
+    }
+
+    /* icon 4 : button + cursor + click ring */
+    #f06-quatre-piliers-btn {
+      position: absolute;
+      left: 6%;
+      top: 32%;
+      width: 66%;
+      height: 32%;
+      background: #c2410c;
+      transform-origin: 50% 50%;
+      will-change: transform;
+    }
+    #f06-quatre-piliers-ring {
+      position: absolute;
+      left: 30%;
+      top: 40%;
+      width: 18%;
+      height: 18%;
+      border: 2px solid #c2410c;
+      border-radius: 50%;
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+    #f06-quatre-piliers-cursor {
+      position: absolute;
+      left: 30%;
+      top: 42%;
+      width: 26%;
+      height: 26%;
+      will-change: transform, opacity;
+    }
+    #f06-quatre-piliers-cursor svg path {
+      fill: #f9f9f7;
+      stroke: #0f172a;
+      stroke-width: 6;
+      stroke-linejoin: round;
+    }
+  </style>
+
+  <div id="root" data-composition-id="06-quatre-piliers" data-width="1080" data-height="1920">
+    <div id="f06-quatre-piliers-ground" class="clip" data-start="0" data-duration="13" data-track-index="0"></div>
+
+    <div id="f06-quatre-piliers-content" class="clip" data-start="0" data-duration="13" data-track-index="1">
+      <div id="f06-quatre-piliers-kicker">LE SITE QUI RAPPORTE</div>
+      <div id="f06-quatre-piliers-rule"></div>
+
+      <div id="f06-quatre-piliers-stack">
+
+        <!-- 01 rapide -->
+        <div class="f06-quatre-piliers-card" id="f06-quatre-piliers-c1">
+          <div class="f06-quatre-piliers-hair"></div>
+          <span class="f06-quatre-piliers-num">01</span>
+          <div class="f06-quatre-piliers-row">
+            <div class="f06-quatre-piliers-head">rapide.</div>
+            <div class="f06-quatre-piliers-icon" id="f06-quatre-piliers-icon1">
+              <svg viewBox="0 0 100 100">
+                <path id="f06-quatre-piliers-bolt-fill" d="M56 6 24 56 46 56 40 94 76 42 52 42 Z"></path>
+                <path id="f06-quatre-piliers-bolt-line" class="f06-quatre-piliers-stroke" d="M56 6 24 56 46 56 40 94 76 42 52 42 Z"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="f06-quatre-piliers-lead">s'ouvre en un instant sur téléphone.</div>
+        </div>
+
+        <!-- 02 clair -->
+        <div class="f06-quatre-piliers-card" id="f06-quatre-piliers-c2">
+          <div class="f06-quatre-piliers-hair"></div>
+          <span class="f06-quatre-piliers-num">02</span>
+          <div class="f06-quatre-piliers-row">
+            <div class="f06-quatre-piliers-head">clair.</div>
+            <div class="f06-quatre-piliers-icon" id="f06-quatre-piliers-icon2">
+              <svg viewBox="0 0 100 100">
+                <line class="f06-quatre-piliers-clarity-line" id="f06-quatre-piliers-cl1" x1="6" y1="28" x2="72" y2="28"></line>
+                <line class="f06-quatre-piliers-clarity-line" id="f06-quatre-piliers-cl2" x1="6" y1="50" x2="44" y2="50"></line>
+                <line class="f06-quatre-piliers-clarity-line" id="f06-quatre-piliers-cl3" x1="6" y1="72" x2="88" y2="72"></line>
+              </svg>
+            </div>
+          </div>
+          <div class="f06-quatre-piliers-lead">en une phrase, on sait ce que vous faites.</div>
+        </div>
+
+        <!-- 03 preuve -->
+        <div class="f06-quatre-piliers-card" id="f06-quatre-piliers-c3">
+          <div class="f06-quatre-piliers-hair"></div>
+          <span class="f06-quatre-piliers-num">03</span>
+          <div class="f06-quatre-piliers-row">
+            <div class="f06-quatre-piliers-head">preuve.</div>
+            <div class="f06-quatre-piliers-icon" id="f06-quatre-piliers-icon3">
+              <div id="f06-quatre-piliers-stars-wrap">
+                <div id="f06-quatre-piliers-stars-base" data-layout-allow-overlap>
+                  <svg viewBox="0 0 100 24">
+                    <path class="f06-quatre-piliers-stroke f06-quatre-piliers-star" d="M10 3 12.4 9.4 19 9.4 13.6 13.4 15.7 20 10 16 4.3 20 6.4 13.4 1 9.4 7.6 9.4 Z"></path>
+                    <path class="f06-quatre-piliers-stroke f06-quatre-piliers-star" d="M30 3 32.4 9.4 39 9.4 33.6 13.4 35.7 20 30 16 24.3 20 26.4 13.4 21 9.4 27.6 9.4 Z"></path>
+                    <path class="f06-quatre-piliers-stroke f06-quatre-piliers-star" d="M50 3 52.4 9.4 59 9.4 53.6 13.4 55.7 20 50 16 44.3 20 46.4 13.4 41 9.4 47.6 9.4 Z"></path>
+                    <path class="f06-quatre-piliers-stroke f06-quatre-piliers-star" d="M70 3 72.4 9.4 79 9.4 73.6 13.4 75.7 20 70 16 64.3 20 66.4 13.4 61 9.4 67.6 9.4 Z"></path>
+                    <path class="f06-quatre-piliers-stroke f06-quatre-piliers-star" d="M90 3 92.4 9.4 99 9.4 93.6 13.4 95.7 20 90 16 84.3 20 86.4 13.4 81 9.4 87.6 9.4 Z"></path>
+                  </svg>
+                </div>
+                <div id="f06-quatre-piliers-stars-fill" data-layout-allow-overlap>
+                  <svg viewBox="0 0 100 24">
+                    <path d="M10 3 12.4 9.4 19 9.4 13.6 13.4 15.7 20 10 16 4.3 20 6.4 13.4 1 9.4 7.6 9.4 Z"></path>
+                    <path d="M30 3 32.4 9.4 39 9.4 33.6 13.4 35.7 20 30 16 24.3 20 26.4 13.4 21 9.4 27.6 9.4 Z"></path>
+                    <path d="M50 3 52.4 9.4 59 9.4 53.6 13.4 55.7 20 50 16 44.3 20 46.4 13.4 41 9.4 47.6 9.4 Z"></path>
+                    <path d="M70 3 72.4 9.4 79 9.4 73.6 13.4 75.7 20 70 16 64.3 20 66.4 13.4 61 9.4 67.6 9.4 Z"></path>
+                    <path d="M90 3 92.4 9.4 99 9.4 93.6 13.4 95.7 20 90 16 84.3 20 86.4 13.4 81 9.4 87.6 9.4 Z"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="f06-quatre-piliers-lead">avis et réalisations visibles tout de suite.</div>
+        </div>
+
+        <!-- 04 action -->
+        <div class="f06-quatre-piliers-card" id="f06-quatre-piliers-c4">
+          <div class="f06-quatre-piliers-hair"></div>
+          <span class="f06-quatre-piliers-num">04</span>
+          <div class="f06-quatre-piliers-row">
+            <div class="f06-quatre-piliers-head f06-quatre-piliers-accent">action.</div>
+            <div class="f06-quatre-piliers-icon" id="f06-quatre-piliers-icon4">
+              <div id="f06-quatre-piliers-btn" data-layout-allow-overlap></div>
+              <div id="f06-quatre-piliers-ring" data-layout-allow-overlap></div>
+              <div id="f06-quatre-piliers-cursor" data-layout-allow-overlap>
+                <svg viewBox="0 0 100 100">
+                  <path d="M20 8 20 76 38 60 50 88 64 82 52 54 76 52 Z"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="f06-quatre-piliers-lead">un seul bouton : appeler ou demander un devis.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    (function () {
+      var root = document.getElementById("root");
+      var q = function (sel) { return root.querySelectorAll(sel); };
+      var one = function (sel) { return root.querySelector(sel); };
+      var tl = gsap.timeline({ paused: true });
+
+      // --- prepare measured path draws (bolt outline + star outlines) -------
+      var bolt = one("#f06-quatre-piliers-bolt-line");
+      var boltLen = 300;
+      try { boltLen = bolt.getTotalLength() || 300; } catch (e) { boltLen = 300; }
+      bolt.style.strokeDasharray = boltLen;
+      bolt.style.strokeDashoffset = boltLen;
+
+      var starPaths = q("#f06-quatre-piliers-stars-base path");
+      var starLens = [];
+      for (var i = 0; i < starPaths.length; i++) {
+        var L = 70;
+        try { L = starPaths[i].getTotalLength() || 70; } catch (e2) { L = 70; }
+        starLens.push(L);
+        starPaths[i].style.strokeDasharray = L;
+        starPaths[i].style.strokeDashoffset = L;
+      }
+
+      // Card entry: hairline scaleX from left, numeral+headword whip up,
+      // lead fades 0.4s later, icon performs 0.2s after that.
+      function landCard(id, t) {
+        tl.fromTo("#" + id, { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, t);
+        tl.fromTo("#" + id + " .f06-quatre-piliers-hair",
+          { scaleX: 0 },
+          { scaleX: 1, duration: 0.55, ease: "power3.out" }, t);
+        tl.fromTo("#" + id + " .f06-quatre-piliers-num",
+          { opacity: 0, y: 26 },
+          { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, t + 0.06);
+        tl.fromTo("#" + id + " .f06-quatre-piliers-head",
+          { opacity: 0, y: 64, filter: "blur(10px)" },
+          { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.75, ease: "power3.out" }, t + 0.12);
+        tl.fromTo("#" + id + " .f06-quatre-piliers-lead",
+          { opacity: 0, y: 18 },
+          { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, t + 0.52);
+        tl.fromTo("#" + id + " .f06-quatre-piliers-icon",
+          { opacity: 0 },
+          { opacity: 1, duration: 0.3, ease: "power2.out" }, t + 0.12);
+      }
+
+      // Earlier cards dim to 0.5 as the next one lands.
+      function dim(id, t) {
+        tl.to("#" + id, { opacity: 0.5, duration: 0.5, ease: "power3.out" }, t);
+      }
+
+      // ---- Scene 1 (0.0-1.0s): kicker + rule stub on the empty dark stage ----
+      tl.fromTo("#f06-quatre-piliers-kicker",
+        { opacity: 0, y: -16 },
+        { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0);
+      tl.fromTo("#f06-quatre-piliers-rule",
+        { scaleX: 0 },
+        { scaleX: 1, duration: 0.55, ease: "power3.out" }, 0.18);
+
+      // ---- Scene 2 (1.0-3.8s): card 01 "rapide." + lightning bolt ----------
+      landCard("f06-quatre-piliers-c1", 1.0);
+      // bolt outline draws itself in one continuous stroke (0.5s)
+      tl.to(bolt, { strokeDashoffset: 0, duration: 0.5, ease: "power2.inOut" }, 1.9);
+      // hard cut to a filled fire-orange bolt, then settle
+      tl.set("#f06-quatre-piliers-bolt-fill", { opacity: 1 }, 2.42);
+      tl.set(bolt, { opacity: 0 }, 2.42);
+      tl.fromTo("#f06-quatre-piliers-icon1",
+        { scale: 1.1 },
+        { scale: 1, duration: 0.55, ease: "power3.out" }, 2.42);
+
+      // ---- Scene 3 (3.8-6.6s): card 02 "clair." + three lines snap to one ---
+      dim("f06-quatre-piliers-c1", 3.8);
+      landCard("f06-quatre-piliers-c2", 3.8);
+      // three ragged lines of different lengths, present from the card's arrival
+      tl.fromTo(["#f06-quatre-piliers-cl1", "#f06-quatre-piliers-cl2", "#f06-quatre-piliers-cl3"],
+        { scaleX: 0, opacity: 0 },
+        { scaleX: 1, opacity: 1, duration: 0.45, ease: "power3.out", stagger: 0.09 }, 3.95);
+      // on their beat: the middle line snaps to ONE clean full-width line,
+      // the two others fade out (clarity as subtraction)
+      tl.to("#f06-quatre-piliers-cl2",
+        { scaleX: 82 / 38, duration: 0.7, ease: "power3.out" }, 4.75);
+      tl.to(["#f06-quatre-piliers-cl1", "#f06-quatre-piliers-cl3"],
+        { opacity: 0, duration: 0.45, ease: "power2.out" }, 4.75);
+
+      // ---- Scene 4 (6.6-9.4s): card 03 "preuve." + star row wipe -----------
+      dim("f06-quatre-piliers-c2", 6.6);
+      landCard("f06-quatre-piliers-c3", 6.6);
+      // star outlines draw first
+      for (var s = 0; s < starPaths.length; s++) {
+        tl.to(starPaths[s], { strokeDashoffset: 0, duration: 0.45, ease: "power2.out" }, 6.8 + s * 0.09);
+      }
+      // then a single fire-orange fill sweeps left to right across all five (clip-path, never width)
+      tl.fromTo("#f06-quatre-piliers-stars-fill",
+        { clipPath: "inset(0 100% 0 0)" },
+        { clipPath: "inset(0 0% 0 0)", duration: 1.0, ease: "power2.out" }, 7.5);
+
+      // ---- Scene 5 (9.4-11.8s): card 04 "action." + cursor press -----------
+      dim("f06-quatre-piliers-c3", 9.4);
+      landCard("f06-quatre-piliers-c4", 9.4);
+      // button settles in
+      tl.fromTo("#f06-quatre-piliers-btn",
+        { scale: 0.9 },
+        { scale: 1, duration: 0.45, ease: "power3.out" }, 9.55);
+      // cursor travels in from the lower right
+      tl.fromTo("#f06-quatre-piliers-cursor",
+        { opacity: 0, x: 90, y: 90 },
+        { opacity: 1, x: 0, y: 0, duration: 0.8, ease: "power3.out" }, 9.9);
+      // press: linear compression
+      tl.to("#f06-quatre-piliers-btn",
+        { scale: 0.92, duration: 0.14, ease: "power1.in" }, 10.7);
+      // release: spring back (adjacent position = state continuity, no overshoot beyond a firm settle)
+      tl.to("#f06-quatre-piliers-btn",
+        { scale: 1, duration: 0.55, ease: "power3.out" }, 10.84);
+      // one ring pulses outward from the click point and fades
+      tl.fromTo("#f06-quatre-piliers-ring",
+        { scale: 0.3, opacity: 0.9 },
+        { scale: 3.4, opacity: 0, duration: 0.85, ease: "power2.out" }, 10.84);
+      // cursor lifts a hair on release
+      tl.to("#f06-quatre-piliers-cursor",
+        { x: 6, y: 6, duration: 0.5, ease: "power3.out" }, 10.84);
+
+      // ---- Scene 6 (11.8-13.0s): all four cards return to full opacity ------
+      tl.to(["#f06-quatre-piliers-c1", "#f06-quatre-piliers-c2", "#f06-quatre-piliers-c3", "#f06-quatre-piliers-c4"],
+        { opacity: 1, duration: 0.7, ease: "power3.out" }, 11.8);
+      tl.to({}, { duration: 0.01 }, 12.99);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["06-quatre-piliers"] = tl;
+    })();
+  </script>
+</template>

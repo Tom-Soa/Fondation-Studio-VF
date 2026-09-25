@@ -14,10 +14,10 @@
       position: absolute;
       inset: 0;
     }
-    #f04-faire-agir-ground {
+    #f05-faire-agir-ground {
       background: #c2410c;
     }
-    #f04-faire-agir-num {
+    #f05-faire-agir-num {
       position: absolute;
       left: 5.5cqw;
       top: 5.5cqw;
@@ -28,7 +28,7 @@
       text-transform: uppercase;
       color: rgba(17, 17, 17, 0.55);
     }
-    #f04-faire-agir-rule {
+    #f05-faire-agir-rule {
       position: absolute;
       left: 5.5cqw;
       top: 32cqh;
@@ -37,7 +37,7 @@
       background: #0f172a;
       transform-origin: left center;
     }
-    #f04-faire-agir-stack {
+    #f05-faire-agir-stack {
       position: absolute;
       left: 5.5cqw;
       top: 36cqh;
@@ -46,7 +46,7 @@
       flex-direction: column;
       gap: 1.2cqw;
     }
-    .f04-faire-agir-line {
+    .f05-faire-agir-line {
       font-family: "Inter Tight", sans-serif;
       font-weight: 800;
       font-size: 7.8cqw;
@@ -58,11 +58,11 @@
       display: flex;
       gap: 0.22em;
     }
-    .f04-faire-agir-w {
+    .f05-faire-agir-w {
       display: inline-block;
       will-change: transform, opacity, filter;
     }
-    .f04-faire-agir-agir {
+    .f05-faire-agir-agir {
       font-family: "Instrument Serif", serif;
       font-style: italic;
       font-weight: 400;
@@ -72,28 +72,28 @@
     }
   </style>
 
-  <div id="root" data-composition-id="04-faire-agir" data-width="1080" data-height="1920">
-    <div id="f04-faire-agir-ground" class="clip" data-start="0" data-duration="5" data-track-index="0"></div>
+  <div id="root" data-composition-id="05-faire-agir" data-width="1080" data-height="1920">
+    <div id="f05-faire-agir-ground" class="clip" data-start="0" data-duration="5" data-track-index="0"></div>
 
-    <div id="f04-faire-agir-content" class="clip" data-start="0" data-duration="5" data-track-index="1">
-      <div id="f04-faire-agir-num">No. 02</div>
-      <div id="f04-faire-agir-rule"></div>
+    <div id="f05-faire-agir-content" class="clip" data-start="0" data-duration="5" data-track-index="1">
+      <div id="f05-faire-agir-num">No. 02</div>
+      <div id="f05-faire-agir-rule"></div>
 
-      <div id="f04-faire-agir-stack">
-        <div class="f04-faire-agir-line" id="f04-faire-agir-l1">
-          <span class="f04-faire-agir-w">un</span>
-          <span class="f04-faire-agir-w">site</span>
-          <span class="f04-faire-agir-w">qui</span>
-          <span class="f04-faire-agir-w">rapporte</span>
+      <div id="f05-faire-agir-stack">
+        <div class="f05-faire-agir-line" id="f05-faire-agir-l1">
+          <span class="f05-faire-agir-w">un</span>
+          <span class="f05-faire-agir-w">site</span>
+          <span class="f05-faire-agir-w">qui</span>
+          <span class="f05-faire-agir-w">rapporte</span>
         </div>
-        <div class="f04-faire-agir-line" id="f04-faire-agir-l2">
-          <span class="f04-faire-agir-w">est</span>
-          <span class="f04-faire-agir-w">construit</span>
+        <div class="f05-faire-agir-line" id="f05-faire-agir-l2">
+          <span class="f05-faire-agir-w">est</span>
+          <span class="f05-faire-agir-w">construit</span>
         </div>
-        <div class="f04-faire-agir-line" id="f04-faire-agir-l3">
-          <span class="f04-faire-agir-w">pour</span>
-          <span class="f04-faire-agir-w">faire</span>
-          <span class="f04-faire-agir-w f04-faire-agir-agir" id="f04-faire-agir-agir-word">agir.</span>
+        <div class="f05-faire-agir-line" id="f05-faire-agir-l3">
+          <span class="f05-faire-agir-w">pour</span>
+          <span class="f05-faire-agir-w">faire</span>
+          <span class="f05-faire-agir-w f05-faire-agir-agir" id="f05-faire-agir-agir-word">agir.</span>
         </div>
       </div>
     </div>
@@ -107,26 +107,26 @@
       var tl = gsap.timeline({ paused: true });
 
       // Scene 1 (0.0-1.2s): numeral + rule stub, then line 1 per-word stagger (rise + blur settle)
-      tl.fromTo("#f04-faire-agir-num",
+      tl.fromTo("#f05-faire-agir-num",
         { opacity: 0, y: -14 },
         { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0);
-      tl.fromTo("#f04-faire-agir-rule",
+      tl.fromTo("#f05-faire-agir-rule",
         { scaleX: 0 },
         { scaleX: 1, duration: 0.5, ease: "power3.out" }, 0.1);
-      tl.fromTo(q("#f04-faire-agir-l1 .f04-faire-agir-w"),
+      tl.fromTo(q("#f05-faire-agir-l1 .f05-faire-agir-w"),
         { opacity: 0, y: 48, filter: "blur(10px)" },
         { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.7, ease: "power3.out", stagger: 0.12 }, 0.2);
 
       // Scene 2 (1.2-2.2s): line 2 lands from the left, distinct axis
-      tl.fromTo(q("#f04-faire-agir-l2 .f04-faire-agir-w"),
+      tl.fromTo(q("#f05-faire-agir-l2 .f05-faire-agir-w"),
         { opacity: 0, x: -70 },
         { opacity: 1, x: 0, duration: 0.7, ease: "power3.out", stagger: 0.1 }, 1.2);
 
       // Scene 3 (2.2-3.4s): "pour faire" rises, "agir." is the last word to arrive, serif italic settle from scale
-      tl.fromTo(q("#f04-faire-agir-l3 .f04-faire-agir-w:not(#f04-faire-agir-agir-word)"),
+      tl.fromTo(q("#f05-faire-agir-l3 .f05-faire-agir-w:not(#f05-faire-agir-agir-word)"),
         { opacity: 0, y: 40 },
         { opacity: 1, y: 0, duration: 0.6, ease: "power3.out", stagger: 0.1 }, 2.2);
-      tl.fromTo("#f04-faire-agir-agir-word",
+      tl.fromTo("#f05-faire-agir-agir-word",
         { opacity: 0, scale: 1.18, y: 10, filter: "blur(8px)" },
         { opacity: 1, scale: 1, y: 0, filter: "blur(0px)", duration: 0.8, ease: "power3.out" }, 2.6);
 
@@ -134,7 +134,7 @@
       tl.to({}, { duration: 0.01 }, 4.99);
 
       window.__timelines = window.__timelines || {};
-      window.__timelines["04-faire-agir"] = tl;
+      window.__timelines["05-faire-agir"] = tl;
     })();
   </script>
 </template>

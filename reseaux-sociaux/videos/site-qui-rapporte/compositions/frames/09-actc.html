@@ -14,14 +14,14 @@
     }
 
     /* full-bleed ground: dark register, on its own clip layer */
-    [id="07-actc-ground"] {
+    [id="09-actc-ground"] {
       position: absolute;
       inset: 0;
       background: #0f172a;
     }
 
     /* mot-marque: ACTC, uppercase by identity, centered at y ~ 0.40 */
-    [id="07-actc-lockup"] {
+    [id="09-actc-lockup"] {
       position: absolute;
       left: 0;
       right: 0;
@@ -36,18 +36,18 @@
       white-space: nowrap;
       transform-origin: 50% 50%;
     }
-    [id="07-actc-lockup"] .letter {
+    [id="09-actc-lockup"] .letter {
       display: inline-block;
       opacity: 0;
       color: #f9f9f7;
       will-change: transform;
     }
-    [id="07-actc-lockup"] .letter.fire {
+    [id="09-actc-lockup"] .letter.fire {
       color: #c2410c;
     }
 
     /* 36x2 orange rule stub */
-    [id="07-actc-rule"] {
+    [id="09-actc-rule"] {
       position: absolute;
       left: 522px;
       top: 946px;
@@ -58,7 +58,7 @@
     }
 
     /* offer line: h2 register, cream, one serif italic word */
-    [id="07-actc-offer"] {
+    [id="09-actc-offer"] {
       position: absolute;
       left: 5.5cqw;
       right: 5.5cqw;
@@ -72,12 +72,12 @@
       color: #f9f9f7;
       white-space: nowrap;
     }
-    [id="07-actc-offer"] .word {
+    [id="09-actc-offer"] .word {
       display: inline-block;
       opacity: 0;
       margin: 0 0.12em;
     }
-    [id="07-actc-offer"] .serif {
+    [id="09-actc-offer"] .serif {
       font-family: "Instrument Serif", serif;
       font-style: italic;
       font-weight: 400;
@@ -87,7 +87,7 @@
     }
 
     /* URL: mono chrome, cream-muted */
-    [id="07-actc-url"] {
+    [id="09-actc-url"] {
       position: absolute;
       left: 0;
       right: 0;
@@ -103,21 +103,21 @@
     }
   </style>
 
-  <div id="root" data-composition-id="07-actc" data-start="0" data-duration="6" data-width="1080" data-height="1920">
-    <div id="07-actc-ground" class="clip" data-start="0" data-duration="6" data-track-index="0"></div>
+  <div id="root" data-composition-id="09-actc" data-start="0" data-duration="6" data-width="1080" data-height="1920">
+    <div id="09-actc-ground" class="clip" data-start="0" data-duration="6" data-track-index="0"></div>
 
-    <div id="07-actc-stage" class="clip" data-start="0" data-duration="6" data-track-index="1">
-      <div id="07-actc-lockup" aria-label="ACTC">
-        <span class="letter" id="07-actc-l1">A</span><span class="letter" id="07-actc-l2">C</span><span class="letter fire" id="07-actc-l3">T</span><span class="letter fire" id="07-actc-l4">C</span>
+    <div id="09-actc-stage" class="clip" data-start="0" data-duration="6" data-track-index="1">
+      <div id="09-actc-lockup" aria-label="ACTC">
+        <span class="letter" id="09-actc-l1">A</span><span class="letter" id="09-actc-l2">C</span><span class="letter fire" id="09-actc-l3">T</span><span class="letter fire" id="09-actc-l4">C</span>
       </div>
 
-      <div id="07-actc-rule"></div>
+      <div id="09-actc-rule"></div>
 
-      <h2 id="07-actc-offer">
-        <span class="word" id="07-actc-w1">page</span><span class="word" id="07-actc-w2">d'accueil</span><span class="word" id="07-actc-w3"><span class="serif">offerte</span>.</span>
+      <h2 id="09-actc-offer">
+        <span class="word" id="09-actc-w1">page</span><span class="word" id="09-actc-w2">d'accueil</span><span class="word" id="09-actc-w3"><span class="serif">offerte</span>.</span>
       </h2>
 
-      <div id="07-actc-url">www.actcstudio.fr</div>
+      <div id="09-actc-url">www.actcstudio.fr</div>
     </div>
   </div>
 
@@ -130,10 +130,10 @@
       // Scene 1 (0.0-1.6s): waterfall-entry, letters cascade in from below one by one.
       // Binary opacity via set, then a long-tail power3 whip to rest. Anchor "A" travels furthest.
       var letters = [
-        { id: "07-actc-l1", t: 0.12, y: 96, d: 0.62 },
-        { id: "07-actc-l2", t: 0.40, y: 78, d: 0.56 },
-        { id: "07-actc-l3", t: 0.64, y: 78, d: 0.52 },
-        { id: "07-actc-l4", t: 0.84, y: 64, d: 0.50 }
+        { id: "09-actc-l1", t: 0.12, y: 96, d: 0.62 },
+        { id: "09-actc-l2", t: 0.40, y: 78, d: 0.56 },
+        { id: "09-actc-l3", t: 0.64, y: 78, d: 0.52 },
+        { id: "09-actc-l4", t: 0.84, y: 64, d: 0.50 }
       ];
       letters.forEach(function (l) {
         var el = q(l.id);
@@ -142,21 +142,21 @@
       });
 
       // Scene 2 (1.6-2.4s): the 36x2 rule stub scales in beneath the lockup (transform only).
-      tl.fromTo(q("07-actc-rule"), { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "power3.out" }, 1.6);
+      tl.fromTo(q("09-actc-rule"), { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "power3.out" }, 1.6);
 
       // Scene 3 (2.4-3.8s): offer line fades up, per-word stagger, quiet fade register.
-      var words = ["07-actc-w1", "07-actc-w2", "07-actc-w3"];
+      var words = ["09-actc-w1", "09-actc-w2", "09-actc-w3"];
       words.forEach(function (id, i) {
         tl.fromTo(q(id), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.75, ease: "power3.out" }, 2.45 + i * 0.24);
       });
 
       // Scene 4 (3.8-4.8s): URL fades in beneath, mono chrome.
-      tl.fromTo(q("07-actc-url"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.85, ease: "power3.out" }, 3.85);
+      tl.fromTo(q("09-actc-url"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.85, ease: "power3.out" }, 3.85);
 
       // Scene 5 (4.8-6.0s): held read. Near-imperceptible life on the lockup, runs to the last frame. Nothing exits.
-      tl.fromTo(q("07-actc-lockup"), { scale: 1 }, { scale: 1.012, duration: 6.0 - 1.4, ease: "none" }, 1.4);
+      tl.fromTo(q("09-actc-lockup"), { scale: 1 }, { scale: 1.012, duration: 6.0 - 1.4, ease: "none" }, 1.4);
 
-      window.__timelines["07-actc"] = tl;
+      window.__timelines["09-actc"] = tl;
       tl.seek(0);
     })();
   </script>

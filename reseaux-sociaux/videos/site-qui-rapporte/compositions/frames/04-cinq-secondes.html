@@ -1,0 +1,449 @@
+<template>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..900&family=IBM+Plex+Mono:wght@500&family=Instrument+Serif:ital@1&display=swap"
+  />
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <style>
+    #root {
+      position: relative;
+      width: 1080px;
+      height: 1920px;
+      overflow: hidden;
+      container-type: size;
+      font-family: "Inter Tight", sans-serif;
+      color: #f9f9f7;
+    }
+    [id="f04-ground"] {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background: #0f172a;
+    }
+    [id="f04-stage"] {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    [id="f04-kicker"] {
+      position: absolute;
+      top: 8.5cqh;
+      left: 5.5cqw;
+      font-family: "IBM Plex Mono", monospace;
+      font-weight: 500;
+      font-size: 2.2cqw;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #c2410c;
+      white-space: nowrap;
+      will-change: transform, opacity;
+    }
+    [id="f04-rule"] {
+      position: absolute;
+      top: calc(8.5cqh + 4.4cqw);
+      left: 5.5cqw;
+      width: 36px;
+      height: 2px;
+      background: #c2410c;
+      transform-origin: 0% 50%;
+      will-change: transform;
+    }
+    /* --- the instrument --- */
+    [id="f04-dial"] {
+      position: absolute;
+      top: 19.5cqh;
+      left: 22.5cqw;
+      width: 55cqw;
+      height: 55cqw;
+      will-change: transform, opacity;
+    }
+    [id="f04-svg"] {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+    .f04-tick {
+      will-change: opacity;
+    }
+    [id="f04-counter-wrap"] {
+      position: absolute;
+      top: 19.5cqh;
+      left: 22.5cqw;
+      width: 55cqw;
+      height: 55cqw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+    [id="f04-counter"] {
+      display: inline-block;
+      font-family: "Inter Tight", sans-serif;
+      font-variant-numeric: tabular-nums;
+      font-weight: 900;
+      font-size: 15cqw;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: #f9f9f7;
+      transform-origin: 50% 50%;
+      will-change: transform, opacity;
+    }
+    [id="f04-counter-unit"] {
+      position: absolute;
+      top: calc(19.5cqh + 40cqw);
+      left: 0;
+      width: 100cqw;
+      text-align: center;
+      font-family: "IBM Plex Mono", monospace;
+      font-weight: 500;
+      font-size: 2cqw;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #64748b;
+      will-change: opacity;
+    }
+    /* --- the lines --- */
+    [id="f04-line1"] {
+      position: absolute;
+      top: 57cqh;
+      left: 5.5cqw;
+      width: 89cqw;
+      font-family: "Inter Tight", sans-serif;
+      font-weight: 700;
+      font-size: 8cqw;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      text-transform: lowercase;
+      color: #f9f9f7;
+    }
+    [id="f04-line2"] {
+      position: absolute;
+      top: 69cqh;
+      left: 5.5cqw;
+      width: 89cqw;
+      font-family: "Inter Tight", sans-serif;
+      font-weight: 700;
+      font-size: 7cqw;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      text-transform: lowercase;
+      color: #f9f9f7;
+    }
+    .f04-w {
+      display: inline-block;
+      will-change: transform, opacity;
+    }
+    .f04-w + .f04-w {
+      margin-left: 0.26em;
+    }
+    .f04-serif {
+      font-family: "Instrument Serif", serif;
+      font-style: italic;
+      font-weight: 400;
+      color: #c2410c;
+      letter-spacing: 0;
+    }
+  </style>
+
+  <div id="root" data-composition-id="04-cinq-secondes" data-width="1080" data-height="1920">
+    <div
+      id="f04-ground"
+      class="clip"
+      data-start="0"
+      data-duration="9"
+      data-track-index="0"
+    ></div>
+
+    <div
+      id="f04-stage"
+      class="clip"
+      data-start="0"
+      data-duration="9"
+      data-track-index="1"
+    >
+      <div id="f04-kicker">SUR TÉLÉPHONE</div>
+      <div id="f04-rule"></div>
+
+      <div id="f04-dial">
+        <svg id="f04-svg" viewBox="0 0 200 200" fill="none">
+          <!-- crown stub -->
+          <g id="f04-crown">
+            <rect
+              x="94"
+              y="6"
+              width="12"
+              height="10"
+              fill="#c2410c"
+            ></rect>
+            <rect
+              x="90"
+              y="2"
+              width="20"
+              height="5"
+              fill="#c2410c"
+            ></rect>
+          </g>
+          <!-- outer circle: drawn from 12 o'clock -->
+          <circle
+            id="f04-outer"
+            cx="100"
+            cy="108"
+            r="82"
+            stroke="#c2410c"
+            stroke-width="2"
+            transform="rotate(-90 100 108)"
+          ></circle>
+          <!-- twelve tick marks -->
+          <g id="f04-ticks" stroke="#c2410c" stroke-width="2.4">
+            <line class="f04-tick" x1="100" y1="34" x2="100" y2="46"></line>
+            <line class="f04-tick" x1="137" y1="44" x2="131" y2="54.4"></line>
+            <line class="f04-tick" x1="164" y1="71" x2="153.6" y2="77"></line>
+            <line class="f04-tick" x1="174" y1="108" x2="162" y2="108"></line>
+            <line class="f04-tick" x1="164" y1="145" x2="153.6" y2="139"></line>
+            <line class="f04-tick" x1="137" y1="172" x2="131" y2="161.6"></line>
+            <line class="f04-tick" x1="100" y1="182" x2="100" y2="170"></line>
+            <line class="f04-tick" x1="63" y1="172" x2="69" y2="161.6"></line>
+            <line class="f04-tick" x1="36" y1="145" x2="46.4" y2="139"></line>
+            <line class="f04-tick" x1="26" y1="108" x2="38" y2="108"></line>
+            <line class="f04-tick" x1="36" y1="71" x2="46.4" y2="77"></line>
+            <line class="f04-tick" x1="63" y1="44" x2="69" y2="54.4"></line>
+          </g>
+          <!-- thick progress arc, driven with the counter -->
+          <circle
+            id="f04-arc"
+            cx="100"
+            cy="108"
+            r="82"
+            stroke="#c2410c"
+            stroke-width="9"
+            stroke-linecap="butt"
+            transform="rotate(-90 100 108)"
+          ></circle>
+          <!-- the hand -->
+          <g id="f04-hand">
+            <line
+              x1="100"
+              y1="108"
+              x2="100"
+              y2="42"
+              stroke="#c2410c"
+              stroke-width="2.6"
+            ></line>
+          </g>
+          <circle id="f04-pin" cx="100" cy="108" r="3.4" fill="#c2410c"></circle>
+        </svg>
+      </div>
+
+      <div id="f04-counter-wrap">
+        <span id="f04-counter">0.0</span>
+      </div>
+      <div id="f04-counter-unit">SECONDES</div>
+
+      <div id="f04-line1">
+        <span class="f04-w">cinq</span><span class="f04-w">secondes</span
+        ><span class="f04-w">pour</span><span class="f04-w">s'ouvrir.</span>
+      </div>
+      <div id="f04-line2">
+        <span class="f04-w">la</span><span class="f04-w f04-serif">moitié</span
+        ><span class="f04-w">de</span><span class="f04-w">vos</span
+        ><span class="f04-w">visiteurs</span><span class="f04-w">sont</span
+        ><span class="f04-w">déjà</span><span class="f04-w">partis.</span>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var DURATION = 9;
+        var root = document.getElementById("root");
+        var q = function (sel) {
+          return root.querySelector(sel);
+        };
+        var qa = function (sel) {
+          return Array.prototype.slice.call(root.querySelectorAll(sel));
+        };
+
+        var kicker = q('[id="f04-kicker"]');
+        var rule = q('[id="f04-rule"]');
+        var dial = q('[id="f04-dial"]');
+        var crown = q('[id="f04-crown"]');
+        var outer = q('[id="f04-outer"]');
+        var arc = q('[id="f04-arc"]');
+        var hand = q('[id="f04-hand"]');
+        var pin = q('[id="f04-pin"]');
+        var ticks = qa(".f04-tick");
+        var counter = q('[id="f04-counter"]');
+        var unit = q('[id="f04-counter-unit"]');
+        var w1 = qa('[id="f04-line1"] .f04-w');
+        var w2 = qa('[id="f04-line2"] .f04-w');
+
+        // geometry: r = 82 -> circumference
+        var C = 2 * Math.PI * 82;
+
+        gsap.set(outer, { strokeDasharray: C, strokeDashoffset: C });
+        gsap.set(arc, { strokeDasharray: C, strokeDashoffset: C, opacity: 0 });
+        gsap.set(ticks, { opacity: 0 });
+        gsap.set([crown, hand, pin], { opacity: 0 });
+        gsap.set(counter, { opacity: 0 });
+        gsap.set(unit, { opacity: 0 });
+        gsap.set([w1, w2], { opacity: 0 });
+
+        gsap.set(hand, { svgOrigin: "100 108", rotation: 0 });
+
+        window.__timelines = window.__timelines || {};
+        var tl = gsap.timeline({ paused: true });
+        window.__timelines["04-cinq-secondes"] = tl;
+
+        /* ---------- Scene 1 (0.0-1.0s): the instrument draws itself ---------- */
+        tl.fromTo(
+          kicker,
+          { opacity: 0, y: 14 },
+          { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" },
+          0
+        );
+        tl.fromTo(
+          rule,
+          { scaleX: 0, opacity: 0 },
+          { scaleX: 1, opacity: 1, duration: 0.5, ease: "power3.out" },
+          0.1
+        );
+
+        // crown stub first
+        tl.fromTo(
+          crown,
+          { opacity: 0, y: -8 },
+          { opacity: 1, y: 0, duration: 0.24, ease: "power3.out" },
+          0.1
+        );
+
+        // the outer circle sweeps clockwise from 12 o'clock over 0.8s
+        tl.to(
+          outer,
+          { strokeDashoffset: 0, duration: 0.8, ease: "power3.out" },
+          0.2
+        );
+
+        // twelve ticks pop on in one capped stagger as the circle closes
+        tl.fromTo(
+          ticks,
+          { opacity: 0, scale: 0.6 },
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 0.3,
+            ease: "power3.out",
+            transformOrigin: "50% 50%",
+            stagger: { each: 0.03, amount: 0.36 }
+          },
+          0.72
+        );
+
+        /* ---------- Scene 2 (1.0-4.2s): one driver, arc + counter + hand ---------- */
+        tl.fromTo(
+          [pin, hand],
+          { opacity: 0 },
+          { opacity: 1, duration: 0.25, ease: "power2.out" },
+          1.0
+        );
+        tl.fromTo(
+          arc,
+          { opacity: 0 },
+          { opacity: 1, duration: 0.2, ease: "power2.out" },
+          1.0
+        );
+        // the counter enters small and grows into its static size (counting-dynamic-scale)
+        tl.fromTo(
+          counter,
+          { opacity: 0, scale: 0.55 },
+          { opacity: 1, scale: 1, duration: 2.9, ease: "power3.out" },
+          1.1
+        );
+        tl.fromTo(
+          unit,
+          { opacity: 0, y: 10 },
+          { opacity: 0.85, y: 0, duration: 0.5, ease: "power3.out" },
+          1.35
+        );
+
+        // ONE shared driver: the arc, the hand and the numeral read from it
+        var driver = { t: 0 };
+        tl.to(
+          driver,
+          {
+            t: 5,
+            duration: 2.9,
+            ease: "power3.out",
+            onUpdate: function () {
+              var p = driver.t / 5;
+              counter.textContent = (Math.round(driver.t * 10) / 10).toFixed(1);
+              gsap.set(arc, { strokeDashoffset: C * (1 - p) });
+              gsap.set(hand, { rotation: p * 360 });
+            }
+          },
+          1.1
+        );
+
+        /* ---------- Scene 3 (4.2-5.6s): the line arrives, per-word stagger ---------- */
+        tl.fromTo(
+          w1,
+          { opacity: 0, y: 34 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.62,
+            ease: "power3.out",
+            stagger: { each: 0.09, amount: 0.36 }
+          },
+          4.2
+        );
+
+        /* ---------- Scene 4 (5.6-7.4s): the dial dims, the payoff lands ---------- */
+        tl.to(dial, { opacity: 0.35, duration: 0.7, ease: "power3.out" }, 5.6);
+        tl.to(
+          counter,
+          { opacity: 0.35, duration: 0.7, ease: "power3.out" },
+          5.6
+        );
+        tl.to(unit, { opacity: 0.2, duration: 0.7, ease: "power3.out" }, 5.6);
+
+        tl.fromTo(
+          w2,
+          { opacity: 0, y: 34 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.66,
+            ease: "power3.out",
+            stagger: { each: 0.08, amount: 0.5 }
+          },
+          5.75
+        );
+
+        // exactly half the twelve ticks drop out: the dial shows the loss
+        var lost = [];
+        for (var i = 0; i < ticks.length; i += 2) {
+          lost.push(ticks[i]);
+        }
+        tl.to(
+          lost,
+          {
+            opacity: 0.15,
+            duration: 0.45,
+            ease: "power3.out",
+            stagger: { each: 0.07, amount: 0.42 }
+          },
+          6.0
+        );
+
+        /* ---------- Scene 5 (7.4-9.0s): held read, still ---------- */
+        // no motion: the payoff holds.
+
+        // pin the timeline to the fixed duration
+        var pace = { t: 0 };
+        tl.to(pace, { t: DURATION, duration: DURATION, ease: "none" }, 0);
+      })();
+    </script>
+  </div>
+</template>

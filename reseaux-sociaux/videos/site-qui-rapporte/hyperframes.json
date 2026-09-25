@@ -9,5 +9,32 @@
   "media": {
     "autoProxy": true
   },
-  "authoringSkill": "faceless-explainer"
+  "authoringSkill": "faceless-explainer",
+  "registryItems": [
+    {
+      "name": "world-map",
+      "type": "hyperframes:block",
+      "target": "compositions/world-map.html"
+    },
+    {
+      "name": "star-rating-fill",
+      "type": "hyperframes:component",
+      "target": "compositions/components/star-rating-fill.html"
+    },
+    {
+      "name": "conic-progress-ring",
+      "type": "hyperframes:component",
+      "target": "compositions/components/conic-progress-ring.html"
+    },
+    {
+      "name": "success-check",
+      "type": "hyperframes:component",
+      "target": "compositions/components/success-check.html"
+    },
+    {
+      "name": "confetti",
+      "type": "hyperframes:component",
+      "target": "compositions/components/confetti.html"
+    }
+  ]
 }
