@@ -102,6 +102,10 @@ export async function generateMetadata({
     other: {
       "facebook-domain-verification": "u9q0id5krgam036378mc6u6j169yue",
     },
+    // Vérification de la propriété actcstudio.fr dans Google Search Console.
+    verification: {
+      google: "uZmyRPohZHMgQfrNm-_h8csr_nhKwyHx47Z8GUu2Zeg",
+    },
   };
 }
 
