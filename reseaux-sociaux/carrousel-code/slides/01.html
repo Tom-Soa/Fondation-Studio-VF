@@ -1,0 +1,107 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:'ArchivoBlack';src:url('../assets/black-ext.woff2') format('woff2');font-weight:400;font-display:block;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:'ArchivoBlack';src:url('../assets/black-lat.woff2') format('woff2');font-weight:400;font-display:block;}
+@font-face{font-family:'ArchivoVF';src:url('../assets/archivo-ext.woff2') format('woff2');font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:'ArchivoVF';src:url('../assets/archivo-lat.woff2') format('woff2');font-weight:100 900;font-display:block;}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{width:1080px;height:1080px;}
+body{
+  font-family:'ArchivoVF',sans-serif;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:geometricPrecision;
+  hyphens:none;-webkit-hyphens:none;
+  overflow-wrap:normal;word-break:normal;
+}
+.slide{
+  position:relative;width:1080px;height:1080px;overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.pad{position:absolute;inset:90px;display:flex;flex-direction:column;z-index:5;}
+
+/* formes plates decoratives */
+.shape{position:absolute;z-index:1;}
+.circle{border-radius:50%;}
+.qtr-tr{border-radius:0 0 0 100%;top:0;right:0;}
+.qtr-bl{border-radius:0 100% 0 0;bottom:0;left:0;}
+.qtr-br{border-radius:100% 0 0 0;bottom:0;right:0;}
+.qtr-tl{border-radius:0 0 100% 0;top:0;left:0;}
+.arc{border-style:solid;border-radius:50%;background:transparent;}
+
+/* wordmark pure typo */
+.mark{font-family:'ArchivoBlack',sans-serif;font-size:40px;letter-spacing:-0.01em;line-height:1;}
+
+.label{
+  font-family:'ArchivoVF',sans-serif;font-weight:700;
+  font-size:30px;letter-spacing:0.09em;text-transform:uppercase;
+}
+h1{
+  font-family:'ArchivoBlack',sans-serif;font-weight:400;
+  text-transform:uppercase;letter-spacing:-0.02em;line-height:1.0;
+}
+.support{
+  font-family:'ArchivoVF',sans-serif;font-weight:600;
+  font-size:34px;line-height:1.38;max-width:830px;
+}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  border-radius:999px;font-family:'ArchivoVF',sans-serif;font-weight:700;
+  padding:30px 56px;font-size:33px;letter-spacing:-0.005em;align-self:flex-start;
+}
+.photo{
+  position:absolute;border-radius:40px;overflow:hidden;z-index:4;
+}
+.photo img{width:100%;height:100%;object-fit:cover;display:block;}
+.spacer{flex:1;}
+
+/* mot cle en graisse legere, meme famille variable */
+.lt{
+  font-family:'ArchivoVF',sans-serif;font-weight:250;
+  letter-spacing:0.005em;font-size:1.035em;
+}
+
+/* soulignement trace a la main : barre epaisse arrondie derriere le mot */
+.uw{position:relative;display:inline-block;}
+.uw > span{position:relative;z-index:2;}
+.uw::after{
+  content:"";position:absolute;z-index:1;
+  left:var(--uwl,-0.06em);right:var(--uwr,-0.085em);bottom:var(--uwb,-0.035em);
+  height:var(--uwh,0.145em);border-radius:999px;
+  background:var(--uw);
+  transform:rotate(-1.4deg);
+  transform-origin:left center;
+}
+/* variante plus fine a droite pour l epaisseur irreguliere du trace */
+.uw::before{
+  content:"";position:absolute;z-index:1;
+  left:26%;right:var(--uwr,-0.085em);bottom:calc(var(--uwb,-0.035em) + var(--uwh,0.145em) * 0.42);
+  height:0.06em;border-radius:999px;
+  background:var(--uw);opacity:.6;
+  transform:rotate(-2.3deg);transform-origin:left center;
+}
+
+/* bloc surligne : rectangle plein derriere un mot, texte inverse */
+.hl{
+  position:relative;display:inline-block;z-index:2;
+  padding:0 0.08em 0 0.07em;
+}
+.hl::before{
+  content:"";position:absolute;z-index:-1;
+  left:0;right:0;top:0.09em;bottom:0.055em;
+  background:var(--hl);border-radius:10px;
+  transform:rotate(-0.5deg);
+}
+</style></head><body>
+<div class="slide" style="background:#d4f634">
+  <div class="shape circle" style="width:620px;height:620px;background:#0b0d10;opacity:.07;top:-130px;right:-120px;"></div>
+  <div class="shape qtr-br" style="width:360px;height:360px;background:#c2410c;"></div>
+  <div class="shape circle" style="width:200px;height:200px;background:#c2410c;left:-60px;top:430px;"></div>
+  <div class="pad">
+    <div class="mark" style="color:#0b0d10">AC<span style="color:#c2410c">TC</span></div>
+    <h1 style="color:#0b0d10;font-size:162px;margin-top:100px;">NOS<br>SERVICES</h1>
+    <div class="support" style="color:#0b0d10;margin-top:56px;max-width:720px;">Quatre façons de faire travailler le digital pour votre entreprise.</div>
+    <div class="spacer"></div>
+    <div class="btn" style="background:#0b0d10;color:#d4f634;">Faites défiler</div>
+  </div>
+</div></body></html>
