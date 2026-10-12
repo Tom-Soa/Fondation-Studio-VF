@@ -1,9 +1,12 @@
 "use client";
 
+import Link from "next/link";
+
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { faqCategories } from "@/lib/faq";
 import { localeHref, type Locale } from "@/lib/i18n";
+import { RevealWords } from "@/components/ui/motion-kit";
 
 const T: Record<
   Locale,
@@ -126,10 +129,11 @@ export function FAQClient({ lang }: { lang: Locale }) {
           <div className="text-[11px] uppercase tracking-[0.18em] text-terra mb-5 font-medium">
             FAQ · {totalQuestions} {t.kickerSuffix}
           </div>
-          <h1 className="font-display font-extrabold tracking-[-0.03em] text-[clamp(2.4rem,5vw,3.6rem)] leading-[1.04] text-midnight">
-            {t.titleStart}{" "}
-            <span className="font-emphasis font-normal text-terra">{t.titleEm}</span>
-          </h1>
+          <RevealWords
+            className="font-display font-extrabold tracking-[-0.03em] text-[clamp(2.4rem,5vw,3.6rem)] leading-[1.04] text-midnight"
+            emClassName="font-emphasis font-normal text-terra"
+            segments={[{ text: t.titleStart }, { text: t.titleEm, em: true }]}
+          />
         </div>
 
         {/* Barre de recherche */}
@@ -165,7 +169,7 @@ export function FAQClient({ lang }: { lang: Locale }) {
             {searchResults.length === 0 ? (
               <p className="text-[15px] text-steel text-center py-8">
                 {t.noResultBefore} "<strong>{search}</strong>"{t.noResultMiddle}{" "}
-                <a href={localeHref(lang, "/contact")} className="text-terra underline underline-offset-2">{t.noResultLink}</a>.
+                <Link href={localeHref(lang, "/contact")} className="text-terra underline underline-offset-2">{t.noResultLink}</Link>.
               </p>
             ) : (
               <>
@@ -225,10 +229,10 @@ export function FAQClient({ lang }: { lang: Locale }) {
           <h3 className="font-display text-lg font-bold text-midnight mb-2">{t.ctaTitle}</h3>
           <p className="text-[14px] text-steel mb-5">{t.ctaText}</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <a href={localeHref(lang, "/contact")} className="inline-flex items-center gap-2 rounded-full bg-terra hover:bg-terra-hover text-white px-6 py-3.5 text-[14.5px] font-semibold transition-colors glow-terra">
+            <Link href={localeHref(lang, "/contact")} className="inline-flex items-center gap-2 rounded-full bg-terra hover:bg-terra-hover text-white px-6 py-3.5 text-[14.5px] font-semibold transition-colors glow-terra">
               {t.ctaButton}
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-            </a>
+            </Link>
             <a href="tel:+33672758478" className="inline-flex items-center gap-2 rounded-full border border-grid-line bg-white hover:border-terra/40 text-midnight px-6 py-3.5 text-[14.5px] font-medium transition-colors">
               +33 6 72 75 84 78
             </a>

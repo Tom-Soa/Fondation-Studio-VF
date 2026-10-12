@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { cn } from "@/lib/utils";
 import { FAQ } from "@/lib/content";
 import type { Locale } from "@/lib/i18n";
+import { RevealWords } from "@/components/ui/motion-kit";
 
 const T: Record<Locale, { kicker: string; h2Start: string; h2Em: string }> = {
   fr: {
@@ -29,10 +30,13 @@ export default function FaqLanding({ lang }: { lang: Locale }) {
       <div className="max-w-3xl mx-auto px-6">
         <div className="text-center mb-12">
           <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-terra mb-5">{t.kicker}</div>
-          <h2 className="font-display font-extrabold tracking-[-0.03em] text-[clamp(2rem,5vw,3.5rem)] leading-[1.05] text-midnight">
-            {t.h2Start}{" "}
-            <span className="font-emphasis font-normal text-terra">{t.h2Em}</span>
-          </h2>
+          <RevealWords
+            as="h2"
+            inView
+            className="font-display font-extrabold tracking-[-0.03em] text-[clamp(2rem,5vw,3.5rem)] leading-[1.05] text-midnight"
+            emClassName="font-emphasis font-normal text-terra"
+            segments={[{ text: t.h2Start }, { text: t.h2Em, em: true }]}
+          />
         </div>
 
         <div className="space-y-3">

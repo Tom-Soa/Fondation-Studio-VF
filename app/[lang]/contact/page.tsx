@@ -4,6 +4,7 @@ import { WHATSAPP_URL } from "@/lib/content";
 import type { Locale } from "@/lib/i18n";
 import { hasLocale, localeHref } from "@/lib/i18n";
 import { notFound } from "next/navigation";
+import { RevealWords } from "@/components/ui/motion-kit";
 
 const T: Record<Locale, {
   metaTitle: string;
@@ -25,9 +26,9 @@ const T: Record<Locale, {
   locationValue: string;
 }> = {
   fr: {
-    metaTitle: "Contact · Demandez un devis gratuit",
+    metaTitle: "Contact : recevez la maquette de votre page d'accueil offerte",
     metaDescription:
-      "Demandez un devis gratuit, démarrez directement en ligne, ou écrivez-nous. Maquette offerte avant tout engagement. Sites premium à partir de 1 400 €.",
+      "Décrivez-nous votre activité : réponse sous 24 h, et la maquette de votre page d'accueil offerte avant tout engagement. Site dès 1 400 €.",
     ogTitle: "Contact · ACTC",
     ogDescription:
       "Demandez un devis gratuit ou écrivez-nous. Maquette offerte avant tout engagement.",
@@ -35,8 +36,8 @@ const T: Record<Locale, {
     h1Start: "Parlons de",
     h1Accent: "votre projet.",
     intro:
-      "Devis gratuit, démarrage direct en ligne, ou simple message. Choisissez ce qui vous convient.",
-    divider: "ou choisissez une autre option",
+      "Quelques mots sur votre activité suffisent. On vous répond sous 24 h et on prépare la maquette de votre page d'accueil, offerte, sans engagement.",
+    divider: "ou écrivez-nous directement",
     recommended: "Recommandé",
     callTitle: "Demander un devis gratuit",
     callBody:
@@ -45,12 +46,12 @@ const T: Record<Locale, {
     writeUs: "Nous écrire",
     emailLabel: "Email",
     locationLabel: "Localisation",
-    locationValue: "France · Projets dans le monde entier",
+    locationValue: "France, Suisse, Belgique, DOM-TOM",
   },
   en: {
-    metaTitle: "Contact · Get a free quote",
+    metaTitle: "Contact: get your free homepage mockup",
     metaDescription:
-      "Get a free quote, get started directly online, or send us a message. Free mockup before any commitment. Premium websites from €1,400.",
+      "Tell us about your business: reply within 24 hours, and a free homepage mockup before any commitment. Websites from €1,400.",
     ogTitle: "Contact · ACTC",
     ogDescription:
       "Get a free quote or send us a message. Free mockup before any commitment.",
@@ -58,8 +59,8 @@ const T: Record<Locale, {
     h1Start: "Let's talk about",
     h1Accent: "your project.",
     intro:
-      "A free quote, a direct start online, or a simple message. Pick whatever works for you.",
-    divider: "or pick another option",
+      "A few words about your business are enough. We reply within 24 hours and prepare your free homepage mockup, no commitment.",
+    divider: "or write to us directly",
     recommended: "Recommended",
     callTitle: "Get a free quote",
     callBody:
@@ -68,7 +69,7 @@ const T: Record<Locale, {
     writeUs: "Write to us",
     emailLabel: "Email",
     locationLabel: "Location",
-    locationValue: "France · Projects worldwide",
+    locationValue: "France, Switzerland, Belgium, overseas territories",
   },
 };
 
@@ -103,10 +104,11 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
           <div className="text-[11px] uppercase tracking-[0.18em] text-terra mb-5 font-medium">
             {t.kicker}
           </div>
-          <h1 className="font-display font-extrabold tracking-[-0.03em] text-[clamp(2.4rem,5vw,3.6rem)] leading-[1.04] text-midnight">
-            {t.h1Start}{" "}
-            <span className="font-emphasis font-normal text-terra">{t.h1Accent}</span>
-          </h1>
+          <RevealWords
+            className="font-display font-extrabold tracking-[-0.03em] text-[clamp(2.4rem,5vw,3.6rem)] leading-[1.04] text-midnight"
+            emClassName="font-emphasis font-normal text-terra"
+            segments={[{ text: t.h1Start }, { text: t.h1Accent, em: true }]}
+          />
           <p className="mt-5 text-[15.5px] leading-relaxed text-steel">
             {t.intro}
           </p>
@@ -125,35 +127,8 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
           <div className="h-px flex-1 bg-grid-line" />
         </div>
 
-        {/* 2 options, en bandes pleine largeur */}
+        {/* Coordonnées directes */}
         <div className="flex flex-col gap-5">
-
-          {/* Option 1 : Appel, mise en avant */}
-          <div className="relative overflow-hidden rounded-3xl border-2 border-terra bg-white p-8 shadow-[0_8px_32px_rgba(194,65,12,0.15)] lg:p-10">
-            <div className="absolute -top-16 -right-12 h-48 w-48 rounded-full bg-terra/8 blur-3xl pointer-events-none" aria-hidden />
-            <div className="relative lg:flex lg:items-start lg:gap-12">
-             <div className="lg:flex-1">
-              <div className="inline-flex items-center gap-2 rounded-full bg-terra/10 px-3 py-1 text-[11px] font-semibold text-terra mb-5">
-                <Icon icon="ph:star-duotone" width={13} height={13} aria-hidden />
-                {t.recommended}
-              </div>
-              <h2 className="font-display text-xl font-bold text-midnight mb-2">
-                {t.callTitle}
-              </h2>
-              <p className="text-[14px] text-steel leading-relaxed mb-6">
-                {t.callBody}
-              </p>
-             </div>
-              <ul className="space-y-2 lg:w-[42%] lg:shrink-0 lg:border-l lg:border-grid-line lg:pl-10">
-                {t.callPoints.map((point) => (
-                  <li key={point} className="flex items-center gap-2 text-[13.5px] text-steel">
-                    <Icon icon="lucide:check" width={15} height={15} className="text-terra shrink-0" aria-hidden />
-                    {point}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
 
           {/* Option 2 : Coordonnées directes */}
           <div className="rounded-3xl border border-grid-line bg-white p-8 flex flex-col gap-4 lg:p-10">

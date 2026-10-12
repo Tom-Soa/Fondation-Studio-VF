@@ -2,6 +2,8 @@
 // Le contenu vient de lib/ressources.ts (voir les commentaires de ce fichier).
 "use client";
 
+import Link from "next/link";
+
 import { useMemo, useState } from "react";
 import { motion } from "motion/react";
 import { Icon } from "@iconify/react";
@@ -117,7 +119,7 @@ export default function RessourcesGrid({ lang }: { lang: Locale }) {
               transition={{ duration: 0.5, delay: Math.min(i * 0.06, 0.3) }}
               className="group"
             >
-              <a
+              <Link
                 href={localeHref(lang, `/ressources/${r.slug}`)}
                 className="flex h-full flex-col overflow-hidden rounded-3xl border border-grid-line bg-white transition-all duration-300 hover:border-terra/30 hover:shadow-card-light"
               >
@@ -186,7 +188,7 @@ export default function RessourcesGrid({ lang }: { lang: Locale }) {
                     </span>
                   </div>
                 </div>
-              </a>
+              </Link>
             </motion.article>
           );
         })}

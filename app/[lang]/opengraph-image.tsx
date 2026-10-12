@@ -25,16 +25,16 @@ const T: Record<
   { badge: string; titleStart: string; titleEmphasis: string; subtitle: string }
 > = {
   fr: {
-    badge: "Places limitées chaque mois",
+    badge: "Maquette de votre page d'accueil offerte",
     titleStart: "On crée des sites web qui",
     titleEmphasis: "captent vos futurs clients",
-    subtitle: "Sites premium pour PME et artisans. À partir de 1 400 €.",
+    subtitle: "Sites, publicité, applications et conseil. Site dès 1 400 €, livré en 21 jours.",
   },
   en: {
-    badge: "Limited spots each month",
+    badge: "Your homepage mockup, on us",
     titleStart: "We build websites that",
     titleEmphasis: "win you new clients",
-    subtitle: "Premium websites for small businesses. From €1,400.",
+    subtitle: "Websites, ads, apps and consulting. Websites from €1,400, delivered in 21 days.",
   },
 };
 

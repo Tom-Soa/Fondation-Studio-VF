@@ -1,10 +1,14 @@
-// "Comment ça marche" : 5 étapes, fond clair, cartes à contour terracotta, CTAs en bas.
+// "Comment ça marche" : 3 étapes, fond clair, cartes à contour terracotta, CTAs en bas.
 "use client";
 
-import { motion } from "motion/react";
+import Link from "next/link";
+
+import { useRef } from "react";
+import { motion, useScroll, useTransform, type MotionValue } from "motion/react";
 import { Icon } from "@iconify/react";
 import type { Locale } from "@/lib/i18n";
 import { localeHref } from "@/lib/i18n";
+import { RevealWords } from "@/components/ui/motion-kit";
 
 type Step = { n: string; icon: string; title: string; body: string };
 
@@ -14,86 +18,78 @@ const T: Record<
 > = {
   fr: {
     kicker: "Comment ça marche",
-    h2Start: "Votre site, en 5 étapes",
-    h2Em: "claires.",
+    h2Start: "Votre site, en 3 étapes",
+    h2Em: "simples.",
     steps: [
       {
         n: "01",
         icon: "ph:chat-circle-text-duotone",
-        title: "Votre demande",
-        body: "Vous nous décrivez votre activité et vos objectifs via le formulaire. On vous répond rapidement, sans engagement.",
+        title: "Vous nous décrivez votre activité",
+        body: "Un message ou le formulaire, en deux minutes. On vous répond sous 24 h, sans engagement.",
       },
       {
         n: "02",
         icon: "ph:pen-nib-duotone",
-        title: "Maquette gratuite",
-        body: "On conçoit une vraie maquette sur-mesure de votre page d'accueil. Comptez 5 à 7 jours. Pressé ? Vous pouvez démarrer directement, sans maquette.",
+        title: "On vous offre la maquette",
+        body: "Une vraie maquette sur-mesure de votre page d'accueil, sous 5 à 7 jours. Vous voyez le résultat avant de payer quoi que ce soit.",
       },
       {
         n: "03",
-        icon: "ph:check-circle-duotone",
-        title: "Validation",
-        body: "On vous présente le résultat. Vous validez la direction, le contenu et le calendrier.",
-      },
-      {
-        n: "04",
-        icon: "ph:code-duotone",
-        title: "Design & développement",
-        body: "On crée votre site sur-mesure : design unique, SEO intégré, rapide et sécurisé. Comptez 14 à 21 jours.",
-      },
-      {
-        n: "05",
         icon: "ph:rocket-launch-duotone",
-        title: "Mise en ligne",
-        body: "On vous accompagne pour la mise en ligne. Votre site vous appartient à 100 %, avec un hébergement gratuit.",
+        title: "Votre site en ligne en 21 jours",
+        body: "Vous validez, on construit. Hébergement gratuit, aucun abonnement, et le site vous appartient.",
       },
     ],
-    ctaCall: "Demander un devis gratuit",
-    ctaBuy: "Acheter maintenant",
+    ctaCall: "Recevoir ma maquette offerte",
+    ctaBuy: "Voir les tarifs",
   },
   en: {
     kicker: "How it works",
-    h2Start: "Your website, in 5",
-    h2Em: "clear steps.",
+    h2Start: "Your website, in 3",
+    h2Em: "simple steps.",
     steps: [
       {
         n: "01",
         icon: "ph:chat-circle-text-duotone",
-        title: "Your request",
-        body: "You tell us about your business and your goals through the form. We reply quickly, no commitment.",
+        title: "Tell us about your business",
+        body: "A message or the form, in two minutes. We reply within 24 hours, no commitment.",
       },
       {
         n: "02",
         icon: "ph:pen-nib-duotone",
-        title: "Free mockup",
-        body: "We design a real, custom mockup of your homepage. Allow 5 to 7 days. In a hurry? You can start right away, without a mockup.",
+        title: "We design your free mockup",
+        body: "A real custom mockup of your homepage, within 5 to 7 days. You see the result before paying anything.",
       },
       {
         n: "03",
-        icon: "ph:check-circle-duotone",
-        title: "Approval",
-        body: "We present the result. You approve the direction, the content and the timeline.",
-      },
-      {
-        n: "04",
-        icon: "ph:code-duotone",
-        title: "Design & development",
-        body: "We build your custom website: unique design, built-in SEO, fast and secure. Allow 14 to 21 days.",
-      },
-      {
-        n: "05",
         icon: "ph:rocket-launch-duotone",
-        title: "Launch",
-        body: "We guide you through going live. Your website is 100% yours, with free hosting.",
+        title: "Your website live in 21 days",
+        body: "You approve, we build. Free hosting, no subscription, and the website is yours.",
       },
     ],
-    ctaCall: "Get a free quote",
-    ctaBuy: "Buy now",
+    ctaCall: "Get my free mockup",
+    ctaBuy: "See pricing",
   },
 };
 
+// Pastille d'icône : contour au repos, se remplit de terracotta quand la ligne l'atteint.
+function StepBadge({ icon, progress, at }: { icon: string; progress: MotionValue<number>; at: number }) {
+  const fill = useTransform(progress, [at, at + 0.12], [0, 1]);
+  const scale = useTransform(progress, [at, at + 0.12], [0.9, 1]);
+  return (
+    <motion.div style={{ scale }} className="relative mb-5 grid h-14 w-14 place-items-center rounded-2xl border-2 border-terra/30 bg-white text-terra">
+      <motion.span aria-hidden style={{ opacity: fill }} className="absolute inset-0 rounded-[14px] bg-gradient-to-br from-terra to-terra-hover shadow-[0_8px_24px_-8px_rgba(194,65,12,0.7)]" />
+      <motion.span style={{ opacity: fill }} className="relative text-white"><Icon icon={icon} width={26} height={26} aria-hidden /></motion.span>
+      <motion.span style={{ opacity: useTransform(fill, (v) => 1 - v) }} className="absolute inset-0 grid place-items-center"><Icon icon={icon} width={26} height={26} aria-hidden /></motion.span>
+    </motion.div>
+  );
+}
+
 export default function Process({ lang }: { lang: Locale }) {
   const t = T[lang];
+  const stepsRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: stepsProgress } = useScroll({ target: stepsRef, offset: ["start 80%", "end 55%"] });
+  const line = useTransform(stepsProgress, [0, 0.85], [0, 1]);
   return (
     <section id="process" className="relative bg-alabaster pt-24 lg:pt-32 pb-16 lg:pb-20 overflow-hidden">
       {/* Atmosphère : halo terracotta doux + grille de points subtile */}
@@ -117,13 +113,20 @@ export default function Process({ lang }: { lang: Locale }) {
           <div className="text-[11px] uppercase tracking-[0.18em] text-terra mb-5 font-medium">
             {t.kicker}
           </div>
-          <h2 className="font-display font-extrabold tracking-[-0.03em] text-[clamp(2rem,5vw,3.5rem)] leading-[1.05] text-midnight">
-            {t.h2Start}{" "}
-            <span className="font-emphasis font-normal text-terra">{t.h2Em}</span>
-          </h2>
+          <RevealWords
+            as="h2"
+            inView
+            className="font-display font-extrabold tracking-[-0.03em] text-[clamp(2rem,5vw,3.5rem)] leading-[1.05] text-midnight"
+            emClassName="font-emphasis font-normal text-terra"
+            segments={[{ text: t.h2Start }, { text: t.h2Em, em: true }]}
+          />
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div ref={stepsRef} className="relative grid gap-4 md:grid-cols-3">
+          {/* Ligne qui se trace au scroll et relie les étapes (desktop) */}
+          <div aria-hidden className="pointer-events-none absolute left-[16.6%] right-[16.6%] top-[3.25rem] hidden h-[2px] bg-terra/15 md:block">
+            <motion.div className="h-full origin-left bg-terra" style={{ scaleX: line }} />
+          </div>
           {t.steps.map((s, i) => (
             <motion.div
               key={s.n}
@@ -131,16 +134,14 @@ export default function Process({ lang }: { lang: Locale }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.6, delay: i * 0.08 }}
-              className="group relative flex flex-col rounded-2xl border-2 border-terra/25 bg-white p-6 shadow-card-light transition-all hover:-translate-y-1 hover:border-terra hover:shadow-[0_24px_50px_-28px_rgba(194,65,12,0.55)]"
+              className="group relative z-[1] flex flex-col items-center text-center rounded-2xl border-2 border-terra/25 bg-white p-6 shadow-card-light transition-all hover:-translate-y-1 hover:border-terra hover:shadow-[0_24px_50px_-28px_rgba(194,65,12,0.55)]"
             >
               {/* numéro filigrane */}
               <span className="absolute right-4 top-3 font-display text-5xl font-extrabold leading-none text-terra/10 transition-colors group-hover:text-terra/20">
                 {s.n}
               </span>
               {/* badge icône */}
-              <div className="relative mb-5 grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-terra to-terra-hover text-white shadow-[0_8px_24px_-8px_rgba(194,65,12,0.7)]">
-                <Icon icon={s.icon} width={24} height={24} aria-hidden />
-              </div>
+              <StepBadge icon={s.icon} progress={stepsProgress} at={i / t.steps.length} />
               <h3 className="font-display text-[17px] font-semibold text-midnight mb-2">{s.title}</h3>
               <p className="text-[13.5px] leading-relaxed text-steel">{s.body}</p>
             </motion.div>
@@ -149,20 +150,20 @@ export default function Process({ lang }: { lang: Locale }) {
 
         {/* CTAs de section */}
         <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-3">
-          <a
+          <Link
             href={localeHref(lang, "/contact")}
             className="group inline-flex items-center gap-2.5 rounded-full bg-terra hover:bg-terra-hover px-7 py-4 text-white font-semibold text-[15px] transition-all glow-terra"
           >
             <Icon icon="ph:chat-circle-text-duotone" width={18} height={18} aria-hidden />
             {t.ctaCall}
             <Icon icon="lucide:arrow-right" width={16} height={16} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
-          </a>
-          <a
+          </Link>
+          <Link
             href={localeHref(lang, "/tarifs")}
-            className="inline-flex items-center gap-2 rounded-full border border-midnight/15 hover:border-terra hover:text-terra px-6 py-4 text-midnight font-medium text-[15px] transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-4 text-midnight/70 hover:text-terra font-medium text-[15px] underline underline-offset-4 transition-colors"
           >
             {t.ctaBuy}
-          </a>
+          </Link>
         </div>
       </div>
     </section>

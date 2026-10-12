@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
 import { Icon } from "@iconify/react";
 import { JsonLd } from "@/components/JsonLd";
@@ -5,6 +6,7 @@ import { personSchema, breadcrumbSchema } from "@/lib/schema";
 import type { Locale } from "@/lib/i18n";
 import { hasLocale, localeHref } from "@/lib/i18n";
 import { notFound } from "next/navigation";
+import { RevealWords } from "@/components/ui/motion-kit";
 
 const T: Record<Locale, {
   metaTitle: string;
@@ -59,7 +61,7 @@ const T: Record<Locale, {
       {
         num: "02",
         title: "Les résultats avant tout",
-        body: "On ne crée pas des sites pour qu'ils soient beaux. On les crée pour ramener des clients. Chaque section, chaque bouton, chaque texte est pensé pour convertir vos visiteurs.",
+        body: "On ne crée pas des sites pour qu'ils soient beaux. On les crée pour ramener des clients. Chaque section, chaque bouton, chaque texte est pensé pour transformer vos visiteurs en clients.",
       },
       {
         num: "03",
@@ -69,7 +71,7 @@ const T: Record<Locale, {
     ],
     schemaTomJobTitle: "Co-fondateur de ACTC",
     schemaTomDescription:
-      "Entrepreneur, Tom-Soa Cyprien pilote la direction artistique, le parcours client et les stratégies d'acquisition payante (Meta, Google) chez ACTC. Il conçoit des sites qui convertissent et des campagnes qui ramènent des clients.",
+      "Entrepreneur, Tom-Soa Cyprien pilote la direction artistique, le parcours client et les stratégies d'acquisition payante (Meta, Google) chez ACTC. Il conçoit des sites qui amènent des clients et des campagnes qui ramènent des clients.",
     schemaAndyJobTitle: "Co-fondateur de ACTC",
     schemaAndyDescription:
       "Entrepreneur expérimenté, Andylane Chatenay maîtrise le référencement naturel, l'optimisation des textes pour vendre et la stratégie commerciale chez ACTC. Il aide les entrepreneurs à réduire leurs coûts et à trouver de meilleures solutions opérationnelles.",
@@ -84,7 +86,7 @@ const T: Record<Locale, {
     tomAlt: "Tom-Soa Cyprien, co-fondateur ACTC",
     tomRoles: "Design · Publicité payante · Parcours client",
     tomBio:
-      "Entrepreneur depuis plusieurs années, Tom-Soa pilote la direction artistique, le parcours client et les stratégies d'acquisition payante (Meta, Google). Il conçoit des sites qui convertissent et des campagnes qui ramènent des clients.",
+      "Entrepreneur depuis plusieurs années, Tom-Soa pilote la direction artistique, le parcours client et les stratégies d'acquisition payante (Meta, Google). Il conçoit des sites qui amènent des clients et des campagnes qui ramènent des clients.",
     tomSkills: ["Design web", "Publicité Meta & Google", "Parcours client", "Direction artistique"],
     andyAlt: "Andylane Chatenay, co-fondateur ACTC",
     andyRoles: "SEO · Optimisation textuelle · Stratégie commerciale",
@@ -121,7 +123,7 @@ const T: Record<Locale, {
       {
         num: "02",
         title: "Results first",
-        body: "We don't build websites to look pretty. We build them to bring in clients. Every section, every button, every word is designed to convert your visitors.",
+        body: "We don't build websites to look pretty. We build them to bring in clients. Every section, every button, every word is designed to turn your visitors into customers.",
       },
       {
         num: "03",
@@ -131,7 +133,7 @@ const T: Record<Locale, {
     ],
     schemaTomJobTitle: "Co-founder of ACTC",
     schemaTomDescription:
-      "An entrepreneur, Tom-Soa Cyprien leads art direction, customer journeys and paid acquisition strategies (Meta, Google) at ACTC. He designs websites that convert and campaigns that bring in clients.",
+      "An entrepreneur, Tom-Soa Cyprien leads art direction, customer journeys and paid acquisition strategies (Meta, Google) at ACTC. He designs websites that bring in customers and campaigns that bring in clients.",
     schemaAndyJobTitle: "Co-founder of ACTC",
     schemaAndyDescription:
       "A seasoned entrepreneur, Andylane Chatenay masters SEO, sales-driven copy optimization and business strategy at ACTC. He helps business owners cut costs and find better operational solutions.",
@@ -146,7 +148,7 @@ const T: Record<Locale, {
     tomAlt: "Tom-Soa Cyprien, co-founder of ACTC",
     tomRoles: "Design · Paid advertising · Customer journey",
     tomBio:
-      "An entrepreneur for several years, Tom-Soa leads art direction, customer journeys and paid acquisition strategies (Meta, Google). He designs websites that convert and campaigns that bring in clients.",
+      "An entrepreneur for several years, Tom-Soa leads art direction, customer journeys and paid acquisition strategies (Meta, Google). He designs websites that bring in customers and campaigns that bring in clients.",
     tomSkills: ["Web design", "Meta & Google ads", "Customer journey", "Art direction"],
     andyAlt: "Andylane Chatenay, co-founder of ACTC",
     andyRoles: "SEO · Copy optimization · Business strategy",
@@ -221,10 +223,11 @@ export default async function EquipePage({ params }: { params: Promise<{ lang: s
         <div className="absolute inset-x-0 top-0 -z-10 h-[60vh]" style={{ background: "radial-gradient(60% 60% at 50% 0%, rgba(194,65,12,0.08) 0%, transparent 70%)" }} aria-hidden />
         <div className="max-w-3xl mx-auto px-6 text-center">
           <div className="text-[11px] uppercase tracking-[0.18em] text-terra font-medium mb-5">{t.kicker}</div>
-          <h1 className="font-display font-extrabold tracking-[-0.035em] text-[clamp(2.4rem,6vw,4.5rem)] leading-[1.02] text-midnight">
-            {t.h1Start}{" "}
-            <span className="font-emphasis font-normal text-terra">{t.h1Accent}</span>
-          </h1>
+          <RevealWords
+            className="font-display font-extrabold tracking-[-0.035em] text-[clamp(2.4rem,6vw,4.5rem)] leading-[1.02] text-midnight"
+            emClassName="font-emphasis font-normal text-terra"
+            segments={[{ text: t.h1Start }, { text: t.h1Accent, em: true }]}
+          />
           <p className="mt-6 text-[clamp(1rem,1.2vw,1.15rem)] leading-relaxed text-steel max-w-xl mx-auto">
             {t.heroIntro}
           </p>
@@ -399,13 +402,13 @@ export default async function EquipePage({ params }: { params: Promise<{ lang: s
                   {t.ctaBody}
                 </p>
                 <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-                  <a href={localeHref(lang, "/contact")} className="group inline-flex items-center gap-2.5 rounded-full bg-white px-7 py-4 text-terra font-bold text-[15px] transition-transform hover:scale-[1.02]">
+                  <Link href={localeHref(lang, "/contact")} className="group inline-flex items-center gap-2.5 rounded-full bg-white px-7 py-4 text-terra font-bold text-[15px] transition-transform hover:scale-[1.02]">
                     {t.ctaPrimary}
                     <Icon icon="lucide:arrow-right" width={16} height={16} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
-                  </a>
-                  <a href={localeHref(lang, "/realisations")} className="inline-flex items-center gap-2 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-sm text-white px-6 py-4 text-[15px] font-medium transition-colors">
+                  </Link>
+                  <Link href={localeHref(lang, "/realisations")} className="inline-flex items-center gap-2 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-sm text-white px-6 py-4 text-[15px] font-medium transition-colors">
                     {t.ctaSecondary}
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

@@ -7,7 +7,7 @@ const ORG_ID = `${SITE_URL}/#organization`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
 
 const SAME_AS = [
-  "https://www.instagram.com/tomso.ads",
+  "https://www.instagram.com/actcstudio.fr",
   "https://www.linkedin.com/in/tom-soa-cyprien-934798333/",
 ];
 
@@ -16,7 +16,7 @@ export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "@id": ORG_ID,
-  name: "ACTC",
+  name: "ACTC Studio",
   url: SITE_URL,
   logo: {
     "@type": "ImageObject",
@@ -26,13 +26,15 @@ export const organizationSchema = {
   },
   image: `${SITE_URL}/icon.png`,
   description:
-    "Studio web pour PME et artisans. Sites vitrines et e-commerce sur-mesure, design premium, hébergement gratuit, référencement intégré, livrés en 21 jours.",
+    "Studio pour PME et artisans : sites internet et sites marchands sur-mesure livrés en 21 jours, publicité Meta et Google, applications web et conseil. Hébergement gratuit, aucun abonnement. Une cinquantaine d'entreprises accompagnées.",
   email: "fondationstudio.fr@gmail.com",
   telephone: "+33672758478",
   priceRange: "€€",
   areaServed: [
     { "@type": "Country", name: "France" },
-    { "@type": "AdministrativeArea", name: "La Réunion" },
+    { "@type": "Country", name: "Suisse" },
+    { "@type": "Country", name: "Belgique" },
+    { "@type": "AdministrativeArea", name: "DOM-TOM" },
   ],
   address: {
     "@type": "PostalAddress",

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import RessourcesGrid from "@/components/ressources/RessourcesGrid";
@@ -6,6 +7,7 @@ import { breadcrumbSchema, SITE_URL } from "@/lib/schema";
 import type { Locale } from "@/lib/i18n";
 import { hasLocale, localeHref } from "@/lib/i18n";
 import { ressourcesTriees } from "@/lib/ressources";
+import { RevealWords } from "@/components/ui/motion-kit";
 
 const T: Record<
   Locale,
@@ -146,10 +148,11 @@ export default async function RessourcesPage({
           <div className="text-[11px] uppercase tracking-[0.18em] text-terra mb-6 font-medium">
             {t.kicker}
           </div>
-          <h1 className="font-display font-extrabold tracking-[-0.035em] text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.02] text-midnight max-w-3xl">
-            {t.h1Start}{" "}
-            <span className="font-emphasis font-normal text-terra">{t.h1Em}</span>
-          </h1>
+          <RevealWords
+            className="font-display font-extrabold tracking-[-0.035em] text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.02] text-midnight max-w-3xl"
+            emClassName="font-emphasis font-normal text-terra"
+            segments={[{ text: t.h1Start }, { text: t.h1Em, em: true }]}
+          />
           <p className="mt-6 max-w-2xl text-[clamp(1rem,1.2vw,1.2rem)] leading-relaxed text-steel">
             {t.intro}
           </p>
@@ -167,7 +170,7 @@ export default async function RessourcesPage({
               <span className="font-emphasis font-normal text-terra">{t.ctaTitleEm}</span>
             </h2>
             <p className="mt-4 max-w-xl mx-auto text-steel">{t.ctaText}</p>
-            <a
+            <Link
               href={localeHref(lang, "/contact")}
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-terra hover:bg-terra-hover text-white px-7 py-3.5 text-[15px] font-semibold transition-colors glow-terra"
             >
@@ -185,7 +188,7 @@ export default async function RessourcesPage({
               >
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
       </section>

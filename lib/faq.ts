@@ -75,8 +75,8 @@ const CATEGORIES: FaqCategoryByLocale[] = [
       {
         q: { fr: "Combien de projets avez-vous réalisés ?", en: "How many projects have you delivered?" },
         a: {
-          fr: "Plus de 25 projets livrés : boulangerie, immobilier, cabinet comptable, club sportif, formation professionnelle, construction, e-commerce audio, institutions publiques, cession d'entreprise, et d'autres.",
-          en: "More than 25 projects delivered: a bakery, real estate, an accounting firm, a sports club, professional training, construction, audio e-commerce, public institutions, business sales, and more.",
+          fr: "Une cinquantaine d'entreprises accompagnées : conciergerie, restaurant, épicerie, concession automobile, club sportif, centre de formation, construction, e-commerce audio, institution publique, cession d'entreprise, et d'autres.",
+          en: "Around fifty businesses supported: property management, a restaurant, a grocery, a car dealership, a sports club, a training center, construction, audio e-commerce, a public institution, business sales, and more.",
         },
       },
     ],
@@ -150,8 +150,8 @@ const CATEGORIES: FaqCategoryByLocale[] = [
       {
         q: { fr: "Combien de temps faut-il pour livrer un site ?", en: "How long does it take to deliver a website?" },
         a: {
-          fr: "14 à 21 jours à partir du démarrage. Ce délai inclut la maquette, les retours, le développement et la mise en ligne. On respecte nos délais sur 100 % de nos projets.",
-          en: "14 to 21 days from kickoff. That includes the mockup, your feedback, development and launch. We have met our deadlines on 100% of our projects.",
+          fr: "Votre site est livré en 21 jours à partir du démarrage. Ce délai inclut la maquette, vos retours, la construction et la mise en ligne.",
+          en: "Your website is delivered in 21 days from kickoff. That includes the mockup, your feedback, the build and launch.",
         },
       },
       {

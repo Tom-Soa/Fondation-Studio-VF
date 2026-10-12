@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { useEffect, useState, useMemo } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Icon } from "@iconify/react";
@@ -26,7 +28,7 @@ const T: Record<
 > = {
   fr: {
     offerFilters: ["Tous", "Offre Standard", "Offre Conversion", "Offre Premium", "E-commerce Shopify"],
-    typeFilters: ["Tous types", "Site vitrine", "Site vitrine premium", "Boutique e-commerce"],
+    typeFilters: ["Tous", "Site vitrine", "Site vitrine premium", "Boutique en ligne"],
     reset: "Réinitialiser les filtres",
     empty: "Aucun projet pour ces filtres.",
     seeDetail: "Voir le détail de",
@@ -41,7 +43,7 @@ const T: Record<
   },
   en: {
     offerFilters: ["All", "Standard plan", "Conversion plan", "Premium plan", "Shopify e-commerce"],
-    typeFilters: ["All types", "Showcase website", "Premium showcase website", "E-commerce store"],
+    typeFilters: ["All", "Showcase website", "Premium showcase website", "Online store"],
     reset: "Reset filters",
     empty: "No projects match these filters.",
     seeDetail: "View details for",
@@ -87,21 +89,6 @@ export default function RealisationsGrid({ lang }: { lang: Locale }) {
     <>
       {/* Filtres */}
       <div className="mb-8 space-y-3">
-        <div className="flex flex-wrap gap-2">
-          {t.offerFilters.map((f) => (
-            <button
-              key={f}
-              onClick={() => setFilterOffer(f)}
-              className={`rounded-full px-4 py-2 text-[13px] font-medium transition-all ${
-                filterOffer === f
-                  ? "bg-terra text-white shadow-[0_4px_14px_rgba(194,65,12,0.35)]"
-                  : "bg-white border border-grid-line text-steel hover:text-midnight hover:border-terra/40"
-              }`}
-            >
-              {f}
-            </button>
-          ))}
-        </div>
         <div className="flex flex-wrap gap-2">
           {t.typeFilters.map((f) => (
             <button
@@ -156,7 +143,7 @@ export default function RealisationsGrid({ lang }: { lang: Locale }) {
                 <div className="flex flex-1 flex-col p-5">
                   <div className="flex items-start justify-between gap-3">
                     <h2 className="font-display text-lg font-semibold text-midnight">{s.name}</h2>
-                    <span className="shrink-0 rounded-full bg-terra/10 px-2.5 py-1 text-[11px] font-semibold text-terra">{s.offer}</span>
+                    <span className="shrink-0 rounded-full bg-terra/10 px-2.5 py-1 text-[11px] font-semibold text-terra">{s.type}</span>
                   </div>
                   <p className="mt-1 text-[13px] text-steel">{s.sector}</p>
                   <div className="mt-5 flex flex-wrap items-center gap-2">
@@ -212,7 +199,7 @@ export default function RealisationsGrid({ lang }: { lang: Locale }) {
               </div>
               <div className="p-6 sm:p-8">
                 <div className="flex flex-wrap items-center gap-2 mb-4">
-                  <span className="rounded-full bg-terra/10 px-3 py-1 text-[11px] font-semibold text-terra">{active.offer}</span>
+                  <span className="rounded-full bg-terra/10 px-3 py-1 text-[11px] font-semibold text-terra">{active.type}</span>
                   <span className="rounded-full border border-grid-line px-3 py-1 text-[11px] font-medium text-steel">{active.type}</span>
                 </div>
                 <h3 className="font-display text-2xl sm:text-3xl font-extrabold tracking-[-0.02em] text-midnight">{active.name}</h3>
@@ -243,10 +230,10 @@ export default function RealisationsGrid({ lang }: { lang: Locale }) {
                   </ul>
                 </div>
                 <div className="mt-8 flex flex-col sm:flex-row gap-3">
-                  <a href={localeHref(lang, "/contact")} className="group inline-flex items-center justify-center gap-2 rounded-full bg-terra hover:bg-terra-hover px-6 py-3.5 text-white font-semibold text-[14px] transition-all glow-terra">
+                  <Link href={localeHref(lang, "/contact")} className="group inline-flex items-center justify-center gap-2 rounded-full bg-terra hover:bg-terra-hover px-6 py-3.5 text-white font-semibold text-[14px] transition-all glow-terra">
                     {t.ctaButton}
                     <Icon icon="lucide:arrow-right" width={16} height={16} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
-                  </a>
+                  </Link>
                   {active.url && (
                     <a
                       href={active.url}

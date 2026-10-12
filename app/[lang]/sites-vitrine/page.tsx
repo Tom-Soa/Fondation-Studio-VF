@@ -1,3 +1,5 @@
+import Link from "next/link";
+import SiteTypeSwitch from "@/components/SiteTypeSwitch";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Icon } from "@iconify/react";
@@ -6,6 +8,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { serviceSchema, breadcrumbSchema } from "@/lib/schema";
 import type { Locale } from "@/lib/i18n";
 import { hasLocale, localeHref } from "@/lib/i18n";
+import { RevealWords } from "@/components/ui/motion-kit";
 
 interface Etape {
   num: string;
@@ -65,8 +68,8 @@ const T: Record<Locale, Dict> = {
     schemaDescription:
       "Site vitrine sur-mesure pour PME, artisans et indépendants : design unique, référencement intégré, hébergement gratuit. À partir de 1 400 €, page d'accueil offerte avant tout engagement.",
     breadcrumbHome: "Accueil",
-    breadcrumbPage: "Sites vitrines",
-    heroKicker: "Sites vitrines",
+    breadcrumbPage: "Sites internet",
+    heroKicker: "Sites internet",
     heroTitle1: "Un site qui",
     heroTitleEm1: "attire",
     heroTitle2: "et",
@@ -79,7 +82,7 @@ const T: Record<Locale, Dict> = {
     cardPrice: "1 400 €",
     cardItems: [
       { icon: "ph:paint-brush-duotone", label: "Design 100 % sur-mesure" },
-      { icon: "ph:magnifying-glass-duotone", label: "SEO intégré dès le départ" },
+      { icon: "ph:magnifying-glass-duotone", label: "Pensé pour être trouvé sur Google" },
       { icon: "ph:cloud-duotone", label: "Hébergement gratuit à vie" },
       { icon: "ph:lock-key-duotone", label: "Site 100 % à vous" },
       { icon: "ph:device-mobile-duotone", label: "Parfait sur mobile" },
@@ -101,8 +104,8 @@ const T: Record<Locale, Dict> = {
       { icon: "ph:device-mobile-duotone", label: "Parfait sur mobile" },
       { icon: "ph:shield-check-duotone", label: "Un design qui inspire confiance" },
       { icon: "ph:key-duotone", label: "Site 100 % à vous, hébergement gratuit" },
-      { icon: "ph:magnifying-glass-duotone", label: "Visible sur Google dès le lancement" },
-      { icon: "ph:lightning-duotone", label: "Livré en 14 à 21 jours" },
+      { icon: "ph:magnifying-glass-duotone", label: "Trouvé par les gens qui cherchent votre métier" },
+      { icon: "ph:lightning-duotone", label: "Livré en 21 jours" },
     ],
     processKicker: "Comment ça se passe",
     processTitle: "De votre demande à la mise en ligne.",
@@ -123,15 +126,15 @@ const T: Record<Locale, Dict> = {
       },
       {
         num: "03",
-        title: "Développement",
-        body: "Le site est codé sur-mesure. Aucun template, aucun WordPress. Du code propre.",
+        title: "Construction",
+        body: "On construit votre site sur-mesure, avec vos textes, vos photos et vos couleurs. Vous validez à chaque étape clé.",
         color: "bg-[#1A3A2A]",
         textColor: "text-white",
       },
       {
         num: "04",
         title: "Mise en ligne",
-        body: "On gère le déploiement, le domaine et le référencement. Livraison en 14 à 21 jours.",
+        body: "On s'occupe de tout pour la mise en ligne. Votre site est livré en 21 jours et il vous appartient.",
         color: "bg-alabaster border border-grid-line",
         textColor: "text-midnight",
       },
@@ -170,7 +173,7 @@ const T: Record<Locale, Dict> = {
     cardPrice: "€1,400",
     cardItems: [
       { icon: "ph:paint-brush-duotone", label: "100% custom design" },
-      { icon: "ph:magnifying-glass-duotone", label: "SEO built in from day one" },
+      { icon: "ph:magnifying-glass-duotone", label: "Built to be found on Google" },
       { icon: "ph:cloud-duotone", label: "Free hosting for life" },
       { icon: "ph:lock-key-duotone", label: "You own 100% of your site" },
       { icon: "ph:device-mobile-duotone", label: "Flawless on mobile" },
@@ -192,8 +195,8 @@ const T: Record<Locale, Dict> = {
       { icon: "ph:device-mobile-duotone", label: "Flawless on mobile" },
       { icon: "ph:shield-check-duotone", label: "A design that builds trust" },
       { icon: "ph:key-duotone", label: "You own 100% of your site, free hosting" },
-      { icon: "ph:magnifying-glass-duotone", label: "Visible on Google from launch" },
-      { icon: "ph:lightning-duotone", label: "Delivered in 14 to 21 days" },
+      { icon: "ph:magnifying-glass-duotone", label: "Found by people looking for your trade" },
+      { icon: "ph:lightning-duotone", label: "Delivered in 21 days" },
     ],
     processKicker: "How it works",
     processTitle: "From your request to launch.",
@@ -214,15 +217,15 @@ const T: Record<Locale, Dict> = {
       },
       {
         num: "03",
-        title: "Development",
-        body: "Your site is coded from scratch. No templates, no WordPress. Clean code.",
+        title: "Build",
+        body: "We build your custom website with your copy, photos and colors. You approve every key step.",
         color: "bg-[#1A3A2A]",
         textColor: "text-white",
       },
       {
         num: "04",
         title: "Launch",
-        body: "We handle deployment, your domain and SEO. Delivered in 14 to 21 days.",
+        body: "We take care of everything for launch. Your website is delivered in 21 days and it is yours.",
         color: "bg-alabaster border border-grid-line",
         textColor: "text-midnight",
       },
@@ -280,26 +283,28 @@ export default async function SitesVitrinePage({ params }: { params: Promise<{ l
       <section className="relative isolate overflow-hidden bg-alabaster pt-32 pb-20 lg:pt-44 lg:pb-28">
         <div className="absolute inset-x-0 top-0 -z-10 h-[60vh]" style={{ background: "radial-gradient(60% 60% at 50% 0%, rgba(194,65,12,0.10) 0%, transparent 70%)" }} aria-hidden />
         <div className="max-w-5xl mx-auto px-6">
+          <div className="mb-10 flex justify-center lg:justify-start">
+            <SiteTypeSwitch lang={lang} current="/sites-vitrine" />
+          </div>
           <div className="grid lg:grid-cols-2 gap-14 items-center">
             <div>
               <div className="text-[11px] uppercase tracking-[0.18em] text-terra font-medium mb-5">{t.heroKicker}</div>
-              <h1 className="font-display font-extrabold tracking-[-0.035em] text-[clamp(2.5rem,5.5vw,4.5rem)] leading-[1.02] text-midnight">
-                {t.heroTitle1}{" "}
-                <span className="font-emphasis font-normal text-terra">{t.heroTitleEm1}</span>{" "}
-                {t.heroTitle2}{" "}
-                <span className="font-emphasis font-normal text-terra">{t.heroTitleEm2}</span>
-              </h1>
+              <RevealWords
+                className="font-display font-extrabold tracking-[-0.035em] text-[clamp(2.5rem,5.5vw,4.5rem)] leading-[1.02] text-midnight"
+                emClassName="font-emphasis font-normal text-terra"
+                segments={[{ text: t.heroTitle1 }, { text: t.heroTitleEm1, em: true }, { text: t.heroTitle2 }, { text: t.heroTitleEm2, em: true }]}
+              />
               <p className="mt-6 text-[clamp(1rem,1.2vw,1.15rem)] leading-relaxed text-steel">
                 {t.heroSub}
               </p>
               <div className="mt-8 flex flex-col sm:flex-row flex-wrap gap-3">
-                <a href={localeHref(lang, "/contact")} className="group inline-flex items-center justify-center gap-2.5 whitespace-nowrap rounded-full bg-terra hover:bg-terra-hover px-7 py-4 text-white font-semibold text-[15px] transition-all glow-terra">
+                <Link href={localeHref(lang, "/contact")} className="group inline-flex items-center justify-center gap-2.5 whitespace-nowrap rounded-full bg-terra hover:bg-terra-hover px-7 py-4 text-white font-semibold text-[15px] transition-all glow-terra">
                   {t.heroCtaPrimary}
                   <Icon icon="lucide:arrow-right" width={16} height={16} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
-                </a>
-                <a href={localeHref(lang, "/tarifs")} className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border border-midnight/15 hover:border-midnight/40 px-6 py-4 text-midnight font-medium text-[15px] transition-colors">
+                </Link>
+                <Link href={localeHref(lang, "/tarifs")} className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border border-midnight/15 hover:border-midnight/40 px-6 py-4 text-midnight font-medium text-[15px] transition-colors">
                   {t.heroCtaSecondary}
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -418,13 +423,13 @@ export default async function SitesVitrinePage({ params }: { params: Promise<{ l
                   {t.ctaSub}
                 </p>
                 <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-                  <a href={localeHref(lang, "/contact")} className="group inline-flex items-center gap-2.5 rounded-full bg-white px-7 py-4 text-terra font-bold text-[15px] transition-transform hover:scale-[1.02]">
+                  <Link href={localeHref(lang, "/contact")} className="group inline-flex items-center gap-2.5 rounded-full bg-white px-7 py-4 text-terra font-bold text-[15px] transition-transform hover:scale-[1.02]">
                     {t.ctaPrimary}
                     <Icon icon="lucide:arrow-right" width={16} height={16} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
-                  </a>
-                  <a href={localeHref(lang, "/tarifs")} className="inline-flex items-center gap-2 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-sm text-white px-6 py-4 text-[15px] font-medium transition-colors">
+                  </Link>
+                  <Link href={localeHref(lang, "/tarifs")} className="inline-flex items-center gap-2 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-sm text-white px-6 py-4 text-[15px] font-medium transition-colors">
                     {t.ctaSecondary}
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

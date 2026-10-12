@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
@@ -143,7 +144,7 @@ export default async function RessourcePage({
       {/* En-tete */}
       <section className="bg-alabaster pt-32 pb-8 lg:pt-44 lg:pb-10">
         <div className="max-w-4xl mx-auto px-6">
-          <a
+          <Link
             href={localeHref(lang, "/ressources")}
             className="inline-flex items-center gap-2 text-[13.5px] font-medium text-steel hover:text-terra transition-colors"
           >
@@ -161,7 +162,7 @@ export default async function RessourcePage({
               <path d="M19 12H5M12 19l-7-7 7-7" />
             </svg>
             {t.back}
-          </a>
+          </Link>
 
           <div className="mt-7 flex flex-wrap items-center gap-3 text-[11px] uppercase tracking-[0.14em] font-medium">
             <span className="rounded-full bg-terra/10 px-3 py-1 text-terra">
@@ -281,7 +282,7 @@ export default async function RessourcePage({
               <span className="font-emphasis font-normal text-terra">{t.ctaTitleEm}</span>
             </h2>
             <p className="mt-4 max-w-xl mx-auto text-steel">{t.ctaText}</p>
-            <a
+            <Link
               href={localeHref(lang, "/contact")}
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-terra hover:bg-terra-hover text-white px-7 py-3.5 text-[15px] font-semibold transition-colors glow-terra"
             >
@@ -299,7 +300,7 @@ export default async function RessourcePage({
               >
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -342,7 +343,7 @@ function BlocRendu({ bloc }: { bloc: Bloc }) {
 function CarteAutre({ r, lang }: { r: Ressource; lang: Locale }) {
   const duree = metaDuree(r);
   return (
-    <a
+    <Link
       href={localeHref(lang, `/ressources/${r.slug}`)}
       className="group flex flex-col rounded-2xl border border-grid-line bg-white p-5 transition-all duration-300 hover:border-terra/30 hover:shadow-card-light"
     >
@@ -356,6 +357,6 @@ function CarteAutre({ r, lang }: { r: Ressource; lang: Locale }) {
         <time dateTime={r.date}>{formatDate(r.date, lang)}</time>
         {duree && <span>· {duree}</span>}
       </div>
-    </a>
+    </Link>
   );
 }

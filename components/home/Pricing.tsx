@@ -1,9 +1,12 @@
 // Pricing : section claire (fond alabaster), cartes d'offres + carte e-commerce horizontale.
 "use client";
 
+import Link from "next/link";
+
 import { motion } from "motion/react";
 import { Icon } from "@iconify/react";
 import { OfferCard } from "@/components/ui/OfferCard";
+import { TiltCard } from "@/components/ui/motion-kit";
 import { OFFERS, OPTIONS_NOTE, PAYMENT_NOTE } from "@/lib/content";
 import type { Locale } from "@/lib/i18n";
 import { localeHref } from "@/lib/i18n";
@@ -96,13 +99,16 @@ export default function Pricing({
           {OFFERS[lang].map((o, i) => (
             <motion.div
               key={o.slug}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 48, rotateX: 8 }}
+              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
+              transition={{ duration: 0.9, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
               className="h-full"
+              style={{ transformPerspective: 1000 }}
             >
-              <OfferCard offer={o} />
+              <TiltCard className="rounded-3xl" max={5}>
+                <OfferCard offer={o} />
+              </TiltCard>
             </motion.div>
           ))}
         </div>
@@ -130,13 +136,13 @@ export default function Pricing({
               <p className="text-[14.5px] leading-relaxed text-steel max-w-2xl">
                 {t.ecomBody}
               </p>
-              <a
+              <Link
                 href={localeHref(lang, "/sites-marchands")}
                 className="group mt-5 inline-flex items-center gap-2 rounded-full bg-midnight hover:bg-midnight/90 px-6 py-3 text-[14px] font-semibold text-white transition-colors"
               >
                 {t.ecomCta}
                 <Icon icon="lucide:arrow-right" width={15} height={15} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
-              </a>
+              </Link>
             </div>
           </div>
         </motion.div>

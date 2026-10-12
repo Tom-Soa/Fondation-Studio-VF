@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Pricing from "@/components/home/Pricing";
@@ -7,6 +8,7 @@ import { Accordion, type AccordionItem } from "@/components/ui/Accordion";
 import { OPTIONS, SERVICES, FAQ } from "@/lib/content";
 import type { Locale } from "@/lib/i18n";
 import { hasLocale, localeHref } from "@/lib/i18n";
+import { RevealWords } from "@/components/ui/motion-kit";
 
 const PUBLICITE = SERVICES.fr.find((s) => s.title.includes("Publicité"));
 
@@ -39,17 +41,17 @@ const T: Record<
   }
 > = {
   fr: {
-    metaTitle: "Nos offres",
+    metaTitle: "Tarifs : site dès 1 400 €, publicité dès 500 € par mois",
     metaDescription:
       "Forfaits à partir de 1 400 €, options à la carte, sites e-commerce Shopify et publicité Meta/Google. Site en propriété, acompte 60 %, paiement jusqu'à 4 fois sans frais.",
     ogTitle: "Nos offres · ACTC",
     ogDescription:
       "Forfaits à partir de 1 400 €, options à la carte, sites e-commerce Shopify et publicité Meta/Google. Site en propriété, paiement jusqu'à 4 fois sans frais.",
     kicker: "Nos offres",
-    h1Start: "Des sites qui se",
-    h1Em: "remboursent.",
+    h1Start: "Des prix clairs,",
+    h1Em: "fixés d'avance.",
     intro:
-      "Un investissement, pas une dépense. À partir de 1 400 €, tout inclus, hébergement gratuit. Votre site vous appartient. Des forfaits de base à enrichir avec des options à la carte.",
+      "Site dès 1 400 €, livré en 21 jours. Hébergement gratuit, aucun abonnement, et le site vous appartient. Paiement en plusieurs fois sans frais. La maquette de votre page d'accueil est offerte avant tout engagement.",
     optionsKicker: "Options",
     optionsTitle: "Personnalisez votre site à la carte.",
     optionsNote: "Chaque option s'ajoute à n'importe quel forfait, sans dépendance ni abonnement caché.",
@@ -64,15 +66,15 @@ const T: Record<
   en: {
     metaTitle: "Our plans",
     metaDescription:
-      "Custom-quoted plans, a la carte options, Shopify e-commerce stores and Meta/Google advertising. You own your site, 60% deposit, pay in installments.",
+      "Websites from €1,400, a la carte options, Shopify e-commerce stores and Meta/Google advertising. You own your site, 60% deposit, pay in installments.",
     ogTitle: "Our plans · ACTC",
     ogDescription:
-      "Custom-quoted plans, a la carte options, Shopify e-commerce stores and Meta/Google advertising. You own your site, pay in installments.",
+      "Websites from €1,400, a la carte options, Shopify e-commerce stores and Meta/Google advertising. You own your site, pay in installments.",
     kicker: "Our plans",
-    h1Start: "Websites that pay for",
-    h1Em: "themselves.",
+    h1Start: "Clear prices,",
+    h1Em: "set upfront.",
     intro:
-      "An investment, not an expense. From €1,400, everything included, free hosting. Your site belongs to you. Base plans you can extend with a la carte options.",
+      "Websites from €1,400, delivered in 21 days. Free hosting, no subscription, and the website is yours. Interest-free installments. Your homepage mockup is free, before any commitment.",
     optionsKicker: "Options",
     optionsTitle: "Customize your website, a la carte.",
     optionsNote: "Each option can be added to any plan, with no dependencies and no hidden subscription.",
@@ -83,10 +85,10 @@ const T: Record<
         description: "Regular updates to your site after the free period included in your plan.",
       },
       {
-        name: "Media buying",
-        price: "Custom quote",
+        name: "Meta & Google ads",
+        price: "From €500 / month",
         description:
-          "Management of your Google and Meta (Instagram/Facebook) advertising to bring in new customers, with monthly campaign reporting.",
+          "Your ads on Instagram, Facebook and Google, shown to people looking for what you offer. Adjusted every week to keep what brings in enquiries.",
       },
       {
         name: "Email sequences",
@@ -113,9 +115,9 @@ const T: Record<
       "Prices before tax (VAT not applicable, art. 293 B of the French tax code) · 60% deposit at order, 40% balance on delivery · Pay in 3 interest-free installments on the Standard plan, or 4 on the Conversion and Premium plans",
     publicite: PUBLICITE && {
       title: "Meta & Google advertising",
-      price: "Custom quote",
+      price: "From €500 per month",
       description:
-        "We do more than your website: we bring you customers. Drawing on our experience with Instagram, Facebook and Google advertising, we set up campaigns that generate qualified leads and sales.",
+        "We do more than your website: we bring you customers. Drawing on our experience with Instagram, Facebook and Google advertising, we set up campaigns that bring you enquiries and sales.",
     },
     publiciteCta: "Talk it through with us",
     faqTitle: "Frequently asked questions",
@@ -173,9 +175,11 @@ export default async function TarifsPage({ params }: { params: Promise<{ lang: s
       <section className="bg-alabaster pt-32 pb-10 lg:pt-44 lg:pb-12 text-center">
         <div className="max-w-3xl mx-auto px-6">
           <div className="text-[11px] uppercase tracking-[0.18em] text-terra mb-6 font-medium">{t.kicker}</div>
-          <h1 className="font-display font-extrabold tracking-[-0.035em] text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.02] text-midnight">
-            {t.h1Start} <span className="font-emphasis font-normal text-terra">{t.h1Em}</span>
-          </h1>
+          <RevealWords
+            className="font-display font-extrabold tracking-[-0.035em] text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.02] text-midnight"
+            emClassName="font-emphasis font-normal text-terra"
+            segments={[{ text: t.h1Start }, { text: t.h1Em, em: true }]}
+          />
           <p className="mt-6 max-w-2xl mx-auto text-[clamp(1rem,1.2vw,1.2rem)] leading-relaxed text-steel">
             {t.intro}
           </p>
@@ -251,7 +255,7 @@ export default async function TarifsPage({ params }: { params: Promise<{ lang: s
                   </span>
                 </div>
                 <p className="text-[15px] leading-relaxed text-steel max-w-3xl">{t.publicite.description}</p>
-                <a
+                <Link
                   href={localeHref(lang, "/contact")}
                   className="mt-6 inline-flex items-center gap-2 text-[14px] font-semibold text-terra hover:underline"
                 >
@@ -259,7 +263,7 @@ export default async function TarifsPage({ params }: { params: Promise<{ lang: s
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                     <path d="M5 12h14M12 5l7 7-7 7" />
                   </svg>
-                </a>
+                </Link>
               </div>
             </Reveal>
           </div>

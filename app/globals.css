@@ -12,7 +12,7 @@
   /* ── FONTS ──────────────────────────────────────────────────────── */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  /* Anciennement DM Mono (look "technique" non désiré) — remplacé par le sans. */
+  /* Anciennement DM Mono (look "technique" non désiré), remplacé par le sans. */
   --font-mono: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
   /* ── EASINGS ────────────────────────────────────────────────────── */
@@ -51,7 +51,7 @@
   }
 }
 
-/* ── BASE (light by default — matches original index.html) ───────── */
+/* ── BASE (light by default, matches original index.html) ───────── */
 html {
   background: var(--color-alabaster);
   color: var(--color-midnight);
@@ -93,7 +93,7 @@ body {
   letter-spacing: 0;
 }
 
-/* ── `em` from original — plain Inter, just terra coloring ───────── */
+/* ── `em` from original, plain Inter, just terra coloring ───────── */
 em {
   font-style: normal;
   color: var(--color-terra);
@@ -176,3 +176,4 @@ em {
 @supports not (animation-timeline: view()) {
   .reveal-on-scroll { animation: none; opacity: 1; transform: none; }
 }
+

@@ -1,3 +1,5 @@
+import Link from "next/link";
+import SiteTypeSwitch from "@/components/SiteTypeSwitch";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Icon } from "@iconify/react";
@@ -6,6 +8,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { serviceSchema, breadcrumbSchema } from "@/lib/schema";
 import type { Locale } from "@/lib/i18n";
 import { hasLocale, localeHref } from "@/lib/i18n";
+import { RevealWords } from "@/components/ui/motion-kit";
 
 interface Dict {
   metaTitle: string;
@@ -120,9 +123,9 @@ const T: Record<Locale, Dict> = {
     pubWhyTitle: "Ce que ça change",
     pubWhy: [
       { icon: "ph:target-duotone", text: "On cible vos futurs clients : âge, intérêts, localisation, comportement d'achat" },
-      { icon: "ph:currency-eur-duotone", text: "Vous choisissez le budget. On peut démarrer petit et scaler selon les résultats" },
-      { icon: "ph:chart-bar-duotone", text: "Chaque vente est tracée. Vous savez exactement ce que rapporte chaque euro investi" },
-      { icon: "ph:arrows-clockwise-duotone", text: "Chaque mois : nouveaux visuels, nouvelles campagnes, rapport de résultats" },
+      { icon: "ph:currency-eur-duotone", text: "Vous choisissez le budget, dès 500 € par mois. On démarre petit, puis on renforce ce qui marche" },
+      { icon: "ph:chart-bar-duotone", text: "Chaque vente est suivie : vous voyez ce que vos campagnes vous rapportent" },
+      { icon: "ph:arrows-clockwise-duotone", text: "Chaque semaine, on garde ce qui vend et on coupe le reste" },
     ],
     pubHowTitle: "Comment on travaille",
     pubSteps: [
@@ -130,7 +133,7 @@ const T: Record<Locale, Dict> = {
       { num: "02", label: "On crée les visuels : photos, vidéos, carrousels" },
       { num: "03", label: "On lance sur Meta (Instagram/Facebook) et/ou Google" },
       { num: "04", label: "On mesure : ventes, coût par achat, produits qui marchent" },
-      { num: "05", label: "On optimise chaque mois et on amplifie ce qui fonctionne" },
+      { num: "05", label: "On corrige chaque semaine et on renforce ce qui fonctionne" },
     ],
     ecoKicker: "On s'occupe de tout",
     ecoTitle: "L'écosystème complet autour de votre boutique.",
@@ -138,17 +141,17 @@ const T: Record<Locale, Dict> = {
       {
         icon: "ph:megaphone-duotone",
         title: "Publicité Meta & Google",
-        body: "On crée vos visuels et on les diffuse aux bonnes personnes. Chaque euro investi est tracé et optimisé.",
+        body: "On crée vos visuels et on les montre aux bonnes personnes, dès 500 € par mois. Corrigé chaque semaine.",
       },
       {
         icon: "ph:envelope-duotone",
         title: "Newsletter & emails auto",
-        body: "Mail de bienvenue, promo flash, relance client. Des ventes générées automatiquement, sans effort.",
+        body: "Mail de bienvenue, promo flash, relance client : vos clients reviennent sans que vous ayez à y penser.",
       },
       {
         icon: "ph:arrow-counter-clockwise-duotone",
         title: "Relance panier abandonné",
-        body: "70 % des acheteurs partent sans payer. On les relance automatiquement pour récupérer ces ventes.",
+        body: "Beaucoup de visiteurs remplissent leur panier puis partent sans payer. On les relance automatiquement pour récupérer ces ventes.",
       },
       {
         icon: "ph:magnifying-glass-duotone",
@@ -241,9 +244,9 @@ const T: Record<Locale, Dict> = {
     pubWhyTitle: "What it changes",
     pubWhy: [
       { icon: "ph:target-duotone", text: "We target your future customers: age, interests, location, buying behavior" },
-      { icon: "ph:currency-eur-duotone", text: "You set the budget. We can start small and scale based on results" },
-      { icon: "ph:chart-bar-duotone", text: "Every sale is tracked. You know exactly what every euro invested brings back" },
-      { icon: "ph:arrows-clockwise-duotone", text: "Every month: new creatives, new campaigns, a results report" },
+      { icon: "ph:currency-eur-duotone", text: "You set the budget, from €500 per month. We start small, then reinforce what works" },
+      { icon: "ph:chart-bar-duotone", text: "Every sale is tracked: you see what your campaigns bring in" },
+      { icon: "ph:arrows-clockwise-duotone", text: "Every week, we keep what sells and cut the rest" },
     ],
     pubHowTitle: "How we work",
     pubSteps: [
@@ -251,7 +254,7 @@ const T: Record<Locale, Dict> = {
       { num: "02", label: "We create the visuals: photos, videos, carousels" },
       { num: "03", label: "We launch on Meta (Instagram/Facebook) and/or Google" },
       { num: "04", label: "We measure: sales, cost per purchase, best-selling products" },
-      { num: "05", label: "We optimize every month and scale what works" },
+      { num: "05", label: "We adjust every week and reinforce what works" },
     ],
     ecoKicker: "We handle everything",
     ecoTitle: "The complete ecosystem around your store.",
@@ -259,7 +262,7 @@ const T: Record<Locale, Dict> = {
       {
         icon: "ph:megaphone-duotone",
         title: "Meta & Google ads",
-        body: "We create your visuals and put them in front of the right people. Every euro invested is tracked and optimized.",
+        body: "We create your visuals and show them to the right people, from €500 per month. Adjusted every week.",
       },
       {
         icon: "ph:envelope-duotone",
@@ -269,7 +272,7 @@ const T: Record<Locale, Dict> = {
       {
         icon: "ph:arrow-counter-clockwise-duotone",
         title: "Abandoned cart recovery",
-        body: "70% of shoppers leave without paying. We follow up automatically to win those sales back.",
+        body: "Many visitors fill their cart and leave without paying. We follow up automatically to win those sales back.",
       },
       {
         icon: "ph:magnifying-glass-duotone",
@@ -344,25 +347,29 @@ export default async function SitesMarchandsPage({ params }: { params: Promise<{
           aria-hidden
         />
         <div className="max-w-4xl mx-auto px-6 text-center">
+          <div className="mb-10 flex justify-center">
+            <SiteTypeSwitch lang={lang} current="/sites-marchands" />
+          </div>
           <div className="inline-flex items-center gap-2 rounded-full border border-grid-line bg-white px-4 py-1.5 shadow-card-light mb-6">
             <Icon icon="fa6-brands:shopify" width={15} height={15} className="text-[#5E8E3E]" aria-hidden />
             <span className="text-[12px] font-semibold text-midnight/70">{t.heroBadge}</span>
           </div>
-          <h1 className="font-display font-extrabold tracking-[-0.035em] text-[clamp(2.5rem,6.5vw,5rem)] leading-[1.02] text-midnight">
-            {t.heroTitle1}{" "}
-            <span className="font-emphasis font-normal text-terra">{t.heroTitleEm}</span>
-          </h1>
+          <RevealWords
+            className="font-display font-extrabold tracking-[-0.035em] text-[clamp(2.5rem,6.5vw,5rem)] leading-[1.02] text-midnight"
+            emClassName="font-emphasis font-normal text-terra"
+            segments={[{ text: t.heroTitle1 }, { text: t.heroTitleEm, em: true }]}
+          />
           <p className="mt-6 max-w-xl mx-auto text-[clamp(1rem,1.2vw,1.15rem)] leading-relaxed text-steel">
             {t.heroSub}
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <a href={localeHref(lang, "/contact")} className="group inline-flex items-center gap-2.5 rounded-full bg-terra hover:bg-terra-hover px-7 py-4 text-white font-semibold text-[15px] transition-all glow-terra">
+            <Link href={localeHref(lang, "/contact")} className="group inline-flex items-center gap-2.5 rounded-full bg-terra hover:bg-terra-hover px-7 py-4 text-white font-semibold text-[15px] transition-all glow-terra">
               {t.heroCtaPrimary}
               <Icon icon="lucide:arrow-right" width={16} height={16} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
-            </a>
-            <a href={localeHref(lang, "/realisations")} className="inline-flex items-center gap-2 rounded-full border border-midnight/15 hover:border-midnight/40 px-6 py-4 text-midnight font-medium text-[15px] transition-colors">
+            </Link>
+            <Link href={localeHref(lang, "/realisations")} className="inline-flex items-center gap-2 rounded-full border border-midnight/15 hover:border-midnight/40 px-6 py-4 text-midnight font-medium text-[15px] transition-colors">
               {t.heroCtaSecondary}
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -391,10 +398,10 @@ export default async function SitesMarchandsPage({ params }: { params: Promise<{
                 {t.offerGift}
               </div>
 
-              <a href={localeHref(lang, "/contact")} className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-terra hover:bg-terra-hover px-6 py-3.5 text-[14px] font-bold text-white transition-all glow-terra">
+              <Link href={localeHref(lang, "/contact")} className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-terra hover:bg-terra-hover px-6 py-3.5 text-[14px] font-bold text-white transition-all glow-terra">
                 {t.offerCta}
                 <Icon icon="lucide:arrow-right" width={16} height={16} aria-hidden />
-              </a>
+              </Link>
             </div>
 
             {/* Séparateur (vertical sur desktop, horizontal sur mobile) */}
@@ -546,13 +553,13 @@ export default async function SitesMarchandsPage({ params }: { params: Promise<{
                   {t.ctaSub}
                 </p>
                 <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-                  <a href={localeHref(lang, "/contact")} className="group inline-flex items-center gap-2.5 rounded-full bg-white px-7 py-4 text-terra font-bold text-[15px] transition-transform hover:scale-[1.02]">
+                  <Link href={localeHref(lang, "/contact")} className="group inline-flex items-center gap-2.5 rounded-full bg-white px-7 py-4 text-terra font-bold text-[15px] transition-transform hover:scale-[1.02]">
                     {t.ctaPrimary}
                     <Icon icon="lucide:arrow-right" width={16} height={16} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
-                  </a>
-                  <a href={localeHref(lang, "/tarifs")} className="inline-flex items-center gap-2 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-sm text-white px-6 py-4 text-[15px] font-medium transition-colors">
+                  </Link>
+                  <Link href={localeHref(lang, "/tarifs")} className="inline-flex items-center gap-2 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-sm text-white px-6 py-4 text-[15px] font-medium transition-colors">
                     {t.ctaSecondary}
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

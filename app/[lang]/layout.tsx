@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { inter, dmMono, display, emphasis } from "@/lib/fonts";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { ScrollProgress } from "@/components/ui/motion-kit";
 import Maintenance from "@/components/Maintenance";
 import { JsonLd } from "@/components/JsonLd";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
@@ -17,38 +18,38 @@ const showMaintenance = MAINTENANCE && process.env.NODE_ENV === "production";
 
 const META: Record<Locale, { title: string; description: string; ogTitle: string; ogDescription: string; twitterDescription: string; keywords: string[] }> = {
   fr: {
-    title: "ACTC · Sites web qui convertissent · Livrés en 21 jours",
+    title: "ACTC Studio | Sites internet et publicité qui vous amènent des clients",
     description:
-      "Studio web pour PME et artisans. Sites premium, design sur-mesure, hébergement gratuit, référencement intégré. À partir de 1 400 €. Page d'accueil offerte avant tout engagement.",
-    ogTitle: "Votre site. Conçu pour vendre. Livré en 21 jours.",
+      "Sites internet dès 1 400 € livrés en 21 jours, publicité Meta et Google dès 500 € par mois, applications et conseil. Hébergement gratuit, aucun abonnement. Maquette de votre page d'accueil offerte.",
+    ogTitle: "Un site qui vous amène des clients. Livré en 21 jours.",
     ogDescription:
-      "Sites premium pour PME : design sur-mesure, SEO intégré, hébergement gratuit. À partir de 1 400 €.",
+      "Sites, publicité, applications et conseil pour PME. Hébergement gratuit, aucun abonnement. Site dès 1 400 €.",
     twitterDescription:
-      "Sites web qui convertissent. Design sur-mesure. Hébergement gratuit. À partir de 1 400 €.",
+      "Des sites qui vous amènent des clients. Hébergement gratuit, aucun abonnement. Dès 1 400 €.",
     keywords: [
       "création site internet",
       "site web PME",
       "site sur-mesure",
-      "agence web alternative WordPress",
-      "site rapide haute performance",
+      "publicité Facebook Instagram PME",
+      "application web sur-mesure",
       "site artisan BTP",
     ],
   },
   en: {
-    title: "ACTC · Websites that convert · Delivered in 21 days",
+    title: "ACTC Studio | Websites and ads that bring you customers",
     description:
-      "Web studio for small businesses and tradespeople. Premium websites, custom design, free hosting, built-in SEO. From €1,400. Free homepage before any commitment.",
-    ogTitle: "Your website. Built to sell. Delivered in 21 days.",
+      "Websites from €1,400 delivered in 21 days, Meta and Google ads from €500 per month, web apps and consulting. Free hosting, no subscription. Free homepage mockup.",
+    ogTitle: "A website that brings you customers. Delivered in 21 days.",
     ogDescription:
-      "Premium websites for small businesses: custom design, built-in SEO, free hosting. From €1,400.",
+      "Websites, ads, apps and consulting for small businesses. Free hosting, no subscription. Websites from €1,400.",
     twitterDescription:
-      "Websites that convert. Custom design. Free hosting. From €1,400.",
+      "Websites that bring you customers. Free hosting, no subscription. From €1,400.",
     keywords: [
       "website creation",
       "small business website",
       "custom website",
-      "WordPress alternative web agency",
-      "high performance website",
+      "Facebook and Instagram ads for small businesses",
+      "custom web app",
     ],
   },
 };
@@ -120,8 +121,11 @@ export default async function RootLayout({
   if (!hasLocale(lang)) notFound();
 
   return (
+    // data-scroll-behavior : Next 16 repasse en scroll instantané pendant les changements
+    // de page (sinon chaque navigation glisse jusqu'en haut au lieu d'arriver directement).
     <html
       lang={lang}
+      data-scroll-behavior="smooth"
       className={`${inter.variable} ${dmMono.variable} ${display.variable} ${emphasis.variable}`}
     >
       <body className="font-sans bg-alabaster text-midnight antialiased min-h-screen flex flex-col">
@@ -130,6 +134,7 @@ export default async function RootLayout({
           <Maintenance />
         ) : (
           <>
+            <ScrollProgress />
             <Nav lang={lang} />
             <div className="flex-1">{children}</div>
             <Footer lang={lang} />

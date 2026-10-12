@@ -1,6 +1,8 @@
 // Footer : colonnes nav + contact, puis grande signature de marque tout en bas.
 "use client";
 
+import Link from "next/link";
+
 import { motion } from "motion/react";
 import { localeHref, type Locale } from "@/lib/i18n";
 
@@ -18,15 +20,16 @@ const T: Record<
 > = {
   fr: {
     blurb:
-      "Design sur-mesure. Référencement intégré. Hébergement gratuit. Page d'accueil offerte avant tout engagement.",
+      "Sites internet, publicité, applications et conseil pour les entreprises de France, de Suisse, de Belgique et des DOM-TOM. Maquette de votre page d'accueil offerte, avant tout engagement.",
     navTitle: "Navigation",
     legalTitle: "Légal",
     nav: [
       ["Accueil", "/"],
-      ["Sites vitrines", "/sites-vitrine"],
-      ["Sites marchands", "/sites-marchands"],
+      ["Sites internet", "/sites-vitrine"],
+      ["Publicité", "/publicite"],
+      ["Applications et conseil", "/applications-conseil"],
       ["Réalisations", "/realisations"],
-      ["Nos offres", "/tarifs"],
+      ["Tarifs", "/tarifs"],
       ["L'équipe", "/qui-sommes-nous"],
       ["Ressources", "/ressources"],
       ["FAQ", "/faq"],
@@ -38,18 +41,19 @@ const T: Record<
       ["Politique de confidentialité", "/politique-confidentialite"],
       ["Cookies", "/mentions-legales#politique-cookies"],
     ],
-    copyright: "© 2026 ACTC · Tous droits réservés",
-    tagline: "Sites premium pour PME ambitieuses",
+    copyright: "© 2026 ACTC Studio · Tous droits réservés",
+    tagline: "Plus de clients pour les entreprises qui veulent grandir",
   },
   en: {
     blurb:
-      "Custom design. Built-in SEO. Free hosting. Free homepage before any commitment.",
+      "Websites, ads, web apps and consulting for businesses in France, Switzerland, Belgium and the French overseas territories. Free homepage mockup, before any commitment.",
     navTitle: "Navigation",
     legalTitle: "Legal",
     nav: [
       ["Home", "/"],
-      ["Showcase sites", "/sites-vitrine"],
-      ["E-commerce", "/sites-marchands"],
+      ["Websites", "/sites-vitrine"],
+      ["Ads", "/publicite"],
+      ["Apps & consulting", "/applications-conseil"],
       ["Our work", "/realisations"],
       ["Pricing", "/tarifs"],
       ["The team", "/qui-sommes-nous"],
@@ -63,8 +67,8 @@ const T: Record<
       ["Privacy policy", "/politique-confidentialite"],
       ["Cookies", "/mentions-legales#politique-cookies"],
     ],
-    copyright: "© 2026 ACTC · All rights reserved",
-    tagline: "Premium websites for ambitious businesses",
+    copyright: "© 2026 ACTC Studio · All rights reserved",
+    tagline: "More customers for businesses that want to grow",
   },
 };
 
@@ -100,7 +104,7 @@ export default function Footer({ lang }: { lang: Locale }) {
                 fondationstudio.fr@gmail.com
               </a>
               <a
-                href="https://www.instagram.com/tomso.ads"
+                href="https://www.instagram.com/actcstudio.fr"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-white/55 hover:text-white transition-colors"
@@ -110,7 +114,7 @@ export default function Footer({ lang }: { lang: Locale }) {
                   <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                   <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
                 </svg>
-                @tomso.ads
+                @actcstudio.fr
               </a>
               <a
                 href="https://www.linkedin.com/in/tom-soa-cyprien-934798333/"
@@ -123,7 +127,7 @@ export default function Footer({ lang }: { lang: Locale }) {
                   <rect x="2" y="9" width="4" height="12" />
                   <circle cx="4" cy="4" r="2" />
                 </svg>
-                Tom Soa Cyprien
+                Tom-Soa Cyprien (LinkedIn)
               </a>
             </div>
           </div>
@@ -135,12 +139,12 @@ export default function Footer({ lang }: { lang: Locale }) {
             <ul className="space-y-2.5 text-[14px]">
               {t.nav.map(([label, href]) => (
                 <li key={href}>
-                  <a
+                  <Link
                     href={localeHref(lang, href)}
                     className="text-white/65 hover:text-white transition-colors"
                   >
                     {label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -153,12 +157,12 @@ export default function Footer({ lang }: { lang: Locale }) {
             <ul className="space-y-2.5 text-[14px]">
               {t.legal.map(([label, href]) => (
                 <li key={href}>
-                  <a
+                  <Link
                     href={localeHref(lang, href)}
                     className="text-white/65 hover:text-white transition-colors"
                   >
                     {label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

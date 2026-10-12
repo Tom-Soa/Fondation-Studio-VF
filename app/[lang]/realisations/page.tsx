@@ -1,8 +1,10 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import RealisationsGrid from "@/components/realisations/RealisationsGrid";
 import type { Locale } from "@/lib/i18n";
 import { hasLocale, localeHref } from "@/lib/i18n";
+import { RevealWords } from "@/components/ui/motion-kit";
 
 const T: Record<
   Locale,
@@ -82,10 +84,11 @@ export default async function RealisationsPage({ params }: { params: Promise<{ l
       <section className="bg-alabaster pt-32 pb-10 lg:pt-44 lg:pb-12">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-[11px] uppercase tracking-[0.18em] text-terra mb-6 font-medium">{t.kicker}</div>
-          <h1 className="font-display font-extrabold tracking-[-0.035em] text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.02] text-midnight max-w-3xl">
-            {t.h1Start}{" "}
-            <span className="font-emphasis font-normal text-terra">{t.h1Em}</span>
-          </h1>
+          <RevealWords
+            className="font-display font-extrabold tracking-[-0.035em] text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.02] text-midnight max-w-3xl"
+            emClassName="font-emphasis font-normal text-terra"
+            segments={[{ text: t.h1Start }, { text: t.h1Em, em: true }]}
+          />
           <p className="mt-6 max-w-2xl text-[clamp(1rem,1.2vw,1.2rem)] leading-relaxed text-steel">
             {t.intro}
           </p>
@@ -105,7 +108,7 @@ export default async function RealisationsPage({ params }: { params: Promise<{ l
             <p className="mt-4 max-w-xl mx-auto text-steel">
               {t.ctaText}
             </p>
-            <a
+            <Link
               href={localeHref(lang, "/contact")}
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-terra hover:bg-terra-hover text-white px-7 py-3.5 text-[15px] font-semibold transition-colors glow-terra"
             >
@@ -113,7 +116,7 @@ export default async function RealisationsPage({ params }: { params: Promise<{ l
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
       </section>

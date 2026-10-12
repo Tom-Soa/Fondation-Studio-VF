@@ -1,8 +1,10 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { OFFERS, depositLabel, PAYMENT_NOTE } from "@/lib/content";
 import type { Locale } from "@/lib/i18n";
 import { hasLocale, localeHref } from "@/lib/i18n";
+import { RevealWords } from "@/components/ui/motion-kit";
 
 interface Step {
   n: string;
@@ -77,7 +79,7 @@ const T: Record<Locale, Dict> = {
       {
         n: "04",
         t: "Mise en ligne & solde",
-        d: "On met votre site en ligne, on vous remet le code, et vous réglez le solde de 40 %. Livraison en 14 à 21 jours.",
+        d: "On met votre site en ligne, on vous remet le code, et vous réglez le solde de 40 %. Livré en 21 jours.",
       },
     ],
   },
@@ -124,7 +126,7 @@ const T: Record<Locale, Dict> = {
       {
         n: "04",
         t: "Launch & final payment",
-        d: "We put your site online, hand over the code, and you pay the remaining 40%. Delivered in 14 to 21 days.",
+        d: "We put your site online, hand over the code, and you pay the remaining 40%. Delivered in 21 days.",
       },
     ],
   },
@@ -167,16 +169,18 @@ export default async function OffresPage({ params }: { params: Promise<{ lang: s
           aria-hidden
         />
         <div className="max-w-5xl mx-auto px-6 text-center">
-          <a href={localeHref(lang, "/tarifs")} className="inline-flex items-center gap-2 text-[13px] text-steel hover:text-terra transition-colors mb-8">
+          <Link href={localeHref(lang, "/tarifs")} className="inline-flex items-center gap-2 text-[13px] text-steel hover:text-terra transition-colors mb-8">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
               <path d="M19 12H5M12 19l-7-7 7-7" />
             </svg>
             {t.backLink}
-          </a>
+          </Link>
           <div className="text-[11px] uppercase tracking-[0.18em] text-terra mb-5 font-medium">{t.kicker}</div>
-          <h1 className="font-display font-extrabold tracking-[-0.035em] text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.02] text-midnight">
-            {t.h1Before}<span className="font-emphasis font-normal text-terra">{t.h1Em}</span>{t.h1After}
-          </h1>
+          <RevealWords
+            className="font-display font-extrabold tracking-[-0.035em] text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.02] text-midnight"
+            emClassName="font-emphasis font-normal text-terra"
+            segments={[{ text: t.h1Before }, { text: t.h1Em, em: true }, { text: t.h1After }]}
+          />
           <p className="mt-6 max-w-2xl mx-auto text-[clamp(1rem,1.2vw,1.15rem)] leading-relaxed text-steel">
             {t.intro}
           </p>
@@ -250,28 +254,28 @@ export default async function OffresPage({ params }: { params: Promise<{ lang: s
                 <div className="mt-7 flex flex-col sm:flex-row gap-3">
                   {canPay ? (
                     <>
-                      <a
+                      <Link
                         href={localeHref(lang, "/contact")}
                         className="inline-flex flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-terra hover:bg-terra-hover px-6 py-3.5 text-white font-semibold text-[14.5px] transition-colors glow-terra"
                       >
                         {t.ctaStart}
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-                      </a>
-                      <a
+                      </Link>
+                      <Link
                         href={localeHref(lang, "/contact")}
                         className="inline-flex flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-midnight/15 hover:border-terra hover:text-terra px-6 py-3.5 text-midnight font-semibold text-[14.5px] transition-colors"
                       >
                         {t.ctaMockup}
-                      </a>
+                      </Link>
                     </>
                   ) : (
-                    <a
+                    <Link
                       href={localeHref(lang, "/contact")}
                       className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-terra hover:bg-terra-hover px-6 py-3.5 text-white font-semibold text-[14.5px] transition-colors glow-terra"
                     >
                       {t.ctaQuote}
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-                    </a>
+                    </Link>
                   )}
                 </div>
                 {canPay && (

@@ -1,6 +1,8 @@
 // Nav : pill flottante en haut (desktop) + barre flottante en bas (mobile).
 "use client";
 
+import Link from "next/link";
+
 import { motion, AnimatePresence } from "motion/react";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
@@ -8,15 +10,15 @@ import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
 import { localeHref, switchLocalePath, type Locale } from "@/lib/i18n";
 
-const NAV_ITEMS: { label: Record<Locale, string>; href: string }[] = [
+// `also` : chemins qui allument aussi l'entrée (vitrine et marchand forment une seule rubrique).
+const NAV_ITEMS: { label: Record<Locale, string>; href: string; also?: string[] }[] = [
   { label: { fr: "Accueil", en: "Home" }, href: "/" },
-  { label: { fr: "Sites vitrines", en: "Showcase sites" }, href: "/sites-vitrine" },
-  { label: { fr: "Sites marchands", en: "E-commerce" }, href: "/sites-marchands" },
+  { label: { fr: "Sites internet", en: "Websites" }, href: "/sites-vitrine", also: ["/sites-marchands"] },
+  { label: { fr: "Publicité", en: "Ads" }, href: "/publicite" },
+  { label: { fr: "Applications et conseil", en: "Apps & consulting" }, href: "/applications-conseil" },
   { label: { fr: "Réalisations", en: "Our work" }, href: "/realisations" },
-  { label: { fr: "Nos offres", en: "Pricing" }, href: "/tarifs" },
+  { label: { fr: "Tarifs", en: "Pricing" }, href: "/tarifs" },
   { label: { fr: "L'équipe", en: "The team" }, href: "/qui-sommes-nous" },
-  { label: { fr: "Ressources", en: "Resources" }, href: "/ressources" },
-  { label: { fr: "FAQ", en: "FAQ" }, href: "/faq" },
 ];
 
 const T: Record<Locale, { contact: string; menu: string; close: string; open: string; cta: string; mainNav: string; mobileNav: string; homeAria: string; switchAria: string }> = {
@@ -25,7 +27,7 @@ const T: Record<Locale, { contact: string; menu: string; close: string; open: st
     menu: "Menu",
     close: "Fermer le menu",
     open: "Ouvrir le menu",
-    cta: "Demander un devis gratuit",
+    cta: "Recevoir ma maquette offerte",
     mainNav: "Navigation principale",
     mobileNav: "Navigation mobile",
     homeAria: "Accueil ACTC",
@@ -36,7 +38,7 @@ const T: Record<Locale, { contact: string; menu: string; close: string; open: st
     menu: "Menu",
     close: "Close menu",
     open: "Open menu",
-    cta: "Get a free quote",
+    cta: "Get my free mockup",
     mainNav: "Main navigation",
     mobileNav: "Mobile navigation",
     homeAria: "ACTC home",
@@ -52,25 +54,19 @@ function Logo({ className }: { className?: string }) {
   );
 }
 
-function isActive(pathname: string, lang: Locale, href: string) {
-  const full = localeHref(lang, href);
-  return href === "/" ? pathname === full : pathname.startsWith(full);
+function isActive(pathname: string, lang: Locale, href: string, also: string[] = []) {
+  return [href, ...also].some((h) => {
+    const full = localeHref(lang, h);
+    return h === "/" ? pathname === full : pathname.startsWith(full);
+  });
 }
 
 export default function Nav({ lang }: { lang: Locale }) {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const t = T[lang];
   const otherLang: Locale = lang === "fr" ? "en" : "fr";
   const switchHref = switchLocalePath(pathname, otherLang);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   // Ferme le menu mobile au changement de page.
   useEffect(() => setOpen(false), [pathname]);
@@ -79,31 +75,30 @@ export default function Nav({ lang }: { lang: Locale }) {
     <>
       {/* ── Desktop : pill flottante en haut ─────────────────────────── */}
       <motion.nav
-        initial={{ y: -24, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+        // Pas d'animation d'entrée : la barre reste fixe d'une page à l'autre.
         className="fixed top-3 left-1/2 -translate-x-1/2 z-50 hidden lg:flex transition-all duration-500"
         aria-label={t.mainNav}
       >
         <div
           className={cn(
             "flex items-center gap-1 px-2 py-1.5 rounded-full",
-            "border border-white/[0.10] backdrop-blur-xl",
+            "border border-white/[0.10]",
             "shadow-[0_4px_40px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.06)]",
-            scrolled ? "bg-midnight/85" : "bg-midnight/70",
+            // Fond plein, sans backdrop-filter : un flou recalculé à chaque image coûte cher au scroll.
+            "bg-midnight",
           )}
         >
-          <a
+          <Link
             href={localeHref(lang, "/")}
             className="flex items-center pl-3 pr-3 py-1 font-display font-extrabold text-[15px] text-white tracking-[-0.02em] whitespace-nowrap"
           >
             <Logo />
-          </a>
+          </Link>
           <div className="h-5 w-px bg-white/10 mx-1" aria-hidden />
           {NAV_ITEMS.map((item) => {
-            const active = isActive(pathname, lang, item.href);
+            const active = isActive(pathname, lang, item.href, item.also);
             return (
-              <a
+              <Link
                 key={item.href}
                 href={localeHref(lang, item.href)}
                 aria-current={active ? "page" : undefined}
@@ -122,7 +117,7 @@ export default function Nav({ lang }: { lang: Locale }) {
                   />
                 )}
                 <span className="relative">{item.label[lang]}</span>
-              </a>
+              </Link>
             );
           })}
           <a
@@ -132,13 +127,13 @@ export default function Nav({ lang }: { lang: Locale }) {
           >
             {otherLang}
           </a>
-          <a
+          <Link
             href={localeHref(lang, "/contact")}
             className="ml-1 flex items-center gap-1.5 px-4 py-2 rounded-full bg-terra hover:bg-terra-hover text-white text-[13.5px] font-semibold tracking-tight transition-colors whitespace-nowrap"
           >
             {t.contact}
             <Icon icon="lucide:arrow-right" width={14} height={14} aria-hidden />
-          </a>
+          </Link>
         </div>
       </motion.nav>
 
@@ -151,7 +146,7 @@ export default function Nav({ lang }: { lang: Locale }) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setOpen(false)}
-              className="lg:hidden fixed inset-0 z-50 bg-midnight/40 backdrop-blur-sm"
+              className="lg:hidden fixed inset-0 z-50 bg-midnight/50"
               aria-hidden
             />
             <motion.div
@@ -184,9 +179,9 @@ export default function Nav({ lang }: { lang: Locale }) {
               </div>
               <nav className="flex flex-col" aria-label={t.mobileNav}>
                 {NAV_ITEMS.map((item) => {
-                  const active = isActive(pathname, lang, item.href);
+                  const active = isActive(pathname, lang, item.href, item.also);
                   return (
-                    <a
+                    <Link
                       key={item.href}
                       href={localeHref(lang, item.href)}
                       aria-current={active ? "page" : undefined}
@@ -197,30 +192,30 @@ export default function Nav({ lang }: { lang: Locale }) {
                     >
                       {item.label[lang]}
                       <Icon icon="lucide:arrow-up-right" width={18} height={18} className="text-white/30" aria-hidden />
-                    </a>
+                    </Link>
                   );
                 })}
               </nav>
-              <a
+              <Link
                 href={localeHref(lang, "/contact")}
                 className="mt-5 flex items-center justify-center gap-2 w-full rounded-full bg-terra hover:bg-terra-hover px-5 py-4 text-white font-semibold text-[15px]"
               >
                 {t.cta}
                 <Icon icon="lucide:arrow-right" width={16} height={16} aria-hidden />
-              </a>
+              </Link>
             </motion.div>
           </>
         )}
       </AnimatePresence>
 
       {/* ── Mobile : petit logo flottant en haut à gauche ────────────── */}
-      <a
+      <Link
         href={localeHref(lang, "/")}
-        className="lg:hidden fixed top-3 left-3 z-40 flex items-center gap-2 rounded-full border border-white/10 bg-midnight/85 backdrop-blur-xl pl-3 pr-4 py-2 shadow-[0_6px_24px_rgba(0,0,0,0.3)]"
+        className="lg:hidden fixed top-3 left-3 z-40 flex items-center gap-2 rounded-full border border-white/10 bg-midnight pl-3 pr-4 py-2 shadow-[0_6px_24px_rgba(0,0,0,0.3)]"
         aria-label={t.homeAria}
       >
         <Logo className="font-display font-extrabold text-[14px] text-white tracking-[-0.02em]" />
-      </a>
+      </Link>
 
       {/* ── Mobile : barre flottante en bas (menu + contact) ─────────── */}
       <div className="lg:hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-40 flex items-center gap-2">
@@ -228,18 +223,21 @@ export default function Nav({ lang }: { lang: Locale }) {
           onClick={() => setOpen(true)}
           aria-label={t.open}
           aria-expanded={open}
-          className="flex items-center gap-2 rounded-full border border-white/10 bg-midnight/90 backdrop-blur-xl pl-4 pr-5 py-3 text-white text-[14px] font-medium shadow-[0_8px_30px_rgba(0,0,0,0.35)]"
+          className="flex items-center gap-2 rounded-full border border-white/10 bg-midnight pl-4 pr-5 py-3 text-white text-[14px] font-medium shadow-[0_8px_30px_rgba(0,0,0,0.35)]"
         >
           <Icon icon="lucide:menu" width={18} height={18} aria-hidden />
           {t.menu}
         </button>
-        <a
-          href={localeHref(lang, "/contact")}
-          className="flex items-center gap-2 rounded-full bg-terra hover:bg-terra-hover px-5 py-3 text-white text-[14px] font-semibold shadow-[0_8px_30px_rgba(194,65,12,0.45)]"
-        >
-          <Icon icon="ph:chat-circle-text-duotone" width={18} height={18} aria-hidden />
-          {t.contact}
-        </a>
+        {/* Masqué sur /contact : il recouvrait le formulaire sans rien apporter. */}
+        {!isActive(pathname, lang, "/contact") && (
+          <Link
+            href={localeHref(lang, "/contact")}
+            className="flex items-center gap-2 rounded-full bg-terra hover:bg-terra-hover px-5 py-3 text-white text-[14px] font-semibold shadow-[0_8px_30px_rgba(194,65,12,0.45)]"
+          >
+            <Icon icon="ph:chat-circle-text-duotone" width={18} height={18} aria-hidden />
+            {t.contact}
+          </Link>
+        )}
       </div>
     </>
   );
