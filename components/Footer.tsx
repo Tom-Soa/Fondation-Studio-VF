@@ -94,14 +94,14 @@ export default function Footer({ lang }: { lang: Locale }) {
                 +33 6 72 75 84 78
               </a>
               <a
-                href="mailto:fondationstudio.fr@gmail.com"
+                href="mailto:andylane.actc@gmail.com"
                 className="flex items-center gap-2 text-white/55 hover:text-white transition-colors"
               >
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                   <polyline points="22,6 12,13 2,6" />
                 </svg>
-                fondationstudio.fr@gmail.com
+                andylane.actc@gmail.com
               </a>
               <a
                 href="https://www.instagram.com/actcstudio.fr"

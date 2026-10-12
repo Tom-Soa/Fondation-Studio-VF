@@ -44,8 +44,8 @@ const T: Record<
     h1: "Politique de confidentialité",
     s1Title: "1. Responsable du traitement",
     s1TextBefore:
-      "ACTC (Tom-Soa Cyprien et Andylane Chatenay) est responsable du traitement des données collectées sur fondationstudio.fr. Contact : ",
-    s1Contact: "fondationstudio.fr@gmail.com",
+      "ACTC (Tom-Soa Cyprien et Andylane Chatenay) est responsable du traitement des données collectées sur actcstudio.fr. Contact : ",
+    s1Contact: "andylane.actc@gmail.com",
     s2Title: "2. Données collectées",
     s2Intro: "Nous collectons uniquement les données que vous nous fournissez volontairement :",
     s2List: [
@@ -95,8 +95,8 @@ const T: Record<
       "This English translation is provided for convenience only. The French version prevails in the event of any discrepancy.",
     s1Title: "1. Data controller",
     s1TextBefore:
-      "ACTC (Tom-Soa Cyprien and Andylane Chatenay) is the controller of the data collected on fondationstudio.fr. Contact: ",
-    s1Contact: "fondationstudio.fr@gmail.com",
+      "ACTC (Tom-Soa Cyprien and Andylane Chatenay) is the controller of the data collected on actcstudio.fr. Contact: ",
+    s1Contact: "andylane.actc@gmail.com",
     s2Title: "2. Data collected",
     s2Intro: "We only collect the data you provide to us voluntarily:",
     s2List: [
@@ -175,7 +175,7 @@ export default async function PolitiqueConfidentialitePage({
 
           <section>
             <h2 className="font-display text-lg font-bold text-midnight mb-3">{t.s1Title}</h2>
-            <p>{t.s1TextBefore}<a href="mailto:fondationstudio.fr@gmail.com" className="text-terra underline underline-offset-2">{t.s1Contact}</a></p>
+            <p>{t.s1TextBefore}<a href="mailto:andylane.actc@gmail.com" className="text-terra underline underline-offset-2">{t.s1Contact}</a></p>
           </section>
 
           <section>
@@ -216,7 +216,7 @@ export default async function PolitiqueConfidentialitePage({
                 <li key={item}>{item}</li>
               ))}
             </ul>
-            <p className="mt-3">{t.s6Exercise}<a href="mailto:fondationstudio.fr@gmail.com" className="text-terra underline underline-offset-2">fondationstudio.fr@gmail.com</a></p>
+            <p className="mt-3">{t.s6Exercise}<a href="mailto:andylane.actc@gmail.com" className="text-terra underline underline-offset-2">andylane.actc@gmail.com</a></p>
             <p className="mt-2">{t.s6Complaint}<a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer" className="text-terra underline underline-offset-2">cnil.fr</a></p>
           </section>
 

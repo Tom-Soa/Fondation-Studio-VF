@@ -27,7 +27,7 @@ export const organizationSchema = {
   image: `${SITE_URL}/icon.png`,
   description:
     "Studio pour PME et artisans : sites internet et sites marchands sur-mesure livrés en 21 jours, publicité Meta et Google, applications web et conseil. Hébergement gratuit, aucun abonnement. Une cinquantaine d'entreprises accompagnées.",
-  email: "fondationstudio.fr@gmail.com",
+  email: "andylane.actc@gmail.com",
   telephone: "+33672758478",
   priceRange: "€€",
   areaServed: [

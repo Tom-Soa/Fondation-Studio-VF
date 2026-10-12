@@ -278,7 +278,7 @@ export default async function CGVPage({
             <h2 className="font-display text-lg font-bold text-midnight mb-3">{t.contactTitle}</h2>
             <p>
               {t.contactText}
-              <a href="mailto:fondationstudio.fr@gmail.com" className="text-terra underline underline-offset-2">fondationstudio.fr@gmail.com</a>
+              <a href="mailto:andylane.actc@gmail.com" className="text-terra underline underline-offset-2">andylane.actc@gmail.com</a>
             </p>
           </section>
 

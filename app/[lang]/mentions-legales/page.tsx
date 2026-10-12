@@ -48,7 +48,7 @@ const T: Record<
     kicker: "Légal",
     h1: "Mentions légales",
     editorTitle: "Éditeur du site",
-    editorIntro: "Le site fondationstudio.fr est édité par :",
+    editorIntro: "Le site actcstudio.fr est édité par :",
     editorName: "Dénomination :",
     editorNameValue: "ACTC",
     editorFounders: "Fondateurs :",
@@ -90,7 +90,7 @@ const T: Record<
     prevails:
       "This English translation is provided for convenience only. The French version prevails in the event of any discrepancy.",
     editorTitle: "Site publisher",
-    editorIntro: "The website fondationstudio.fr is published by:",
+    editorIntro: "The website actcstudio.fr is published by:",
     editorName: "Business name:",
     editorNameValue: "ACTC",
     editorFounders: "Founders:",
@@ -166,7 +166,7 @@ export default async function MentionsLegalesPage({
             <ul className="mt-3 space-y-1">
               <li><strong className="text-midnight">{t.editorName}</strong> {t.editorNameValue}</li>
               <li><strong className="text-midnight">{t.editorFounders}</strong> {t.editorFoundersValue}</li>
-              <li><strong className="text-midnight">{t.editorEmail}</strong> fondationstudio.fr@gmail.com</li>
+              <li><strong className="text-midnight">{t.editorEmail}</strong> andylane.actc@gmail.com</li>
               <li><strong className="text-midnight">{t.editorPhone}</strong> +33 6 72 75 84 78</li>
               <li><strong className="text-midnight">{t.editorStatus}</strong> {t.editorStatusValue}</li>
               <li><strong className="text-midnight">{t.editorVat}</strong> {t.editorVatValue}</li>
@@ -191,7 +191,7 @@ export default async function MentionsLegalesPage({
           <section id="rgpd">
             <h2 className="font-display text-xl font-bold text-midnight mb-4">{t.gdprTitle}</h2>
             <p>{t.gdprP1}</p>
-            <p className="mt-3">{t.gdprP2}<a href="mailto:fondationstudio.fr@gmail.com" className="text-terra underline underline-offset-2">fondationstudio.fr@gmail.com</a></p>
+            <p className="mt-3">{t.gdprP2}<a href="mailto:andylane.actc@gmail.com" className="text-terra underline underline-offset-2">andylane.actc@gmail.com</a></p>
             <p className="mt-3">{t.gdprP3}</p>
             <p className="mt-3">{t.gdprP4}<a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer" className="text-terra underline underline-offset-2">cnil.fr</a></p>
           </section>

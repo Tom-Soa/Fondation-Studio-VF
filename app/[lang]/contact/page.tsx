@@ -145,13 +145,13 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
                 <div className="text-[15px] font-medium text-midnight group-hover:text-[#1ebe5d] transition-colors">+33 6 72 75 84 78</div>
               </div>
             </a>
-            <a href="mailto:fondationstudio.fr@gmail.com" className="flex items-center gap-4 group rounded-2xl border border-grid-line p-4 hover:border-terra/40 transition-colors">
+            <a href="mailto:andylane.actc@gmail.com" className="flex items-center gap-4 group rounded-2xl border border-grid-line p-4 hover:border-terra/40 transition-colors">
               <div className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-white border border-grid-line text-terra">
                 <Icon icon="ph:envelope-simple-duotone" width={20} height={20} aria-hidden />
               </div>
               <div className="min-w-0">
                 <div className="text-[11px] uppercase tracking-wider text-steel">{t.emailLabel}</div>
-                <div className="text-[14px] font-medium text-midnight group-hover:text-terra transition-colors break-all">fondationstudio.fr@gmail.com</div>
+                <div className="text-[14px] font-medium text-midnight group-hover:text-terra transition-colors break-all">andylane.actc@gmail.com</div>
               </div>
             </a>
             <div className="flex items-center gap-4 rounded-2xl border border-grid-line p-4">

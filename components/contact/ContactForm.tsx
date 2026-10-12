@@ -229,7 +229,7 @@ export default function ContactForm({ lang }: { lang: Locale }) {
                 <div className="font-semibold text-[14.5px]">{status.message}</div>
                 <p className="text-[13.5px] mt-0.5 text-steel">
                   {t.errorWriteUs}{" "}
-                  <a href="mailto:fondationstudio.fr@gmail.com" className="text-terra underline underline-offset-2">fondationstudio.fr@gmail.com</a>.
+                  <a href="mailto:andylane.actc@gmail.com" className="text-terra underline underline-offset-2">andylane.actc@gmail.com</a>.
                 </p>
               </div>
             </motion.div>

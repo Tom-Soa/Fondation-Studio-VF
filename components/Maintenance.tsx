@@ -130,11 +130,11 @@ export default function Maintenance({ lang = "fr" }: { lang?: Locale }) {
           className="mt-7 text-[14px] text-midnight/55"
         >
           <a
-            href="mailto:fondationstudio.fr@gmail.com"
+            href="mailto:andylane.actc@gmail.com"
             className="inline-flex items-center gap-2 hover:text-terra transition-colors"
           >
             <Icon icon="ph:envelope-simple-duotone" width={16} height={16} aria-hidden />
-            fondationstudio.fr@gmail.com
+            andylane.actc@gmail.com
           </a>
         </motion.div>
       </div>
