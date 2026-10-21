@@ -11,7 +11,7 @@
  * Laisser vide affiche un bloc "vidéo à venir" (utile en préprod).
  */
 export const VSL_EMBED_URL =
-  "https://www.youtube.com/embed/6WEvd6GK3KQ?rel=0&modestbranding=1&iv_load_policy=3";
+  "https://www.youtube.com/embed/Xouo9pEDZ6k?rel=0&modestbranding=1&iv_load_policy=3";
 
 
 /** Miniature affichée avant lecture (facade). Placer le fichier dans /public. */
