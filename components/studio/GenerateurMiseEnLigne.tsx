@@ -25,7 +25,29 @@ type Champs = {
   entreprise: string;
   url: string;
   mention: string;
+  activite: string;
 };
+
+function genererDescriptionInstagram(champs: Champs): string {
+  const nom = champs.entreprise.trim();
+  const url = champs.url.trim().replace(/^https?:\/\//, "").replace(/\/$/, "");
+  const activite = champs.activite.trim();
+
+  if (!nom) return "";
+
+  const lignes: string[] = [
+    `${nom} est en ligne. ${activite ? activite + " : " : ""}Un site pensé pour convertir, construit en quelques jours.`,
+    "",
+    url ? `${url}` : "",
+    "",
+    `Création sur mesure par ACTC`,
+    `actcstudio.fr`,
+    "",
+    `#creationsite #webdesign #siteinternet #${nom.toLowerCase().replace(/[^a-zàâéèêëïîôùûüç0-9]+/g, "")} #actcstudio #entrepreneur #digital #pme`,
+  ];
+
+  return lignes.filter((l, i, arr) => !(l === "" && arr[i - 1] === "")).join("\n");
+}
 
 /**
  * Un style de fond, c'est un tracé plus une palette de texte : sur les fonds
@@ -53,7 +75,9 @@ export default function GenerateurMiseEnLigne() {
     entreprise: "",
     url: "",
     mention: "Nouveau site en ligne",
+    activite: "",
   });
+  const [copie, setCopie] = useState(false);
   const [themeId, setThemeId] = useState(THEMES[0].id);
   const theme = THEMES.find((t) => t.id === themeId) ?? THEMES[0];
 
@@ -134,6 +158,19 @@ export default function GenerateurMiseEnLigne() {
                 value={champs.url}
                 onChange={(e) => setChamps({ ...champs, url: e.target.value })}
                 placeholder="lavilladespecheurs.fr"
+                className="w-full rounded-xl border border-grid-line bg-white px-4 py-3 text-[15px] text-midnight outline-none focus:border-terra"
+              />
+            </label>
+
+            <label className="block">
+              <span className="mb-2 block text-[13px] font-semibold text-midnight">
+                Activité du client
+              </span>
+              <input
+                type="text"
+                value={champs.activite}
+                onChange={(e) => setChamps({ ...champs, activite: e.target.value })}
+                placeholder="Boulangerie artisanale à Cayenne"
                 className="w-full rounded-xl border border-grid-line bg-white px-4 py-3 text-[15px] text-midnight outline-none focus:border-terra"
               />
             </label>
@@ -222,6 +259,30 @@ export default function GenerateurMiseEnLigne() {
               <p className="text-center text-[12.5px] text-midnight/60">
                 Renseignez le nom et déposez une capture.
               </p>
+            )}
+
+            {champs.entreprise.trim() && (
+              <div className="rounded-xl border border-grid-line bg-white p-4">
+                <div className="mb-3 flex items-center justify-between">
+                  <span className="text-[13px] font-semibold text-midnight">
+                    Description Instagram
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      navigator.clipboard.writeText(genererDescriptionInstagram(champs));
+                      setCopie(true);
+                      setTimeout(() => setCopie(false), 2000);
+                    }}
+                    className="rounded-lg bg-terra/10 px-3 py-1.5 text-[12.5px] font-semibold text-terra transition-colors hover:bg-terra/20"
+                  >
+                    {copie ? "Copié !" : "Copier"}
+                  </button>
+                </div>
+                <pre className="whitespace-pre-wrap text-[13px] leading-relaxed text-midnight/80">
+                  {genererDescriptionInstagram(champs)}
+                </pre>
+              </div>
             )}
           </div>
 
