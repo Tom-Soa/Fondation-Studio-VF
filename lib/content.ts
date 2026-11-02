@@ -482,7 +482,7 @@ export const SHOWCASE: Record<Locale, ShowcaseItem[]> = {
     {
       src: "/showcase/roboli.jpg",
       alt: "Site e-commerce Roboli Audio",
-      url: "https://robolidesign.com/",
+      url: "https://roboli-demo.vercel.app/",
       name: "Roboli Audio",
       offer: "E-commerce Shopify",
       sector: "Hi-Fi / produits audio",
@@ -790,7 +790,7 @@ export const SHOWCASE: Record<Locale, ShowcaseItem[]> = {
     {
       src: "/showcase/roboli.jpg",
       alt: "Roboli Audio e-commerce website",
-      url: "https://robolidesign.com/",
+      url: "https://roboli-demo.vercel.app/",
       name: "Roboli Audio",
       offer: "Shopify e-commerce",
       sector: "Hi-Fi / audio products",
