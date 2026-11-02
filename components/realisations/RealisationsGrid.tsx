@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useState, useMemo } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Icon } from "@iconify/react";
-import { SHOWCASE, type ShowcaseItem } from "@/lib/content";
+import { SHOWCASE, isLive, type ShowcaseItem } from "@/lib/content";
 import { localeHref, type Locale } from "@/lib/i18n";
 
 const T: Record<
@@ -60,7 +60,8 @@ const T: Record<
 
 export default function RealisationsGrid({ lang }: { lang: Locale }) {
   const t = T[lang];
-  const items = SHOWCASE[lang];
+  // Les sites en ligne ont leur propre section au-dessus : ici, les autres projets livrés.
+  const items = useMemo(() => SHOWCASE[lang].filter((s) => !isLive(s)), [lang]);
 
   const [active, setActive] = useState<ShowcaseItem | null>(null);
   const [filterOffer, setFilterOffer] = useState(t.offerFilters[0]);
@@ -88,8 +89,8 @@ export default function RealisationsGrid({ lang }: { lang: Locale }) {
   return (
     <>
       {/* Filtres */}
-      <div className="mb-8 space-y-3">
-        <div className="flex flex-wrap gap-2">
+      <div className="mb-8 flex flex-col items-center gap-3">
+        <div className="flex flex-wrap justify-center gap-2">
           {t.typeFilters.map((f) => (
             <button
               key={f}

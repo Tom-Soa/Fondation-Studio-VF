@@ -8,7 +8,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from "motion/react"
 import { Icon } from "@iconify/react";
 import { MockupCard } from "@/components/ui/MockupCard";
 import { RevealWords, Magnetic } from "@/components/ui/motion-kit";
-import { SHOWCASE } from "@/lib/content";
+import { SHOWCASE, liveFirst } from "@/lib/content";
 import type { Locale } from "@/lib/i18n";
 import { localeHref } from "@/lib/i18n";
 
@@ -35,7 +35,7 @@ const T: Record<
     subtitle:
       "Sites internet, publicité Meta et Google, applications et conseil : tout ce qu'il faut pour que vos futurs clients vous trouvent et vous appellent. Livré en 21 jours, sans abonnement.",
     ctaPrimary: "Recevoir ma maquette offerte",
-    ctaSecondary: "Voir nos réalisations",
+    ctaSecondary: "Voir nos sites en ligne",
     features: [
       ["ph:cloud-duotone", "Hébergement gratuit"],
       ["ph:calendar-check-duotone", "Livré en 21 jours"],
@@ -51,7 +51,7 @@ const T: Record<
     subtitle:
       "Websites, Meta and Google ads, web apps and consulting: everything your future customers need to find you and call you. Delivered in 21 days, no subscription.",
     ctaPrimary: "Get my free mockup",
-    ctaSecondary: "See our work",
+    ctaSecondary: "See our live websites",
     features: [
       ["ph:cloud-duotone", "Free hosting"],
       ["ph:calendar-check-duotone", "Delivered in 21 days"],
@@ -60,7 +60,7 @@ const T: Record<
   },
 };
 
-const IMAGES = SHOWCASE.fr.map((s) => s.src.replace("/showcase/", "/showcase/3d/"));
+const IMAGES = liveFirst(SHOWCASE.fr).map((s) => s.src.replace("/showcase/", "/showcase/3d/"));
 
 function hasWebGL() {
   try {
@@ -73,7 +73,7 @@ function hasWebGL() {
 
 // Repli : deux bandes d'aperçus qui défilent en sens inverse.
 function MarqueeRow({ lang, reverse = false, offset = 0 }: { lang: Locale; reverse?: boolean; offset?: number }) {
-  const showcase = SHOWCASE[lang];
+  const showcase = liveFirst(SHOWCASE[lang]);
   const items = [...showcase.slice(offset), ...showcase.slice(0, offset)];
   const loop = [...items, ...items];
   return (

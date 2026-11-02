@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import RealisationsGrid from "@/components/realisations/RealisationsGrid";
+import LiveSiteCard from "@/components/realisations/LiveSiteCard";
+import { SHOWCASE, isLive } from "@/lib/content";
 import type { Locale } from "@/lib/i18n";
 import { hasLocale, localeHref } from "@/lib/i18n";
 import { RevealWords } from "@/components/ui/motion-kit";
@@ -17,6 +19,8 @@ const T: Record<
     h1Start: string;
     h1Em: string;
     intro: string;
+    othersTitle: string;
+    othersText: string;
     ctaTitleStart: string;
     ctaTitleEm: string;
     ctaText: string;
@@ -31,10 +35,12 @@ const T: Record<
     ogDescription:
       "Sites vitrines et e-commerce livrés dans tous les secteurs. Hébergement gratuit, site en propriété totale.",
     kicker: "Réalisations",
-    h1Start: "Ce qu'on a fait",
-    h1Em: "pour nos clients.",
+    h1Start: "Nos sites en ligne,",
+    h1Em: "à visiter.",
     intro:
-      "Chaque projet est conçu sur-mesure pour son secteur. Voici quelques sites que nous avons réalisés pour des entreprises qui voulaient se distinguer.",
+      "Ces sites sont en ligne, sous le nom de domaine de nos clients. Cliquez sur l'un d'eux pour le visiter, comme le ferait un de leurs clients.",
+    othersTitle: "D'autres projets livrés",
+    othersText: "Sites en cours de mise en ligne, maquettes validées et projets plus anciens.",
     ctaTitleStart: "Votre site sera le",
     ctaTitleEm: "prochain.",
     ctaText: "On vous offre la maquette de votre page d'accueil, sur-mesure, avant tout engagement.",
@@ -48,10 +54,12 @@ const T: Record<
     ogDescription:
       "Showcase and e-commerce websites delivered across every industry. Free hosting, a site you fully own.",
     kicker: "Portfolio",
-    h1Start: "What we have built",
-    h1Em: "for our clients.",
+    h1Start: "Our live websites,",
+    h1Em: "go take a look.",
     intro:
-      "Every project is designed from scratch for its industry. Here are some of the websites we have built for businesses that wanted to stand out.",
+      "These websites are live, on our clients' own domain names. Click any of them to visit it, just like their customers do.",
+    othersTitle: "More projects we delivered",
+    othersText: "Websites about to go live, approved mockups and earlier projects.",
     ctaTitleStart: "Your website could be",
     ctaTitleEm: "next.",
     ctaText: "We design your homepage mockup for free, fully custom, before any commitment.",
@@ -78,30 +86,44 @@ export default async function RealisationsPage({ params }: { params: Promise<{ l
   const { lang } = await params;
   if (!hasLocale(lang)) notFound();
   const t = T[lang];
+  const live = SHOWCASE[lang].filter(isLive);
   return (
     <main>
-      {/* Titre de page clair (inspiré de l'ancien site) */}
-      <section className="bg-alabaster pt-32 pb-10 lg:pt-44 lg:pb-12">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* En-tête centré */}
+      <section className="bg-alabaster pt-32 pb-10 lg:pt-44 lg:pb-14">
+        <div className="max-w-7xl mx-auto px-6 text-center">
           <div className="text-[11px] uppercase tracking-[0.18em] text-terra mb-6 font-medium">{t.kicker}</div>
           <RevealWords
-            className="font-display font-extrabold tracking-[-0.035em] text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.02] text-midnight max-w-3xl"
+            className="mx-auto font-display font-extrabold tracking-[-0.035em] text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.02] text-midnight max-w-3xl"
             emClassName="font-emphasis font-normal text-terra"
             segments={[{ text: t.h1Start }, { text: t.h1Em, em: true }]}
           />
-          <p className="mt-6 max-w-2xl text-[clamp(1rem,1.2vw,1.2rem)] leading-relaxed text-steel">
+          <p className="mt-6 mx-auto max-w-2xl text-[clamp(1rem,1.2vw,1.2rem)] leading-relaxed text-steel">
             {t.intro}
           </p>
         </div>
       </section>
 
-      {/* Grille de réalisations avec vrais aperçus + modale "En savoir plus" */}
-      <section className="bg-alabaster pb-24 lg:pb-28">
+      {/* Sites en ligne : chaque carte ouvre le vrai site */}
+      <section className="bg-alabaster pb-20 lg:pb-24">
+        <div className="max-w-7xl mx-auto px-6 grid gap-6 md:grid-cols-2">
+          {live.map((s) => (
+            <LiveSiteCard key={s.url} s={s} lang={lang} />
+          ))}
+        </div>
+      </section>
+
+      {/* Autres projets, avec fiche détaillée */}
+      <section className="bg-white border-t border-grid-line py-20 lg:py-24">
         <div className="max-w-7xl mx-auto px-6">
+          <div className="mb-10 text-center">
+            <h2 className="font-display font-extrabold tracking-[-0.03em] text-[clamp(1.75rem,3.5vw,2.5rem)] text-midnight">{t.othersTitle}</h2>
+            <p className="mt-3 mx-auto max-w-xl text-steel">{t.othersText}</p>
+          </div>
           <RealisationsGrid lang={lang} />
 
           {/* CTA bas de page */}
-          <div className="mt-16 rounded-3xl border border-grid-line bg-white p-10 lg:p-14 text-center">
+          <div className="mt-16 rounded-3xl border border-grid-line bg-alabaster p-10 lg:p-14 text-center">
             <h2 className="font-display font-extrabold tracking-[-0.03em] text-[clamp(1.75rem,3.5vw,2.75rem)] text-midnight">
               {t.ctaTitleStart} <span className="font-emphasis font-normal text-terra">{t.ctaTitleEm}</span>
             </h2>

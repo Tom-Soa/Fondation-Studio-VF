@@ -327,6 +327,7 @@ export interface ShowcaseItem {
   src: string;
   alt: string;
   url?: string;      // lien vers le site en ligne
+  live?: boolean;    // mis en avant dans « Nos sites en ligne » (lien direct)
   name: string;
   offer: string;
   sector: string;     // secteur d'activité
@@ -338,6 +339,160 @@ export interface ShowcaseItem {
 
 export const SHOWCASE: Record<Locale, ShowcaseItem[]> = {
   fr: [
+    {
+      src: "/showcase/lipoluxe.jpg",
+      alt: "Site web Lipoluxe",
+      url: "https://www.lipoluxe.fr/",
+      name: "Lipoluxe",
+      offer: "Offre Premium",
+      sector: "Institut de soins minceur",
+      duration: "3 semaines",
+      type: "Site vitrine premium",
+      live: true,
+      summary:
+        "Site haut de gamme pour un institut de soins minceur à Gourbeyre, en Guadeloupe. Les soins, les gammes et la méthode présentés avec soin, et la réservation du bilan en un clic.",
+      highlights: ["Soins et gammes détaillés", "Réservation du bilan", "Méthode expliquée", "FAQ"],
+    },
+    {
+      src: "/showcase/toits-de-provence.jpg",
+      alt: "Site web Les Toits de Provence",
+      url: "https://www.lestoitsdeprovence.fr/",
+      name: "Les Toits de Provence",
+      offer: "Offre Conversion",
+      sector: "Couverture / zinguerie",
+      duration: "3 semaines",
+      type: "Site vitrine",
+      live: true,
+      summary:
+        "Site pour une entreprise de couverture et de zinguerie à La Brillanne, dans les Alpes-de-Haute-Provence et les Hautes-Alpes. Pensé pour obtenir des demandes de devis et des appels.",
+      highlights: ["Demande de devis", "Appel en un clic", "Services et zones d'intervention", "Avis Google"],
+    },
+    {
+      src: "/showcase/cias.jpg",
+      alt: "Site web CIAS Sud Mayotte",
+      url: "https://www.cias-ccsud.yt/",
+      name: "CIAS Sud Mayotte",
+      offer: "Offre Standard",
+      sector: "Établissement public / solidarité",
+      duration: "2 semaines",
+      type: "Site vitrine",
+      live: true,
+      summary:
+        "Site institutionnel pour un centre intercommunal d'action sociale. Clarté de l'information, accès aux droits et aux services pour les habitants du Sud de Mayotte.",
+      highlights: ["Présentation des services", "Gouvernance & membres", "Actualités & projets", "Contact accessible"],
+    },
+    {
+      src: "/showcase/kadraz.jpg",
+      alt: "Site de l'application Kadraz",
+      url: "https://www.kadraz.com/",
+      name: "Kadraz",
+      offer: "Sur devis",
+      sector: "Application / tournage de clips",
+      duration: "Sur devis",
+      type: "Application",
+      live: true,
+      summary:
+        "Application pour organiser le tournage d'un clip : plans, lieux, planning, équipe et feuille de service au même endroit. Site de présentation et application en ligne.",
+      highlights: ["Application web", "Planning et équipe", "Feuille de service", "Abonnement en ligne"],
+    },
+    {
+      src: "/showcase/patrice-wilfrid.jpg",
+      alt: "Site web Patrice Wilfrid, photographe",
+      url: "https://www.patricewilfrid.com/",
+      name: "Patrice Wilfrid",
+      offer: "Offre Premium",
+      sector: "Photographe de mariage",
+      duration: "3 semaines",
+      type: "Site vitrine premium",
+      live: true,
+      summary:
+        "Site pour un photographe de mariage en Guadeloupe. Les reportages mis en valeur en grand format, et la demande de date en quelques clics.",
+      highlights: ["Galerie de mariages", "Prestations détaillées", "Réservation de date", "Histoires de couples"],
+    },
+    {
+      src: "/showcase/patagaufres.jpg",
+      alt: "Site web Pat' à Gaufres",
+      url: "https://www.patagaufres.re/",
+      name: "Pat' à Gaufres",
+      offer: "Offre Conversion",
+      sector: "Animation événementielle",
+      duration: "3 semaines",
+      type: "Site vitrine",
+      live: true,
+      summary:
+        "Site pour un stand de gaufres préparées en direct lors des événements, à La Réunion. La carte, les formules et la demande de devis en quelques secondes.",
+      highlights: ["Carte et formules", "Services et tarifs", "Devis gratuit", "Contact WhatsApp"],
+    },
+    {
+      src: "/showcase/coqoon.jpg",
+      alt: "Boutique en ligne Coqoon",
+      url: "https://coqoon-weld.vercel.app/",
+      name: "Coqoon",
+      offer: "E-commerce Shopify",
+      sector: "Coques de téléphone",
+      duration: "4 semaines",
+      type: "Boutique en ligne",
+      live: true,
+      summary:
+        "Boutique en ligne de coques de téléphone pastel à prix juste, pour iPhone, Samsung, Pixel et Xiaomi. Choix de la couleur, packs à composer et livraison suivie.",
+      highlights: ["Coques par modèle et couleur", "Packs à composer", "Panier et paiement", "Retours gratuits 30 jours"],
+    },
+    {
+      src: "/showcase/jeehaans.jpg",
+      alt: "Boutique en ligne Jeehaan's",
+      url: "https://jeehaans.fr/",
+      name: "Jeehaan's",
+      offer: "E-commerce Shopify",
+      sector: "Bijoux et parures orientales",
+      duration: "4 semaines",
+      type: "Boutique en ligne",
+      live: true,
+      summary:
+        "Boutique en ligne de bijoux et de parures de mariage inspirés des arts orientaux, brodés à la main. Collections, guide des tailles, paiement sécurisé et service client sur WhatsApp.",
+      highlights: ["Catalogue et collections", "Guide des tailles", "Paiement sécurisé", "Service client WhatsApp"],
+    },
+    {
+      src: "/showcase/chr.jpg",
+      alt: "Site web CHR Contrôle Hydrant Réunion",
+      url: "https://incendieoi.fr/",
+      name: "CHR · Contrôle Hydrant Réunion",
+      offer: "Offre Conversion",
+      sector: "Conformité incendie",
+      duration: "3 semaines",
+      type: "Site vitrine",
+      live: true,
+      summary:
+        "Site pour une entreprise de contrôle des hydrants et de conformité incendie au Tampon, à La Réunion. Les prestations expliquées clairement, avec devis gratuit et appel direct.",
+      highlights: ["Prestations détaillées", "Devis gratuit", "Appel en un clic", "FAQ réglementaire"],
+    },
+    {
+      src: "/showcase/palais-mauricien.jpg",
+      alt: "Site web Palais Mauricien",
+      url: "https://www.palaismauricien.re/",
+      name: "Palais Mauricien",
+      offer: "Offre Conversion",
+      sector: "Restaurant mauricien",
+      duration: "3 semaines",
+      type: "Site vitrine",
+      live: true,
+      summary:
+        "Site pour un restaurant halal mauricien au Port, à La Réunion. Le menu, la galerie et la commande à emporter ou en livraison mis en avant dès l'arrivée.",
+      highlights: ["Menu complet", "Commande à emporter", "Livraison Uber Eats", "Galerie photos"],
+    },
+    {
+      src: "/showcase/roboli.jpg",
+      alt: "Site e-commerce Roboli Audio",
+      url: "https://robolidesign.com/",
+      name: "Roboli Audio",
+      offer: "E-commerce Shopify",
+      sector: "Hi-Fi / produits audio",
+      duration: "4 semaines",
+      type: "Boutique en ligne",
+      live: true,
+      summary:
+        "Boutique en ligne pour une marque de câbles et meubles Hi-Fi artisanaux. Catalogue produits, panier, paiement sécurisé et mise en avant de la garantie à vie.",
+      highlights: ["Catalogue & fiches produits", "Panier & paiement sécurisé", "Bandeau réassurance", "Multi-langues FR/EN"],
+    },
     {
       src: "/showcase/conciergerie-bunel.jpg",
       alt: "Site web La Conciergerie Bunel",
@@ -454,18 +609,6 @@ export const SHOWCASE: Record<Locale, ShowcaseItem[]> = {
       highlights: ["Direction artistique premium", "Méthode détaillée", "Cas clients", "Prise de contact qualifiée"],
     },
     {
-      src: "/showcase/roboli.jpg",
-      alt: "Site e-commerce Roboli Audio",
-      name: "Roboli Audio",
-      offer: "E-commerce Shopify",
-      sector: "Hi-Fi / produits audio",
-      duration: "4 semaines",
-      type: "Boutique en ligne",
-      summary:
-        "Boutique en ligne pour une marque de câbles et meubles Hi-Fi artisanaux. Catalogue produits, panier, paiement sécurisé et mise en avant de la garantie à vie.",
-      highlights: ["Catalogue & fiches produits", "Panier & paiement sécurisé", "Bandeau réassurance", "Multi-langues FR/EN"],
-    },
-    {
       src: "/showcase/forminter.jpg",
       alt: "Site web Forminter",
       name: "Forminter",
@@ -490,18 +633,6 @@ export const SHOWCASE: Record<Locale, ShowcaseItem[]> = {
       highlights: ["Catalogue de véhicules", "Réseau d'agences", "Devenir loueur", "Réservation en ligne"],
     },
     {
-      src: "/showcase/cias.jpg",
-      alt: "Site web CIAS Sud Mayotte",
-      name: "CIAS Sud Mayotte",
-      offer: "Offre Standard",
-      sector: "Établissement public / solidarité",
-      duration: "2 semaines",
-      type: "Site vitrine",
-      summary:
-        "Site institutionnel pour un centre intercommunal d'action sociale. Clarté de l'information, accès aux droits et aux services pour les habitants du Sud de Mayotte.",
-      highlights: ["Présentation des services", "Gouvernance & membres", "Actualités & projets", "Contact accessible"],
-    },
-    {
       src: "/showcase/sico-prefa.jpg",
       alt: "Site web Sico Prefa",
       url: "https://sico-prefa.vercel.app/",
@@ -516,6 +647,160 @@ export const SHOWCASE: Record<Locale, ShowcaseItem[]> = {
     },
   ],
   en: [
+    {
+      src: "/showcase/lipoluxe.jpg",
+      alt: "Lipoluxe website",
+      url: "https://www.lipoluxe.fr/",
+      name: "Lipoluxe",
+      offer: "Premium plan",
+      sector: "Body contouring clinic",
+      duration: "3 weeks",
+      type: "Premium showcase website",
+      live: true,
+      summary:
+        "High-end website for a body contouring clinic in Gourbeyre, Guadeloupe. Treatments, product ranges and method presented with care, and a one-click booking for the first assessment.",
+      highlights: ["Treatments and ranges", "Assessment booking", "Method explained", "FAQ"],
+    },
+    {
+      src: "/showcase/toits-de-provence.jpg",
+      alt: "Les Toits de Provence website",
+      url: "https://www.lestoitsdeprovence.fr/",
+      name: "Les Toits de Provence",
+      offer: "Conversion plan",
+      sector: "Roofing / zinc work",
+      duration: "3 weeks",
+      type: "Showcase website",
+      live: true,
+      summary:
+        "Website for a roofing and zinc work company in La Brillanne, in the French Alps of Provence. Built to bring in quote requests and phone calls.",
+      highlights: ["Quote request", "One-tap call", "Services and service areas", "Google reviews"],
+    },
+    {
+      src: "/showcase/cias.jpg",
+      alt: "CIAS Sud Mayotte website",
+      url: "https://www.cias-ccsud.yt/",
+      name: "CIAS Sud Mayotte",
+      offer: "Standard plan",
+      sector: "Public institution / social services",
+      duration: "2 weeks",
+      type: "Showcase website",
+      live: true,
+      summary:
+        "Institutional website for an intercommunal social action center. Clear information, access to rights and services for the residents of southern Mayotte.",
+      highlights: ["Services overview", "Governance & members", "News & projects", "Accessible contact"],
+    },
+    {
+      src: "/showcase/kadraz.jpg",
+      alt: "Kadraz app website",
+      url: "https://www.kadraz.com/",
+      name: "Kadraz",
+      offer: "Custom quote",
+      sector: "App / music video shoots",
+      duration: "Custom quote",
+      type: "Web app",
+      live: true,
+      summary:
+        "App for organising a music video shoot: shots, locations, schedule, crew and call sheet in one place. Marketing site and live web app.",
+      highlights: ["Web app", "Schedule and crew", "Call sheet", "Online subscription"],
+    },
+    {
+      src: "/showcase/patrice-wilfrid.jpg",
+      alt: "Patrice Wilfrid photographer website",
+      url: "https://www.patricewilfrid.com/",
+      name: "Patrice Wilfrid",
+      offer: "Premium plan",
+      sector: "Wedding photographer",
+      duration: "3 weeks",
+      type: "Premium showcase website",
+      live: true,
+      summary:
+        "Website for a wedding photographer in Guadeloupe. Large-format galleries front and centre, and a date request in a few clicks.",
+      highlights: ["Wedding gallery", "Services explained", "Date booking", "Couples' stories"],
+    },
+    {
+      src: "/showcase/patagaufres.jpg",
+      alt: "Pat' à Gaufres website",
+      url: "https://www.patagaufres.re/",
+      name: "Pat' à Gaufres",
+      offer: "Conversion plan",
+      sector: "Event catering",
+      duration: "3 weeks",
+      type: "Showcase website",
+      live: true,
+      summary:
+        "Website for a waffle stand that cooks live at events across Reunion Island. Menu, packages and a quote request in seconds.",
+      highlights: ["Menu and packages", "Services and pricing", "Free quote", "WhatsApp contact"],
+    },
+    {
+      src: "/showcase/coqoon.jpg",
+      alt: "Coqoon online store",
+      url: "https://coqoon-weld.vercel.app/",
+      name: "Coqoon",
+      offer: "Shopify e-commerce",
+      sector: "Phone cases",
+      duration: "4 weeks",
+      type: "Online store",
+      live: true,
+      summary:
+        "Online store for fairly priced pastel phone cases for iPhone, Samsung, Pixel and Xiaomi. Colour picker, build-your-own bundles and tracked shipping.",
+      highlights: ["Cases by model and colour", "Build-your-own bundles", "Cart and checkout", "Free 30-day returns"],
+    },
+    {
+      src: "/showcase/jeehaans.jpg",
+      alt: "Jeehaan's online store",
+      url: "https://jeehaans.fr/",
+      name: "Jeehaan's",
+      offer: "Shopify e-commerce",
+      sector: "Oriental jewellery",
+      duration: "4 weeks",
+      type: "Online store",
+      live: true,
+      summary:
+        "Online store for hand-embroidered jewellery and bridal sets inspired by oriental arts. Collections, size guide, secure checkout and WhatsApp customer service.",
+      highlights: ["Catalogue and collections", "Size guide", "Secure checkout", "WhatsApp customer service"],
+    },
+    {
+      src: "/showcase/chr.jpg",
+      alt: "CHR Contrôle Hydrant Réunion website",
+      url: "https://incendieoi.fr/",
+      name: "CHR · Contrôle Hydrant Réunion",
+      offer: "Conversion plan",
+      sector: "Fire safety compliance",
+      duration: "3 weeks",
+      type: "Showcase website",
+      live: true,
+      summary:
+        "Website for a fire hydrant inspection and fire safety compliance company in Le Tampon, Reunion Island. Services explained clearly, with a free quote and one-tap call.",
+      highlights: ["Services explained", "Free quote", "One-tap call", "Regulations FAQ"],
+    },
+    {
+      src: "/showcase/palais-mauricien.jpg",
+      alt: "Palais Mauricien website",
+      url: "https://www.palaismauricien.re/",
+      name: "Palais Mauricien",
+      offer: "Conversion plan",
+      sector: "Mauritian restaurant",
+      duration: "3 weeks",
+      type: "Showcase website",
+      live: true,
+      summary:
+        "Website for a halal Mauritian restaurant in Le Port, Reunion Island. Menu, gallery and takeaway or delivery ordering front and centre.",
+      highlights: ["Full menu", "Takeaway ordering", "Uber Eats delivery", "Photo gallery"],
+    },
+    {
+      src: "/showcase/roboli.jpg",
+      alt: "Roboli Audio e-commerce website",
+      url: "https://robolidesign.com/",
+      name: "Roboli Audio",
+      offer: "Shopify e-commerce",
+      sector: "Hi-Fi / audio products",
+      duration: "4 weeks",
+      type: "Online store",
+      live: true,
+      summary:
+        "Online store for a brand of handcrafted Hi-Fi cables and furniture. Product catalog, cart, secure checkout and a lifetime warranty front and center.",
+      highlights: ["Catalog & product pages", "Cart & secure checkout", "Reassurance banner", "FR/EN multi-language"],
+    },
     {
       src: "/showcase/conciergerie-bunel.jpg",
       alt: "La Conciergerie Bunel website",
@@ -632,18 +917,6 @@ export const SHOWCASE: Record<Locale, ShowcaseItem[]> = {
       highlights: ["Premium art direction", "Detailed methodology", "Client case studies", "Qualified contact flow"],
     },
     {
-      src: "/showcase/roboli.jpg",
-      alt: "Roboli Audio e-commerce website",
-      name: "Roboli Audio",
-      offer: "Shopify e-commerce",
-      sector: "Hi-Fi / audio products",
-      duration: "4 weeks",
-      type: "Online store",
-      summary:
-        "Online store for a brand of handcrafted Hi-Fi cables and furniture. Product catalog, cart, secure checkout and a lifetime warranty front and center.",
-      highlights: ["Catalog & product pages", "Cart & secure checkout", "Reassurance banner", "FR/EN multi-language"],
-    },
-    {
       src: "/showcase/forminter.jpg",
       alt: "Forminter website",
       name: "Forminter",
@@ -668,18 +941,6 @@ export const SHOWCASE: Record<Locale, ShowcaseItem[]> = {
       highlights: ["Vehicle catalog", "Agency network", "Become a rental partner", "Online booking"],
     },
     {
-      src: "/showcase/cias.jpg",
-      alt: "CIAS Sud Mayotte website",
-      name: "CIAS Sud Mayotte",
-      offer: "Standard plan",
-      sector: "Public institution / social services",
-      duration: "2 weeks",
-      type: "Showcase website",
-      summary:
-        "Institutional website for an intercommunal social action center. Clear information, access to rights and services for the residents of southern Mayotte.",
-      highlights: ["Services overview", "Governance & members", "News & projects", "Accessible contact"],
-    },
-    {
       src: "/showcase/sico-prefa.jpg",
       alt: "Sico Prefa website",
       url: "https://sico-prefa.vercel.app/",
@@ -694,6 +955,12 @@ export const SHOWCASE: Record<Locale, ShowcaseItem[]> = {
     },
   ],
 };
+
+// Sites en ligne choisis par Tom : mis en avant partout, carte = lien direct vers le site.
+export const isLive = (s: ShowcaseItem) => !!s.live && !!s.url;
+export const domainOf = (url: string) => new URL(url).hostname.replace(/^www\./, "");
+// Ordre d'affichage : sites en ligne d'abord, le reste ensuite.
+export const liveFirst = (items: ShowcaseItem[]) => [...items.filter(isLive), ...items.filter((s) => !isLive(s))];
 
 // ── Réalisations (cartes gradient, pas de screenshots) ─────────────
 export interface Realisation {

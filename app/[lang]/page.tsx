@@ -8,7 +8,7 @@ import Process from "@/components/home/Process";
 import FaqLanding from "@/components/home/FaqLanding";
 import CtaBand from "@/components/home/CtaBand";
 
-// Accueil volontairement court : promesse, preuves, services, étapes, questions, appel final.
+// Accueil volontairement court : promesse, sites en ligne (la preuve d'abord), services, étapes, questions, appel final.
 // Le détail des forfaits et la comparaison vivent sur /tarifs.
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
@@ -17,8 +17,8 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
   return (
     <main className="relative">
       <HeroLanding lang={lang} />
-      <StatementBand lang={lang} />
       <Showcase lang={lang} />
+      <StatementBand lang={lang} />
       <ServicesGrid lang={lang} />
       <Process lang={lang} />
       <FaqLanding lang={lang} />
