@@ -75,7 +75,14 @@ function loadImage(src: string) {
 
 export async function createRing(container: HTMLElement, opts: RingOptions) {
   const mobile = window.matchMedia("(max-width: 767px)").matches;
-  const images = mobile ? opts.images.slice(0, 10) : opts.images;
+  // Mobile : anneau plus serré. Les cartes sont des plans tangents à l'anneau :
+  // deux voisines ne se touchent pas tant que demi-largeur + marge <= rayon × tan(π/N).
+  // On en déduit le nombre maximal de cartes, sinon elles se traversent et se tranchent.
+  const radius = mobile ? 3.5 : 6.4;
+  const cardW = mobile ? 2.05 : 2.35;
+  const GAP = mobile ? 0.1 : 0.22; // marge minimale entre deux bords voisins
+  const maxCards = Math.floor(Math.PI / Math.atan((cardW / 2 + GAP) / radius));
+  const images = opts.images.slice(0, maxCards);
 
   // Canvas opaque (fond alabaster) : un canvas transparent recomposé à chaque image
   // clignote sur Safari iOS pendant le scroll. Pas d'antialias sur mobile (coût GPU).
@@ -95,9 +102,6 @@ export async function createRing(container: HTMLElement, opts: RingOptions) {
   // Anneau de cartes
   const ring = new Group();
   scene.add(ring);
-  // Mobile : anneau plus serré, cartes jointives (circonférence ≈ nombre de cartes × largeur).
-  const radius = mobile ? 3.5 : 6.4;
-  const cardW = mobile ? 2.05 : 2.9;
   const geo = new PlaneGeometry(cardW, cardW * ((CARD_H + BAR) / CARD_W));
   const loaded = await Promise.all(images.map((src) => loadImage(src).catch(() => null)));
   const textures: CanvasTexture[] = [];
@@ -106,11 +110,13 @@ export async function createRing(container: HTMLElement, opts: RingOptions) {
   valid.forEach((img, i) => {
     const tex = windowTexture(img);
     textures.push(tex);
-    const mat = new MeshBasicMaterial({ map: tex, transparent: true, fog: true });
+    // Opaque + alphaTest (coins arrondis) : le tampon de profondeur ordonne les cartes,
+    // pas de tri des objets transparents qui fait passer une carte devant une autre.
+    const mat = new MeshBasicMaterial({ map: tex, transparent: false, alphaTest: 0.5, fog: true });
     materials.push(mat);
     const m = new Mesh(geo, mat);
     const a = (i / valid.length) * Math.PI * 2;
-    m.position.set(Math.sin(a) * radius, Math.sin(i * 1.7) * 0.35, Math.cos(a) * radius);
+    m.position.set(Math.sin(a) * radius, Math.sin(i * 1.7) * 0.2, Math.cos(a) * radius);
     m.rotation.y = a; // la carte regarde vers l'extérieur
     ring.add(m);
   });
@@ -179,13 +185,13 @@ export async function createRing(container: HTMLElement, opts: RingOptions) {
     ring.rotation.y = spin;
     // L'anneau ne monte qu'après la sortie du texte (qui s'efface sur le premier tiers).
     const rise = Math.max(0, (prog - 0.2) / 0.8);
-    ring.position.y = (mobile ? -3.1 : -2.4) + rise * 2.6;
+    ring.position.y = (mobile ? -3.1 : -2.75) + rise * 2.6;
     dust.rotation.y = spin * 0.25;
 
     const baseZ = mobile ? 10.5 : 11 + (camera.aspect < 1 ? 3 : 0);
     camera.position.set(cur.x * 1.4, 0.6 - cur.y * 0.7 + prog * 1.6, baseZ + prog * 6);
     // Desktop : on vise sous le centre de l'anneau pour le faire remonter dans le premier écran.
-    camera.lookAt(0, ring.position.y + (mobile ? 0.6 : -0.9), 0);
+    camera.lookAt(0, ring.position.y + (mobile ? 0.6 : -0.5), 0);
     renderer.render(scene, camera);
   };
 
